@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_hr_docs_root" name="Kadr hujjatlari"
+              parent="hr.menu_hr_root" sequence="45"
+              groups="hr.group_hr_user"/>
+
+    <menuitem id="menu_hr_event" name="Kadr harakatlari"
+              parent="menu_hr_docs_root" action="action_hr_event" sequence="10"/>
+
+    <menuitem id="menu_hr_document" name="Yaratilgan hujjatlar"
+              parent="menu_hr_docs_root" action="action_hr_document" sequence="20"/>
+
+    <menuitem id="menu_hr_doc_template" name="Hujjat shablonlari"
+              parent="menu_hr_docs_root" action="action_hr_doc_template"
+              sequence="90" groups="hr.group_hr_manager"/>
+
+</odoo>

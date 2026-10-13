@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="edit_project_cst_hub" model="ir.ui.view">
+        <field name="name">project.project.form.cst.hub</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <!-- Sales are already reachable through the standard "Sale Orders"
+                 button, and the customer portal preview is not used here. -->
+            <xpath expr="//button[@name='action_customer_preview']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="action_cst_view_purchases" icon="fa-shopping-cart"
+                        groups="purchase.group_purchase_user">
+                    <field name="cst_purchase_count" widget="statinfo" string="Purchases"/>
+                </button>
+                <button class="oe_stat_button" type="object"
+                        name="action_cst_view_expenses" icon="fa-money">
+                    <field name="cst_expense_count" widget="statinfo" string="Expenses"/>
+                </button>
+                <button class="oe_stat_button" type="object"
+                        name="action_cst_view_mrfs" icon="fa-cubes"
+                        groups="purchase.group_purchase_user">
+                    <field name="cst_mrf_count" widget="statinfo" string="Material Requests"/>
+                </button>
+                <button class="oe_stat_button" type="object"
+                        name="action_cst_view_productions" icon="fa-wrench"
+                        groups="mrp.group_mrp_user">
+                    <field name="cst_mo_count" widget="statinfo" string="Manufacturing"/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_cst_open_hub" type="object"
+                        string="Dashboard" class="btn-primary"
+                        help="Open this project's own dashboard: sales, purchases, manufacturing and expenses."/>
+                <button name="action_cst_check_materials" type="object"
+                        string="Check Materials"
+                        groups="purchase.group_purchase_user"
+                        help="Compare this project's sale-order needs against warehouse stock, then buy the missing components and manufacture the products that have a bill of materials."/>
+                <field name="cst_manufacture_ready" invisible="1"/>
+                <field name="cst_manufacture_ready_count" invisible="1"/>
+                <field name="cst_manufacture_missing" invisible="1"/>
+                <widget name="cst_project_new_mo" groups="mrp.group_mrp_user"/>
+                <button name="action_cst_start_manufacturing" type="object"
+                        string="Start Manufacturing"
+                        invisible="not cst_manufacture_ready"
+                        groups="mrp.group_mrp_user"
+                        help="Same materials, more control: choose the operations, split them over the work centers and name who is responsible."/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="cst_financials" string="Financials">
+                    <field name="cst_currency_id" invisible="1"/>
+                    <group>
+                        <group string="Currency">
+                            <field name="cst_display_currency_id" options="{'no_create': True}"/>
+                            <field name="cst_income_by_currency"
+                                   invisible="not cst_income_by_currency"/>
+                            <field name="cst_cost_by_currency"
+                                   invisible="not cst_cost_by_currency"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Income">
+                            <field name="cst_income_total" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"/>
+                            <field name="cst_amount_paid" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"/>
+                            <field name="cst_amount_due" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"
+                                   class="text-danger fw-bold"/>
+                        </group>
+                        <group string="Costs &amp; Margin">
+                            <field name="cst_purchase_total" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"/>
+                            <field name="cst_expense_total" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"/>
+                            <field name="cst_margin" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"
+                                   class="fw-bold"/>
+                        </group>
+                        <group string="Production" groups="mrp.group_mrp_user">
+                            <field name="cst_qty_produced"/>
+                            <field name="cst_qty_planned"/>
+                            <field name="cst_qty_consumed"/>
+                            <field name="cst_qty_second" invisible="not cst_qty_second"/>
+                            <field name="cst_qty_scrap" invisible="not cst_qty_scrap"
+                                   class="text-danger"/>
+                            <field name="cst_quality_pct" widget="percentage"
+                                   invisible="not cst_qty_produced"/>
+                            <field name="cst_material_cost" widget="monetary"
+                                   options="{'currency_field': 'cst_display_currency_id'}"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="cst_manufacturing" string="Manufacturing"
+                      groups="mrp.group_mrp_user">
+                    <div class="alert alert-success d-flex align-items-center" role="status"
+                         invisible="not cst_manufacture_ready">
+                        <i class="fa fa-check-circle me-2"/>
+                        <span>
+                            Every component is in the warehouse for
+                            <field name="cst_manufacture_ready_count" class="fw-bold mx-1"/>
+                            product(s). Use <b>Ishlab chiqarish yaratish</b> above: it opens the same
+                            screen the Shop Floor uses, with the bill of materials, the operations and
+                            the lines all editable before the order is raised.
+                        </span>
+                    </div>
+                    <div class="alert alert-warning" role="status"
+                         invisible="cst_manufacture_ready or not cst_manufacture_missing">
+                        <i class="fa fa-exclamation-triangle me-2"/>
+                        Still waiting for (free/needed):
+                        <field name="cst_manufacture_missing" class="fw-bold"/>
+                    </div>
+                    <field name="cst_production_ids" readonly="1"
+                           context="{'from_project_action': True}">
+                        <list decoration-muted="state == 'cancel'"
+                              decoration-success="state == 'done'"
+                              decoration-info="state in ('confirmed', 'progress', 'to_close')">
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="cst_characteristic" optional="show"/>
+                            <field name="product_qty"/>
+                            <field name="qty_produced" string="Produced"/>
+                            <field name="cst_second_qty" string="2-sort" optional="show"
+                                   decoration-warning="cst_second_qty &gt; 0"/>
+                            <field name="cst_scrap_qty" string="Brak" optional="show"
+                                   decoration-danger="cst_scrap_qty &gt; 0"/>
+                            <field name="product_uom_id" groups="uom.group_uom" optional="show"/>
+                            <field name="date_start" optional="show"/>
+                            <field name="components_availability" optional="show"/>
+                            <field name="cst_mrf_id" string="Request" optional="show"/>
+                            <field name="state" widget="badge"/>
+                        </list>
+                    </field>
+                </page>
+                <page name="cst_materials" string="Materials"
+                      groups="purchase.group_purchase_user">
+                    <field name="cst_mrf_line_ids" readonly="1">
+                        <list decoration-danger="qty_to_buy > 0 and not purchase_order_id"
+                              decoration-success="purchase_state == 'purchase' or production_state == 'done'">
+                            <field name="product_id"/>
+                            <field name="cst_characteristic" optional="show"/>
+                            <field name="kind" widget="badge"/>
+                            <field name="product_qty"/>
+                            <field name="qty_available"/>
+                            <field name="qty_to_buy"/>
+                            <field name="qty_to_produce"/>
+                            <field name="stock_by_location"/>
+                            <field name="purchaser_id" widget="many2one_avatar_user"/>
+                            <field name="purchase_order_id"/>
+                            <field name="purchase_state"/>
+                            <field name="production_id" optional="show"/>
+                            <field name="production_state" optional="show"/>
+                            <field name="state" widget="badge"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

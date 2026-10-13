@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="cst_kerama_project.ProjectHub">
+    <div class="o_kph">
+
+        <!-- ============ top bar ============ -->
+        <header class="o_kph_bar">
+            <div class="o_kph_bar__id">
+                <span class="o_kph_mark"><i class="fa fa-cubes"/></span>
+                <div class="o_kph_bar__titles">
+                    <select class="o_kph_picker" t-on-change="(ev) => this.onProjectChange(ev)">
+                        <option t-foreach="state.projects" t-as="p" t-key="p.id"
+                                t-att-value="p.id" t-att-selected="p.id === state.projectId">
+                            <t t-esc="p.name"/>
+                        </option>
+                    </select>
+                    <div class="o_kph_bar__sub" t-if="state.data and state.data.project">
+                        <span t-if="state.data.project.partner">
+                            <i class="fa fa-user-o me-1"/><t t-esc="state.data.project.partner"/>
+                        </span>
+                        <span t-if="state.data.project.manager">
+                            <i class="fa fa-user-circle-o me-1"/><t t-esc="state.data.project.manager"/>
+                        </span>
+                        <span><i class="fa fa-building-o me-1"/><t t-esc="state.data.project.company"/></span>
+                        <span class="o_kph_period"><t t-esc="periodLabel"/></span>
+                    </div>
+                </div>
+            </div>
+            <div class="o_kph_bar__tools">
+                <div class="o_kph_seg">
+                    <button t-foreach="periods" t-as="p" t-key="p.key"
+                            t-att-class="state.filters.period === p.key ? 'is-on' : ''"
+                            t-on-click="() => this.setPeriod(p.key)">
+                        <t t-esc="p.label"/>
+                    </button>
+                </div>
+                <div class="o_kph_dates" t-if="state.filters.period === 'custom'">
+                    <input type="date" t-att-value="state.filters.date_from"
+                           t-on-change="(ev) => this.onDateChange('date_from', ev)"/>
+                    <span>→</span>
+                    <input type="date" t-att-value="state.filters.date_to"
+                           t-on-change="(ev) => this.onDateChange('date_to', ev)"/>
+                </div>
+                <select class="o_kph_picker o_kph_picker--ccy"
+                        t-on-change="(ev) => this.onCurrencyChange(ev)"
+                        title="Read every amount in this currency">
+                    <option t-foreach="state.currencies" t-as="c" t-key="c.id"
+                            t-att-value="c.id" t-att-selected="c.id === currencyId">
+                        <t t-esc="c.name"/>
+                    </option>
+                </select>
+                <button class="o_kph_chip" t-att-class="state.filters.include_draft ? 'is-on' : ''"
+                        t-on-click="() => this.toggleDrafts()"
+                        title="Include quotations, RFQs, draft orders and unapproved expenses">
+                    <i class="fa fa-file-o"/> Drafts
+                </button>
+                <div class="o_kph_seg o_kph_seg--mini">
+                    <button t-att-class="state.filters.granularity === 'month' ? 'is-on' : ''"
+                            t-on-click="() => this.setGranularity('month')">M</button>
+                    <button t-att-class="state.filters.granularity === 'week' ? 'is-on' : ''"
+                            t-on-click="() => this.setGranularity('week')">W</button>
+                </div>
+                <button class="o_kph_chip" t-on-click="() => this.openProjectForm()">
+                    <i class="fa fa-external-link"/> Open
+                </button>
+            </div>
+        </header>
+
+        <!-- ============ loading / empty ============ -->
+        <div t-if="state.loading" class="o_kph_load">
+            <span class="o_kph_spin"/>
+        </div>
+        <div t-elif="!state.data or state.data.error" class="o_kph_empty">
+            <i class="fa fa-folder-open-o"/>
+            <p>No project selected.</p>
+        </div>
+
+        <t t-else="">
+        <div class="o_kph_body">
+
+            <!-- ============ ready to manufacture ============ -->
+            <section class="o_kph_make" t-if="state.data.project.can_manufacture or state.data.project.plan_count"
+                     t-att-class="{ 'o_kph_make--wait': !state.data.project.manufacture_ready }">
+                <div class="o_kph_make__text">
+                    <i t-att-class="state.data.project.manufacture_ready ? 'fa fa-check-circle' : 'fa fa-exclamation-triangle'"/>
+                    <span t-if="state.data.project.manufacture_ready">
+                        Components are in stock for
+                        <b t-esc="state.data.project.plan_count or state.data.counts.ready_to_make"/>
+                        product<t t-if="(state.data.project.plan_count or state.data.counts.ready_to_make) > 1">s</t>
+                        <t t-if="state.data.project.plan_products">
+                            — <t t-esc="state.data.project.plan_products"/>
+                        </t>
+                    </span>
+                    <span t-else="">
+                        <b t-esc="state.data.project.plan_count"/> product<t t-if="state.data.project.plan_count > 1">s</t>
+                        to make, still waiting for (free/needed):
+                        <t t-esc="state.data.project.plan_missing"/>
+                    </span>
+                </div>
+                <div class="o_kph_make__btns">
+                    <button class="o_kph_make__btn o_kph_make__btn--primary" t-on-click="() => this.newProduction()">
+                        <i class="fa fa-industry"/> Ishlab chiqarish yaratish
+                    </button>
+                    <button class="o_kph_make__btn" t-if="state.data.project.can_manufacture"
+                            t-on-click="() => this.startManufacturing()">
+                        <i class="fa fa-wrench"/> Start manufacturing
+                    </button>
+                </div>
+            </section>
+
+            <!-- ============ hero ============ -->
+            <section class="o_kph_hero">
+                <article class="o_kph_hero__card o_kph_hero__card--income">
+                    <span class="o_kph_hero__label">Income</span>
+                    <span class="o_kph_hero__value"><t t-esc="compact(state.data.kpis.income)"/>
+                        <small><t t-esc="currency"/></small></span>
+                    <div class="o_kph_meter">
+                        <span class="o_kph_meter__fill is-paid"
+                              t-attf-style="width:{{ barWidth(state.data.kpis.paid, state.data.kpis.income) }}"/>
+                    </div>
+                    <div class="o_kph_hero__foot">
+                        <span class="up"><i class="fa fa-check-circle"/> Paid <b t-esc="compact(state.data.kpis.paid)"/></span>
+                        <span class="down"><i class="fa fa-clock-o"/> Due <b t-esc="compact(state.data.kpis.due)"/></span>
+                    </div>
+                </article>
+
+                <article class="o_kph_hero__card o_kph_hero__card--cost">
+                    <span class="o_kph_hero__label">Cost</span>
+                    <span class="o_kph_hero__value">
+                        <t t-esc="compact(state.data.kpis.cost)"/>
+                        <small><t t-esc="currency"/></small></span>
+                    <div class="o_kph_meter">
+                        <span class="o_kph_meter__fill is-buy"
+                              t-attf-style="width:{{ barWidth(state.data.kpis.materials, state.data.kpis.cost) }}"/>
+                    </div>
+                    <div class="o_kph_hero__foot">
+                        <span><i class="fa fa-cubes"/> Materials <b t-esc="compact(state.data.kpis.materials)"/></span>
+                        <span><i class="fa fa-money"/> Expenses <b t-esc="compact(state.data.kpis.expenses)"/></span>
+                    </div>
+                </article>
+
+                <article class="o_kph_hero__card o_kph_hero__card--margin"
+                         t-att-class="state.data.kpis.margin &lt; 0 ? 'is-neg' : ''">
+                    <span class="o_kph_hero__label">Margin</span>
+                    <span class="o_kph_hero__value"><t t-esc="compact(state.data.kpis.margin)"/>
+                        <small><t t-esc="currency"/></small></span>
+                    <div class="o_kph_meter">
+                        <span class="o_kph_meter__fill is-margin"
+                              t-attf-style="width:{{ barWidth(state.data.kpis.margin, state.data.kpis.income) }}"/>
+                    </div>
+                    <div class="o_kph_hero__foot">
+                        <span><i class="fa fa-percent"/> <b t-esc="pct(state.data.kpis.margin_pct)"/> of income</span>
+                        <span><i class="fa fa-hand-holding"/> Collected <b t-esc="pct(state.data.kpis.collected_pct)"/></span>
+                    </div>
+                </article>
+
+                <article class="o_kph_hero__card o_kph_hero__card--make">
+                    <span class="o_kph_hero__label">Production</span>
+                    <span class="o_kph_hero__value"><t t-esc="num(state.data.kpis.qty_produced)"/>
+                        <small>/ <t t-esc="num(state.data.kpis.qty_planned)"/></small></span>
+                    <div class="o_kph_meter">
+                        <span class="o_kph_meter__fill is-make"
+                              t-attf-style="width:{{ barWidth(state.data.kpis.qty_produced, state.data.kpis.qty_planned) }}"/>
+                    </div>
+                    <div class="o_kph_hero__foot">
+                        <span><i class="fa fa-wrench"/> <b t-esc="state.data.counts.mos"/> orders</span>
+                        <span><i class="fa fa-spinner"/> <b t-esc="state.data.counts.mos_open"/> running</span>
+                    </div>
+                </article>
+            </section>
+
+            <!-- ============ stat strip ============ -->
+            <section class="o_kph_strip">
+                <button class="o_kph_stat" t-on-click="() => this.openList('sale.order', 'project_id')">
+                    <i class="fa fa-shopping-bag" style="color:#12a594"/>
+                    <span class="o_kph_stat__v"><t t-esc="state.data.counts.sales"/></span>
+                    <span class="o_kph_stat__l">Sale orders</span>
+                </button>
+                <button class="o_kph_stat" t-on-click="() => this.openList('purchase.order', 'project_id')">
+                    <i class="fa fa-shopping-cart" style="color:#f2a03d"/>
+                    <span class="o_kph_stat__v"><t t-esc="state.data.counts.purchases"/></span>
+                    <span class="o_kph_stat__l">Purchase orders</span>
+                </button>
+                <button class="o_kph_stat" t-on-click="() => this.openList('mrp.production', 'project_id')">
+                    <i class="fa fa-wrench" style="color:#3b82f6"/>
+                    <span class="o_kph_stat__v"><t t-esc="state.data.counts.mos"/></span>
+                    <span class="o_kph_stat__l">Manufacturing</span>
+                </button>
+                <button class="o_kph_stat" t-on-click="() => this.openList('hr.expense', 'project_id')">
+                    <i class="fa fa-money" style="color:#8b5cf6"/>
+                    <span class="o_kph_stat__v"><t t-esc="state.data.counts.expenses"/></span>
+                    <span class="o_kph_stat__l">Expenses</span>
+                </button>
+                <button class="o_kph_stat" t-on-click="() => this.openList('cst.material.request', 'project_id')">
+                    <i class="fa fa-file-text-o" style="color:#6366f1"/>
+                    <span class="o_kph_stat__v"><t t-esc="state.data.counts.mrf_open"/>/<t t-esc="state.data.counts.mrfs"/></span>
+                    <span class="o_kph_stat__l">Open requests</span>
+                </button>
+                <div class="o_kph_stat">
+                    <i class="fa fa-cubes" style="color:#ef4444"/>
+                    <span class="o_kph_stat__v"><t t-esc="num(state.data.kpis.qty_consumed)"/></span>
+                    <span class="o_kph_stat__l">Materials used</span>
+                </div>
+                <div class="o_kph_stat">
+                    <i class="fa fa-check-square-o" style="color:#22c55e"/>
+                    <span class="o_kph_stat__v"><t t-esc="num(state.data.kpis.qty_produced)"/></span>
+                    <span class="o_kph_stat__l">Products ready</span>
+                </div>
+                <div class="o_kph_stat">
+                    <i class="fa fa-tags" style="color:#14b8a6"/>
+                    <span class="o_kph_stat__v"><t t-esc="compact(state.data.kpis.materials)"/></span>
+                    <span class="o_kph_stat__l">Material value</span>
+                </div>
+            </section>
+
+            <!-- ============ charts ============ -->
+            <section class="o_kph_grid">
+                <div class="o_kph_card o_kph_card--wide">
+                    <div class="o_kph_card__head">
+                        <h3>Income &amp; cost flow</h3>
+                        <span class="o_kph_card__hint">
+                            per <t t-esc="state.filters.granularity === 'week' ? 'week' : 'month'"/>
+                        </span>
+                    </div>
+                    <div class="o_kph_card__body">
+                        <ChartRenderer t-if="flowConfig" config="flowConfig" height="300"/>
+                        <div t-else="" class="o_kph_none">Nothing recorded in this period.</div>
+                    </div>
+                </div>
+                <div class="o_kph_card">
+                    <div class="o_kph_card__head"><h3>Cost split</h3></div>
+                    <div class="o_kph_card__body">
+                        <ChartRenderer t-if="costConfig" config="costConfig" height="300"/>
+                        <div t-else="" class="o_kph_none">No costs yet.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="o_kph_grid">
+                <div class="o_kph_card">
+                    <div class="o_kph_card__head"><h3>Manufacturing status</h3></div>
+                    <div class="o_kph_card__body">
+                        <ChartRenderer t-if="moConfig" config="moConfig" height="270"/>
+                        <div t-else="" class="o_kph_none">No manufacturing orders.</div>
+                    </div>
+                </div>
+                <div class="o_kph_card o_kph_card--wide">
+                    <div class="o_kph_card__head">
+                        <h3>Most consumed materials</h3>
+                        <span class="o_kph_card__hint">by cost value</span>
+                    </div>
+                    <div class="o_kph_card__body">
+                        <ChartRenderer t-if="materialsConfig" config="materialsConfig" height="270"/>
+                        <div t-else="" class="o_kph_none">Nothing consumed yet.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ used / ready ============ -->
+            <section class="o_kph_grid">
+                <div class="o_kph_card">
+                    <div class="o_kph_card__head">
+                        <h3>Used products</h3>
+                        <span class="o_kph_card__hint"><t t-esc="state.data.materials_used.length"/> items</span>
+                    </div>
+                    <div class="o_kph_card__body o_kph_card__body--flush">
+                        <table class="o_kph_table">
+                            <thead>
+                                <tr><th>Component</th><th>Xarakteristika</th><th class="n">Qty</th><th>Unit</th><th class="n">Value</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="state.data.materials_used" t-as="m" t-key="m.id">
+                                    <td><t t-esc="m.name"/></td>
+                                    <td class="sm"><t t-esc="m.characteristic"/></td>
+                                    <td class="n"><t t-esc="num(m.qty, 2)"/></td>
+                                    <td class="dim"><t t-esc="m.uom"/></td>
+                                    <td class="n"><t t-esc="num(m.cost)"/></td>
+                                </tr>
+                                <tr t-if="!state.data.materials_used.length">
+                                    <td colspan="5" class="o_kph_none">No components consumed yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="o_kph_card">
+                    <div class="o_kph_card__head">
+                        <h3>Ready products</h3>
+                        <span class="o_kph_card__hint"><t t-esc="state.data.products_ready.length"/> items</span>
+                    </div>
+                    <div class="o_kph_card__body o_kph_card__body--flush">
+                        <table class="o_kph_table">
+                            <thead>
+                                <tr><th>Product</th><th>Xarakteristika</th><th class="n">Produced</th><th class="n">Planned</th><th>Progress</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="state.data.products_ready" t-as="p" t-key="p.id">
+                                    <td><t t-esc="p.name"/></td>
+                                    <td class="sm"><t t-esc="p.characteristic"/></td>
+                                    <td class="n"><t t-esc="num(p.qty, 2)"/></td>
+                                    <td class="n dim"><t t-esc="num(p.planned, 2)"/></td>
+                                    <td>
+                                        <div class="o_kph_meter o_kph_meter--row">
+                                            <span class="o_kph_meter__fill is-make"
+                                                  t-attf-style="width:{{ barWidth(p.qty, p.planned) }}"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr t-if="!state.data.products_ready.length">
+                                    <td colspan="5" class="o_kph_none">Nothing produced yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ documents ============ -->
+            <section class="o_kph_card o_kph_docs">
+                <div class="o_kph_tabs">
+                    <button t-foreach="tabs" t-as="tb" t-key="tb.key"
+                            t-att-class="state.tab === tb.key ? 'is-on' : ''"
+                            t-on-click="() => this.setTab(tb.key)">
+                        <i t-attf-class="fa {{ tb.icon }}"/>
+                        <t t-esc="tb.label"/>
+                        <span class="o_kph_tabs__n"><t t-esc="tabCount[tb.key]"/></span>
+                    </button>
+                    <div class="o_kph_search">
+                        <i class="fa fa-search"/>
+                        <input type="text" placeholder="Filter rows…"
+                               t-att-value="state.search" t-on-input="(ev) => this.onSearch(ev)"/>
+                    </div>
+                </div>
+
+                <div class="o_kph_card__body o_kph_card__body--flush">
+                    <!-- Sales -->
+                    <table class="o_kph_table o_kph_table--click" t-if="state.tab === 'sales'">
+                        <thead><tr>
+                            <th t-on-click="() => this.sortBy('name')">Order</th>
+                            <th t-on-click="() => this.sortBy('date')">Date</th>
+                            <th t-on-click="() => this.sortBy('partner')">Customer</th>
+                            <th class="n" t-on-click="() => this.sortBy('amount')">Total</th>
+                            <th class="n" t-on-click="() => this.sortBy('paid')">Paid</th>
+                            <th class="n" t-on-click="() => this.sortBy('due')">Due</th>
+                            <th>Status</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="r" t-key="r.id" t-on-click="() => this.openTabRecord(r)">
+                                <td class="k"><t t-esc="r.name"/></td>
+                                <td class="dim"><t t-esc="r.date"/></td>
+                                <td><t t-esc="r.partner"/></td>
+                                <td class="n"><t t-esc="num(r.amount)"/></td>
+                                <td class="n pos"><t t-esc="num(r.paid)"/></td>
+                                <td class="n neg"><t t-esc="num(r.due)"/></td>
+                                <td><span t-att-class="stateClass(r.state)"><t t-esc="r.state_label"/></span></td>
+                            </tr>
+                            <tr t-if="!rows.length"><td colspan="7" class="o_kph_none">No sale orders.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Purchases -->
+                    <table class="o_kph_table o_kph_table--click" t-if="state.tab === 'purchases'">
+                        <thead><tr>
+                            <th t-on-click="() => this.sortBy('name')">Order</th>
+                            <th t-on-click="() => this.sortBy('date')">Date</th>
+                            <th t-on-click="() => this.sortBy('partner')">Vendor</th>
+                            <th t-on-click="() => this.sortBy('buyer')">Buyer</th>
+                            <th class="n" t-on-click="() => this.sortBy('amount')">Total</th>
+                            <th>Status</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="r" t-key="r.id" t-on-click="() => this.openTabRecord(r)">
+                                <td class="k"><t t-esc="r.name"/></td>
+                                <td class="dim"><t t-esc="r.date"/></td>
+                                <td><t t-esc="r.partner"/></td>
+                                <td class="dim"><t t-esc="r.buyer"/></td>
+                                <td class="n"><t t-esc="num(r.amount)"/></td>
+                                <td><span t-att-class="stateClass(r.state)"><t t-esc="r.state_label"/></span></td>
+                            </tr>
+                            <tr t-if="!rows.length"><td colspan="6" class="o_kph_none">No purchase orders.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Manufacturing -->
+                    <table class="o_kph_table o_kph_table--click" t-if="state.tab === 'productions'">
+                        <thead><tr>
+                            <th t-on-click="() => this.sortBy('name')">Order</th>
+                            <th t-on-click="() => this.sortBy('product')">Product</th>
+                            <th t-on-click="() => this.sortBy('characteristic')">Xarakteristika</th>
+                            <th t-on-click="() => this.sortBy('date')">Start</th>
+                            <th class="n" t-on-click="() => this.sortBy('qty')">To produce</th>
+                            <th class="n" t-on-click="() => this.sortBy('produced')">Produced</th>
+                            <th class="n" t-on-click="() => this.sortBy('second')">2-sort</th>
+                            <th class="n" t-on-click="() => this.sortBy('scrap')">Brak</th>
+                            <th class="n" t-on-click="() => this.sortBy('cost')">Material cost</th>
+                            <th>Status</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="r" t-key="r.id" t-on-click="() => this.openTabRecord(r)">
+                                <td class="k"><t t-esc="r.name"/></td>
+                                <td><t t-esc="r.product"/></td>
+                                <td class="sm"><t t-esc="r.characteristic"/></td>
+                                <td class="dim"><t t-esc="r.date"/></td>
+                                <td class="n"><t t-esc="num(r.qty, 2)"/> <small class="dim" t-esc="r.uom"/></td>
+                                <td class="n pos"><t t-esc="num(r.produced, 2)"/></td>
+                                <td class="n"><span t-if="r.second" class="o_kph_grade o_kph_grade--second"><t t-esc="num(r.second, 2)"/></span></td>
+                                <td class="n"><span t-if="r.scrap" class="o_kph_grade o_kph_grade--scrap"><t t-esc="num(r.scrap, 2)"/></span></td>
+                                <td class="n"><t t-esc="num(r.cost)"/></td>
+                                <td><span t-att-class="stateClass(r.state)"><t t-esc="r.state_label"/></span></td>
+                            </tr>
+                            <tr t-if="!rows.length"><td colspan="10" class="o_kph_none">No manufacturing orders.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Expenses -->
+                    <table class="o_kph_table o_kph_table--click" t-if="state.tab === 'expenses'">
+                        <thead><tr>
+                            <th t-on-click="() => this.sortBy('name')">Description</th>
+                            <th t-on-click="() => this.sortBy('date')">Date</th>
+                            <th t-on-click="() => this.sortBy('employee')">Employee</th>
+                            <th class="n" t-on-click="() => this.sortBy('amount')">Amount</th>
+                            <th>Status</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="r" t-key="r.id" t-on-click="() => this.openTabRecord(r)">
+                                <td class="k"><t t-esc="r.name"/></td>
+                                <td class="dim"><t t-esc="r.date"/></td>
+                                <td><t t-esc="r.employee"/></td>
+                                <td class="n"><t t-esc="num(r.amount)"/></td>
+                                <td><span t-att-class="stateClass(r.state)"><t t-esc="r.state_label"/></span></td>
+                            </tr>
+                            <tr t-if="!rows.length"><td colspan="5" class="o_kph_none">No expenses.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Materials -->
+                    <table class="o_kph_table" t-if="state.tab === 'materials'">
+                        <thead><tr>
+                            <th t-on-click="() => this.sortBy('product')">Product</th>
+                            <th t-on-click="() => this.sortBy('characteristic')">Xarakteristika</th>
+                            <th t-on-click="() => this.sortBy('kind')">Supply</th>
+                            <th class="n" t-on-click="() => this.sortBy('required')">Required</th>
+                            <th class="n" t-on-click="() => this.sortBy('available')">In stock</th>
+                            <th class="n" t-on-click="() => this.sortBy('to_buy')">To buy</th>
+                            <th class="n" t-on-click="() => this.sortBy('to_produce')">To produce</th>
+                            <th>Where</th>
+                            <th>Document</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="r" t-key="r.id">
+                                <td class="k"><t t-esc="r.product"/></td>
+                                <td class="sm"><t t-esc="r.characteristic"/></td>
+                                <td>
+                                    <span t-attf-class="o_kph_pill o_kph_pill--{{ r.kind === 'manufacture' ? 'make' : 'buy' }}">
+                                        <t t-esc="r.kind === 'manufacture' ? 'Manufacture' : 'Buy'"/>
+                                    </span>
+                                </td>
+                                <td class="n"><t t-esc="num(r.required, 2)"/> <small class="dim" t-esc="r.uom"/></td>
+                                <td class="n"><t t-esc="num(r.available, 2)"/></td>
+                                <td class="n" t-att-class="r.to_buy ? 'n neg' : 'n dim'"><t t-esc="num(r.to_buy, 2)"/></td>
+                                <td class="n" t-att-class="r.to_produce ? 'n' : 'n dim'"><t t-esc="num(r.to_produce, 2)"/></td>
+                                <td class="dim sm"><t t-esc="r.where"/></td>
+                                <td>
+                                    <span t-if="r.po" class="o_kph_ref"
+                                          t-on-click="() => this.openRecord('purchase.order', r.po_id)">
+                                        <i class="fa fa-shopping-cart"/> <t t-esc="r.po"/>
+                                    </span>
+                                    <span t-if="r.mo" class="o_kph_ref">
+                                        <i class="fa fa-wrench"/> <t t-esc="r.mo"/>
+                                    </span>
+                                    <span t-if="!r.po and !r.mo" class="dim">—</span>
+                                </td>
+                            </tr>
+                            <tr t-if="!rows.length"><td colspan="9" class="o_kph_none">No material lines.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Requests -->
+                    <table class="o_kph_table o_kph_table--click" t-if="state.tab === 'mrfs'">
+                        <thead><tr>
+                            <th t-on-click="() => this.sortBy('name')">Request</th>
+                            <th t-on-click="() => this.sortBy('date')">Date</th>
+                            <th class="n" t-on-click="() => this.sortBy('lines')">Lines</th>
+                            <th class="n" t-on-click="() => this.sortBy('to_buy')">Buy</th>
+                            <th class="n" t-on-click="() => this.sortBy('to_manufacture')">Make</th>
+                            <th class="n" t-on-click="() => this.sortBy('pos')">POs</th>
+                            <th class="n" t-on-click="() => this.sortBy('mos')">MOs</th>
+                            <th>Status</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="r" t-key="r.id" t-on-click="() => this.openTabRecord(r)">
+                                <td class="k"><t t-esc="r.name"/></td>
+                                <td class="dim"><t t-esc="r.date"/></td>
+                                <td class="n"><t t-esc="r.lines"/></td>
+                                <td class="n"><t t-esc="r.to_buy"/></td>
+                                <td class="n"><t t-esc="r.to_manufacture"/></td>
+                                <td class="n"><t t-esc="r.pos"/></td>
+                                <td class="n"><t t-esc="r.mos"/></td>
+                                <td><span t-att-class="stateClass(r.state)"><t t-esc="r.state_label"/></span></td>
+                            </tr>
+                            <tr t-if="!rows.length"><td colspan="8" class="o_kph_none">No material requests.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        </t>
+    </div>
+</t>
+
+</templates>

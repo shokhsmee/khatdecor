@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_department_form_wh_flow" model="ir.ui.view">
+        <field name="name">cst.production.department.form.wh.flow</field>
+        <field name="model">cst.production.department</field>
+        <field name="inherit_id" ref="cst_kerama_shift.view_department_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='lines']" position="before">
+                <page string="Omborlar" name="warehouses">
+                    <group>
+                        <group string="Bo'lim ombori">
+                            <field name="warehouse_id" options="{'no_create': True}"/>
+                            <field name="supply_warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                            <field name="cst_auto_supply"/>
+                        </group>
+                        <group string="Tayyor mahsulot">
+                            <field name="output_warehouse_id" options="{'no_create': True}"/>
+                            <field name="cst_auto_forward"/>
+                        </group>
+                    </group>
+                    <div class="text-muted">
+                        Buyurtma «Ishlaydigan ombor»da ochiladi: xomashyo shu ombordan olinadi, natija shu
+                        omborga tushadi. Yetmagan xomashyo «Xomashyo omborlari»dan ichki ko'chirish bilan so'raladi.
+                        1-sort va 2-sort natija «Tayyor mahsulot ketadigan ombor»ga ko'chiriladi; uni o'sha omborning
+                        qabul qiluvchisi tasdiqlaydi. Yangi ombor ochsangiz, shu ro'yxatlarda o'zi chiqadi.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_department_list_wh_flow" model="ir.ui.view">
+        <field name="name">cst.production.department.list.wh.flow</field>
+        <field name="model">cst.production.department</field>
+        <field name="inherit_id" ref="cst_kerama_shift.view_department_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='output_kind']" position="after">
+                <field name="warehouse_id" optional="show"/>
+                <field name="output_warehouse_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

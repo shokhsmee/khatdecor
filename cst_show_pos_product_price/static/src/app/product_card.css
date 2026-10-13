@@ -1,0 +1,13 @@
+
+.product-price {
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 600;
+    color: black;
+    text-align: left !important;
+    padding: 0.4rem 0;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    text-align: center;
+    padding-left: 2px
+}

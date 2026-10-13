@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_payroll_component_user,cst.payroll.component user,model_cst_payroll_component,cst_kerama_payroll.group_payroll_user,1,0,0,0
+access_cst_payroll_component_manager,cst.payroll.component manager,model_cst_payroll_component,cst_kerama_payroll.group_payroll_manager,1,1,1,1
+access_cst_payroll_line_user,cst.payroll.line user,model_cst_payroll_line,cst_kerama_payroll.group_payroll_user,1,1,1,1
+access_cst_payroll_line_manager,cst.payroll.line manager,model_cst_payroll_line,cst_kerama_payroll.group_payroll_manager,1,1,1,1
+access_cst_payroll_period_user,cst.payroll.period user,model_cst_payroll_period,cst_kerama_payroll.group_payroll_user,1,0,0,0
+access_cst_payroll_period_manager,cst.payroll.period manager,model_cst_payroll_period,cst_kerama_payroll.group_payroll_manager,1,1,1,1
+access_cst_picking_unloader_stock,cst.picking.unloader warehouse,model_cst_picking_unloader,stock.group_stock_user,1,1,1,1
+access_cst_picking_unloader_user,cst.picking.unloader payroll user,model_cst_picking_unloader,cst_kerama_payroll.group_payroll_user,1,0,0,0
+access_cst_picking_unloader_manager,cst.picking.unloader payroll manager,model_cst_picking_unloader,cst_kerama_payroll.group_payroll_manager,1,1,1,1
+access_cst_payroll_entry_wizard_user,cst.payroll.entry.wizard user,model_cst_payroll_entry_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1
+access_cst_payroll_entry_wizard_line_user,cst.payroll.entry.wizard.line user,model_cst_payroll_entry_wizard_line,cst_kerama_payroll.group_payroll_user,1,1,1,1
+access_cst_payroll_card_import_wizard_user,cst.payroll.card.import.wizard user,model_cst_payroll_card_import_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1
+access_cst_payroll_card_import_line_user,cst.payroll.card.import.line user,model_cst_payroll_card_import_line,cst_kerama_payroll.group_payroll_user,1,1,1,1

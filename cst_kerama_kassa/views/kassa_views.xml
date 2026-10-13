@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_kanban" model="ir.ui.view">
+        <field name="name">cst.kassa.kanban</field>
+        <field name="model">cst.kassa</field>
+        <field name="arch" type="xml">
+            <kanban can_open="0" create="0" class="o_cst_kassa_kanban" highlight_color="color">
+                <field name="day_state"/>
+                <field name="current_day_id"/>
+                <field name="currency_id"/>
+                <field name="journal_type"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="fs-4 fw-bold"><field name="name"/></div>
+                                <div class="small text-muted" groups="base.group_multi_company"><field name="company_id"/></div>
+                                <span t-if="record.journal_type.raw_value == 'bank'" class="badge text-bg-info">Bank account</span>
+                            </div>
+                            <span t-if="record.day_state.raw_value == 'open'" class="badge rounded-pill text-bg-success">Day open</span>
+                            <span t-elif="record.day_state.raw_value == 'closed'" class="badge rounded-pill text-bg-warning">Waiting for confirmation</span>
+                            <span t-else="" class="badge rounded-pill text-bg-secondary">Day not opened</span>
+                        </div>
+                        <div class="cst_kassa_balance my-3">
+                            <div class="small text-muted text-uppercase">Balance</div>
+                            <div class="fs-2 fw-bold"><field name="balance" widget="monetary"/></div>
+                        </div>
+                        <div t-if="record.day_state.raw_value != 'none' and record.today_rate.raw_value" class="small mb-1">
+                            Dollar rate: <b><field name="today_rate"/></b>
+                        </div>
+                        <div t-if="record.day_state.raw_value != 'none'" class="d-flex gap-4 mb-3">
+                            <div>
+                                <div class="small text-muted">Today in</div>
+                                <div class="fw-bold text-success">+ <field name="today_in" widget="monetary"/></div>
+                            </div>
+                            <div>
+                                <div class="small text-muted">Today out</div>
+                                <div class="fw-bold text-danger">− <field name="today_out" widget="monetary"/></div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 mt-auto">
+                            <t t-if="record.day_state.raw_value == 'open'">
+                                <button type="object" name="action_new_in" class="btn btn-success">+ Cash in</button>
+                                <button type="object" name="action_new_out" class="btn btn-danger">− Cash out</button>
+                                <button type="object" name="action_new_transfer" class="btn btn-outline-primary">⇄ To another kassa</button>
+                                <button type="object" name="action_current_day" class="btn btn-secondary">Day</button>
+                                <button type="object" name="action_close_day" class="btn btn-outline-dark">Close the day</button>
+                            </t>
+                            <t t-elif="record.day_state.raw_value == 'closed'">
+                                <button type="object" name="action_current_day" class="btn btn-warning"
+                                        groups="cst_kerama_kassa.group_kassa_manager">Confirm the day</button>
+                                <button type="object" name="action_reopen_day" class="btn btn-outline-primary">Reopen the day</button>
+                                <button type="object" name="action_current_day" class="btn btn-secondary">Day</button>
+                            </t>
+                            <t t-else="">
+                                <button type="object" name="action_open_day" class="btn btn-primary">Open the day</button>
+                            </t>
+                        </div>
+                        <div class="d-flex gap-3 mt-2 small">
+                            <a type="object" name="action_view_operations">Operations</a>
+                            <a type="object" name="action_view_days">Cash days</a>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_kassa_list" model="ir.ui.view">
+        <field name="name">cst.kassa.list</field>
+        <field name="model">cst.kassa</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="journal_id"/>
+                <field name="currency_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="user_ids" widget="many2many_tags"/>
+                <field name="balance"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kassa_form" model="ir.ui.view">
+        <field name="name">cst.kassa.form</field>
+        <field name="model">cst.kassa</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title"><h1><field name="name" placeholder="e.g. Main cash desk"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="journal_id"/>
+                            <field name="account_id"/>
+                            <field name="currency_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="journal_type"/>
+                            <field name="user_ids" widget="many2many_tags"/>
+                            <field name="balance"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kassa_dashboard" model="ir.actions.act_window">
+        <field name="name">Kassa</field>
+        <field name="res_model">cst.kassa</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_kassa_kanban"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No cash desk yet</p>
+            <p>A cash desk is created for every cash journal. Add one in Configuration ▸ Cash desks.</p>
+        </field>
+    </record>
+
+    <record id="action_kassa_config" model="ir.actions.act_window">
+        <field name="name">Cash desks</field>
+        <field name="res_model">cst.kassa</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+</odoo>

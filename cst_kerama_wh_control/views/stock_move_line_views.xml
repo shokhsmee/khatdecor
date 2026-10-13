@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The line form is read-only in Odoo: this shows what was documented. -->
+    <record id="view_move_line_form_wh_control" model="ir.ui.view">
+        <field name="name">stock.move.line.form.wh.control</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <field name="cst_photo_count" invisible="1"/>
+                <field name="cst_comment_count" invisible="1"/>
+                <group string="Photos" invisible="cst_photo_count == 0">
+                    <field name="cst_photo_html" nolabel="1" readonly="1"/>
+                </group>
+                <group string="Comments" invisible="cst_comment_count == 0">
+                    <field name="cst_comment_ids" nolabel="1" readonly="1">
+                        <list>
+                            <field name="create_date" string="When"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="body"/>
+                        </list>
+                    </field>
+                </group>
+                <div class="text-muted fst-italic"
+                     invisible="cst_photo_count != 0 or cst_comment_count != 0">
+                    No photo or comment was added to this line.
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Counters in the transfer's Detailed Operations, so you can see at a
+         glance which lines were documented. -->
+    <record id="view_stock_move_line_detailed_operation_tree_wh_control" model="ir.ui.view">
+        <field name="name">stock.move.line.detailed.operations.wh.control</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quantity']" position="after">
+                <field name="cst_photo_count" string="Photos" optional="show"/>
+                <field name="cst_comment_count" string="Comments" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="cst_move_line_comment_view_list" model="ir.ui.view">
+        <field name="name">cst.move.line.comment.list</field>
+        <field name="model">cst.move.line.comment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="create_date" string="When"/>
+                <field name="picking_id"/>
+                <field name="product_id"/>
+                <field name="body"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

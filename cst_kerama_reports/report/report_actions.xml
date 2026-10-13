@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Six of the seven columns of the counterparty sheets only fit sideways,
+         and Odoo ships no landscape A4 out of the box. -->
+    <record id="paperformat_a4_landscape" model="report.paperformat">
+        <field name="name">A4 yotiq (Xisobotlar)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">12</field>
+        <field name="margin_left">6</field>
+        <field name="margin_right">6</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">6</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Ta'minotchilar / 3-shaxslar harakati -->
+    <record id="action_report_partner_movement" model="ir.actions.report">
+        <field name="name">Kontragentlar harakati</field>
+        <field name="model">cst.partner.movement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_partner_movement</field>
+        <field name="report_file">cst_kerama_reports.report_partner_movement</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+        <field name="print_report_name">'Kontragentlar harakati %s - %s' % (object.date_from, object.date_to)</field>
+    </record>
+    <record id="action_report_partner_movement_html" model="ir.actions.report">
+        <field name="name">Kontragentlar harakati (ekranda)</field>
+        <field name="model">cst.partner.movement.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_partner_movement</field>
+        <field name="report_file">cst_kerama_reports.report_partner_movement</field>
+    </record>
+
+    <!-- Akt sverka -->
+    <record id="action_report_partner_statement" model="ir.actions.report">
+        <field name="name">Akt sverka</field>
+        <field name="model">cst.partner.statement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_partner_statement</field>
+        <field name="report_file">cst_kerama_reports.report_partner_statement</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+        <field name="print_report_name">'Akt sverka %s' % (object.partner_id.display_name or '')</field>
+    </record>
+    <record id="action_report_partner_statement_html" model="ir.actions.report">
+        <field name="name">Akt sverka (ekranda)</field>
+        <field name="model">cst.partner.statement.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_partner_statement</field>
+        <field name="report_file">cst_kerama_reports.report_partner_statement</field>
+    </record>
+
+    <!-- Omborlar hisoboti -->
+    <record id="action_report_warehouse" model="ir.actions.report">
+        <field name="name">Omborlar hisoboti</field>
+        <field name="model">cst.warehouse.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_warehouse</field>
+        <field name="report_file">cst_kerama_reports.report_warehouse</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+        <field name="print_report_name">'Omborlar hisoboti %s - %s' % (object.date_from, object.date_to)</field>
+    </record>
+    <record id="action_report_warehouse_html" model="ir.actions.report">
+        <field name="name">Omborlar hisoboti (ekranda)</field>
+        <field name="model">cst.warehouse.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_warehouse</field>
+        <field name="report_file">cst_kerama_reports.report_warehouse</field>
+    </record>
+
+    <!-- Yoqilg'i hisoboti -->
+    <record id="action_report_fuel" model="ir.actions.report">
+        <field name="name">Yoqilg'i hisoboti</field>
+        <field name="model">cst.fuel.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_fuel</field>
+        <field name="report_file">cst_kerama_reports.report_fuel</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+        <field name="print_report_name">'Yoqilgi hisoboti %s - %s' % (object.date_from, object.date_to)</field>
+    </record>
+    <record id="action_report_fuel_html" model="ir.actions.report">
+        <field name="name">Yoqilg'i hisoboti (ekranda)</field>
+        <field name="model">cst.fuel.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_fuel</field>
+        <field name="report_file">cst_kerama_reports.report_fuel</field>
+    </record>
+
+</odoo>

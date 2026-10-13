@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Kontragentlar harakati ============ -->
+    <record id="view_partner_movement_wizard_form" model="ir.ui.view">
+        <field name="name">cst.partner.movement.wizard.form</field>
+        <field name="model">cst.partner.movement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Kontragentlar harakati">
+                <group>
+                    <group>
+                        <field name="kind"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags"
+                               groups="base.group_multi_company"
+                               options="{'no_create': True}"/>
+                        <field name="hide_empty"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish"
+                            class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF"
+                            class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_partner_movement_supplier" model="ir.actions.act_window">
+        <field name="name">Ta'minotchilar harakati</field>
+        <field name="res_model">cst.partner.movement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_kind': 'supplier'}</field>
+    </record>
+
+    <record id="action_partner_movement_third_party" model="ir.actions.act_window">
+        <field name="name">3-shaxslar harakati</field>
+        <field name="res_model">cst.partner.movement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_kind': 'third_party'}</field>
+    </record>
+
+    <record id="action_partner_movement_customer" model="ir.actions.act_window">
+        <field name="name">Mijozlar harakati</field>
+        <field name="res_model">cst.partner.movement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_kind': 'customer'}</field>
+    </record>
+
+    <!-- ============ Akt sverka ============ -->
+    <record id="view_partner_statement_wizard_form" model="ir.ui.view">
+        <field name="name">cst.partner.statement.wizard.form</field>
+        <field name="model">cst.partner.statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Akt sverka">
+                <group>
+                    <group>
+                        <field name="partner_id" options="{'no_create': True}"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="company_ids" widget="many2many_tags"
+                               groups="base.group_multi_company"
+                               options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish"
+                            class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF"
+                            class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_partner_statement_supplier" model="ir.actions.act_window">
+        <field name="name">Ta'minotchi akt sverkasi</field>
+        <field name="res_model">cst.partner.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'cst_partner_kind': 'supplier'}</field>
+    </record>
+
+    <record id="action_partner_statement_third_party" model="ir.actions.act_window">
+        <field name="name">3-shaxs akt sverkasi</field>
+        <field name="res_model">cst.partner.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'cst_partner_kind': 'third_party'}</field>
+    </record>
+
+    <record id="action_partner_statement_customer" model="ir.actions.act_window">
+        <field name="name">Mijoz akt sverkasi</field>
+        <field name="res_model">cst.partner.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'cst_partner_kind': 'customer'}</field>
+    </record>
+
+    <!-- ============ Omborlar hisoboti ============ -->
+    <record id="view_warehouse_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.warehouse.report.wizard.form</field>
+        <field name="model">cst.warehouse.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Omborlar hisoboti">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="warehouse_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="category_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                        <field name="product_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                        <field name="hide_zero"/>
+                        <field name="show_image"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish"
+                            class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF"
+                            class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_warehouse_report" model="ir.actions.act_window">
+        <field name="name">Omborlar hisoboti (rasmli)</field>
+        <field name="res_model">cst.warehouse.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ============ Yoqilg'i hisoboti ============ -->
+    <record id="view_fuel_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.fuel.report.wizard.form</field>
+        <field name="model">cst.fuel.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Yoqilg'i hisoboti">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                        <field name="machine_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags"
+                               groups="base.group_multi_company"
+                               options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish"
+                            class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF"
+                            class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fuel_report" model="ir.actions.act_window">
+        <field name="name">Yoqilg'i hisoboti</field>
+        <field name="res_model">cst.fuel.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+<t t-name="cst_kerama_dispatch.DispatchApp">
+<div class="o_cst_dp o_action h-100 d-flex flex-column">
+    <TransferSection t-if="state.screen === 'transfers'" onHome="() => this.goHome()" userName="state.home.user"/>
+    <t t-else="">
+
+    <!-- ===================== top bar ===================== -->
+    <div class="o_cst_dp_top d-flex align-items-center gap-2 px-3 py-2">
+        <button t-if="state.screen !== 'home'" class="btn btn-light o_cst_dp_back" t-on-click="back">
+            <i class="fa fa-arrow-left"/>
+        </button>
+        <div class="flex-grow-1 o_cst_dp_title text-truncate">
+            <t t-if="state.screen === 'home'">Jo'natish</t>
+            <t t-elif="state.screen === 'orders'">Buyurtmani tayyorlash</t>
+            <t t-elif="state.screen === 'ready'">Eshik: tekshirish</t>
+            <t t-elif="state.screen === 'history'">Tarix</t>
+            <t t-elif="d">
+                <span t-esc="d.order"/> · <span class="fw-normal" t-esc="d.partner"/>
+            </t>
+        </div>
+        <span t-if="state.busy" class="fa fa-spinner fa-spin text-muted"/>
+        <t t-if="state.screen === 'dispatch' and d">
+            <button class="btn btn-light" t-on-click="() => this.printWaybill('80')" title="Yuk xati — 80 mm (Xprinter)">
+                <i class="fa fa-print"/> 80mm
+            </button>
+            <button class="btn btn-light" t-on-click="() => this.printWaybill('a4')" title="Yuk xati — A4 (oddiy printer)">
+                <i class="fa fa-print"/> A4
+            </button>
+        </t>
+        <button t-if="state.screen === 'dispatch' and cameraSupported and (canEditQty or canCheck)"
+                class="btn btn-primary" t-on-click="openCamera" title="Kamera bilan skanerlash">
+            <i class="fa fa-camera"/>
+        </button>
+    </div>
+
+    <div class="o_cst_dp_body flex-grow-1 overflow-auto">
+
+    <!-- ===================== home ===================== -->
+    <t t-if="state.screen === 'home'">
+        <div class="o_cst_dp_home p-3">
+            <div class="text-muted mb-3">Salom, <b t-esc="state.home.user"/></div>
+            <div class="o_cst_dp_tiles">
+                <button t-if="state.home.can_wh" class="o_cst_dp_tile o_cst_dp_tile_wh" t-on-click="() => this.goList('orders')">
+                    <i class="fa fa-cubes"/>
+                    <div class="o_cst_dp_tile_name">Ombor: buyurtmani tayyorlash</div>
+                    <div class="o_cst_dp_tile_count">
+                        <span t-esc="state.home.orders"/> buyurtma
+                        <t t-if="state.home.drafts"> · <t t-esc="state.home.drafts"/> tayyorlanmoqda</t>
+                    </div>
+                </button>
+                <button t-if="state.home.can_gate" class="o_cst_dp_tile o_cst_dp_tile_gate" t-on-click="() => this.goList('ready')">
+                    <i class="fa fa-truck"/>
+                    <div class="o_cst_dp_tile_name">Eshik: chiqishni tekshirish</div>
+                    <div class="o_cst_dp_tile_count"><span t-esc="state.home.ready"/> ta jo'natishga tayyor</div>
+                </button>
+                <button t-if="state.home.can_transfer" class="o_cst_dp_tile o_cst_dp_tile_tr" t-on-click="goTransfers">
+                    <i class="fa fa-exchange"/>
+                    <div class="o_cst_dp_tile_name">Ichki o'tkazmalar</div>
+                    <div class="o_cst_dp_tile_count">
+                        Omborlar o'rtasida
+                        <t t-if="state.home.transfers_to_me"> · <b>menga kelgan: <t t-esc="state.home.transfers_to_me"/></b></t>
+                    </div>
+                </button>
+                <button class="o_cst_dp_tile o_cst_dp_tile_hist" t-on-click="() => this.goList('history')">
+                    <i class="fa fa-history"/>
+                    <div class="o_cst_dp_tile_name">Tarix</div>
+                    <div class="o_cst_dp_tile_count">Bugun chiqarildi: <span t-esc="state.home.done_today"/></div>
+                </button>
+            </div>
+        </div>
+    </t>
+
+    <!-- ===================== lists ===================== -->
+    <t t-if="['orders', 'ready', 'history'].includes(state.screen)">
+        <div class="p-3">
+            <input class="form-control form-control-lg mb-3" placeholder="Qidirish: buyurtma, mijoz… (yoki skanerlang)"
+                   t-att-value="state.search" t-on-input="onSearchInput"/>
+            <div t-if="!state.list.length and !state.busy" class="o_cst_dp_empty text-center text-muted py-5">
+                <i class="fa fa-inbox fa-3x mb-2 d-block"/>
+                Hech narsa yo'q
+            </div>
+            <t t-if="state.screen === 'orders'">
+                <t t-foreach="state.list" t-as="o" t-key="o.id">
+                    <div class="o_cst_dp_card" t-on-click="() => this.openOrder(o)">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="o_cst_dp_card_title" t-esc="o.name"/>
+                                <div t-esc="o.partner"/>
+                            </div>
+                            <span t-if="o.dispatch_state === 'draft'" class="badge text-bg-warning">Tayyorlanmoqda</span>
+                            <span t-elif="o.dispatch_state === 'ready'" class="badge text-bg-success">Eshikda</span>
+                        </div>
+                        <div class="o_cst_dp_card_meta">
+                            <span><i class="fa fa-calendar"/> <t t-esc="o.date"/></span>
+                            <span><i class="fa fa-list"/> <t t-esc="o.lines"/> mahsulot</span>
+                            <span><i class="fa fa-home"/> <t t-esc="o.warehouse"/></span>
+                            <span class="ms-auto fw-bold"><t t-esc="money(o.amount)"/> <t t-esc="o.currency"/></span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <t t-else="">
+                <t t-foreach="state.list" t-as="c" t-key="c.id">
+                    <div class="o_cst_dp_card" t-on-click="() => this.openCard(c)">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="o_cst_dp_card_title"><t t-esc="c.order"/> <small class="text-muted" t-esc="c.name"/></div>
+                                <div t-esc="c.partner"/>
+                            </div>
+                            <span t-if="c.state === 'ready'" class="badge text-bg-success">Tayyor</span>
+                            <span t-elif="c.state === 'done'" class="badge text-bg-secondary">Chiqarildi</span>
+                            <span t-elif="c.state === 'cancel'" class="badge text-bg-light">Bekor</span>
+                        </div>
+                        <div class="o_cst_dp_card_meta">
+                            <span><i class="fa fa-list"/> <t t-esc="c.lines"/> mahsulot</span>
+                            <span t-if="c.prepared_by"><i class="fa fa-user"/> <t t-esc="c.prepared_by"/> · <t t-esc="c.prepared_at"/></span>
+                            <span t-if="c.checked_by"><i class="fa fa-check"/> <t t-esc="c.checked_by"/> · <t t-esc="c.checked_at"/></span>
+                            <span t-if="c.state === 'done'" class="ms-auto">
+                                <t t-esc="money(c.amount_before)"/> → <b t-esc="money(c.amount_after)"/> <t t-esc="c.currency"/>
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </t>
+
+    <!-- ===================== one dispatch ===================== -->
+    <t t-if="state.screen === 'dispatch' and d">
+        <div class="o_cst_dp_head px-3 pt-3">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="badge fs-6" t-att-class="{
+                    'text-bg-warning': d.state === 'draft', 'text-bg-success': d.state === 'ready',
+                    'text-bg-secondary': d.state === 'done', 'text-bg-light': d.state === 'cancel'}"
+                      t-esc="stateLabel"/>
+                <span class="text-muted" t-esc="d.name"/>
+                <span class="text-muted"><i class="fa fa-home"/> <t t-esc="d.warehouse"/></span>
+                <span t-if="d.prepared_by" class="text-muted"><i class="fa fa-user"/> <t t-esc="d.prepared_by"/></span>
+                <span t-if="isReady" class="ms-auto fw-bold">
+                    Sanaldi: <t t-esc="progress.ok"/> / <t t-esc="progress.total"/>
+                </span>
+            </div>
+            <div t-if="canEditQty or canCheck" class="o_cst_dp_scanhint mt-2">
+                <i class="fa fa-barcode"/>
+                <t t-if="canEditQty">Mahsulotni skanerlang: +1 qo'shiladi (yangi mahsulot bo'lsa — qo'shimcha qator)</t>
+                <t t-else="">Har bir mahsulotni skanerlang yoki ✓ bosing — sanoq buyurtma bilan solishtiriladi</t>
+            </div>
+        </div>
+
+        <div class="px-3 pb-3">
+            <t t-foreach="d.line_list" t-as="l" t-key="l.id">
+                <div class="o_cst_dp_line" t-att-class="lineClass(l)" t-att-data-line-id="l.id">
+                    <div class="d-flex justify-content-between gap-2">
+                        <div class="o_cst_dp_line_name">
+                            <div class="fw-bold" t-esc="l.product"/>
+                            <div t-if="l.char" class="o_cst_dp_char" t-esc="l.char"/>
+                            <div class="o_cst_dp_line_codes">
+                                <span t-if="l.barcode"><i class="fa fa-barcode"/> <t t-esc="l.barcode"/></span>
+                            </div>
+                        </div>
+                        <t t-set="badge" t-value="diffBadge(l)"/>
+                        <span t-if="badge" class="badge align-self-start" t-att-class="badge.cls" t-esc="badge.text"/>
+                    </div>
+                    <div class="o_cst_dp_line_info">
+                        <span t-if="!l.is_extra">Kerak: <b t-esc="fmt(l.remaining)"/> <t t-esc="l.uom"/></span>
+                        <span t-if="l.delivered">(buyurtma <t t-esc="fmt(l.ordered)"/>, oldin berilgan <t t-esc="fmt(l.delivered)"/>)</span>
+                        <span t-if="d.state === 'draft'" t-att-class="l.qty > l.onhand ? 'text-danger fw-bold' : ''">
+                            Omborda: <t t-esc="fmt(l.onhand)"/>
+                        </span>
+                        <span t-if="d.state !== 'draft'">Jo'natiladi: <b t-esc="fmt(l.qty)"/> <t t-esc="l.uom"/></span>
+                    </div>
+
+                    <!-- warehouse: quantity to send -->
+                    <div t-if="canEditQty" class="o_cst_dp_qty">
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.inc(l, -1)"><i class="fa fa-minus"/></button>
+                        <input type="number" inputmode="decimal" step="any" min="0" class="form-control text-center"
+                               t-att-value="l.qty" t-on-change="(ev) => this.onQtyChange(l, ev)"/>
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.inc(l, 1)"><i class="fa fa-plus"/></button>
+                        <span class="o_cst_dp_uom" t-esc="l.uom"/>
+                        <button class="btn btn-link text-danger ms-auto" t-on-click="() => this.removeLine(l)"
+                                t-att-title="l.is_extra ? 'Olib tashlash' : 'Nolga tushirish'">
+                            <i class="fa fa-trash"/>
+                        </button>
+                    </div>
+
+                    <!-- gate: counted -->
+                    <div t-if="canCheck" class="o_cst_dp_qty">
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.inc(l, -1)"><i class="fa fa-minus"/></button>
+                        <input type="number" inputmode="decimal" step="any" min="0" class="form-control text-center"
+                               t-att-value="l.checked" t-on-change="(ev) => this.onQtyChange(l, ev)"/>
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.inc(l, 1)"><i class="fa fa-plus"/></button>
+                        <span class="o_cst_dp_uom">/ <t t-esc="fmt(l.qty)"/> <t t-esc="l.uom"/></span>
+                        <button class="btn ms-auto o_cst_dp_checkbtn"
+                                t-att-class="l.checked === l.qty ? 'btn-success' : 'btn-outline-success'"
+                                t-on-click="() => this.checkLine(l)">
+                            <i class="fa fa-check"/>
+                        </button>
+                    </div>
+
+                    <div t-if="d.state === 'done'" class="o_cst_dp_line_info">
+                        <span>Chiqdi: <b t-esc="fmt(l.checked)"/> <t t-esc="l.uom"/></span>
+                    </div>
+                </div>
+            </t>
+
+            <!-- add product (warehouse) -->
+            <t t-if="canEditQty">
+                <button t-if="!state.showAdd" class="btn btn-outline-primary w-100 btn-lg mt-2" t-on-click="toggleAdd">
+                    <i class="fa fa-plus"/> Mahsulot qo'shish
+                </button>
+                <div t-else="" class="o_cst_dp_add mt-2">
+                    <div class="d-flex gap-2">
+                        <input class="form-control form-control-lg" placeholder="Nomi, kodi yoki shtrix-kodi…"
+                               t-att-value="state.productSearch" t-on-input="onProductSearch" autofocus="autofocus"/>
+                        <button class="btn btn-light" t-on-click="toggleAdd"><i class="fa fa-times"/></button>
+                    </div>
+                    <t t-foreach="state.productResults" t-as="p" t-key="p.id">
+                        <div class="o_cst_dp_result" t-on-click="() => this.addProduct(p)">
+                            <div class="fw-bold"><t t-esc="p.name"/> <span t-if="p.char" class="o_cst_dp_char" t-esc="p.char"/></div>
+                            <div class="text-muted small">
+                                <t t-if="p.barcode"><i class="fa fa-barcode"/> <t t-esc="p.barcode"/> · </t>
+                                Omborda: <t t-esc="fmt(p.onhand)"/> <t t-esc="p.uom"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+
+            <!-- totals -->
+            <div class="o_cst_dp_totals mt-3">
+                <div>Buyurtma summasi: <b><t t-esc="money(d.order_amount)"/> <t t-esc="d.currency"/></b></div>
+                <div t-if="d.state !== 'cancel'">
+                    <t t-if="d.state === 'done'">Yangi summa: </t>
+                    <t t-else="">Taxminiy yangi summa: </t>
+                    <b t-att-class="d.estimate !== d.order_amount ? 'text-primary' : ''">
+                        <t t-esc="money(d.estimate)"/> <t t-esc="d.currency"/>
+                    </b>
+                </div>
+                <div t-if="d.pickings" class="text-muted">Yetkazib berish: <t t-esc="d.pickings"/></div>
+                <div t-if="d.invoices" class="text-muted">Hisob-faktura: <t t-esc="d.invoices"/></div>
+                <div t-if="!canEditVehicle and (d.car_model or d.car_number or d.driver)" class="text-muted">
+                    <i class="fa fa-truck"/> <t t-esc="d.car_model"/> <t t-esc="d.car_number"/> · <t t-esc="d.driver"/> <t t-esc="d.driver_phone"/>
+                </div>
+            </div>
+
+            <!-- vehicle: warehouse or gate -->
+            <div t-if="canEditVehicle" class="o_cst_dp_vehicle mt-2">
+                <div class="fw-bold mb-1"><i class="fa fa-truck"/> Mashina va haydovchi</div>
+                <div class="o_cst_dp_vgrid">
+                    <input class="form-control form-control-lg" placeholder="Mashina rusumi (masalan Isuzu)"
+                        t-att-value="d.car_model" t-on-change="(ev) => this.onFieldChange('car_model', ev)"/>
+                    <input class="form-control form-control-lg" placeholder="Davlat raqami (01 A 123 BC)"
+                        t-att-value="d.car_number" t-on-change="(ev) => this.onFieldChange('car_number', ev)"/>
+                    <input class="form-control form-control-lg" placeholder="Haydovchi ismi"
+                        t-att-value="d.driver" t-on-change="(ev) => this.onFieldChange('driver', ev)"/>
+                    <input class="form-control form-control-lg" type="tel" placeholder="Haydovchi telefoni"
+                        t-att-value="d.driver_phone" t-on-change="(ev) => this.onFieldChange('driver_phone', ev)"/>
+                </div>
+            </div>
+        </div>
+    </t>
+    </div>
+
+    <!-- ===================== bottom actions ===================== -->
+    <div t-if="state.screen === 'dispatch' and d and (canEditQty or canCheck)" class="o_cst_dp_actions d-flex gap-2 p-2">
+        <t t-if="canEditQty">
+            <button class="btn btn-light btn-lg" t-on-click="cancelDispatch" t-att-disabled="state.busy">
+                <i class="fa fa-ban"/>
+            </button>
+            <button class="btn btn-success btn-lg flex-grow-1" t-on-click="confirmReady" t-att-disabled="state.busy">
+                <i class="fa fa-check"/> Tasdiqlash: jo'natishga tayyor
+            </button>
+        </t>
+        <t t-if="canCheck">
+            <button class="btn btn-light btn-lg" t-on-click="backToWarehouse" t-att-disabled="state.busy" title="Omborga qaytarish">
+                <i class="fa fa-undo"/>
+            </button>
+            <button t-if="!allChecked" class="btn btn-outline-success btn-lg" t-on-click="checkAll" t-att-disabled="state.busy">
+                Hammasi ✓
+            </button>
+            <button class="btn btn-lg flex-grow-1" t-att-class="allChecked ? 'btn-success' : 'btn-warning'"
+                    t-on-click="approveGate" t-att-disabled="state.busy">
+                <i class="fa fa-sign-out"/> Tasdiqlash va chiqarish
+            </button>
+        </t>
+    </div>
+</t>
+</div>
+</t>
+</templates>

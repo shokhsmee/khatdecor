@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_partner_balance_list" model="ir.ui.view">
+        <field name="name">cst.kassa.partner.balance.list</field>
+        <field name="model">cst.kassa.partner.balance</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0" decoration-danger="status == 'debt'" decoration-success="status == 'advance'">
+                <field name="partner_id"/>
+                <field name="phone" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="order_count" optional="show"/>
+                <field name="order_total" sum="1" optional="show"/>
+                <field name="paid_total" sum="1"/>
+                <field name="total_debt" sum="1"/>
+                <field name="debt_detail" optional="show"/>
+                <field name="advance" sum="1"/>
+                <field name="balance" sum="1"/>
+                <field name="last_payment_date" optional="show"/>
+                <field name="status" widget="badge" decoration-danger="status == 'debt'" decoration-success="status == 'advance'"/>
+                <field name="can_reconcile" column_invisible="1"/>
+                <button name="action_reconcile" type="object" string="Settle" icon="fa-link" invisible="not can_reconcile"
+                        class="btn-link text-primary"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kassa_partner_balance_form" model="ir.ui.view">
+        <field name="name">cst.kassa.partner.balance.form</field>
+        <field name="model">cst.kassa.partner.balance</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <header>
+                    <button name="action_receive" type="object" string="+ Receive payment" class="btn-success"/>
+                    <button name="action_reconcile" type="object" string="Settle debts" class="btn-primary"
+                            invisible="not can_reconcile"/>
+                    <button name="action_reconcile" type="object" string="Settle debts" invisible="can_reconcile"/>
+                    <button name="action_refresh" type="object" string="Refresh"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="partner_id" readonly="1"/></h1>
+                        <div class="text-muted"><field name="phone"/> <span groups="base.group_multi_company"> · <field name="company_id" readonly="1"/></span></div>
+                    </div>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="can_reconcile" invisible="1"/>
+                    <field name="status" invisible="1"/>
+                    <div class="cst_kassa_totals">
+                        <div class="cst_kassa_tile">
+                            <span>Orders total</span>
+                            <field name="order_total"/>
+                        </div>
+                        <div class="cst_kassa_tile">
+                            <span>Paid total</span>
+                            <field name="paid_total"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_out">
+                            <span>Total debt</span>
+                            <field name="total_debt"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_in">
+                            <span>Advance (not settled)</span>
+                            <field name="advance"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_expected">
+                            <span>Balance (+ owes us)</span>
+                            <field name="balance"/>
+                        </div>
+                    </div>
+                    <div class="mb-3" invisible="not debt_detail">
+                        <span class="text-muted">Debt by currency: </span>
+                        <field name="debt_detail" class="fw-bold"/>
+                    </div>
+                    <div class="alert alert-info" role="alert" invisible="not can_reconcile">
+                        The client has money that is not applied to his orders yet. Press "Settle debts" to pay the
+                        oldest orders with it.
+                    </div>
+                    <notebook>
+                        <page string="Sales orders" name="orders">
+                            <field name="order_ids" readonly="1">
+                                <list decoration-danger="payment_amount_due &gt; 0">
+                                    <field name="name"/>
+                                    <field name="date_order"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount_total" sum="1"/>
+                                    <field name="payment_amount_due" sum="1" string="Debt"/>
+                                    <field name="invoice_status" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Payments" name="payments">
+                            <field name="payment_ids" readonly="1">
+                                <list decoration-danger="payment_type == 'outbound'">
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="journal_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="memo"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount"/>
+                                    <field name="company_currency_id" column_invisible="1"/>
+                                    <field name="amount_company_currency_signed" sum="1" string="Amount (company currency)"/>
+                                    <field name="state" widget="badge" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Settlements" name="allocations">
+                            <field name="allocation_ids" readonly="1">
+                                <list decoration-muted="state == 'undone'">
+                                    <field name="date"/>
+                                    <field name="source_name"/>
+                                    <field name="order_id"/>
+                                    <field name="invoice_id"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount" sum="1"/>
+                                    <field name="user_id"/>
+                                    <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                                    <button name="action_undo" type="object" string="Undo" icon="fa-undo"
+                                            invisible="state != 'done'"
+                                            confirm="Take this money off the order? It becomes the client's advance again."/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Other open invoices" name="invoices" invisible="not invoice_ids">
+                            <field name="invoice_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="invoice_date"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount_total_signed" sum="1"/>
+                                    <field name="amount_residual_signed" sum="1" string="Debt"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Cash operations" name="operations">
+                            <field name="operation_ids" readonly="1">
+                                <list decoration-muted="state == 'cancel'">
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="kassa_id"/>
+                                    <field name="operation_type"/>
+                                    <field name="memo"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kassa_partner_balance_search" model="ir.ui.view">
+        <field name="name">cst.kassa.partner.balance.search</field>
+        <field name="model">cst.kassa.partner.balance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="phone"/>
+                <filter name="filter_debt" string="Owes" domain="[('status', '=', 'debt')]"/>
+                <filter name="filter_advance" string="Has advance" domain="[('status', '=', 'advance')]"/>
+                <filter name="filter_reconcile" string="To settle" domain="[('can_reconcile', '=', True)]"/>
+                <filter name="filter_clear" string="Settled" domain="[('status', '=', 'clear')]"/>
+                <group>
+                    <filter name="group_company" string="Company" context="{'group_by': 'company_id'}"/>
+                    <filter name="group_status" string="Status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_kassa_partner_balance_window" model="ir.actions.act_window">
+        <field name="name">Client accounts</field>
+        <field name="res_model">cst.kassa.partner.balance</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_kassa_partner_balance_search"/>
+    </record>
+
+    <record id="action_kassa_partner_balance" model="ir.actions.server">
+        <field name="name">Client accounts</field>
+        <field name="model_id" ref="model_cst_kassa_partner_balance"/>
+        <field name="state">code</field>
+        <field name="code">action = model.cst_action_open()</field>
+    </record>
+</odoo>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_department_list" model="ir.ui.view">
+        <field name="name">cst.production.department.list</field>
+        <field name="model">cst.production.department</field>
+        <field name="arch" type="xml">
+            <list string="Bo'limlar">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="workcenter_ids" widget="many2many_tags"/>
+                <field name="manager_user_ids" widget="many2many_tags"/>
+                <field name="output_kind"/>
+                <field name="open_shift_id"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_department_form" model="ir.ui.view">
+        <field name="name">cst.production.department.form</field>
+        <field name="model">cst.production.department</field>
+        <field name="arch" type="xml">
+            <form string="Bo'lim">
+                <header>
+                    <button name="action_open_floor" type="object" string="Bo'lim oynasi" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_shifts" icon="fa-clock-o">
+                            <field name="shift_count" widget="statinfo" string="Smenalar"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Arxiv" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Preslash bo'limi"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="output_kind"/>
+                            <field name="scrap_reason_tag_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="tz"/>
+                            <field name="open_shift_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Stanoklar (liniyalar)" name="lines">
+                            <field name="workcenter_ids" context="{'default_cst_department_id': id}">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="alternative_workcenter_ids" widget="many2many_tags"/>
+                                    <field name="working_state" optional="show"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Menejerlar" name="managers">
+                            <field name="manager_user_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                            <p class="text-muted">Menejer faqat o'z bo'limida smena ochadi va yopadi. Rahbar hamma bo'limni ko'radi.</p>
+                        </page>
+                        <page string="Xodimlar" name="employees">
+                            <field name="employee_ids" widget="many2many" options="{'no_create': True}">
+                                <list><field name="name"/><field name="job_title" optional="show"/><field name="barcode" string="Face ID kodi" optional="show"/></list>
+                            </field>
+                        </page>
+                        <page string="Smena vaqtlari" name="templates">
+                            <field name="shift_template_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                            <p class="text-muted">Bo'sh qolsa hamma smena vaqtlari ishlatiladi. Soatlar Sozlamalar ▸ Smena vaqtlari'da o'zgartiriladi.</p>
+                        </page>
+                        <page string="Izoh" name="note"><field name="note"/></page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_department_kanban" model="ir.ui.view">
+        <field name="name">cst.production.department.kanban</field>
+        <field name="model">cst.production.department</field>
+        <field name="arch" type="xml">
+            <!-- wide cards, one per department, laid out like Inventory ▸ Overview -->
+            <kanban class="o_cst_dept_kanban" highlight_color="color" default_order="sequence" records_draggable="0" can_open="0">
+                <field name="name"/><field name="code"/><field name="color"/><field name="sequence"/>
+                <field name="workcenter_count"/><field name="output_kind"/>
+                <field name="open_shift_id"/><field name="open_shift_label"/>
+                <field name="queue_count"/><field name="running_count"/>
+                <field name="today_good"/><field name="today_scrap"/><field name="today_planned"/>
+                <field name="employee_count"/><field name="late_count"/><field name="today_count"/><field name="tomorrow_count"/>
+                <templates>
+                    <t t-name="menu">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 role="menuitem" class="o_kanban_card_manage_title"><span>Ko'rish</span></h5>
+                                    <div role="menuitem"><a name="action_open_floor" type="object">Bo'lim oynasi</a></div>
+                                    <div role="menuitem"><a name="action_view_shifts" type="object">Smenalar</a></div>
+                                    <div role="menuitem"><a name="action_view_today_entries" type="object">Bugungi natijalar</a></div>
+                                    <div role="menuitem"><a name="action_view_queue" type="object">Navbat</a></div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 role="menuitem" class="o_kanban_card_manage_title"><span>Sozlash</span></h5>
+                                    <div role="menuitem"><a type="open">Bo'lim kartochkasi</a></div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_manage_settings row">
+                                <div class="col-8" role="menuitem" aria-haspopup="true"><field name="color" widget="kanban_color_picker"/></div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-name="card">
+                        <div class="px-2 pt-1 o_cst_dept_card d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <a type="object" name="action_open_floor" class="text-decoration-none">
+                                    <span class="fw-bold fs-4 o_cst_dept_title" t-esc="record.name.value"/>
+                                </a>
+                                <span t-if="record.open_shift_id.value" class="badge rounded-pill text-bg-success mt-2"><i class="fa fa-circle me-1 small"/>Smena ochiq</span>
+                                <span t-else="" class="badge rounded-pill text-bg-secondary mt-2">Smena yopiq</span>
+                            </div>
+                            <div class="text-muted small">
+                                <t t-esc="record.output_kind.value"/> · <t t-esc="record.workcenter_count.value"/> liniya
+                                <t t-if="record.open_shift_label.value"> · <t t-esc="record.open_shift_label.value"/></t>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <button class="btn btn-primary o_cst_dept_main" name="action_open_floor" type="object">
+                                        <span t-if="record.queue_count.raw_value > 0"><t t-esc="record.queue_count.value"/> navbatda</span>
+                                        <span t-else="">Bo'lim oynasi</span>
+                                    </button>
+                                    <div class="mt-2 small text-muted">
+                                        <i class="fa fa-users me-1"/><t t-esc="record.employee_count.value"/> xodim
+                                    </div>
+                                </div>
+                                <div class="col-6 o_cst_dept_links">
+                                    <a t-if="record.late_count.raw_value > 0" class="row text-decoration-none" name="action_view_queue" type="object">
+                                        <span class="col-7">Kech</span><span class="col-5 text-end fw-bold text-danger" t-esc="record.late_count.value"/>
+                                    </a>
+                                    <a class="row text-decoration-none" name="action_view_queue" type="object">
+                                        <span class="col-7">Bugun</span><span class="col-5 text-end fw-bold" t-esc="record.today_count.value"/>
+                                    </a>
+                                    <a t-if="record.tomorrow_count.raw_value > 0" class="row text-decoration-none" name="action_view_queue" type="object">
+                                        <span class="col-7">Ertaga</span><span class="col-5 text-end fw-bold" t-esc="record.tomorrow_count.value"/>
+                                    </a>
+                                    <a class="row text-decoration-none" name="action_view_shifts" type="object">
+                                        <span class="col-7">Jarayonda</span><span class="col-5 text-end fw-bold" t-esc="record.running_count.value"/>
+                                    </a>
+                                    <a class="row text-decoration-none" name="action_view_today_entries" type="object">
+                                        <span class="col-7">Bugun 1-sort / brak</span><span class="col-5 text-end fw-bold"><span class="text-success" t-esc="record.today_good.value"/> / <span class="text-danger" t-esc="record.today_scrap.value"/></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Inventory's own per-day bar graph widget, fed the same JSON -->
+                            <field name="kanban_dashboard_graph" class="mt-auto" graph_type="bar" widget="picking_type_dashboard_graph"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_departments" model="ir.actions.act_window">
+        <field name="name">Bo'limlar</field>
+        <field name="res_model">cst.production.department</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>

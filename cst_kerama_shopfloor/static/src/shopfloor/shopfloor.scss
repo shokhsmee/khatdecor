@@ -1,0 +1,66 @@
+// Khatdecor additions to the Shop Floor (mrp_display).
+// No min()/max()/clamp() with mixed units: libsass cannot compile them.
+
+.o_mrp_display {
+    .o_cst_sf_clock {
+        border: 1px solid #d8dadd;
+        min-height: var(--interaction-min-size, 2.5rem);
+        white-space: nowrap;
+        line-height: 1.1;
+
+        &--on {
+            background: #e6f4ea;
+            border-color: #b7dfc2;
+            color: #1e7e34;
+        }
+        &--off {
+            background: #fde8ea;
+            border-color: #f1aeb5;
+            color: #b02a37;
+        }
+        .o_cst_sf_clock_time {
+            font-size: 1.05rem;
+        }
+        small {
+            font-size: 0.72rem;
+        }
+    }
+
+    .o_cst_sf_new {
+        white-space: nowrap;
+    }
+
+    .o_cst_sf_offline {
+        grid-column: 1 / -1;
+        font-size: 1.05rem;
+    }
+
+    .o_cst_sf_sale {
+        color: #017e84;
+        font-weight: 600;
+    }
+
+    .o_cst_sf_grades {
+        .o_cst_sf_chip {
+            border-radius: 999px;
+            font-weight: 700;
+            padding: 0.15rem 0.7rem;
+            line-height: 1.4;
+            min-height: 0 !important;
+        }
+        .o_cst_sf_chip--second {
+            background: #fff3cd;
+            color: #7a5200;
+            border-color: #f0d38a;
+        }
+        .o_cst_sf_chip--scrap {
+            background: #f8d7da;
+            color: #842029;
+            border-color: #f1aeb5;
+        }
+    }
+}
+
+.o_cst_sf_second_txt {
+    color: #9a6700;
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Driver and vehicle on the Barcode picking screen (receipts & deliveries) -->
+    <record id="stock_picking_barcode_wh_control" model="ir.ui.view">
+        <field name="name">stock.picking.form.barcode.wh.control</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock_barcode.stock_picking_barcode"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_dest_id']" position="after">
+                <field name="cst_transport_visible" invisible="1"/>
+                <field name="cst_driver" invisible="not cst_transport_visible"/>
+                <field name="cst_car_model" invisible="not cst_transport_visible"/>
+                <field name="cst_car_number" invisible="not cst_transport_visible"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Photo + comment block on the Barcode line screen -->
+    <record id="stock_move_line_product_selector_wh_control" model="ir.ui.view">
+        <field name="name">stock.move.line.barcode.selector.wh.control</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock_barcode.stock_move_line_product_selector"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='location_dest']" position="after">
+                <div name="cst_line_extras" class="row w-100">
+                    <field name="cst_photo_count" widget="cst_line_extras" nolabel="1"
+                           class="w-100"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

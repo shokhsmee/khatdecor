@@ -1,0 +1,16 @@
+<odoo>
+  <menuitem id="menu_moizvonki_root" name="Qo'ng'iroqlar" sequence="10" web_icon="moizvonki_calls,static/call.svg"/>
+
+  <menuitem id="menu_moizvonki_calls"
+            name="Qo'ng'iroqlar tarixi"
+            parent="menu_moizvonki_root"
+            action="moizvonki_calls.action_moizvonki_calls"
+            sequence="10"/>
+
+  <menuitem id="menu_moizvonki_settings"
+            name="Sozlamalar"
+            parent="menu_moizvonki_root"
+            action="moizvonki_calls.action_open_moizvonki_settings"
+            sequence="20"
+            groups="base.group_system"/>
+</odoo>

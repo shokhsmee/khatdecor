@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_doc_template_list" model="ir.ui.view">
+        <field name="name">cst.hr.doc.template.list</field>
+        <field name="model">cst.hr.doc.template</field>
+        <field name="arch" type="xml">
+            <list string="Hujjat shablonlari">
+                <field name="sequence" widget="handle"/>
+                <field name="kind"/>
+                <field name="name"/>
+                <field name="code" optional="show"/>
+                <field name="file" filename="filename" string="Word fayli"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hr_doc_template_form" model="ir.ui.view">
+        <field name="name">cst.hr.doc.template.form</field>
+        <field name="model">cst.hr.doc.template</field>
+        <field name="arch" type="xml">
+            <form string="Hujjat shabloni">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Ariza (ishga qabul)"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="kind"/>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="file" filename="filename" string="Word shabloni"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        Shablonni yuklab oling, Word'da tahrirlang va qaytadan
+                        yuklang.  Matn ichidagi <code>{{fish}}</code>,
+                        <code>{{bolim}}</code>, <code>{{lavozim}}</code>,
+                        <code>{{sana_matn}}</code>, <code>{{buyruq_no}}</code>,
+                        <code>{{shartnoma_no}}</code>, <code>{{passport}}</code>,
+                        <code>{{jshshir}}</code>, <code>{{kim_bergan}}</code>,
+                        <code>{{manzil}}</code>, <code>{{telefon}}</code>,
+                        <code>{{yangi_bolim}}</code>, <code>{{yangi_lavozim}}</code>,
+                        <code>{{msh_sana}}</code>, <code>{{msh_no}}</code>,
+                        <code>{{tatil_kompensatsiya}}</code>,
+                        <code>{{kompaniya}}</code>, <code>{{direktor}}</code>,
+                        <code>{{shahar}}</code> belgilarini o'chirmang — hujjat
+                        yaratilganda ular xodim ma'lumotlari bilan almashtiriladi.
+                    </div>
+                    <field name="note" placeholder="Izoh…"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_doc_template" model="ir.actions.act_window">
+        <field name="name">Hujjat shablonlari</field>
+        <field name="res_model">cst.hr.doc.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_company_form_hr_docs" model="ir.ui.view">
+        <field name="name">res.company.form.hr.docs</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page string="Kadr hujjatlari" name="cst_hr_docs">
+                    <group>
+                        <group>
+                            <field name="cst_hr_company_label"/>
+                            <field name="cst_hr_director"/>
+                            <field name="cst_hr_place"/>
+                        </group>
+                    </group>
+                    <div class="text-muted">
+                        Buyruq, ariza va shartnomalarda korxona nomi, direktor
+                        va hujjat tuzilgan joy shu yerdan olinadi.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

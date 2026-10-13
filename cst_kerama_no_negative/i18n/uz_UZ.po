@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_no_negative
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-27 18:39+0000\n"
+"PO-Revision-Date: 2026-08-27 18:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek (Khatdecor)\n"
+"Language: uz_UZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_move.py:0
+msgid ""
+"  • %(product)s in %(location)s: need %(needed).2f, have %(available).2f"
+msgstr ""
+"  • %(product)s — %(location)s: kerak %(needed).2f, mavjud %(available).2f"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_move.py:0
+msgid ""
+"%(what)s would take stock below zero:\n"
+"\n"
+"%(rows)s\n"
+"\n"
+"Receive or correct the stock first, or ask someone with the \"Allow Negative Stock\" right to do it."
+msgstr ""
+"%(what)s ombor qoldig'ini manfiyga olib keladi:\n"
+"\n"
+"%(rows)s\n"
+"\n"
+"Avval tovarni kirim qiling yoki qoldiqni to'g'rilang, aks holda \"Manfiy qoldiqqa ruxsat\" huquqiga ega xodimdan so'rang."
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,name:cst_kerama_no_negative.group_allow_negative_cash
+msgid "Allow Negative Cash"
+msgstr "Manfiy kassaga ruxsat"
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,name:cst_kerama_no_negative.group_allow_negative_stock
+msgid "Allow Negative Stock"
+msgstr "Manfiy qoldiqqa ruxsat"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_journal__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_quant__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_scrap__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/mrp_production.py:0
+msgid "Finishing %s"
+msgstr "%s ni yakunlash"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_journal__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_move__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_move__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_picking__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_quant__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_scrap__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#: model:res.groups.privilege,name:cst_kerama_no_negative.privilege_khatdecor_controls
+msgid "Khatdecor Controls"
+msgstr "Khatdecor nazorati"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,comment:cst_kerama_no_negative.group_allow_negative_cash
+msgid ""
+"May post journal entries that take a cash\n"
+"                account below zero."
+msgstr "Kassa hisobini manfiyga olib keladigan provodkalarni qayd eta oladi."
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,comment:cst_kerama_no_negative.group_allow_negative_stock
+msgid ""
+"May validate transfers, scraps and manufacturing\n"
+"                orders that take an internal location below zero."
+msgstr ""
+"Ombor qoldig'ini manfiyga olib keladigan o'tkazmalar, hisobdan chiqarishlar "
+"va ishlab chiqarish buyurtmalarini tasdiqlay oladi."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_journal__cst_prevent_negative_balance
+msgid "Prevent Negative Balance"
+msgstr "Manfiy qoldiqni taqiqlash"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,help:cst_kerama_no_negative.field_account_journal__cst_prevent_negative_balance
+msgid ""
+"Refuse to post an entry that would take this journal's account below zero — "
+"a cash box cannot pay out money it does not hold. On by default for cash "
+"journals."
+msgstr ""
+"Ushbu jurnal hisobini manfiyga olib keladigan provodkani qabul qilmaslik — "
+"kassa o'zida yo'q pulni chiqara olmaydi. Naqd pul jurnallari uchun sukut "
+"bo'yicha yoqilgan."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_scrap
+msgid "Scrap"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_picking.py:0
+msgid ""
+"Scrapping would take stock below zero:\n"
+"\n"
+"  • %(product)s in %(location)s: need %(needed).2f, have %(available).2f\n"
+"\n"
+"Receive or correct the stock first, or ask someone with the \"Allow Negative Stock\" right to do it."
+msgstr ""
+"Hisobdan chiqarish ombor qoldig'ini manfiyga olib keladi:\n"
+"\n"
+"  • %(product)s — %(location)s: kerak %(needed).2f, mavjud %(available).2f\n"
+"\n"
+"Avval tovarni kirim qiling yoki qoldiqni to'g'rilang, aks holda \"Manfiy qoldiqqa ruxsat\" huquqiga ega xodimdan so'rang."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_quant.py:0
+msgid ""
+"Stock cannot go negative.\n"
+"\n"
+"%(product)s in %(location)s would end at %(qty).2f %(uom)s.\n"
+"\n"
+"Receive or correct the stock first, or ask someone with the \"Allow Negative Stock\" right to do it."
+msgstr ""
+"Ombor qoldig'i manfiy bo'la olmaydi.\n"
+"\n"
+"%(product)s — %(location)s da %(qty).2f %(uom)s bo'lib qoladi.\n"
+"\n"
+"Avval tovarni kirim qiling yoki qoldiqni to'g'rilang, aks holda \"Manfiy qoldiqqa ruxsat\" huquqiga ega xodimdan so'rang."
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/account_move.py:0
+msgid ""
+"The cash box cannot go negative.\n"
+"\n"
+"%(account)s would end at %(balance).2f %(currency)s.\n"
+"\n"
+"Register the incoming cash first, or ask someone with the \"Allow Negative Cash\" right to post this."
+msgstr ""
+"Kassa qoldig'i manfiy bo'la olmaydi.\n"
+"\n"
+"%(account)s hisobida %(balance).2f %(currency)s bo'lib qoladi.\n"
+"\n"
+"Avval kassaga kirimni qayd eting, aks holda \"Manfiy kassaga ruxsat\" huquqiga ega xodimdan so'rang."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_picking.py:0
+msgid "Validating %s"
+msgstr "%s ni tasdiqlash"

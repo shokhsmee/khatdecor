@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_journal_balance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: uz_UZ\n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_journal_balance
+#. odoo-python
+#: code:addons/cst_kerama_journal_balance/models/account_journal.py:0
+msgid "Balance"
+msgstr "Qoldiq"
+
+#. module: cst_kerama_journal_balance
+#. odoo-python
+#: code:addons/cst_kerama_journal_balance/models/account_journal.py:0
+msgid "Still Owed"
+msgstr "To'lanmagan qoldiq"
+
+#. module: cst_kerama_journal_balance
+#. odoo-python
+#: code:addons/cst_kerama_journal_balance/models/account_journal.py:0
+msgid "Balance of %s"
+msgstr "%s qoldig'i"
+
+#. module: cst_kerama_journal_balance
+#. odoo-python
+#: code:addons/cst_kerama_journal_balance/models/account_journal.py:0
+msgid "Journal Items of %s"
+msgstr "%s jurnal yozuvlari"

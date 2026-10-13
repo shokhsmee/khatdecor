@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_material_request_user,cst.material.request user,model_cst_material_request,base.group_user,1,1,1,0
+access_cst_material_request_line_user,cst.material.request.line user,model_cst_material_request_line,base.group_user,1,1,1,1
+access_cst_material_request_pmanager,cst.material.request purchase manager,model_cst_material_request,purchase.group_purchase_manager,1,1,1,1
+access_cst_manufacture_wizard,cst.manufacture.wizard user,model_cst_manufacture_wizard,mrp.group_mrp_user,1,1,1,1
+access_cst_manufacture_wizard_line,cst.manufacture.wizard.line user,model_cst_manufacture_wizard_line,mrp.group_mrp_user,1,1,1,1
+access_cst_manufacture_wizard_operation,cst.manufacture.wizard.operation user,model_cst_manufacture_wizard_operation,mrp.group_mrp_user,1,1,1,1
+access_cst_manufacture_wizard_component,cst.manufacture.wizard.component user,model_cst_manufacture_wizard_component,mrp.group_mrp_user,1,1,1,1

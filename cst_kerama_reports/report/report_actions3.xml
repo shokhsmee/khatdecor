@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_production_fact" model="ir.actions.report">
+        <field name="name">Ishlab chiqarish fakti</field>
+        <field name="model">cst.production.fact.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_production_fact</field>
+        <field name="report_file">cst_kerama_reports.report_production_fact</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_production_fact_html" model="ir.actions.report">
+        <field name="name">Ishlab chiqarish fakti (ekranda)</field>
+        <field name="model">cst.production.fact.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_production_fact</field>
+        <field name="report_file">cst_kerama_reports.report_production_fact</field>
+    </record>
+
+    <record id="action_report_assets" model="ir.actions.report">
+        <field name="name">Asosiy vositalar</field>
+        <field name="model">cst.asset.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_assets</field>
+        <field name="report_file">cst_kerama_reports.report_assets</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_assets_html" model="ir.actions.report">
+        <field name="name">Asosiy vositalar (ekranda)</field>
+        <field name="model">cst.asset.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_assets</field>
+        <field name="report_file">cst_kerama_reports.report_assets</field>
+    </record>
+
+    <record id="action_report_tax_movement" model="ir.actions.report">
+        <field name="name">Soliqlar harakati</field>
+        <field name="model">cst.tax.movement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_tax_movement</field>
+        <field name="report_file">cst_kerama_reports.report_tax_movement</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_tax_movement_html" model="ir.actions.report">
+        <field name="name">Soliqlar harakati (ekranda)</field>
+        <field name="model">cst.tax.movement.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_tax_movement</field>
+        <field name="report_file">cst_kerama_reports.report_tax_movement</field>
+    </record>
+
+    <record id="action_report_tax_statement" model="ir.actions.report">
+        <field name="name">Soliq akt sverkasi</field>
+        <field name="model">cst.tax.statement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_tax_statement</field>
+        <field name="report_file">cst_kerama_reports.report_tax_statement</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_tax_statement_html" model="ir.actions.report">
+        <field name="name">Soliq akt sverkasi (ekranda)</field>
+        <field name="model">cst.tax.statement.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_tax_statement</field>
+        <field name="report_file">cst_kerama_reports.report_tax_statement</field>
+    </record>
+
+    <record id="action_report_utility_statement" model="ir.actions.report">
+        <field name="name">Kommunal xizmatlar akt sverkasi</field>
+        <field name="model">cst.utility.statement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_partner_statement</field>
+        <field name="report_file">cst_kerama_reports.report_partner_statement</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_utility_statement_html" model="ir.actions.report">
+        <field name="name">Kommunal xizmatlar akt sverkasi (ekranda)</field>
+        <field name="model">cst.utility.statement.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_partner_statement</field>
+        <field name="report_file">cst_kerama_reports.report_partner_statement</field>
+    </record>
+
+    <record id="action_report_card_payments" model="ir.actions.report">
+        <field name="name">Plastik kartaga o'tkazmalar</field>
+        <field name="model">cst.card.payments.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_card_payments</field>
+        <field name="report_file">cst_kerama_reports.report_card_payments</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_card_payments_html" model="ir.actions.report">
+        <field name="name">Plastik kartaga o'tkazmalar (ekranda)</field>
+        <field name="model">cst.card.payments.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_card_payments</field>
+        <field name="report_file">cst_kerama_reports.report_card_payments</field>
+    </record>
+
+    <record id="action_report_bank_fees" model="ir.actions.report">
+        <field name="name">Bank xarajatlari</field>
+        <field name="model">cst.bank.fee.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_bank_fees</field>
+        <field name="report_file">cst_kerama_reports.report_bank_fees</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_bank_fees_html" model="ir.actions.report">
+        <field name="name">Bank xarajatlari (ekranda)</field>
+        <field name="model">cst.bank.fee.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_bank_fees</field>
+        <field name="report_file">cst_kerama_reports.report_bank_fees</field>
+    </record>
+
+</odoo>

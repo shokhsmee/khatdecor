@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The warehouse sheet as it is read on paper: the photo first, because
+         the storekeeper recognises the roll before they recognise its code.
+         Subtotals at every level, and the closing balance of a row is always
+         its own opening plus in minus out. -->
+    <template id="report_warehouse">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-set="wizard_engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th t-if="values['show_image']" style="width:95px;">Surati</th>
+                                    <th>Tovar (xomashyo) nomi</th>
+                                    <th style="width:80px;">Xarakteristika</th>
+                                    <th style="width:70px;">Boshlang'ich qoldiq</th>
+                                    <th style="width:60px;">Kirim</th>
+                                    <th style="width:60px;">Chiqim</th>
+                                    <th style="width:70px;">Oxirgi qoldiq</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="span" t-value="values['show_image'] and 4 or 3"/>
+                                <t t-if="not values['warehouses']">
+                                    <tr><td colspan="8" class="mid">Tanlangan davrda harakat topilmadi.</td></tr>
+                                </t>
+                                <t t-foreach="values['warehouses']" t-as="wh">
+                                    <tr class="cst_company">
+                                        <td t-att-colspan="span">
+                                            <t t-out="wh['company'].display_name"/> —
+                                            <t t-out="wh['warehouse'].display_name"/>
+                                        </td>
+                                        <td class="num" t-out="wh['opening']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="wh['in']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="wh['out']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="wh['closing']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </tr>
+                                    <t t-foreach="wh['groups']" t-as="group">
+                                        <tr class="cst_group">
+                                            <td t-att-colspan="span" t-out="wizard_engine.category_label(group['category'])"/>
+                                            <td class="num" t-out="group['opening']"
+                                                t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="group['in']"
+                                                t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="group['out']"
+                                                t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="group['closing']"
+                                                t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </tr>
+                                        <t t-foreach="group['leaves']" t-as="leaf">
+                                            <tr class="cst_sub" t-if="leaf['category'] != group['category']">
+                                                <td t-att-colspan="span" t-out="wizard_engine.category_label(leaf['category'])"/>
+                                                <td class="num" t-out="leaf['opening']"
+                                                    t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num" t-out="leaf['in']"
+                                                    t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num" t-out="leaf['out']"
+                                                    t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num" t-out="leaf['closing']"
+                                                    t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </tr>
+                                            <t t-foreach="leaf['products']" t-as="row">
+                                                <tr>
+                                                    <td class="mid" t-out="row_index + 1"/>
+                                                    <td t-if="values['show_image']" class="mid">
+                                                        <img t-if="row['product'].image_256"
+                                                             class="cst_photo"
+                                                             t-att-src="image_data_uri(row['product'].image_256)"/>
+                                                    </td>
+                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-out="row['characteristic']"/>
+                                                    <td class="num" t-out="row['opening']"
+                                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                                    <td class="num">
+                                                        <span t-if="row['in']" t-out="row['in']"
+                                                              t-options="{'widget': 'float', 'precision': 2}"/>
+                                                    </td>
+                                                    <td class="num">
+                                                        <span t-if="row['out']" t-out="row['out']"
+                                                              t-options="{'widget': 'float', 'precision': 2}"/>
+                                                    </td>
+                                                    <td class="num" t-out="row['closing']"
+                                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

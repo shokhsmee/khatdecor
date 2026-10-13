@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="cst_kerama_shift.ShiftFloor">
+    <div class="o_action cst_sf" t-att-class="{ cst_sf_dark: dark }">
+
+        <!-- ============ no department yet: pick one ============ -->
+        <div t-if="!state.departmentId" class="cst_sf_pick">
+            <div class="cst_sf_pick_head">
+                <h2>Bo'limlar</h2>
+                <span class="muted">Kartani bosib bo'lim oynasiga kiring</span>
+            </div>
+            <div class="cst_sf_pick_grid">
+                <div t-foreach="state.departments" t-as="dep" t-key="dep.id" t-attf-class="cst_sf_pick_card o_kanban_color_{{ dep.color }}">
+                    <div class="cst_sf_pick_top">
+                        <a href="#" class="name" t-on-click.prevent="() => this.pickDepartment(dep.id)" t-esc="dep.name"/>
+                        <span t-if="dep.open_shift" class="cst_sf_chip cst_sf_chip--ok"><i class="fa fa-circle me-1"/>Smena ochiq</span>
+                        <span t-else="" class="cst_sf_chip cst_sf_chip--muted">Smena yopiq</span>
+                    </div>
+                    <div class="muted small"><t t-esc="dep.output_kind"/> · <t t-esc="dep.lines"/> liniya<t t-if="dep.open_shift_label"> · <t t-esc="dep.open_shift_label"/></t></div>
+                    <div class="cst_sf_pick_row">
+                        <div class="cst_sf_pick_left">
+                            <button type="button" class="cst_sf_btn cst_sf_btn--primary cst_sf_pick_main" t-on-click="() => this.pickDepartment(dep.id)">
+                                <t t-if="dep.queue"><t t-esc="dep.queue"/> navbatda</t><t t-else="">Bo'lim oynasi</t>
+                            </button>
+                            <div class="muted small mt-2"><i class="fa fa-users me-1"/><t t-esc="dep.employees"/> xodim</div>
+                        </div>
+                        <div class="cst_sf_pick_links">
+                            <div t-if="dep.late" class="row-kv"><span>Kech</span><b class="bad" t-esc="dep.late"/></div>
+                            <div class="row-kv"><span>Bugun</span><b t-esc="dep.today"/></div>
+                            <div t-if="dep.tomorrow" class="row-kv"><span>Ertaga</span><b t-esc="dep.tomorrow"/></div>
+                            <div class="row-kv"><span>Jarayonda</span><b t-esc="dep.running"/></div>
+                            <div class="row-kv"><span>Bugun 1-sort / brak</span><b><span class="good" t-esc="num(dep.today_good)"/> / <span class="bad" t-esc="num(dep.today_scrap)"/></b></div>
+                        </div>
+                    </div>
+                    <!-- orders by planned day, like Inventory's overview bars -->
+                    <div class="cst_sf_bars" t-att-title="barsTitle(dep)">
+                        <div t-foreach="dep.bars" t-as="b" t-key="b.label" class="cst_sf_bar_col">
+                            <div t-attf-class="cst_sf_bar_fill cst_sf_bar_fill--{{ b.type }}" t-att-style="barStyle(b, dep)"/>
+                            <div class="cst_sf_bar_lbl" t-esc="b.label"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div t-elif="state.loading" class="cst_sf_loading"><i class="fa fa-spinner fa-spin me-2"/>Yuklanmoqda…</div>
+        <div t-elif="state.error" class="cst_sf_error" t-esc="state.error"/>
+
+        <t t-else="">
+        <div class="cst_sf_banner">
+            <div class="cst_sf_banner_left">
+                <button type="button" class="cst_sf_back" t-on-click="() => this.pickDepartment(null)" title="Bo'limlar ro'yxatiga qaytish"><i class="fa fa-th-large me-1"/>Bo'limlar</button>
+                <select t-if="state.departments.length > 1" class="cst_sf_dept_pick" t-on-change="(ev) => this.pickDepartment(ev.target.value)">
+                    <option t-foreach="state.departments" t-as="dep" t-key="dep.id" t-att-value="dep.id" t-att-selected="dep.id === state.departmentId" t-esc="dep.name"/>
+                </select>
+                <button t-if="canAct" type="button" class="cst_sf_btn cst_sf_btn--accent cst_sf_banner_new" t-on-click="() => this.startNewOrder()"><i class="fa fa-plus me-1"/>Yangi buyurtma qo'shish</button>
+            </div>
+            <span class="cst_sf_banner_title"><t t-esc="d.department.name.toUpperCase()"/> ISHLAB CHIQARISH OYNASI</span>
+            <span class="cst_sf_banner_date"><i class="fa fa-calendar me-1"/><t t-esc="d.department.today_label"/></span>
+        </div>
+
+        <div class="cst_sf_body" t-att-class="{ cst_sf_busy: state.busy, 'cst_sf_body--side': state.side }">
+
+            <!-- ============ centre: orders ============ -->
+            <main class="cst_sf_main">
+                <section class="cst_sf_card cst_sf_head">
+                    <div class="cst_sf_head_id">
+                        <span class="cst_sf_mark"><i class="fa fa-industry"/></span>
+                        <div>
+                            <h2 class="cst_sf_title" t-esc="d.department.name"/>
+                            <div class="muted small"><t t-esc="d.department.output_kind"/> · <t t-esc="d.department.lines.length"/> liniya</div>
+                        </div>
+                    </div>
+                    <div class="cst_sf_head_tools">
+                        <span t-if="shift" class="cst_sf_chip cst_sf_chip--ok"><i class="fa fa-circle me-1"/><t t-esc="shift.template"/> ochiq</span>
+                        <span t-else="" class="cst_sf_chip cst_sf_chip--muted">Smena ochilmagan</span>
+                        <button t-if="!shift and d.can_manage" type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="() => this.startOpenShift(null)"><i class="fa fa-play me-1"/>Smenani ochish</button>
+                        <button t-if="canAct" type="button" class="cst_sf_btn cst_sf_btn--danger" t-on-click="startClose"><i class="fa fa-power-off me-1"/>Smenani yakunlash</button>
+                        <button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-att-class="{ on: state.side }" t-on-click="toggleSide" t-att-title="state.side ? 'Panelni yopish' : 'Smenalar, xodimlar, reja'"><i t-attf-class="fa {{ state.side ? 'fa-angle-double-right' : 'fa-columns' }} me-1"/>Panel</button>
+                    </div>
+                </section>
+
+
+                <!-- orders as a board: what waits, what runs on each line, what is done -->
+                <section class="cst_sf_board">
+                    <div class="cst_sf_col cst_sf_col--queue">
+                        <div class="cst_sf_col_head"><span>Yangi buyurtmalar</span><span class="n" t-esc="d.queue.length"/></div>
+                        <div class="cst_sf_col_body">
+                            <div t-foreach="d.queue" t-as="row" t-key="row.workorder_id" class="cst_sf_kcard">
+                                <div class="cst_sf_kcard_top">
+                                    <a href="#" class="mo" t-on-click.prevent="() => this.openRecord('mrp.production', row.mo_id)" t-esc="row.mo"/>
+                                    <span t-attf-class="cst_sf_chip cst_sf_chip--{{ row.available ? 'ok' : row.availability_state === 'expected' ? 'warn' : 'bad' }}" t-esc="row.available ? 'Xomashyo bor' : row.availability_state === 'expected' ? 'Kirim kutilmoqda' : 'Xomashyo yetmaydi'"/>
+                                </div>
+                                <div class="prod" t-esc="row.product"/>
+                                <div class="muted small" t-if="row.characteristic" t-esc="row.characteristic"/>
+                                <div class="muted small" t-if="row.origin" t-esc="row.origin"/>
+                                <div class="cst_sf_kcard_qty"><span>Reja <b t-esc="num(row.qty)"/></span><span>Qoldi <b t-esc="num(row.remaining)"/></span></div>
+                                <div t-if="row.blocked_by" class="muted small">kutadi: <t t-esc="row.blocked_by"/></div>
+                                <div t-if="row.shift_line" class="muted small" t-esc="row.shift_line"/>
+                                <div t-if="canAct" class="cst_sf_kcard_btns mt-2">
+                                    <button type="button" class="cst_sf_btn cst_sf_btn--outline flex-grow-1" t-on-click="() => this.startPull(row)"><i class="fa fa-play me-1"/>Ishni ochish</button>
+                                    <button type="button" class="cst_sf_btn cst_sf_btn--ghost text-danger" t-att-class="{ 'opacity-50': !row.can_cancel }" t-on-click.stop="() => this.cancelOrder(row, false)" title="Bekor qilish"><i class="fa fa-trash"/></button>
+                                </div>
+                            </div>
+                            <div t-if="!d.queue.length" class="cst_sf_col_empty">Kutayotgan buyurtma yo'q</div>
+                        </div>
+                    </div>
+
+                    <div t-foreach="boardColumns" t-as="col" t-key="col.id" class="cst_sf_col cst_sf_col--line">
+                        <div class="cst_sf_col_head"><span t-esc="col.name"/><span class="n" t-esc="col.lines.length"/></div>
+                        <div class="cst_sf_col_body">
+                            <div t-foreach="col.lines" t-as="line" t-key="line.id" class="cst_sf_kcard" t-attf-class="cst_sf_kcard--{{ line.state }} {{ line.id === state.selectedLineId ? 'sel' : '' }}" t-on-click="() => { this.state.selectedLineId = line.id; }">
+                                <div class="cst_sf_kcard_top">
+                                    <b class="mo" t-esc="line.mo"/>
+                                    <span t-attf-class="cst_sf_chip cst_sf_chip--{{ stateClass(line.state) }}" t-esc="line.state_label"/>
+                                </div>
+                                <div class="prod" t-esc="line.product"/>
+                                <div class="muted small" t-if="line.characteristic" t-esc="line.characteristic"/>
+                                <div class="cst_sf_bar"><span t-att-style="'width:' + barWidth(line.good, line.planned)"/></div>
+                                <div class="cst_sf_kcard_qty">
+                                    <span><b class="good" t-esc="num(line.good)"/> / <t t-esc="num(line.planned)"/></span>
+                                    <span t-if="line.second" class="second">2-sort <t t-esc="num(line.second)"/></span>
+                                    <span t-if="line.scrap" class="scrap">brak <t t-esc="num(line.scrap)"/></span>
+                                </div>
+                                <div t-if="canAct" class="cst_sf_kcard_btns">
+                                    <button t-if="['todo','paused'].includes(line.state)" type="button" class="cst_sf_btn cst_sf_btn--outline" t-on-click.stop="() => this.lineAction(line, 'start')"><i class="fa fa-play me-1"/>Boshlash</button>
+                                    <button t-if="line.state === 'progress'" type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click.stop="() => this.startEntry(line)"><i class="fa fa-pencil me-1"/>Natija</button>
+                                    <button t-if="['progress','paused'].includes(line.state)" type="button" class="cst_sf_btn cst_sf_btn--good" t-on-click.stop="() => this.lineAction(line, 'finish')" title="Tugatish"><i class="fa fa-check"/></button>
+                                    <button t-if="['todo','progress','paused'].includes(line.state)" type="button" class="cst_sf_btn cst_sf_btn--ghost text-danger" t-att-class="{ 'opacity-50': !line.can_cancel }" t-on-click.stop="() => this.cancelOrder(line, true)" title="Bekor qilish"><i class="fa fa-trash"/></button>
+                                </div>
+                            </div>
+                            <div t-if="!col.lines.length" class="cst_sf_col_empty">Liniya bo'sh</div>
+                        </div>
+                    </div>
+
+                    <div class="cst_sf_col cst_sf_col--done">
+                        <div class="cst_sf_col_head"><span>Bajarilganlar</span><span class="n" t-esc="doneLines.length"/></div>
+                        <div class="cst_sf_col_body">
+                            <div t-foreach="doneLines" t-as="line" t-key="line.id" class="cst_sf_kcard cst_sf_kcard--done" t-attf-class="{{ line.id === state.selectedLineId ? 'sel' : '' }}" t-on-click="() => { this.state.selectedLineId = line.id; }">
+                                <div class="cst_sf_kcard_top">
+                                    <b class="mo" t-esc="line.mo"/>
+                                    <span t-attf-class="cst_sf_chip cst_sf_chip--{{ stateClass(line.state) }}" t-esc="line.state_label"/>
+                                </div>
+                                <div class="prod" t-esc="line.product"/>
+                                <div class="muted small"><t t-esc="line.workcenter"/><t t-if="line.characteristic"> · <t t-esc="line.characteristic"/></t></div>
+                                <div class="cst_sf_kcard_qty">
+                                    <span><b class="good" t-esc="num(line.good)"/> / <t t-esc="num(line.planned)"/></span>
+                                    <span t-if="line.second" class="second">2-sort <t t-esc="num(line.second)"/></span>
+                                    <span t-if="line.scrap" class="scrap">brak <t t-esc="num(line.scrap)"/></span>
+                                </div>
+                                <div t-if="line.backorder" class="muted small">qoldiq: <t t-esc="line.backorder"/></div>
+                                <div t-if="canAct" class="cst_sf_kcard_btns justify-content-end">
+                                    <button type="button" class="cst_sf_btn cst_sf_btn--ghost text-danger" t-att-class="{ 'opacity-50': line.undo_blocker }"
+                                            t-att-title="line.undo_title"
+                                            t-on-click.stop="() => this.undoDone(line)"><i class="fa fa-trash"/></button>
+                                </div>
+                            </div>
+                            <div t-if="!doneLines.length" class="cst_sf_col_empty">Bugun yakunlangan yo'q</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- selected order -->
+                <section t-if="selectedLine" class="cst_sf_card">
+                    <h3 class="cst_sf_h3"><t t-esc="selectedLine.mo"/> buyurtma bo'yicha ishlab chiqarish jarayoni</h3>
+                    <div class="cst_sf_detail">
+                        <div class="cst_sf_detail_info">
+                            <div class="k">Buyurtma ma'lumotlari</div>
+                            <div class="cst_sf_detail_prod" t-esc="selectedLine.product"/>
+                            <div class="cst_sf_detail_char" t-if="selectedLine.characteristic" t-esc="selectedLine.characteristic"/>
+                            <div class="row-kv"><span>Buyurtma miqdori</span><b><t t-esc="num(selectedLine.order_qty)"/> dona</b></div>
+                            <div class="row-kv"><span>Liniya</span><b t-esc="selectedLine.workcenter"/></div>
+                            <div class="row-kv"><span>Boshlanish</span><b t-esc="selectedLine.started || '—'"/></div>
+                        </div>
+                        <div class="cst_sf_detail_progress">
+                            <div class="k">Ishlab chiqarish jarayoni</div>
+                            <div class="cst_sf_bar"><span t-att-style="'width:' + barWidth(selectedLine.good, selectedLine.planned)"/></div>
+                            <div class="cst_sf_bar_pct" t-esc="pct(selectedLine.pct)"/>
+                            <div class="cst_sf_counters">
+                                <div class="c good"><div class="k">Ishlab chiqarilgan</div><div class="v"><t t-esc="num(selectedLine.good)"/> dona</div></div>
+                                <div class="c left"><div class="k">Qoldi</div><div class="v"><t t-esc="num(selectedLine.remaining)"/> dona</div></div>
+                                <div class="c second"><div class="k">2-sort (brak)</div><div class="v"><t t-esc="num(selectedLine.second)"/> dona</div></div>
+                                <div class="c scrap"><div class="k">Brak (noto'liq)</div><div class="v"><t t-esc="num(selectedLine.scrap)"/> dona</div></div>
+                            </div>
+                            <div class="cst_sf_detail_btns" t-if="canAct">
+                                <button t-if="selectedLine.state === 'progress'" type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="() => this.startEntry(selectedLine)"><i class="fa fa-pencil me-1"/>Natija kiritish</button>
+                                <button t-if="['todo','paused'].includes(selectedLine.state)" type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="() => this.lineAction(selectedLine, 'start')"><i class="fa fa-play me-1"/>Ishni davom ettirish</button>
+                                <button t-if="['progress','paused'].includes(selectedLine.state)" type="button" class="cst_sf_btn cst_sf_btn--good" t-on-click="() => this.lineAction(selectedLine, 'finish')"><i class="fa fa-check me-1"/>Tugatish</button>
+                                <button t-if="selectedLine.state === 'progress'" type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="() => this.lineAction(selectedLine, 'pause')"><i class="fa fa-pause me-1"/>To'xtatish</button>
+                                <button t-if="['progress','paused'].includes(selectedLine.state)" type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="() => this.lineAction(selectedLine, 'carry')" title="Chiqarilgani omborga o'tadi, qolgani keyingi smenaga"><i class="fa fa-forward me-1"/>Keyingi smenaga</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- history -->
+                <section class="cst_sf_card">
+                    <h3 class="cst_sf_h3">Ishlab chiqarish tarixi <small class="muted">bugun</small></h3>
+                    <table class="cst_sf_table">
+                        <thead><tr><th>Vaqt</th><th>Smena</th><th>Kim</th><th>Buyurtma</th><th>Mahsulot</th><th>Liniya</th><th class="n">1-sort</th><th class="n">2-sort</th><th class="n">Brak</th><th>Eslatma</th></tr></thead>
+                        <tbody>
+                            <tr t-foreach="d.history" t-as="h" t-key="h.id">
+                                <td t-esc="h.time"/><td class="muted" t-esc="h.shift"/><td t-esc="h.user"/><td t-esc="h.mo"/><td t-esc="h.product"/><td t-esc="h.workcenter"/>
+                                <td class="n" t-esc="num(h.good)"/><td class="n second" t-esc="num(h.second)"/><td class="n scrap" t-esc="num(h.scrap)"/><td class="muted"><t t-esc="h.note"/><div t-if="h.second_product" class="small">2-sort → <t t-esc="h.second_product"/></div><div t-if="h.material" class="small scrap">Material braki: <t t-esc="h.material"/></div></td>
+                            </tr>
+                            <tr t-if="!d.history.length"><td colspan="10" class="cst_sf_empty">Bugun hali natija kiritilmagan.</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="cst_sf_tiles">
+                    <div class="cst_sf_tile t-plan"><div class="k">Bugungi reja (dona)</div><div class="v" t-esc="num(d.kpis.planned)"/><div class="s"><t t-esc="d.kpis.orders"/> ta buyurtma</div></div>
+                    <div class="cst_sf_tile t-good"><div class="k">Ishlab chiqarilgan (1-sort)</div><div class="v" t-esc="num(d.kpis.good)"/><div class="s"><t t-esc="pct(d.kpis.plan_pct)"/> bajarildi</div></div>
+                    <div class="cst_sf_tile t-second"><div class="k">2-sort (brak toifasi)</div><div class="v" t-esc="num(d.kpis.second)"/><div class="s" t-esc="pct(d.kpis.second_pct)"/></div>
+                    <div class="cst_sf_tile t-scrap"><div class="k">Brak (noto'liq)</div><div class="v" t-esc="num(d.kpis.scrap)"/><div class="s" t-esc="pct(d.kpis.scrap_pct)"/></div>
+                    <div class="cst_sf_tile t-pct"><div class="k">Rejaga nisbatan</div><div class="v" t-esc="pct(d.kpis.plan_pct)"/><div class="s">Umumiy bajarilish</div></div>
+                </section>
+            </main>
+
+            <!-- ============ right: plan, quality, materials, close ============ -->
+            <aside t-if="state.side" class="cst_sf_right">
+
+                <section class="cst_sf_card">
+                    <div class="cst_sf_pill_head">Smenalar</div>
+                    <div t-foreach="d.templates" t-as="tpl" t-key="tpl.id" class="cst_sf_shift_row">
+                        <div>
+                            <div class="name"><t t-esc="tpl.name"/> <small class="muted">(<t t-esc="tpl.hours"/>)</small></div>
+                        </div>
+                        <span t-attf-class="cst_sf_chip cst_sf_chip--{{ tpl.state === 'open' ? 'ok' : tpl.state === 'closed' ? 'muted' : 'wait' }}" t-esc="tpl.state_label"/>
+                        <button t-if="tpl.state === 'waiting' and !shift and d.can_manage" type="button" class="cst_sf_btn cst_sf_btn--xs" t-on-click="() => this.startOpenShift(tpl)">Ochish</button>
+                    </div>
+                    <div t-if="shift" class="cst_sf_shift_now">
+                        <i class="fa fa-clock-o me-1"/><b t-esc="shift.template"/> · <t t-esc="shift.start"/>–<t t-esc="shift.end"/> · <t t-esc="shift.manager"/>
+                        <a href="#" class="ms-1" t-on-click.prevent="openShiftForm" title="Smena kartochkasi"><i class="fa fa-external-link"/></a>
+                    </div>
+                </section>
+
+                <section class="cst_sf_card">
+                    <div class="cst_sf_pill_head">Xodimlar <small t-if="shift" class="muted">(<t t-esc="shift.employee_count"/>)</small></div>
+                    <div t-if="!d.employees.length" class="muted small p-2">Bo'limga xodim biriktirilmagan.</div>
+                    <div t-foreach="d.employees" t-as="emp" t-key="emp.id" class="cst_sf_emp" t-att-class="{ off: shift and !emp.in_shift }">
+                        <span class="cst_sf_avatar" t-esc="emp.initials"/>
+                        <div class="cst_sf_emp_text">
+                            <div class="name" t-esc="emp.name"/>
+                            <div class="muted small" t-esc="emp.job || (emp.staff ? 'Xodim' : 'Smenaga qo\'shilgan')"/>
+                        </div>
+                        <span t-if="shift and emp.in_shift" class="cst_sf_chip cst_sf_chip--ok">Faol</span>
+                        <span t-elif="emp.present" class="cst_sf_chip cst_sf_chip--ok" title="Face ID orqali keldi">Keldi</span>
+                        <span t-else="" class="cst_sf_chip cst_sf_chip--muted">—</span>
+                    </div>
+                    <button t-if="shift and canAct" type="button" class="cst_sf_btn cst_sf_btn--ghost w-100 mt-2" t-on-click="startEmployees"><i class="fa fa-users me-1"/>Xodimlarni boshqarish</button>
+                </section>
+                <section class="cst_sf_card">
+                    <div class="cst_sf_h4"><i class="fa fa-bullseye me-1"/>Bugungi reja</div>
+                    <div class="row-kv"><span>Jami reja</span><b><t t-esc="num(d.kpis.planned)"/> dona</b></div>
+                    <div class="row-kv"><span>Jami buyurtma</span><b><t t-esc="d.kpis.orders"/> ta</b></div>
+                    <div class="row-kv"><span>Bajarilishi kerak</span><b><t t-esc="num(d.kpis.remaining)"/> dona</b></div>
+                </section>
+                <section class="cst_sf_card">
+                    <div class="cst_sf_h4"><i class="fa fa-pie-chart me-1"/>Sifat ko'rsatkichlari</div>
+                    <div class="cst_sf_donut_wrap">
+                        <svg viewBox="0 0 42 42" class="cst_sf_donut" role="img" aria-label="Sifat ulushlari">
+                            <circle class="bg" cx="21" cy="21" r="15.915" fill="transparent" stroke-width="5"/>
+                            <t t-foreach="donut()" t-as="seg" t-key="seg.key">
+                                <circle t-if="seg.pct" t-attf-class="seg {{ seg.key }}" cx="21" cy="21" r="15.915" fill="transparent" stroke-width="5"
+                                        t-att-stroke-dasharray="seg.dash" t-att-stroke-dashoffset="seg.offset"/>
+                            </t>
+                            <text x="21" y="22.5" class="mid" text-anchor="middle" t-esc="pct(d.kpis.good_pct)"/>
+                        </svg>
+                        <div class="cst_sf_legend">
+                            <div><i class="good"/>1-sort: <b t-esc="pct(d.kpis.good_pct)"/></div>
+                            <div><i class="second"/>2-sort: <b t-esc="pct(d.kpis.second_pct)"/></div>
+                            <div><i class="scrap"/>Brak: <b t-esc="pct(d.kpis.scrap_pct)"/></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="cst_sf_card">
+                    <div class="cst_sf_h4"><i class="fa fa-cubes me-1"/>Xom ashyo qoldiqlari</div>
+                    <div t-if="!d.materials.length" class="muted small">Buyurtma tanlanmagan.</div>
+                    <div t-foreach="d.materials" t-as="m" t-key="m.id" class="row-kv" t-att-class="{ bad: !m.ok }">
+                        <span><t t-esc="m.product"/> <small class="muted" t-esc="m.characteristic"/></span>
+                        <b><t t-esc="num(m.free, 2)"/> <small class="muted">/ <t t-esc="num(m.needed, 2)"/> <t t-esc="m.uom"/></small></b>
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+        <!-- ============ dialogs ============ -->
+        <div t-if="state.dialog" class="cst_sf_modal_bg" t-on-click.self="closeDialog">
+            <div t-att-class="'cst_sf_modal' + (state.dialog === 'new' ? ' cst_sf_modal--wide' : '')" role="dialog">
+
+                <t t-if="state.dialog === 'open'">
+                    <h3>Smenani ochish</h3>
+                    <div class="muted mb-2" t-esc="d.department.name"/>
+                    <div class="cst_sf_form_row">
+                        <label>Smena<select t-model="state.form.template_id"><option t-foreach="waitingTemplates" t-as="tpl" t-key="tpl.id" t-att-value="tpl.id"><t t-esc="tpl.name"/> (<t t-esc="tpl.hours"/>)</option></select></label>
+                        <label>Sana<input type="date" t-model="state.form.date"/></label>
+                    </div>
+                    <div class="k mt-2">Xodimlar <small class="muted">(Face ID orqali kelganlar belgilangan)</small></div>
+                    <div class="cst_sf_checklist">
+                        <label t-foreach="d.employees" t-as="emp" t-key="emp.id" t-att-class="{ present: emp.present }">
+                            <input type="checkbox" t-att-checked="(state.form.employee_ids || []).includes(emp.id)" t-on-change="() => this.toggleFormEmployee(emp.id)"/>
+                            <span t-esc="emp.name"/><small t-if="emp.present" class="muted ms-1">keldi</small>
+                        </label>
+                    </div>
+                    <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="confirmOpenShift">Smenani boshlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>
+                </t>
+
+                <t t-if="state.dialog === 'new'">
+                    <h3>Yangi buyurtma qo'shish</h3>
+                    <div class="muted mb-2"><t t-esc="d.department.name"/> · <t t-esc="shift.template"/>. Sotuvdan kelgan buyurtmalar «Yangi buyurtmalar» navbatida turadi; bu yerda bo'lim o'z buyurtmasini yaratadi.</div>
+                    <div class="cst_sf_new_grid">
+                    <div class="cst_sf_new_col">
+                    <label>Qidirish (lotin yoki kirill)<input type="text" t-model="state.form.filter" placeholder="kashmir, ldsp, 110093, 75 гр…"/></label>
+                    <div class="cst_sf_form_row mt-2">
+                        <label>Xarakteristika
+                            <select t-model="state.form.charFilter">
+                                <option value="">— hammasi —</option>
+                                <option t-foreach="characteristicOptions" t-as="c" t-key="c" t-att-value="c" t-esc="c"/>
+                            </select>
+                        </label>
+                        <label>Havola (texkarta)
+                            <select t-model="state.form.havolaFilter">
+                                <option value="">— hammasi —</option>
+                                <option t-foreach="havolaOptions" t-as="h" t-key="h" t-att-value="h" t-esc="h"/>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-1">
+                        <label class="cst_sf_check"><input type="checkbox" t-att-checked="state.form.allProducts" t-on-change="toggleAllProducts"/> Hamma mahsulotlar (boshqa bo'lim operatsiyalari ham)</label>
+                        <button t-if="state.form.filter or state.form.charFilter or state.form.havolaFilter" type="button" class="cst_sf_btn cst_sf_btn--xs cst_sf_btn--ghost" t-on-click="clearProductFilters"><i class="fa fa-times me-1"/>Filtrni tozalash</button>
+                    </div>
+                    <label class="mt-2">Mahsulot · havola <small class="muted"><t t-esc="filteredProducts.length"/> ta</small>
+                            <select t-on-change="onNewProductChange" size="10" class="cst_sf_select_list">
+                                <option t-foreach="filteredProducts" t-as="p" t-key="p.key" t-att-value="p.key" t-att-selected="p.key === selectedPick" t-att-disabled="p.foreign"><t t-esc="p.name"/><t t-if="p.characteristic"> — <t t-esc="p.characteristic"/></t><t t-if="p.havola"> · <t t-esc="p.havola"/></t><t t-if="p.foreign"> (boshqa bo'lim: <t t-esc="p.operations"/>)</t></option>
+                            </select>
+                        </label>
+                    <div t-if="selectedProduct" class="cst_sf_picked mt-2">
+                        <div class="cst_sf_picked_label">Tanlangan mahsulot</div>
+                        <div class="cst_sf_picked_name"><t t-esc="selectedProduct.name"/><t t-if="selectedProduct.characteristic"> — <t t-esc="selectedProduct.characteristic"/></t>
+                            <span t-if="selectedProduct.havola" class="cst_sf_havola" t-esc="selectedProduct.havola"/></div>
+                        <div class="muted small" t-if="selectedProduct.operations">Texkarta operatsiyalari: <t t-esc="selectedProduct.operations"/></div>
+                    </div>
+                    <div t-else="" class="cst_sf_picked cst_sf_picked--none mt-2">Mahsulot tanlanmagan — ro'yxatdan bittasini bosing</div>
+                    <div t-if="!state.form.products.length" class="cst_sf_alert mt-2">Bu bo'lim bajaradigan operatsiyasi bor texkarta topilmadi. «Hamma mahsulotlar»ni yoqing yoki texkartada operatsiyani shu bo'lim liniyasiga bog'lang.</div>
+                    </div>
+                    <div class="cst_sf_new_col">
+                    <div class="cst_sf_form_row">
+                        <label>Miqdor (dona)<input type="number" min="1" step="1" t-att-value="state.form.qty" t-on-input="onNewQtyInput" placeholder="50"/></label>
+                        <label>Liniya<select t-model="state.form.workcenter_id"><option t-foreach="d.department.lines" t-as="wc" t-key="wc.id" t-att-value="wc.id" t-esc="wc.name"/></select></label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-baseline mt-3">
+                        <div class="k">Xomashyo (kiritilgan miqdor uchun) <small class="muted" t-if="state.form.edited">— o'zgartirilgan</small></div>
+                        <button t-if="state.form.edited" type="button" class="cst_sf_btn cst_sf_btn--xs cst_sf_btn--ghost" t-on-click="resetMaterials">Texkartadan qayta yuklash</button>
+                    </div>
+                    <div t-if="state.form.materials === null" class="muted small">Tekshirilmoqda…</div>
+                    <table t-else="" class="cst_sf_table compact">
+                        <thead><tr><th>Material</th><th class="n">Kerak (o'zgartirish mumkin)</th><th class="n">Omborda</th><th>Holat</th><th></th></tr></thead>
+                        <tbody>
+                            <tr t-foreach="state.form.materials" t-as="m" t-key="m.id">
+                                <td><t t-esc="m.product"/> <small class="muted" t-esc="m.characteristic"/><small t-if="m.extra" class="muted ms-1">(qo'shimcha)</small></td>
+                                <td class="n"><input type="number" min="0" step="0.01" class="cst_sf_cell_input" t-att-value="m.qty" t-on-change="(ev) => this.setMaterialQty(m, ev)"/> <small class="muted" t-esc="m.uom"/><div t-if="m.touched and !m.extra and m.qty !== m.needed" class="muted small">texkarta: <t t-esc="num(m.needed, 2)"/></div></td>
+                                <td class="n" t-esc="num(m.free, 2)"/>
+                                <td><span t-attf-class="cst_sf_chip cst_sf_chip--{{ m.ok ? 'ok' : 'bad' }}" t-esc="m.ok ? 'yetarli' : 'yetmaydi'"/></td>
+                                <td><button type="button" class="cst_sf_btn cst_sf_btn--xs cst_sf_btn--ghost" title="Bu buyurtmadan olib tashlash" t-on-click="() => this.removeMaterial(m)"><i class="fa fa-times"/></button></td>
+                            </tr>
+                            <tr t-if="!state.form.materials.length"><td colspan="5" class="muted">Komponent yo'q — pastdan qo'shing</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="cst_sf_extra mt-2">
+                        <input type="text" t-att-value="state.form.extraQuery" t-on-input="onExtraInput" placeholder="+ Qo'shimcha material qo'shish: nomi yoki kodi (lotin/kirill)"/>
+                        <div t-if="state.form.extraResults.length" class="cst_sf_extra_list">
+                            <button t-foreach="state.form.extraResults" t-as="p" t-key="p.id" type="button" t-on-click="() => this.addExtraMaterial(p)">
+                                <span><t t-esc="p.product"/> <small class="muted" t-esc="p.characteristic"/></span>
+                                <small class="muted"><t t-esc="num(p.free, 2)"/> <t t-esc="p.uom"/> omborda</small>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="muted small mt-1">Texkartaning o'ziga tegilmaydi: o'zgarishlar faqat shu buyurtmaga.</div>
+
+                    <div class="k mt-2">Xodimlar</div>
+                    <div class="cst_sf_checklist">
+                        <label t-foreach="shiftEmployees" t-as="emp" t-key="emp.id"><input type="checkbox" t-att-checked="(state.form.employee_ids || []).includes(emp.id)" t-on-change="() => this.toggleFormEmployee(emp.id)"/><span t-esc="emp.name"/></label>
+                        <div t-if="!shiftEmployees.length" class="muted small">Smenada xodim belgilanmagan — «Xodimlarni boshqarish» orqali qo'shing.</div>
+                    </div>
+                    <label class="cst_sf_check mt-2"><input type="checkbox" t-model="state.form.start"/> Hozir boshlash</label>
+                    </div>
+                    </div>
+                    <div class="cst_sf_modal_btns cst_sf_modal_btns--sticky">
+                        <span t-if="selectedProduct" class="muted small me-auto align-self-center">
+                            <t t-esc="selectedProduct.name"/><t t-if="selectedProduct.havola"> · <b t-esc="selectedProduct.havola"/></t><t t-if="state.form.qty"> · <t t-esc="state.form.qty"/> dona</t>
+                        </span>
+                        <button type="button" class="cst_sf_btn cst_sf_btn--primary" t-att-disabled="state.busy" t-on-click="confirmNewOrder"><i class="fa fa-plus me-1"/>Buyurtma yaratish</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button>
+                    </div>
+                </t>
+
+                <t t-if="state.dialog === 'pull'">
+                    <h3>Ishni ochish</h3>
+                    <div class="muted mb-2"><b t-esc="state.form.row.mo"/> · <t t-esc="state.form.row.product"/> <t t-esc="state.form.row.characteristic"/></div>
+                    <div class="cst_sf_form_row">
+                        <label>Liniya<select t-model="state.form.workcenter_id"><option t-foreach="d.department.lines" t-as="wc" t-key="wc.id" t-att-value="wc.id" t-esc="wc.name"/></select></label>
+                        <label>Smena rejasi (dona)<input type="number" min="0" step="1" t-model="state.form.planned_qty"/></label>
+                    </div>
+                    <div class="k mt-2">Xomashyo</div>
+                    <div t-if="!state.form.materials" class="muted small">Tekshirilmoqda…</div>
+                    <table t-else="" class="cst_sf_table compact">
+                        <tbody>
+                            <tr t-foreach="state.form.materials" t-as="m" t-key="m.id"><td><t t-esc="m.product"/> <small class="muted" t-esc="m.characteristic"/></td><td class="n"><t t-esc="num(m.free, 2)"/> / <t t-esc="num(m.needed, 2)"/> <t t-esc="m.uom"/></td><td><span t-attf-class="cst_sf_chip cst_sf_chip--{{ m.ok ? 'ok' : 'bad' }}" t-esc="m.ok ? 'yetarli' : 'yetmaydi'"/></td></tr>
+                            <tr t-if="!state.form.materials.length"><td colspan="3" class="muted">Komponent yo'q</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="k mt-2">Xodimlar</div>
+                    <div class="cst_sf_checklist">
+                        <label t-foreach="shiftEmployees" t-as="emp" t-key="emp.id"><input type="checkbox" t-att-checked="(state.form.employee_ids || []).includes(emp.id)" t-on-change="() => this.toggleFormEmployee(emp.id)"/><span t-esc="emp.name"/></label>
+                    </div>
+                    <label class="cst_sf_check mt-2"><input type="checkbox" t-model="state.form.start"/> Hozir boshlash (ish buyurtmasi start bo'ladi)</label>
+                    <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="confirmPull"><i class="fa fa-play me-1"/>Ishni boshlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>
+                </t>
+
+                <t t-if="state.dialog === 'entry'">
+                    <h3>Natija kiritish</h3>
+                    <div class="muted mb-2"><b t-esc="state.form.line.mo"/> · <t t-esc="state.form.line.product"/> · <t t-esc="state.form.line.workcenter"/></div>
+                    <div class="muted small mb-2" t-if="state.form.line.final">Buyurtmada qoldi: <b t-esc="num(state.form.line.order_left)"/> dona (1-sort + 2-sort + brak jami shundan oshmasin)</div>
+                    <div class="cst_sf_form_row three">
+                        <label>1-sort (dona)<input type="number" min="0" step="1" t-att-value="state.form.good" t-on-input="(ev) => this.onEntryInput('good', ev)"/></label>
+                        <label>2-sort (brak toifasi)<input type="number" min="0" step="1" t-att-value="state.form.second" t-on-input="(ev) => this.onEntryInput('second', ev)" autofocus="autofocus"/></label>
+                        <label>Brak (noto'liq)<input type="number" min="0" step="1" t-att-value="state.form.scrap" t-on-input="(ev) => this.onEntryInput('scrap', ev)"/></label>
+                    </div>
+                    <div class="muted small mt-1">Jami chiqarilgan: <b t-esc="num(state.form.total)"/> dona — 2-sort va brak 1-sortdan avtomatik ayriladi.</div>
+                    <div class="cst_sf_form_row mt-2">
+                        <label>2-sort qaysi mahsulotga kirsin
+                            <select t-model="state.form.second_product_id" t-att-disabled="!state.form.opts">
+                                <option value="">Avtomatik: <t t-esc="state.form.opts ? state.form.opts.twin : '…'"/></option>
+                                <t t-if="state.form.opts">
+                                    <option t-foreach="state.form.opts.seconds" t-as="p" t-key="p.id" t-att-value="p.id"><t t-esc="p.name"/><t t-if="p.characteristic"> — <t t-esc="p.characteristic"/></t></option>
+                                </t>
+                            </select>
+                            <small class="muted" t-if="state.form.opts and !state.form.opts.final">Oraliq operatsiya: 2-sort omborga oxirgi bosqichda o'tadi.</small>
+                        </label>
+                        <div>
+                            <div class="cst_sf_form_row">
+                                <label>Material braki (masalan обой)
+                                    <select t-model="state.form.material_product_id" t-att-disabled="!state.form.opts">
+                                        <option value="">— yo'q —</option>
+                                        <t t-if="state.form.opts">
+                                            <option t-foreach="state.form.opts.materials" t-as="m" t-key="m.id" t-att-value="m.id"><t t-esc="m.name"/><t t-if="m.characteristic"> — <t t-esc="m.characteristic"/></t></option>
+                                        </t>
+                                    </select>
+                                </label>
+                                <label>Miqdori <t t-if="entryMaterial">(<t t-esc="entryMaterial.uom"/>)</t>
+                                    <input type="number" min="0" step="any" t-model="state.form.material_qty" t-att-disabled="!state.form.material_product_id"/>
+                                </label>
+                            </div>
+                            <small class="muted">Texkarta xomashyosidan brakka chiqadi; tayyor mahsulot sonini o'zgartirmaydi.</small>
+                        </div>
+                    </div>
+                    <label class="mt-2">Eslatma<input type="text" t-model="state.form.note" placeholder="masalan: press nuqsoni"/></label>
+                    <div class="muted small mt-2" t-if="state.form.line.final">Oxirgi operatsiya: «Yakunlash» (yoki «Tugatish») bosilganda 1-sort omborga, brak scrap'ga, 2-sort o'z mahsulotiga o'tadi.</div>
+                    <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--good" t-on-click="() => this.confirmEntry(true)" title="Natijani saqlab, buyurtmani shu smenada yakunlaydi"><i class="fa fa-check me-1"/>Yakunlash</button><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="() => this.confirmEntry()">Saqlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>
+                </t>
+
+                <t t-if="state.dialog === 'employees'">
+                    <h3>Smenadagi xodimlar</h3>
+                    <div class="cst_sf_checklist">
+                        <label t-foreach="d.employees" t-as="emp" t-key="emp.id" t-att-class="{ present: emp.present }"><input type="checkbox" t-att-checked="(state.form.employee_ids || []).includes(emp.id)" t-on-change="() => this.toggleFormEmployee(emp.id)"/><span t-esc="emp.name"/><small t-if="emp.present" class="muted ms-1">keldi</small></label>
+                    </div>
+                    <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="confirmEmployees">Saqlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>
+                </t>
+
+                <t t-if="state.dialog === 'close'">
+                    <h3>Smenani yakunlash</h3>
+                    <div class="muted mb-2"><t t-esc="d.department.name"/> · <t t-esc="shift.template"/> · <t t-esc="shift.employee_count"/> xodim</div>
+                    <div t-if="state.form.open_lines" class="cst_sf_alert"><i class="fa fa-exclamation-triangle me-1"/><t t-esc="state.form.open_lines"/> ta buyurtma hali jarayonda: chiqarilgani omborga o'tadi, qolgani keyingi smenaga ochiq qoladi.</div>
+                    <table class="cst_sf_table compact">
+                        <thead><tr><th>Mahsulot</th><th>Liniya</th><th class="n">Reja</th><th class="n">1-sort</th><th class="n">2-sort</th><th class="n">Brak</th></tr></thead>
+                        <tbody><tr t-foreach="lines" t-as="line" t-key="line.id"><td t-esc="line.product"/><td class="muted" t-esc="line.workcenter"/><td class="n" t-esc="num(line.planned)"/><td class="n"><b t-esc="num(line.good)"/></td><td class="n second" t-esc="num(line.second)"/><td class="n scrap" t-esc="num(line.scrap)"/></tr></tbody>
+                    </table>
+                    <div class="cst_sf_form_row mt-2">
+                        <label>Umumiy KPI summasi<input type="number" min="0" step="1000" t-model="state.form.kpi_total" t-on-change="recomputeShares"/></label>
+                        <label>Brak jarimasi (jami)<input type="number" min="0" step="1000" t-model="state.form.penalty_total" t-on-change="recomputeShares"/></label>
+                    </div>
+                    <div class="cst_sf_kpi_tiles">
+                        <div><div class="k">KPI fondi</div><div class="v" t-esc="money(state.form.kpi_total)"/></div>
+                        <div><div class="k">Har xodimga</div><div class="v" t-esc="money(state.form.shares.length ? state.form.kpi_total / state.form.shares.length : 0)"/></div>
+                        <div class="bad"><div class="k">Brak jarimasi</div><div class="v">−<t t-esc="money(state.form.penalty_total)"/></div></div>
+                    </div>
+                    <table class="cst_sf_table compact">
+                        <thead><tr><th>Xodim</th><th>Qilgan ishi</th><th class="n">Ish vaqti</th><th class="n">KPI ulushi</th><th class="n">Jarima</th></tr></thead>
+                        <tbody>
+                            <tr t-foreach="state.form.shares" t-as="s" t-key="s.employee_id">
+                                <td t-esc="s.name"/><td class="muted small" t-esc="s.worked"/><td class="n" t-esc="num(s.minutes) + ' daq'"/>
+                                <td class="n"><input type="number" class="cst_sf_cell_input" t-model="s.kpi_amount"/></td>
+                                <td class="n"><input type="number" class="cst_sf_cell_input" t-model="s.penalty_amount"/></td>
+                            </tr>
+                        </tbody>
+                        <tfoot><tr><td colspan="3" class="muted">Jami</td><td class="n" t-att-class="{ bad: !sharesOk.kpi }" t-esc="money(shareSums.kpi)"/><td class="n" t-att-class="{ bad: !sharesOk.penalty }" t-esc="money(shareSums.penalty)"/></tr></tfoot>
+                    </table>
+                    <label class="mt-2">Izoh<input type="text" t-model="state.form.note"/></label>
+                    <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="confirmClose">Smenani yakunlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>
+                </t>
+            </div>
+        </div>
+        </t>
+    </div>
+</t>
+</templates>

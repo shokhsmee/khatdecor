@@ -1,0 +1,9 @@
+// Make the Qaytarish (return) wizard dialog wider so the payment fields and
+// the product-return list have enough room.
+.modal:has(.o_cst_return_wizard) .modal-dialog {
+    max-width: 1000px;
+
+    .o_cst_return_wizard .o_list_renderer {
+        min-height: 120px;
+    }
+}

@@ -1,0 +1,15 @@
+/* Department cards laid out like Inventory ▸ Overview: wide, one per department. */
+.o_cst_dept_kanban .o_kanban_renderer {
+    --KanbanRecord-width: 480px;
+    padding: 4px;
+    .o_kanban_record { margin-left: 4px; margin-right: 4px; min-height: 190px; }
+}
+.o_cst_dept_card {
+    .o_cst_dept_title { color: inherit; }
+    .o_cst_dept_main { min-width: 150px; font-weight: 600; }
+    .o_cst_dept_links { height: 5.5rem; }
+    .o_cst_dept_links a { color: inherit; padding: 1px 0; }
+    .o_cst_dept_links a:hover { background: rgba(0, 0, 0, .04); }
+}
+.o_cst_dept_card .o_kanban_record { }
+.o_cst_dept_kanban .o_kanban_record { min-height: 300px; }

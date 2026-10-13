@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bank_statement_import_wizard_form" model="ir.ui.view">
+        <field name="name">cst.bank.statement.import.wizard.form</field>
+        <field name="model">cst.bank.statement.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bank vipiskasini yuklash">
+                <group>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="journal_id" options="{'no_create': True}"/>
+                    <field name="file" filename="file_name" widget="binary"/>
+                    <field name="file_name" invisible="1"/>
+                    <field name="formats" readonly="1"/>
+                </group>
+                <div class="alert alert-info" role="alert">
+                    <p class="mb-1">
+                        Файлни юклагандан сунг устунлар <b>автоматик мос келади</b>
+                        (Сана, Ҳужжат, Контрагент, Изоҳ, Дебет, Кредит, Қолдиқ —
+                        узбекча, русча ёки инглизча номланган булса ҳам).
+                        Керак булса «Тест» тугмаси билан текшириб куринг,
+                        сунг «Импорт».
+                    </p>
+                    <p class="mb-0">
+                        Сатрлар <b>сана буйича тартибланган</b> булиши шарт.
+                        Дебет — пул чиқими, Кредит — пул кирими.
+                    </p>
+                </div>
+                <footer>
+                    <button name="action_import" type="object" string="Yuklash"
+                            class="btn-primary" data-hotkey="q"/>
+                    <button string="Bekor qilish" class="btn-secondary"
+                            special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bank_statement_import_wizard" model="ir.actions.act_window">
+        <field name="name">Bank vipiskasini yuklash (Excel)</field>
+        <field name="res_model">cst.bank.statement.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_bank_statement_import_wizard"
+              name="Bank vipiskasini yuklash"
+              parent="account.account_transactions_menu"
+              action="action_bank_statement_import_wizard"
+              groups="account.group_account_user"
+              sequence="15"/>
+
+</odoo>

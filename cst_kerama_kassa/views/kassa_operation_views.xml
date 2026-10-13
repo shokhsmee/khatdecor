@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_operation_form" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.form</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_done" type="object" string="Post" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_done_new" type="object" string="Post and new" invisible="state != 'draft'"/>
+                    <button name="action_print_receipt" type="object" string="Print receipt" icon="fa-print" invisible="state != 'done'"/>
+                    <button name="action_print" type="object" string="Cash order" icon="fa-file-text-o" invisible="state != 'done'"/>
+                    <button name="action_reconcile" type="object" string="Settle debts"
+                            invisible="state != 'done' or operation_type != 'customer_in' or unallocated_amount &lt;= 0"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'cancel' or day_state == 'confirmed'"
+                            confirm="Cancel this operation? The payment and its settlements will be cancelled."/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="day_id" options="{'no_create': True, 'no_open': True}" readonly="state != 'draft'"/>
+                            <field name="direction" widget="radio" options="{'horizontal': true}" readonly="state != 'draft'"/>
+                            <field name="type_in" widget="radio" invisible="direction != 'in'" required="direction == 'in'"
+                                   readonly="state != 'draft'" string="Type"/>
+                            <field name="type_out" widget="radio" invisible="direction != 'out'" required="direction == 'out'"
+                                   readonly="state != 'draft'" string="Type"/>
+                            <field name="operation_type" invisible="1"/>
+                            <field name="kassa_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="partner_tag_ids" invisible="1"/>
+                            <field name="employee_tag_ids" invisible="1"/>
+                            <field name="employee_id" readonly="state != 'draft'"
+                                   invisible="operation_type != 'employee_advance'"
+                                   required="operation_type == 'employee_advance'"
+                                   domain="[('company_id', '=', company_id), ('work_contact_id.category_id', 'in', employee_tag_ids)] if employee_tag_ids else [('company_id', '=', company_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="partner_id" readonly="state != 'draft'"
+                                   domain="[('category_id', 'in', partner_tag_ids)] if partner_tag_ids else []"
+                                   invisible="operation_type in ('employee_advance', 'transfer_in', 'transfer_out') or (operation_type in ('other_in', 'expense') and not partner_id)"
+                                   required="operation_type in ('customer_in', 'supplier_in', 'customer_out', 'supplier_out')"
+                                   options="{'no_create': True}"/>
+                            <field name="commercial_partner_id" invisible="1"/>
+                            <field name="category_id" readonly="state != 'draft'"
+                                   invisible="operation_type not in ('other_in', 'expense')"
+                                   required="operation_type in ('other_in', 'expense')"
+                                   options="{'no_create': True}"/>
+                            <label for="amount"/>
+                            <div class="o_row">
+                                <field name="amount" class="fs-3 fw-bold" readonly="state != 'draft'"/>
+                                <field name="currency_id" readonly="1" options="{'no_open': True}"/>
+                            </div>
+                            <field name="is_foreign" invisible="1"/>
+                            <field name="rate" invisible="not is_foreign" readonly="state != 'draft'"
+                                   required="is_foreign and state == 'draft'"/>
+                            <field name="settle_hint" invisible="not is_foreign or not settle_hint" class="fw-bold"/>
+                            <field name="transfer_kassa_id" readonly="state != 'draft'"
+                                   invisible="operation_type not in ('transfer_in', 'transfer_out')"
+                                   required="operation_type in ('transfer_in', 'transfer_out')"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <label for="transfer_amount"
+                                   invisible="operation_type not in ('transfer_in', 'transfer_out') or not transfer_kassa_id or transfer_currency_id == currency_id"/>
+                            <div class="o_row"
+                                 invisible="operation_type not in ('transfer_in', 'transfer_out') or not transfer_kassa_id or transfer_currency_id == currency_id">
+                                <field name="transfer_amount" class="fw-bold" readonly="state != 'draft'"/>
+                                <field name="transfer_currency_id" readonly="1" options="{'no_open': True}"/>
+                            </div>
+                            <field name="transfer_op_id" invisible="not transfer_op_id" options="{'no_create': True}"/>
+                            <field name="memo"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <field name="day_state" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <field name="transfer_day_blocking" invisible="1"/>
+                    <div class="alert alert-info" role="alert"
+                         invisible="not transfer_day_note or transfer_day_blocking or state != 'draft'">
+                        <field name="transfer_day_note" readonly="1"/>
+                    </div>
+                    <div class="alert alert-danger" role="alert"
+                         invisible="not transfer_day_note or not transfer_day_blocking or state != 'draft'">
+                        <field name="transfer_day_note" readonly="1"/>
+                    </div>
+                    <div class="alert alert-warning" role="alert" invisible="not partner_tag_warning or state != 'draft'">
+                        <field name="partner_tag_warning" readonly="1"/>
+                    </div>
+                    <div class="cst_kassa_client" invisible="operation_type not in ('customer_in', 'customer_out') or not partner_id">
+                        <div class="cst_kassa_tile">
+                            <span>Client debt</span>
+                            <field name="partner_debt"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_in">
+                            <span>Client advance</span>
+                            <field name="partner_advance"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_expected">
+                            <span>Balance (+ owes us)</span>
+                            <field name="partner_balance"/>
+                        </div>
+                    </div>
+                    <div class="mb-3" invisible="operation_type not in ('customer_in', 'customer_out') or not partner_debt_detail">
+                        <span class="text-muted">Debt by currency: </span>
+                        <field name="partner_debt_detail" class="fw-bold"/>
+                    </div>
+
+                    <group invisible="operation_type != 'employee_advance' or not employee_id" string="Payroll">
+                        <group>
+                            <field name="employee_balance" groups="cst_kerama_payroll.group_payroll_user"/>
+                            <field name="payroll_period_id" invisible="not payroll_line_id"/>
+                            <field name="payroll_line_id" invisible="not payroll_line_id"
+                                   groups="cst_kerama_payroll.group_payroll_user"/>
+                        </group>
+                        <div class="text-muted" invisible="state != 'draft'">
+                            The advance is deducted from the employee's salary («Накд аванс») in the payroll
+                            period of this date.
+                        </div>
+                    </group>
+                    <group invisible="operation_type != 'customer_in'" string="Where does the money go?">
+                        <field name="debt_currency_ids" invisible="1"/>
+                        <field name="debt_currency_count" invisible="1"/>
+                        <field name="debt_currency_id" readonly="state != 'draft'"
+                               invisible="debt_currency_count &lt; 2 and not debt_currency_id"
+                               placeholder="Oldest debts, any currency"
+                               options="{'no_create': True, 'no_open': True}"/>
+                        <field name="allocation_mode" widget="radio" readonly="state != 'draft'"/>
+                        <field name="sale_order_ids" widget="many2many_tags" readonly="state != 'draft'"
+                               invisible="allocation_mode != 'orders'" required="allocation_mode == 'orders'"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <div class="text-muted mb-3" invisible="operation_type != 'customer_in' or state != 'draft'">
+                        The money always lowers the client's balance. Anything that is not applied to an order stays
+                        as the client's advance and can be settled later in "Settle debts".
+                    </div>
+
+                    <notebook>
+                        <page string="Settlements" name="allocations" invisible="operation_type != 'customer_in' or state == 'draft'">
+                            <group>
+                                <group>
+                                    <field name="allocated_amount"/>
+                                    <field name="unallocated_amount"/>
+                                </group>
+                            </group>
+                            <field name="allocation_ids" readonly="1">
+                                <list decoration-muted="state == 'undone'">
+                                    <field name="date"/>
+                                    <field name="order_id"/>
+                                    <field name="invoice_id"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount" sum="1"/>
+                                    <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Accounting" name="accounting" invisible="state == 'draft'">
+                            <group>
+                                <field name="payment_id" invisible="not payment_id"/>
+                                <field name="move_id" invisible="not move_id"/>
+                                <field name="created_by_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kassa_operation_list" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.list</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-muted="state == 'cancel'" decoration-info="state == 'draft'">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="kassa_id"/>
+                <field name="direction" widget="badge" decoration-success="direction == 'in'" decoration-danger="direction == 'out'"/>
+                <field name="operation_type"/>
+                <field name="partner_id"/>
+                <field name="transfer_kassa_id" optional="show"/>
+                <field name="employee_id" optional="hide"/>
+                <field name="category_id" optional="show"/>
+                <field name="sale_order_ids" widget="many2many_tags" optional="show"/>
+                <field name="memo" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="amount"/>
+                <field name="company_currency_id" column_invisible="1"/>
+                <field name="amount_company" sum="1" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="created_by_id" optional="hide"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-muted="state == 'cancel'"/>
+                <button name="action_print_receipt" type="object" icon="fa-print" title="Print receipt" invisible="state != 'done'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kassa_operation_search" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.search</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="employee_id"/>
+                <field name="name"/>
+                <field name="kassa_id"/>
+                <field name="category_id"/>
+                <field name="sale_order_ids"/>
+                <field name="memo"/>
+                <filter name="filter_in" string="Cash in" domain="[('direction', '=', 'in')]"/>
+                <filter name="filter_out" string="Cash out" domain="[('direction', '=', 'out')]"/>
+                <separator/>
+                <filter name="filter_client" string="Client payments" domain="[('operation_type', '=', 'customer_in')]"/>
+                <filter name="filter_expense" string="Expenses" domain="[('operation_type', '=', 'expense')]"/>
+                <filter name="filter_advance" string="Employee advances" domain="[('operation_type', '=', 'employee_advance')]"/>
+                <filter name="filter_transfer" string="Kassa to kassa" domain="[('operation_type', 'in', ('transfer_in', 'transfer_out'))]"/>
+                <separator/>
+                <filter name="filter_done" string="Posted" domain="[('state', '=', 'done')]"/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_cancel" string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+                <separator/>
+                <filter name="filter_date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_kassa" string="Kassa" context="{'group_by': 'kassa_id'}"/>
+                    <filter name="group_type" string="Type" context="{'group_by': 'operation_type'}"/>
+                    <filter name="group_partner" string="Partner" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_category" string="Category" context="{'group_by': 'category_id'}"/>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_month" string="Month" context="{'group_by': 'date:month'}"/>
+                    <filter name="group_day" string="Day" context="{'group_by': 'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_kassa_operation_pivot" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.pivot</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="operation_type" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="amount_company" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_kassa_expense_pivot" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.expense.pivot</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <pivot sample="1">
+                <field name="category_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="amount_company" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_kassa_expense_graph" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.expense.graph</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <graph type="bar" sample="1">
+                <field name="category_id"/>
+                <field name="amount_company" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_kassa_advance_pivot" model="ir.ui.view">
+        <field name="name">cst.kassa.operation.advance.pivot</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="arch" type="xml">
+            <pivot sample="1">
+                <field name="employee_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="amount_company" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_kassa_expense" model="ir.actions.act_window">
+        <field name="name">General expenses</field>
+        <field name="res_model">cst.kassa.operation</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="search_view_id" ref="view_kassa_operation_search"/>
+        <field name="domain">[('operation_type', '=', 'expense')]</field>
+        <field name="context">{'search_default_filter_done': 1, 'search_default_group_category': 1}</field>
+        <field name="view_ids" eval="[Command.clear(),
+            Command.create({'view_mode': 'list', 'view_id': ref('view_kassa_operation_list')}),
+            Command.create({'view_mode': 'pivot', 'view_id': ref('view_kassa_expense_pivot')}),
+            Command.create({'view_mode': 'graph', 'view_id': ref('view_kassa_expense_graph')}),
+            Command.create({'view_mode': 'form', 'view_id': ref('view_kassa_operation_form')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No expenses yet</p>
+            <p>Expenses are entered in the Kassa: open the day, press "− Cash out" and choose "Expense" and its category.</p>
+        </field>
+    </record>
+
+    <record id="action_kassa_employee_advance" model="ir.actions.act_window">
+        <field name="name">Employee advances</field>
+        <field name="res_model">cst.kassa.operation</field>
+        <field name="view_mode">list,pivot,form</field>
+        <field name="search_view_id" ref="view_kassa_operation_search"/>
+        <field name="domain">[('operation_type', '=', 'employee_advance')]</field>
+        <field name="context">{'search_default_filter_done': 1, 'search_default_group_employee': 1}</field>
+        <field name="view_ids" eval="[Command.clear(),
+            Command.create({'view_mode': 'list', 'view_id': ref('view_kassa_operation_list')}),
+            Command.create({'view_mode': 'pivot', 'view_id': ref('view_kassa_advance_pivot')}),
+            Command.create({'view_mode': 'form', 'view_id': ref('view_kassa_operation_form')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No advances yet</p>
+            <p>Give an advance in the Kassa: "− Cash out" → "Advance to an employee". It is deducted from the salary in that month's payroll.</p>
+        </field>
+    </record>
+
+    <record id="action_kassa_operation" model="ir.actions.act_window">
+        <field name="name">Operations</field>
+        <field name="res_model">cst.kassa.operation</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="search_view_id" ref="view_kassa_operation_search"/>
+        <field name="context">{'search_default_filter_done': 1}</field>
+    </record>
+    <record id="action_kassa_operation_in" model="ir.actions.act_window">
+        <field name="name">Cash in</field>
+        <field name="res_model">cst.kassa.operation</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="search_view_id" ref="view_kassa_operation_search"/>
+        <field name="context">{'search_default_filter_in': 1, 'search_default_filter_done': 1}</field>
+    </record>
+    <record id="action_kassa_operation_out" model="ir.actions.act_window">
+        <field name="name">Cash out</field>
+        <field name="res_model">cst.kassa.operation</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="search_view_id" ref="view_kassa_operation_search"/>
+        <field name="context">{'search_default_filter_out': 1, 'search_default_filter_done': 1}</field>
+    </record>
+    <record id="action_kassa_client_payments" model="ir.actions.act_window">
+        <field name="name">Client payments</field>
+        <field name="res_model">cst.kassa.operation</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="search_view_id" ref="view_kassa_operation_search"/>
+        <field name="context">{'search_default_filter_client': 1, 'search_default_filter_done': 1, 'search_default_group_partner': 1}</field>
+    </record>
+</odoo>

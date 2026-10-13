@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employee_form_payroll" model="ir.ui.view">
+        <field name="name">hr.employee.form.payroll</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_payroll_lines" type="object"
+                        class="oe_stat_button" icon="fa-money"
+                        groups="cst_kerama_payroll.group_payroll_user">
+                    <field name="cst_payroll_line_count" widget="statinfo" string="Salary"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='job_title']" position="after">
+                <field name="cst_personnel_no"/>
+                <field name="cst_pinfl" placeholder="14 ta raqam"/>
+            </xpath>
+
+            <!-- Versions have no form view of their own in Odoo 19; their
+                 fields are edited here, beside Wage in HR Settings. -->
+            <xpath expr="//div[@name='wage']" position="after">
+                <label for="cst_salary_scheme"/>
+                <div class="o_row" name="cst_salary_scheme">
+                    <field name="cst_salary_scheme" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                </div>
+                <label for="cst_official_wage" invisible="cst_salary_scheme == 'kpi'"/>
+                <div class="o_row" name="cst_official_wage"
+                     invisible="cst_salary_scheme == 'kpi'">
+                    <field name="cst_official_wage" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_list_payroll" model="ir.ui.view">
+        <field name="name">hr.employee.list.payroll</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="cst_personnel_no" optional="show"/>
+                <field name="cst_pinfl" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+
+    <!-- The card import matches on PINFL, so finding who is missing one
+         has to be a single click, not a scroll. -->
+    <record id="view_employee_search_payroll" model="ir.ui.view">
+        <field name="name">hr.employee.search.payroll</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="cst_pinfl"/>
+                <field name="cst_personnel_no"/>
+            </field>
+            <filter name="newly_hired" position="after">
+                <separator/>
+                <filter name="f_no_pinfl" string="JSHSHIR yo'q"
+                        domain="[('cst_pinfl', '=', False)]"
+                        groups="cst_kerama_payroll.group_payroll_user"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

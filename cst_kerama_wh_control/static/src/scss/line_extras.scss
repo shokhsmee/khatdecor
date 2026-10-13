@@ -1,0 +1,22 @@
+// Per-line photo / comment buttons in the Barcode app
+.cst_line_photo {
+    position: relative;
+
+    &__n {
+        position: absolute;
+        top: 2px;
+        right: 4px;
+        min-width: 15px;
+        padding: 0 3px;
+        border-radius: 20px;
+        background: var(--bs-danger, #dc3545);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 15px;
+    }
+}
+
+.cst_note_dialog textarea {
+    resize: vertical;
+}

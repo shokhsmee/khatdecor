@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_payment_tree_confirm" model="ir.ui.view">
+        <field name="name">account.payment.list.tasdiqlash</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <button name="action_validate"
+                        type="object"
+                        string="Tasdiqlash"
+                        icon="fa-check"
+                        class="btn-success btn-sm"
+                        invisible="state != 'in_process'"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

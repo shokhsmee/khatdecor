@@ -1,0 +1,17 @@
+// The preview list and the product tags need more room than the default
+// dialog gives a wizard.
+.modal:has(.o_cst_price_update) .modal-dialog {
+    max-width: 1000px;
+}
+
+.o_cst_price_update {
+    .o_notebook .tab-content {
+        min-height: 220px;
+    }
+
+    // Keep a long preview scrollable instead of stretching the dialog.
+    .o_field_x2many_list {
+        max-height: 45vh;
+        overflow-y: auto;
+    }
+}

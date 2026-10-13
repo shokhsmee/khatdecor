@@ -1,0 +1,109 @@
+// Photo + comment block inside the Barcode line screen.
+// The barcode form wraps fields in a fixed-width column, so the whole block
+// is forced to the full width of the screen here.
+.o_barcode_line_form .o_field_widget:has(.cst_extras),
+.o_field_widget:has(.cst_extras) {
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+}
+
+.cst_extras {
+    width: 100%;
+    margin-top: 1rem;
+
+    &__label {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .02em;
+        color: var(--bs-secondary-color, #6c757d);
+        margin-bottom: .35rem;
+    }
+
+    &__saved {
+        margin-left: auto;
+        font-size: 11px;
+        font-weight: 600;
+        opacity: .85;
+
+        &.is-ok { color: var(--bs-success, #28a745); }
+    }
+
+    &__gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        margin-bottom: .5rem;
+    }
+
+    &__thumb img {
+        height: 58px;
+        width: 58px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid var(--bs-border-color-translucent, rgba(128, 128, 128, .3));
+        transition: transform .12s;
+
+        &:hover { transform: scale(1.06); }
+    }
+
+    &__drop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        width: 100%;
+        padding: .85rem 1rem;
+        border: 2px dashed var(--bs-border-color, rgba(128, 128, 128, .45));
+        border-radius: 10px;
+        background: transparent;
+        color: var(--bs-secondary-color, #6c757d);
+        transition: border-color .15s, color .15s;
+
+        &:hover:not(:disabled) {
+            border-color: var(--bs-primary, #714b67);
+            color: var(--bs-primary, #714b67);
+        }
+        &:disabled { opacity: .5; }
+    }
+
+    &__drop-text { font-size: 15px; }
+
+    &__comments {
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+    }
+
+    &__comment {
+        padding: .4rem .6rem;
+        border-radius: 8px;
+        background: var(--bs-tertiary-bg, rgba(128, 128, 128, .12));
+        font-size: 13px;
+    }
+
+    &__comment-head {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--bs-secondary-color, #6c757d);
+    }
+
+    &__comment-date {
+        float: right;
+        font-weight: 400;
+        opacity: .8;
+    }
+
+    &__comment-body {
+        margin-top: .1rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    &__input {
+        width: 100%;
+        resize: vertical;
+    }
+}

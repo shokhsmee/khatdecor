@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_project_dashboard" model="ir.actions.client">
+        <field name="name">Projects Dashboard</field>
+        <field name="tag">kerama_project_dashboard</field>
+    </record>
+
+    <menuitem id="menu_kerama_project_dashboard"
+              name="Projects"
+              parent="cst_kerama_dashboard.menu_kerama_dashboard_root"
+              action="action_project_dashboard"
+              sequence="40"/>
+
+    <record id="action_project_hub" model="ir.actions.client">
+        <field name="name">Project Hub</field>
+        <field name="tag">kerama_project_hub</field>
+    </record>
+
+    <menuitem id="menu_kerama_project_hub"
+              name="Project Hub"
+              parent="cst_kerama_dashboard.menu_kerama_dashboard_root"
+              action="action_project_hub"
+              sequence="41"/>
+</odoo>

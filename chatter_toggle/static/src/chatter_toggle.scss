@@ -1,0 +1,114 @@
+// ── Thread must be a flex column so order: works ─────────────────────────────
+.o-mail-Thread {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+// ── Close button (inside open chatter, top-right corner) ─────────────────────
+.o_chatter_close_btn {
+    order: -9999;           // float above every sibling in the flex column
+    align-self: flex-end;   // push to right edge of chatter
+    flex-shrink: 0;
+
+    margin: 8px 10px 2px 0;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #0d6efd;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.35);
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+        background: #0b5ed7;
+        transform: scale(1.12);
+        box-shadow: 0 3px 12px rgba(13, 110, 253, 0.5);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #0d6efd;
+        outline-offset: 3px;
+    }
+
+    .fa {
+        pointer-events: none;
+    }
+}
+
+// ── Floating open button (injected onto <body> by JS) ─────────────────────────
+// Shown only when chatter is hidden; lives outside the form DOM so it
+// stays visible after the chatter panel is collapsed.
+.o_chatter_float_toggle {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1050;
+
+    width: 24px;
+    height: 56px;
+    padding: 0;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    background: #0d6efd;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    line-height: 1;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: -3px 0 14px rgba(13, 110, 253, 0.4);
+    transition: width 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        background: #0b5ed7;
+        width: 34px;
+        box-shadow: -4px 0 18px rgba(13, 110, 253, 0.5);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: -3px;
+    }
+
+    .fa {
+        pointer-events: none;
+    }
+}
+
+// ── Hidden state — body class toggled by JS ───────────────────────────────────
+body.o_chatter_panel_hidden {
+    // Reveal the floating open button
+    .o_chatter_float_toggle {
+        display: flex !important;
+    }
+
+    // Collapse the chatter panel entirely
+    .o-mail-ChatterContainer,
+    .o-mail-Chatter {
+        display: none !important;
+    }
+
+    // Expand form sheet to fill the freed space
+    .o_form_view .o_form_sheet_bg {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+
+    .o_content {
+        overflow-x: hidden;
+    }
+}

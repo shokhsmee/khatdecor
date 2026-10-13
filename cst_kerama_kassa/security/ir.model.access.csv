@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kassa_user,kassa user,model_cst_kassa,group_kassa_user,1,0,0,0
+access_kassa_manager,kassa manager,model_cst_kassa,group_kassa_manager,1,1,1,1
+access_kassa_day_user,kassa day user,model_cst_kassa_day,group_kassa_user,1,1,1,0
+access_kassa_day_manager,kassa day manager,model_cst_kassa_day,group_kassa_manager,1,1,1,1
+access_kassa_operation_user,kassa operation user,model_cst_kassa_operation,group_kassa_user,1,1,1,1
+access_kassa_category_user,kassa category user,model_cst_kassa_category,group_kassa_user,1,0,0,0
+access_kassa_category_manager,kassa category manager,model_cst_kassa_category,group_kassa_manager,1,1,1,1
+access_kassa_allocation_user,kassa allocation user,model_cst_kassa_allocation,group_kassa_user,1,1,1,0
+access_kassa_allocation_manager,kassa allocation manager,model_cst_kassa_allocation,group_kassa_manager,1,1,1,1
+access_kassa_balance_user,kassa balance user,model_cst_kassa_partner_balance,group_kassa_user,1,1,1,1
+access_kassa_day_close_user,kassa day close,model_cst_kassa_day_close,group_kassa_user,1,1,1,1
+access_kassa_reconcile_wizard_user,kassa reconcile wizard,model_cst_kassa_reconcile_wizard,group_kassa_user,1,1,1,1
+access_kassa_reconcile_credit_user,kassa reconcile credit,model_cst_kassa_reconcile_credit,group_kassa_user,1,1,1,1
+access_kassa_reconcile_debt_user,kassa reconcile debt,model_cst_kassa_reconcile_debt,group_kassa_user,1,1,1,1
+access_kassa_day_open_user,kassa day open,model_cst_kassa_day_open,group_kassa_user,1,1,1,1

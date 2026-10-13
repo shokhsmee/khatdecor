@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_picking_expense_user,cst.picking.expense user,model_cst_picking_expense,stock.group_stock_user,1,1,1,0
+access_cst_picking_expense_manager,cst.picking.expense manager,model_cst_picking_expense,stock.group_stock_manager,1,1,1,1
+access_cst_picking_expense_billing,cst.picking.expense billing,model_cst_picking_expense,account.group_account_invoice,1,1,1,1
+access_cst_landed_cost_billing,stock.landed.cost billing,stock_landed_costs.model_stock_landed_cost,account.group_account_invoice,1,1,1,1
+access_cst_landed_cost_lines_billing,stock.landed.cost.lines billing,stock_landed_costs.model_stock_landed_cost_lines,account.group_account_invoice,1,1,1,1
+access_cst_valuation_adjustment_billing,stock.valuation.adjustment.lines billing,stock_landed_costs.model_stock_valuation_adjustment_lines,account.group_account_invoice,1,1,1,1

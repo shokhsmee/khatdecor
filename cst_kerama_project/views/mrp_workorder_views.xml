@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The quantity a work center takes on when an operation is shared -->
+    <record id="mrp_production_workorder_tree_cst_split" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.list.cst.split</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='workcenter_id']" position="after">
+                <field name="cst_split_qty" string="Assigned Qty" optional="show"/>
+                <field name="cst_manager_id" string="Manager" optional="show"
+                       widget="many2one_avatar_user"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_workorder_form_cst_split" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.form.cst.split</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='workcenter_id']" position="after">
+                <field name="cst_split_qty"/>
+                <field name="cst_manager_id" widget="many2one_avatar_user"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

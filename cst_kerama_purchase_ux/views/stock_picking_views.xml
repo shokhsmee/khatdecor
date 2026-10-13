@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tabs in the order the dock works through them: the goods, what the
+         delivery cost, the photos, who unloaded it, then the rest. -->
+    <record id="view_picking_form_cst_ux" model="ir.ui.view">
+        <field name="name">stock.picking.form.cst.ux</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='operations']" position="after">
+                <xpath expr="//page[@name='cst_expenses']" position="move"/>
+                <xpath expr="//page[@name='cst_photos']" position="move"/>
+                <xpath expr="//page[@name='cst_unloading']" position="move"/>
+            </xpath>
+            <xpath expr="//page[@name='cst_photos']" position="attributes">
+                <attribute name="string">Rasmlar</attribute>
+            </xpath>
+            <xpath expr="//field[@name='cst_photo_ids']" position="after">
+                <separator string="Xarid buyurtmasidagi rasmlar"
+                           invisible="not cst_purchase_photo_ids"/>
+                <field name="cst_purchase_photo_ids" widget="many2many_binary"
+                       readonly="1" invisible="not cst_purchase_photo_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

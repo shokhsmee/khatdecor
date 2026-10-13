@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="cst_kerama_ai_voice.ChatComposerVoice"
+       t-inherit="muk_ai.ChatComposer" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('mk_send')]" position="before">
+            <button
+                class="btn mk_voice rounded-circle"
+                t-att-class="{ 'mk_voice_on': voice.recording, 'mk_voice_busy': voice.busy }"
+                t-on-click="() => this.onVoiceClick()"
+                t-att-disabled="props.disabled ? 'disabled' : null"
+                t-att-title="voiceTitle"
+            >
+                <i class="fa" t-att-class="voiceIcon"/>
+            </button>
+        </xpath>
+    </t>
+
+</templates>

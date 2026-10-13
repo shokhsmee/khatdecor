@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dispatch_wh,dispatch warehouse,model_cst_dispatch,group_dispatch_warehouse,1,1,1,0
+access_dispatch_gate,dispatch gate,model_cst_dispatch,group_dispatch_gate,1,1,0,0
+access_dispatch_mgr,dispatch manager,model_cst_dispatch,group_dispatch_manager,1,1,1,1
+access_dispatch_line_wh,dispatch line warehouse,model_cst_dispatch_line,group_dispatch_warehouse,1,1,1,1
+access_dispatch_line_gate,dispatch line gate,model_cst_dispatch_line,group_dispatch_gate,1,1,0,0
+access_dispatch_hr_department,dispatch hr department read (menu loading),hr.model_hr_department,group_dispatch_warehouse,1,0,0,0
+access_dispatch_hr_department_gate,dispatch hr department read gate (menu loading),hr.model_hr_department,group_dispatch_gate,1,0,0,0

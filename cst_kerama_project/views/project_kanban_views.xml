@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Show each project's money and status right on the kanban card. -->
+    <record id="view_project_kanban_cst_hub" model="ir.ui.view">
+        <field name="name">project.project.kanban.cst.hub</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+            <!-- Fetch the values used in t-if / t-att-class below: a field only
+                 referenced from an expression is not loaded by the kanban. -->
+            <xpath expr="//kanban/field[@name='is_template']" position="after">
+                <field name="cst_margin"/>
+                <field name="cst_amount_due"/>
+                <field name="cst_mo_count"/>
+                <field name="cst_mrf_count"/>
+                <field name="cst_manufacture_ready"/>
+                <field name="last_update_status"/>
+            </xpath>
+            <!-- Right under the project name, above the customer/date block. -->
+            <xpath expr="//div[hasclass('o_project_kanban_body')]" position="before">
+                <div class="cst_k_fin" t-if="!record.is_template.raw_value">
+                    <div class="cst_k_fin__row">
+                        <span class="cst_k_fin__k">Income</span>
+                        <span class="cst_k_fin__v"><field name="cst_income_label"/></span>
+                    </div>
+                    <div class="cst_k_fin__row">
+                        <span class="cst_k_fin__k">Cost</span>
+                        <span class="cst_k_fin__v"><field name="cst_cost_label"/></span>
+                    </div>
+                    <div class="cst_k_fin__row cst_k_fin__row--total">
+                        <span class="cst_k_fin__k">Margin</span>
+                        <span class="cst_k_fin__v"
+                              t-att-class="record.cst_margin.raw_value &lt; 0 ? 'cst_k_fin__v text-danger' : 'cst_k_fin__v text-success'">
+                            <field name="cst_margin_label"/>
+                        </span>
+                    </div>
+                    <div class="cst_k_fin__tags">
+                        <span class="cst_k_tag" t-if="record.cst_amount_due.raw_value &gt; 0">
+                            <i class="fa fa-clock-o me-1"/>Due
+                        </span>
+                        <span class="cst_k_tag" t-if="record.cst_mo_count.raw_value &gt; 0">
+                            <i class="fa fa-wrench me-1"/><field name="cst_mo_count"/> MO
+                        </span>
+                        <span class="cst_k_tag" t-if="record.cst_mrf_count.raw_value &gt; 0">
+                            <i class="fa fa-cubes me-1"/><field name="cst_mrf_count"/> MRF
+                        </span>
+                        <button class="oe_kanban_action cst_k_make" type="object"
+                                name="action_cst_start_manufacturing"
+                                t-if="record.cst_manufacture_ready.raw_value"
+                                title="Components are in stock: configure the operations and start manufacturing">
+                            <i class="fa fa-wrench me-1"/>Start Manufacturing
+                        </button>
+                        <!-- oe_kanban_action keeps the card's own click (open tasks)
+                             from firing on top of this button. -->
+                        <button class="oe_kanban_action cst_k_open" type="open"
+                                title="Open the project form">
+                            <i class="fa fa-external-link me-1"/>Open
+                        </button>
+                        <span class="cst_k_status" t-att-class="{
+                                'on_track': 'cst_k_status text-success',
+                                'at_risk': 'cst_k_status text-warning',
+                                'off_track': 'cst_k_status text-danger',
+                                'on_hold': 'cst_k_status text-info',
+                                'done': 'cst_k_status text-primary',
+                            }[record.last_update_status.raw_value] || 'cst_k_status text-muted'">
+                            <i class="fa fa-circle me-1"/><field name="last_update_status"/>
+                        </span>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

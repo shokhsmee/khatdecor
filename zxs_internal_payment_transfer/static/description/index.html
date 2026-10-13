@@ -1,0 +1,1026 @@
+<!-- Header -->
+<section>
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <img src="company_logo.png" alt="Zarixsol" style="max-width:220px; margin-bottom:12px;">
+                <h2 style="color:#333; font-size:24px; font-weight:700; margin-bottom:6px;">Internal Payment Transfer</h2>
+                <p style="color:#888; font-size:14px; margin-bottom:0;">Odoo 19 &bull; Community &amp; Enterprise &bull; Bank &amp; Cash Transfers &bull; By Zarixsol</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Odoo 19 Banner -->
+<section style="background-color:#875A7B;">
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-12 text-center" style="color:#ffffff;">
+                <strong>Transfer funds between bank and cash journals on Odoo 19 Community &amp; Enterprise — paired Send/Receive payments and automatic reconciliation</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap Tabs (required for Odoo Apps - CSS/radio tabs are stripped) -->
+<section>
+    <div class="container py-4">
+        <ul class="nav nav-pills justify-content-center flex-nowrap mb-4" role="tablist" style="overflow-x:auto;">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" data-bs-toggle="tab" href="#ipt_overview" role="tab"
+                   style="border-radius:25px; padding:10px 20px; font-weight:600; margin:4px; border:1px solid #e8e8e8; color:#555;">Overview</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#ipt_features" role="tab"
+                   style="border-radius:25px; padding:10px 20px; font-weight:600; margin:4px; border:1px solid #e8e8e8; color:#555;">Features</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#ipt_screenshots" role="tab"
+                   style="border-radius:25px; padding:10px 20px; font-weight:600; margin:4px; border:1px solid #e8e8e8; color:#555;">Screenshots</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#ipt_setup" role="tab"
+                   style="border-radius:25px; padding:10px 20px; font-weight:600; margin:4px; border:1px solid #e8e8e8; color:#555;">Setup</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#ipt_faq" role="tab"
+                   style="border-radius:25px; padding:10px 20px; font-weight:600; margin:4px; border:1px solid #e8e8e8; color:#555;">FAQ</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#ipt_releases" role="tab"
+                   style="border-radius:25px; padding:10px 20px; font-weight:600; margin:4px; border:1px solid #e8e8e8; color:#555;">Releases</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+            <!-- OVERVIEW -->
+            <div id="ipt_overview" class="tab-pane fade show active" role="tabpanel">
+                <section style="background-color:#f8f9fa;">
+                    <div class="container py-5">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10 col-12 text-center">
+                                <h2 style="color:#875A7B; font-weight:700; margin-bottom:12px;">Internal Payment Transfer for Odoo 19</h2>
+                                <p style="color:#666; font-size:16px; line-height:26px; margin-bottom:20px;">
+                                    Restore the classic Odoo internal liquidity transfer workflow removed in Odoo 19.
+                                    Move money between <strong>any bank or cash journal</strong> with one Send payment — the matching
+                                    Receive payment, journal entries, and transfer account reconciliation are handled automatically.
+                                    Supports <strong>Bank &rarr; Bank</strong>, <strong>Bank &rarr; Cash</strong>, <strong>Cash &rarr; Bank</strong>,
+                                    and transfers between all other internal payment journals in your company.
+                                </p>
+                                <div class="shadow-sm" style="background-color:#ffffff; border:1px solid #e8dce6; border-radius:12px; padding:18px 24px; max-width:760px; margin:0 auto;">
+                                    <span class="fa fa-exchange" style="color:#875A7B;"></span>
+                                    <strong>Bank</strong> Send <strong>1,000</strong> &rarr; <strong>Petty Cash</strong> Receive <strong>1,000</strong> &bull; Liquidity Transfer <strong>0</strong>
+                                </div>
+                                <div class="mt-3">
+                                    <span style="display:inline-block; background-color:#714B67; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:600; margin:4px;">
+                                        <span class="fa fa-check-circle"></span> Odoo 19 Community
+                                    </span>
+                                    <span style="display:inline-block; background-color:#875A7B; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:600; margin:4px;">
+                                        <span class="fa fa-check-circle"></span> Odoo 19 Enterprise
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container py-4">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <h3 style="color:#875A7B; font-weight:700;">Key Highlights</h3>
+                                <p style="color:#777;">Core capabilities at a glance</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #ffe082; background-color:#fffbf0; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-university fa-2x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Bank &amp; Cash</h5>
+                                        <p style="color:#777; font-size:13px; margin:0;">Transfer between journals</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #ffe082; background-color:#fffbf0; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-random fa-2x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Paired Payments</h5>
+                                        <p style="color:#777; font-size:13px; margin:0;">Auto Send &amp; Receive</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #e1bee7; background-color:#faf5fc; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-book fa-2x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Journal Entries</h5>
+                                        <p style="color:#777; font-size:13px; margin:0;">Posted on both sides</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #e1bee7; background-color:#faf5fc; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-check-square-o fa-2x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Reconciliation</h5>
+                                        <p style="color:#777; font-size:13px; margin:0;">Transfer account cleared</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section style="background-color:#f8f9fa;">
+                    <div class="container py-4">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <h3 style="color:#875A7B; font-weight:700;">Supported Transfer Scenarios</h3>
+                                <p style="color:#777;">Every combination of bank and cash journals in the same company — one Send payment, fully automated on both sides</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm" style="border:1px solid #e1bee7; background-color:#faf5fc; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="fa fa-university fa-2x" style="color:#875A7B; margin-right:14px;"></span>
+                                            <h5 style="font-weight:700; margin:0;">Bank &rarr; Bank</h5>
+                                        </div>
+                                        <p style="color:#666; font-size:14px; line-height:1.7; margin-bottom:10px;">
+                                            Transfer funds between two <strong>bank journals</strong> — for example from your
+                                            <em>Main Operating Bank</em> to a <em>Payroll Bank</em> or <em>Foreign Currency Bank</em> account.
+                                        </p>
+                                        <ul style="color:#555; font-size:13px; line-height:1.8; margin-bottom:0; padding-left:18px;">
+                                            <li>Create a <strong>Send</strong> payment on the source bank journal</li>
+                                            <li>Set <strong>Destination Journal</strong> to the target bank journal</li>
+                                            <li>Source bank is <strong>credited</strong>; destination bank is <strong>debited</strong></li>
+                                            <li>Liquidity Transfer account clears to <strong>zero</strong> after reconciliation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm" style="border:1px solid #ffe082; background-color:#fffbf0; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="fa fa-money fa-2x" style="color:#875A7B; margin-right:14px;"></span>
+                                            <h5 style="font-weight:700; margin:0;">Bank &rarr; Cash</h5>
+                                        </div>
+                                        <p style="color:#666; font-size:14px; line-height:1.7; margin-bottom:10px;">
+                                            Move money from a <strong>bank account</strong> into a <strong>cash journal</strong> — the most common
+                                            scenario for funding <em>Petty Cash</em>, <em>Branch Cash</em>, or <em>On-hand Cash</em> from the company bank.
+                                        </p>
+                                        <ul style="color:#555; font-size:13px; line-height:1.8; margin-bottom:0; padding-left:18px;">
+                                            <li>Example: <strong>Bank &rarr; Petty Cash</strong> (shown in screenshots below)</li>
+                                            <li>Send payment on the bank journal; Receive auto-posted on cash journal</li>
+                                            <li>Ideal for ATM withdrawals and daily cash float top-ups</li>
+                                            <li>Both journal entries linked via <strong>Paired Transfer</strong> smart button</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm" style="border:1px solid #ffe082; background-color:#fffbf0; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="fa fa-exchange fa-2x" style="color:#875A7B; margin-right:14px;"></span>
+                                            <h5 style="font-weight:700; margin:0;">Cash &rarr; Bank</h5>
+                                        </div>
+                                        <p style="color:#666; font-size:14px; line-height:1.7; margin-bottom:10px;">
+                                            Deposit cash back from a <strong>cash journal</strong> into a <strong>bank journal</strong> — record
+                                            end-of-day cash deposits, branch collections, or surplus petty cash returned to the bank.
+                                        </p>
+                                        <ul style="color:#555; font-size:13px; line-height:1.8; margin-bottom:0; padding-left:18px;">
+                                            <li>Create a <strong>Send</strong> payment on the cash journal (source)</li>
+                                            <li>Set <strong>Destination Journal</strong> to the bank journal</li>
+                                            <li>Cash account <strong>credited</strong>; bank account <strong>debited</strong> on confirmation</li>
+                                            <li>Reverse of Bank &rarr; Cash — same automated paired-payment workflow</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm" style="border:1px solid #e1bee7; background-color:#faf5fc; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="fa fa-random fa-2x" style="color:#875A7B; margin-right:14px;"></span>
+                                            <h5 style="font-weight:700; margin:0;">Between Other Internal Payment Journals</h5>
+                                        </div>
+                                        <p style="color:#666; font-size:14px; line-height:1.7; margin-bottom:10px;">
+                                            Transfer between <strong>any two different bank or cash journals</strong> configured in your company —
+                                            not limited to a single bank and a single cash account. Works across all internal liquidity journals.
+                                        </p>
+                                        <ul style="color:#555; font-size:13px; line-height:1.8; margin-bottom:0; padding-left:18px;">
+                                            <li><strong>Cash &rarr; Cash</strong> — e.g. Head Office Cash &rarr; Branch Petty Cash</li>
+                                            <li><strong>Bank &rarr; Bank</strong> — e.g. USD Bank &rarr; PKR Bank (separate journals)</li>
+                                            <li>Any journal with type <strong>Bank</strong> or <strong>Cash</strong> as source or destination</li>
+                                            <li>Source and destination must be <strong>different journals</strong> in the <strong>same company</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert text-center mb-0" style="background-color:#ffffff; border:2px solid #875A7B; border-radius:12px;">
+                                    <span class="fa fa-info-circle" style="color:#875A7B;"></span>
+                                    <strong style="color:#875A7B;">Same workflow for every scenario:</strong>
+                                    <span style="color:#555;"> Enable <strong>Internal Transfer</strong> &bull; pick <strong>Destination Journal</strong> &bull; confirm <strong>Send</strong> on the source journal &bull; Receive payment, journal entries, and reconciliation are created automatically.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container py-4">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <h3 style="color:#875A7B; font-weight:700;">Availability</h3>
+                                <p style="color:#777;">Free open-source module (LGPL-3) — install on Odoo.sh or your own server</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8 col-12">
+                                <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <div class="row text-center">
+                                            <div class="col-md-4 col-12 mb-3 mb-md-0">
+                                                <div class="p-3" style="border-radius:10px; background-color:#fff5f5; border:1px solid #ffcdd2;">
+                                                    <span class="fa fa-times-circle fa-2x" style="color:#e53935;"></span>
+                                                    <h5 style="font-weight:700; margin-top:12px; margin-bottom:6px;">Odoo Online</h5>
+                                                    <p style="color:#666; font-size:13px; margin:0;">Not available — Odoo SaaS does not support third-party Apps Store modules.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-12 mb-3 mb-md-0">
+                                                <div class="p-3" style="border-radius:10px; background-color:#f1f8e9; border:1px solid #c5e1a5;">
+                                                    <span class="fa fa-check-circle fa-2x" style="color:#43a047;"></span>
+                                                    <h5 style="font-weight:700; margin-top:12px; margin-bottom:6px;">Odoo.sh</h5>
+                                                    <p style="color:#666; font-size:13px; margin:0;">Supported — install from the Odoo Apps store or add this module to your Odoo.sh repository.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <div class="p-3" style="border-radius:10px; background-color:#f1f8e9; border:1px solid #c5e1a5;">
+                                                    <span class="fa fa-check-circle fa-2x" style="color:#43a047;"></span>
+                                                    <h5 style="font-weight:700; margin-top:12px; margin-bottom:6px;">On Premise</h5>
+                                                    <p style="color:#666; font-size:13px; margin:0;">Supported — copy to your addons path on Community or Enterprise instances.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-center mb-0 mt-3" style="color:#777; font-size:13px;">
+                                            <strong>License:</strong> LGPL-3 &nbsp;&bull;&nbsp;
+                                            <strong>Price:</strong> Free &nbsp;&bull;&nbsp;
+                                            <strong>Editions:</strong> Community &amp; Enterprise &nbsp;&bull;&nbsp;
+                                            <strong>Depends on:</strong> Invoicing (account) only
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section style="background-color:#f8f9fa;">
+                    <div class="container py-4">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <h3 style="color:#875A7B; font-weight:700;">Supported Odoo Editions</h3>
+                                <p style="color:#777;">Works on both Community and Enterprise — same features, no edition lock-in</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 col-12 mb-3">
+                                <div class="card h-100 shadow-sm" style="border:2px solid #714B67; border-radius:12px;">
+                                    <div class="card-body p-4 text-center">
+                                        <span class="fa fa-code fa-2x" style="color:#714B67;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px; color:#714B67;">Odoo 19 Community</h5>
+                                        <p style="color:#666; font-size:14px; margin:0;">Fully supported. Install on your Community instance with the standard <strong>account</strong> (Invoicing) module only — no Enterprise apps required. All transfer scenarios, paired payments, journal entries, and reconciliation work out of the box.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-12 mb-3">
+                                <div class="card h-100 shadow-sm" style="border:2px solid #875A7B; border-radius:12px;">
+                                    <div class="card-body p-4 text-center">
+                                        <span class="fa fa-diamond fa-2x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px; color:#875A7B;">Odoo 19 Enterprise</h5>
+                                        <p style="color:#666; font-size:14px; margin:0;">Fully supported. Integrates seamlessly with Enterprise Accounting — journal dashboard, Internal Transfers menu, payment forms, and General Ledger reporting work identically on Enterprise with no extra configuration.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container py-4">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <h3 style="color:#875A7B; font-weight:700;">Why Zarixsol</h3>
+                                <p style="color:#777;">Built for accountants who need the familiar Odoo internal transfer flow back in Odoo 19</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-check-circle fa-3x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Odoo 19 Community &amp; Enterprise</h5>
+                                        <p style="color:#777; font-size:14px; margin:0;">Same internal transfer workflow on both editions — depends on account only, no Enterprise-only modules</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-plug fa-3x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">No Extra Services</h5>
+                                        <p style="color:#777; font-size:14px; margin:0;">Works with standard Odoo Accounting only</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-tachometer fa-3x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Dashboard Access</h5>
+                                        <p style="color:#777; font-size:14px; margin:0;">Create transfers from journal dashboard</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                    <div class="card-body p-4">
+                                        <span class="fa fa-life-ring fa-3x" style="color:#875A7B;"></span>
+                                        <h5 style="font-weight:700; margin-top:12px;">Dedicated Support</h5>
+                                        <p style="color:#777; font-size:14px; margin:0;">Implementation and deployment help</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- FEATURES -->
+            <div id="ipt_features" class="tab-pane fade" role="tabpanel">
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-12 text-center mb-4">
+                            <h3 style="color:#875A7B; font-weight:700;">Key Features</h3>
+                            <p style="color:#777;">Everything you need to move funds between journals — on Odoo 19 Community &amp; Enterprise</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border:1px solid #ffe082; background-color:#fffbf0; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-exchange fa-3x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:12px;">Internal Transfer Flag</h5>
+                                    <p style="color:#666; font-size:14px; margin:0;">Mark any payment as an internal transfer and pick the destination journal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border:1px solid #ffe082; background-color:#fffbf0; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-random fa-3x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:12px;">Paired Payments</h5>
+                                    <p style="color:#666; font-size:14px; margin:0;">Confirming a Send payment auto-creates and posts the matching Receive payment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border:1px solid #e1bee7; background-color:#faf5fc; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-link fa-3x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:12px;">Paired Transfer Button</h5>
+                                    <p style="color:#666; font-size:14px; margin:0;">Jump between linked Send and Receive payments in one click.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-book fa-3x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:12px;">Auto Journal Entries</h5>
+                                    <p style="color:#666; font-size:14px; margin:0;">Bank/cash and liquidity transfer lines posted on both journals.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-check-square-o fa-3x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:12px;">Auto Reconciliation</h5>
+                                    <p style="color:#666; font-size:14px; margin:0;">Liquidity transfer account reconciled to zero balance.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border:1px solid #eeeeee; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-tachometer fa-3x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:12px;">Journal Dashboard</h5>
+                                    <p style="color:#666; font-size:14px; margin:0;">Quick Internal Transfer action on bank and cash journal kanban.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-center mb-3">
+                            <h3 style="color:#875A7B; font-weight:700;">Full Features</h3>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="background-color:#f5efff; border:none; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-building fa-2x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:10px;">Multi-Company</h5>
+                                    <p style="color:#666; font-size:13px; margin:0;">Uses company internal transfer account</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="background-color:#f5efff; border:none; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-list fa-2x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:10px;">Dedicated Menu</h5>
+                                    <p style="color:#666; font-size:13px; margin:0;">Accounting &rarr; Internal Transfers list view</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="background-color:#f5efff; border:none; border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span class="fa fa-line-chart fa-2x" style="color:#875A7B;"></span>
+                                    <h5 style="font-weight:700; margin-top:10px;">GL Traceability</h5>
+                                    <p style="color:#666; font-size:13px; margin:0;">Full audit trail in General Ledger</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12 text-center mb-4">
+                            <h3 style="color:#875A7B; font-weight:700;">All Transfer Scenarios</h3>
+                            <p style="color:#777;">One module handles every internal liquidity movement across your bank and cash journals</p>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px; border-left:4px solid #875A7B;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700; margin-bottom:8px;"><span class="fa fa-university"></span> Bank &rarr; Bank</h5>
+                                    <p style="color:#666; font-size:14px; line-height:1.7; margin:0;">
+                                        Move balances between bank journals — operating account to payroll bank, local to foreign currency bank,
+                                        or any two bank journals. Send from the paying bank; Receive posts on the receiving bank automatically.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px; border-left:4px solid #875A7B;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700; margin-bottom:8px;"><span class="fa fa-money"></span> Bank &rarr; Cash</h5>
+                                    <p style="color:#666; font-size:14px; line-height:1.7; margin:0;">
+                                        Withdraw from bank and fund a cash journal — petty cash, branch cash box, or on-hand cash float.
+                                        Bank is credited on Send; cash journal is debited on the auto-created Receive payment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px; border-left:4px solid #875A7B;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700; margin-bottom:8px;"><span class="fa fa-exchange"></span> Cash &rarr; Bank</h5>
+                                    <p style="color:#666; font-size:14px; line-height:1.7; margin:0;">
+                                        Deposit cash collections back to the bank — end-of-day deposits, surplus petty cash returns,
+                                        or branch cash consolidation. Send from the cash journal; bank Receive is created and posted automatically.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px; border-left:4px solid #875A7B;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700; margin-bottom:8px;"><span class="fa fa-random"></span> Other Internal Payment Journals</h5>
+                                    <p style="color:#666; font-size:14px; line-height:1.7; margin:0;">
+                                        Any other bank or cash journal pair in the same company — including <strong>Cash &rarr; Cash</strong>
+                                        (e.g. HQ Cash &rarr; Branch Petty Cash) and multiple bank/cash journals beyond the standard setup.
+                                        Same Internal Transfer workflow; only source and destination journals change.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCREENSHOTS -->
+            <div id="ipt_screenshots" class="tab-pane fade" role="tabpanel">
+                <div class="container-fluid px-3 px-md-4 py-4">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-xl-11 text-center mb-4">
+                            <h3 style="color:#875A7B; font-weight:700;">Screenshots</h3>
+                            <p style="color:#777;">Walkthrough using the <strong>Bank &rarr; Cash</strong> scenario — the same steps apply to Bank &rarr; Bank, Cash &rarr; Bank, and all other internal journal pairs</p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12 col-xl-11">
+                            <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:14px; overflow:visible;">
+                                <div class="card-body p-3 p-md-4">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <span style="display:inline-block; width:48px; height:48px; line-height:48px; text-align:center; border-radius:50%; background-color:#875A7B; color:#ffffff; font-weight:700;">00</span>
+                                        </div>
+                                        <div class="col">
+                                            <strong style="font-size:16px;">Journal Dashboard — Open Internal Transfer from Bank or Cash Journal</strong>
+                                            <p style="color:#777; font-size:13px; margin:8px 0 0 0; line-height:1.7;">
+                                                Navigate to <strong>Accounting &rarr; Dashboard</strong> to see all bank and cash journal cards.
+                                                Click the <strong>three-dot menu</strong> on any bank or cash journal (e.g. Petty Cash) and choose
+                                                <strong>Internal Transfer</strong> under the <strong>New</strong> column. This opens a pre-filled payment
+                                                form with <strong>Internal Transfer</strong> enabled, the source journal set to the card you clicked,
+                                                and <strong>Payment Type</strong> defaulting to <strong>Send</strong> — ready for you to enter the amount
+                                                and destination journal.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="oe_pic_ctr" style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0; background-color:#ffffff;">
+                                        <img class="oe_picture oe_screenshot" src="img/0.png" alt="Journal dashboard internal transfer menu" style="width:100%; max-width:100%; max-height:none; height:auto; display:block; margin:0; border-radius:0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12 col-xl-11">
+                            <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:14px; overflow:visible;">
+                                <div class="card-body p-3 p-md-4">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <span style="display:inline-block; width:48px; height:48px; line-height:48px; text-align:center; border-radius:50%; background-color:#875A7B; color:#ffffff; font-weight:700;">01</span>
+                                        </div>
+                                        <div class="col">
+                                            <strong style="font-size:16px;">Create Send Payment — Bank to Petty Cash</strong>
+                                            <p style="color:#777; font-size:13px; margin:8px 0 0 0; line-height:1.7;">
+                                                The payment form shows <strong>Internal Transfer</strong> checked with <strong>Send</strong> selected as the
+                                                payment type. Set the <strong>Journal</strong> to <strong>Bank</strong> (source) and
+                                                <strong>Destination Journal</strong> to <strong>Petty Cash</strong>. Enter the transfer amount
+                                                (e.g. <strong>1,000.00 Rs.</strong>), date, and payment method, then confirm. Once posted, the status
+                                                moves to <strong>Paid</strong>. Use the <strong>Journal Entry</strong> smart button to review accounting
+                                                lines, and the <strong>Paired Transfer</strong> button to jump to the matching Receive payment created
+                                                automatically on the destination journal.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="oe_pic_ctr" style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0; background-color:#ffffff;">
+                                        <img class="oe_picture oe_screenshot" src="img/1.png" alt="Send internal transfer payment" style="width:100%; max-width:100%; max-height:none; height:auto; display:block; margin:0; border-radius:0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12 col-xl-11">
+                            <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:14px; overflow:visible;">
+                                <div class="card-body p-3 p-md-4">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <span style="display:inline-block; width:48px; height:48px; line-height:48px; text-align:center; border-radius:50%; background-color:#875A7B; color:#ffffff; font-weight:700;">02</span>
+                                        </div>
+                                        <div class="col">
+                                            <strong style="font-size:16px;">Send Side Journal Entry — Bank Credited, Liquidity Transfer Debited</strong>
+                                            <p style="color:#777; font-size:13px; margin:8px 0 0 0; line-height:1.7;">
+                                                Confirming the Send payment posts journal entry <strong>PBNK1/2026/00001</strong> in the
+                                                <strong>Bank</strong> journal. The <strong>Journal Items</strong> tab shows two balanced lines:
+                                                <strong>Bank</strong> is <strong>credited 1,000.00 Rs.</strong> (funds leaving the bank account) and the
+                                                company <strong>Liquidity Transfer</strong> account is <strong>debited 1,000.00 Rs.</strong>
+                                                (funds in transit). Both lines use the label <em>Transfer from Bank</em> with the company partner.
+                                                The entry is fully <strong>Posted</strong> and linked back to the payment via the <strong>1 Payment</strong>
+                                                smart button.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="oe_pic_ctr" style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0; background-color:#ffffff;">
+                                        <img class="oe_picture oe_screenshot" src="img/2.png" alt="Send journal entry" style="width:100%; max-width:100%; max-height:none; height:auto; display:block; margin:0; border-radius:0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12 col-xl-11">
+                            <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:14px; overflow:visible;">
+                                <div class="card-body p-3 p-md-4">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <span style="display:inline-block; width:48px; height:48px; line-height:48px; text-align:center; border-radius:50%; background-color:#875A7B; color:#ffffff; font-weight:700;">03</span>
+                                        </div>
+                                        <div class="col">
+                                            <strong style="font-size:16px;">Auto-Created Receive Payment — Paired Transfer Linked</strong>
+                                            <p style="color:#777; font-size:13px; margin:8px 0 0 0; line-height:1.7;">
+                                                When the Send payment is confirmed, the module automatically creates the matching Receive payment
+                                                <strong>PCSH1/2026/00001</strong> on the <strong>Petty Cash</strong> journal — no manual second entry
+                                                needed. The form shows <strong>Internal Transfer</strong> checked with <strong>Receive</strong> selected,
+                                                the same amount and date, and <strong>Destination Journal</strong> pointing back to <strong>Bank</strong>.
+                                                The payment is posted to <strong>Paid</strong> immediately. The <strong>Paired Transfer</strong> smart button
+                                                links this record to the original Send payment so you can navigate between both sides in one click.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="oe_pic_ctr" style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0; background-color:#ffffff;">
+                                        <img class="oe_picture oe_screenshot" src="img/3.png" alt="Receive paired payment" style="width:100%; max-width:100%; max-height:none; height:auto; display:block; margin:0; border-radius:0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12 col-xl-11">
+                            <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:14px; overflow:visible;">
+                                <div class="card-body p-3 p-md-4">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <span style="display:inline-block; width:48px; height:48px; line-height:48px; text-align:center; border-radius:50%; background-color:#875A7B; color:#ffffff; font-weight:700;">04</span>
+                                        </div>
+                                        <div class="col">
+                                            <strong style="font-size:16px;">Receive Side Journal Entry — Petty Cash Debited, Liquidity Transfer Credited</strong>
+                                            <p style="color:#777; font-size:13px; margin:8px 0 0 0; line-height:1.7;">
+                                                The Receive payment posts journal entry <strong>PCSH1/2026/00001</strong> in the
+                                                <strong>Petty Cash</strong> journal. The <strong>Journal Items</strong> show
+                                                <strong>Petty Cash debited 1,000.00 Rs.</strong> (funds arriving) and
+                                                <strong>Liquidity Transfer credited 1,000.00 Rs.</strong> (clearing the in-transit balance).
+                                                Both lines are labelled <em>Transfer to Petty Cash</em>. The module reconciles the Liquidity Transfer
+                                                lines from the Send and Receive entries, which is why the <strong>Reconciled Items</strong> smart button
+                                                appears on the posted entry.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="oe_pic_ctr" style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0; background-color:#ffffff;">
+                                        <img class="oe_picture oe_screenshot" src="img/4.png" alt="Receive journal entry" style="width:100%; max-width:100%; max-height:none; height:auto; display:block; margin:0; border-radius:0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12 col-xl-11">
+                            <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:14px; overflow:visible;">
+                                <div class="card-body p-3 p-md-4">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <span style="display:inline-block; width:48px; height:48px; line-height:48px; text-align:center; border-radius:50%; background-color:#875A7B; color:#ffffff; font-weight:700;">05</span>
+                                        </div>
+                                        <div class="col">
+                                            <strong style="font-size:16px;">General Ledger — Bank, Liquidity Transfer &amp; Petty Cash Balanced</strong>
+                                            <p style="color:#777; font-size:13px; margin:8px 0 0 0; line-height:1.7;">
+                                                Open <strong>Reporting &rarr; General Ledger</strong> to verify the complete transfer. The
+                                                <strong>Bank</strong> account shows a <strong>1,000.00 Rs. credit</strong> from
+                                                <strong>PBNK1/2026/00001</strong> (balance <strong>&minus;1,000.00 Rs.</strong>).
+                                                The <strong>Liquidity Transfer</strong> account shows equal debit and credit totalling
+                                                <strong>1,000.00 Rs.</strong> with a <strong>0.00 Rs. balance</strong> — confirming both sides are
+                                                reconciled. The <strong>Petty Cash</strong> account shows a <strong>1,000.00 Rs. debit</strong> from
+                                                <strong>PCSH1/2026/00001</strong> (balance <strong>+1,000.00 Rs.</strong>). Total debits and credits
+                                                balance at <strong>2,000.00 Rs.</strong> each, giving full audit traceability.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="oe_pic_ctr" style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0; background-color:#ffffff;">
+                                        <img class="oe_picture oe_screenshot" src="img/5.png" alt="General Ledger transfer" style="width:100%; max-width:100%; max-height:none; height:auto; display:block; margin:0; border-radius:0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-xl-11">
+                            <div class="alert text-center mb-0" style="background-color:#f5f0f8; border:2px dashed #875A7B; border-radius:12px;">
+                                <p style="color:#555; margin-bottom:8px;">
+                                    <strong style="color:#875A7B;">All scenarios use the same workflow:</strong>
+                                    Bank &rarr; Bank &bull; Bank &rarr; Cash &bull; Cash &rarr; Bank &bull; Cash &rarr; Cash &bull; and any other bank/cash journal pair.
+                                </p>
+                                <p style="color:#555; margin:0;">
+                                    Always create the <strong>Send</strong> payment on the <strong>source</strong> journal — the module auto-creates the matching <strong>Receive</strong> on the destination journal.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETUP -->
+            <div id="ipt_setup" class="tab-pane fade" role="tabpanel">
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-12 text-center mb-4">
+                            <h3 style="color:#875A7B; font-weight:700;">Quick Setup Guide</h3>
+                            <p style="color:#777;">Get started in four simple steps</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <div class="d-inline-block text-center" style="width:48px; height:48px; line-height:48px; border-radius:50%; background-color:#875A7B; color:#ffffff; font-size:20px; font-weight:700;">1</div>
+                                    <h5 style="font-weight:700; margin-top:14px;">Install Module</h5>
+                                    <p style="color:#777; font-size:14px; margin:0;">Install from Apps on <strong>Community</strong> or <strong>Enterprise</strong>. Depends on Accounting (account) only.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <div class="d-inline-block text-center" style="width:48px; height:48px; line-height:48px; border-radius:50%; background-color:#875A7B; color:#ffffff; font-size:20px; font-weight:700;">2</div>
+                                    <h5 style="font-weight:700; margin-top:14px;">Configure Transfer Account</h5>
+                                    <p style="color:#777; font-size:14px; margin:0;">Set Internal Transfer account under Accounting &rarr; Configuration &rarr; Settings.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <div class="d-inline-block text-center" style="width:48px; height:48px; line-height:48px; border-radius:50%; background-color:#875A7B; color:#ffffff; font-size:20px; font-weight:700;">3</div>
+                                    <h5 style="font-weight:700; margin-top:14px;">Configure Journal Payment Methods</h5>
+                                    <p style="color:#777; font-size:14px; margin:0;">Set Outstanding Payments/Receipts on Manual payment methods for each bank and cash journal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm text-center" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <div class="d-inline-block text-center" style="width:48px; height:48px; line-height:48px; border-radius:50%; background-color:#875A7B; color:#ffffff; font-size:20px; font-weight:700;">4</div>
+                                    <h5 style="font-weight:700; margin-top:14px;">Create Internal Transfer</h5>
+                                    <p style="color:#777; font-size:14px; margin:0;">Accounting &rarr; Internal Transfers or journal dashboard. Pick source journal, enable Internal Transfer, set destination (Bank, Cash, or any other internal journal), and confirm Send.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div id="ipt_faq" class="tab-pane fade" role="tabpanel">
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-12 text-center mb-4">
+                            <h3 style="color:#875A7B; font-weight:700;">FAQ</h3>
+                            <p style="color:#777;">Frequently asked questions about internal payment transfers</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Send or Receive — which do I use?</h5>
+                                    <p style="color:#666; margin:0;">Always create the <strong>Send</strong> payment on the source journal. The module auto-creates the matching <strong>Receive</strong> on the destination journal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Why is Odoo 19 different?</h5>
+                                    <p style="color:#666; margin:0;">Standard Odoo 19 removed the dedicated internal transfer payment type. This module restores the familiar paired-payment workflow.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Which journals are supported?</h5>
+                                    <p style="color:#666; margin:0;">All <strong>bank</strong> and <strong>cash</strong> journals in the same company. Supported scenarios: <strong>Bank &rarr; Bank</strong>, <strong>Bank &rarr; Cash</strong>, <strong>Cash &rarr; Bank</strong>, <strong>Cash &rarr; Cash</strong>, and any other pair of different internal payment journals. Sales, purchase, and general journals are not supported.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Can I transfer Bank to Bank?</h5>
+                                    <p style="color:#666; margin:0;">Yes. Create a <strong>Send</strong> on the source bank journal and set <strong>Destination Journal</strong> to the target bank. The Receive payment, journal entries, and Liquidity Transfer reconciliation are created automatically.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Can I transfer Cash to Cash?</h5>
+                                    <p style="color:#666; margin:0;">Yes. Use <strong>Cash &rarr; Cash</strong> when moving float between cash journals — e.g. Head Office Cash to Branch Petty Cash. Same Internal Transfer workflow: Send on source cash journal, Receive auto-created on destination.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Payment method error on confirm?</h5>
+                                    <p style="color:#666; margin:0;">Configure <strong>Outstanding Payments</strong> and <strong>Outstanding Receipts</strong> on the Manual payment method for each journal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Which Odoo version and edition?</h5>
+                                    <p style="color:#666; margin:0;">Built for <strong>Odoo 19.0</strong> on both <strong>Community</strong> and <strong>Enterprise</strong>. Depends only on the standard <strong>account</strong> (Invoicing) module — no Enterprise-only apps are required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Is Enterprise required for any feature?</h5>
+                                    <p style="color:#666; margin:0;">No. All features — internal transfers, paired Send/Receive payments, journal entries, dashboard shortcut, and reconciliation — work on <strong>Community</strong> and <strong>Enterprise</strong> alike.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> Is it available on Odoo Online?</h5>
+                                    <p style="color:#666; margin:0;">No. Third-party Apps Store modules cannot be installed on <strong>Odoo Online</strong> (SaaS). Use <strong>Odoo.sh</strong> or <strong>On Premise</strong> instead. This is a free LGPL-3 open-source module.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <div class="card h-100 shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <h5 style="color:#875A7B; font-weight:700;"><span class="fa fa-question-circle"></span> External API required?</h5>
+                                    <p style="color:#666; margin:0;">No. Works entirely within Odoo Accounting. No subscription needed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELEASES -->
+            <div id="ipt_releases" class="tab-pane fade" role="tabpanel">
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-12 text-center mb-4">
+                            <h3 style="color:#875A7B; font-weight:700;">Releases</h3>
+                            <p style="color:#777;">Version history and changelog</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="card shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span style="background-color:#875A7B; color:#ffffff; padding:5px 14px; border-radius:16px; font-size:12px; font-weight:700;">Latest Release</span>
+                                    <h5 style="font-weight:700; margin-top:14px;">Version 19.0.1.0.2</h5>
+                                    <ul style="color:#555; line-height:1.9; margin-bottom:0;">
+                                        <li>Open-source release under LGPL-3 license for Odoo Apps</li>
+                                        <li>Apps Store description, screenshots, and availability documentation</li>
+                                        <li>Supported scenarios: Bank → Bank, Bank → Cash, Cash → Bank, and other internal journals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="card shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span style="background-color:#6c9bd1; color:#ffffff; padding:5px 14px; border-radius:16px; font-size:12px; font-weight:700;">Previous Release</span>
+                                    <h5 style="font-weight:700; margin-top:14px;">Version 19.0.1.0.1</h5>
+                                    <ul style="color:#555; line-height:1.9; margin-bottom:0;">
+                                        <li>Fix payment method line assignment on paired Receive payments</li>
+                                        <li>Auto-select Manual payment method when confirming internal transfers</li>
+                                        <li>Improved error messages for missing journal payment methods</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card shadow-sm" style="border-radius:12px;">
+                                <div class="card-body p-4">
+                                    <span style="background-color:#6c9bd1; color:#ffffff; padding:5px 14px; border-radius:16px; font-size:12px; font-weight:700;">Initial Release</span>
+                                    <h5 style="font-weight:700; margin-top:14px;">Version 19.0.1.0.0</h5>
+                                    <ul style="color:#555; line-height:1.9; margin-bottom:0;">
+                                        <li>Internal transfer flag and destination journal on payments</li>
+                                        <li>Auto-create paired Send/Receive payments on confirmation</li>
+                                        <li>Journal dashboard Internal Transfer action</li>
+                                        <li>Accounting menu for Internal Transfers list</li>
+                                        <li>Automatic liquidity transfer account reconciliation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA Footer -->
+<section style="background-color:#875A7B;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-12 text-center">
+                <h2 style="color:#ffffff; font-weight:700;">Start Using Internal Payment Transfer Today</h2>
+                <p style="color:#ffffff; font-size:16px; max-width:680px; margin:0 auto 24px auto;">
+                    Move funds between bank and cash journals on <strong>Odoo 19 Community or Enterprise</strong> — Bank to Bank, Bank to Cash, Cash to Bank, and all other internal payment journals — with the familiar paired-payment workflow.
+                </p>
+                <p>
+                    <a href="mailto:info@zarixsol.com?subject=Internal%20Payment%20Transfer%20-%20Demo%20Request"
+                       style="background-color:#ffffff; color:#875A7B; padding:12px 28px; border-radius:25px; font-weight:700; text-decoration:none; margin:4px;">Get Started</a>
+                    <a href="mailto:info@zarixsol.com?subject=Internal%20Payment%20Transfer%20Module%20Support"
+                       style="color:#ffffff; padding:12px 28px; border-radius:25px; font-weight:700; text-decoration:none; border:2px solid #ffffff; margin:4px;">
+                        <span class="fa fa-envelope"></span> info@zarixsol.com
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Services -->
+<section style="background-color:#f8f9fa;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-11 col-12">
+                <div class="card shadow-sm" style="border:1px solid #ececec; border-radius:16px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="text-center" style="font-weight:700; letter-spacing:3px; color:#222222; margin-bottom:28px;">OUR SERVICES</h2>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#fce4ec; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#e91e8c;">
+                                        <span class="fa fa-cogs" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#e91e8c; font-weight:700; margin:0;">Odoo Customization</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#fff3e0; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#ff9800;">
+                                        <span class="fa fa-wrench" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#ff9800; font-weight:700; margin:0;">Odoo Implementation</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#e8f5e9; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#4caf50;">
+                                        <span class="fa fa-life-ring" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#4caf50; font-weight:700; margin:0;">Odoo Support</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#f3e5f5; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#9c27b0;">
+                                        <span class="fa fa-refresh" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#9c27b0; font-weight:700; margin:0;">Odoo Migration</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#e3f2fd; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#2196f3;">
+                                        <span class="fa fa-puzzle-piece" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#2196f3; font-weight:700; margin:0;">Odoo Integration</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#e0f2f1; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#009688;">
+                                        <span class="fa fa-headphones" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#009688; font-weight:700; margin:0;">Odoo Consultancy</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#eceff1; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#607d8b;">
+                                        <span class="fa fa-bar-chart" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#607d8b; font-weight:700; margin:0;">Odoo Licensing</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                <div class="text-center p-4" style="background-color:#fffde7; border-radius:12px;">
+                                    <div class="d-inline-flex align-items-center justify-content-center mb-2" style="width:58px; height:58px; border-radius:50%; background-color:#fbc02d;">
+                                        <span class="fa fa-search" style="color:#ffffff; font-size:22px;"></span>
+                                    </div>
+                                    <p style="color:#e6a800; font-weight:700; margin:0;">Hire Odoo Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center mb-0" style="color:#777777; font-size:14px; margin-top:20px;">
+                            <a href="mailto:info@zarixsol.com?subject=Zarixsol%20Services%20Inquiry"
+                               style="color:#875A7B; font-weight:700; text-decoration:none;">
+                                <span class="fa fa-envelope"></span> info@zarixsol.com
+                            </a>
+                            &nbsp;&bull;&nbsp; www.zarixsol.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_separator"></section>

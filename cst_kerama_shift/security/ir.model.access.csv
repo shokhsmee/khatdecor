@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_department_manager,department manager,model_cst_production_department,group_shift_manager,1,0,0,0
+access_department_admin,department admin,model_cst_production_department,group_shift_admin,1,1,1,1
+access_shift_template_manager,shift template manager,model_cst_production_shift_template,group_shift_manager,1,0,0,0
+access_shift_template_admin,shift template admin,model_cst_production_shift_template,group_shift_admin,1,1,1,1
+access_shift_manager,shift manager,model_cst_production_shift,group_shift_manager,1,1,1,0
+access_shift_admin,shift admin,model_cst_production_shift,group_shift_admin,1,1,1,1
+access_shift_line_manager,shift line manager,model_cst_production_shift_line,group_shift_manager,1,1,1,1
+access_shift_line_admin,shift line admin,model_cst_production_shift_line,group_shift_admin,1,1,1,1
+access_shift_entry_manager,shift entry manager,model_cst_production_shift_entry,group_shift_manager,1,1,1,1
+access_shift_entry_admin,shift entry admin,model_cst_production_shift_entry,group_shift_admin,1,1,1,1
+access_shift_close_manager,shift close wizard manager,model_cst_production_shift_close,group_shift_manager,1,1,1,1
+access_shift_close_line_manager,shift close wizard line manager,model_cst_production_shift_close_line,group_shift_manager,1,1,1,1
+access_department_mrp_user,department mrp user read,model_cst_production_department,mrp.group_mrp_user,1,0,0,0
+access_shift_template_mrp_user,shift template mrp user read,model_cst_production_shift_template,mrp.group_mrp_user,1,0,0,0
+access_shift_mrp_user,shift mrp user read,model_cst_production_shift,mrp.group_mrp_user,1,0,0,0
+access_shift_report_manager,shift report wizard manager,model_cst_production_shift_report,group_shift_manager,1,1,1,1
+access_hr_employee_shift_manager,hr.employee shift manager read,hr.model_hr_employee,group_shift_manager,1,0,0,0
+access_hr_attendance_shift_manager,hr.attendance shift manager read,hr_attendance.model_hr_attendance,group_shift_manager,1,0,0,0

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_scrap_form_view_wh_control" model="ir.ui.view">
+        <field name="name">stock.scrap.form.wh.control</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <div class="alert alert-info" role="status" invisible="state == 'done'">
+                    <i class="fa fa-camera me-1"/>
+                    A photo of the goods is required before this scrap can be closed.
+                </div>
+                <field name="cst_photo_ids" widget="many2many_binary"
+                       readonly="state == 'done'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- The short scrap form that the manufacturing order, the work order and
+         the Shop Floor open in a dialog: the same photo field, or the rule the
+         module enforces cannot be satisfied from there at all. -->
+    <record id="stock_scrap_form_view2_wh_control" model="ir.ui.view">
+        <field name="name">stock.scrap.form2.wh.control</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/group" position="after">
+                <div class="alert alert-info py-1 px-2 mb-2" role="status" invisible="state == 'done'">
+                    <i class="fa fa-camera me-1"/>
+                    Yopishdan oldin tovar rasmini biriktiring (telefon kamerasi ham bo'ladi).
+                </div>
+                <field name="cst_photo_ids" widget="many2many_binary" nolabel="1"
+                       readonly="state == 'done'"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

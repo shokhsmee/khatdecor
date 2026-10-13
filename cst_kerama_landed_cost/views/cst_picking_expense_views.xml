@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="cst_picking_expense_view_list" model="ir.ui.view">
+        <field name="name">cst.picking.expense.list</field>
+        <field name="model">cst.picking.expense</field>
+        <field name="arch" type="xml">
+            <list string="Receipt Expenses" create="false">
+                <field name="date"/>
+                <field name="picking_id"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="name" optional="hide"/>
+                <field name="split_method" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="amount" optional="show"/>
+                <field name="currency_rate" optional="hide"/>
+                <field name="company_currency_id" column_invisible="1"/>
+                <field name="amount_company" sum="Total"/>
+                <field name="applied" widget="boolean_toggle" readonly="1"/>
+                <field name="landed_cost_id" optional="hide"/>
+                <field name="bill_id" optional="hide"/>
+                <field name="company_id" column_invisible="1" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="cst_picking_expense_view_search" model="ir.ui.view">
+        <field name="name">cst.picking.expense.search</field>
+        <field name="model">cst.picking.expense</field>
+        <field name="arch" type="xml">
+            <search string="Receipt Expenses">
+                <field name="picking_id"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <filter name="filter_applied" string="In Cost"
+                        domain="[('applied', '=', True)]"/>
+                <filter name="filter_not_applied" string="Not Yet in Cost"
+                        domain="[('applied', '=', False)]"/>
+                <separator/>
+                <filter name="filter_date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_partner" string="Service Provider"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_product" string="Expense Type"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="group_picking" string="Receipt"
+                            context="{'group_by': 'picking_id'}"/>
+                    <filter name="group_date" string="Month"
+                            context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="cst_picking_expense_action" model="ir.actions.act_window">
+        <field name="name">Receipt Expenses</field>
+        <field name="res_model">cst.picking.expense</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="cst_picking_expense_view_search"/>
+        <field name="context">{'search_default_group_picking': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No expense has been booked on a receipt yet</p>
+            <p>Open a receipt and fill in its <b>Expenses</b> page - delivery,
+               customs, unloading - then press <b>Add to Cost</b>.</p>
+        </field>
+    </record>
+
+    <menuitem id="cst_picking_expense_menu"
+              name="Receipt Expenses"
+              parent="stock.menu_warehouse_report"
+              action="cst_picking_expense_action"
+              sequence="45"/>
+
+</odoo>

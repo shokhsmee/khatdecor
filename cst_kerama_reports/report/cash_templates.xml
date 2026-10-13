@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Pullar harakati ============ -->
+    <template id="report_cash">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th style="width:64px;">Sana</th>
+                                    <th>Kassa / bank · Izoh</th>
+                                    <th style="width:60px;">Valyuta</th>
+                                    <th style="width:90px;">Boshlang'ich qoldiq</th>
+                                    <th style="width:90px;">Kirim</th>
+                                    <th style="width:90px;">Chiqim</th>
+                                    <th style="width:90px;">Oxirgi qoldiq</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']">
+                                    <tr><td colspan="8" class="mid">Davr ichida pul harakati yo'q.</td></tr>
+                                </t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="3" t-out="block['company'].display_name"/>
+                                        <td class="mid" t-out="block['company'].currency_id.name"/>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['opening_cc']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['inflow_cc']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['outflow_cc']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['closing_cc']"/></t>
+                                    </tr>
+                                    <t t-foreach="block['journals']" t-as="j">
+                                        <tr class="cst_group">
+                                            <td class="mid" t-out="j_index + 1"/>
+                                            <td colspan="2" t-out="j['journal'].name"/>
+                                            <td class="mid" t-out="j['currency'].name"/>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="j['opening']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="j['inflow']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="j['outflow']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="j['closing']"/></t>
+                                        </tr>
+                                        <t t-if="values['detail']" t-foreach="j['rows']" t-as="row">
+                                            <tr>
+                                                <td class="mid" t-out="row_index + 1"/>
+                                                <td class="mid" t-out="row['date']" t-options="{'widget': 'date'}"/>
+                                                <td t-out="row['label']"/>
+                                                <td/>
+                                                <td/>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['inflow']"/></t>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['outflow']"/></t>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['balance']"/></t>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ Xarajatlar ============ -->
+    <template id="report_expense">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <t t-foreach="values['companies']" t-as="block">
+                            <table class="cst_rep" style="margin-bottom:10px;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:26px;">№</th>
+                                        <th>Xarajat turi</th>
+                                        <th t-if="values['detail']" style="width:64px;">Sana</th>
+                                        <th t-if="values['detail']">Kontragent · Izoh · Jurnal</th>
+                                        <th style="width:110px;"><t t-out="block['currency'].name"/> da</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="span" t-value="values['detail'] and 4 or 2"/>
+                                    <tr class="cst_company">
+                                        <td t-att-colspan="span"><t t-out="block['company'].display_name"/> organizatsiya</td>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['amount']"/></t>
+                                    </tr>
+                                    <t t-foreach="block['groups']" t-as="g">
+                                        <tr class="cst_group">
+                                            <td class="mid" t-out="g_index + 1"/>
+                                            <td t-att-colspan="span - 1" t-out="g['name']"/>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['amount']"/></t>
+                                        </tr>
+                                        <t t-foreach="g['accounts']" t-as="a">
+                                            <tr>
+                                                <td class="mid" t-out="a_index + 1"/>
+                                                <td t-att-colspan="span - 1">
+                                                    <t t-out="a['account'].code"/> <t t-out="a['account'].name"/>
+                                                </td>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="a['amount']"/></t>
+                                            </tr>
+                                            <t t-if="values['detail']" t-foreach="a['rows']" t-as="row">
+                                                <tr>
+                                                    <td/>
+                                                    <td/>
+                                                    <td class="mid" t-out="row['date']" t-options="{'widget': 'date'}"/>
+                                                    <td>
+                                                        <t t-out="row['partner']"/>
+                                                        <t t-if="row['partner'] and row['label']"> · </t>
+                                                        <t t-out="row['label']"/>
+                                                        <span class="text-muted"> · <t t-out="row['journal']"/></span>
+                                                    </td>
+                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['amount']"/></t>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <tr class="cst_total">
+                                        <td t-att-colspan="span" class="mid">Jami</td>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['amount']"/></t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <p t-if="not values['companies']" class="mid">Davr ichida xarajat yozuvlari yo'q.</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

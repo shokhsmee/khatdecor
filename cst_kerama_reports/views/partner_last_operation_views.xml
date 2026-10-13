@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_last_operation_list" model="ir.ui.view">
+        <field name="name">cst.partner.last.operation.list</field>
+        <field name="model">cst.partner.last.operation</field>
+        <field name="arch" type="xml">
+            <!-- Quietest customer first: that is the whole point of the sheet. -->
+            <list string="Mijozning oxirgi operatsiyasi" create="false" delete="false"
+                  edit="false" default_order="days_idle desc">
+                <field name="partner_id"/>
+                <field name="last_operation"/>
+                <field name="days_display" string="Harakatsiz kun farqi"/>
+                <field name="days_idle" string="Kun" optional="hide"/>
+                <field name="last_date" optional="hide"/>
+                <field name="balance" sum="Jami"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <button name="action_open_akt_sverka" type="object" icon="fa-file-text-o"
+                        title="Akt sverka"/>
+                <button name="action_open_last_document" type="object" icon="fa-external-link"
+                        title="Oxirgi hujjatni ochish"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_partner_last_operation_search" model="ir.ui.view">
+        <field name="name">cst.partner.last.operation.search</field>
+        <field name="model">cst.partner.last.operation</field>
+        <field name="arch" type="xml">
+            <search string="Mijozning oxirgi operatsiyasi">
+                <field name="partner_id"/>
+                <filter name="owing" string="Qarzdorlar"
+                        domain="[('balance', '&gt;', 0)]"/>
+                <filter name="overpaid" string="Oldindan to'laganlar"
+                        domain="[('balance', '&lt;', 0)]"/>
+                <separator/>
+                <filter name="quiet_30" string="30 kundan ortiq jim"
+                        domain="[('days_idle', '&gt;=', 30)]"/>
+                <filter name="quiet_90" string="90 kundan ortiq jim"
+                        domain="[('days_idle', '&gt;=', 90)]"/>
+                <filter name="quiet_365" string="1 yildan ortiq jim"
+                        domain="[('days_idle', '&gt;=', 365)]"/>
+                <group>
+                    <filter name="group_partner" string="Mijoz"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_company" string="Kompaniya"
+                            context="{'group_by': 'company_id'}"/>
+                    <filter name="group_last_date" string="Oxirgi harakat sanasi"
+                            context="{'group_by': 'last_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_partner_last_operation" model="ir.actions.act_window">
+        <field name="name">Mijozning oxirgi operatsiyasi</field>
+        <field name="res_model">cst.partner.last.operation</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_partner_last_operation_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Hali hisob-kitob harakati yo'q</p>
+            <p>Mijoz nomiga ikki marta bosilsa akt sverka, harakat mazmuniga ikki
+               marta bosilsa o'sha hujjat ochiladi.</p>
+        </field>
+    </record>
+
+</odoo>

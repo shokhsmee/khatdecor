@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ==========================================================
+         Xisobotlar — one app, one place, categories inside it.
+
+         Almost every entry below points at an action Odoo already ships:
+         the accounting reports of `account_reports`, the sales, purchase,
+         inventory and manufacturing analyses, product margins, lots,
+         reordering rules. Nothing is reimplemented, so each screen keeps its
+         own filters, pivot, graph and export. The entries marked with a ★ in
+         the manifest are the ones Odoo has no answer for.
+
+         Groups sit on the individual items rather than only on the category:
+         a menu the user can see but whose report refuses to open is worse
+         than no menu at all.
+         ========================================================== -->
+
+    <menuitem id="menu_reports_root"
+              name="Xisobotlar"
+              web_icon="cst_kerama_reports,static/description/icon.png"
+              sequence="36"/>
+
+    <!-- ==================== MOLIYA ==================== -->
+    <menuitem id="menu_reports_finance"
+              name="Moliya"
+              parent="menu_reports_root"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="10"/>
+
+    <menuitem id="menu_reports_pl"
+              name="Foyda va zarar"
+              parent="menu_reports_finance"
+              action="account_reports.action_account_report_pl"
+              groups="account.group_account_readonly"
+              sequence="10"/>
+    <menuitem id="menu_reports_bs"
+              name="Balans"
+              parent="menu_reports_finance"
+              action="account_reports.action_account_report_bs"
+              groups="account.group_account_readonly"
+              sequence="20"/>
+    <menuitem id="menu_reports_cashflow"
+              name="Pul oqimi (Cash Flow)"
+              parent="menu_reports_finance"
+              action="account_reports.action_account_report_cs"
+              groups="account.group_account_readonly"
+              sequence="30"/>
+    <menuitem id="menu_reports_exec"
+              name="Boshqaruv xulosasi"
+              parent="menu_reports_finance"
+              action="account_reports.action_account_report_exec_summary"
+              groups="account.group_account_readonly"
+              sequence="40"/>
+
+    <menuitem id="menu_reports_ledgers"
+              name="Kitoblar"
+              parent="menu_reports_finance"
+              groups="account.group_account_readonly"
+              sequence="50"/>
+    <menuitem id="menu_reports_general_ledger"
+              name="Bosh kitob"
+              parent="menu_reports_ledgers"
+              action="account_reports.action_account_report_general_ledger"
+              sequence="10"/>
+    <menuitem id="menu_reports_trial_balance"
+              name="Aylanma balans"
+              parent="menu_reports_ledgers"
+              action="account_reports.action_account_report_coa"
+              sequence="20"/>
+    <menuitem id="menu_reports_journal_items"
+              name="Jurnal yozuvlari"
+              parent="menu_reports_ledgers"
+              action="account.action_account_moves_all"
+              sequence="30"/>
+
+    <!-- ==================== MIJOZLAR ==================== -->
+    <menuitem id="menu_reports_customers"
+              name="Mijozlar"
+              parent="menu_reports_root"
+              sequence="20"/>
+
+    <menuitem id="menu_reports_last_operation"
+              name="Mijozning oxirgi operatsiyasi"
+              parent="menu_reports_customers"
+              action="action_partner_last_operation"
+              groups="account.group_account_readonly,account.group_account_invoice,sales_team.group_sale_manager"
+              sequence="10"/>
+    <menuitem id="menu_reports_customer_statement"
+              name="Mijoz akt sverkasi"
+              parent="menu_reports_customers"
+              action="action_partner_statement_customer"
+              groups="account.group_account_readonly,account.group_account_invoice,sales_team.group_sale_manager"
+              sequence="20"/>
+    <menuitem id="menu_reports_customer_movement"
+              name="Mijozlar harakati"
+              parent="menu_reports_customers"
+              action="action_partner_movement_customer"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="30"/>
+    <menuitem id="menu_reports_aged_receivable"
+              name="Qarzdorlik yoshi"
+              parent="menu_reports_customers"
+              action="account_reports.action_account_report_ar"
+              groups="account.group_account_readonly"
+              sequence="40"/>
+    <menuitem id="menu_reports_partner_ledger"
+              name="Kontragent kitobi"
+              parent="menu_reports_customers"
+              action="account_reports.action_account_report_partner_ledger"
+              groups="account.group_account_readonly"
+              sequence="50"/>
+    <menuitem id="menu_reports_customer_statement_native"
+              name="Akt sverka (Odoo)"
+              parent="menu_reports_customers"
+              action="account_reports.action_account_report_customer_statement"
+              groups="account.group_account_readonly"
+              sequence="60"/>
+
+    <menuitem id="menu_reports_customer_analysis"
+              name="Tahlillar"
+              parent="menu_reports_customers"
+              sequence="70"/>
+    <menuitem id="menu_reports_sales_by_customer"
+              name="Mijozlar bo'yicha savdo"
+              parent="menu_reports_customer_analysis"
+              action="sale.action_order_report_customers"
+              groups="sales_team.group_sale_salesman"
+              sequence="10"/>
+    <menuitem id="menu_reports_price_range_sale"
+              name="Mahsulot min-max narxi"
+              parent="menu_reports_customer_analysis"
+              action="action_product_price_range_sale"
+              groups="sales_team.group_sale_manager,account.group_account_readonly"
+              sequence="20"/>
+
+    <!-- ==================== TA'MINOTCHILAR ==================== -->
+    <menuitem id="menu_reports_suppliers"
+              name="Ta'minotchilar"
+              parent="menu_reports_root"
+              sequence="30"/>
+
+    <menuitem id="menu_reports_supplier_movement"
+              name="Ta'minotchilar harakati"
+              parent="menu_reports_suppliers"
+              action="action_partner_movement_supplier"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="10"/>
+    <menuitem id="menu_reports_supplier_statement"
+              name="Ta'minotchi akt sverkasi"
+              parent="menu_reports_suppliers"
+              action="action_partner_statement_supplier"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="20"/>
+    <menuitem id="menu_reports_aged_payable"
+              name="Qarzlarimiz yoshi"
+              parent="menu_reports_suppliers"
+              action="account_reports.action_account_report_ap"
+              groups="account.group_account_readonly"
+              sequence="30"/>
+
+    <menuitem id="menu_reports_supplier_analysis"
+              name="Tahlillar"
+              parent="menu_reports_suppliers"
+              sequence="40"/>
+    <menuitem id="menu_reports_purchase_analysis"
+              name="Xarid tahlili"
+              parent="menu_reports_supplier_analysis"
+              action="purchase.action_purchase_order_report_all"
+              groups="purchase.group_purchase_user"
+              sequence="10"/>
+    <menuitem id="menu_reports_price_range_purchase"
+              name="Mahsulot min-max narxi"
+              parent="menu_reports_supplier_analysis"
+              action="action_product_price_range_purchase"
+              groups="purchase.group_purchase_user,account.group_account_readonly"
+              sequence="20"/>
+
+    <!-- ==================== 3-SHAXSLAR ==================== -->
+    <menuitem id="menu_reports_third_parties"
+              name="3-shaxslar"
+              parent="menu_reports_root"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="40"/>
+    <menuitem id="menu_reports_third_party_movement"
+              name="3-shaxslar harakati"
+              parent="menu_reports_third_parties"
+              action="action_partner_movement_third_party"
+              sequence="10"/>
+    <menuitem id="menu_reports_third_party_statement"
+              name="3-shaxs akt sverkasi"
+              parent="menu_reports_third_parties"
+              action="action_partner_statement_third_party"
+              sequence="20"/>
+
+    <!-- ==================== SAVDO ==================== -->
+    <menuitem id="menu_reports_sales"
+              name="Savdo"
+              parent="menu_reports_root"
+              groups="sales_team.group_sale_salesman"
+              sequence="50"/>
+    <menuitem id="menu_reports_sales_analysis"
+              name="Savdo tahlili"
+              parent="menu_reports_sales"
+              action="sale.action_order_report_all"
+              sequence="10"/>
+    <menuitem id="menu_reports_sales_by_product"
+              name="Mahsulotlar bo'yicha"
+              parent="menu_reports_sales"
+              action="sale.action_order_report_products"
+              sequence="20"/>
+    <menuitem id="menu_reports_sales_by_person"
+              name="Sotuvchilar bo'yicha"
+              parent="menu_reports_sales"
+              action="sale.action_order_report_salesperson"
+              sequence="30"/>
+    <menuitem id="menu_reports_product_margin"
+              name="Mahsulot foyda/zarari"
+              parent="menu_reports_sales"
+              action="product_margin.product_margin_act_window"
+              groups="sales_team.group_sale_manager,account.group_account_readonly"
+              sequence="40"/>
+    <menuitem id="menu_reports_invoice_analysis"
+              name="Hisob-faktura tahlili"
+              parent="menu_reports_sales"
+              action="account.action_account_invoice_report_all"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="50"/>
+
+    <!-- ==================== OMBOR ==================== -->
+    <menuitem id="menu_reports_stock"
+              name="Ombor"
+              parent="menu_reports_root"
+              groups="stock.group_stock_user"
+              sequence="60"/>
+    <menuitem id="menu_reports_warehouse_sheet"
+              name="Omborlar hisoboti (rasmli)"
+              parent="menu_reports_stock"
+              action="action_warehouse_report"
+              sequence="10"/>
+    <menuitem id="menu_reports_stock_on_hand"
+              name="Qoldiqlar"
+              parent="menu_reports_stock"
+              action="stock.action_product_stock_view"
+              sequence="20"/>
+    <menuitem id="menu_reports_inventory_at_date"
+              name="Sanadagi qoldiq"
+              parent="menu_reports_stock"
+              action="stock.action_inventory_at_date"
+              sequence="30"/>
+    <menuitem id="menu_reports_lots"
+              name="Rulon va partiyalar"
+              parent="menu_reports_stock"
+              action="stock.action_production_lot_form"
+              groups="stock.group_production_lot"
+              sequence="40"/>
+    <menuitem id="menu_reports_orderpoints"
+              name="Min-Max qoidalari (Odoo)"
+              parent="menu_reports_stock"
+              action="stock.action_orderpoint"
+              sequence="50"/>
+
+    <menuitem id="menu_reports_stock_moves"
+              name="Harakatlar"
+              parent="menu_reports_stock"
+              sequence="60"/>
+    <menuitem id="menu_reports_moves_incoming"
+              name="Kirimlar"
+              parent="menu_reports_stock_moves"
+              action="action_moves_incoming"
+              sequence="10"/>
+    <menuitem id="menu_reports_moves_outgoing"
+              name="Chiqimlar"
+              parent="menu_reports_stock_moves"
+              action="action_moves_outgoing"
+              sequence="20"/>
+    <menuitem id="menu_reports_moves_history"
+              name="Kirim/chiqim tarixi"
+              parent="menu_reports_stock_moves"
+              action="stock.stock_move_line_action"
+              sequence="30"/>
+    <menuitem id="menu_reports_moves_analysis"
+              name="Harakatlar tahlili"
+              parent="menu_reports_stock_moves"
+              action="stock.stock_move_action"
+              sequence="40"/>
+    <menuitem id="menu_reports_moves_by_lot"
+              name="Rulon va partiyalar bo'yicha"
+              parent="menu_reports_stock_moves"
+              action="action_moves_by_lot"
+              groups="stock.group_production_lot"
+              sequence="50"/>
+
+    <menuitem id="menu_reports_warehouse_performance"
+              name="Ombor samaradorligi"
+              parent="menu_reports_stock"
+              action="stock_enterprise.stock_report_action_performance"
+              sequence="70"/>
+
+    <!-- ==================== ISHLAB CHIQARISH ==================== -->
+    <menuitem id="menu_reports_mrp"
+              name="Ishlab chiqarish"
+              parent="menu_reports_root"
+              groups="mrp.group_mrp_user"
+              sequence="70"/>
+    <menuitem id="menu_reports_mrp_analysis"
+              name="Ishlab chiqarish tahlili"
+              parent="menu_reports_mrp"
+              action="mrp_account_enterprise.mrp_report_dashboard_action"
+              sequence="10"/>
+    <menuitem id="menu_reports_workorder_analysis"
+              name="Ish buyruqlari tahlili"
+              parent="menu_reports_mrp"
+              action="mrp.mrp_workorder_report"
+              sequence="20"/>
+    <menuitem id="menu_reports_oee"
+              name="Uskuna samaradorligi (OEE)"
+              parent="menu_reports_mrp"
+              action="mrp.mrp_workcenter_productivity_report"
+              sequence="30"/>
+
+    <menuitem id="menu_reports_mrp_materials"
+              name="Materiallar harakati"
+              parent="menu_reports_mrp"
+              sequence="40"/>
+    <menuitem id="menu_reports_moves_to_production"
+              name="Ishlab chiqarishga berilgan"
+              parent="menu_reports_mrp_materials"
+              action="action_moves_to_production"
+              sequence="10"/>
+    <menuitem id="menu_reports_moves_from_production"
+              name="Ishlab chiqarishdan qabul qilingan"
+              parent="menu_reports_mrp_materials"
+              action="action_moves_from_production"
+              sequence="20"/>
+
+    <!-- ==================== YOQILG'I ==================== -->
+    <menuitem id="menu_reports_fuel"
+              name="Yoqilg'i"
+              parent="menu_reports_root"
+              groups="stock.group_stock_user"
+              sequence="80"/>
+    <menuitem id="menu_reports_fuel_report"
+              name="Yoqilg'i hisoboti"
+              parent="menu_reports_fuel"
+              action="action_fuel_report"
+              sequence="10"/>
+    <menuitem id="menu_reports_fuel_log"
+              name="Yoqilg'i kirim/chiqim"
+              parent="menu_reports_fuel"
+              action="action_fuel_log"
+              sequence="20"/>
+    <menuitem id="menu_reports_fuel_machines"
+              name="Mashinalar"
+              parent="menu_reports_fuel"
+              action="action_fuel_machine"
+              sequence="30"/>
+
+</odoo>

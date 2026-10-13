@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shift_template_list" model="ir.ui.view">
+        <field name="name">cst.production.shift.template.list</field>
+        <field name="model">cst.production.shift.template</field>
+        <field name="arch" type="xml">
+            <list string="Smena vaqtlari" editable="bottom">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="hour_from" widget="float_time"/>
+                <field name="hour_to" widget="float_time"/>
+                <field name="crosses_midnight"/>
+                <field name="color" widget="color_picker"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_shift_templates" model="ir.actions.act_window">
+        <field name="name">Smena vaqtlari</field>
+        <field name="res_model">cst.production.shift.template</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Smena vaqtlari</p>
+            <p>1-smena 06:00–14:00, 2-smena 14:00–22:00, 3-smena 22:00–06:00. Soatlarni shu yerda o'zgartiring; tungi smena boshlangan kuniga yoziladi.</p>
+        </field>
+    </record>
+</odoo>

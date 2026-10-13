@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The piece rate lives on the BoM operation, which is exactly the
+         "product x operation" pair it is paid for.  Extending the base list
+         puts it in the BoM's Operations tab as well. -->
+    <record id="view_mrp_routing_workcenter_list_kpi" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.list.kpi.rate</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="time_cycle" position="after">
+                <field name="cst_currency_id" column_invisible="1"/>
+                <field name="cst_kpi_rate"
+                       groups="cst_kerama_payroll.group_payroll_user,mrp.group_mrp_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_routing_workcenter_form_kpi" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.form.kpi.rate</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+        <field name="arch" type="xml">
+            <field name="time_cycle_manual" position="after">
+                <field name="cst_currency_id" invisible="1"/>
+                <field name="cst_kpi_rate"
+                       groups="cst_kerama_payroll.group_payroll_user,mrp.group_mrp_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- All the rates on one screen: product, operation, rate. -->
+    <record id="view_mrp_routing_workcenter_list_kpi_config" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.list.kpi.config</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="arch" type="xml">
+            <list string="Ishbay KPI stavkalari" editable="bottom" multi_edit="1" create="0">
+                <field name="bom_id" readonly="1"/>
+                <field name="name" readonly="1" string="Operatsiya"/>
+                <field name="workcenter_id" readonly="1"/>
+                <field name="time_cycle" widget="float_time" string="Duration (minutes)"
+                       readonly="1" optional="hide"/>
+                <field name="cst_kpi_rate" sum="Jami"/>
+                <field name="cst_currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_mrp_operation_kpi_rate" model="ir.actions.act_window">
+        <field name="name">Ishbay KPI stavkalari</field>
+        <field name="res_model">mrp.routing.workcenter</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_mrp_routing_workcenter_list_kpi_config"/>
+        <field name="context">{'bom_id_invisible': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No operations yet</p>
+            <p>One rate per finished product per operation. Set it here or in the
+               bill of materials' Operations tab — it is the same line.</p>
+        </field>
+    </record>
+
+    <!-- The shift is the one thing the system cannot infer, so the operator
+         picks it where the work order is actually worked. -->
+    <record id="view_mrp_production_workorder_list_shift" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.list.shift</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <field name="workcenter_id" position="after">
+                <field name="cst_shift" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_workorder_form_shift" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.form.shift</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name="workcenter_id" position="after">
+                <field name="cst_shift"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_workorder_search_shift" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.search.shift</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_work_order_search"/>
+        <field name="arch" type="xml">
+            <field name="workcenter_id" position="after">
+                <field name="cst_shift"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_payment_summary
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-31 10:50+0000\n"
+"PO-Revision-Date: 2026-05-31 10:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__payment_amount_due
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payment_summary.view_order_form_payment_summary
+msgid "Amount Due"
+msgstr "To‘lov qoldig‘i"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Ko‘rsatiladigan nom"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__payment_invoiced_total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payment_summary.view_order_form_payment_summary
+msgid "Invoiced Amount"
+msgstr "Hisob-faktura summasi"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,help:cst_kerama_payment_summary.field_sale_order__payment_amount_due
+msgid ""
+"Order total still owed: order total minus every payment already received, "
+"including the ones still waiting for approval."
+msgstr ""
+"Buyurtma bo‘yicha qolgan qarz: buyurtmaning umumiy summasidan allaqachon "
+"qabul qilingan barcha to‘lovlar, jumladan hali tasdiqlash kutilayotganlari "
+"ham ayirilgan holda."
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__payment_has_waiting
+msgid "Payment Has Waiting"
+msgstr "Kutilayotgan to‘lov bor"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,help:cst_kerama_payment_summary.field_sale_order__payment_waiting_html
+msgid ""
+"Payments registered but not yet confirmed (In Process), shown per currency."
+msgstr ""
+"Ro‘yxatdan o‘tgan, lekin hali tasdiqlanmagan (Jarayonda) to‘lovlar, har bir "
+"valyuta bo‘yicha ko‘rsatilgan."
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,help:cst_kerama_payment_summary.field_sale_order__payment_waiting_total
+msgid "Pending (In Process) payments converted to the order currency."
+msgstr "Kutilayotgan (Jarayonda) to‘lovlar buyurtma valyutasiga aylantirilgan."
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model,name:cst_kerama_payment_summary.model_sale_order
+msgid "Sales Order"
+msgstr "Sotish buyurtmasi"
+
+#. module: cst_kerama_payment_summary
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payment_summary.view_account_payment_tree_confirm
+msgid "Tasdiqlash"
+msgstr "Tasdiqlash"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,help:cst_kerama_payment_summary.field_sale_order__payment_invoiced_total
+msgid "Total amount of the posted customer invoices for this order."
+msgstr "Ushbu buyurtma uchun joylashtirilgan mijoz hisob-fakturalarining umumiy summasi."
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__payment_waiting_total
+msgid "Waiting Approval (order currency)"
+msgstr "Tasdiqlash kutilmoqda (buyurtma valyutasi)"
+
+#. module: cst_kerama_payment_summary
+#: model:ir.model.fields,field_description:cst_kerama_payment_summary.field_sale_order__payment_waiting_html
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payment_summary.view_order_form_payment_summary
+msgid "Waiting approval"
+msgstr "Tasdiqlash kutilmoqda"

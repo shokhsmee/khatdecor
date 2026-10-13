@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The app needs its own landing action.  Without one Odoo opens the
+         first leaf menu it finds, which was the bonus wizard — so clicking
+         the app threw a modal dialog at an empty screen. -->
+    <menuitem id="menu_payroll_root" name="Oylik"
+              sequence="76" groups="cst_kerama_payroll.group_payroll_user"
+              action="action_payroll_report"
+              web_icon="cst_kerama_payroll,static/description/icon.png"/>
+
+    <!-- Grouped by what the person came to do, not by which model it touches:
+         entering something, reading the ledger, reading a report, or setting
+         a rate.  Nine items in one "Operations" list made the frequent job
+         (writing a fine) as hard to find as the rare one. -->
+
+    <!-- ============ 1. entering ============ -->
+    <menuitem id="menu_payroll_entry" name="Kiritish"
+              parent="menu_payroll_root" sequence="10"/>
+
+    <menuitem id="menu_payroll_entry_wizard" name="Bonus / jarima yozish"
+              parent="menu_payroll_entry" action="action_payroll_entry_wizard" sequence="10"/>
+
+    <menuitem id="menu_payroll_card_import" name="Kartaga o'tkazmalar (Excel)"
+              parent="menu_payroll_entry" action="action_payroll_card_import_wizard" sequence="20"/>
+
+    <!-- ============ 2. the ledger ============ -->
+    <menuitem id="menu_payroll_ledger" name="Ish haqi"
+              parent="menu_payroll_root" sequence="20"/>
+
+    <menuitem id="menu_payroll_period" name="Oylik davrlari"
+              parent="menu_payroll_ledger" action="action_payroll_period" sequence="10"/>
+
+    <menuitem id="menu_payroll_line" name="Barcha yozuvlar"
+              parent="menu_payroll_ledger" action="action_payroll_line" sequence="20"/>
+
+    <!-- ============ 3. reports ============ -->
+    <menuitem id="menu_payroll_reports" name="Hisobotlar"
+              parent="menu_payroll_root" sequence="30"/>
+
+    <menuitem id="menu_payroll_report" name="Oylik hisoboti (batafsil)"
+              parent="menu_payroll_reports" action="action_payroll_report" sequence="10"/>
+
+    <menuitem id="menu_payroll_kpi_sales" name="Sotuv KPI"
+              parent="menu_payroll_reports" action="action_payroll_kpi_sales" sequence="20"/>
+
+    <menuitem id="menu_payroll_kpi_production" name="Ishbay KPI"
+              parent="menu_payroll_reports" action="action_payroll_kpi_production" sequence="30"/>
+
+    <menuitem id="menu_payroll_kpi_unloading" name="Yuk tushirish"
+              parent="menu_payroll_reports" action="action_payroll_kpi_unloading" sequence="40"/>
+
+    <!-- ============ 4. people ============ -->
+    <menuitem id="menu_payroll_employee" name="Xodimlar"
+              parent="menu_payroll_root" action="hr.open_view_employee_list_my" sequence="40"/>
+
+    <!-- ============ 5. configuration ============ -->
+    <menuitem id="menu_payroll_config" name="Sozlamalar"
+              parent="menu_payroll_root" sequence="90"
+              groups="cst_kerama_payroll.group_payroll_manager"/>
+
+    <menuitem id="menu_payroll_component" name="Ustunlar (komponentlar)"
+              parent="menu_payroll_config" action="action_payroll_component" sequence="10"/>
+
+    <menuitem id="menu_payroll_kpi_rate" name="Sotuv KPI stavkalari"
+              parent="menu_payroll_config" action="action_product_kpi_rate" sequence="20"/>
+    <menuitem id="menu_payroll_kpi_rate_variant" name="Sotuv KPI stavkalari (variantlar)"
+              parent="menu_payroll_config" action="action_product_variant_kpi_rate" sequence="21"/>
+
+    <menuitem id="menu_payroll_kpi_operation_rate" name="Ishbay KPI stavkalari"
+              parent="menu_payroll_config" action="action_mrp_operation_kpi_rate" sequence="30"/>
+
+    <menuitem id="menu_payroll_settings" name="Umumiy sozlamalar"
+              parent="menu_payroll_config" sequence="99"
+              action="base_setup.action_general_configuration"/>
+
+</odoo>

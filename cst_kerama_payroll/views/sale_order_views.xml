@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_kpi" model="ir.ui.view">
+        <field name="name">sale.order.form.kpi.paid.date</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sales_person']" position="inside">
+                <field name="cst_kpi_paid_date"
+                       groups="cst_kerama_payroll.group_payroll_user,sales_team.group_sale_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

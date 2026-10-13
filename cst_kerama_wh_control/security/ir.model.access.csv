@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_move_line_comment_user,cst.move.line.comment user,model_cst_move_line_comment,stock.group_stock_user,1,1,1,0
+access_cst_move_line_comment_manager,cst.move.line.comment manager,model_cst_move_line_comment,stock.group_stock_manager,1,1,1,1

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_wh_control" model="ir.ui.view">
+        <field name="name">stock.picking.form.wh.control</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="cst_photo_required" invisible="1"/>
+                <field name="cst_receiver_required" invisible="1"/>
+                <field name="cst_receiver_id"
+                       invisible="not cst_receiver_required"
+                       required="cst_receiver_required and state not in ('draft', 'cancel')"
+                       readonly="state in ('done', 'cancel')"
+                       options="{'no_create': True}"
+                       widget="many2one_avatar_user"/>
+                <field name="cst_transport_visible" invisible="1"/>
+                <field name="cst_driver" invisible="not cst_transport_visible"/>
+                <field name="cst_car_model" invisible="not cst_transport_visible"/>
+                <field name="cst_car_number" invisible="not cst_transport_visible"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="cst_photos" string="Photos">
+                    <div class="alert alert-info" role="status"
+                         invisible="not cst_photo_required or state in ('done', 'cancel')">
+                        <i class="fa fa-camera me-1"/>
+                        A photo of the goods is required before this receipt can be validated.
+                    </div>
+                    <field name="cst_photo_ids" widget="many2many_binary"
+                           readonly="state in ('done', 'cancel')"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_form_wh_control_onhand" model="ir.ui.view">
+        <field name="name">stock.picking.form.wh.control.onhand</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <!-- actual stock of the source location, right before the demand -->
+            <xpath expr="//field[@name='move_ids']/list/field[@name='product_uom_qty']" position="before">
+                <field name="cst_qty_on_hand" readonly="1" optional="show"
+                       column_invisible="parent.picking_type_code == 'incoming' or parent.state in ('done', 'cancel')"
+                       invisible="not is_storable or not product_id"
+                       decoration-danger="cst_qty_on_hand &lt; product_uom_qty"
+                       decoration-info="cst_qty_on_hand &gt;= product_uom_qty"/>
+                <field name="cst_qty_on_hand_dest" readonly="1" optional="show"
+                       column_invisible="parent.picking_type_code != 'internal' or parent.state in ('done', 'cancel')"
+                       invisible="not is_storable or not product_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_kanban_wh_control" model="ir.ui.view">
+        <field name="name">stock.picking.kanban.wh.control</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.stock_picking_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="cst_all_picked"/>
+                <field name="cst_receiver_id"/>
+            </xpath>
+            <xpath expr="//field[@name='picking_properties']" position="after">
+                <!-- the marker div is what turns the whole card green (see scss) -->
+                <div t-if="record.cst_all_picked.raw_value" class="cst_pick_ready">
+                    <i class="fa fa-check-circle me-1"/>Ready to validate
+                </div>
+                <div t-if="record.cst_receiver_id.value" class="cst_pick_receiver">
+                    <i class="fa fa-user-o me-1"/><field name="cst_receiver_id"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

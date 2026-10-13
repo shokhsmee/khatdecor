@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Two tables, the way the fuel sheet is kept: every filling and issue
+         with the tank balance after it, then what each machine burned against
+         the distance its odometer covered. -->
+    <template id="report_fuel">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="data" t-value="values['data']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th style="width:110px;">Sana</th>
+                                    <th>Qaysi mashinaga quyilgan</th>
+                                    <th style="width:70px;">Kirim</th>
+                                    <th style="width:70px;">Chiqim</th>
+                                    <th style="width:80px;">Qoldiq</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cst_sub">
+                                    <td colspan="3">Davr boshiga qoldiq</td>
+                                    <td/><td/>
+                                    <td class="num" t-out="data['opening']"
+                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                </tr>
+                                <t t-if="not data['movements']">
+                                    <tr><td colspan="6" class="mid">Davr ichida harakat yo'q.</td></tr>
+                                </t>
+                                <t t-foreach="data['movements']" t-as="row">
+                                    <tr>
+                                        <td class="mid" t-out="row_index + 1"/>
+                                        <td class="mid" t-out="row['date']"
+                                            t-options="{'widget': 'datetime'}"/>
+                                        <td t-out="row['target']"/>
+                                        <td class="num">
+                                            <span t-if="row['inflow']" t-out="row['inflow']"
+                                                  t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </td>
+                                        <td class="num">
+                                            <span t-if="row['outflow']" t-out="row['outflow']"
+                                                  t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </td>
+                                        <td class="num" t-out="row['balance']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </tr>
+                                </t>
+                                <tr class="cst_total">
+                                    <td colspan="3">Qoldiq</td>
+                                    <td class="num" t-out="data['total_in']"
+                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                    <td class="num" t-out="data['total_out']"
+                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                    <td class="num" t-out="data['closing']"
+                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br/>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th>Mashina rusumi</th>
+                                    <th style="width:100px;">Davr oralig'ida sarflagan</th>
+                                    <th style="width:100px;">Davr oralig'ida yurgan km</th>
+                                    <th style="width:110px;">100 km uchun sarf miqdori</th>
+                                    <th style="width:100px;">Ishlagan vaqti (soat)</th>
+                                    <th style="width:110px;">1 soat uchun sarf miqdori</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not data['machines']">
+                                    <tr><td colspan="7" class="mid">Mashinalarga chiqim qilinmagan.</td></tr>
+                                </t>
+                                <t t-foreach="data['machines']" t-as="row">
+                                    <tr>
+                                        <td class="mid" t-out="row_index + 1"/>
+                                        <td>
+                                            <t t-out="row['machine'].name"/>
+                                            <t t-if="row['machine'].plate">
+                                                (<t t-out="row['machine'].plate"/>)
+                                            </t>
+                                        </td>
+                                        <td class="num" t-out="row['quantity']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="row['distance']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="row['ratio']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="row['hours']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="row['per_hour']"
+                                            t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </tr>
+                                </t>
+                                <tr class="cst_total" t-if="data['machines']">
+                                    <td colspan="2">Jami</td>
+                                    <td class="num" t-out="data['total_out']"
+                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                    <td/><td/>
+                                    <td class="num" t-out="data['total_hours']"
+                                        t-options="{'widget': 'float', 'precision': 2}"/>
+                                    <td/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

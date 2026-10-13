@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Odoo 19: groups hang off res.groups.privilege, not ir.module.category. -->
+        <record id="privilege_khatdecor_controls" model="res.groups.privilege">
+            <field name="name">Khatdecor Controls</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="description">Who may bypass the negative stock / cash guards.</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <record id="group_allow_negative_stock" model="res.groups">
+            <field name="name">Allow Negative Stock</field>
+            <field name="privilege_id" ref="privilege_khatdecor_controls"/>
+            <field name="comment">May validate transfers, scraps and manufacturing
+                orders that take an internal location below zero.</field>
+        </record>
+
+        <record id="group_allow_negative_cash" model="res.groups">
+            <field name="name">Allow Negative Cash</field>
+            <field name="privilege_id" ref="privilege_khatdecor_controls"/>
+            <field name="comment">May post journal entries that take a cash
+                account below zero.</field>
+        </record>
+
+    </data>
+</odoo>

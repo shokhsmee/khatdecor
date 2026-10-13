@@ -1,0 +1,35 @@
+.mk_apps_sidebar_panel {
+    transition: width 200ms ease;
+    .mk_apps_sidebar {
+        height: auto;
+        min-height: calc(100% - 34px);
+    }
+    .mk_apps_sidebar_toggle {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 34px;
+        padding: 0 14px;
+        font-size: 16px;
+        color: $mk-appbar-color;
+        opacity: .7;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+        &:hover {
+            opacity: 1;
+            background: $mk-appbar-active;
+        }
+    }
+}
+
+.mk_sidebar_type_small .mk_apps_sidebar_panel .mk_apps_sidebar_toggle {
+    justify-content: center;
+    padding: 0;
+}
+
+// md screens: MuK already forces icons-only, the toggle would do nothing
+@include media-breakpoint-only(md) {
+    .mk_apps_sidebar_panel .mk_apps_sidebar_toggle {
+        display: none;
+    }
+}

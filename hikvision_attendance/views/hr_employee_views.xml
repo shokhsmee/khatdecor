@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_face_id" model="ir.ui.view">
+        <field name="name">hr.employee.form.face_id</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mobile_phone']/.." position="after">
+                <h5 class="d-flex align-items-baseline mb-0" groups="hr.group_hr_user">
+                    <i class="fa fa-user-circle-o fa-fw me-1 text-primary" title="Face ID"/>
+                    <field name="face_id" placeholder="Face ID (kameradagi Employee ID)" class="w-100 w-sm-75"/>
+                </h5>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_tree_face_id" model="ir.ui.view">
+        <field name="name">hr.employee.list.face_id</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <field name="work_phone" position="before">
+                <field name="face_id" optional="show" groups="hr.group_hr_user"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_employee_filter_face_id" model="ir.ui.view">
+        <field name="name">hr.employee.search.face_id</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="face_id" groups="hr.group_hr_user"/>
+            </field>
+        </field>
+    </record>
+</odoo>

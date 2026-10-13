@@ -1,0 +1,81 @@
+// the report's content area: filter row on top, iframe takes the rest
+.o_content:has(> .cst_rf_bar) {
+    display: flex;
+    flex-direction: column;
+
+    > iframe {
+        flex: 1 1 auto;
+        min-height: 0;
+        height: auto !important;
+    }
+}
+
+.cst_rf_bar {
+    flex: 0 0 auto;
+    border-bottom: 1px solid $border-color;
+    background-color: $o-view-background-color;
+
+    .o_content,
+    .o_form_view,
+    .o_form_renderer,
+    .o_form_sheet_bg,
+    .o_form_nosheet {
+        padding: 0 !important;
+        margin: 0 !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    .cst_rf_row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 8px 16px;
+        padding: 8px 16px;
+    }
+
+    .cst_rf_item {
+        display: flex;
+        flex-direction: column;
+        min-width: 140px;
+        max-width: 360px;
+
+        > label,
+        > .o_form_label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: $text-muted;
+            margin-bottom: 2px;
+            white-space: nowrap;
+        }
+
+        .o_field_widget {
+            width: 100%;
+        }
+
+        .o_field_many2many_tags,
+        .o_field_many2many_tags_avatar {
+            min-width: 220px;
+        }
+    }
+
+    .cst_rf_actions {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .cst_rf_bar .cst_rf_item {
+        min-width: calc(50% - 8px);
+        max-width: none;
+    }
+    .cst_rf_bar .cst_rf_actions {
+        margin-left: 0;
+        width: 100%;
+
+        .btn {
+            width: 100%;
+        }
+    }
+}

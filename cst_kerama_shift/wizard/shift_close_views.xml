@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shift_close_form" model="ir.ui.view">
+        <field name="name">cst.production.shift.close.form</field>
+        <field name="model">cst.production.shift.close</field>
+        <field name="arch" type="xml">
+            <form string="Smenani yakunlash">
+                <field name="shift_id" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <div class="mb-3">
+                    <h4 class="mb-0"><field name="shift_id" readonly="1" nolabel="1" class="fw-bold"/></h4>
+                    <div class="text-muted"><field name="department_name" readonly="1" nolabel="1"/></div>
+                </div>
+                <div class="alert alert-warning" role="status" invisible="open_line_count == 0">
+                    <field name="open_line_count" class="fw-bold" readonly="1"/> ta buyurtma hali jarayonda: yopilganda chiqarilgani omborga o'tadi, qolgani keyingi smenaga ochiq qoladi.
+                </div>
+                <group string="Bugungi natija">
+                    <group>
+                        <field name="qty_planned" string="Reja"/>
+                        <field name="qty_good" string="1-sort"/>
+                    </group>
+                    <group>
+                        <field name="qty_second" string="2-sort"/>
+                        <field name="qty_scrap" string="Brak" class="text-danger"/>
+                    </group>
+                </group>
+                <field name="summary_html" nolabel="1" readonly="1"/>
+                <group string="KPI va jarima">
+                    <group>
+                        <field name="kpi_total" widget="monetary"/>
+                    </group>
+                    <group>
+                        <field name="penalty_total" widget="monetary"/>
+                    </group>
+                </group>
+                <field name="line_ids" nolabel="1">
+                    <list editable="bottom" create="false" delete="false">
+                        <field name="currency_id" column_invisible="1"/>
+                        <field name="employee_id" readonly="1"/>
+                        <field name="worked" readonly="1"/>
+                        <field name="minutes" widget="float_time" readonly="1"/>
+                        <field name="kpi_amount" widget="monetary" sum="Jami"/>
+                        <field name="penalty_amount" widget="monetary" sum="Jami"/>
+                    </list>
+                </field>
+                <field name="note" placeholder="Smena haqida izoh..." nolabel="1"/>
+                <footer>
+                    <button name="action_confirm" type="object" string="Smenani yakunlash" class="btn-primary"/>
+                    <button special="cancel" string="Bekor" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

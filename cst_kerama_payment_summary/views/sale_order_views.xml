@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_payment_summary" model="ir.ui.view">
+        <field name="name">sale.order.form.payment.summary</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="note" position="after">
+                <field name="payment_has_waiting" invisible="1"/>
+                <group name="payment_summary" class="mt-2" colspan="2">
+                    <field name="payment_invoiced_total"
+                           string="Invoiced Amount"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="payment_waiting_html"
+                           string="Waiting approval"
+                           invisible="not payment_has_waiting"/>
+                    <field name="payment_amount_due"
+                           string="Amount Due"
+                           class="text-danger fw-bold"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+</odoo>

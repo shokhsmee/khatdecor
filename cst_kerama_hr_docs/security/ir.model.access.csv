@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_hr_doc_template_user,cst.hr.doc.template user,model_cst_hr_doc_template,hr.group_hr_user,1,0,0,0
+access_cst_hr_doc_template_manager,cst.hr.doc.template manager,model_cst_hr_doc_template,hr.group_hr_manager,1,1,1,1
+access_cst_hr_event_user,cst.hr.event user,model_cst_hr_event,hr.group_hr_user,1,1,1,0
+access_cst_hr_event_manager,cst.hr.event manager,model_cst_hr_event,hr.group_hr_manager,1,1,1,1
+access_cst_hr_document_user,cst.hr.document user,model_cst_hr_document,hr.group_hr_user,1,1,1,0
+access_cst_hr_document_manager,cst.hr.document manager,model_cst_hr_document,hr.group_hr_manager,1,1,1,1

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shift_report_form" model="ir.ui.view">
+        <field name="name">cst.production.shift.report.form</field>
+        <field name="model">cst.production.shift.report</field>
+        <field name="arch" type="xml">
+            <form string="Smena registri">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="department_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="include_open"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_xlsx" type="object" string="Excel'ga yuklash" class="btn-secondary"/>
+                    <button special="cancel" string="Bekor" class="btn-link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_shift_report" model="ir.actions.act_window">
+        <field name="name">Smena registri</field>
+        <field name="res_model">cst.production.shift.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_shift_report" name="Smena registri" parent="menu_shift_root" action="action_shift_report" sequence="40"/>
+    <!-- the same entry inside Xisobotlar ▸ Ishlab chiqarish -->
+    <menuitem id="menu_reports_shift_register" name="Smena registri" parent="cst_kerama_reports.menu_reports_mrp"
+              action="action_shift_report" sequence="6" groups="cst_kerama_shift.group_shift_manager"/>
+</odoo>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The columns of «Ходимларга хисобланган иш хаки, бонуслар, жарималар
+             ва берилган пуллар буйича хисобот».  Records, not fields: a new
+             bonus type is configuration, and the report widens by itself. -->
+
+        <!-- ХИСОБЛАНДИ -->
+        <record id="component_oylik" model="cst.payroll.component">
+            <field name="name">Ойлик суммаси</field>
+            <field name="code">OYLIK</field>
+            <field name="sequence">10</field>
+            <field name="kind">accrual</field>
+            <field name="computation">monthly_wage</field>
+            <field name="is_official" eval="True"/>
+            <field name="is_taxable" eval="True"/>
+            <field name="note">Белгиланган ойлик маош.  Манба — ходимнинг жорий
+                версиясидаги «Wage» майдони.  Расмий ва накд кисмга ажралади.</field>
+        </record>
+
+        <record id="component_ishbay" model="cst.payroll.component">
+            <field name="name">Ишбай иш хаки</field>
+            <field name="code">ISHBAY</field>
+            <field name="sequence">20</field>
+            <field name="kind">accrual</field>
+            <field name="computation">kpi_production</field>
+            <field name="note">Ишлаб чикарилган махсулот микдорига караб.</field>
+        </record>
+
+        <record id="component_bonus_boshliq" model="cst.payroll.component">
+            <field name="name">Булим бошлиги бонуси</field>
+            <field name="code">BON_BOSHLIQ</field>
+            <field name="sequence">30</field>
+            <field name="kind">accrual</field>
+            <field name="computation">manual</field>
+        </record>
+
+        <record id="component_bonus_vaqt" model="cst.payroll.component">
+            <field name="name">Иш вакти бонуси</field>
+            <field name="code">BON_VAQT</field>
+            <field name="sequence">40</field>
+            <field name="kind">accrual</field>
+            <field name="computation">manual</field>
+        </record>
+
+        <record id="component_bonus_rahbar" model="cst.payroll.component">
+            <field name="name">Рахбар бонуси</field>
+            <field name="code">BON_RAHBAR</field>
+            <field name="sequence">50</field>
+            <field name="kind">accrual</field>
+            <field name="computation">manual</field>
+        </record>
+
+        <record id="component_bonus_kpi" model="cst.payroll.component">
+            <field name="name">KPI бонуси</field>
+            <field name="code">BON_KPI</field>
+            <field name="sequence">60</field>
+            <field name="kind">accrual</field>
+            <field name="computation">kpi_sales</field>
+            <field name="note">Сотув менежерлари учун: сотилган махсулот
+                донасига белгиланган ставка.</field>
+        </record>
+
+        <record id="component_yuk_tushirish" model="cst.payroll.component">
+            <field name="name">Юк тушириш</field>
+            <field name="code">YUK_TUSHIRISH</field>
+            <field name="sequence">70</field>
+            <field name="kind">accrual</field>
+            <field name="computation">kpi_unloading</field>
+            <field name="note">Вагон ёки машина туширганлик учун.</field>
+        </record>
+
+        <!-- УШЛАНМАЛАР -->
+        <record id="component_avans_naqd" model="cst.payroll.component">
+            <field name="name">Накд аванс</field>
+            <field name="code">AVANS_NAQD</field>
+            <field name="sequence">110</field>
+            <field name="kind">deduction</field>
+            <field name="computation">manual</field>
+            <field name="note">Кассадан берилган пул.  Кредит счёти сифатида
+                касса счётини курсатинг.</field>
+        </record>
+
+        <record id="component_jarima" model="cst.payroll.component">
+            <field name="name">Жарима</field>
+            <field name="code">JARIMA</field>
+            <field name="sequence">120</field>
+            <field name="kind">deduction</field>
+            <field name="computation">manual</field>
+        </record>
+
+        <record id="component_avans_plastik" model="cst.payroll.component">
+            <field name="name">Пластик аванс</field>
+            <field name="code">AVANS_PLASTIK</field>
+            <field name="sequence">130</field>
+            <field name="kind">deduction</field>
+            <field name="computation">manual</field>
+            <field name="note">Банк карта оркали.  Кредит счёти сифатида банк
+                счётини курсатинг.</field>
+        </record>
+
+        <record id="component_boshqa" model="cst.payroll.component">
+            <field name="name">Бошка ушланмалар</field>
+            <field name="code">BOSHQA</field>
+            <field name="sequence">140</field>
+            <field name="kind">deduction</field>
+            <field name="computation">manual</field>
+        </record>
+
+        <record id="component_soliq_jshds" model="cst.payroll.component">
+            <field name="name">Даромад солиги</field>
+            <field name="code">SOLIQ_JSHDS</field>
+            <field name="sequence">150</field>
+            <field name="kind">deduction</field>
+            <field name="computation">tax_income</field>
+            <field name="is_official" eval="True"/>
+            <field name="note">Ставка компания созламаларида белгиланади.
+                Ставка нолга тенг булса — умуман хисобланмайди.</field>
+        </record>
+
+        <record id="component_inps" model="cst.payroll.component">
+            <field name="name">ИНПС</field>
+            <field name="code">INPS</field>
+            <field name="sequence">160</field>
+            <field name="kind">deduction</field>
+            <field name="computation">tax_pension</field>
+            <field name="is_official" eval="True"/>
+        </record>
+
+        <!-- ИШ БЕРУВЧИ ХАРАЖАТИ — ходим колдигига таъсир килмайди -->
+        <record id="component_soliq_ijtimoiy" model="cst.payroll.component">
+            <field name="name">Ижтимоий солик</field>
+            <field name="code">SOLIQ_IJTIMOIY</field>
+            <field name="sequence">200</field>
+            <field name="kind">employer</field>
+            <field name="computation">tax_social</field>
+            <field name="is_official" eval="True"/>
+            <field name="note">Иш берувчи туловчи солик.  Харажат сифатида
+                бухгалтерияга тушади, лекин ходимнинг колдигини узгартирмайди.</field>
+        </record>
+
+    </data>
+</odoo>

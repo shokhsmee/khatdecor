@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_expense_view_form_cst_project" model="ir.ui.view">
+        <field name="name">hr.expense.form.cst.project.hub</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_distribution']" position="before">
+                <field name="project_id"
+                       domain="[('is_template', '=', False)]"
+                       groups="project.group_project_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menus kept out of sight. The access rights behind them are untouched:
+         Nazoratchi still holds read-only accounting, Buxgalter still posts —
+         these records only decide what the left-hand menu shows.
+
+           * Oylik                        (cst_kerama_payroll.menu_payroll_root)
+           * Buxgalteriya hisobi          (accountant.menu_accounting)
+           * Boshqaruv paneli / Buxgalteriya
+             (cst_kerama_dashboard.menu_kerama_dashboard_accounting — this one
+              carries no group of its own, so without hiding it every internal
+              user can open the accounting dashboard)
+           * Xisobotlar / Moliya          (cst_kerama_reports.menu_reports_finance —
+             the same P&L, balance and cash-flow reached from the reports app)
+           * Xisobotlar / Oylik, Kassa, Rahbar oynasi — payroll sheets, cash
+             movement and the director's cash dashboard, same rule
+
+         Kassir, Buxgalter, Rahbar and Administrator are deliberately absent
+         from both records below, which is what lets them see those menus. -->
+
+    <record id="rm_operational" model="role.management">
+        <field name="name">Oylik va Buxgalteriya yashirilgan</field>
+        <field name="role_ids" eval="[Command.set([
+            ref('role_sales_head'),
+            ref('role_salesperson'),
+            ref('role_hr'),
+            ref('role_chief_warehouse'),
+            ref('role_warehouse'),
+        ])]"/>
+        <field name="menu_ids" eval="[Command.set([
+            ref('cst_kerama_payroll.menu_payroll_root'),
+            ref('accountant.menu_accounting'),
+            ref('cst_kerama_dashboard.menu_kerama_dashboard_accounting'),
+            ref('cst_kerama_reports.menu_reports_finance'),
+            ref('cst_kerama_reports.menu_reports_payroll'),
+            ref('cst_kerama_reports.menu_reports_cash'),
+            ref('cst_kerama_reports.menu_reports_director'),
+        ])]"/>
+    </record>
+
+    <!-- Nazoratchi watches, it does not touch: the same menus are hidden and
+         every form, list and kanban is served without its edit and create
+         buttons. That last part is interface-level only — the read-only
+         accounting group is what actually holds on the server side. -->
+    <record id="rm_controller" model="role.management">
+        <field name="name">Nazorat (faqat ko‘rish)</field>
+        <field name="is_readonly" eval="True"/>
+        <field name="role_ids" eval="[Command.set([ref('role_controller')])]"/>
+        <field name="menu_ids" eval="[Command.set([
+            ref('cst_kerama_payroll.menu_payroll_root'),
+            ref('accountant.menu_accounting'),
+            ref('cst_kerama_dashboard.menu_kerama_dashboard_accounting'),
+            ref('cst_kerama_reports.menu_reports_finance'),
+            ref('cst_kerama_reports.menu_reports_payroll'),
+            ref('cst_kerama_reports.menu_reports_cash'),
+            ref('cst_kerama_reports.menu_reports_director'),
+        ])]"/>
+    </record>
+
+    <!-- Ishlab chiqarish menejeri keeps every group of the role but sees
+         only its own apps: Mahsulotlar, Inventarizatsiya, Ishlab chiqarish,
+         Smena boshqaruvi and, inside Xisobotlar, the Ombor and Ishlab
+         chiqarish sections. Everything else is hidden from the menu. -->
+    <record id="rm_production" model="role.management">
+        <field name="name">Ishlab chiqarish — faqat o'z ilovalari</field>
+        <field name="role_ids" eval="[Command.set([ref('role_production_manager')])]"/>
+        <field name="cst_shown_menu_ids" eval="[Command.set([
+            ref('muk_product.menu_main'),
+            ref('stock.menu_stock_root'),
+            ref('mrp.menu_mrp_root'),
+            ref('cst_kerama_shift.menu_shift_root'),
+            ref('cst_kerama_reports.menu_reports_stock'),
+            ref('cst_kerama_reports.menu_reports_mrp'),
+        ])]"/>
+    </record>
+
+    <!-- The app links a role back to its Role Management record from create(),
+         which does not run on a module upgrade. Setting the pointer here keeps
+         the two sides tied together whether the module is installed or updated
+         — the menu filter reads it from the role, not from the manager. -->
+    <record id="role_sales_head" model="access.role">
+        <field name="role_management_id" ref="rm_operational"/>
+    </record>
+    <record id="role_salesperson" model="access.role">
+        <field name="role_management_id" ref="rm_operational"/>
+    </record>
+    <record id="role_hr" model="access.role">
+        <field name="role_management_id" ref="rm_operational"/>
+    </record>
+    <record id="role_chief_warehouse" model="access.role">
+        <field name="role_management_id" ref="rm_operational"/>
+    </record>
+    <record id="role_production_manager" model="access.role">
+        <field name="role_management_id" ref="rm_production"/>
+    </record>
+    <record id="role_warehouse" model="access.role">
+        <field name="role_management_id" ref="rm_operational"/>
+    </record>
+    <record id="role_controller" model="access.role">
+        <field name="role_management_id" ref="rm_controller"/>
+    </record>
+
+</odoo>

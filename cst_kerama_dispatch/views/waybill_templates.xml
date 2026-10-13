@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 80 mm thermal (Xprinter) -->
+    <template id="waybill_80" name="Jo'natish: yuk xati 80mm">
+        <t t-call="cst_kerama_sale_receipt.receipt_layout">
+            <t t-set="thanks">Yuk qabul qilindi</t>
+            <div class="center bold title">YUK XATI</div>
+            <div class="center bold">№ <t t-esc="dispatch.name"/></div>
+            <div class="center"><t t-esc="date"/></div>
+            <div class="center bold" t-if="draft">(<t t-esc="state_label"/>)</div>
+            <hr class="sep"/>
+            <table class="totals">
+                <tr><td class="bold">Buyurtma</td><td class="right" t-esc="order.name"/></tr>
+                <tr><td class="bold">Xaridor</td><td class="right" t-esc="partner.name"/></tr>
+                <tr t-if="partner_phone"><td class="bold">Tel.</td><td class="right" t-esc="partner_phone"/></tr>
+                <tr t-if="dispatch.warehouse_id"><td class="bold">Ombor</td><td class="right" t-esc="dispatch.warehouse_id.name"/></tr>
+                <tr t-if="dispatch.car_model"><td class="bold">Mashina</td><td class="right" t-esc="dispatch.car_model"/></tr>
+                <tr t-if="dispatch.car_number"><td class="bold">Raqami</td><td class="right bold" style="white-space:nowrap" t-esc="dispatch.car_number"/></tr>
+                <tr t-if="dispatch.driver"><td class="bold">Haydovchi</td><td class="right" t-esc="dispatch.driver"/></tr>
+                <tr t-if="dispatch.driver_phone"><td class="bold">Haydovchi tel.</td><td class="right" t-esc="dispatch.driver_phone"/></tr>
+            </table>
+            <hr class="sep"/>
+            <table>
+                <t t-foreach="rows" t-as="row">
+                    <tr>
+                        <td class="num-col bold" t-esc="row['no']"/>
+                        <td class="bold"><t t-esc="row['name']"/><t t-if="row['extra']"> *</t>
+                            <div t-if="row['char']" class="muted">Xarakteristika: <t t-esc="row['char']"/></div></td>
+                    </tr>
+                    <tr>
+                        <td/>
+                        <td class="calc">
+                            <span class="big bold"><t t-esc="row['qty']"/> <t t-esc="row['uom']"/></span>
+                            × <t t-esc="row['price']"/> = <span class="bold" t-esc="row['subtotal']"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+            <hr class="sep"/>
+            <table class="totals">
+                <tr><td class="bold">Mahsulotlar</td><td class="right" t-esc="len(rows)"/></tr>
+                <tr><td class="bold">Jami soni</td><td class="right" t-esc="total_qty"/></tr>
+                <tr class="bold big"><td>Jami summa</td><td class="right"><t t-esc="total_sum"/> <t t-esc="currency_label"/></td></tr>
+            </table>
+            <div class="small" t-if="any(r['extra'] for r in rows)">* qo'shimcha mahsulot</div>
+            <hr class="sep"/>
+            <div>Topshirdi: <t t-esc="dispatch.prepared_by_id.name or ''"/></div>
+            <div class="foot">Imzo: ________________</div>
+            <div class="foot">Tekshirdi (eshik): <t t-esc="dispatch.checked_by_id.name or ''"/></div>
+            <div class="foot">Imzo: ________________</div>
+            <div class="foot">Qabul qildi: ____________</div>
+            <div class="foot">Imzo: ________________</div>
+        </t>
+    </template>
+
+    <!-- A4, ordinary printer -->
+    <template id="waybill_a4" name="Jo'natish: yuk xati A4">
+        <html lang="uz">
+            <head>
+                <meta charset="utf-8"/>
+                <title t-esc="receipt_title"/>
+                <style>
+                    @page { size: A4 portrait; margin: 12mm; }
+                    * { box-sizing: border-box; }
+                    body { font-family: Arial, "Liberation Sans", sans-serif; font-size: 12px; color: #000; margin: 0; background: #f0f0f0; }
+                    .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 12mm; background: #fff; }
+                    .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10mm; }
+                    .head img { max-height: 18mm; max-width: 60mm; }
+                    .company { text-align: right; }
+                    h1 { text-align: center; font-size: 20px; margin: 8mm 0 1mm; letter-spacing: 2px; }
+                    .sub { text-align: center; margin-bottom: 6mm; }
+                    .info { width: 100%; border-collapse: collapse; margin-bottom: 5mm; }
+                    .info td { padding: 2px 4px; vertical-align: top; }
+                    .info td.k { width: 30mm; font-weight: bold; }
+                    table.lines { width: 100%; border-collapse: collapse; }
+                    table.lines th, table.lines td { border: 1px solid #000; padding: 4px 5px; }
+                    table.lines th { background: #eee; }
+                    .r { text-align: right; white-space: nowrap; }
+                    .c { text-align: center; }
+                    .muted { color: #444; font-size: 11px; }
+                    tfoot td { font-weight: bold; }
+                    .sign { width: 100%; margin-top: 14mm; border-collapse: collapse; }
+                    .sign td { width: 33%; padding: 0 4mm; vertical-align: top; }
+                    .line { border-bottom: 1px solid #000; height: 10mm; }
+                    .draft { text-align: center; color: #b00; font-weight: bold; }
+                    @media print { body { background: #fff; } .page { width: auto; min-height: 0; margin: 0; padding: 0; } }
+                </style>
+            </head>
+            <body onload="window.print()">
+                <div class="page">
+                    <div class="head">
+                        <div><img t-if="logo" t-att-src="logo" alt="logo"/></div>
+                        <div class="company">
+                            <div style="font-weight:bold;font-size:14px" t-esc="company.name"/>
+                            <div t-if="company.partner_id.contact_address" t-esc="company.partner_id.contact_address"/>
+                            <div t-if="company.vat">STIR: <t t-esc="company.vat"/></div>
+                            <div t-if="company.phone">Tel.: <t t-esc="company.phone"/></div>
+                        </div>
+                    </div>
+                    <h1>YUK XATI</h1>
+                    <div class="sub">№ <b t-esc="dispatch.name"/> · <t t-esc="date"/></div>
+                    <div class="draft" t-if="draft">Holat: <t t-esc="state_label"/> (hali eshikdan chiqmagan)</div>
+                    <table class="info">
+                        <tr>
+                            <td class="k">Xaridor</td><td><t t-esc="partner.name"/><div class="muted" t-if="partner_address" t-esc="partner_address"/></td>
+                            <td class="k">Buyurtma</td><td t-esc="order.name"/>
+                        </tr>
+                        <tr>
+                            <td class="k">Telefon</td><td t-esc="partner_phone"/>
+                            <td class="k">Ombor</td><td t-esc="dispatch.warehouse_id.name or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="k">Mashina</td><td><t t-esc="dispatch.car_model or ''"/> <b style="white-space:nowrap" t-esc="dispatch.car_number or ''"/></td>
+                            <td class="k">Haydovchi</td><td><t t-esc="dispatch.driver or ''"/> <t t-if="dispatch.driver_phone">(<t t-esc="dispatch.driver_phone"/>)</t></td>
+                        </tr>
+                    </table>
+                    <table class="lines">
+                        <thead>
+                            <tr>
+                                <th class="c">№</th><th>Mahsulot</th><th>Xarakteristika</th><th>Shtrix-kod</th>
+                                <th class="r">Soni</th><th>O'lch.</th><th class="r">Narx</th><th class="r">Summa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="row">
+                                <td class="c" t-esc="row['no']"/>
+                                <td><t t-esc="row['name']"/><t t-if="row['extra']"> <i>(qo'shimcha)</i></t></td>
+                                <td t-esc="row['char']"/>
+                                <td class="muted" t-esc="row['barcode']"/>
+                                <td class="r"><b t-esc="row['qty']"/></td>
+                                <td t-esc="row['uom']"/>
+                                <td class="r" t-esc="row['price']"/>
+                                <td class="r" t-esc="row['subtotal']"/>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">Jami: <t t-esc="len(rows)"/> ta mahsulot</td>
+                                <td class="r" t-esc="total_qty"/>
+                                <td/><td/>
+                                <td class="r"><t t-esc="total_sum"/> <t t-esc="currency_label"/></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="muted" t-if="dispatch.note" style="margin-top:4mm">Izoh: <t t-esc="dispatch.note"/></div>
+                    <table class="sign">
+                        <tr>
+                            <td>Topshirdi (ombor)<div class="line"/><div class="muted" t-esc="dispatch.prepared_by_id.name or ''"/></td>
+                            <td>Tekshirdi (eshik)<div class="line"/><div class="muted" t-esc="dispatch.checked_by_id.name or ''"/></td>
+                            <td>Qabul qildi (mijoz / haydovchi)<div class="line"/><div class="muted" t-esc="dispatch.driver or ''"/></td>
+                        </tr>
+                    </table>
+                    <div class="muted" style="margin-top:8mm">Chop etildi: <t t-esc="printed_at"/></div>
+                </div>
+            </body>
+        </html>
+    </template>
+</odoo>

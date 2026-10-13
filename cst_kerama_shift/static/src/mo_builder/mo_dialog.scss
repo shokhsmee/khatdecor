@@ -1,0 +1,69 @@
+// The shared «Yangi buyurtma» dialog (Shop Floor and Project Hub).
+// No min()/max()/clamp() with mixed units: libsass cannot compile them.
+
+.o_cst_mo_dialog {
+    .o_cst_mo_plist {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    .o_cst_mo_pitem {
+        text-align: left;
+        width: 100%;
+    }
+    .o_cst_mo_qty {
+        width: 9rem;
+        font-weight: 700;
+    }
+    .o_cst_mo_mqty {
+        width: 6.5rem;
+        text-align: right;
+    }
+    .o_cst_mo_check {
+        width: 2.5rem;
+    }
+    .o_cst_mo_ops select {
+        min-width: 10rem;
+    }
+    .o_cst_mo_extra {
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        max-height: 16rem;
+        overflow-y: auto;
+    }
+    .o_cst_mo_picked {
+        border: 2px solid #017e84;
+        background: rgba(1, 126, 132, 0.06);
+        border-radius: 6px;
+        padding: 6px 10px;
+    }
+    .o_cst_mo_picked_label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #017e84;
+        font-weight: 700;
+    }
+    .o_cst_mo_picked--none {
+        border-style: dashed;
+        border-color: #c9ccd1;
+        background: transparent;
+        color: #6c757d;
+    }
+    .o_cst_mo_plan {
+        border: 1px solid #e0e2e6;
+        border-radius: 6px;
+        padding: 8px 10px;
+        background: #f8f9fa;
+    }
+    .o_cst_mo_planchip {
+        border: 1px solid #c9ccd1;
+        background: #fff;
+
+        &.active {
+            border-color: #017e84;
+            box-shadow: 0 0 0 2px rgba(1, 126, 132, 0.15);
+        }
+    }
+}

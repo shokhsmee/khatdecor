@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_production_shift" model="ir.sequence">
+            <field name="name">Smena</field>
+            <field name="code">cst.production.shift</field>
+            <field name="prefix">SM/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- configurable shift slots; the shop changes the hours here -->
+        <record id="shift_template_1" model="cst.production.shift.template">
+            <field name="name">1-smena</field>
+            <field name="sequence">1</field>
+            <field name="hour_from">6</field>
+            <field name="hour_to">14</field>
+            <field name="color">4</field>
+        </record>
+        <record id="shift_template_2" model="cst.production.shift.template">
+            <field name="name">2-smena</field>
+            <field name="sequence">2</field>
+            <field name="hour_from">14</field>
+            <field name="hour_to">22</field>
+            <field name="color">2</field>
+        </record>
+        <record id="shift_template_3" model="cst.production.shift.template">
+            <field name="name">3-smena</field>
+            <field name="sequence">3</field>
+            <field name="hour_from">22</field>
+            <field name="hour_to">6</field>
+            <field name="color">9</field>
+        </record>
+
+        <!-- why a piece was scrapped, by department, plus the regrade reason -->
+        <record id="scrap_reason_bosma" model="stock.scrap.reason.tag">
+            <field name="name">Bosma nuqsoni</field>
+            <field name="sequence">10</field>
+            <field name="color">#d9534f</field>
+        </record>
+        <record id="scrap_reason_kesish" model="stock.scrap.reason.tag">
+            <field name="name">Kesish nuqsoni</field>
+            <field name="sequence">20</field>
+            <field name="color">#f0ad4e</field>
+        </record>
+        <record id="scrap_reason_press" model="stock.scrap.reason.tag">
+            <field name="name">Press nuqsoni</field>
+            <field name="sequence">30</field>
+            <field name="color">#b3362b</field>
+        </record>
+        <record id="scrap_reason_second_grade" model="stock.scrap.reason.tag">
+            <field name="name">2-sort</field>
+            <field name="sequence">40</field>
+            <field name="color">#1f4f8f</field>
+        </record>
+
+        <!-- the three departments of the chain; lines are attached by the install hook -->
+        <record id="department_bosma" model="cst.production.department">
+            <field name="name">Bosma (Printer) bo'limi</field>
+            <field name="code">BOSMA</field>
+            <field name="sequence">1</field>
+            <field name="output_kind">semi</field>
+            <field name="scrap_reason_tag_id" ref="scrap_reason_bosma"/>
+            <field name="color">4</field>
+        </record>
+        <record id="department_kesish" model="cst.production.department">
+            <field name="name">Kesish (menemallash) bo'limi</field>
+            <field name="code">KESISH</field>
+            <field name="sequence">2</field>
+            <field name="output_kind">semi</field>
+            <field name="scrap_reason_tag_id" ref="scrap_reason_kesish"/>
+            <field name="color">2</field>
+        </record>
+        <record id="department_preslash" model="cst.production.department">
+            <field name="name">Preslash bo'limi</field>
+            <field name="code">PRESLASH</field>
+            <field name="sequence">3</field>
+            <field name="output_kind">finished</field>
+            <field name="scrap_reason_tag_id" ref="scrap_reason_press"/>
+            <field name="color">3</field>
+        </record>
+
+        <!-- payroll: the shift fund is its own column, entered by hand at closing -->
+        <record id="component_smena_kpi" model="cst.payroll.component">
+            <field name="name">Smena KPI</field>
+            <field name="code">SMENA_KPI</field>
+            <field name="sequence">25</field>
+            <field name="kind">accrual</field>
+            <field name="computation">manual</field>
+            <field name="note">Smena yopilganda menejer kiritgan KPI fondining xodimga tushgan ulushi.</field>
+        </record>
+    </data>
+</odoo>

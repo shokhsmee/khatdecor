@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Mashinalar ============ -->
+    <record id="view_fuel_machine_list" model="ir.ui.view">
+        <field name="name">cst.fuel.machine.list</field>
+        <field name="model">cst.fuel.machine</field>
+        <field name="arch" type="xml">
+            <list string="Mashinalar">
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="plate"/>
+                <field name="driver_id" optional="show"/>
+                <field name="odometer"/>
+                <field name="worked_hours" widget="float_time" sum="Jami"/>
+                <field name="log_count" string="Yozuvlar"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_fuel_machine_form" model="ir.ui.view">
+        <field name="name">cst.fuel.machine.form</field>
+        <field name="model">cst.fuel.machine</field>
+        <field name="arch" type="xml">
+            <form string="Mashina">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_logs" type="object" class="oe_stat_button"
+                                icon="fa-tint">
+                            <field name="log_count" widget="statinfo" string="Yoqilg'i"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Kara 001"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_name" placeholder="Fura, yuk mashinasi…"/>
+                            <field name="plate" placeholder="40 A 058 TT"/>
+                            <field name="driver_id"/>
+                        </group>
+                        <group>
+                            <field name="odometer"/>
+                            <field name="worked_hours" widget="float_time"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Izoh…"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fuel_machine" model="ir.actions.act_window">
+        <field name="name">Mashinalar</field>
+        <field name="res_model">cst.fuel.machine</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ============ Yoqilg'i kirim / chiqim ============ -->
+    <record id="view_fuel_log_list" model="ir.ui.view">
+        <field name="name">cst.fuel.log.list</field>
+        <field name="model">cst.fuel.log</field>
+        <field name="arch" type="xml">
+            <list string="Yoqilg'i harakati"
+                  decoration-muted="state == 'draft'">
+                <field name="date"/>
+                <field name="kind"/>
+                <field name="product_id"/>
+                <field name="cst_characteristic" optional="show"/>
+                <field name="machine_id"/>
+                <field name="quantity" sum="Jami"/>
+                <field name="uom_id" optional="show"/>
+                <field name="odometer_km" optional="show"/>
+                <field name="worked_hours" widget="float_time" sum="Jami soat" optional="show"/>
+                <field name="partner_id" optional="hide"/>
+                <field name="location_id" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"/>
+                <button name="action_confirm" type="object" string="Tasdiqlash"
+                        icon="fa-check" invisible="state != 'draft'"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_fuel_log_form" model="ir.ui.view">
+        <field name="name">cst.fuel.log.form</field>
+        <field name="model">cst.fuel.log</field>
+        <field name="arch" type="xml">
+            <form string="Yoqilg'i harakati">
+                <header>
+                    <button name="action_confirm" type="object" string="Tasdiqlash"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="kind" widget="radio" options="{'horizontal': True}"/>
+                            <field name="date"/>
+                            <field name="product_id"/>
+                            <field name="cst_characteristic" invisible="not cst_characteristic"/>
+                            <label for="quantity"/>
+                            <div class="o_row">
+                                <field name="quantity" readonly="state == 'done'"/>
+                                <field name="uom_id"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="machine_id" invisible="kind != 'out'"
+                                   required="kind == 'out'"/>
+                            <field name="odometer_km" invisible="kind != 'out'"/>
+                            <field name="worked_hours" widget="float_time"
+                                   invisible="kind != 'out'"/>
+                            <field name="partner_id" invisible="kind != 'in'"/>
+                            <field name="location_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note" placeholder="Izoh…"/>
+                        <field name="stock_move_id" invisible="state != 'done'"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fuel_log_search" model="ir.ui.view">
+        <field name="name">cst.fuel.log.search</field>
+        <field name="model">cst.fuel.log</field>
+        <field name="arch" type="xml">
+            <search string="Yoqilg'i harakati">
+                <field name="machine_id"/>
+                <field name="product_id"/>
+                <field name="cst_characteristic"/>
+                <filter name="kind_in" string="Kirim" domain="[('kind', '=', 'in')]"/>
+                <filter name="kind_out" string="Chiqim" domain="[('kind', '=', 'out')]"/>
+                <separator/>
+                <filter name="draft" string="Qoralama" domain="[('state', '=', 'draft')]"/>
+                <filter name="done" string="Bajarilgan" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="this_month" string="Bu oy"
+                        domain="[('date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                <group>
+                    <filter name="group_machine" string="Mashina"
+                            context="{'group_by': 'machine_id'}"/>
+                    <filter name="group_product" string="Yoqilg'i turi"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="group_kind" string="Turi" context="{'group_by': 'kind'}"/>
+                    <filter name="group_date" string="Sana" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_fuel_log" model="ir.actions.act_window">
+        <field name="name">Yoqilg'i kirim/chiqim</field>
+        <field name="res_model">cst.fuel.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_fuel_log_search"/>
+        <field name="context">{'search_default_done': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Yoqilg'i harakatini kiriting</p>
+            <p>Chiqim mahsulotni hisobdan chiqaradi: mashina, spidometr
+               ko'rsatkichi va ishlagan vaqti bilan birga yoziladi, ombor
+               qoldig'i esa haqiqiy holatda qoladi. Spidometri yo'q texnikada
+               (kara, generator, press) soatni to'ldiring — hisobot sarfni
+               1 soatga nisbatan chiqaradi.</p>
+        </field>
+    </record>
+
+    <!-- The fuel flag lives on the product, so a new fuel type needs no code. -->
+    <record id="view_product_template_form_fuel" model="ir.ui.view">
+        <field name="name">product.template.form.fuel</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']//field[@name='categ_id']"
+                   position="after">
+                <field name="cst_is_fuel"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

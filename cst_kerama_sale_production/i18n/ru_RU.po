@@ -1,0 +1,258 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_sale_production
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-27 12:30+0000\n"
+"PO-Revision-Date: 2026-09-27 12:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "%(mo)s sent to production: %(product)s × %(qty)s."
+msgstr "%(mo)s отправлен в производство: %(product)s × %(qty)s."
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/wizard/send_production.py:0
+msgid "%(product)s has no bill of materials, it cannot be manufactured."
+msgstr "У %(product)s нет спецификации (BoM), его нельзя произвести."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__has_bom
+msgid "Bill of materials"
+msgstr "Спецификация"
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__delivered_qty
+msgid "Delivered"
+msgstr "Доставлено"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/wizard/send_production.py:0
+msgid "Enter the quantity to produce for %(product)s."
+msgstr "Введите количество к производству для %(product)s."
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+msgid ""
+"Everything this order needs is in stock or already in production.\n"
+"                    You can still tick a product to make more."
+msgstr ""
+"Всё, что нужно для заказа, есть на складе или уже в производстве. Можно "
+"отметить товар, чтобы произвести больше."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__production_qty
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__production
+msgid "In production"
+msgstr "В производстве"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__stock_qty
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__ok
+msgid "In stock"
+msgstr "На складе"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Дата изменения"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__no_bom
+msgid "No bill of materials"
+msgstr "Нет спецификации"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Only a confirmed sales order can be sent to production."
+msgstr "В производство можно отправить только подтверждённый заказ."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__order_id
+msgid "Order"
+msgstr "Заказ"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__ordered_qty
+msgid "Ordered"
+msgstr "Заказано"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__product_id
+msgid "Product"
+msgstr "Товар"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Product not found."
+msgstr "Товар не найден."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__line_ids
+msgid "Products"
+msgstr "Товары"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,help:cst_kerama_sale_production.field_cst_sale_production_wizard_line__stock_qty
+msgid "Reserved for this order + free stock in the order's warehouse."
+msgstr "Зарезервировано под этот заказ + свободный остаток на складе заказа."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__sale_line_id
+msgid "Sale Line"
+msgstr "Строка продажи"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model,name:cst_kerama_sale_production.model_sale_order
+msgid "Sales Order"
+msgstr "Заказ"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__selected_count
+msgid "Selected Count"
+msgstr "Выбрано"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__selected
+msgid "Send"
+msgstr "Отправить"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model,name:cst_kerama_sale_production.model_cst_sale_production_wizard
+msgid "Send Sales Order to Production"
+msgstr "Отправка заказа в производство"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model,name:cst_kerama_sale_production.model_cst_sale_production_wizard_line
+msgid "Send to Production: Product Line"
+msgstr "Отправка в производство: строка товара"
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_order_form_cst_send_production
+msgid "Send to production"
+msgstr "Отправить в производство"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Send to production — %(order)s"
+msgstr "Отправить в производство — %(order)s"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Sent to production from %(order)s."
+msgstr "Отправлено в производство из %(order)s."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__short_qty
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__short
+msgid "Short"
+msgstr "Не хватает"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__short_count
+msgid "Short Count"
+msgstr "Не хватает (кол-во)"
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+msgid ""
+"Some products are short. The ticked ones are sent to production: for each of them the\n"
+"                    «Yangi buyurtma» dialog opens, where you check the materials, operations and lines."
+msgstr ""
+"Некоторых товаров не хватает. Отмеченные отправляются в производство: для "
+"каждого открывается окно «Yangi buyurtma», где проверяются материалы, "
+"операции и линии."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__status
+msgid "Status"
+msgstr "Статус"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,help:cst_kerama_sale_production.field_cst_sale_production_wizard_line__production_qty
+msgid "Still to be made on manufacturing orders already sent for this line."
+msgstr ""
+"Ещё предстоит произвести по уже отправленным заказам на производство для "
+"этой строки."
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/wizard/send_production.py:0
+msgid "Tick at least one product to send to production."
+msgstr "Отметьте хотя бы один товар для отправки в производство."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__qty_to_produce
+msgid "To produce"
+msgstr "Произвести"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__uom_id
+msgid "Unit"
+msgstr "Ед. изм."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__warehouse_id
+msgid "Warehouse"
+msgstr "Склад"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Мастер"

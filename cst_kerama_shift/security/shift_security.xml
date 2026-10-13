@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Odoo 19: groups hang off res.groups.privilege, not ir.module.category. -->
+    <record id="privilege_shift" model="res.groups.privilege">
+        <field name="name">Smena boshqaruvi</field>
+        <field name="category_id" ref="base.module_category_manufacturing"/>
+        <field name="description">Kim smena ochadi, yopadi va bo'limlarni sozlaydi.</field>
+        <field name="sequence">45</field>
+    </record>
+
+    <record id="group_shift_manager" model="res.groups">
+        <field name="name">Bo'lim menejeri</field>
+        <field name="privilege_id" ref="privilege_shift"/>
+        <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_user')), (4, ref('stock.group_stock_user'))]"/>
+        <field name="comment">O'z bo'limida smena ochadi va yopadi, buyurtmalarni liniyaga qo'yadi, natija kiritadi.</field>
+    </record>
+
+    <record id="group_shift_admin" model="res.groups">
+        <field name="name">Ishlab chiqarish rahbari</field>
+        <field name="privilege_id" ref="privilege_shift"/>
+        <field name="implied_ids" eval="[(4, ref('group_shift_manager')), (4, ref('mrp.group_mrp_manager'))]"/>
+        <field name="comment">Hamma bo'limni ko'radi, bo'lim va smena vaqtlarini sozlaydi, yopilgan smenani qayta ochadi.</field>
+    </record>
+
+    <record id="group_shift_admin" model="res.groups">
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <data noupdate="1">
+        <record id="rule_shift_manager" model="ir.rule">
+            <field name="name">Smena: menejer o'z bo'limini ko'radi</field>
+            <field name="model_id" ref="model_cst_production_shift"/>
+            <field name="groups" eval="[(4, ref('group_shift_manager'))]"/>
+            <field name="domain_force">['|', ('manager_id', '=', user.id), ('department_id.manager_user_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_shift_admin" model="ir.rule">
+            <field name="name">Smena: rahbar hammasini ko'radi</field>
+            <field name="model_id" ref="model_cst_production_shift"/>
+            <field name="groups" eval="[(4, ref('group_shift_admin'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        <record id="rule_shift_line_manager" model="ir.rule">
+            <field name="name">Smena buyurtmasi: menejer o'z bo'limi</field>
+            <field name="model_id" ref="model_cst_production_shift_line"/>
+            <field name="groups" eval="[(4, ref('group_shift_manager'))]"/>
+            <field name="domain_force">['|', ('shift_id.manager_id', '=', user.id), ('department_id.manager_user_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_shift_line_admin" model="ir.rule">
+            <field name="name">Smena buyurtmasi: rahbar</field>
+            <field name="model_id" ref="model_cst_production_shift_line"/>
+            <field name="groups" eval="[(4, ref('group_shift_admin'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        <record id="rule_shift_entry_manager" model="ir.rule">
+            <field name="name">Smena natijasi: menejer o'z bo'limi</field>
+            <field name="model_id" ref="model_cst_production_shift_entry"/>
+            <field name="groups" eval="[(4, ref('group_shift_manager'))]"/>
+            <field name="domain_force">['|', ('shift_id.manager_id', '=', user.id), ('department_id.manager_user_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_shift_entry_admin" model="ir.rule">
+            <field name="name">Smena natijasi: rahbar</field>
+            <field name="model_id" ref="model_cst_production_shift_entry"/>
+            <field name="groups" eval="[(4, ref('group_shift_admin'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+    </data>
+</odoo>

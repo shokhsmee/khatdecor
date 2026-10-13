@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="cst_kerama_wh_control.LineExtrasField">
+        <div class="cst_extras w-100">
+
+            <!-- photos -->
+            <div class="cst_extras__label">Photos</div>
+            <div t-if="state.photos.length" class="cst_extras__gallery">
+                <a t-foreach="state.photos" t-as="photo" t-key="photo.id"
+                   t-att-href="fullUrl(photo)" target="_blank" class="cst_extras__thumb">
+                    <img t-att-src="thumbUrl(photo)" t-att-alt="photo.name"/>
+                </a>
+            </div>
+            <button type="button" class="cst_extras__drop w-100"
+                    t-att-disabled="!resId or state.busy"
+                    t-on-click.stop.prevent="pickPhoto">
+                <span class="fa fa-camera fa-2x"/>
+                <span class="cst_extras__drop-text">Add a photo</span>
+            </button>
+
+            <!-- comment: saves itself -->
+            <div class="cst_extras__label mt-3">
+                Comment
+                <span t-if="state.saved === 'saving'" class="cst_extras__saved">
+                    <span class="fa fa-circle-o-notch fa-spin me-1"/>Saving…
+                </span>
+                <span t-elif="state.saved === 'saved'" class="cst_extras__saved is-ok">
+                    <span class="fa fa-check me-1"/>Saved
+                </span>
+            </div>
+            <textarea class="form-control cst_extras__input w-100" rows="3"
+                      placeholder="Add explanation…"
+                      t-att-disabled="!resId"
+                      t-att-value="state.note"
+                      t-on-input="onNoteInput"
+                      t-on-blur="onNoteBlur"/>
+
+            <div t-if="state.comments.length" class="cst_extras__comments mt-2">
+                <div t-foreach="state.comments" t-as="comment" t-key="comment.id"
+                     class="cst_extras__comment">
+                    <div class="cst_extras__comment-head">
+                        <span class="fa fa-user-circle-o me-1"/>
+                        <t t-esc="comment.user"/>
+                        <span class="cst_extras__comment-date" t-esc="comment.date"/>
+                    </div>
+                    <div class="cst_extras__comment-body" t-esc="comment.body"/>
+                </div>
+            </div>
+
+            <div t-if="!resId" class="text-muted small mt-1">
+                Save the line first to add photos or comments.
+            </div>
+        </div>
+    </t>
+
+</templates>

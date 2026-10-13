@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shift_list" model="ir.ui.view">
+        <field name="name">cst.production.shift.list</field>
+        <field name="model">cst.production.shift</field>
+        <field name="arch" type="xml">
+            <list string="Smenalar" decoration-success="state == 'open'" decoration-muted="state in ('cancel',)">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="template_id"/>
+                <field name="manager_id" widget="many2one_avatar_user"/>
+                <field name="employee_count" string="Xodim"/>
+                <field name="qty_planned" sum="Jami"/>
+                <field name="qty_good" sum="Jami"/>
+                <field name="qty_second" sum="Jami"/>
+                <field name="qty_scrap" sum="Jami"/>
+                <field name="kpi_total" sum="Jami" widget="monetary"/>
+                <field name="penalty_total" sum="Jami" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge" decoration-success="state == 'open'" decoration-info="state == 'closed'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_shift_form" model="ir.ui.view">
+        <field name="name">cst.production.shift.form</field>
+        <field name="model">cst.production.shift</field>
+        <field name="arch" type="xml">
+            <form string="Smena">
+                <header>
+                    <button name="action_open" type="object" string="Smenani ochish" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_close" type="object" string="Smenani yakunlash" class="btn-primary" invisible="state != 'open'"/>
+                    <button name="action_refresh_attendance" type="object" string="Face ID'dan yangilash" invisible="state not in ('draft', 'open')"/>
+                    <button name="action_reopen" type="object" string="Qayta ochish" invisible="state != 'closed'" groups="cst_kerama_shift.group_shift_admin"/>
+                    <button name="action_cancel" type="object" string="Bekor qilish" invisible="state not in ('draft', 'open')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_payroll_lines" icon="fa-money" invisible="payroll_line_count == 0">
+                            <field name="payroll_line_count" widget="statinfo" string="Oylik qatorlari"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="department_id" readonly="state != 'draft'" options="{'no_create': True}"/>
+                            <field name="template_id" readonly="state != 'draft'" options="{'no_create': True}"/>
+                            <field name="allowed_template_ids" invisible="1"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="manager_id" readonly="state not in ('draft', 'open')" widget="many2one_avatar_user"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="closed_at" invisible="not closed_at"/>
+                            <field name="closed_by" invisible="not closed_by" widget="many2one_avatar_user"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Xodimlar" name="employees">
+                            <field name="employee_ids" widget="many2many_tags" readonly="state not in ('draft', 'open')" options="{'no_create': True}"/>
+                            <label for="attendance_employee_ids" string="Face ID bo'yicha kelganlar"/>
+                            <field name="attendance_employee_ids" widget="many2many_tags" readonly="1"/>
+                        </page>
+                        <page string="Buyurtmalar" name="lines">
+                            <field name="line_ids" readonly="state not in ('open',)">
+                                <list editable="bottom" decoration-success="state == 'done'" decoration-info="state == 'progress'" decoration-warning="state == 'paused'" decoration-muted="state == 'carried'">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="department_id" column_invisible="1"/>
+                                    <field name="company_id" column_invisible="1"/>
+                                    <field name="production_id" options="{'no_create': True}"/>
+                                    <field name="workorder_id" options="{'no_create': True}"/>
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="cst_characteristic" optional="show"/>
+                                    <field name="workcenter_id" options="{'no_create': True}"/>
+                                    <field name="sale_origin" optional="show"/>
+                                    <field name="order_qty" optional="hide"/>
+                                    <field name="planned_qty"/>
+                                    <field name="qty_good"/>
+                                    <field name="qty_second"/>
+                                    <field name="qty_scrap"/>
+                                    <field name="progress_pct" widget="progressbar"/>
+                                    <field name="is_final_operation" optional="show"/>
+                                    <field name="employee_ids" widget="many2many_tags" optional="hide"/>
+                                    <field name="backorder_production_id" optional="hide"/>
+                                    <field name="state" widget="badge"/>
+                                    <button name="action_start" type="object" icon="fa-play" title="Ishni boshlash" invisible="state not in ('todo', 'paused')"/>
+                                    <button name="action_pause" type="object" icon="fa-pause" title="To'xtatish" invisible="state != 'progress'"/>
+                                    <button name="action_finish" type="object" icon="fa-check" title="Tugatish" invisible="state not in ('progress', 'paused')"/>
+                                    <button name="action_carry" type="object" icon="fa-forward" title="Keyingi smenaga" invisible="state not in ('progress', 'paused')"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Natijalar" name="entries">
+                            <field name="entry_ids" readonly="state != 'open'" context="{'default_shift_id': id}">
+                                <list editable="bottom" decoration-muted="posted">
+                                    <field name="datetime"/>
+                                    <field name="line_id" domain="[('shift_id', '=', parent.id)]" options="{'no_create': True}"/>
+                                    <field name="product_id"/>
+                                    <field name="workcenter_id"/>
+                                    <field name="qty_good"/>
+                                    <field name="qty_second"/>
+                                    <field name="second_product_id" optional="show" options="{'no_create': True}"/>
+                                    <field name="qty_scrap"/>
+                                    <field name="material_product_id" optional="show" options="{'no_create': True}"/>
+                                    <field name="qty_material" optional="show"/>
+                                    <field name="note"/>
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                    <field name="posted"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Yakun" name="totals">
+                            <group>
+                                <group string="Miqdorlar">
+                                    <field name="qty_planned"/>
+                                    <field name="qty_good"/>
+                                    <field name="qty_second"/>
+                                    <field name="qty_scrap"/>
+                                    <field name="plan_pct" widget="progressbar"/>
+                                </group>
+                                <group string="KPI">
+                                    <field name="kpi_total" readonly="1"/>
+                                    <field name="employee_count"/>
+                                    <field name="kpi_per_employee"/>
+                                    <field name="penalty_total" readonly="1"/>
+                                </group>
+                            </group>
+                            <field name="note" placeholder="Izoh..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shift_search" model="ir.ui.view">
+        <field name="name">cst.production.shift.search</field>
+        <field name="model">cst.production.shift</field>
+        <field name="arch" type="xml">
+            <search string="Smenalar">
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="manager_id"/>
+                <field name="employee_ids"/>
+                <filter name="open" string="Ochiq" domain="[('state', '=', 'open')]"/>
+                <filter name="closed" string="Yopilgan" domain="[('state', '=', 'closed')]"/>
+                <separator/>
+                <filter name="today" string="Bugun" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="this_month" string="Shu oy" domain="[('date', '>=', context_today().strftime('%Y-%m-01'))]"/>
+                <group>
+                    <filter name="group_department" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_template" string="Smena" context="{'group_by': 'template_id'}"/>
+                    <filter name="group_date" string="Sana" context="{'group_by': 'date:day'}"/>
+                    <filter name="group_manager" string="Menejer" context="{'group_by': 'manager_id'}"/>
+                    <filter name="group_state" string="Holat" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_shifts" model="ir.actions.act_window">
+        <field name="name">Smenalar</field>
+        <field name="res_model">cst.production.shift</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_shift_search"/>
+        <field name="context">{"search_default_this_month": 1, "search_default_group_department": 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Smena yo'q</p>
+            <p>Menejer bo'lim oynasidan smenani ochadi; bu ro'yxat hamma smenaning registri.</p>
+        </field>
+    </record>
+
+    <!-- shift result register: every entry, for the reports -->
+    <record id="view_shift_entry_list" model="ir.ui.view">
+        <field name="name">cst.production.shift.entry.list</field>
+        <field name="model">cst.production.shift.entry</field>
+        <field name="arch" type="xml">
+            <list string="Smena natijalari" create="false">
+                <field name="datetime"/>
+                <field name="shift_id"/>
+                <field name="department_id"/>
+                <field name="workcenter_id"/>
+                <field name="product_id"/>
+                <field name="qty_good" sum="Jami"/>
+                <field name="qty_second" sum="Jami"/>
+                <field name="qty_scrap" sum="Jami"/>
+                <field name="second_product_id" optional="show"/>
+                <field name="material_product_id" optional="show"/>
+                <field name="qty_material" optional="show"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="posted"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_shift_entry_pivot" model="ir.ui.view">
+        <field name="name">cst.production.shift.entry.pivot</field>
+        <field name="model">cst.production.shift.entry</field>
+        <field name="arch" type="xml">
+            <pivot string="Smena natijalari">
+                <field name="department_id" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="datetime" interval="day" type="col"/>
+                <field name="qty_good" type="measure"/>
+                <field name="qty_second" type="measure"/>
+                <field name="qty_scrap" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="action_shift_entries" model="ir.actions.act_window">
+        <field name="name">Smena natijalari</field>
+        <field name="res_model">cst.production.shift.entry</field>
+        <field name="view_mode">list,pivot</field>
+    </record>
+</odoo>

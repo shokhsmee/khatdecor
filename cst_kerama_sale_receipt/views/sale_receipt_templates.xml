@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Shared 80 mm receipt page: logo + company header, the caller's body,
+         then the address footer. Callers set company, logo, receipt_title and
+         optionally thanks (the closing line). -->
+    <template id="receipt_layout" name="Khatdecor Receipt Layout">
+        <html lang="uz">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title t-esc="receipt_title"/>
+                <style>
+                    @page { size: 80mm auto; margin: 0; }
+                    * { box-sizing: border-box; }
+                    html, body {
+                        margin: 0;
+                        padding: 0;
+                        background: #f0f0f0;
+                    }
+                    .receipt {
+                        width: 80mm;
+                        margin: 0 auto;
+                        padding: 4mm 4mm 8mm 4mm;
+                        background: #fff;
+                        color: #000;
+                        font-family: "Courier New", "Liberation Mono", monospace;
+                        font-size: 12px;
+                        line-height: 1.35;
+                    }
+                    .center { text-align: center; }
+                    .right { text-align: right; }
+                    .bold { font-weight: bold; }
+                    .big { font-size: 15px; }
+                    .muted { color: #333; }
+                    .sep {
+                        border: none;
+                        border-top: 1px dashed #000;
+                        margin: 6px 0;
+                    }
+                    table { width: 100%; border-collapse: collapse; }
+                    td { vertical-align: top; padding: 1px 0; }
+                    .num-col { width: 6mm; }
+                    .calc {
+                        white-space: nowrap;
+                        text-align: right;
+                        padding-bottom: 3px;
+                    }
+                    .totals td { padding: 1px 0; }
+                    .foot { margin-top: 8px; }
+                    .logo { text-align: center; margin-bottom: 4px; }
+                    .logo img { max-width: 56mm; max-height: 24mm; }
+                    .title { font-size: 14px; letter-spacing: 1px; }
+                    .huge { font-size: 20px; }
+                    .small { font-size: 10px; }
+                    @media print {
+                        html, body { background: #fff; }
+                        .receipt { width: auto; margin: 0; padding: 0 2mm; }
+                    }
+                </style>
+            </head>
+            <body onload="window.print()">
+                <div class="receipt">
+                    <div class="logo" t-if="logo"><img t-att-src="logo" alt="logo"/></div>
+                    <div class="center bold big" t-esc="company.name"/>
+                    <div class="center muted" t-if="company.partner_id.contact_address"
+                         t-esc="company.partner_id.contact_address"/>
+                    <div class="center muted" t-if="company.vat">
+                        STIR: <t t-esc="company.vat"/>
+                    </div>
+
+                    <hr class="sep"/>
+
+                    <t t-out="0"/>
+
+                    <hr class="sep"/>
+
+                    <div class="foot center bold" t-if="thanks" t-esc="thanks"/>
+                    <div class="center muted" t-if="company.partner_id.contact_address">
+                        Manzil: <t t-esc="company.partner_id.contact_address"/>
+                    </div>
+                    <div class="center muted" t-if="company.phone">
+                        Tel.: <t t-esc="company.phone"/>
+                    </div>
+                    <div class="center muted foot">Odoo tomonidan ishlab chiqildi</div>
+                </div>
+            </body>
+        </html>
+    </template>
+
+    <template id="sale_receipt_document" name="Khatdecor Sale Receipt">
+        <t t-call="cst_kerama_sale_receipt.receipt_layout">
+            <t t-set="thanks">Xaridingizdan mamnunmiz!</t>
+            <div class="center bold">
+                №: <t t-esc="order.name"/> - <t t-esc="order_date"/>
+            </div>
+
+            <hr class="sep"/>
+
+            <table>
+                <t t-foreach="receipt_lines" t-as="line">
+                    <tr>
+                        <td class="num-col bold" t-esc="line['no']"/>
+                        <td class="bold">
+                            <t t-esc="line['name']"/>
+                            <div t-if="line.get('char')" class="muted">Xarakteristika: <t t-esc="line['char']"/></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td/>
+                        <td class="calc">
+                            <t t-esc="line['qty']"/> x <t t-esc="line['price']"/> =
+                            <span class="bold" t-esc="line['subtotal']"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+
+            <hr class="sep"/>
+
+            <table class="totals">
+                <tr>
+                    <td class="bold">Jami soni</td>
+                    <td class="right" t-esc="total_qty"/>
+                </tr>
+                <tr t-if="order.amount_tax">
+                    <td class="bold">Soliq</td>
+                    <td class="right" t-esc="amount_tax"/>
+                </tr>
+                <tr class="bold big">
+                    <td>Jami summa</td>
+                    <td class="right" t-esc="amount_total"/>
+                </tr>
+                <tr t-if="amount_due is not None">
+                    <td class="bold">Farqi</td>
+                    <td class="right" t-esc="amount_due"/>
+                </tr>
+                <tr>
+                    <td class="bold">Valyuta</td>
+                    <td class="right" t-esc="currency_label"/>
+                </tr>
+                <tr t-if="order.user_id">
+                    <td class="bold">Sotuvchi</td>
+                    <td class="right" t-esc="order.user_id.name"/>
+                </tr>
+                <tr t-if="order.partner_id">
+                    <td class="bold">Xaridor</td>
+                    <td class="right" t-esc="order.partner_id.name"/>
+                </tr>
+            </table>
+        </t>
+    </template>
+
+</odoo>

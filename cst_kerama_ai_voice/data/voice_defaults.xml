@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Seeded rather than left to the settings form: the prompt is what
+             tells the model to expect Uzbek, and until someone opens Settings
+             and presses Save it would otherwise be empty. -->
+
+        <record id="param_voice_model" model="ir.config_parameter">
+            <field name="key">cst_kerama_ai_voice.model</field>
+            <field name="value">gpt-4o-transcribe</field>
+        </record>
+
+        <record id="param_voice_prompt" model="ir.config_parameter">
+            <field name="key">cst_kerama_ai_voice.prompt</field>
+            <field name="value">Nutq o'zbek, rus yoki ingliz tilida bo'lishi mumkin. Odoo ERP, savdo, ombor, ish haqi va buxgalteriya atamalari uchraydi.</field>
+        </record>
+
+    </data>
+</odoo>

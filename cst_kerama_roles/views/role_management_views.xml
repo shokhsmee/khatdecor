@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="role_management_view_form_shown_menus" model="ir.ui.view">
+        <field name="name">role.management.form.cst.shown.menus</field>
+        <field name="model">role.management</field>
+        <field name="inherit_id" ref="access_roles.role_management_view_form"/>
+        <field name="arch" type="xml">
+            <page name="hide_menu" position="before">
+                <page name="cst_shown_menus" string="Faqat shu menyular ko'rinsin">
+                    <field name="cst_shown_menu_ids" options="{'no_create': True}"/>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

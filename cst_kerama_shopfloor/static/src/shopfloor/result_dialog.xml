@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_shopfloor.ResultDialog">
+        <Dialog size="'md'" title="props.title" contentClass="'o_cst_sf_result_dialog'">
+            <div class="text-muted mb-3">
+                <span t-if="props.productName" t-esc="props.productName"/>
+                <span t-if="remainingLabel"> · qoldi: <b t-esc="remainingLabel"/></span>
+            </div>
+            <div class="row g-2">
+                <div class="col-4">
+                    <label class="form-label fw-bold text-success">1-sort</label>
+                    <input type="number" min="0" step="1" class="form-control form-control-lg text-center"
+                           t-att-value="state.good" t-on-input="(ev) => this.set('good', ev)"/>
+                </div>
+                <div class="col-4">
+                    <label class="form-label fw-bold o_cst_sf_second_txt">2-sort</label>
+                    <input type="number" min="0" step="1" class="form-control form-control-lg text-center"
+                           t-att-value="state.second" t-on-input="(ev) => this.set('second', ev)"/>
+                </div>
+                <div class="col-4">
+                    <label class="form-label fw-bold text-danger">Brak</label>
+                    <input type="number" min="0" step="1" class="form-control form-control-lg text-center"
+                           t-att-value="state.scrap" t-on-input="(ev) => this.set('scrap', ev)"/>
+                </div>
+            </div>
+            <input type="text" class="form-control mt-3" placeholder="Izoh (ixtiyoriy)"
+                   t-att-value="state.note" t-on-input="(ev) => this.set('note', ev)"/>
+            <div class="small text-muted mt-2">
+                Natija bo'lim smenasining yozuviga tushadi. Buyurtma yopilganda 2-sort egizak mahsulotga,
+                brak scrap'ga o'tadi; yozilmagan qoldiq 1-sort hisoblanadi.
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg" t-att-disabled="!canConfirm" t-on-click="confirm">
+                    <i class="fa fa-check me-1"/>Saqlash
+                </button>
+                <button class="btn btn-secondary btn-lg" t-on-click="props.close">Bekor</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

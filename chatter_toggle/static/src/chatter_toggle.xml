@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!--
+        Injects a compact close button at the top of the chatter panel.
+        CSS order:-9999 floats it above every sibling in the flex column.
+        A matching open button is injected onto <body> via JS so it stays
+        accessible after the chatter panel is fully hidden.
+    -->
+    <t t-inherit="mail.Thread" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o-mail-Thread')]" position="inside">
+            <button class="o_chatter_close_btn"
+                    t-on-click="() => this.toggleChatter()"
+                    type="button"
+                    title="Hide Chatter"
+                    aria-label="Hide Chatter">
+                <i class="fa fa-chevron-right" aria-hidden="true"/>
+            </button>
+        </xpath>
+    </t>
+
+</templates>

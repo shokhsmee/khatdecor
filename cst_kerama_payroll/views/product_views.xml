@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The sales KPI rate sits next to the selling price, because that is the
+         line the person setting it is already looking at. -->
+    <record id="view_product_template_form_kpi" model="ir.ui.view">
+        <field name="name">product.template.form.kpi.rate</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']"
+                   position="inside">
+                <field name="cst_kpi_rate"
+                       groups="cst_kerama_payroll.group_payroll_user,sales_team.group_sale_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- The variant card: the inherited rate, and the switch to give this
+         variant its own. -->
+    <record id="view_product_product_form_kpi" model="ir.ui.view">
+        <field name="name">product.product.form.kpi.rate</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']"
+                   position="inside">
+                <field name="cst_kpi_rate" string="Sotuv KPI (mahsulot umumiy)" readonly="1"
+                       groups="cst_kerama_payroll.group_payroll_user,sales_team.group_sale_manager"/>
+                <field name="cst_kpi_use_variant"
+                       groups="cst_kerama_payroll.group_payroll_user,sales_team.group_sale_manager"/>
+                <field name="cst_kpi_rate_variant" invisible="not cst_kpi_use_variant"
+                       groups="cst_kerama_payroll.group_payroll_user,sales_team.group_sale_manager"/>
+                <field name="cst_kpi_rate_effective"
+                       groups="cst_kerama_payroll.group_payroll_user,sales_team.group_sale_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Setting fifty rates one form at a time is nobody's afternoon: the list
+         is editable, so it can be done in one pass or pasted from Excel. -->
+    <record id="view_product_template_list_kpi" model="ir.ui.view">
+        <field name="name">product.template.list.kpi.rate</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <list string="Sotuv KPI stavkalari" editable="bottom" multi_edit="1">
+                <field name="default_code" optional="show"/>
+                <field name="name"/>
+                <field name="categ_id" optional="show"/>
+                <field name="barcode" optional="hide"/>
+                <field name="list_price" optional="show" readonly="1"/>
+                <field name="cst_kpi_rate"/>
+                <field name="product_variant_count" string="Variantlar" optional="show" readonly="1"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="uom_id" optional="hide" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_product_kpi_rate" model="ir.actions.act_window">
+        <field name="name">Sotuv KPI stavkalari</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_product_template_list_kpi"/>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{'search_default_group_by_categ_id': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No products yet</p>
+            <p>Set what a sales manager earns per unit sold. The rate applies from
+               now on — every KPI line already calculated keeps the rate it was
+               calculated with, so past months never change.</p>
+        </field>
+    </record>
+
+    <!-- The same list one level down: every variant, its characteristic, the
+         rate it inherits and the one it may take for itself. -->
+    <record id="view_product_product_list_kpi" model="ir.ui.view">
+        <field name="name">product.product.list.kpi.rate</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <list string="Sotuv KPI stavkalari (variantlar)" editable="bottom" multi_edit="1"
+                  decoration-info="cst_kpi_use_variant">
+                <field name="default_code" optional="show" readonly="1"/>
+                <field name="product_tmpl_id" string="Mahsulot" readonly="1"/>
+                <field name="product_template_attribute_value_ids" string="Xarakteristika"
+                       widget="many2many_tags" readonly="1"/>
+                <field name="categ_id" optional="hide" readonly="1"/>
+                <field name="cst_kpi_rate" string="Umumiy stavka" readonly="1"/>
+                <field name="cst_kpi_use_variant"/>
+                <field name="cst_kpi_rate_variant"/>
+                <field name="cst_kpi_rate_effective"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_product_variant_kpi_rate" model="ir.actions.act_window">
+        <field name="name">Sotuv KPI stavkalari (variantlar)</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_product_product_list_kpi"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="domain">[('product_template_attribute_value_ids', '!=', False)]</field>
+        <field name="context">{'search_default_group_by_product_tmpl_id': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Hali variantli mahsulot yo'q</p>
+            <p>Bu ro'yxatda faqat xarakteristikasi bor variantlar chiqadi. «Variant stavkasi
+               alohida» belgilansa, shu variant o'z stavkasini oladi; aks holda mahsulotning
+               umumiy stavkasi qo'llanadi.</p>
+        </field>
+    </record>
+
+</odoo>

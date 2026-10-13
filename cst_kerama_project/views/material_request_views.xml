@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cst_material_request_view_form" model="ir.ui.view">
+        <field name="name">cst.material.request.form</field>
+        <field name="model">cst.material.request</field>
+        <field name="arch" type="xml">
+            <form string="Material Request">
+                <header>
+                    <button name="action_submit" string="Submit" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Approve" type="object"
+                            class="btn-primary" invisible="state != 'to_approve'"
+                            groups="purchase.group_purchase_manager"/>
+                    <button name="action_assign" string="Distribute to Purchasers" type="object"
+                            class="btn-primary" invisible="state != 'approved'"
+                            groups="purchase.group_purchase_user"/>
+                    <button name="action_create_rfq" string="Create RFQs" type="object"
+                            class="btn-primary" invisible="state != 'assigned'"
+                            groups="purchase.group_purchase_user"/>
+                    <button name="action_create_mo" string="Create Manufacturing Orders"
+                            type="object"
+                            invisible="manufacture_line_count == 0 or state in ('draft', 'to_approve', 'done', 'cancel')"
+                            groups="mrp.group_mrp_user"/>
+                    <button name="action_done" string="Mark Done" type="object"
+                            invisible="state != 'purchased'"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            invisible="state in ('done', 'cancel')"/>
+                    <button name="action_reset_draft" string="Reset to Draft" type="object"
+                            invisible="state not in ('to_approve', 'cancel')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,to_approve,approved,assigned,purchased,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_purchase_orders" icon="fa-shopping-cart"
+                                invisible="purchase_count == 0">
+                            <field name="purchase_count" widget="statinfo" string="Purchases"/>
+                        </button>
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_productions" icon="fa-wrench"
+                                invisible="production_count == 0"
+                                groups="mrp.group_mrp_user">
+                            <field name="production_count" widget="statinfo" string="Manufacturing"/>
+                        </button>
+                    </div>
+                    <field name="manufacture_line_count" invisible="1"/>
+                    <field name="buy_line_count" invisible="1"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Request">
+                            <field name="project_id" readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                            <field name="warehouse_id" readonly="state != 'draft'"
+                                   help="Stock is checked against this warehouse."/>
+                            <field name="currency_id" readonly="state not in ('draft', 'to_approve')"
+                                   options="{'no_create': True}"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Follow-up">
+                            <field name="date_request" readonly="state != 'draft'"/>
+                            <field name="requested_by"/>
+                            <field name="approver_id" invisible="not approver_id"/>
+                            <label for="buy_line_count" string="Lines"/>
+                            <div>
+                                <span class="badge text-bg-warning me-1"
+                                      invisible="buy_line_count == 0">
+                                    <field name="buy_line_count"/> to buy
+                                </span>
+                                <span class="badge text-bg-info"
+                                      invisible="manufacture_line_count == 0">
+                                    <field name="manufacture_line_count"/> to manufacture
+                                </span>
+                                <span class="text-muted"
+                                      invisible="buy_line_count != 0 or manufacture_line_count != 0">
+                                    No lines yet
+                                </span>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Materials" name="lines">
+                            <div class="alert alert-info d-flex align-items-center gap-2 mb-3"
+                                 role="status" invisible="state != 'draft'">
+                                <i class="fa fa-info-circle"/>
+                                <span>
+                                    Add every product this project needs. Set <b>Supply</b> to
+                                    <b>Buy</b> to order it from a vendor, or <b>Manufacture</b>
+                                    to produce it from its bill of materials. <b>In Stock</b>,
+                                    <b>To Buy</b> and <b>To Produce</b> are filled in from the
+                                    warehouse and can be adjusted.
+                                </span>
+                            </div>
+                            <field name="line_ids" readonly="state in ('purchased', 'done', 'cancel')">
+                                <list editable="bottom" add-label="Add a product"
+                                      decoration-info="kind == 'manufacture'">
+                                    <field name="kind" widget="badge"/>
+                                    <field name="product_id"/>
+                                    <field name="cst_characteristic" optional="show"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom_id" groups="uom.group_uom" optional="show"/>
+                                    <field name="qty_available"/>
+                                    <field name="qty_to_buy" invisible="kind != 'buy'"/>
+                                    <field name="qty_to_produce" invisible="kind != 'manufacture'"/>
+                                    <field name="stock_by_location" optional="show"/>
+                                    <field name="bom_id" invisible="kind != 'manufacture'" optional="show"/>
+                                    <field name="vendor_id" invisible="kind != 'buy'"/>
+                                    <field name="purchaser_id" invisible="kind != 'buy'"/>
+                                    <field name="price_unit" optional="show"/>
+                                    <field name="price_subtotal" optional="show" sum="Estimated Cost"/>
+                                    <field name="purchase_order_id" optional="show"/>
+                                    <field name="purchase_state" optional="show"/>
+                                    <field name="production_id" optional="show"/>
+                                    <field name="production_state" optional="show"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="amount_estimated" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="amount_estimated_company" widget="monetary"
+                                       invisible="currency_id == company_currency_id"
+                                       options="{'currency_field': 'company_currency_id'}"/>
+                            </group>
+                            <div class="clearfix"/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="note" placeholder="Internal notes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="cst_material_request_view_list" model="ir.ui.view">
+        <field name="name">cst.material.request.list</field>
+        <field name="model">cst.material.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="warehouse_id"/>
+                <field name="date_request"/>
+                <field name="requested_by" widget="many2one_avatar_user"/>
+                <field name="purchase_count" string="POs"/>
+                <field name="production_count" string="MOs" groups="mrp.group_mrp_user"/>
+                <field name="amount_estimated" widget="monetary" optional="show"
+                       options="{'currency_field': 'currency_id'}" sum="Estimated Cost"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge"
+                       decoration-info="state in ('draft', 'to_approve')"
+                       decoration-warning="state in ('approved', 'assigned')"
+                       decoration-success="state in ('purchased', 'done')"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="cst_material_request_view_search" model="ir.ui.view">
+        <field name="name">cst.material.request.search</field>
+        <field name="model">cst.material.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="project_id"/>
+                <filter string="My Requests" name="my_requests"
+                        domain="[('requested_by', '=', uid)]"/>
+                <filter string="To Approve" name="to_approve"
+                        domain="[('state', '=', 'to_approve')]"/>
+                <filter string="Open" name="open"
+                        domain="[('state', 'not in', ('done', 'cancel'))]"/>
+                <group>
+                    <filter string="Project" name="group_project"
+                            domain="[]" context="{'group_by': 'project_id'}"/>
+                    <filter string="Status" name="group_state"
+                            domain="[]" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cst_material_request" model="ir.actions.act_window">
+        <field name="name">Material Requests</field>
+        <field name="res_model">cst.material.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a material request</p>
+            <p>Check a project's material needs against the warehouse and
+               distribute the shortage to purchasers.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_cst_material_request"
+              name="Material Requests"
+              parent="purchase.menu_procurement_management"
+              action="action_cst_material_request"
+              sequence="15"/>
+</odoo>

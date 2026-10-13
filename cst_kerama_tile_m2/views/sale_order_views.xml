@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_tile_m2" model="ir.ui.view">
+        <field name="name">sale.order.form.tile.m2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="before">
+                <field name="is_sqm_uom" column_invisible="1"/>
+                <field name="m2_required"
+                       string="m² Needed"
+                       optional="show"/>
+                <field name="tile_qty"
+                       string="Pieces"
+                       optional="show"
+                       readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+                <field name="tile_area"
+                       string="m² / piece"
+                       optional="show"
+                       readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="cst_kerama_reports.DirectorDashboard">
+        <div class="o_action cst_dd" t-att-class="{ cst_dd_dark: dark }">
+            <div class="cst_dd_wrap">
+
+                <!-- header + the one filter row that scopes everything below -->
+                <div class="cst_dd_head">
+                    <div>
+                        <h2 class="cst_dd_title">Rahbar oynasi</h2>
+                        <div class="cst_dd_sub" t-if="d">
+                            <t t-esc="d.meta.today_label"/> · yangilangan <t t-esc="d.meta.generated_at"/> · <t t-esc="d.meta.currency"/> da
+                        </div>
+                    </div>
+                    <div class="cst_dd_filters" t-if="d">
+                        <div class="cst_dd_seg" role="group" aria-label="Davr">
+                            <button t-foreach="[7, 30, 90]" t-as="n" t-key="n" type="button"
+                                    t-att-class="{ on: state.days === n }" t-on-click="() => this.setDays(n)"><t t-esc="n"/> kun</button>
+                        </div>
+                        <t t-if="d.meta.companies.length > 1">
+                            <button t-foreach="d.meta.companies" t-as="c" t-key="c.id" type="button" class="cst_dd_chip"
+                                    t-att-class="{ on: state.companyIds.includes(c.id) }"
+                                    t-on-click="() => this.toggleCompany(c.id)" t-esc="c.name"/>
+                        </t>
+                        <button class="cst_dd_icon_btn" type="button" title="Yangilash" t-on-click="() => this.load()">
+                            <i class="fa fa-refresh" t-att-class="{ 'fa-spin': state.busy }"/>
+                        </button>
+                    </div>
+                </div>
+
+                <div t-if="state.loading" class="cst_dd_loading"><i class="fa fa-spinner fa-spin me-2"/>Yuklanmoqda…</div>
+                <div t-elif="state.error" class="cst_dd_error" t-esc="state.error"/>
+                <div t-else="" class="cst_dd_grid" t-att-class="{ cst_dd_busy: state.busy }">
+
+                    <!-- ============ hero: the cash position ============ -->
+                    <div class="cst_dd_card span8">
+                        <div class="cst_dd_card_head">
+                            <div class="cst_dd_hero_label">Jami pul — kassa va bank</div>
+                            <div class="cst_dd_toggle">
+                                <button type="button" t-att-class="{ on: state.view.cash === 'chart' }" t-on-click="() => this.setView('cash', 'chart')">grafik</button>
+                                <button type="button" t-att-class="{ on: state.view.cash === 'table' }" t-on-click="() => this.setView('cash', 'table')">jadval</button>
+                            </div>
+                        </div>
+                        <div class="cst_dd_hero_row">
+                            <div class="cst_dd_hero" t-att-title="full(d.cash.total) + ' ' + d.meta.currency" t-on-click="openCashReport" style="cursor:pointer">
+                                <t t-esc="compact(d.cash.total)"/><small t-esc="d.meta.currency"/>
+                            </div>
+                            <span class="cst_dd_delta" t-att-class="{ up: periodDelta.up, down: !periodDelta.up }" t-esc="periodDelta.text"/>
+                            <span class="cst_dd_card_note"><t t-esc="full(d.cash.total)"/> <t t-esc="d.meta.currency"/></span>
+                        </div>
+
+                        <div t-if="state.view.cash === 'chart'" class="cst_dd_chart_wrap" t-ref="cashWrap"
+                             t-on-pointermove="onCashMove" t-on-pointerleave="onLeave">
+                            <t t-out="cashChart"/>
+                            <t t-call="cst_kerama_reports.DirectorDashboard.Tip"><t t-set="chart" t-value="'cash'"/></t>
+                        </div>
+                        <div t-else="" class="cst_dd_scroll">
+                            <table class="cst_dd_table">
+                                <thead><tr><th>Sana</th><th class="num">Kirim</th><th class="num">Chiqim</th><th class="num">Qoldiq</th></tr></thead>
+                                <tbody>
+                                    <tr t-foreach="d.cash.series.labels" t-as="lbl" t-key="lbl_index">
+                                        <td t-esc="lbl"/>
+                                        <td class="num cst_dd_good"><t t-if="d.cash.series.inflow[lbl_index]" t-esc="full(d.cash.series.inflow[lbl_index])"/></td>
+                                        <td class="num cst_dd_bad"><t t-if="d.cash.series.outflow[lbl_index]" t-esc="full(d.cash.series.outflow[lbl_index])"/></td>
+                                        <td class="num strong" t-esc="full(d.cash.series.balance[lbl_index])"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="cst_dd_hero_figs">
+                            <div class="cst_dd_fig"><i class="key" style="background:var(--dd-in)"/><span class="v" t-esc="compact(d.cash.period_in)"/><span class="l">kirim, <t t-esc="d.meta.days"/> kun</span></div>
+                            <div class="cst_dd_fig"><i class="key" style="background:var(--dd-out)"/><span class="v" t-esc="compact(d.cash.period_out)"/><span class="l">chiqim</span></div>
+                            <div class="cst_dd_fig"><span class="v" t-esc="compact(d.cash.period_in - d.cash.period_out)"/><span class="l">sof oqim</span></div>
+                            <div class="cst_dd_fig"><span class="l">bugun</span><span class="v">+<t t-esc="compact(d.cash.today_in)"/> / −<t t-esc="compact(d.cash.today_out)"/></span></div>
+                        </div>
+                    </div>
+
+                    <!-- ============ cash boxes ============ -->
+                    <div class="cst_dd_card span4">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Kassa va bank qoldiqlari</h3>
+                            <span class="cst_dd_card_note">bugun</span>
+                        </div>
+                        <table class="cst_dd_table cst_dd_boxes">
+                            <thead><tr><th class="name">Jurnal</th><th class="num">Qoldiq</th><th class="num">Kirim</th><th class="num">Chiqim</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="d.cash.boxes" t-as="box" t-key="box.id" class="cst_dd_row" t-on-click="() => this.openJournal(box)"
+                                    t-att-title="box.name + ' · ' + box.company">
+                                    <td class="name">
+                                        <i class="cst_dd_kind" t-att-class="{ bank: box.type === 'bank' }"/>
+                                        <t t-esc="box.name"/>
+                                        <span class="muted" t-if="d.meta.selected_company_ids.length > 1"> · <t t-esc="box.company"/></span>
+                                    </td>
+                                    <td class="num strong"><t t-esc="full(box.balance)"/> <span class="muted" t-esc="box.currency"/></td>
+                                    <td class="num cst_dd_good"><t t-if="box.today_in">+<t t-esc="full(box.today_in)"/></t></td>
+                                    <td class="num cst_dd_bad"><t t-if="box.today_out">−<t t-esc="full(box.today_out)"/></t></td>
+                                </tr>
+                                <tr t-if="!d.cash.boxes.length"><td colspan="4" class="cst_dd_empty">Kassa yoki bank jurnali topilmadi.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ============ stat tiles ============ -->
+                    <div class="cst_dd_tiles">
+                        <div t-foreach="tiles" t-as="tile" t-key="tile.key" class="cst_dd_tile" t-on-click="() => tile.action()" t-att-title="tile.label">
+                            <div class="cst_dd_tile_row">
+                                <div class="cst_dd_tile_label" t-esc="tile.label"/>
+                                <span t-if="tile.delta !== undefined and tile.delta !== null" class="cst_dd_delta"
+                                      t-att-class="{ up: (tile.delta >= 0) === tile.upGood, down: (tile.delta >= 0) !== tile.upGood }"
+                                      t-att-title="'O\'tgan oyga nisbatan'">
+                                    <t t-esc="tile.delta >= 0 ? '▲' : '▼'"/> <t t-esc="pct(tile.delta)"/>
+                                </span>
+                            </div>
+                            <div class="cst_dd_tile_value" t-att-title="tile.value + ' ' + tile.unit"><t t-esc="tile.value"/><small t-esc="tile.unit"/></div>
+                            <div class="cst_dd_tile_foot">
+                                <span class="cst_dd_tile_sub" t-esc="tile.sub"/>
+                                <t t-if="tile.spark" t-out="sparkline(tile.spark)"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============ daily in / out ============ -->
+                    <div class="cst_dd_card span8">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Kunlik kirim va chiqim</h3>
+                            <div style="display:flex;gap:10px;align-items:center">
+                                <span class="cst_dd_card_note"><t t-esc="d.meta.days"/> kun · <t t-esc="d.meta.currency"/></span>
+                                <div class="cst_dd_toggle">
+                                    <button type="button" t-att-class="{ on: state.view.flow === 'chart' }" t-on-click="() => this.setView('flow', 'chart')">grafik</button>
+                                    <button type="button" t-att-class="{ on: state.view.flow === 'table' }" t-on-click="() => this.setView('flow', 'table')">jadval</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div t-if="state.view.flow === 'chart'" class="cst_dd_chart_wrap" t-ref="flowWrap"
+                             t-on-pointermove="onFlowMove" t-on-pointerleave="onLeave">
+                            <t t-out="flowChart"/>
+                            <t t-call="cst_kerama_reports.DirectorDashboard.Tip"><t t-set="chart" t-value="'flow'"/></t>
+                            <div class="cst_dd_legend"><span><i class="sq in"/>Kirim</span><span><i class="sq out"/>Chiqim</span></div>
+                        </div>
+                        <div t-else="" class="cst_dd_scroll">
+                            <table class="cst_dd_table">
+                                <thead><tr><th>Sana</th><th class="num">Kirim</th><th class="num">Chiqim</th><th class="num">Sof</th></tr></thead>
+                                <tbody>
+                                    <tr t-foreach="d.cash.series.labels" t-as="lbl" t-key="lbl_index">
+                                        <td t-esc="lbl"/>
+                                        <td class="num cst_dd_good"><t t-if="d.cash.series.inflow[lbl_index]" t-esc="full(d.cash.series.inflow[lbl_index])"/></td>
+                                        <td class="num cst_dd_bad"><t t-if="d.cash.series.outflow[lbl_index]" t-esc="full(d.cash.series.outflow[lbl_index])"/></td>
+                                        <td class="num strong" t-esc="full(d.cash.series.inflow[lbl_index] - d.cash.series.outflow[lbl_index])"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ============ expenses by group ============ -->
+                    <div class="cst_dd_card span4">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Xarajatlar guruh bo'yicha</h3>
+                            <button type="button" class="cst_dd_link" t-on-click="openExpenseReport"><t t-esc="d.meta.month_label"/> · hisobot</button>
+                        </div>
+                        <t t-if="expenseBars" t-out="expenseBars"/>
+                        <div t-else="" class="cst_dd_empty">Bu oy xarajat yozuvi yo'q</div>
+                        <table class="cst_dd_table" t-if="d.expenses.by_group.length" style="margin-top:6px">
+                            <tbody>
+                                <tr t-foreach="d.expenses.by_group" t-as="g" t-key="g_index">
+                                    <td class="name muted" t-esc="g.name"/>
+                                    <td class="num" t-esc="full(g.amount)"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ============ debtors ============ -->
+                    <div class="cst_dd_card span4">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Eng katta qarzdorlar</h3>
+                            <button type="button" class="cst_dd_link" t-on-click="openReceivables">hammasi</button>
+                        </div>
+                        <t t-if="debtorBars" t-out="debtorBars"/>
+                        <div t-else="" class="cst_dd_empty">Qarzdor yo'q</div>
+                        <table class="cst_dd_table" t-if="d.debts.top_debtors.length" style="margin-top:6px">
+                            <tbody>
+                                <tr t-foreach="d.debts.top_debtors" t-as="p" t-key="p.id" class="cst_dd_row" t-on-click="() => this.openDebtor(p)" title="Akt sverka">
+                                    <td class="name" t-esc="p.name"/>
+                                    <td class="num strong" t-esc="full(p.amount)"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ============ debt age ============ -->
+                    <div class="cst_dd_card span4">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Qarz yoshi</h3>
+                            <button type="button" class="cst_dd_link" t-on-click="openOverdue">muddati o'tgan <t t-esc="d.debts.overdue_count"/> buyurtma</button>
+                        </div>
+                        <div class="cst_dd_aging" t-att-title="'Muddati o\'tgan: ' + full(d.debts.overdue)">
+                            <t t-foreach="d.debts.aging" t-as="a" t-key="a_index">
+                                <span t-if="a.amount" t-attf-class="a{{ a_index + 1 }}" t-attf-style="width:{{ (100 * a.amount / agingTotal).toFixed(1) }}%"
+                                      t-att-title="a.label + ': ' + full(a.amount)"/>
+                            </t>
+                        </div>
+                        <div class="cst_dd_aging_rows">
+                            <t t-foreach="d.debts.aging" t-as="a" t-key="a_index">
+                                <span class="sw" t-attf-style="background:var(--dd-ord-{{ a_index + 1 }})"/>
+                                <span class="l" t-esc="a.label"/>
+                                <span class="n" t-esc="compact(a.amount)"/>
+                            </t>
+                            <span class="sw" style="background:var(--dd-ghost)"/>
+                            <span class="l">Muddati kelmagan</span>
+                            <span class="n" t-esc="compact(d.debts.not_due)"/>
+                        </div>
+                    </div>
+
+                    <!-- ============ sellers ============ -->
+                    <div class="cst_dd_card span4">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Sotuvchilar</h3>
+                            <button type="button" class="cst_dd_link" t-on-click="openSellers"><t t-esc="d.meta.month_label"/> · tahlil</button>
+                        </div>
+                        <table class="cst_dd_table">
+                            <thead><tr><th class="name">Sotuvchi</th><th class="num">Buyurtma</th><th class="num">Summa</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="d.sales.top_sellers" t-as="p" t-key="p.id">
+                                    <td class="name" t-esc="p.name"/>
+                                    <td class="num muted" t-esc="p.count"/>
+                                    <td class="num strong" t-esc="compact(p.amount)"/>
+                                </tr>
+                                <tr t-if="!d.sales.top_sellers.length"><td colspan="3" class="cst_dd_empty">Bu oy savdo yo'q</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ============ products ============ -->
+                    <div class="cst_dd_card span8">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Eng ko'p sotilgan mahsulotlar</h3>
+                            <button type="button" class="cst_dd_link" t-on-click="openSales"><t t-esc="d.meta.month_label"/> · savdo tahlili</button>
+                        </div>
+                        <table class="cst_dd_table">
+                            <thead><tr><th class="idx">#</th><th class="name">Mahsulot</th><th class="name">Xarakteristika</th><th class="num">Miqdor</th><th class="num">Summa</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="d.sales.top_products" t-as="p" t-key="p.id" class="cst_dd_row" t-on-click="() => this.openProduct(p)">
+                                    <td class="idx" t-esc="p_index + 1"/>
+                                    <td class="name" t-esc="p.name" t-att-title="p.name"/>
+                                    <td class="name" t-esc="p.characteristic" t-att-title="p.characteristic"/>
+                                    <td class="num" t-esc="full(p.qty)"/>
+                                    <td class="num strong" t-esc="compact(p.amount)"/>
+                                </tr>
+                                <tr t-if="!d.sales.top_products.length"><td colspan="5" class="cst_dd_empty">Bu oy savdo yo'q</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ============ companies ============ -->
+                    <div class="cst_dd_card span4">
+                        <div class="cst_dd_card_head">
+                            <h3 class="cst_dd_card_title">Kompaniyalar bo'yicha savdo</h3>
+                            <span class="cst_dd_card_note" t-esc="d.meta.month_label"/>
+                        </div>
+                        <table class="cst_dd_table">
+                            <thead><tr><th class="name">Kompaniya</th><th class="num">Buyurtma</th><th class="num">Summa</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="d.sales.by_company" t-as="c" t-key="c_index">
+                                    <td class="name" t-esc="c.name"/>
+                                    <td class="num muted" t-esc="c.count"/>
+                                    <td class="num strong" t-esc="compact(c.amount)"/>
+                                </tr>
+                                <tr t-if="!d.sales.by_company.length"><td colspan="3" class="cst_dd_empty">Bu oy savdo yo'q</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- one tooltip, every series at the hovered X -->
+    <t t-name="cst_kerama_reports.DirectorDashboard.Tip">
+        <div t-if="state.tip and state.tip.chart === chart" class="cst_dd_tip"
+             t-attf-style="left:{{ state.tip.x }}px; top:{{ state.tip.y }}px">
+            <div class="t" t-esc="state.tip.title"/>
+            <div t-foreach="state.tip.rows" t-as="r" t-key="r_index">
+                <i class="k" t-attf-style="background:var(--dd-{{ r.k === 'in' ? 'in' : r.k === 'out' ? 'out' : 'series' }})"/>
+                <span class="v" t-esc="r.v"/> <span class="t" t-esc="r.label"/>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Nothing new is drawn here: these are Odoo's own move-line screens with
+         the four questions the shop floor actually asks pre-answered by a
+         domain. Same list, kanban and pivot, same filters, same export. -->
+
+    <record id="action_moves_to_production" model="ir.actions.act_window">
+        <field name="name">Ishlab chiqarishga berilgan</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">list,kanban,pivot,form</field>
+        <field name="domain">[('location_dest_id.usage', '=', 'production')]</field>
+        <field name="context">{'search_default_done': 1, 'create': 0,
+            'pivot_measures': ['quantity_product_uom', '__count__'],
+            'search_default_groupby_product_id': 1}</field>
+    </record>
+
+    <record id="action_moves_from_production" model="ir.actions.act_window">
+        <field name="name">Ishlab chiqarishdan qabul qilingan</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">list,kanban,pivot,form</field>
+        <field name="domain">[('location_id.usage', '=', 'production')]</field>
+        <field name="context">{'search_default_done': 1, 'create': 0,
+            'pivot_measures': ['quantity_product_uom', '__count__'],
+            'search_default_groupby_product_id': 1}</field>
+    </record>
+
+    <record id="action_moves_incoming" model="ir.actions.act_window">
+        <field name="name">Kirimlar</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">list,kanban,pivot,form</field>
+        <field name="domain">[('location_id.usage', 'in', ('supplier', 'inventory'))]</field>
+        <field name="context">{'search_default_done': 1, 'create': 0,
+            'pivot_measures': ['quantity_product_uom', '__count__']}</field>
+    </record>
+
+    <record id="action_moves_outgoing" model="ir.actions.act_window">
+        <field name="name">Chiqimlar</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">list,kanban,pivot,form</field>
+        <field name="domain">[('location_dest_id.usage', 'in', ('customer', 'inventory'))]</field>
+        <field name="context">{'search_default_done': 1, 'create': 0,
+            'pivot_measures': ['quantity_product_uom', '__count__']}</field>
+    </record>
+
+    <!-- Odoo's move-line search groups by product, status, date, transfer,
+         location and category but not by lot, which is how a roll is followed
+         here. One filter added to Odoo's own search view, useful everywhere. -->
+    <record id="view_stock_move_line_search_lot" model="ir.ui.view">
+        <field name="name">stock.move.line.search.lot</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='groupby']" position="inside">
+                <filter string="Rulon / partiya" name="groupby_lot_id" domain="[]"
+                        context="{'group_by': 'lot_id'}"
+                        groups="stock.group_production_lot"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_moves_by_lot" model="ir.actions.act_window">
+        <field name="name">Rulon va partiyalar bo'yicha harakat</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">list,kanban,pivot,form</field>
+        <field name="domain">[('lot_id', '!=', False)]</field>
+        <field name="context">{'search_default_done': 1, 'create': 0,
+            'pivot_measures': ['quantity_product_uom', '__count__'],
+            'search_default_groupby_lot_id': 1}</field>
+    </record>
+
+</odoo>

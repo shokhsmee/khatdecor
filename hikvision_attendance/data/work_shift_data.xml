@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="work_shift_1" model="hik.work.shift">
+        <field name="name">1-smena</field>
+        <field name="sequence">1</field>
+        <field name="hour_from">8.0</field>
+        <field name="hour_to">17.0</field>
+    </record>
+    <record id="work_shift_2" model="hik.work.shift">
+        <field name="name">2-smena</field>
+        <field name="sequence">2</field>
+        <field name="hour_from">17.0</field>
+        <field name="hour_to">2.0</field>
+    </record>
+</odoo>

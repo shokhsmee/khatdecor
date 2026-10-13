@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_moizvonki_call_user,access.moizvonki.call.user,model_moizvonki_call,base.group_user,1,0,0,0
+access_moizvonki_call_manager,access.moizvonki.call.manager,model_moizvonki_call,base.group_system,1,1,1,1
+access_moizvonki_settings_admin,access.moizvonki.settings.admin,model_moizvonki_settings,base.group_system,1,1,1,1

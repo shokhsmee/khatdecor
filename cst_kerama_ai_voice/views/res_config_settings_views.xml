@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_ai_voice" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ai.voice</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="AI Voice" string="AI Voice" name="cst_kerama_ai_voice"
+                     groups="base.group_system">
+                    <block title="Ovozdan matnga" name="cst_ai_voice_block">
+                        <setting string="Model"
+                                 help="AI chatidagi mikrofon tugmasi shu model bilan ishlaydi. OpenAI kaliti muk_ai sozlamasidan olinadi.">
+                            <field name="cst_ai_voice_model"/>
+                        </setting>
+                        <setting string="Tanish uchun izoh"
+                                 help="Modelga qaysi til va qanday atamalar kutilayotganini aytadi. Til kodini bermaymiz — OpenAI 'uz' ni qabul qilmaydi.">
+                            <field name="cst_ai_voice_prompt"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

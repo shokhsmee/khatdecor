@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_event_list" model="ir.ui.view">
+        <field name="name">cst.hr.event.list</field>
+        <field name="model">cst.hr.event</field>
+        <field name="arch" type="xml">
+            <list string="Kadr harakatlari" decoration-muted="state == 'draft'">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="kind"/>
+                <field name="order_no"/>
+                <field name="department_id" optional="show"/>
+                <field name="job_title" optional="show"/>
+                <field name="new_department_id" optional="hide"/>
+                <field name="new_job_title" optional="hide"/>
+                <field name="contract_no" optional="hide"/>
+                <field name="ready_count" string="Tayyor"/>
+                <field name="document_count" string="Hujjat"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- The list the employee's Hujjatlar tab shows: no employee column, the
+         card is already the employee. -->
+    <record id="view_hr_event_list_embedded" model="ir.ui.view">
+        <field name="name">cst.hr.event.list.embedded</field>
+        <field name="model">cst.hr.event</field>
+        <field name="arch" type="xml">
+            <list string="Kadr harakatlari" decoration-muted="state == 'draft'">
+                <field name="date"/>
+                <field name="order_no"/>
+                <field name="contract_no" optional="show"/>
+                <field name="department_id"/>
+                <field name="job_title"/>
+                <field name="new_department_id" column_invisible="parent.id == 0"
+                       optional="hide"/>
+                <field name="new_job_title" optional="hide"/>
+                <field name="ready_count" string="Tayyor"/>
+                <field name="document_count" string="Hujjat"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                <field name="kind" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hr_event_form" model="ir.ui.view">
+        <field name="name">cst.hr.event.form</field>
+        <field name="model">cst.hr.event</field>
+        <field name="arch" type="xml">
+            <form string="Kadr harakati">
+                <header>
+                    <button name="action_generate_all" type="object" class="oe_highlight"
+                            string="Hujjatlarni yaratish" icon="fa-file-word-o"/>
+                    <button name="action_confirm" type="object" string="Tasdiqlash"
+                            invisible="state != 'draft'"/>
+                    <button name="action_reset" type="object" string="Qoralamaga"
+                            invisible="state != 'done'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="kind" widget="radio"
+                                   options="{'horizontal': True}"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="date"/>
+                            <field name="date_text"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="order_no"/>
+                            <field name="contract_no" invisible="kind == 'boshash'"/>
+                            <field name="compensation_days" invisible="kind != 'boshash'"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Hozirgi holati">
+                            <field name="department_id"/>
+                            <field name="job_title"/>
+                        </group>
+                        <group string="O'tkaziladigan lavozim" invisible="kind != 'otkazish'">
+                            <field name="new_department_id"
+                                   required="kind == 'otkazish'"/>
+                            <field name="new_job_title"/>
+                        </group>
+                        <group string="Asos mehnat shartnomasi" invisible="kind != 'otkazish'">
+                            <field name="base_contract_date"/>
+                            <field name="base_contract_no"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Hujjatlar" name="documents">
+                            <field name="document_ids" nolabel="1">
+                                <list editable="bottom" create="0" delete="0">
+                                    <field name="sequence" column_invisible="True"/>
+                                    <field name="name" readonly="1"/>
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'ready'"
+                                           decoration-warning="state == 'todo'"
+                                           readonly="1"/>
+                                    <field name="generated_on" readonly="1" optional="show"/>
+                                    <field name="file" filename="filename"
+                                           string="Word fayli" readonly="1"/>
+                                    <field name="filename" column_invisible="True"/>
+                                    <button name="action_generate" type="object"
+                                            string="Yaratish" icon="fa-cogs"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Izoh" name="note">
+                            <field name="note" placeholder="Izoh…"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_event_search" model="ir.ui.view">
+        <field name="name">cst.hr.event.search</field>
+        <field name="model">cst.hr.event</field>
+        <field name="arch" type="xml">
+            <search string="Kadr harakatlari">
+                <field name="employee_id"/>
+                <field name="order_no"/>
+                <field name="contract_no"/>
+                <field name="department_id"/>
+                <filter name="k_kirish" string="Ishga qabul" domain="[('kind', '=', 'kirish')]"/>
+                <filter name="k_otkazish" string="O'tkazish" domain="[('kind', '=', 'otkazish')]"/>
+                <filter name="k_boshash" string="Bo'shatish" domain="[('kind', '=', 'boshash')]"/>
+                <separator/>
+                <filter name="draft" string="Qoralama" domain="[('state', '=', 'draft')]"/>
+                <filter name="done" string="Tasdiqlangan" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="this_year" string="Bu yil"
+                        domain="[('date', '&gt;=', (context_today() + relativedelta(month=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <group>
+                    <filter name="g_kind" string="Harakat turi" context="{'group_by': 'kind'}"/>
+                    <filter name="g_employee" string="Xodim" context="{'group_by': 'employee_id'}"/>
+                    <filter name="g_dept" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                    <filter name="g_date" string="Sana" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_event" model="ir.actions.act_window">
+        <field name="name">Kadr harakatlari</field>
+        <field name="res_model">cst.hr.event</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_hr_event_search"/>
+        <field name="context">{'search_default_g_kind': 1}</field>
+    </record>
+
+    <record id="action_hr_document" model="ir.actions.act_window">
+        <field name="name">Yaratilgan hujjatlar</field>
+        <field name="res_model">cst.hr.document</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="view_hr_document_list" model="ir.ui.view">
+        <field name="name">cst.hr.document.list</field>
+        <field name="model">cst.hr.document</field>
+        <field name="arch" type="xml">
+            <list string="Kadr hujjatlari" create="0">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="kind"/>
+                <field name="name"/>
+                <field name="state" widget="badge" decoration-success="state == 'ready'"/>
+                <field name="generated_on" optional="show"/>
+                <field name="file" filename="filename" string="Word fayli"/>
+                <field name="filename" column_invisible="True"/>
+                <button name="action_generate" type="object" string="Yaratish" icon="fa-cogs"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

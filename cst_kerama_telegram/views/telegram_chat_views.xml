@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_telegram_chat_list" model="ir.ui.view">
+        <field name="name">cst.telegram.chat.list</field>
+        <field name="model">cst.telegram.chat</field>
+        <field name="arch" type="xml">
+            <list string="Telegram" decoration-warning="state == 'pending'"
+                  decoration-muted="state == 'blocked'"
+                  decoration-success="state == 'linked'">
+                <field name="last_seen"/>
+                <field name="tg_name"/>
+                <field name="tg_username" optional="show"/>
+                <field name="phone"/>
+                <field name="claimed_name"/>
+                <field name="partner_id"/>
+                <field name="available_roles" optional="hide"/>
+                <field name="chat_id" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'pending'"
+                       decoration-success="state == 'linked'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_telegram_chat_form" model="ir.ui.view">
+        <field name="name">cst.telegram.chat.form</field>
+        <field name="model">cst.telegram.chat</field>
+        <field name="arch" type="xml">
+            <form string="Telegram">
+                <header>
+                    <button name="action_link" type="object" string="Bog'lash va tasdiqlash"
+                            class="btn-primary" invisible="state == 'linked' or not partner_id"/>
+                    <button name="action_reset" type="object" string="Qaytadan so'rash"
+                            invisible="state in ('new', 'awaiting_phone')"/>
+                    <button name="action_block" type="object" string="Bloklash"
+                            invisible="state == 'blocked'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="awaiting_phone,awaiting_name,pending,linked"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning" role="alert" invisible="state != 'pending'">
+                        Бу одам ботда узини танитди, лекин раками базада топилмади.
+                        Пастда керакли контрагентни танланг ва «Бог'лаш» тугмасини босинг —
+                        унга автоматик хабар боради, раками эса контрагент картасига ёзилади.
+                    </div>
+                    <group>
+                        <group string="Telegram">
+                            <field name="tg_name" readonly="1"/>
+                            <field name="tg_username" readonly="1"/>
+                            <field name="chat_id" readonly="1"/>
+                            <field name="last_seen" readonly="1"/>
+                        </group>
+                        <group string="Aytgan ma'lumoti">
+                            <field name="phone" readonly="1"/>
+                            <field name="claimed_name" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Kontragent">
+                            <field name="partner_id"
+                                   options="{'no_quick_create': True}"/>
+                            <field name="available_roles" readonly="1"/>
+                            <field name="role_mode" invisible="not partner_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_telegram_chat_search" model="ir.ui.view">
+        <field name="name">cst.telegram.chat.search</field>
+        <field name="model">cst.telegram.chat</field>
+        <field name="arch" type="xml">
+            <search string="Telegram">
+                <field name="tg_name"/>
+                <field name="phone"/>
+                <field name="claimed_name"/>
+                <field name="partner_id"/>
+                <filter name="f_pending" string="Menejer bog'lashi kerak"
+                        domain="[('state', '=', 'pending')]"/>
+                <filter name="f_linked" string="Bog'langan"
+                        domain="[('state', '=', 'linked')]"/>
+                <separator/>
+                <filter name="f_unlinked" string="Kontragentsiz"
+                        domain="[('partner_id', '=', False)]"/>
+                <group>
+                    <filter name="g_state" string="Holati" domain="[]"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="g_partner" string="Kontragent" domain="[]"
+                            context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_telegram_chat" model="ir.actions.act_window">
+        <field name="name">Telegram foydalanuvchilari</field>
+        <field name="res_model">cst.telegram.chat</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_telegram_chat_search"/>
+        <field name="context">{'search_default_g_state': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Hali hech kim yozmagan</p>
+            <p>Мижоз ботга <b>/start</b> ёзиб, ракамини юборганда шу ерда пайдо
+               булади.  Раками базада топилмаса — «Менежер бог'лаши керак»
+               холатида туради.</p>
+        </field>
+    </record>
+
+</odoo>

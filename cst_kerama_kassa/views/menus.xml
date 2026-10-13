@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_kassa_root" name="Kassa" sequence="45"
+              web_icon="cst_kerama_kassa,static/description/icon.png"
+              groups="cst_kerama_kassa.group_kassa_user"/>
+
+    <menuitem id="menu_kassa_dashboard" name="Cash desks" parent="menu_kassa_root"
+              action="action_kassa_dashboard" sequence="1"/>
+
+    <menuitem id="menu_kassa_ops" name="Operations" parent="menu_kassa_root" sequence="10"/>
+    <menuitem id="menu_kassa_ops_in" name="Cash in" parent="menu_kassa_ops" action="action_kassa_operation_in" sequence="1"/>
+    <menuitem id="menu_kassa_ops_out" name="Cash out" parent="menu_kassa_ops" action="action_kassa_operation_out" sequence="2"/>
+    <menuitem id="menu_kassa_ops_all" name="All operations" parent="menu_kassa_ops" action="action_kassa_operation" sequence="3"/>
+    <menuitem id="menu_kassa_days" name="Cash days" parent="menu_kassa_ops" action="action_kassa_day" sequence="10"/>
+    <menuitem id="menu_kassa_days_confirm" name="Days to confirm" parent="menu_kassa_ops"
+              action="action_kassa_day_to_confirm" sequence="11" groups="cst_kerama_kassa.group_kassa_manager"/>
+
+    <menuitem id="menu_kassa_expenses" name="Expenses" parent="menu_kassa_root" sequence="15"/>
+    <menuitem id="menu_kassa_expenses_all" name="General expenses" parent="menu_kassa_expenses"
+              action="action_kassa_expense" sequence="1"/>
+    <menuitem id="menu_kassa_expenses_advance" name="Employee advances" parent="menu_kassa_expenses"
+              action="action_kassa_employee_advance" sequence="2"/>
+    <menuitem id="menu_kassa_expenses_category" name="Expense categories" parent="menu_kassa_expenses"
+              action="action_kassa_expense_category" sequence="3" groups="cst_kerama_kassa.group_kassa_manager"/>
+
+    <menuitem id="menu_kassa_clients" name="Clients" parent="menu_kassa_root" sequence="20"/>
+    <menuitem id="menu_kassa_client_accounts" name="Client accounts" parent="menu_kassa_clients"
+              action="action_kassa_partner_balance" sequence="1"/>
+    <menuitem id="menu_kassa_reconcile" name="Settle debts" parent="menu_kassa_clients"
+              action="action_kassa_reconcile_wizard" sequence="2"/>
+    <menuitem id="menu_kassa_client_payments" name="Client payments" parent="menu_kassa_clients"
+              action="action_kassa_client_payments" sequence="3"/>
+    <menuitem id="menu_kassa_allocations" name="Settlement history" parent="menu_kassa_clients"
+              action="action_kassa_allocation" sequence="4"/>
+
+    <menuitem id="menu_kassa_config" name="Configuration" parent="menu_kassa_root" sequence="90"
+              groups="cst_kerama_kassa.group_kassa_manager"/>
+    <menuitem id="menu_kassa_config_kassa" name="Cash desks" parent="menu_kassa_config" action="action_kassa_config" sequence="1"/>
+    <menuitem id="menu_kassa_config_category" name="Categories" parent="menu_kassa_config" action="action_kassa_category" sequence="2"/>
+    <menuitem id="menu_kassa_config_settings" name="Settings" parent="menu_kassa_config" action="action_kassa_settings" sequence="10"/>
+</odoo>

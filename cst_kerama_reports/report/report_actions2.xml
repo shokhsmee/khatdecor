@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Second wave of sheets. Each has a PDF twin and an on-screen twin. -->
+
+    <record id="action_report_employee_card" model="ir.actions.report">
+        <field name="name">Xodim oyligi kartochkasi</field>
+        <field name="model">cst.employee.card.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_employee_card</field>
+        <field name="report_file">cst_kerama_reports.report_employee_card</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+        <field name="print_report_name">'Oylik %s' % (object.employee_id.display_name or '')</field>
+    </record>
+    <record id="action_report_employee_card_html" model="ir.actions.report">
+        <field name="name">Xodim oyligi kartochkasi (ekranda)</field>
+        <field name="model">cst.employee.card.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_employee_card</field>
+        <field name="report_file">cst_kerama_reports.report_employee_card</field>
+    </record>
+
+    <record id="action_report_bonus_penalty" model="ir.actions.report">
+        <field name="name">Jarimalar va bonuslar</field>
+        <field name="model">cst.bonus.penalty.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_bonus_penalty</field>
+        <field name="report_file">cst_kerama_reports.report_bonus_penalty</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_bonus_penalty_html" model="ir.actions.report">
+        <field name="name">Jarimalar va bonuslar (ekranda)</field>
+        <field name="model">cst.bonus.penalty.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_bonus_penalty</field>
+        <field name="report_file">cst_kerama_reports.report_bonus_penalty</field>
+    </record>
+
+    <record id="action_report_kpi" model="ir.actions.report">
+        <field name="name">KPI hisoboti</field>
+        <field name="model">cst.kpi.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_kpi</field>
+        <field name="report_file">cst_kerama_reports.report_kpi</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_kpi_html" model="ir.actions.report">
+        <field name="name">KPI hisoboti (ekranda)</field>
+        <field name="model">cst.kpi.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_kpi</field>
+        <field name="report_file">cst_kerama_reports.report_kpi</field>
+    </record>
+
+    <record id="action_report_cash" model="ir.actions.report">
+        <field name="name">Pullar harakati</field>
+        <field name="model">cst.cash.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_cash</field>
+        <field name="report_file">cst_kerama_reports.report_cash</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_cash_html" model="ir.actions.report">
+        <field name="name">Pullar harakati (ekranda)</field>
+        <field name="model">cst.cash.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_cash</field>
+        <field name="report_file">cst_kerama_reports.report_cash</field>
+    </record>
+
+    <record id="action_report_expense" model="ir.actions.report">
+        <field name="name">Xarajatlar hisoboti</field>
+        <field name="model">cst.expense.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_expense</field>
+        <field name="report_file">cst_kerama_reports.report_expense</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_expense_html" model="ir.actions.report">
+        <field name="name">Xarajatlar hisoboti (ekranda)</field>
+        <field name="model">cst.expense.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_expense</field>
+        <field name="report_file">cst_kerama_reports.report_expense</field>
+    </record>
+
+    <record id="action_report_writeoff" model="ir.actions.report">
+        <field name="name">Hisobdan chiqarilganlar</field>
+        <field name="model">cst.writeoff.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_writeoff</field>
+        <field name="report_file">cst_kerama_reports.report_writeoff</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_writeoff_html" model="ir.actions.report">
+        <field name="name">Hisobdan chiqarilganlar (ekranda)</field>
+        <field name="model">cst.writeoff.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_writeoff</field>
+        <field name="report_file">cst_kerama_reports.report_writeoff</field>
+    </record>
+
+    <record id="action_report_inventory_count" model="ir.actions.report">
+        <field name="name">Reviziya hisoboti</field>
+        <field name="model">cst.inventory.count.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_inventory_count</field>
+        <field name="report_file">cst_kerama_reports.report_inventory_count</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+    <record id="action_report_inventory_count_html" model="ir.actions.report">
+        <field name="name">Reviziya hisoboti (ekranda)</field>
+        <field name="model">cst.inventory.count.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_inventory_count</field>
+        <field name="report_file">cst_kerama_reports.report_inventory_count</field>
+    </record>
+
+    <record id="action_report_consumption" model="ir.actions.report">
+        <field name="name">Norma va fakt sarfi</field>
+        <field name="model">cst.consumption.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_consumption</field>
+        <field name="report_file">cst_kerama_reports.report_consumption</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_consumption_html" model="ir.actions.report">
+        <field name="name">Norma va fakt sarfi (ekranda)</field>
+        <field name="model">cst.consumption.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_consumption</field>
+        <field name="report_file">cst_kerama_reports.report_consumption</field>
+    </record>
+
+    <!-- the ledger is Excel-first; the HTML twin is for a quick look -->
+    <record id="action_report_stock_ledger_html" model="ir.actions.report">
+        <field name="name">Ombor batafsil hisoboti (ekranda)</field>
+        <field name="model">cst.stock.ledger.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_stock_ledger</field>
+        <field name="report_file">cst_kerama_reports.report_stock_ledger</field>
+    </record>
+
+    <record id="action_report_minmax" model="ir.actions.report">
+        <field name="name">Min-max bo'yicha qoldiqlar</field>
+        <field name="model">cst.minmax.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_minmax</field>
+        <field name="report_file">cst_kerama_reports.report_minmax</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_minmax_html" model="ir.actions.report">
+        <field name="name">Min-max bo'yicha qoldiqlar (ekranda)</field>
+        <field name="model">cst.minmax.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_minmax</field>
+        <field name="report_file">cst_kerama_reports.report_minmax</field>
+    </record>
+
+</odoo>

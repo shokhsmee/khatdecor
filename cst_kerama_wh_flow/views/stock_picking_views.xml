@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_wh_flow" model="ir.ui.view">
+        <field name="name">stock.picking.form.wh.flow</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="cst_move_kind" widget="badge" invisible="not cst_move_kind"
+                       decoration-success="cst_move_kind == 'output'" decoration-warning="cst_move_kind == 'supply'"
+                       decoration-info="cst_move_kind == 'transfer'"/>
+                <field name="cst_production_id" invisible="not cst_production_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- «Ishlab chiqarishdan» / «Xomashyo so'rovi» / «Ko'chirish» on every card,
+         Barcode's operation list included (it inherits this kanban) -->
+    <record id="stock_picking_kanban_wh_flow" model="ir.ui.view">
+        <field name="name">stock.picking.kanban.wh.flow</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.stock_picking_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_properties']" position="before">
+                <div t-if="record.cst_move_kind.raw_value" class="mb-1">
+                    <field name="cst_move_kind" widget="badge"
+                           decoration-success="cst_move_kind == 'output'" decoration-warning="cst_move_kind == 'supply'"
+                           decoration-info="cst_move_kind == 'transfer'"/>
+                    <span t-if="record.cst_production_id.raw_value" class="text-muted small ms-1"><field name="cst_production_id"/></span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="vpicktree_wh_flow" model="ir.ui.view">
+        <field name="name">stock.picking.list.wh.flow</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_move_kind" widget="badge" optional="show"
+                       decoration-success="cst_move_kind == 'output'" decoration-warning="cst_move_kind == 'supply'"
+                       decoration-info="cst_move_kind == 'transfer'"/>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_search_wh_flow" model="ir.ui.view">
+        <field name="name">stock.picking.search.wh.flow</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="cst_production_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='draft']" position="before">
+                <filter name="cst_kind_output" string="Ishlab chiqarishdan" domain="[('cst_move_kind', '=', 'output')]"/>
+                <filter name="cst_kind_supply" string="Xomashyo so'rovlari" domain="[('cst_move_kind', '=', 'supply')]"/>
+                <filter name="cst_kind_transfer" string="Oddiy ko'chirishlar" domain="[('cst_move_kind', '=', 'transfer')]"/>
+                <separator/>
+                <filter name="cst_scheduled_date" string="Sana (reja)" date="scheduled_date"/>
+                <filter name="cst_date_done" string="Bajarilgan sana" date="date_done"/>
+                <separator/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <group>
+                    <filter name="cst_groupby_kind" string="Turi" context="{'group_by': 'cst_move_kind'}"/>
+                    <filter name="cst_groupby_date" string="Sana" context="{'group_by': 'scheduled_date:day'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

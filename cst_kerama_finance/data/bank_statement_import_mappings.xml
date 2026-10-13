@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Column headings the bank statement importer should recognise on
+             sight.  base_import keeps these in `base_import.mapping` and
+             normally only learns them after a first successful import, so the
+             first file an accountant ever uploads arrives unmapped - which is
+             how "Debet" ends up on Journal Items / Debit and every row fails
+             as unbalanced.  Seeding them means the first file is already
+             matched.
+
+             Looked up as `header.lower()`, so every column_name is lowercase.
+
+             The counterparty column goes to `partner_name`, the plain text
+             field, and NOT to partner_id: a name the database has never seen
+             blocks the whole import with "No matching record found", and a
+             bank statement is full of names that are not contacts yet.  Odoo
+             reads partner_name when it suggests a partner during matching, so
+             nothing is lost. -->
+
+        <record id="stmt_map_b8873a156d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">sana</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_11fed7049d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">sana/vaqt</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_d6b761fea7" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">to'lov sanasi</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_71b0e0623f" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">tolov sanasi</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_ad556130f6" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">operatsiya sanasi</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_314812aae3" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">amaliyot sanasi</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_51711d3cb9" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">kun</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_a38b952058" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">дата</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_ce0d6dde50" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">дата операции</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_74c09c3966" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">дата документа</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_e63656ef67" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">дата платежа</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_4c42288895" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">дата проводки</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_5bfcef6771" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">операция куни</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_5fc7323119" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">date</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_01c6f8292a" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">transaction date</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_402c598453" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">value date</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_bbe32550cb" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">posting date</field>
+            <field name="field_name">date</field>
+        </record>
+        <record id="stmt_map_c1c8a6d654" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">hujjat</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_4ee5e8fec0" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">hujjat raqami</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_c001bd03a0" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">hujjat №</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_386c032766" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">hujjat no</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_94074c74bc" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">raqam</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_4037de8b0b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">документ</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_b2a19dbe9d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">№ документа</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_b3126c80c0" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">номер документа</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_78dfca3917" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">док. №</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_b8af13ea9c" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">reference</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_18389a4a9a" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">ref</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_fdc3bdefb7" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">document</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_666a25395b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">document no</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_7d06aec42c" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">doc no</field>
+            <field name="field_name">ref</field>
+        </record>
+        <record id="stmt_map_f4f9e3f345" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">izoh</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_977b3eb607" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">to'lov maqsadi</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_ce379c663f" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">tolov maqsadi</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_496167c99b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">maqsad</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_5c651db098" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">tavsif</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_4aab280a70" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">matn</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_005eda4e87" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">назначение</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_d51d96b2c5" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">назначение платежа</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_578ae61093" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">описание</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_b4fcb2851b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">комментарий</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_64e6788eda" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">содержание операции</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_d304ba20e9" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">label</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_67daf92c83" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">description</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_27792947ed" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">details</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_a936fba006" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">narrative</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_d504a5ea65" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">memo</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_979b93285d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">communication</field>
+            <field name="field_name">payment_ref</field>
+        </record>
+        <record id="stmt_map_654f94a542" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">kontragent</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_ea5b32fcb5" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">kontragent nomi</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_78409b2b48" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">mijoz</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_b805041bf7" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">hamkor</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_980fb60f8c" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">korxona</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_b20142683f" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">контрагент</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_28767ace0f" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">наименование контрагента</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_53de448f1d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">клиент</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_c90db6ea29" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">получатель</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_b92028c085" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">плательщик</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_7454739e90" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">partner</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_a12b2b8913" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">counterparty</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_23180e48f4" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">beneficiary</field>
+            <field name="field_name">partner_name</field>
+        </record>
+        <record id="stmt_map_4bc08e0154" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">debet</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_d2f9212ec7" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">debit</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_c70c86d29e" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">chiqim</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_ee147fc96f" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">xarajat</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_2b83d22083" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">to'lov</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_e3668f9500" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">tolov</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_57b4e5ebdd" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">дебет</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_62db38e887" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">расход</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_b34d6eaf7c" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">списание</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_75d6193c5b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">выдача</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_40e5644d1b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">withdrawal</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_40544e72cd" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">paid out</field>
+            <field name="field_name">debit</field>
+        </record>
+        <record id="stmt_map_04f8c854cb" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">kredit</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_660cb6fe74" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">credit</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_affad8a851" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">kirim</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_478c2b0e07" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">tushum</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_10e46f370e" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">keldi</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_d0633b21f9" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">кредит</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_3c4cf09dfa" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">приход</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_ec41a1432d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">поступление</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_601976e585" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">зачисление</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_ff2508c79c" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">deposit</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_11b5015a7d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">paid in</field>
+            <field name="field_name">credit</field>
+        </record>
+        <record id="stmt_map_0c0aa92400" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">qoldiq</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_f27fc78ffa" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">saldo</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_a3ca0cff33" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">остаток</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_f6e6e87794" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">сальдо</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_2069ca795d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">balance</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_cbdd1d6b49" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">cumulative balance</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_eeb1ae74a8" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">running balance</field>
+            <field name="field_name">balance</field>
+        </record>
+        <record id="stmt_map_a1f80f0ff6" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">summa</field>
+            <field name="field_name">amount</field>
+        </record>
+        <record id="stmt_map_b50e671f94" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">miqdor</field>
+            <field name="field_name">amount</field>
+        </record>
+        <record id="stmt_map_a515c8d5cd" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">сумма</field>
+            <field name="field_name">amount</field>
+        </record>
+        <record id="stmt_map_8cf29dfc4b" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">сумма операции</field>
+            <field name="field_name">amount</field>
+        </record>
+        <record id="stmt_map_e9f40e1f1d" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">amount</field>
+            <field name="field_name">amount</field>
+        </record>
+        <record id="stmt_map_ef46fcac88" model="base_import.mapping">
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="column_name">transaction amount</field>
+            <field name="field_name">amount</field>
+        </record>
+
+    </data>
+</odoo>

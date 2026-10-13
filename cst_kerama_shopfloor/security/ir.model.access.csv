@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shift_line_mrp_user,shift line mrp user read,cst_kerama_shift.model_cst_production_shift_line,mrp.group_mrp_user,1,0,0,0
+access_shift_entry_mrp_user,shift entry mrp user read,cst_kerama_shift.model_cst_production_shift_entry,mrp.group_mrp_user,1,0,0,0

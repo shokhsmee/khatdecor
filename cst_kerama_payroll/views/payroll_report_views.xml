@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_payroll_report" model="ir.actions.client">
+        <field name="name">Ходимлар ойлиги буйича батафсил хисобот</field>
+        <field name="tag">cst_payroll_report</field>
+    </record>
+
+</odoo>

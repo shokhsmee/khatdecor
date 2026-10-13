@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_hik_attendance_bot" model="ir.ui.view">
+        <field name="name">res.config.settings.view.hikvision.attendance.bot</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <app string="Attendance Bot" name="hikvision_attendance">
+                    <block title="Telegram Bot Sozlamalari"
+                           help="Hodimlar Kirish/Chiqish qilganda admin-larga bildirishnoma yuboradi.">
+                        <setting string="Bot Token"
+                                 help="BotFather orqali olingan token">
+                            <field name="hik_bot_token"
+                                   placeholder="123456:AAH..."
+                                   password="True"/>
+                            <div class="mt-2">
+                                <button name="action_hik_bot_sync_info"
+                                        type="object"
+                                        string="Sync Bot Info"
+                                        class="btn btn-secondary btn-sm"/>
+                            </div>
+                        </setting>
+
+                        <setting string="Bot Username (auto)"
+                                 help="getMe orqali to'ldiriladi">
+                            <field name="hik_bot_username"
+                                   placeholder="MyAttendanceBot"/>
+                        </setting>
+
+                        <setting string="Odoo Public URL"
+                                 help="Telegram webhook ro'yxatga olish uchun">
+                            <field name="hik_bot_odoo_base_url"
+                                   placeholder="https://weteachprof.shokhsmee.uz"/>
+                            <div class="mt-2">
+                                <button name="action_hik_bot_set_webhook"
+                                        type="object"
+                                        string="Register Webhook"
+                                        class="btn btn-primary btn-sm"/>
+                            </div>
+                        </setting>
+
+                        <setting string="Admin Invite Token"
+                                 help="Adminlar bu kod bilan botga kirib ro'yxatdan o'tadi">
+                            <field name="hik_bot_invite_token"/>
+                            <div class="mt-2">
+                                <button name="action_hik_bot_regenerate_invite"
+                                        type="object"
+                                        string="Regenerate (revokes old)"
+                                        class="btn btn-warning btn-sm"
+                                        confirm="Bu eski havolani bekor qiladi. Davom etamizmi?"/>
+                            </div>
+                        </setting>
+
+                        <setting string="Admin Invite Link"
+                                 help="Admin tap qiladi, Telegram bot ochiladi va invite token bilan ulanadi">
+                            <field name="hik_bot_invite_link" widget="CopyClipboardChar"/>
+                        </setting>
+                    </block>
+                </app>
+            </form>
+        </field>
+    </record>
+
+</odoo>

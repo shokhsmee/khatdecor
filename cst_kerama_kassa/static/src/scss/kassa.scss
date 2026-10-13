@@ -1,0 +1,41 @@
+.cst_kassa_totals,
+.cst_kassa_client {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 8px 0 16px;
+
+    .cst_kassa_tile {
+        flex: 1 1 150px;
+        border: 1px solid var(--border-color, #dee2e6);
+        border-left: 4px solid #6c757d;
+        border-radius: 6px;
+        padding: 8px 12px;
+        background: var(--o-view-background-color, #fff);
+
+        > span {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #6c757d;
+        }
+        .o_field_widget {
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+        &.cst_kassa_in { border-left-color: #198754; }
+        &.cst_kassa_out { border-left-color: #dc3545; }
+        &.cst_kassa_expected { border-left-color: #0d6efd; }
+    }
+}
+
+.o_cst_kassa_kanban .o_kanban_record {
+    min-height: 230px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal:has(.o_cst_kassa_reconcile) .modal-dialog {
+    max-width: 1100px;
+}

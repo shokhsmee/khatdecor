@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_wh_flow" model="ir.ui.view">
+        <field name="name">mrp.production.form.wh.flow</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_cst_request_supply" type="object" string="Xomashyo so'rash"
+                        invisible="state not in ('confirmed', 'progress')"
+                        help="Yetmagan xomashyo uchun bo'lim omboriga ichki ko'chirish yaratadi."/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_cst_flow_pickings" type="object" class="oe_stat_button"
+                        icon="fa-exchange" invisible="not cst_flow_picking_count">
+                    <field name="cst_flow_picking_count" string="Ombor ko'chirishlari" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

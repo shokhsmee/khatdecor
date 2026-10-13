@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ shifts ============ -->
+    <record id="hik_work_shift_list" model="ir.ui.view">
+        <field name="name">hik.work.shift.list</field>
+        <field name="model">hik.work.shift</field>
+        <field name="arch" type="xml">
+            <list string="Ish smenalari">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="time_label"/>
+                <field name="days_label"/>
+                <field name="late_tolerance" optional="show"/>
+                <field name="early_tolerance" optional="show"/>
+                <field name="employee_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hik_work_shift_form" model="ir.ui.view">
+        <field name="name">hik.work.shift.form</field>
+        <field name="model">hik.work.shift</field>
+        <field name="arch" type="xml">
+            <form string="Ish smenasi">
+                <header>
+                    <button name="action_assign_employees" type="object" string="Xodim qo'shish" class="btn-primary"/>
+                    <button name="action_recompute_month" type="object" string="Shu oyni qayta hisoblash"
+                            confirm="Shu oydagi davomatlar smenaning hozirgi vaqtiga qayta solishtiriladi. Davom etasizmi?"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_employees" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="employee_count" widget="statinfo" string="Xodim"/>
+                        </button>
+                    </div>
+                    <div class="oe_title"><h1><field name="name" placeholder="masalan: 1-smena"/></h1></div>
+                    <group>
+                        <group string="Ish vaqti">
+                            <field name="hour_from" widget="float_time"/>
+                            <field name="hour_to" widget="float_time"/>
+                            <field name="duration" widget="float_time"/>
+                        </group>
+                        <group string="Bardosh">
+                            <field name="late_tolerance"/>
+                            <field name="early_tolerance"/>
+                        </group>
+                    </group>
+                    <group string="Ish kunlari">
+                        <div class="d-flex flex-wrap gap-3">
+                            <span><field name="day_mon" nolabel="1"/> Du</span>
+                            <span><field name="day_tue" nolabel="1"/> Se</span>
+                            <span><field name="day_wed" nolabel="1"/> Ch</span>
+                            <span><field name="day_thu" nolabel="1"/> Pa</span>
+                            <span><field name="day_fri" nolabel="1"/> Ju</span>
+                            <span><field name="day_sat" nolabel="1"/> Sh</span>
+                            <span><field name="day_sun" nolabel="1"/> Ya</span>
+                        </div>
+                    </group>
+                    <notebook>
+                        <page string="Xodimlar" name="employees">
+                            <field name="employee_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="department_id"/>
+                                    <field name="job_title"/>
+                                    <field name="face_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field name="active" invisible="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hik_work_shift_action" model="ir.actions.act_window">
+        <field name="name">Ish smenalari</field>
+        <field name="res_model">hik.work.shift</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Smena qo'shing: nomi, ish vaqti, ish kunlari.</p>
+        </field>
+    </record>
+
+    <!-- ============ assign wizard ============ -->
+    <record id="hik_work_shift_assign_form" model="ir.ui.view">
+        <field name="name">hik.work.shift.assign.form</field>
+        <field name="model">hik.work.shift.assign</field>
+        <field name="arch" type="xml">
+            <form string="Smenaga biriktirish">
+                <group>
+                    <field name="shift_id" options="{'no_create': True}"/>
+                    <field name="employee_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_assign" type="object" string="Biriktirish" class="btn-primary"/>
+                    <button special="cancel" string="Bekor"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="hik_work_shift_assign_action" model="ir.actions.act_window">
+        <field name="name">Smenaga biriktirish</field>
+        <field name="res_model">hik.work.shift.assign</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- ============ employee ============ -->
+    <record id="view_employee_form_hik_shift" model="ir.ui.view">
+        <field name="name">hr.employee.form.hik_shift</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hikvision_attendance.view_employee_form_face_id"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='face_id']/.." position="after">
+                <h5 class="d-flex align-items-baseline mb-0" groups="hr.group_hr_user">
+                    <i class="fa fa-clock-o fa-fw me-1 text-primary" title="Ish smenasi"/>
+                    <field name="hik_shift_id" placeholder="Ish smenasi" options="{'no_create': True}" class="w-100 w-sm-75"/>
+                </h5>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_tree_hik_shift" model="ir.ui.view">
+        <field name="name">hr.employee.list.hik_shift</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hikvision_attendance.view_employee_tree_face_id"/>
+        <field name="arch" type="xml">
+            <field name="face_id" position="after">
+                <field name="hik_shift_id" optional="show" groups="hr.group_hr_user" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_employee_filter_hik_shift" model="ir.ui.view">
+        <field name="name">hr.employee.search.hik_shift</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hikvision_attendance.view_employee_filter_face_id"/>
+        <field name="arch" type="xml">
+            <field name="face_id" position="after">
+                <field name="hik_shift_id" groups="hr.group_hr_user"/>
+                <filter name="no_hik_shift" string="Smenasiz" domain="[('hik_shift_id', '=', False)]" groups="hr.group_hr_user"/>
+                <filter name="group_hik_shift" string="Smena" context="{'group_by': 'hik_shift_id'}" groups="hr.group_hr_user"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- ============ attendance ============ -->
+    <record id="hr_attendance_list_hik_shift" model="ir.ui.view">
+        <field name="name">hr.attendance.list.hik_shift</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <field name="check_out" position="after">
+                <field name="hik_shift_id" optional="show"/>
+                <field name="hik_status" optional="show" widget="badge"
+                       decoration-success="hik_status == 'ok'" decoration-danger="hik_status in ('late', 'late_early')"
+                       decoration-warning="hik_status == 'early'" decoration-muted="hik_status in ('offday', 'none')"/>
+                <field name="hik_late_min" optional="show" sum="Jami"/>
+                <field name="hik_early_min" optional="show" sum="Jami"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_attendance_form_hik_shift" model="ir.ui.view">
+        <field name="name">hr.attendance.form.hik_shift</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Smena bo'yicha">
+                    <group>
+                        <field name="hik_shift_id" options="{'no_create': True}"/>
+                        <field name="hik_status"/>
+                    </group>
+                    <group>
+                        <field name="hik_planned_start"/>
+                        <field name="hik_planned_end"/>
+                        <field name="hik_late_min"/>
+                        <field name="hik_early_min"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_attendance_search_hik_shift" model="ir.ui.view">
+        <field name="name">hr.attendance.search.hik_shift</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="hik_shift_id"/>
+                <filter name="hik_late" string="Kechikkanlar" domain="[('hik_late_min', '>', 0)]"/>
+                <filter name="hik_early" string="Erta ketganlar" domain="[('hik_early_min', '>', 0)]"/>
+                <filter name="group_hik_shift" string="Smena" context="{'group_by': 'hik_shift_id'}"/>
+                <filter name="group_hik_status" string="Holat" context="{'group_by': 'hik_status'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_attendance_pivot_hik" model="ir.ui.view">
+        <field name="name">hr.attendance.pivot.hik</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <pivot string="Kechikishlar" sample="1">
+                <field name="employee_id" type="row"/>
+                <field name="check_in" interval="month" type="col"/>
+                <field name="hik_late_min" type="measure"/>
+                <field name="hik_early_min" type="measure"/>
+                <field name="worked_hours" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hr_attendance_action_hik_monthly" model="ir.actions.act_window">
+        <field name="name">Kechikishlar (oylik)</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">pivot,list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), (0, 0, {'view_mode': 'pivot', 'view_id': ref('hr_attendance_pivot_hik')})]"/>
+        <field name="context">{'search_default_check_in_filter': 1}</field>
+    </record>
+
+    <!-- ============ daily report ============ -->
+    <record id="hik_attendance_daily_form" model="ir.ui.view">
+        <field name="name">hik.attendance.daily.form</field>
+        <field name="model">hik.attendance.daily</field>
+        <field name="arch" type="xml">
+            <form string="Kunlik davomat">
+                <group>
+                    <field name="date"/>
+                    <field name="shift_id" options="{'no_create': True}"/>
+                    <field name="department_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_show" type="object" string="Ko'rsatish" class="btn-primary"/>
+                    <button special="cancel" string="Bekor"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="hik_attendance_daily_action" model="ir.actions.act_window">
+        <field name="name">Kunlik davomat</field>
+        <field name="res_model">hik.attendance.daily</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="hik_attendance_daily_line_list" model="ir.ui.view">
+        <field name="name">hik.attendance.daily.line.list</field>
+        <field name="model">hik.attendance.daily.line</field>
+        <field name="arch" type="xml">
+            <list string="Kunlik davomat" create="false" edit="false" delete="false"
+                  decoration-danger="status in ('absent', 'late', 'late_early')" decoration-warning="status == 'early'"
+                  decoration-success="status == 'ok'" decoration-muted="status in ('offday', 'none')">
+                <field name="employee_id"/>
+                <field name="department_id" optional="show"/>
+                <field name="shift_id"/>
+                <field name="status" widget="badge"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="late_min" sum="Jami"/>
+                <field name="early_min" sum="Jami"/>
+                <field name="worked_hours" widget="float_time" sum="Jami"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hik_attendance_daily_line_search" model="ir.ui.view">
+        <field name="name">hik.attendance.daily.line.search</field>
+        <field name="model">hik.attendance.daily.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <filter name="absent" string="Kelmaganlar" domain="[('status', '=', 'absent')]"/>
+                <filter name="late" string="Kechikkanlar" domain="[('status', 'in', ('late', 'late_early'))]"/>
+                <filter name="group_status" string="Holat" context="{'group_by': 'status'}"/>
+                <filter name="group_shift" string="Smena" context="{'group_by': 'shift_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ menus (Davomatlar app) ============ -->
+    <menuitem id="menu_hik_work_shift" name="Ish smenalari" parent="hr_attendance.menu_hr_attendance_root"
+              action="hik_work_shift_action" sequence="40" groups="hr_attendance.group_hr_attendance_officer"/>
+    <menuitem id="menu_hik_reports" name="Hisobotlar" parent="hr_attendance.menu_hr_attendance_root"
+              sequence="45" groups="hr_attendance.group_hr_attendance_officer"/>
+    <menuitem id="menu_hik_daily" name="Kunlik davomat" parent="menu_hik_reports"
+              action="hik_attendance_daily_action" sequence="1"/>
+    <menuitem id="menu_hik_monthly" name="Kechikishlar (oylik)" parent="menu_hik_reports"
+              action="hr_attendance_action_hik_monthly" sequence="2"/>
+</odoo>

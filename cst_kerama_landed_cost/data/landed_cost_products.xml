@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Expense types the warehouse picks from on a receipt.  noupdate so that
+         renaming one, or changing its default split, survives an upgrade. -->
+    <data noupdate="1">
+
+        <record id="product_expense_transport" model="product.template">
+            <field name="name">Tashish (transport)</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_quantity</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_railway" model="product.template">
+            <field name="name">Temir yo'l</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_quantity</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_road_fee" model="product.template">
+            <field name="name">Yo'l haqi</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_quantity</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_unloading" model="product.template">
+            <field name="name">Konteyner va vagon tushirish</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_quantity</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_customs" model="product.template">
+            <field name="name">Bojxona to'lovlari</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_current_cost_price</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_broker" model="product.template">
+            <field name="name">Broker xizmati</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_current_cost_price</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_insurance" model="product.template">
+            <field name="name">Sug'urta</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_current_cost_price</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+        <record id="product_expense_other" model="product.template">
+            <field name="name">Boshqa xarajatlar</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_expenses"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="split_method_landed_cost">by_current_cost_price</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Every one of these reads company-scoped figures, so they follow
+             the company switcher the way the rest of Odoo does. -->
+        <record id="rule_partner_last_operation_company" model="ir.rule">
+            <field name="name">Mijozning oxirgi operatsiyasi: kompaniya bo'yicha</field>
+            <field name="model_id" ref="model_cst_partner_last_operation"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <record id="rule_product_price_range_company" model="ir.rule">
+            <field name="name">Mahsulot narx oralig'i: kompaniya bo'yicha</field>
+            <field name="model_id" ref="model_cst_product_price_range"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <record id="rule_fuel_machine_company" model="ir.rule">
+            <field name="name">Mashinalar: kompaniya bo'yicha</field>
+            <field name="model_id" ref="model_cst_fuel_machine"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <record id="rule_fuel_log_company" model="ir.rule">
+            <field name="name">Yoqilg'i harakati: kompaniya bo'yicha</field>
+            <field name="model_id" ref="model_cst_fuel_log"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_telegram" model="ir.ui.view">
+        <field name="name">res.config.settings.form.telegram</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='bank_cash']" position="after">
+                <block title="Telegram bot" name="cst_telegram">
+                    <setting string="Bot token"
+                             help="@BotFather bergan token. Saqlagandan keyin 'Botni ulash' tugmasini bosing.">
+                        <field name="cst_telegram_bot_token" password="True"/>
+                    </setting>
+                    <setting string="Webhook" help="Telegram shu manzilga xabar yuboradi.">
+                        <field name="cst_telegram_webhook_url" readonly="1"/>
+                        <div class="mt-2">
+                            <field name="cst_telegram_status" readonly="1" class="text-muted"/>
+                        </div>
+                        <div class="mt-2">
+                            <button name="action_cst_telegram_set_webhook" type="object"
+                                    string="Botni ulash" class="btn-primary btn-sm"/>
+                            <button name="action_cst_telegram_delete_webhook" type="object"
+                                    string="Uzish" class="btn-secondary btn-sm ms-1"/>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

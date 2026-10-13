@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Header: Face ID clock + «Yangi buyurtma»; offline banner above the cards -->
+    <t t-inherit="mrp_workorder.MrpDisplay" t-inherit-mode="extension">
+        <xpath expr="//MrpDisplaySearchBar" position="before">
+            <CstPresenceClock presence="cst.presence"/>
+            <button class="btn btn-primary o_cst_sf_new" t-on-click="openCstNewOrder">
+                <i class="fa fa-plus me-1" role="img"/>Yangi buyurtma
+            </button>
+        </xpath>
+        <xpath expr="//div[hasclass('o_mrp_display_records')]/t[1]" position="before">
+            <div t-if="cstShowOffline" class="o_cst_sf_offline alert alert-danger d-flex align-items-center gap-3 mb-0">
+                <i class="fa fa-exclamation-triangle fa-2x" role="img"/>
+                <div>
+                    <div class="fw-bold">Siz online emassiz — Face ID'dan o'ting.</div>
+                    <div class="small">
+                        <t t-if="cstPresenceName"><t t-esc="cstPresenceName"/>: </t>
+                        bugungi kirish yozuvi topilmadi, ish vaqti hisoblanmaydi.
+                    </div>
+                </div>
+                <button class="btn btn-outline-danger ms-auto" t-on-click="() => this.cstRefreshPresence()">
+                    <i class="fa fa-refresh me-1" role="img"/>Tekshirish
+                </button>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- Work-center tabs: no «Add» for operators -->
+    <t t-inherit="mrp_workorder.ControlPanelButtons" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_work_centers')]/button[hasclass('btn-secondary')]" position="attributes">
+            <attribute name="t-if">!env.cstShopfloor or !env.cstShopfloor.operatorMode</attribute>
+        </xpath>
+        <xpath expr="//button[hasclass('o_work_center_add')]" position="attributes">
+            <attribute name="t-if">!env.cstShopfloor or !env.cstShopfloor.operatorMode</attribute>
+        </xpath>
+        <xpath expr="(//button[hasclass('o_work_center_add')])[2]" position="attributes">
+            <attribute name="t-if">!env.cstShopfloor or !env.cstShopfloor.operatorMode</attribute>
+        </xpath>
+    </t>
+
+    <!-- Operators panel: operators cannot pick colleagues -->
+    <t t-inherit="mrp_workorder.MrpDisplayEmployeesPanel" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_edit_operators')]" position="attributes">
+            <attribute name="t-if">!env.cstShopfloor or !env.cstShopfloor.operatorMode</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('offcanvas-footer')]/button" position="attributes">
+            <attribute name="t-if">!env.cstShopfloor or !env.cstShopfloor.operatorMode</attribute>
+        </xpath>
+    </t>
+
+    <!-- Card: sale order reference, 2-sort / brak chips, result button -->
+    <t t-inherit="mrp_workorder.MrpDisplayRecord" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('card-header')]//div[hasclass('o_quantity')]/parent::div" position="before">
+            <div t-if="cstSaleRef" class="o_cst_sf_sale small">
+                <i class="fa fa-shopping-cart me-1" role="img"/><span t-esc="cstSaleRef"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('card-header')]//div[hasclass('o_quantity')]/parent::div" position="after">
+            <div t-if="cstHasSecond or cstHasScrap" class="o_cst_sf_grades d-flex gap-2 flex-wrap"
+                 t-on-click.stop="">
+                <button t-if="cstHasSecond" type="button" class="btn btn-sm o_cst_sf_chip o_cst_sf_chip--second"
+                        t-on-click.stop="() => this.openCstResults('second')">
+                    2-sort +<t t-esc="cstSecond"/> ta
+                </button>
+                <button t-if="cstHasScrap" type="button" class="btn btn-sm o_cst_sf_chip o_cst_sf_chip--scrap"
+                        t-on-click.stop="() => this.openCstResults('scrap')">
+                    Brak +<t t-esc="cstScrap"/> ta
+                </button>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('card-footer')]/button[last()]" position="after">
+            <button t-if="cstCanEnterResult and !state.underValidation" type="button"
+                    class="o_btn_icon btn btn-secondary" title="2-sort / Brak yozish"
+                    t-on-click.stop="openCstResultEntry">
+                <i class="fa fa-tags" role="img"/>
+            </button>
+        </xpath>
+    </t>
+
+    <!-- ⋮ menu: result entry for a work order -->
+    <t t-inherit="mrp_workorder.MrpDisplayMenuDialog" t-inherit-mode="extension">
+        <xpath expr="//button[@name='action_scrap']/parent::div" position="after">
+            <div class="col-6 p-1" t-if="props.record.resModel === 'mrp.workorder'">
+                <button class="d-flex flex-column gap-1 btn btn-secondary fs-3 w-100 h-100 py-3"
+                        name="cst_result" t-on-click="openCstResult">
+                    <i class="fa fa-tags"/> 2-sort / Brak yozish
+                </button>
+            </div>
+        </xpath>
+    </t>
+</templates>

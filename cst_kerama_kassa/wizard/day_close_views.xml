@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_day_close_form" model="ir.ui.view">
+        <field name="name">cst.kassa.day.close.form</field>
+        <field name="model">cst.kassa.day.close</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="day_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <div class="cst_kassa_totals">
+                    <div class="cst_kassa_tile"><span>Opening balance</span><field name="opening_balance"/></div>
+                    <div class="cst_kassa_tile cst_kassa_in"><span>Cash in</span><field name="total_in"/></div>
+                    <div class="cst_kassa_tile cst_kassa_out"><span>Cash out</span><field name="total_out"/></div>
+                    <div class="cst_kassa_tile cst_kassa_expected"><span>Expected balance</span><field name="expected_balance"/></div>
+                </div>
+                <group>
+                    <field name="counted_balance" class="fs-3 fw-bold"/>
+                    <field name="difference" decoration-danger="difference &lt; 0" decoration-success="difference &gt; 0"/>
+                    <field name="note" placeholder="Explain the difference, if any..."/>
+                </group>
+                <div class="text-muted">
+                    Count the money in the till. After closing, a kassa manager confirms the day; a difference is then
+                    booked as a cash shortage or surplus.
+                </div>
+                <footer>
+                    <button name="action_close" type="object" string="Close the day" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

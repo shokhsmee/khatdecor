@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ==================== RAHBAR OYNASI ==================== -->
+    <menuitem id="menu_reports_director"
+              name="Rahbar oynasi"
+              parent="menu_reports_root"
+              action="action_director_dashboard"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="5"/>
+
+    <!-- ==================== OYLIK ==================== -->
+    <!-- follows the Oylik rule of the roles: hidden for everyone but Kassir,
+         Buxgalter, Rahbar and Administrator through role.management -->
+    <menuitem id="menu_reports_payroll"
+              name="Oylik"
+              parent="menu_reports_root"
+              groups="cst_kerama_payroll.group_payroll_user"
+              sequence="45"/>
+    <menuitem id="menu_reports_payroll_summary"
+              name="Xodimlar oyligi (umumiy)"
+              parent="menu_reports_payroll"
+              action="cst_kerama_payroll.action_payroll_report"
+              sequence="10"/>
+    <menuitem id="menu_reports_payroll_card"
+              name="Xodim oyligi (individual)"
+              parent="menu_reports_payroll"
+              action="action_employee_card_report"
+              sequence="20"/>
+    <menuitem id="menu_reports_bonus_penalty"
+              name="Jarimalar va bonuslar"
+              parent="menu_reports_payroll"
+              action="action_bonus_penalty_report"
+              sequence="30"/>
+    <menuitem id="menu_reports_kpi"
+              name="KPI hisoboti"
+              parent="menu_reports_payroll"
+              action="action_kpi_report"
+              sequence="40"/>
+    <menuitem id="menu_reports_kpi_native"
+              name="KPI ro'yxatlari"
+              parent="menu_reports_payroll"
+              sequence="50"/>
+    <menuitem id="menu_reports_kpi_sales"
+              name="Sotuv KPI"
+              parent="menu_reports_kpi_native"
+              action="cst_kerama_payroll.action_payroll_kpi_sales"
+              sequence="10"/>
+    <menuitem id="menu_reports_kpi_production"
+              name="Ishbay KPI"
+              parent="menu_reports_kpi_native"
+              action="cst_kerama_payroll.action_payroll_kpi_production"
+              sequence="20"/>
+    <menuitem id="menu_reports_kpi_unloading"
+              name="Yuk tushirish"
+              parent="menu_reports_kpi_native"
+              action="cst_kerama_payroll.action_payroll_kpi_unloading"
+              sequence="30"/>
+
+    <!-- ==================== KASSA ==================== -->
+    <menuitem id="menu_reports_cash"
+              name="Kassa"
+              parent="menu_reports_root"
+              groups="account.group_account_readonly,account.group_account_invoice"
+              sequence="15"/>
+    <menuitem id="menu_reports_cash_movement"
+              name="Pullar harakati"
+              parent="menu_reports_cash"
+              action="action_cash_report"
+              sequence="10"/>
+    <menuitem id="menu_reports_expense_cash"
+              name="Kassa orqali xarajatlar"
+              parent="menu_reports_cash"
+              action="action_expense_report_cash"
+              sequence="20"/>
+    <menuitem id="menu_reports_expense_all"
+              name="Xarajat harakati"
+              parent="menu_reports_cash"
+              action="action_expense_report_all"
+              sequence="30"/>
+    <menuitem id="menu_reports_bank_cash_items"
+              name="Bank va kassa yozuvlari (Odoo)"
+              parent="menu_reports_cash"
+              action="account.action_account_moves_journal_bank_cash"
+              groups="account.group_account_readonly"
+              sequence="40"/>
+
+    <!-- ==================== OMBOR — additions ==================== -->
+    <menuitem id="menu_reports_minmax"
+              name="Kam yoki ko'p turgan mahsulotlar (min-max)"
+              parent="menu_reports_stock"
+              action="action_minmax_report"
+              sequence="48"/>
+    <menuitem id="menu_reports_stock_ledger"
+              name="Ombor batafsil hisoboti"
+              parent="menu_reports_stock"
+              action="action_stock_ledger_report"
+              sequence="12"/>
+    <menuitem id="menu_reports_writeoff"
+              name="Hisobdan chiqarilganlar"
+              parent="menu_reports_stock"
+              action="action_writeoff_report"
+              sequence="52"/>
+    <menuitem id="menu_reports_inventory_count"
+              name="Reviziya hisoboti"
+              parent="menu_reports_stock"
+              action="action_inventory_count_report"
+              sequence="54"/>
+    <menuitem id="menu_reports_scrap_native"
+              name="Chiqindilar (Odoo)"
+              parent="menu_reports_stock_moves"
+              action="stock.action_stock_scrap"
+              sequence="60"/>
+
+    <!-- ==================== ISHLAB CHIQARISH — addition ==================== -->
+    <menuitem id="menu_reports_consumption"
+              name="Kalkulyatsiyaga nisbatan farq (norma / fakt)"
+              parent="menu_reports_mrp"
+              action="action_consumption_report"
+              sequence="35"/>
+
+</odoo>

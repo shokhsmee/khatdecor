@@ -1,0 +1,565 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_landed_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-18 13:56+0000\n"
+"PO-Revision-Date: 2026-09-18 13:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: uz_UZ\n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__picking_state
+msgid ""
+" * Draft: The transfer is not confirmed yet. Reservation doesn't apply.\n"
+" * Waiting another operation: This transfer is waiting for another operation before being ready.\n"
+" * Waiting: The transfer is waiting for the availability of some products.\n"
+"(a) The shipping policy is \"As soon as possible\": no product could be reserved.\n"
+"(b) The shipping policy is \"When all products are ready\": not all the products could be reserved.\n"
+" * Ready: The transfer is ready to be processed.\n"
+"(a) The shipping policy is \"As soon as possible\": at least one product has been reserved.\n"
+"(b) The shipping policy is \"When all products are ready\": all product have been reserved.\n"
+" * Done: The transfer has been processed.\n"
+" * Cancelled: The transfer has been cancelled."
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid "%s has no purchase journal, so the expenses cannot be billed."
+msgstr ""
+"%s da xarid jurnali yo'q, shuning uchun xarajatlarga schyot yaratib bo'lmaydi."
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid ""
+"<i class=\"fa fa-exclamation-triangle me-1\"/>\n"
+"                        None of the goods here is valued at average cost or FIFO,\n"
+"                        so an expense has no cost to land on. Set the costing\n"
+"                        method of their product category to\n"
+"                        <b>Average Cost (AVCO)</b> or <b>First In First Out (FIFO)</b> first."
+msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-1\"/>\n"
+"                        Bu yerdagi tovarlarning hech biri o'rtacha tannarx yoki FIFO bo'yicha baholanmagan, ya'ni xarajat tushadigan tannarx yo'q. Avval ularning mahsulot toifasida tannarx usulini <b>O'rtacha tannarx (AVCO)</b> yoki <b>FIFO</b> qilib belgilang."
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        Press <b>Add to Cost</b> in the header: each service provider\n"
+"                        is billed, and the amounts are spread over the goods the way\n"
+"                        each line says."
+msgstr ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        Yuqoridagi <b>Tannarxga qo'shish</b> tugmasini bosing: har bir xizmat ko'rsatuvchiga schyot yaratiladi va summalar har qator ko'rsatgan usulda tovarlarga taqsimlanadi."
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        Validate the receipt first. Expenses can only be added to\n"
+"                        the cost once the goods are in stock - the button appears then."
+msgstr ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        Avval kirimni tasdiqlang. Xarajatni tannarxga faqat tovar omborga kirgach qo'shish mumkin - tugma o'shanda chiqadi."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__product_id
+msgid ""
+"A service product flagged as a landed cost.  It carries the expense account "
+"the bill posts to."
+msgstr ""
+"Xarajat sifatida belgilangan xizmat mahsuloti. Schyot qaysi xarajat schyotiga tushishini shu belgilaydi."
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid "Add to Cost"
+msgstr "Tannarxga qo'shish"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__applied
+msgid "Added to Cost"
+msgstr "Tannarxga qo'shilgan"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_applied
+msgid "Already in Cost"
+msgstr "Tannarxga qo'shilgan"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__amount
+msgid "Amount"
+msgstr "Summasi"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__amount_company
+msgid "Amount in Company Currency"
+msgstr "Kompaniya valyutasida"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__amount
+msgid ""
+"Amount in the currency of the expense.  Overwrite it when the invoice is not"
+" exactly quantity times unit price."
+msgstr ""
+"Xarajat valyutasidagi summa. Schyotdagi summa soni x narxiga aniq teng bo'lmasa, qo'lda yozing."
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/picking_expense.py:0
+msgid ""
+"An expense that has already been added to the cost of the goods can no "
+"longer be changed.  Add a correcting expense line with a negative amount "
+"instead."
+msgstr ""
+"Tannarxga qo'shib bo'lingan xarajatni endi o'zgartirib bo'lmaydi. Uning o'rniga manfiy summali tuzatuvchi xarajat qatori qo'shing."
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/picking_expense.py:0
+msgid ""
+"An expense that has already been added to the cost of the goods can no "
+"longer be deleted.  Add a correcting expense line with a negative amount "
+"instead."
+msgstr ""
+"Tannarxga qo'shib bo'lingan xarajatni endi o'chirib bo'lmaydi. Uning o'rniga manfiy summali tuzatuvchi xarajat qatori qo'shing."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__create_bill
+msgid "Bill It"
+msgstr "Schyot yaratilsin"
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_customs
+msgid "Bojxona to'lovlari"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_other
+msgid "Boshqa xarajatlar"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_broker
+msgid "Broker xizmati"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields.selection,name:cst_kerama_landed_cost.selection__cst_picking_expense__split_method__by_quantity
+msgid "By Quantity"
+msgstr "Soni bo'yicha"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields.selection,name:cst_kerama_landed_cost.selection__cst_picking_expense__split_method__by_current_cost_price
+msgid "By Value"
+msgstr "Narxi bo'yicha"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__split_method
+msgid ""
+"By Value: goods carry the expense in proportion to what they cost.\n"
+"By Quantity: every unit received carries the same share.\n"
+"Equally: every product line carries the same share.\n"
+"By Weight / By Volume: in proportion to the weight or volume received."
+msgstr ""
+"Narxi bo'yicha: tovarlar o'z qiymatiga mutanosib ravishda xarajat ko'taradi.\n"
+"Soni bo'yicha: kelgan har bir birlik bir xil ulush ko'taradi.\n"
+"Teng: har bir mahsulot qatori bir xil ulush ko'taradi.\n"
+"Og'irligi / Hajmi bo'yicha: kelgan og'irlik yoki hajmga mutanosib."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields.selection,name:cst_kerama_landed_cost.selection__cst_picking_expense__split_method__by_volume
+msgid "By Volume"
+msgstr "Hajmi bo'yicha"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields.selection,name:cst_kerama_landed_cost.selection__cst_picking_expense__split_method__by_weight
+msgid "By Weight"
+msgstr "Og'irligi bo'yicha"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__company_id
+msgid "Company"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__company_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_company_currency_id
+msgid "Company Currency"
+msgstr "Kompaniya valyutasi"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_valuation_ok
+msgid "Cost Can Be Corrected"
+msgstr "Tannarxni tuzatish mumkin"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_bill_count
+msgid "Cst Expense Bill Count"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_ready
+msgid "Cst Expense Ready"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_visible
+msgid "Cst Expense Visible"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_landed_cost_count
+msgid "Cst Landed Cost Count"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__currency_id
+msgid "Currency"
+msgstr "Valyuta"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Date"
+msgstr "Sana"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__account_id
+msgid ""
+"Debited by the vendor bill and credited again when the expense moves onto "
+"the goods, so it nets to zero."
+msgstr ""
+"Yetkazib beruvchi schyoti bu schyotni debetlaydi, xarajat tovarga o'tganda esa qayta kreditlanadi - natijada qoldiq nol bo'ladi."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__name
+msgid "Description"
+msgstr "Izoh"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__display_name
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_preview_landed_cost_id
+msgid "Draft Landed Cost"
+msgstr "Qoralama xarajat taqsimoti"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields.selection,name:cst_kerama_landed_cost.selection__cst_picking_expense__split_method__equal
+msgid "Equally"
+msgstr "Teng"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid "Every expense on this receipt is already in the cost."
+msgstr "Bu kirimdagi barcha xarajatlar allaqachon tannarxga qo'shilgan."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__account_id
+msgid "Expense Account"
+msgstr "Xarajat schyoti"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_bill_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid "Expense Bills"
+msgstr "Xarajat schyotlari"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__product_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Expense Type"
+msgstr "Xarajat mazmuni"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid "Expenses"
+msgstr "Xarajatlar"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid "Expenses can only be added to the cost of a receipt."
+msgstr "Xarajatlarni faqat kirim hujjatining tannarxiga qo'shish mumkin."
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid "Expenses of %s"
+msgstr "%s xarajatlari"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__currency_rate
+msgid ""
+"How many units of the company currency one unit of the expense currency is "
+"worth.  Taken from the rate table on the expense date, but you can type the "
+"rate on the invoice instead."
+msgstr ""
+"Xarajat valyutasining 1 birligi kompaniya valyutasida qancha turishi. Xarajat sanasidagi kurs jadvalidan olinadi, lekin schyotdagi kursni qo'lda ham yozish mumkin."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__id
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "In Cost"
+msgstr "Tannarxda"
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_unloading
+msgid "Konteyner va vagon tushirish"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__landed_cost_id
+msgid "Landed Cost"
+msgstr "Xarajat taqsimoti"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_landed_cost_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid "Landed Costs"
+msgstr "Xarajat taqsimotlari"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Month"
+msgstr "Oy"
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.actions.act_window,help:cst_kerama_landed_cost.cst_picking_expense_action
+msgid "No expense has been booked on a receipt yet"
+msgstr "Hali birorta kirimga xarajat kiritilmagan"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid ""
+"None of the goods on this receipt is valued at average cost or FIFO, so "
+"there is no cost to correct.  Set the costing method of their product "
+"category to Average Cost (AVCO) or First In First Out (FIFO) first."
+msgstr ""
+"Bu kirimdagi hech bir tovar o'rtacha tannarx yoki FIFO bo'yicha baholanmagan, ya'ni tuzatadigan tannarx yo'q. Avval ularning mahsulot toifasida tannarx usulini O'rtacha tannarx (AVCO) yoki FIFO qilib belgilang."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_pending
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Not Yet in Cost"
+msgstr "Tannarxga qo'shilmagan"
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.actions.act_window,help:cst_kerama_landed_cost.cst_picking_expense_action
+msgid ""
+"Open a receipt and fill in its <b>Expenses</b> page - delivery,\n"
+"               customs, unloading - then press <b>Add to Cost</b>."
+msgstr ""
+"Kirimni oching va uning <b>Xarajatlar</b> bo'limini to'ldiring - tashish, bojxona, tushirish - so'ng <b>Tannarxga qo'shish</b> tugmasini bosing."
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid "Preview Split"
+msgstr "Taqsimotni ko'rish"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__quantity
+msgid "Quantity"
+msgstr "Soni"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__create_bill
+msgid ""
+"Raise a vendor bill for this expense so it shows as a debt to the service "
+"provider.  Untick for expenses already paid and booked somewhere else."
+msgstr ""
+"Bu xarajat uchun yetkazib beruvchi schyoti yaratilsin - shunda u xizmat ko'rsatuvchiga qarz bo'lib ko'rinadi. Allaqachon to'langan va boshqa joyda provodka qilingan xarajatlarda belgini oling."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__currency_rate
+msgid "Rate"
+msgstr "Valyuta kursi"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__picking_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Receipt"
+msgstr "Kirim"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model,name:cst_kerama_landed_cost.model_cst_picking_expense
+msgid "Receipt Expense"
+msgstr "Kirim xarajati"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.actions.act_window,name:cst_kerama_landed_cost.cst_picking_expense_action
+#: model:ir.ui.menu,name:cst_kerama_landed_cost.cst_picking_expense_menu
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Receipt Expenses"
+msgstr "Kirim xarajatlari"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_search
+msgid "Service Provider"
+msgstr "Xizmat ko'rsatuvchi"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__split_method
+msgid "Split Method"
+msgstr "Taqsimlash usuli"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__picking_state
+msgid "Status"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_insurance
+msgid "Sug'urta"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_transport
+msgid "Tashish (transport)"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__tax_ids
+msgid "Taxes"
+msgstr "Soliqlar"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__tax_ids
+msgid ""
+"Taxes added on top of the amount when the vendor bill is raised. The amount "
+"itself - without tax - is what lands on the goods."
+msgstr ""
+"Yetkazib beruvchi schyoti yaratilganda summa ustiga qo'shiladigan soliqlar. Tovarga esa soliqsiz summaning o'zi tushadi."
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_railway
+msgid "Temir yo'l"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid "The expenses add up to nothing, so there is nothing to spread."
+msgstr "Xarajatlar yig'indisi nolga teng - taqsimlashga hech narsa yo'q."
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid ""
+"The providers will be billed and the expenses will be added to the cost of "
+"the goods. This cannot be undone - a mistake has to be corrected with a "
+"negative expense line. Continue?"
+msgstr ""
+"Xizmat ko'rsatuvchilarga schyot yaratiladi va xarajatlar tovar tannarxiga qo'shiladi. Buni bekor qilib bo'lmaydi - xatoni faqat manfiy summali xarajat qatori bilan tuzatiladi. Davom etasizmi?"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid ""
+"These expenses have no expense account, so they cannot be booked:\n"
+"%s"
+msgstr ""
+"Bu xarajatlarda xarajat schyoti ko'rsatilmagan, shuning uchun ularni provodka qilib bo'lmaydi:\n"
+"%s"
+
+#. module: cst_kerama_landed_cost
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.cst_picking_expense_view_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_landed_cost.view_picking_form_landed_cost
+msgid "Total"
+msgstr "Jami"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_stock_picking__cst_expense_total
+msgid "Total Expenses"
+msgstr "Jami xarajatlar"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model,name:cst_kerama_landed_cost.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__price_unit
+msgid "Unit Price"
+msgstr "Narxi"
+
+#. module: cst_kerama_landed_cost
+#. odoo-python
+#: code:addons/cst_kerama_landed_cost/models/stock_picking.py:0
+msgid ""
+"Validate the receipt first - there is nothing in stock to carry the expenses"
+" yet."
+msgstr ""
+"Avval kirimni tasdiqlang - xarajatni ko'taradigan tovar hali omborda yo'q."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,field_description:cst_kerama_landed_cost.field_cst_picking_expense__bill_id
+msgid "Vendor Bill"
+msgstr "Yetkazib beruvchi schyoti"
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_stock_picking__cst_valuation_ok
+msgid ""
+"Whether any of the goods on this receipt is valued at average cost or FIFO."
+"  Goods at standard price keep the price on their form whatever they cost to"
+" bring in, so expenses cannot land on them."
+msgstr ""
+"Bu kirimdagi tovarlardan birortasi o'rtacha tannarx yoki FIFO bo'yicha baholanadimi. Standart narxdagi tovar keltirish qanchaga tushishidan qat'i nazar o'z kartochkasidagi narxda qoladi, shuning uchun unga xarajat tushmaydi."
+
+#. module: cst_kerama_landed_cost
+#: model:ir.model.fields,help:cst_kerama_landed_cost.field_cst_picking_expense__partner_id
+msgid ""
+"Who is owed for this expense.  A vendor bill is raised in this partner's "
+"name when the expense is added to the cost."
+msgstr ""
+"Bu xarajat kimga qarz. Xarajat tannarxga qo'shilganda shu kontragent nomiga yetkazib beruvchi schyoti yaratiladi."
+
+#. module: cst_kerama_landed_cost
+#: model:product.template,name:cst_kerama_landed_cost.product_expense_road_fee
+msgid "Yo'l haqi"
+msgstr ""

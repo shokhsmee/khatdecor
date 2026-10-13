@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_production_fact_wizard_form" model="ir.ui.view">
+        <field name="name">cst.production.fact.wizard.form</field>
+        <field name="model">cst.production.fact.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Ishlab chiqarish fakti">
+                <group><group><field name="date_from"/><field name="date_to"/></group>
+                    <group><field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_production_fact_wizard" model="ir.actions.act_window">
+        <field name="name">Ishlab chiqarish fakti</field>
+        <field name="res_model">cst.production.fact.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_assets_wizard_form" model="ir.ui.view">
+        <field name="name">cst.asset.report.wizard.form</field>
+        <field name="model">cst.asset.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Asosiy vositalar">
+                <group><group><field name="date_to" string="Holat sanasi"/><field name="include_closed"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <p class="text-muted">Asosiy vositalar Buxgalteriya ▸ Asosiy vositalar bo'limida yuritiladi; inventar raqami, ishlab chiqarilgan sana va joylashuv har bir vosita kartochkasida to'ldiriladi.</p>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_assets_wizard" model="ir.actions.act_window">
+        <field name="name">Asosiy vositalar (qoldiq summalari bilan)</field>
+        <field name="res_model">cst.asset.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_tax_movement_wizard_form" model="ir.ui.view">
+        <field name="name">cst.tax.movement.wizard.form</field>
+        <field name="model">cst.tax.movement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Soliqlar harakati">
+                <group><group><field name="date_from"/><field name="date_to"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <field name="account_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_tax_movement_wizard" model="ir.actions.act_window">
+        <field name="name">Soliqlar harakati</field>
+        <field name="res_model">cst.tax.movement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_tax_statement_wizard_form" model="ir.ui.view">
+        <field name="name">cst.tax.statement.wizard.form</field>
+        <field name="model">cst.tax.statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Soliq akt sverkasi">
+                <group><group><field name="account_id" options="{'no_create': True}"/><field name="date_from"/><field name="date_to"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_tax_statement_wizard" model="ir.actions.act_window">
+        <field name="name">Soliq akt sverkasi</field>
+        <field name="res_model">cst.tax.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_utility_statement_wizard_form" model="ir.ui.view">
+        <field name="name">cst.utility.statement.wizard.form</field>
+        <field name="model">cst.utility.statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Kommunal xizmatlar akt sverkasi">
+                <group><group><field name="partner_id" options="{'no_create': True}"/><field name="date_from"/><field name="date_to"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <p class="text-muted">Kommunal xizmatlar Odoo'da oddiy ta'minotchi hisob-fakturasi (Xarid / Buxgalteriya ▸ Ta'minotchi hisob-fakturalari) va «To'lovni qayd etish» orqali yuritiladi. Ta'minotchi kontaktiga «Kommunal xizmatlar» tegi qo'yilsa, shu ro'yxatda chiqadi.</p>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_utility_statement_wizard" model="ir.actions.act_window">
+        <field name="name">Kommunal xizmatlar akt sverkasi</field>
+        <field name="res_model">cst.utility.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_card_payments_wizard_form" model="ir.ui.view">
+        <field name="name">cst.card.payments.wizard.form</field>
+        <field name="model">cst.card.payments.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Plastik kartaga o'tkazmalar">
+                <group><group><field name="date_from"/><field name="date_to"/><field name="include_draft"/></group>
+                    <group><field name="component_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="employee_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_card_payments_wizard" model="ir.actions.act_window">
+        <field name="name">Plastik kartaga tashlangan pullar</field>
+        <field name="res_model">cst.card.payments.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_bank_fees_wizard_form" model="ir.ui.view">
+        <field name="name">cst.bank.fee.wizard.form</field>
+        <field name="model">cst.bank.fee.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bank xarajatlari">
+                <group><group><field name="date_from"/><field name="date_to"/></group>
+                    <group><field name="journal_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_bank_fees_wizard" model="ir.actions.act_window">
+        <field name="name">Bank xarajatlari</field>
+        <field name="res_model">cst.bank.fee.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- the register's three extra columns, on the asset card -->
+    <record id="view_account_asset_form_cst" model="ir.ui.view">
+        <field name="name">account.asset.form.cst</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='acquisition_date']" position="after">
+                <field name="cst_inventory_no"/>
+                <field name="cst_manufacture_date"/>
+                <field name="cst_location"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

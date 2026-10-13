@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Hisobdan chiqarilganlar ============ -->
+    <template id="report_writeoff">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:70px;">Sana</th>
+                                    <th style="width:26px;">№</th>
+                                    <th>Izoh / Mahsulot</th>
+                                    <th style="width:80px;">Xarakteristika</th>
+                                    <th style="width:60px;">O'lchov</th>
+                                    <th style="width:80px;">Miqdori</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']">
+                                    <tr><td colspan="6" class="mid">Davr ichida hisobdan chiqarish yo'q.</td></tr>
+                                </t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company"><td colspan="6" t-out="block['company'].display_name"/></tr>
+                                    <t t-foreach="block['groups']" t-as="g">
+                                        <tr class="cst_group">
+                                            <td colspan="5" t-out="engine.category_label(g['category'])"/>
+                                            <td class="num" t-out="g['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        </tr>
+                                        <t t-foreach="g['documents']" t-as="d">
+                                            <tr class="cst_sub">
+                                                <td class="mid" t-out="d['date']" t-options="{'widget': 'date'}"/>
+                                                <td colspan="5" t-out="d['title']"/>
+                                            </tr>
+                                            <t t-foreach="d['lines']" t-as="row">
+                                                <tr>
+                                                    <td/>
+                                                    <td class="mid" t-out="row_index + 1"/>
+                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-out="row['characteristic']"/>
+                                                    <td class="mid" t-out="row['uom']"/>
+                                                    <td class="num" t-out="row['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ Reviziya ============ -->
+    <template id="report_inventory_count">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th>Tovar</th>
+                                    <th style="width:90px;">Xarakteristika</th>
+                                    <th style="width:80px;">Ko'p chiqdi</th>
+                                    <th style="width:80px;">Kam chiqdi</th>
+                                    <th style="width:80px;">Farqi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']">
+                                    <tr><td colspan="6" class="mid">Davr ichida reviziya yo'q.</td></tr>
+                                </t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="3" t-out="block['company'].display_name"/>
+                                        <td class="num" t-out="block['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <td class="num" t-out="block['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['surplus'] - block['shortage']"/></t>
+                                    </tr>
+                                    <t t-foreach="block['groups']" t-as="g">
+                                        <tr class="cst_group">
+                                            <td colspan="3" t-out="engine.category_label(g['category'])"/>
+                                            <td class="num" t-out="g['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="g['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['surplus'] - g['shortage']"/></t>
+                                        </tr>
+                                        <t t-foreach="g['leaves']" t-as="c">
+                                            <tr class="cst_sub" t-if="c['category'] != g['category']">
+                                                <td class="mid" t-out="c_index + 1"/>
+                                                <td colspan="2" t-out="c['category'].name"/>
+                                                <td class="num" t-out="c['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="c['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['surplus'] - c['shortage']"/></t>
+                                            </tr>
+                                            <t t-foreach="c['products']" t-as="row">
+                                                <tr>
+                                                    <td class="mid" t-out="row_index + 1"/>
+                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-out="row['characteristic']"/>
+                                                    <td class="num"><span t-if="row['surplus']" t-out="row['surplus']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                                    <td class="num"><span t-if="row['shortage']" t-out="row['shortage']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['surplus'] - row['shortage']"/></t>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ Norma va fakt ============ -->
+    <template id="report_consumption">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <p t-if="not values['orders']" class="mid">Davr ichida tugallangan ishlab chiqarish hujjati yo'q.</p>
+                        <t t-foreach="values['orders']" t-as="mo">
+                            <table class="cst_rep" style="margin-bottom:10px;">
+                                <thead>
+                                    <tr class="cst_group">
+                                        <td colspan="9" class="mid" style="font-weight:bold;">
+                                            <span t-out="mo['date']" t-options="{'widget': 'date'}"/>
+                                            Ishlab chiqarish hujjati <t t-out="mo['mo'].name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:26px;">№</th>
+                                        <th>Mahsulot nomi</th>
+                                        <th style="width:80px;">Xarakteristika</th>
+                                        <th style="width:60px;">Miqdori</th>
+                                        <th>Normadan farqli sarflangan mahsulot nomi</th>
+                                        <th style="width:70px;">Xarakteristika</th>
+                                        <th style="width:60px;">Norma</th>
+                                        <th style="width:60px;">Fakt</th>
+                                        <th style="width:60px;">Farqi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="n" t-value="len(mo['components']) or 1"/>
+                                    <t t-if="not mo['components']">
+                                        <tr>
+                                            <td class="mid">1</td>
+                                            <td t-out="engine.product_label(mo['product'])"/>
+                                            <td t-out="mo['characteristic']"/>
+                                            <td class="num" t-out="mo['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td colspan="5" class="mid">Normadan farq yo'q</td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="mo['components']" t-as="c">
+                                        <tr>
+                                            <t t-if="c_index == 0">
+                                                <td class="mid" t-att-rowspan="n">1</td>
+                                                <td t-att-rowspan="n" t-out="engine.product_label(mo['product'])"/>
+                                                <td t-att-rowspan="n" t-out="mo['characteristic']"/>
+                                                <td class="num" t-att-rowspan="n" t-out="mo['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            </t>
+                                            <td t-out="engine.product_label(c['product'])"/>
+                                            <td t-out="c['characteristic']"/>
+                                            <td class="num" t-out="c['norm']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="c['fact']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num">
+                                                <span t-out="c['diff']" t-attf-class="{{ 'text-danger' if c['diff'] &lt; 0 else '' }}"
+                                                      t-options="{'widget': 'float', 'precision': 3}"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ Min-max bo'yicha qoldiqlar ============ -->
+    <template id="report_minmax">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <style>.cst_rep td.low { color: #c0392b; font-weight: bold; } .cst_rep td.high { color: #1c5cab; font-weight: bold; } .cst_rep td.none { color: #898781; }</style>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head">
+                            <h2 t-out="values['title']"/>
+                            <div><span t-out="values['date_to']" t-options="{'widget': 'date'}"/> holatiga</div>
+                        </div>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th>Mahsulot (xomashyo)</th>
+                                    <th style="width:80px;">Xarakteristika</th>
+                                    <th style="width:50px;">O'lchov</th>
+                                    <th style="width:60px;">Min</th>
+                                    <th style="width:60px;">Max</th>
+                                    <th style="width:70px;">Qoldiq</th>
+                                    <th style="width:70px;">Kutilayotgan</th>
+                                    <th style="width:70px;">Kam (min dan)</th>
+                                    <th style="width:70px;">Ko'p (max dan)</th>
+                                    <th style="width:70px;">Buyurtma kerak</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['warehouses']">
+                                    <tr><td colspan="11" class="mid">Min/max qoidasi bo'lgan mahsulot topilmadi. Chegaralar Inventarizatsiya ▸ To'ldirish qoidalarida belgilanadi.</td></tr>
+                                </t>
+                                <t t-foreach="values['warehouses']" t-as="wh">
+                                    <tr class="cst_company">
+                                        <td colspan="8"><t t-out="wh['company'].display_name"/> — <t t-out="wh['warehouse'].display_name"/></td>
+                                        <td class="mid"><t t-out="wh['low_count']"/> ta kam</td>
+                                        <td class="mid"><t t-out="wh['high_count']"/> ta ko'p</td>
+                                        <td class="mid"><t t-out="wh['count']"/> qator</td>
+                                    </tr>
+                                    <t t-foreach="wh['groups']" t-as="g">
+                                        <tr class="cst_group">
+                                            <td colspan="8" t-out="engine.category_label(g['category'])"/>
+                                            <td class="num"><span t-if="g['low']" t-out="g['low']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                            <td class="num"><span t-if="g['high']" t-out="g['high']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                            <td/>
+                                        </tr>
+                                        <t t-foreach="g['leaves']" t-as="c">
+                                            <tr class="cst_sub" t-if="c['category'] != g['category']">
+                                                <td colspan="8" t-out="c['category'].name"/>
+                                                <td class="num"><span t-if="c['low']" t-out="c['low']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                                <td class="num"><span t-if="c['high']" t-out="c['high']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                                <td/>
+                                            </tr>
+                                            <t t-foreach="c['products']" t-as="row">
+                                                <tr>
+                                                    <td class="mid" t-out="row_index + 1"/>
+                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-out="row['characteristic']"/>
+                                                    <td class="mid" t-out="row['uom']"/>
+                                                    <td class="num"><t t-if="row['has_rule']" t-out="row['min']" t-options="{'widget': 'float', 'precision': 3}"/><span t-else="" class="none">—</span></td>
+                                                    <td class="num"><t t-if="row['has_rule']" t-out="row['max']" t-options="{'widget': 'float', 'precision': 3}"/><span t-else="" class="none">—</span></td>
+                                                    <td class="num" t-out="row['on_hand']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <td class="num" t-out="row['forecast']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <td t-attf-class="num {{ 'low' if row['low'] else '' }}"><span t-if="row['low']">−<t t-out="row['low']" t-options="{'widget': 'float', 'precision': 3}"/></span></td>
+                                                    <td t-attf-class="num {{ 'high' if row['high'] else '' }}"><span t-if="row['high']">+<t t-out="row['high']" t-options="{'widget': 'float', 'precision': 3}"/></span></td>
+                                                    <td class="num"><span t-if="row['to_order']" t-out="row['to_order']" t-options="{'widget': 'float', 'precision': 3}"/><span t-if="not row['has_rule']" class="none">qoida yo'q</span></td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

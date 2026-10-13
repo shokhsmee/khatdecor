@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_inherit_pos" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.pos</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="after">
+                <page name="point_of_sale" string="Point of Sale">
+                    <group string="Point of Sale" name="pos_login" invisible="share">
+                        <field name="allow_direct_login" widget="boolean_toggle"/>
+                        <field name="pos_config_id" domain="[('company_id', '=', company_id)]"
+                               invisible="not allow_direct_login"
+                               required="allow_direct_login"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

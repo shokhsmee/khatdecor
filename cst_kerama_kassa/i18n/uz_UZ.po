@@ -1,0 +1,2799 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_kassa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-27 11:54+0000\n"
+"PO-Revision-Date: 2026-09-27 11:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uz_UZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa__journal_type
+msgid ""
+"\n"
+"        Select 'Sale' for customer invoices journals.\n"
+"        Select 'Purchase' for vendor bills journals.\n"
+"        Select 'Cash', 'Bank' or 'Credit Card' for journals that are used in customer or vendor payments.\n"
+"        Select 'General' for miscellaneous operations journals.\n"
+"        "
+msgstr ""
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/reconcile_wizard.py:0
+msgid "%(amount)s applied to %(count)s debt(s)."
+msgstr "%(amount)s %(count)s ta qarzga moslandi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"%(company)s has no salary payable account. Set it in Settings ▸ Payroll "
+"before giving advances from the kassa."
+msgstr ""
+"%(company)s da ish haqi bo'yicha qarz schyoti yo'q. Kassadan avans berishdan"
+" oldin uni Sozlamalar ▸ Oylik bo'limida belgilang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "%(employee)s has no work contact. Set it on the employee form."
+msgstr "%(employee)s uchun ish kontakti yo'q. Uni xodim kartasida belgilang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+#: code:addons/cst_kerama_kassa/wizard/day_open.py:0
+msgid "%(kassa)s already has an open day."
+msgstr "%(kassa)s kassasida ochiq kun allaqachon bor."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"%(partner)s has no %(role)s tag (%(tags)s). Add the tag on the contact if "
+"this is right."
+msgstr ""
+"%(partner)s kontaktida %(role)s tegi yo'q (%(tags)s). Agar to'g'ri bo'lsa, "
+"kontaktga tegni qo'shing."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/partner_balance.py:0
+msgid "%(partner)s has no sales orders or payments yet."
+msgstr "%(partner)s da hali buyurtma yoki to'lov yo'q."
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.report,print_report_name:cst_kerama_kassa.action_report_kassa_order
+msgid "'%s' % object.name"
+msgstr "'%s' % object.name"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "(xodim imzosi)"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "*** BEKOR QILINGAN ***"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "*** QORALAMA — TO'LOV EMAS ***"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "+ Cash in"
+msgstr "+ Kirim"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "+ Receive payment"
+msgstr "+ To'lov qabul qilish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_open_form
+msgid ""
+".\n"
+"                    Use it for this kassa too, or enter this kassa's own rate."
+msgstr ""
+". Shu kursni bu kassa uchun ham ishlating yoki bu kassaning o'z kursini "
+"kiriting."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_open_form
+msgid ""
+"1 dollar = this many units of the kassa currency. Every operation of the day takes this rate;\n"
+"                    it can still be changed on a single operation (for example when a client settles at another rate)."
+msgstr ""
+"1 dollar = kassa valyutasida shuncha. Kunning barcha amaliyotlari shu kursni"
+" oladi; alohida amaliyotda (masalan, mijoz boshqa kursda hisob-kitob qilsa) "
+"o'zgartirish mumkin."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "1. Client money that is not settled yet"
+msgstr "1. Mijozning hali moslanmagan pullari"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "2. Debts — paid from the top (oldest first)"
+msgstr "2. Qarzlar — yuqoridan (eng eskisidan) boshlab yopiladi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_partner_form_kassa
+msgid "<span class=\"o_stat_text\">Client account</span>"
+msgstr "<span class=\"o_stat_text\">Hisob-kitob</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "<span>Advance (not settled)</span>"
+msgstr "<span>Avans (moslanmagan)</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "<span>Balance (+ owes us)</span>"
+msgstr "<span>Qoldiq (+ bizdan qarz)</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Cash in</span>"
+msgstr "<span>Kirim</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Cash out</span>"
+msgstr "<span>Chiqim</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "<span>Client advance</span>"
+msgstr "<span>Mijoz avansi</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "<span>Client debt</span>"
+msgstr "<span>Mijoz qarzi</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Counted cash</span>"
+msgstr "<span>Sanalgan pul</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "<span>Debt left</span>"
+msgstr "<span>Qolgan qarz</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Expected balance</span>"
+msgstr "<span>Kutilgan qoldiq</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "<span>Free money</span>"
+msgstr "<span>Bo'sh pul</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Opening balance</span>"
+msgstr "<span>Boshlang'ich qoldiq</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "<span>Orders total</span>"
+msgstr "<span>Buyurtmalar jami</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "<span>Paid total</span>"
+msgstr "<span>Jami to'langan</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "<span>Selected debts</span>"
+msgstr "<span>Tanlangan qarzlar</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Shortage</span>"
+msgstr "<span>Kamomad</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "<span>Stays as advance</span>"
+msgstr "<span>Avans bo'lib qoladi</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "<span>Surplus</span>"
+msgstr "<span>Ortiqcha</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "<span>Total debt</span>"
+msgstr "<span>Jami qarz</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "<span>Will be settled</span>"
+msgstr "<span>Moslanadi</span>"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_dashboard
+msgid ""
+"A cash desk is created for every cash journal. Add one in Configuration ▸ "
+"Cash desks."
+msgstr ""
+"Har bir naqd pul jurnali uchun kassa yaratiladi. Sozlamalar ▸ Kassalar "
+"bo'limida qo'shing."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa__journal_id
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__journal_id
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__journal_id
+msgid ""
+"A cash journal (till) or a bank journal (settlement account, «hisob raqam»)."
+msgstr "Naqd pul jurnali (kassa) yoki bank jurnali (hisob raqam)."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_category
+msgid ""
+"A category tells which expense or income account the money is booked to "
+"(rent, fuel, office...)."
+msgstr ""
+"Modda pul qaysi xarajat yoki daromad schyotiga yozilishini belgilaydi "
+"(ijara, yoqilg'i, ofis...)."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "A confirmed day or a day with posted operations cannot be deleted."
+msgstr ""
+"Tasdiqlangan yoki o'tkazilgan amaliyotlari bor kunni o'chirib bo'lmaydi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "A posted operation cannot be deleted; cancel it instead."
+msgstr "O'tkazilgan amaliyotni o'chirib bo'lmaydi — uni bekor qiling."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "A posted or cancelled operation cannot be changed."
+msgstr "O'tkazilgan yoki bekor qilingan amaliyotni o'zgartirib bo'lmaydi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__account_id
+msgid "Account"
+msgstr "Schyot"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Accounting"
+msgstr "Buxgalteriya"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_needaction
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_needaction
+msgid "Action Needed"
+msgstr "Harakat talab qilinadi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__active
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__active
+msgid "Active"
+msgstr "Faol"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_category
+msgid "Add a cash in / cash out category"
+msgstr "Kirim / chiqim moddasini qo'shing"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_expense_category
+msgid "Add an expense category"
+msgstr "Xarajat moddasini qo'shing"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__advance
+msgid "Advance (not settled)"
+msgstr "Avans (moslanmagan)"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__employee_advance
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_out__employee_advance
+msgid "Advance to an employee"
+msgstr "Xodimga avans"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "After confirmation the day is locked. Continue?"
+msgstr ""
+"Tasdiqlangandan keyin kun yopiladi va o'zgartirib bo'lmaydi. Davom etasizmi?"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__move_line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "All cash movements"
+msgstr "Barcha kassa harakatlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_ops_all
+msgid "All operations"
+msgstr "Barcha amaliyotlar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__employee_tag_ids
+msgid "Allowed employee tags"
+msgstr "Ruxsat etilgan xodim teglari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_tag_ids
+msgid "Allowed tags"
+msgstr "Ruxsat etilgan teglar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__amount
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__amount
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "Amount"
+msgstr "Summa"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__amount_company
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Amount (company currency)"
+msgstr "Summa (dollarda)"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_category_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_form
+msgid "Archived"
+msgstr "Arxivlangan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_attachment_count
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_attachment_count
+msgid "Attachment Count"
+msgstr "Ilovalar soni"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Avans"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Avansga qoldi"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__balance
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__balance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Balance"
+msgstr "Qoldiq"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Bank account"
+msgstr "Hisob raqam"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__user_id
+msgid "By"
+msgstr "Kim"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__can_reconcile
+msgid "Can Reconcile"
+msgstr "Moslash mumkin"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_open_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid ""
+"Cancel this operation? The payment and its settlements will be cancelled."
+msgstr ""
+"Amaliyot bekor qilinsinmi? To'lov va uning moslashlari ham bekor qilinadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__state__cancel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Cancelled"
+msgstr "Bekor qilingan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__old_difference_move_ids
+msgid "Cancelled difference entries"
+msgstr "Bekor qilingan farq provodkalari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__account_id
+msgid "Cash Account"
+msgstr "Kassa schyoti"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_day
+msgid "Cash Day"
+msgstr "Kassa kuni"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__day_ids
+msgid "Cash Days"
+msgstr "Kassa kunlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa
+msgid "Cash Desk"
+msgstr "Kassa"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_category
+msgid "Cash In / Out Category"
+msgstr "Kirim / chiqim moddasi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__journal_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__journal_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__journal_id
+msgid "Cash Journal"
+msgstr "Kassa jurnali"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_operation
+msgid "Cash Operation"
+msgstr "Kassa amaliyoti"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__day_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid "Cash day"
+msgstr "Kassa kuni"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_day
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_days
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Cash days"
+msgstr "Kassa kunlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_config
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_config_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_dashboard
+msgid "Cash desks"
+msgstr "Kassalar"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Cash difference %(day)s"
+msgstr "Kassa farqi %(day)s"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_operation_in
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__total_in
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__total_in
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_category__direction__in
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__direction__in
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_ops_in
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_category_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Cash in"
+msgstr "Kirim"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__type_in
+msgid "Cash in type"
+msgstr "Kirim turi"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Cash movements"
+msgstr "Kassa harakatlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__operation_id
+msgid "Cash operation"
+msgstr "Kassa amaliyoti"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__operation_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Cash operations"
+msgstr "Kassa amaliyotlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.report,name:cst_kerama_kassa.action_report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Cash order"
+msgstr "Kassa orderi"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_operation_out
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__total_out
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__total_out
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_category__direction__out
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__direction__out
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_ops_out
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_category_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Cash out"
+msgstr "Chiqim"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__type_out
+msgid "Cash out type"
+msgstr "Chiqim turi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Cash payment order"
+msgstr "Chiqim kassa orderi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Cash receipt order"
+msgstr "Kirim kassa orderi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__created_by_id
+#: model:res.groups,name:cst_kerama_kassa.group_kassa_user
+msgid "Cashier"
+msgstr "Kassir"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Cashier: ____________"
+msgstr "Kassir: ____________"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__user_ids
+msgid "Cashiers"
+msgstr "Kassirlar"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_category
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_config_category
+msgid "Categories"
+msgstr "Moddalar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__category_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Category"
+msgstr "Modda"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Choose the category."
+msgstr "Moddani tanlang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/reconcile_wizard.py:0
+msgid "Choose the client."
+msgstr "Mijozni tanlang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Choose the employee."
+msgstr "Xodimni tanlang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Choose the partner."
+msgstr "Kontragentni tanlang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Choose the sales orders to settle, or pick another settlement option."
+msgstr ""
+"Moslanadigan buyurtmalarni tanlang yoki boshqa moslash usulini belgilang."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__partner_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__partner_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_search
+msgid "Client"
+msgstr "Mijoz"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_partner_balance
+msgid "Client Account"
+msgstr "Mijoz hisob-kitobi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_allocation
+msgid "Client Payment Settlement"
+msgstr "Mijoz to'lovini moslash"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_partner_balance_window
+#: model:ir.actions.server,name:cst_kerama_kassa.action_kassa_partner_balance
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_client_accounts
+msgid "Client accounts"
+msgstr "Mijozlar hisob-kitobi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_advance
+msgid "Client advance"
+msgstr "Mijoz avansi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_balance
+msgid "Client balance"
+msgstr "Mijoz qoldig'i"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_debt
+msgid "Client debt"
+msgstr "Mijoz qarzi"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_client_payments
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_client_payments
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Client payments"
+msgstr "Mijoz to'lovlari"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid ""
+"Client payments and refunds offer only contacts with one of these tags."
+msgstr ""
+"Mijoz to'lovlari va qaytarishlarida faqat shu teglardan biri bor kontaktlar "
+"chiqadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_company__cst_kassa_client_tag_ids
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_config_settings__cst_kassa_client_tag_ids
+msgid ""
+"Client payments and refunds offer only contacts with one of these tags. "
+"Empty: every contact."
+msgstr ""
+"Mijoz to'lovlari va qaytarishlarida faqat shu teglardan biri bor kontaktlar "
+"chiqadi. Bo'sh: barcha kontaktlar."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_company__cst_kassa_client_tag_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_config_settings__cst_kassa_client_tag_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid "Client tags"
+msgstr "Mijoz teglari"
+
+#. module: cst_kerama_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_clients
+msgid "Clients"
+msgstr "Mijozlar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_day_close
+msgid "Close Cash Day"
+msgstr "Kassa kunini yopish"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Close the cash day"
+msgstr "Kassa kunini yopish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Close the day"
+msgstr "Kunni yopish"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Close the day before confirming it."
+msgstr "Tasdiqlashdan oldin kunni yoping."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_day__state__closed
+msgid "Closed"
+msgstr "Yopilgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__closed_at
+msgid "Closed at"
+msgstr "Yopilgan vaqt"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__closed_by_id
+msgid "Closed by"
+msgstr "Yopgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__color
+msgid "Color"
+msgstr "Rang"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "Tijorat subyekti"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_res_company
+msgid "Companies"
+msgstr "Kompaniyalar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__company_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__company_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__company_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__company_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__company_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__company_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__company_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_search
+msgid "Company"
+msgstr "Kompaniya"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__company_currency_id
+msgid "Company currency"
+msgstr "Kompaniya valyutasi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa__company_id
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__company_id
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__company_id
+msgid "Company related to this journal"
+msgstr "Ushbu jurnal kompaniyasi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_res_config_settings
+msgid "Config Settings"
+msgstr "Sozlamalar"
+
+#. module: cst_kerama_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_config
+msgid "Configuration"
+msgstr "Sozlamalar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Confirm the day"
+msgstr "Kunni tasdiqlash"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_day__state__confirmed
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+msgid "Confirmed"
+msgstr "Tasdiqlangan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__confirmed_at
+msgid "Confirmed at"
+msgstr "Tasdiqlangan vaqt"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__confirmed_by_id
+msgid "Confirmed by"
+msgstr "Tasdiqlagan"
+
+#. module: cst_kerama_kassa
+#: model:res.groups,comment:cst_kerama_kassa.group_kassa_manager
+msgid "Confirms and reopens cash days, manages cash desks and categories."
+msgstr ""
+"Kassa kunlarini tasdiqlaydi va qayta ochadi, kassalar va moddalarni "
+"boshqaradi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid "Contact tags"
+msgstr "Kontakt teglari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__partner_tag_ids
+msgid ""
+"Contacts offered for this operation type (Kassa settings: client / supplier "
+"tags)."
+msgstr ""
+"Ushbu amaliyot turi uchun taklif qilinadigan kontaktlar (Kassa sozlamalari: "
+"mijoz / ta'minotchi teglari)."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day_close__counted_balance
+msgid "Count the money in the till and enter the total."
+msgstr "Kassadagi pulni sanab, jami summani kiriting."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+msgid ""
+"Count the money in the till. After closing, a kassa manager confirms the day; a difference is then\n"
+"                    booked as a cash shortage or surplus."
+msgstr ""
+"Kassadagi pulni sanang. Yopilgandan keyin kassa rahbari kunni tasdiqlaydi; "
+"farq bo'lsa, kamomad yoki ortiqcha sifatida yoziladi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__counted_balance
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__counted_balance
+msgid "Counted cash"
+msgstr "Sanalgan pul"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__difference
+msgid "Counted cash - expected balance. Negative = shortage."
+msgstr "Sanalgan pul - kutilgan qoldiq. Manfiy = kamomad."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__create_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__create_date
+msgid "Created on"
+msgstr "Yaratilgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__credit_line_id
+msgid "Credit Line"
+msgstr "Kredit qatori"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__company_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__currency_id
+msgid "Currency"
+msgstr "Valyuta"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__current_day_id
+msgid "Current Day"
+msgstr "Joriy kun"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Date"
+msgstr "Sana"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Date:"
+msgstr "Sana:"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__day_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Day"
+msgstr "Kun"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__day_state
+msgid "Day State"
+msgstr "Kun holati"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa__day_state__none
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Day not opened"
+msgstr "Kun ochilmagan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa__day_state__open
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Day open"
+msgstr "Kun ochiq"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Day reopened (was: %(state)s)."
+msgstr "Kun qayta ochildi (avval: %(state)s)."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__day_state
+msgid "Day state"
+msgstr "Kun holati"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_day_to_confirm
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_days_confirm
+msgid "Days to confirm"
+msgstr "Tasdiqlanadigan kunlar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__debit_line_id
+msgid "Debit Line"
+msgstr "Debet qatori"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__debt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Debt"
+msgstr "Qarz"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__debt_after
+msgid "Debt after"
+msgstr "Keyin qoladigan qarz"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__debt_left
+msgid "Debt left"
+msgstr "Qolgan qarz"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__debt_ids
+msgid "Debt lines"
+msgstr "Qarz qatorlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__difference
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__difference
+msgid "Difference"
+msgstr "Farq"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__old_difference_move_ids
+msgid ""
+"Difference entries of an earlier confirmation and their reversals; kept out "
+"of the day's totals."
+msgstr ""
+"Avvalgi tasdiqlashning farq provodkalari va ularning storno yozuvlari; kun "
+"jamlariga kirmaydi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__difference_move_id
+msgid "Difference entry"
+msgstr "Farq provodkasi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__direction
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__direction
+msgid "Direction"
+msgstr "Yo'nalish"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_account_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_company__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_partner__display_name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Ko'rsatiladigan nom"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__name
+msgid "Document"
+msgstr "Hujjat"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Dollar kursi"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__usd_rate
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__usd_rate
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__rate
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__rate
+msgid "Dollar rate"
+msgstr "Dollar kursi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Dollar rate:"
+msgstr "Dollar kursi:"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Dollarda"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__state__draft
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Draft"
+msgstr "Qoralama"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__employee_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Employee"
+msgstr "Xodim"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_employee_advance
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_expenses_advance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Employee advances"
+msgstr "Xodimlarga avanslar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid ""
+"Employee advances offer only employees whose work contact has one of these "
+"tags."
+msgstr ""
+"Xodimga avansda faqat ish kontaktida shu teglardan biri bor xodimlar "
+"chiqadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_company__cst_kassa_employee_tag_ids
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_config_settings__cst_kassa_employee_tag_ids
+msgid ""
+"Employee advances offer only employees whose work contact has one of these "
+"tags. Empty: every employee."
+msgstr ""
+"Xodimga avansda faqat ish kontaktida shu teglardan biri bor xodimlar "
+"chiqadi. Bo'sh: barcha xodimlar."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_company__cst_kassa_employee_tag_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_config_settings__cst_kassa_employee_tag_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_sale_order__cst_employee_tag_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid "Employee tags"
+msgstr "Xodim teglari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_day_open__rate_mode__other
+msgid "Enter another rate for this kassa"
+msgstr "Bu kassa uchun boshqa kurs kiritish"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/day_open.py:0
+msgid "Enter today's dollar rate."
+msgstr "Bugungi dollar kursini kiriting."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__expected_balance
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__expected_balance
+msgid "Expected balance"
+msgstr "Kutilgan qoldiq"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__expense
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_out__expense
+msgid "Expense"
+msgstr "Xarajat"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_category__account_id
+msgid "Expense (cash out) or income (cash in) account the money is booked to."
+msgstr "Pul yoziladigan xarajat (chiqim) yoki daromad (kirim) schyoti."
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_expense_category
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_expenses_category
+msgid "Expense categories"
+msgstr "Xarajat moddalari"
+
+#. module: cst_kerama_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_expenses
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Expenses"
+msgstr "Xarajatlar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_expense
+msgid ""
+"Expenses are entered in the Kassa: open the day, press \"− Cash out\" and "
+"choose \"Expense\" and its category."
+msgstr ""
+"Xarajatlar Kassada kiritiladi: kunni oching, «− Chiqim» tugmasini bosing va "
+"«Xarajat» hamda uning moddasini tanlang."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_close_form
+msgid "Explain the difference, if any..."
+msgstr "Farq bo'lsa, sababini yozing..."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_follower_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_follower_ids
+msgid "Followers"
+msgstr "Kuzatuvchilar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_partner_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Kuzatuvchilar (kontaktlar)"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__amount
+msgid "Free amount"
+msgstr "Bo'sh summa"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__orig_amount
+msgid "Free amount (paid currency)"
+msgstr "Bo'sh summa (to'lov valyutasida)"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__available
+msgid "Free money"
+msgstr "Bo'sh pul"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__credit_ids
+msgid "Free money lines"
+msgstr "Bo'sh pul qatorlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_expense
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_expenses_all
+msgid "General expenses"
+msgstr "Umumiy xarajatlar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_employee_advance
+msgid ""
+"Give an advance in the Kassa: \"− Cash out\" → \"Advance to an employee\". "
+"It is deducted from the salary in that month's payroll."
+msgstr ""
+"Avansni Kassada bering: «− Chiqim» → «Xodimga avans». U shu oyning oyligidan"
+" ushlab qolinadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__has_message
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__has_message
+msgid "Has Message"
+msgstr "Xabar bor"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_partner_balance__status__advance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_search
+msgid "Has advance"
+msgstr "Avansi bor"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_partner_balance__can_reconcile
+msgid "Has both free money and open debts."
+msgstr "Ham bo'sh puli, ham ochiq qarzi bor."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Holat:"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day_open__usd_rate
+msgid "How many units of this kassa's currency make one dollar today."
+msgstr "Bugun bir dollar ushbu kassa valyutasida qancha turadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_account_move__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_company__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_config_settings__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_partner__id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__message_needaction
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Belgilansa, yangi xabarlar e'tiboringizni talab qiladi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__message_has_error
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__message_has_sms_error
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__message_has_error
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Belgilansa, ba'zi xabarlarni yetkazishda xato bor."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__settle_hint
+msgid "In dollars"
+msgstr "Dollarda"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "In words"
+msgstr "So'z bilan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__invoice_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__invoice_id
+msgid "Invoice"
+msgstr "Hisob-faktura"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_is_follower
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_is_follower
+msgid "Is Follower"
+msgstr "Kuzatuvchi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__is_foreign
+msgid "Is Foreign"
+msgstr "Xorijiy valyuta"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__is_last_day
+msgid "Is Last Day"
+msgstr "Oxirgi kun"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Izoh"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_account_move
+msgid "Journal Entry"
+msgstr "Buxgalteriya yozuvi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__move_id
+msgid "Journal entry"
+msgstr "Buxgalteriya yozuvi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__journal_type
+msgid "Journal type"
+msgstr "Jurnal turi"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_dashboard
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__kassa_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__kassa_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__kassa_id
+#: model:ir.module.category,name:cst_kerama_kassa.module_category_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_root
+#: model:res.groups.privilege,name:cst_kerama_kassa.privilege_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Kassa"
+msgstr "Kassa"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Kassa advance %(name)s"
+msgstr "Kassa avansi %(name)s"
+
+#. module: cst_kerama_kassa
+#: model:res.groups,name:cst_kerama_kassa.group_kassa_manager
+msgid "Kassa manager"
+msgstr "Kassa rahbari"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Kassir"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__allocation_mode__none
+msgid "Keep as advance"
+msgstr "Avans sifatida qoldirish"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi o'zgartirgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__write_date
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi o'zgartirilgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__last_payment_date
+msgid "Last payment"
+msgstr "Oxirgi to'lov"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__unallocated_amount
+msgid "Left as advance"
+msgstr "Avans bo'lib qolgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__line_id
+msgid "Line"
+msgstr "Qator"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_has_error
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_has_error
+msgid "Message Delivery error"
+msgstr "Xabar yetkazish xatosi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_ids
+msgid "Messages"
+msgstr "Xabarlar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Modda"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__counted_balance
+msgid "Money actually counted in the till when the day was closed."
+msgstr "Kun yopilganda kassada haqiqatda sanalgan pul."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__source_name
+msgid "Money from"
+msgstr "Pul manbai"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_partner_balance__advance
+msgid "Money received from the client that is not applied to any order yet."
+msgstr "Mijozdan olingan, lekin hali hech bir buyurtmaga moslanmagan pul."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Month"
+msgstr "Oy"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__name
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__name
+msgid "Name"
+msgstr "Nomi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_employee_advance
+msgid "No advances yet"
+msgstr "Hali avans yo'q"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/partner_balance.py:0
+msgid ""
+"No cash day is open in %(company)s. Open the day from the Kassa screen "
+"first."
+msgstr ""
+"%(company)s da ochiq kassa kuni yo'q. Avval Kassa oynasidan kunni oching."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_dashboard
+msgid "No cash desk yet"
+msgstr "Hali kassa yo'q"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_expense
+msgid "No expenses yet"
+msgstr "Hali xarajat yo'q"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__note
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__note
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__memo
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__memo
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "Note"
+msgstr "Izoh"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_needaction_counter
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Harakatlar soni"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_has_error_counter
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_has_error_counter
+msgid "Number of errors"
+msgstr "Xatolar soni"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__message_needaction_counter
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Harakat talab qiladigan xabarlar soni"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__message_has_error_counter
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Yetkazish xatosi bor xabarlar soni"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Oldim: ______________________"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__allow_reopen
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_company__cst_kassa_allow_reopen
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_config_settings__cst_kassa_allow_reopen
+msgid ""
+"On: a cashier can reopen the kassa's last closed day, a kassa manager also a"
+" confirmed one (its difference entry is reversed). Off: a closed day stays "
+"closed."
+msgstr ""
+"Yoqilgan: kassir kassaning oxirgi yopilgan kunini qayta ocha oladi, kassa "
+"rahbari tasdiqlangan kunni ham (farq provodkasi storno qilinadi). "
+"O'chirilgan: yopilgan kun yopiqligicha qoladi."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid ""
+"On: a cashier can reopen the kassa's last closed day; a kassa manager can "
+"also reopen a confirmed day (its difference entry is reversed). Off: a "
+"closed day cannot be reopened."
+msgstr ""
+"Yoqilgan: kassir kassaning oxirgi yopilgan kunini qayta ocha oladi; kassa "
+"rahbari tasdiqlangan kunni ham qayta ocha oladi (farq provodkasi storno "
+"qilinadi). O'chirilgan: yopilgan kunni qayta ochib bo'lmaydi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.constraint,message:cst_kerama_kassa.constraint_cst_kassa_partner_balance_partner_company_uniq
+msgid "One client account per company."
+msgstr "Har kompaniyada mijozga bitta hisob."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Only a closed or confirmed day can be reopened."
+msgstr "Faqat yopilgan yoki tasdiqlangan kunni qayta ochish mumkin."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Only a draft operation can be posted."
+msgstr "Faqat qoralama amaliyotni o'tkazish mumkin."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Only a kassa manager can confirm a cash day."
+msgstr "Kassa kunini faqat kassa rahbari tasdiqlaydi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Only a kassa manager can reopen a confirmed day."
+msgstr "Tasdiqlangan kunni faqat kassa rahbari qayta ochadi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "Only an open cash day can be closed."
+msgstr "Faqat ochiq kassa kunini yopish mumkin."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid ""
+"Only the last day of a kassa can be reopened — %(kassa)s already has a later"
+" day."
+msgstr ""
+"Faqat kassaning oxirgi kunini qayta ochish mumkin — %(kassa)s kassasida "
+"keyingi kun allaqachon bor."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_day__state__open
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+msgid "Open"
+msgstr "Ochiq"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_day_open
+msgid "Open Cash Day"
+msgstr "Kassa kunini ochish"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__invoice_ids
+msgid "Open invoices"
+msgstr "Ochiq hisob-fakturalar"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid "Open the cash day first."
+msgstr "Avval kassa kunini oching."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_open_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Open the day"
+msgstr "Kunni ochish"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid "Open the day — %(kassa)s"
+msgstr "Kunni ochish — %(kassa)s"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__opened_at
+msgid "Opened at"
+msgstr "Ochilgan vaqt"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__opened_by_id
+msgid "Opened by"
+msgstr "Ochgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__opening_balance
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_close__opening_balance
+msgid "Opening balance"
+msgstr "Boshlang'ich qoldiq"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__expected_balance
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day_close__expected_balance
+msgid "Opening balance + cash in - cash out."
+msgstr "Boshlang'ich qoldiq + kirim - chiqim."
+
+#. module: cst_kerama_kassa
+#: model:res.groups,comment:cst_kerama_kassa.group_kassa_user
+msgid "Opens and closes the cash day, receives and pays money."
+msgstr "Kassa kunini ochadi va yopadi, pul qabul qiladi va to'laydi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__operation_count
+msgid "Operation Count"
+msgstr "Amaliyotlar soni"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_operation
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__operation_ids
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_ops
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Operations"
+msgstr "Amaliyotlar"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Operations can only be added to an open cash day."
+msgstr "Amaliyotni faqat ochiq kassa kuniga qo'shish mumkin."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__sale_order_ids
+msgid "Optional. The money is applied to these orders first."
+msgstr "Ixtiyoriy. Pul avval shu buyurtmalarga moslanadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__order_debt
+msgid "Order debt"
+msgstr "Buyurtmalar qarzi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__order_count
+msgid "Orders"
+msgstr "Buyurtmalar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__order_total
+msgid "Orders total"
+msgstr "Buyurtmalar jami"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__other_in
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_in__other_in
+msgid "Other income"
+msgstr "Boshqa kirim"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__invoice_debt
+msgid "Other invoices debt"
+msgstr "Boshqa hisob-fakturalar qarzi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "Other movements"
+msgstr "Boshqa harakatlar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Other open invoices"
+msgstr "Boshqa ochiq hisob-fakturalar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__outside_count
+msgid "Outside Count"
+msgstr "Tashqi harakatlar soni"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_partner_balance__status__debt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_search
+msgid "Owes"
+msgstr "Qarzdor"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Paid by"
+msgstr "Topshirdi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__orig_currency_id
+msgid "Paid in"
+msgstr "To'lov valyutasi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Paid order"
+msgstr "To'langan buyurtma"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Paid to"
+msgstr "Kimga berildi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__paid_total
+msgid "Paid total"
+msgstr "Jami to'langan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Partner"
+msgstr "Kontragent"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__payment_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__payment_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__name
+msgid "Payment"
+msgstr "To'lov"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/partner_balance.py:0
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__customer_in
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_in__customer_in
+msgid "Payment from a client"
+msgstr "Mijozdan to'lov"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__supplier_out
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_out__supplier_out
+msgid "Payment to a supplier"
+msgstr "Ta'minotchiga to'lov"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__payment_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Payments"
+msgstr "To'lovlar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Payroll"
+msgstr "Oylik"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__payroll_line_id
+msgid "Payroll line"
+msgstr "Oylik qatori"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__payroll_period_id
+msgid "Payroll period"
+msgstr "Oylik davri"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__phone
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Post"
+msgstr "O'tkazish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Post and new"
+msgstr "O'tkazish va yangi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__state__done
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Posted"
+msgstr "O'tkazilgan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__posted_at
+msgid "Posted at"
+msgstr "O'tkazilgan vaqt"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.actions.act_window,help:cst_kerama_kassa.action_kassa_expense_category
+msgid ""
+"Press \"New\", type the name (rent, fuel, office...). The expense account is"
+" filled in for you; change it if this category belongs to another account."
+msgstr ""
+"«Yangi» tugmasini bosing va nomini yozing (ijara, yoqilg'i, ofis...). "
+"Xarajat schyoti avtomatik tanlanadi; modda boshqa schyotga tegishli bo'lsa, "
+"o'zgartiring."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_list
+msgid "Print receipt"
+msgstr "Chek chiqarish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Qolgan qarz"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__rate_mode
+msgid "Rate"
+msgstr "Kurs"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__rate_required
+msgid "Rate Required"
+msgstr "Kurs majburiy"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__ref_kassa_name
+msgid "Rate entered in"
+msgstr "Kurs kiritilgan kassa"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__rating_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__rating_ids
+msgid "Ratings"
+msgstr "Baholar"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Received by"
+msgstr "Qabul qildi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+msgid "Received from"
+msgstr "Kimdan qabul qilindi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__ref_day_id
+msgid "Ref Day"
+msgstr "Namuna kun"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Refresh"
+msgstr "Yangilash"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__supplier_in
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_in__supplier_in
+msgid "Refund from a supplier"
+msgstr "Ta'minotchidan qaytim"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__customer_out
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_out__customer_out
+msgid "Refund to a client"
+msgstr "Mijozga qaytarish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "Remarks for the day..."
+msgstr "Kun bo'yicha izohlar..."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid "Reopen"
+msgstr "Qayta ochish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+msgid ""
+"Reopen a confirmed day? Its difference entry is reversed and the day is "
+"unlocked."
+msgstr ""
+"Tasdiqlangan kun qayta ochilsinmi? Farq provodkasi storno qilinadi va kun "
+"blokdan chiqariladi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__allow_reopen
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_company__cst_kassa_allow_reopen
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_config_settings__cst_kassa_allow_reopen
+msgid "Reopen closed cash days"
+msgstr "Yopilgan kassa kunlarini qayta ochish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid "Reopen closed days"
+msgstr "Yopilgan kunlarni qayta ochish"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Reopen the day"
+msgstr "Kunni qayta ochish"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid ""
+"Reopening cash days is switched off in Kassa ▸ Configuration ▸ Settings."
+msgstr ""
+"Kassa kunlarini qayta ochish Kassa ▸ Sozlamalar ▸ Sozlamalar bo'limida "
+"o'chirilgan."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__message_has_sms_error
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS yetkazish xatosi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "SUMMA"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__employee_balance
+msgid "Salary balance"
+msgstr "Oylik qoldig'i"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__order_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__order_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_search
+msgid "Sales order"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__sale_order_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__order_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Sales orders"
+msgstr "Sotuv buyurtmalari"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/reconcile_wizard.py:0
+msgid "Select at least one debt."
+msgstr "Kamida bitta qarzni tanlang."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__selected_debt
+msgid "Selected debts"
+msgstr "Tanlangan qarzlar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__sequence
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_category__sequence
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__sequence
+msgid "Sequence"
+msgstr "Tartib"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid ""
+"Set the cash difference (profit / loss) accounts on journal %(journal)s "
+"before confirming a day with a difference."
+msgstr ""
+"Farqli kunni tasdiqlashdan oldin %(journal)s jurnalida kassa farqi (foyda / "
+"zarar) schyotlarini belgilang."
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_settings
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_config_settings
+msgid "Settings"
+msgstr "Sozlamalar"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__selected
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_reconcile_wizard_form
+msgid "Settle"
+msgstr "Moslash"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_reconcile_wizard
+msgid "Settle Client Money Against Debts"
+msgstr "Mijoz pulini qarzlarga moslash"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/reconcile_wizard.py:0
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_reconcile_wizard
+msgid "Settle client account"
+msgstr "Mijoz hisob-kitobini moslash"
+
+#. module: cst_kerama_kassa
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_reconcile
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Settle debts"
+msgstr "Qarzlarni moslash"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__allocation_mode__orders
+msgid "Settle only the selected orders"
+msgstr "Faqat tanlangan buyurtmalarga moslash"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__allocation_mode__auto
+msgid "Settle the oldest debts automatically"
+msgstr "Eng eski qarzlarga avtomatik moslash"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/reconcile_wizard.py:0
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__allocated_amount
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_allocation__state__done
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_partner_balance__status__clear
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_search
+msgid "Settled"
+msgstr "Moslangan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__allocation_mode
+msgid "Settlement"
+msgstr "Moslash"
+
+#. module: cst_kerama_kassa
+#: model:ir.actions.act_window,name:cst_kerama_kassa.action_kassa_allocation
+#: model:ir.ui.menu,name:cst_kerama_kassa.menu_kassa_allocations
+msgid "Settlement history"
+msgstr "Moslashlar tarixi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_reconcile_debt
+msgid "Settlement: Debt Line"
+msgstr "Moslash: qarz qatori"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_cst_kassa_reconcile_credit
+msgid "Settlement: Free Money Line"
+msgstr "Moslash: bo'sh pul qatori"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__allocation_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__allocation_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Settlements"
+msgstr "Moslashlar"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid ""
+"Some operations of this day are still drafts. Post or delete them before "
+"closing the day."
+msgstr ""
+"Bu kunning ba'zi amaliyotlari hali qoralama. Kunni yopishdan oldin ularni "
+"o'tkazing yoki o'chiring."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_allocation__state
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__state
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__state
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+msgid "State"
+msgstr "Holat"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__status
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_search
+msgid "Status"
+msgstr "Holat"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__advance_left
+msgid "Stays as advance"
+msgstr "Avans bo'lib qoladi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid ""
+"Supplier payments and refunds offer only contacts with one of these tags."
+msgstr ""
+"Ta'minotchi to'lovlari va qaytimlarida faqat shu teglardan biri bor "
+"kontaktlar chiqadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_company__cst_kassa_supplier_tag_ids
+#: model:ir.model.fields,help:cst_kerama_kassa.field_res_config_settings__cst_kassa_supplier_tag_ids
+msgid ""
+"Supplier payments and refunds offer only contacts with one of these tags. "
+"Empty: every contact."
+msgstr ""
+"Ta'minotchi to'lovlari va qaytimlarida faqat shu teglardan biri bor "
+"kontaktlar chiqadi. Bo'sh: barcha kontaktlar."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_company__cst_kassa_supplier_tag_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_res_config_settings__cst_kassa_supplier_tag_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.res_config_settings_view_form_kassa
+msgid "Supplier tags"
+msgstr "Ta'minotchi teglari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_tag_warning
+msgid "Tag warning"
+msgstr "Teg ogohlantirishi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Take this money off the order? It becomes the client's advance again."
+msgstr "Bu pul buyurtmadan olinsinmi? U yana mijoz avansiga aylanadi."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Tel."
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid ""
+"The advance is deducted from the employee's salary («Накд аванс») in the payroll\n"
+"                            period of this date."
+msgstr ""
+"Avans shu sanadagi oylik davrida xodimning oyligidan («Накд аванс») ushlab "
+"qolinadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__employee_id
+msgid ""
+"The advance is deducted from this employee's salary in the payroll period of"
+" its date."
+msgstr ""
+"Avans shu sanadagi oylik davrida ushbu xodimning oyligidan ushlab qolinadi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "The amount must be greater than zero."
+msgstr "Summa noldan katta bo'lishi kerak."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "The cash day %(day)s is not open."
+msgstr "%(day)s kassa kuni ochiq emas."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "The cash day is closed; only a kassa manager can cancel."
+msgstr "Kassa kuni yopilgan; faqat kassa rahbari bekor qila oladi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "The cash day is confirmed; its operations cannot be cancelled."
+msgstr "Kassa kuni tasdiqlangan; uning amaliyotlarini bekor qilib bo'lmaydi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "The cash day is not open."
+msgstr "Kassa kuni ochiq emas."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid ""
+"The cash day of %(date)s is still open. Close it before opening a new day."
+msgstr ""
+"%(date)s kassa kuni hali ochiq. Yangi kunni ochishdan oldin uni yoping."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/account_move.py:0
+msgid ""
+"The cash day of %(kassa)s for %(date)s is confirmed and locked. Use another "
+"date."
+msgstr ""
+"%(kassa)s kassasining %(date)s kuni tasdiqlangan va yopilgan. Boshqa sanani "
+"tanlang."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid ""
+"The client has money that is not applied to his orders yet. Press \"Settle debts\" to pay the\n"
+"                        oldest orders with it."
+msgstr ""
+"Mijozning buyurtmalariga hali moslanmagan puli bor. Eng eski buyurtmalarni "
+"shu pul bilan yopish uchun «Qarzlarni moslash» tugmasini bosing."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/reconcile_wizard.py:0
+msgid "The client has no free money to settle."
+msgstr "Mijozda moslash uchun bo'sh pul yo'q."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__usd_rate
+msgid ""
+"The day's rate: how many units of this kassa's currency make one dollar. New"
+" operations of the day take it; each operation can still change its own "
+"rate."
+msgstr ""
+"Kun kursi: bir dollar ushbu kassa valyutasida qancha. Kunning yangi "
+"amaliyotlari shu kursni oladi; har bir amaliyot o'z kursini o'zgartirishi "
+"mumkin."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__is_foreign
+msgid "The kassa's currency is not the company currency (a so'm kassa)."
+msgstr "Kassa valyutasi kompaniya valyutasi emas (so'm kassasi)."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid ""
+"The money always lowers the client's balance. Anything that is not applied to an order stays\n"
+"                        as the client's advance and can be settled later in \"Settle debts\"."
+msgstr ""
+"Pul har doim mijoz qarzini kamaytiradi. Buyurtmaga moslanmagan qismi mijoz "
+"avansi bo'lib qoladi va keyin «Qarzlarni moslash» orqali moslanadi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/day_open.py:0
+msgid "The rate cannot be negative."
+msgstr "Kurs manfiy bo'lishi mumkin emas."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_reconcile_credit__rate
+msgid "The rate this payment was booked at in the kassa."
+msgstr "Ushbu to'lov kassada yozilgan kurs."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid "There is no closed cash day to reopen."
+msgstr "Qayta ochish uchun yopilgan kassa kuni yo'q."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid "There is no open cash day."
+msgstr "Ochiq kassa kuni yo'q."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"This advance is in the payroll period %(period)s, which is already posted. "
+"Reset that period to draft first."
+msgstr ""
+"Bu avans %(period)s oylik davrida, u allaqachon o'tkazilgan. Avval shu "
+"davrni qoralamaga qaytaring."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.constraint,message:cst_kerama_kassa.constraint_cst_kassa_journal_uniq
+msgid "This journal already has a cash desk."
+msgstr "Bu jurnal uchun kassa allaqachon bor."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.constraint,message:cst_kerama_kassa.constraint_cst_kassa_day_kassa_date_uniq
+msgid "This kassa already has a cash day for this date."
+msgstr "Bu kassada shu sana uchun kun allaqachon bor."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_search
+msgid "To settle"
+msgstr "Moslash kerak"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "To'langan buyurtmalar:"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__today_in
+msgid "Today In"
+msgstr "Bugungi kirim"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__today_out
+msgid "Today Out"
+msgstr "Bugungi chiqim"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Today in"
+msgstr "Bugungi kirim"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Today out"
+msgstr "Bugungi chiqim"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid "Today's cash day is already %(state)s."
+msgstr "Bugungi kassa kuni allaqachon: %(state)s."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/wizard/day_open.py:0
+msgid "Today's cash day of %(kassa)s already exists."
+msgstr "%(kassa)s kassasining bugungi kuni allaqachon bor."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa__today_rate
+msgid "Today's dollar rate"
+msgstr "Bugungi dollar kursi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_open_form
+msgid "Today's dollar rate is already entered in"
+msgstr "Bugungi dollar kursi allaqachon kiritilgan:"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day_open__ref_rate
+msgid "Today's rate"
+msgstr "Bugungi kurs"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__total
+msgid "Total"
+msgstr "Jami"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__total_debt
+msgid "Total debt"
+msgstr "Jami qarz"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_partner_balance__balance
+msgid ""
+"Total debt - advance. Positive: the client owes us; negative: we owe the "
+"client."
+msgstr ""
+"Jami qarz - avans. Musbat: mijoz bizdan qarzdor; manfiy: biz mijozdan "
+"qarzdormiz."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.kassa_receipt_document
+msgid "Turi"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__operation_type
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.report_kassa_order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Type"
+msgstr "Turi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "Undo"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_allocation__state__undone
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_allocation_search
+msgid "Undone"
+msgstr "Bekor qilingan"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__rate
+msgid ""
+"Units of the kassa currency per dollar for this operation. Taken from the "
+"day's rate; change it here if this client pays at another rate. The ledger "
+"and the settlement use it."
+msgstr ""
+"Ushbu amaliyot uchun bir dollar kassa valyutasida qancha. Kun kursidan "
+"olinadi; mijoz boshqa kursda to'lasa, shu yerda o'zgartiring. Buxgalteriya "
+"va moslash shu kursdan foydalanadi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__use
+msgid "Use"
+msgstr "Ishlatish"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_day_open__rate_mode__same
+msgid "Use today's rate"
+msgstr "Bugungi kursdan foydalanish"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa__user_ids
+msgid ""
+"Users who work with this cash desk. Leave empty to allow every cashier."
+msgstr ""
+"Shu kassada ishlaydigan foydalanuvchilar. Bo'sh qolsa, barcha kassirlarga "
+"ruxsat."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa__day_state__closed
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "Waiting for confirmation"
+msgstr "Tasdiq kutilmoqda"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_day__website_message_ids
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__website_message_ids
+msgid "Website Messages"
+msgstr "Veb-sayt xabarlari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_day__website_message_ids
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__website_message_ids
+msgid "Website communication history"
+msgstr "Veb-sayt yozishmalari tarixi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__allocation_mode
+msgid ""
+"What happens to the client's money: it always lowers the client's balance; "
+"here you choose which sales orders it pays."
+msgstr ""
+"Mijoz puli har doim uning qarzini kamaytiradi; bu yerda qaysi buyurtmalarni "
+"yopishini tanlaysiz."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__employee_balance
+msgid ""
+"What the company still owes the employee (accrued - withheld). Negative: "
+"overdrawn."
+msgstr ""
+"Kompaniya xodimga hali qancha qarzdor (hisoblangan - ushlangan). Manfiy: "
+"ortiqcha olingan."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__amount_company
+msgid ""
+"What the ledger booked, in the company currency — the figure to add up "
+"across cash desks in different currencies."
+msgstr ""
+"Buxgalteriyada yozilgan summa, kompaniya valyutasida — turli valyutadagi "
+"kassalarni qo'shish uchun shu raqam ishlatiladi."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Where does the money go?"
+msgstr "Pul qayerga moslanadi?"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__preview
+msgid "Will be paid"
+msgstr "To'lanadi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_wizard__to_settle
+msgid "Will be settled"
+msgstr "Moslanadi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_search
+msgid "With difference"
+msgstr "Farqi bor"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_credit__wizard_id
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_reconcile_debt__wizard_id
+msgid "Wizard"
+msgstr "Oyna"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+msgid "You are not a cashier of %(kassa)s."
+msgstr "Siz %(kassa)s kassasining kassiri emassiz."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "client"
+msgstr "mijoz"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_form
+msgid "e.g. Main cash desk"
+msgstr "masalan, Asosiy kassa"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+msgid "id"
+msgstr "id"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "supplier"
+msgstr "ta'minotchi"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "− Cash out"
+msgstr "− Chiqim"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_partner_balance_form
+msgid "<span class=\"text-muted\">Debt by currency: </span>"
+msgstr "<span class=\"text-muted\">Valyuta bo'yicha qarz: </span>"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__partner_debt_detail
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_partner_balance__debt_detail
+msgid "Debt by currency"
+msgstr "Valyuta bo'yicha qarz"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__debt_currency_ids
+msgid "Debt currencies"
+msgstr "Qarz valyutalari"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__partner_debt_detail
+msgid "Each debt in its own currency."
+msgstr "Har bir qarz o'z valyutasida."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_partner_balance__debt_detail
+msgid ""
+"Each debt in its own currency: so'm orders in so'm, dollar orders in "
+"dollars."
+msgstr ""
+"Har bir qarz o'z valyutasida: so'mdagi buyurtmalar so'mda, dollardagilar "
+"dollarda."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
+msgid "Oldest debts, any currency"
+msgstr "Eng eski qarzlar, istalgan valyutada"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__debt_currency_id
+msgid "Pay the debt in"
+msgstr "Qaysi qarzni yopadi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__debt_currency_id
+msgid ""
+"The client owes separately in several currencies: choose which debt this "
+"money pays. A so'm payment can close a dollar debt — it counts at the dollar"
+" rate above. Empty: the oldest debts, whatever their currency."
+msgstr ""
+"Mijozning bir necha valyutada alohida qarzi bor: bu pul qaysi qarzni "
+"yopishini tanlang. So'mdagi to'lov dollar qarzini ham yopa oladi — "
+"yuqoridagi dollar kursi bo'yicha hisoblanadi. Bo'sh: eng eski qarzlar, "
+"valyutasidan qat'i nazar."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "%(company)s has no internal transfer account (Accounting settings)."
+msgstr ""
+"%(company)s uchun ichki o'tkazma schyoti belgilanmagan (Buxgalteriya "
+"sozlamalari)."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "%(src)s → %(dst)s"
+msgstr "%(src)s → %(dst)s"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__transfer_amount
+msgid "Amount in the other kassa"
+msgstr "Ikkinchi kassadagi summa"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Both kassas must belong to the same company."
+msgstr "Ikkala kassa bitta kompaniyaga tegishli bo'lishi kerak."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Choose a different kassa: money cannot move to the same kassa."
+msgstr "Boshqa kassani tanlang: pul o'sha kassaning o'ziga o'tkazilmaydi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Choose the other kassa."
+msgstr "Ikkinchi kassani tanlang."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Enter the amount the other kassa receives."
+msgstr "Ikkinchi kassa oladigan summani kiriting."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Exchange difference: %s"
+msgstr "Kurs farqi: %s"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__transfer_in
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_in__transfer_in
+msgid "From another kassa"
+msgstr "Boshqa kassadan"
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_search
+msgid "Kassa to kassa"
+msgstr "Kassadan kassaga"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__transfer_kassa_id
+msgid "Other kassa"
+msgstr "Ikkinchi kassa"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__transfer_currency_id
+msgid "Other kassa currency"
+msgstr "Ikkinchi kassa valyutasi"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__transfer_op_id
+msgid "Paired operation"
+msgstr "Juft operatsiya"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__transfer_kassa_id
+msgid ""
+"The kassa the money goes to (cash out) or comes from (cash in). Both kassas "
+"need an open cash day on this date."
+msgstr ""
+"Pul o'tadigan (chiqim) yoki keladigan (kirim) kassa. Ikkala kassada ham shu "
+"sanada kun ochiq bo'lishi kerak."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"The paired operation %(name)s is on a confirmed cash day; the transfer "
+"cannot be cancelled."
+msgstr ""
+"Juft operatsiya %(name)s tasdiqlangan kunda; o'tkazmani bekor qilib "
+"bo'lmaydi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa.py:0
+#: code:addons/cst_kerama_kassa/models/kassa_day.py:0
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__operation_type__transfer_out
+#: model:ir.model.fields.selection,name:cst_kerama_kassa.selection__cst_kassa_operation__type_out__transfer_out
+msgid "To another kassa"
+msgstr "Boshqa kassaga"
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__transfer_amount
+msgid ""
+"What the other kassa receives (or gives). Filled from the dollar rate when "
+"the currencies differ; change it to the amount really exchanged."
+msgstr ""
+"Ikkinchi kassa oladigan (yoki beradigan) summa. Valyutalar farq qilsa dollar"
+" kursidan to'ldiriladi; haqiqatda almashtirilgan summaga o'zgartiring."
+
+#. module: cst_kerama_kassa
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
+msgid "⇄ To another kassa"
+msgstr "⇄ Kassadan kassaga"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"%(kassa)s already has a cash day after %(date)s (%(later)s); a transfer "
+"cannot be booked before it."
+msgstr ""
+"%(kassa)s kassasida %(date)s dan keyingi kun bor (%(later)s); o'tkazmani "
+"undan oldingi sanaga yozib bo'lmaydi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"%(kassa)s has no cash day on %(date)s: it is opened automatically when you "
+"post."
+msgstr ""
+"%(kassa)s kassasida %(date)s kuni ochilmagan: o'tkazganingizda avtomatik "
+"ochiladi."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid ""
+"%(kassa)s still has an open cash day of %(date)s. Close it first, or send "
+"the money on that date."
+msgstr ""
+"%(kassa)s kassasida %(date)s kuni hali ochiq. Avval uni yoping yoki pulni "
+"o'sha sanada o'tkazing."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_sale_order__partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__debt_currency_count
+msgid "Debt currency count"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Opened automatically by the transfer %(name)s from %(kassa)s."
+msgstr "%(kassa)s kassasidan %(name)s o'tkazmasi bilan avtomatik ochildi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__transfer_day_note
+msgid "Other kassa day"
+msgstr "Boshqa kassa kuni"
+
+#. module: cst_kerama_kassa
+#: model:ir.model,name:cst_kerama_kassa.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "The cash day %(day)s is already %(state)s. Reopen it first."
+msgstr "%(day)s kassa kuni allaqachon %(state)s. Avval uni qayta oching."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "The money is booked in %(day)s."
+msgstr "Pul %(day)s kuniga yoziladi."
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__transfer_day_blocking
+msgid "Transfer Day Blocking"
+msgstr ""
+
+#~ msgid "%(kassa)s has no open cash day on %(date)s. Open it first."
+#~ msgstr "%(kassa)s kassasida %(date)s kuni ochilmagan. Avval kunni oching."

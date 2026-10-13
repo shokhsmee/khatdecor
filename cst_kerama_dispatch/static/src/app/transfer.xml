@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+<t t-name="cst_kerama_dispatch.TransferSection">
+<div class="o_cst_tr h-100 d-flex flex-column">
+
+    <!-- top bar -->
+    <div class="o_cst_dp_top d-flex align-items-center gap-3 px-3 py-2">
+        <button class="btn btn-light o_cst_dp_back" t-on-click="back"><i class="fa fa-arrow-left"/></button>
+        <div class="o_cst_dp_title">Ombor</div>
+        <div class="o_cst_tr_crumb flex-grow-1 text-truncate">Ichki o'tkazmalar</div>
+        <span t-if="state.busy" class="fa fa-spinner fa-spin"/>
+        <button t-if="state.view !== 'list' and cameraSupported and (editable or receiving)"
+                class="btn btn-light" t-on-click="openCamera" title="Kamera bilan skanerlash"><i class="fa fa-camera"/></button>
+        <div class="o_cst_tr_user d-none d-md-block" t-esc="props.userName"/>
+    </div>
+
+    <div class="flex-grow-1 overflow-auto">
+    <div class="o_cst_tr_page">
+
+    <!-- ====================== LIST ====================== -->
+    <t t-if="state.view === 'list'">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <h1 class="o_cst_tr_h1 m-0">Ichki o'tkazmalar</h1>
+            <button class="btn o_cst_tr_btn_primary o_cst_tr_btn_lg" t-on-click="newTransfer">+ Yangi ichki o'tkazma</button>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <button class="o_cst_tr_chip" t-att-class="{'o_active': state.filter === 'all'}" t-on-click="() => this.setFilter('all')">Hammasi</button>
+            <button class="o_cst_tr_chip" t-att-class="{'o_active': state.filter === 'mine'}" t-on-click="() => this.setFilter('mine')">Men yuborganlar</button>
+            <button class="o_cst_tr_chip" t-att-class="{'o_active': state.filter === 'to_me'}" t-on-click="() => this.setFilter('to_me')">
+                Menga kelganlar<t t-if="state.toMe"> (<t t-esc="state.toMe"/>)</t>
+            </button>
+            <input class="form-control o_cst_tr_search ms-auto" placeholder="Raqam yoki mahsulot"
+                   t-att-value="state.search" t-on-input="onSearch"/>
+        </div>
+        <div class="o_cst_tr_filters d-flex flex-wrap align-items-end gap-2 mb-3">
+            <div>
+                <label class="o_cst_tr_label">Status</label>
+                <select class="form-select" t-on-change="(ev) => this.setF('status', ev)">
+                    <option value="" t-att-selected="!state.f.status">Hammasi</option>
+                    <option value="new" t-att-selected="state.f.status === 'new'">Yangi</option>
+                    <option value="sent" t-att-selected="state.f.status === 'sent'">Jo'natildi</option>
+                    <option value="done" t-att-selected="state.f.status === 'done'">Qabul qilindi</option>
+                    <option value="cancel" t-att-selected="state.f.status === 'cancel'">Bekor qilindi</option>
+                </select>
+            </div>
+            <div t-if="state.kinds.length">
+                <label class="o_cst_tr_label">Turi</label>
+                <select class="form-select" t-on-change="(ev) => this.setF('kind', ev)">
+                    <option value="" t-att-selected="!state.f.kind">Hammasi</option>
+                    <option t-foreach="state.kinds" t-as="k" t-key="k.code" t-att-value="k.code"
+                            t-att-selected="state.f.kind === k.code" t-esc="k.label"/>
+                </select>
+            </div>
+            <div>
+                <label class="o_cst_tr_label">Qayerdan</label>
+                <select class="form-select" t-on-change="(ev) => this.setF('src_wh', ev)">
+                    <option value="" t-att-selected="!state.f.src_wh">Hamma omborlar</option>
+                    <option t-foreach="state.warehouses" t-as="w" t-key="w.id" t-att-value="w.id"
+                            t-att-selected="state.f.src_wh === ('' + w.id)" t-esc="w.name"/>
+                </select>
+            </div>
+            <div>
+                <label class="o_cst_tr_label">Qayerga</label>
+                <select class="form-select" t-on-change="(ev) => this.setF('dest_wh', ev)">
+                    <option value="" t-att-selected="!state.f.dest_wh">Hamma omborlar</option>
+                    <option t-foreach="state.warehouses" t-as="w" t-key="w.id" t-att-value="w.id"
+                            t-att-selected="state.f.dest_wh === ('' + w.id)" t-esc="w.name"/>
+                </select>
+            </div>
+            <div>
+                <label class="o_cst_tr_label">Sanadan</label>
+                <input type="date" class="form-control" t-att-value="state.f.date_from" t-on-change="(ev) => this.setF('date_from', ev)"/>
+            </div>
+            <div>
+                <label class="o_cst_tr_label">Sanagacha</label>
+                <input type="date" class="form-control" t-att-value="state.f.date_to" t-on-change="(ev) => this.setF('date_to', ev)"/>
+            </div>
+            <button t-if="hasF" class="btn btn-link" t-on-click="clearF"><i class="fa fa-times me-1"/>Filtrni tozalash</button>
+            <div class="ms-auto o_cst_tr_muted small">
+                <t t-esc="state.count"/> ta<t t-if="state.limited"> (oxirgilari; filtr bilan toraytiring)</t>
+            </div>
+        </div>
+        <div class="o_cst_tr_card p-0">
+            <div class="table-responsive">
+            <table class="o_cst_tr_table">
+                <thead>
+                    <tr>
+                        <th>Raqam</th><th>Turi</th><th>Qayerdan</th><th>Qayerga</th><th>Mahsulotlar</th>
+                        <th>Kim</th><th>Vaqt</th><th>Status</th><th/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-if="!state.rows.length">
+                        <td colspan="9" class="text-center text-muted py-5">Hech narsa yo'q</td>
+                    </tr>
+                    <tr t-foreach="state.rows" t-as="r" t-key="r.id" t-on-click="() => this.open(r)">
+                        <td class="fw-bold text-nowrap"><t t-esc="r.name"/><div class="o_cst_tr_muted small fw-normal" t-esc="r.date"/></td>
+                        <td><span t-if="r.kind" class="o_cst_tr_kind" t-att-class="'o_cst_tr_kind_' + r.kind" t-esc="r.kind_label"/></td>
+                        <td t-att-title="r.src_full" t-esc="r.src"/>
+                        <td t-att-title="r.dest_full">
+                            <t t-esc="r.dest"/>
+                            <div t-if="r.dest_company" class="o_cst_tr_muted" t-esc="r.dest_company"/>
+                        </td>
+                        <td class="o_cst_tr_muted o_cst_tr_products"><t t-esc="r.products"/> (<t t-esc="r.count"/>)</td>
+                        <td class="o_cst_tr_muted o_cst_tr_who">
+                            <div><i class="fa fa-arrow-up"/> <t t-esc="r.sender"/></div>
+                            <div t-if="r.receiver"><i class="fa fa-arrow-down"/> <t t-esc="r.receiver"/></div>
+                        </td>
+                        <td class="o_cst_tr_muted text-nowrap">
+                            <t t-esc="r.when"/>
+                            <span t-if="r.overdue" class="o_cst_tr_late"> · 24 soatdan ortiq</span>
+                        </td>
+                        <td>
+                            <span class="o_cst_tr_pill" t-att-class="status(r.status).cls">
+                                <t t-esc="status(r.status).label"/><t t-if="r.ic and r.status === 'sent'"> · kompaniyalararo</t>
+                            </span>
+                        </td>
+                        <td class="text-end text-nowrap">
+                            <button t-if="r.status === 'new' and r.can_edit" class="btn o_cst_tr_btn_primary">Jo'natish</button>
+                            <button t-elif="r.can_receive" class="btn o_cst_tr_btn_primary">Qabul qilish</button>
+                            <button t-elif="r.status === 'sent'" class="btn o_cst_tr_btn_outline">Kutilmoqda</button>
+                            <button t-else="" class="btn o_cst_tr_btn_outline">Ko'rish</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </t>
+
+    <!-- ====================== EDIT / VIEW ====================== -->
+    <t t-if="state.view !== 'list' and t">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-2 mb-3">
+            <div>
+                <h1 class="o_cst_tr_h1 m-0">
+                    <t t-if="!t.id or (editable and !t.name)">Yangi ichki o'tkazma</t>
+                    <t t-else="" t-esc="t.name"/>
+                </h1>
+                <div class="o_cst_tr_muted">
+                    <t t-if="editable">Qoralama avtomatik saqlanadi<t t-if="state.saving"> · <t t-esc="state.saving"/></t></t>
+                    <t t-else="">
+                        <t t-if="t.sender">Jo'natdi: <b t-esc="t.sender"/><t t-if="t.sent_at"> · <t t-esc="t.sent_at"/></t></t>
+                        <t t-if="t.received_by"> · Qabul qildi: <b t-esc="t.received_by"/> · <t t-esc="t.received_at"/></t>
+                        <t t-if="t.receipt_name"> · Qabul hujjati: <t t-esc="t.receipt_name"/></t>
+                    </t>
+                </div>
+            </div>
+            <div class="o_cst_tr_steps">
+                <t t-foreach="steps" t-as="s" t-key="s.code">
+                    <span t-if="!s_first" class="o_cst_tr_sep">›</span>
+                    <span class="o_cst_tr_step" t-att-class="{'o_active': s.active, 'o_passed': s.passed}" t-esc="s.label"/>
+                </t>
+            </div>
+        </div>
+
+        <div class="o_cst_tr_grid">
+            <div class="o_cst_tr_main">
+                <!-- where -->
+                <div class="o_cst_tr_card">
+                    <div class="o_cst_tr_two">
+                        <div>
+                            <label class="o_cst_tr_label">Qayerdan</label>
+                            <select class="form-select form-select-lg" t-att-disabled="!editable" t-on-change="onSrc">
+                                <option value="">— tanlang —</option>
+                                <t t-foreach="editable ? srcOptions : state.options.locations" t-as="l" t-key="l.id">
+                                    <option t-att-value="l.id" t-att-selected="l.id === t.src_id" t-esc="l.name"/>
+                                </t>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="o_cst_tr_label">Qayerga</label>
+                            <select class="form-select form-select-lg" t-att-disabled="!editable" t-on-change="onDest">
+                                <option value="">— tanlang —</option>
+                                <t t-if="state.options.multi_company">
+                                    <t t-foreach="destGroups" t-as="g" t-key="g.company">
+                                        <optgroup t-att-label="g.company">
+                                            <t t-foreach="g.locations" t-as="l" t-key="l.id">
+                                                <option t-if="l.id !== t.src_id" t-att-value="l.id" t-att-selected="l.id === t.dest_id" t-esc="l.name"/>
+                                            </t>
+                                        </optgroup>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <t t-foreach="state.options.locations" t-as="l" t-key="l.id">
+                                        <option t-if="l.id !== t.src_id" t-att-value="l.id" t-att-selected="l.id === t.dest_id" t-esc="l.name"/>
+                                    </t>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="o_cst_tr_two mt-3">
+                        <div>
+                            <label class="o_cst_tr_label">Qabul qiluvchi</label>
+                            <select class="form-select form-select-lg" t-att-disabled="!editable" t-on-change="onReceiver">
+                                <option value="">— tanlang —</option>
+                                <t t-foreach="receiverOptions" t-as="u" t-key="u.id">
+                                    <option t-att-value="u.id" t-att-selected="u.id === t.receiver_id" t-esc="u.name"/>
+                                </t>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="o_cst_tr_label">Izoh</label>
+                            <input class="form-control form-control-lg" t-att-disabled="!editable" placeholder="ixtiyoriy"
+                                   t-att-value="t.note" t-on-change="onNote"/>
+                        </div>
+                    </div>
+                    <div class="o_cst_tr_hint mt-2">
+                        <span t-if="isIntercompany" class="o_cst_tr_pill o_cst_tr_st_sent me-1">Kompaniyalararo</span>
+                        Boshqa kompaniya tanlansa, "Kompaniyalararo" belgisi chiqadi va qabul qiluvchi kompaniya xodimi tasdiqlaydi.
+                    </div>
+                </div>
+
+                <!-- products -->
+                <div class="o_cst_tr_card">
+                    <div t-if="editable" class="position-relative mb-2">
+                        <input class="form-control form-control-lg" placeholder="Mahsulot nomi yoki shtrix-kod bo'yicha qidirish"
+                               t-att-value="state.productSearch" t-on-input="onProductSearch" t-on-keydown="onProductKey"/>
+                        <div t-if="state.results.length" class="o_cst_tr_results">
+                            <t t-foreach="state.results" t-as="p" t-key="p.id">
+                                <div class="o_cst_tr_result" t-on-click="() => this.addProduct(p)">
+                                    <div class="fw-bold"><t t-esc="p.name"/> <span t-if="p.char" class="o_cst_dp_char" t-esc="p.char"/></div>
+                                    <div class="o_cst_tr_muted">
+                                        <t t-if="p.barcode"><i class="fa fa-barcode"/> <t t-esc="p.barcode"/> · </t>
+                                        Omborda: <t t-esc="fmt(p.onhand)"/> <t t-esc="p.uom"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                    <table class="o_cst_tr_table o_cst_tr_lines">
+                        <thead>
+                            <tr>
+                                <th>Mahsulot</th>
+                                <th t-if="editable">Omborda</th>
+                                <th><t t-if="editable">Miqdor</t><t t-else="">Jo'natildi</t></th>
+                                <th t-if="!editable and (receiving or t.status === 'done')">Qabul qilindi</th>
+                                <th>Birlik</th>
+                                <th t-if="editable"/>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-if="!t.lines.length">
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    Mahsulot qidiring yoki shtrix-kodini skanerlang
+                                </td>
+                            </tr>
+                            <tr t-foreach="t.lines" t-as="l" t-key="l.product_id">
+                                <td class="fw-bold">
+                                    <t t-esc="l.product"/>
+                                    <div t-if="l.char" class="o_cst_dp_char" t-esc="l.char"/>
+                                    <div t-if="l.barcode" class="o_cst_tr_muted fw-normal"><i class="fa fa-barcode"/> <t t-esc="l.barcode"/></div>
+                                </td>
+                                <td t-if="editable" t-att-class="lineShort(l) ? 'text-danger fw-bold' : 'o_cst_tr_muted'" t-esc="fmt(l.onhand)"/>
+                                <td>
+                                    <input t-if="editable" type="number" inputmode="decimal" step="any" min="0"
+                                           class="form-control form-control-lg o_cst_tr_qty" t-att-value="l.qty"
+                                           t-on-change="(ev) => this.onQty(l, ev)"/>
+                                    <b t-else="" t-esc="fmt(l.qty)"/>
+                                </td>
+                                <td t-if="!editable and receiving">
+                                    <input type="number" inputmode="decimal" step="any" min="0" t-att-max="l.qty"
+                                           class="form-control form-control-lg o_cst_tr_qty" t-att-value="l.received"
+                                           t-att-disabled="t.ic" t-on-change="(ev) => this.onReceived(l, ev)"/>
+                                </td>
+                                <td t-if="!editable and !receiving and t.status === 'done'"
+                                    t-att-class="l.received !== l.qty ? 'text-danger fw-bold' : ''" t-esc="fmt(l.received)"/>
+                                <td t-esc="l.uom"/>
+                                <td t-if="editable" class="text-end">
+                                    <button class="btn o_cst_tr_btn_outline o_cst_tr_x" t-on-click="() => this.removeLine(l)">×</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- side -->
+            <div class="o_cst_tr_side" t-if="editable">
+                <div class="o_cst_tr_card">
+                    <div class="fw-bold mb-2">Oxirgi so'ralganlar</div>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <t t-foreach="state.recent.chips" t-as="c" t-key="c.id">
+                            <button class="o_cst_tr_chip o_cst_tr_chip_sm" t-on-click="() => this.addProduct(c)"><t t-esc="c.name"/><t t-if="c.char"> · <t t-esc="c.char"/></t></button>
+                        </t>
+                        <span t-if="!state.recent.chips.length" class="o_cst_tr_muted">Hali yo'q</span>
+                    </div>
+                    <button class="btn o_cst_tr_btn_outline w-100" t-att-disabled="!state.recent.repeat_id" t-on-click="repeatLast">
+                        Avvalgisini takrorlash
+                        <div t-if="state.recent.repeat_name" class="o_cst_tr_muted fw-normal" t-esc="state.recent.repeat_name"/>
+                    </button>
+                </div>
+            </div>
+            <div class="o_cst_tr_side" t-if="!editable">
+                <div class="o_cst_tr_card">
+                    <div class="o_cst_tr_info"><span>Jo'natdi</span><b t-esc="t.sender or '—'"/></div>
+                    <div class="o_cst_tr_info"><span>Qabul qiluvchi</span><b t-esc="t.receiver or '—'"/></div>
+                    <div class="o_cst_tr_info" t-if="t.sent_at"><span>Jo'natilgan</span><b t-esc="t.sent_at"/></div>
+                    <div class="o_cst_tr_info" t-if="t.received_at"><span>Qabul qilindi</span><b t-esc="t.received_at"/></div>
+                    <div class="o_cst_tr_info" t-if="t.ic"><span>Turi</span><b>Kompaniyalararo</b></div>
+                    <div t-if="t.status === 'sent' and !t.can_receive" class="o_cst_tr_hint mt-2">
+                        <t t-esc="t.receiver"/> qabul qilishini kutmoqda.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- actions -->
+        <div class="d-flex flex-wrap justify-content-end gap-2 mt-3">
+            <button t-if="editable and t.id" class="btn btn-link text-danger me-auto" t-on-click="cancelTransfer">Bekor qilish</button>
+            <t t-if="editable">
+                <button class="btn o_cst_tr_btn_outline o_cst_tr_btn_lg" t-on-click="saveDraft">Yangi</button>
+                <button class="btn o_cst_tr_btn_primary o_cst_tr_btn_lg o_cst_tr_btn_xl" t-att-disabled="state.busy" t-on-click="send">
+                    Yuborish (<t t-esc="lineCount"/> ta mahsulot)
+                </button>
+            </t>
+            <button t-if="receiving" class="btn o_cst_tr_btn_primary o_cst_tr_btn_lg o_cst_tr_btn_xl" t-att-disabled="state.busy" t-on-click="receive">
+                Qabul qilish
+            </button>
+        </div>
+    </t>
+
+    </div>
+    </div>
+</div>
+</t>
+</templates>

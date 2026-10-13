@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_payroll" model="ir.ui.view">
+        <field name="name">res.config.settings.form.payroll</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Payroll" string="Payroll" name="cst_kerama_payroll"
+                     groups="cst_kerama_payroll.group_payroll_manager">
+
+                    <block title="KPI" name="payroll_kpi">
+                        <setting string="Yuk tushirish — default summa"
+                                 help="Suggested payment per unloader. It only pre-fills the line; the warehouse can change it on the document.">
+                            <field name="cst_unload_rate_default"/>
+                        </setting>
+                    </block>
+
+                    <block title="Accounting" name="payroll_accounting">
+                        <setting string="Salary Journal"
+                                 help="Journal that carries the payroll entries.">
+                            <field name="cst_payroll_journal_id"/>
+                        </setting>
+                        <setting string="Salary Payable"
+                                 help="What the company owes its employees. Use a payable-type account, otherwise Odoo keeps no per-employee balance.">
+                            <field name="cst_salary_payable_account_id"/>
+                        </setting>
+                        <setting string="Salary Expense — official">
+                            <field name="cst_salary_expense_account_id"/>
+                        </setting>
+                        <setting string="Salary Expense — cash"
+                                 help="The undeclared part, kept apart so the official P&amp;L can be read on its own.">
+                            <field name="cst_salary_expense_cash_account_id"/>
+                        </setting>
+                        <setting string="Employee Tax Payable"
+                                 help="Income tax and pension withheld from employees, owed to the state.">
+                            <field name="cst_employee_tax_account_id"/>
+                        </setting>
+                        <setting string="Employer Tax Payable">
+                            <field name="cst_employer_tax_account_id"/>
+                        </setting>
+                    </block>
+
+                    <block title="Tax rates" name="payroll_rates">
+                        <div class="text-muted mb-3">
+                            Rates apply to the official stream only. Leave a rate at
+                            zero and that tax is not calculated at all.
+                        </div>
+                        <setting string="Даромад солиги — income tax"
+                                 help="Withheld from the employee.">
+                            <field name="cst_income_tax_rate"/> %
+                        </setting>
+                        <setting string="ИНПС — pension"
+                                 help="Withheld from the employee.">
+                            <field name="cst_pension_rate"/> %
+                        </setting>
+                        <setting string="Ижтимоий солик — social tax"
+                                 help="Paid by the employer. An expense, never a deduction — it does not touch the employee's balance.">
+                            <field name="cst_social_tax_rate"/> %
+                        </setting>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

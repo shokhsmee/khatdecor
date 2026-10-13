@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_cst_send_production" model="ir.ui.view">
+        <field name="name">sale.order.form.cst.send.production</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- first in the header: on a phone Odoo shows only the first button, the rest go under «⋮» -->
+            <xpath expr="//header/button[1]" position="before">
+                <button name="action_cst_send_to_production" type="object" string="Send to production"
+                        class="btn-secondary" icon="fa-industry" invisible="state != 'sale'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- The Project Hub's Create / Open Project buttons are not used on the sales order any more. -->
+    <record id="view_order_form_cst_hide_project_buttons" model="ir.ui.view">
+        <field name="name">sale.order.form.cst.hide.project.buttons</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="cst_kerama_project.view_order_form_cst_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cst_create_project']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cst_open_project']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,259 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_sale_production
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-27 12:30+0000\n"
+"PO-Revision-Date: 2026-09-27 12:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uz_UZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "%(mo)s sent to production: %(product)s × %(qty)s."
+msgstr "%(mo)s ishlab chiqarishga yuborildi: %(product)s × %(qty)s."
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/wizard/send_production.py:0
+msgid "%(product)s has no bill of materials, it cannot be manufactured."
+msgstr "%(product)s uchun texkarta (BoM) yo'q, uni ishlab chiqarib bo'lmaydi."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__has_bom
+msgid "Bill of materials"
+msgstr "Texkarta"
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__create_date
+msgid "Created on"
+msgstr "Yaratilgan"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__delivered_qty
+msgid "Delivered"
+msgstr "Yetkazilgan"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Ko'rsatiladigan nom"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/wizard/send_production.py:0
+msgid "Enter the quantity to produce for %(product)s."
+msgstr "%(product)s uchun ishlab chiqariladigan miqdorni kiriting."
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+msgid ""
+"Everything this order needs is in stock or already in production.\n"
+"                    You can still tick a product to make more."
+msgstr ""
+"Bu buyurtmaga kerakli hamma narsa omborda bor yoki allaqachon ishlab "
+"chiqarishda. Ko'proq qilish uchun mahsulotni belgilashingiz mumkin."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__production_qty
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__production
+msgid "In production"
+msgstr "Ishlab chiqarishda"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__stock_qty
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__ok
+msgid "In stock"
+msgstr "Omborda"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi o'zgartirgan"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi o'zgartirilgan"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__no_bom
+msgid "No bill of materials"
+msgstr "Texkarta yo'q"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Only a confirmed sales order can be sent to production."
+msgstr ""
+"Faqat tasdiqlangan sotuv buyurtmasini ishlab chiqarishga yuborish mumkin."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__order_id
+msgid "Order"
+msgstr "Buyurtma"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__ordered_qty
+msgid "Ordered"
+msgstr "Buyurtma"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__product_id
+msgid "Product"
+msgstr "Mahsulot"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Product not found."
+msgstr "Mahsulot topilmadi."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__line_ids
+msgid "Products"
+msgstr "Mahsulotlar"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,help:cst_kerama_sale_production.field_cst_sale_production_wizard_line__stock_qty
+msgid "Reserved for this order + free stock in the order's warehouse."
+msgstr "Shu buyurtma uchun band qilingan + buyurtma omboridagi bo'sh qoldiq."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__sale_line_id
+msgid "Sale Line"
+msgstr "Sotuv qatori"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model,name:cst_kerama_sale_production.model_sale_order
+msgid "Sales Order"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__selected_count
+msgid "Selected Count"
+msgstr "Tanlanganlar soni"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__selected
+msgid "Send"
+msgstr "Yuborish"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model,name:cst_kerama_sale_production.model_cst_sale_production_wizard
+msgid "Send Sales Order to Production"
+msgstr "Sotuv buyurtmasini ishlab chiqarishga yuborish"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model,name:cst_kerama_sale_production.model_cst_sale_production_wizard_line
+msgid "Send to Production: Product Line"
+msgstr "Ishlab chiqarishga yuborish: mahsulot qatori"
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_order_form_cst_send_production
+msgid "Send to production"
+msgstr "Ishlab chiqarishga yuborish"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Send to production — %(order)s"
+msgstr "Ishlab chiqarishga yuborish — %(order)s"
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/models/sale_order.py:0
+msgid "Sent to production from %(order)s."
+msgstr "%(order)s dan ishlab chiqarishga yuborildi."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__short_qty
+#: model:ir.model.fields.selection,name:cst_kerama_sale_production.selection__cst_sale_production_wizard_line__status__short
+msgid "Short"
+msgstr "Yetishmaydi"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__short_count
+msgid "Short Count"
+msgstr "Yetishmaydiganlar soni"
+
+#. module: cst_kerama_sale_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_production.view_cst_sale_production_wizard_form
+msgid ""
+"Some products are short. The ticked ones are sent to production: for each of them the\n"
+"                    «Yangi buyurtma» dialog opens, where you check the materials, operations and lines."
+msgstr ""
+"Ba'zi mahsulotlar yetishmaydi. Belgilanganlari ishlab chiqarishga "
+"yuboriladi: har biri uchun «Yangi buyurtma» oynasi ochiladi — u yerda "
+"xomashyo, operatsiyalar va liniyalarni tekshirasiz."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__status
+msgid "Status"
+msgstr "Holat"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,help:cst_kerama_sale_production.field_cst_sale_production_wizard_line__production_qty
+msgid "Still to be made on manufacturing orders already sent for this line."
+msgstr ""
+"Shu qator uchun yuborilgan ishlab chiqarish buyurtmalarida hali qilinishi "
+"kerak bo'lgan miqdor."
+
+#. module: cst_kerama_sale_production
+#. odoo-python
+#: code:addons/cst_kerama_sale_production/wizard/send_production.py:0
+msgid "Tick at least one product to send to production."
+msgstr "Ishlab chiqarishga yuborish uchun kamida bitta mahsulotni belgilang."
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__qty_to_produce
+msgid "To produce"
+msgstr "Ishlab chiqarish"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__uom_id
+msgid "Unit"
+msgstr "O'lchov"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard__warehouse_id
+msgid "Warehouse"
+msgstr "Ombor"
+
+#. module: cst_kerama_sale_production
+#: model:ir.model.fields,field_description:cst_kerama_sale_production.field_cst_sale_production_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Oyna"

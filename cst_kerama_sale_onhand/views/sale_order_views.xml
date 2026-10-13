@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_cst_onhand" model="ir.ui.view">
+        <field name="name">sale.order.form.cst.onhand</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <!-- actual stock right before the forecast icon -->
+            <xpath expr="//field[@name='order_line']//list//widget[@name='qty_at_date_widget']" position="before">
+                <field name="is_storable" column_invisible="1"/>
+                <field name="cst_qty_on_hand" readonly="1" optional="show"
+                       invisible="not is_storable or not product_id"
+                       decoration-danger="cst_qty_on_hand &lt; product_uom_qty"
+                       decoration-info="cst_qty_on_hand &gt;= product_uom_qty"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

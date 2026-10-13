@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_cst_manufacture_wizard_form" model="ir.ui.view">
+        <field name="name">cst.manufacture.wizard.form</field>
+        <field name="model">cst.manufacture.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Start Manufacturing" class="o_cst_manufacture_wizard">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="project_id" readonly="1" options="{'no_open': True}"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="request_id" readonly="1" options="{'no_open': True}"
+                                   invisible="not request_id"/>
+                            <field name="warehouse_id" readonly="1" options="{'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="products" string="Products">
+                            <div class="alert alert-info" role="status">
+                                <i class="fa fa-info-circle me-1"/>
+                                Products of the material request are loaded here. Add a line to
+                                manufacture something the request does not cover, then press
+                                <b>Load operations &amp; materials</b> to fill the other tabs
+                                from its bill of materials.
+                            </div>
+                            <field name="line_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="cst_characteristic" optional="show"/>
+                                    <field name="request_id" optional="show" readonly="1"/>
+                                    <field name="bom_id" options="{'no_create': True}"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom_id" readonly="1" string="Unit"/>
+                                    <field name="operation_count" string="Operations"/>
+                                </list>
+                            </field>
+                            <div class="mt-2">
+                                <button name="action_load_lines" type="object"
+                                        string="Load operations &amp; materials"
+                                        class="btn-secondary" icon="fa-arrow-down"/>
+                                <button name="action_reset_lines" type="object"
+                                        string="Start over" class="btn-link" icon="fa-refresh"
+                                        confirm="The operations and materials of every product are rebuilt from the bills of materials. Anything configured here is lost. Continue?"/>
+                            </div>
+                        </page>
+
+                        <page name="operations" string="Operations &amp; Work Centers">
+                            <div class="alert alert-info" role="status">
+                                <i class="fa fa-info-circle me-1"/>
+                                Untick the operations this order does not run — only ticked ones
+                                become work orders. Split an operation over several work centers
+                                by adding a line for the same operation: the quantities of one
+                                operation must add up to the quantity of its product.
+                            </div>
+                            <field name="operation_ids" nolabel="1"
+                                   context="{'default_wizard_id': id}">
+                                <list editable="bottom" decoration-muted="not selected">
+                                    <field name="wizard_id" column_invisible="1"/>
+                                    <field name="bom_id" column_invisible="1"/>
+                                    <field name="line_index" column_invisible="1"/>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="selected" widget="boolean_toggle"
+                                           string="Do it"/>
+                                    <field name="line_id" string="Product" required="1"
+                                           domain="[('wizard_id', '=', parent.id)]"
+                                           options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="operation_id" options="{'no_create': True}"/>
+                                    <field name="workcenter_id" options="{'no_create': True}"
+                                           required="selected"/>
+                                    <field name="product_qty" string="Qty"/>
+                                    <field name="user_id" widget="many2one_avatar_user"
+                                           options="{'no_create': True}"/>
+                                    <field name="employee_ids" widget="many2many_tags"
+                                           options="{'no_create': True}"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page name="materials" string="Materials Used">
+                            <div class="alert alert-info" role="status">
+                                <i class="fa fa-info-circle me-1"/>
+                                Set <b>Used By</b> to the operation that consumes a material and
+                                it is only taken when that operation is part of the order. Leave
+                                it empty for a material the order always needs. The bill of
+                                materials itself is never changed.
+                            </div>
+                            <field name="component_ids" nolabel="1">
+                                <list editable="bottom" create="0" delete="0"
+                                      decoration-muted="not will_consume">
+                                    <field name="bom_id" column_invisible="1"/>
+                                    <field name="line_index" column_invisible="1"/>
+                                    <field name="is_short" column_invisible="1"/>
+                                    <field name="line_id" string="For Product" readonly="1"
+                                           options="{'no_open': True}"/>
+                                    <field name="product_id"/>
+                                    <field name="cst_characteristic" optional="show"/>
+                                    <field name="product_qty" string="Needed"/>
+                                    <field name="product_uom_id" string="Unit"/>
+                                    <field name="operation_id" string="Used By"
+                                           options="{'no_create': True}"/>
+                                    <field name="will_consume" string="Used"
+                                           widget="boolean" readonly="1"/>
+                                    <field name="qty_available" string="In Stock"
+                                           decoration-danger="is_short"
+                                           decoration-success="not is_short"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object" string="Start Manufacturing"
+                            class="btn-primary" data-hotkey="q"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"
+                            data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

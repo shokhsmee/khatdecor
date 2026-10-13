@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_kassa_order" model="ir.actions.report">
+        <field name="name">Cash order</field>
+        <field name="model">cst.kassa.operation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_kassa.report_kassa_order</field>
+        <field name="report_file">cst_kerama_kassa.report_kassa_order</field>
+        <field name="print_report_name">'%s' % object.name</field>
+        <field name="binding_model_id" ref="model_cst_kassa_operation"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_kassa_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 14px;">
+                        <h3 class="text-center">
+                            <t t-if="o.direction == 'in'">Cash receipt order</t>
+                            <t t-else="">Cash payment order</t>
+                            № <span t-field="o.name"/>
+                        </h3>
+                        <p class="text-center">Date: <span t-field="o.date"/></p>
+                        <table class="table table-sm table-bordered mt-4">
+                            <tr><th style="width: 35%;">Kassa</th><td><span t-field="o.kassa_id"/></td></tr>
+                            <tr><th>Type</th><td><span t-field="o.operation_type"/></td></tr>
+                            <tr t-if="o.partner_id">
+                                <th><t t-if="o.direction == 'in'">Received from</t><t t-else="">Paid to</t></th>
+                                <td><span t-field="o.partner_id"/></td>
+                            </tr>
+                            <tr t-if="o.category_id"><th>Category</th><td><span t-field="o.category_id"/></td></tr>
+                            <tr t-if="o.sale_order_ids">
+                                <th>Sales orders</th>
+                                <td><t t-esc="', '.join(o.sale_order_ids.mapped('name'))"/></td>
+                            </tr>
+                            <tr t-if="o.memo"><th>Note</th><td><span t-field="o.memo"/></td></tr>
+                            <tr>
+                                <th>Amount</th>
+                                <td><strong style="font-size: 18px;"><span t-field="o.amount"/></strong></td>
+                            </tr>
+                            <tr t-if="o._cst_amount_words()"><th>In words</th><td><t t-esc="o._cst_amount_words()"/></td></tr>
+                        </table>
+                        <t t-set="allocs" t-value="o.allocation_ids.filtered(lambda a: a.state == 'done')"/>
+                        <table t-if="allocs" class="table table-sm mt-3">
+                            <thead><tr><th>Paid order</th><th class="text-end">Amount</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="allocs" t-as="a">
+                                    <td><t t-esc="a.order_id.name or a.invoice_id.name"/></td>
+                                    <td class="text-end"><span t-field="a.amount"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row mt-5">
+                            <div class="col-6">Cashier: ____________ <span t-field="o.created_by_id"/></div>
+                            <div class="col-6 text-end">
+                                <t t-if="o.direction == 'in'">Paid by</t><t t-else="">Received by</t>: ____________
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

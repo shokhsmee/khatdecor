@@ -1,0 +1,20 @@
+<odoo>
+  <record id="hr_employee_form_inherit_moizvonki" model="ir.ui.view">
+    <field name="name">hr.employee.form.inherit.moizvonki</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+        <button
+          name="action_open_moizvonki_calls"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-phone"
+          invisible="not work_email"
+        >
+          <field name="moizvonki_call_count" widget="statinfo" string="Qo'ng'iroqlar"/>
+        </button>
+      </xpath>
+    </field>
+  </record>
+</odoo>

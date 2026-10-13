@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The bot is about who the contacts are, not about invoicing, so it
+         belongs in the Contacts app next to the people it identifies. -->
+    <menuitem id="menu_telegram_root" name="Telegram"
+              parent="contacts.menu_contacts" sequence="25"
+              groups="account.group_account_invoice"/>
+
+    <menuitem id="menu_telegram_chat" name="Foydalanuvchilar"
+              parent="menu_telegram_root" action="action_telegram_chat" sequence="10"/>
+
+    <menuitem id="menu_telegram_broadcast" name="Xabar yuborish"
+              parent="menu_telegram_root" action="action_telegram_broadcast" sequence="20"/>
+
+</odoo>

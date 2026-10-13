@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Instant («always»): every value listed on a product is a variant of
+             its own the moment it is listed, so the storekeepers see one line
+             per characteristic in every list. Only the values a product really
+             comes in are ever listed, so a board with 2 finishes, 1 density and
+             1 size has 2 variants, not 324. (These records are noupdate: the
+             mode in the database is kept in step by the migrations.) -->
+        <record id="attribute_surface" model="product.attribute">
+            <field name="name">Ustki qismi</field>
+            <field name="sequence">10</field>
+            <field name="create_variant">always</field>
+            <field name="display_type">select</field>
+        </record>
+        <record id="attribute_density" model="product.attribute">
+            <field name="name">Zichligi</field>
+            <field name="sequence">20</field>
+            <field name="create_variant">always</field>
+            <field name="display_type">pills</field>
+        </record>
+        <record id="attribute_size" model="product.attribute">
+            <field name="name">Uzunligi va eni</field>
+            <field name="sequence">30</field>
+            <field name="create_variant">always</field>
+            <field name="display_type">pills</field>
+        </record>
+
+        <record id="value_surface_3d" model="product.attribute.value">
+            <field name="name">3D</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="value_surface_archa" model="product.attribute.value">
+            <field name="name">Арча</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">20</field>
+        </record>
+        <record id="value_surface_baxmal" model="product.attribute.value">
+            <field name="name">Бахмал</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">30</field>
+        </record>
+        <record id="value_surface_bulut" model="product.attribute.value">
+            <field name="name">Булут</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">40</field>
+        </record>
+        <record id="value_surface_gladkiy" model="product.attribute.value">
+            <field name="name">Гладкий</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">50</field>
+        </record>
+        <record id="value_surface_glyantsevy" model="product.attribute.value">
+            <field name="name">Глянцевый</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">60</field>
+        </record>
+        <record id="value_surface_drevesniy" model="product.attribute.value">
+            <field name="name">Древесный</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">70</field>
+        </record>
+        <record id="value_surface_koja" model="product.attribute.value">
+            <field name="name">Кожа</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">80</field>
+        </record>
+        <record id="value_surface_kristal" model="product.attribute.value">
+            <field name="name">Кристал</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">90</field>
+        </record>
+        <record id="value_surface_matoviy" model="product.attribute.value">
+            <field name="name">Матовый</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">100</field>
+        </record>
+        <record id="value_surface_pechak" model="product.attribute.value">
+            <field name="name">Печак</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">110</field>
+        </record>
+        <record id="value_surface_pod_derevo" model="product.attribute.value">
+            <field name="name">Под Дерево</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">120</field>
+        </record>
+        <record id="value_surface_tekstil" model="product.attribute.value">
+            <field name="name">Текстиль</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">130</field>
+        </record>
+        <record id="value_surface_tekstura" model="product.attribute.value">
+            <field name="name">Текстура</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">140</field>
+        </record>
+        <record id="value_surface_tomchi" model="product.attribute.value">
+            <field name="name">Томчи</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">150</field>
+        </record>
+        <record id="value_surface_tosh" model="product.attribute.value">
+            <field name="name">Тош</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">160</field>
+        </record>
+        <record id="value_surface_tr_matoviy" model="product.attribute.value">
+            <field name="name">ТР Матовый</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">170</field>
+        </record>
+        <record id="value_surface_shpon_tr" model="product.attribute.value">
+            <field name="name">Шпон ТР.</field>
+            <field name="attribute_id" ref="attribute_surface"/>
+            <field name="sequence">180</field>
+        </record>
+        <record id="value_density_40_gr" model="product.attribute.value">
+            <field name="name">40 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="value_density_50_gr" model="product.attribute.value">
+            <field name="name">50 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">20</field>
+        </record>
+        <record id="value_density_60_gr" model="product.attribute.value">
+            <field name="name">60 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">30</field>
+        </record>
+        <record id="value_density_65_gr" model="product.attribute.value">
+            <field name="name">65 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">40</field>
+        </record>
+        <record id="value_density_70_gr" model="product.attribute.value">
+            <field name="name">70 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">50</field>
+        </record>
+        <record id="value_density_75_gr" model="product.attribute.value">
+            <field name="name">75 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">60</field>
+        </record>
+        <record id="value_density_80_gr" model="product.attribute.value">
+            <field name="name">80 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">70</field>
+        </record>
+        <record id="value_density_85_gr" model="product.attribute.value">
+            <field name="name">85 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">80</field>
+        </record>
+        <record id="value_density_90_gr" model="product.attribute.value">
+            <field name="name">90 гр</field>
+            <field name="attribute_id" ref="attribute_density"/>
+            <field name="sequence">90</field>
+        </record>
+        <record id="value_size_183_sm_277_sm" model="product.attribute.value">
+            <field name="name">183 см, 277 см</field>
+            <field name="attribute_id" ref="attribute_size"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="value_size_188_sm_277_sm" model="product.attribute.value">
+            <field name="name">188 см, 277 см</field>
+            <field name="attribute_id" ref="attribute_size"/>
+            <field name="sequence">20</field>
+        </record>
+
+    </data>
+</odoo>

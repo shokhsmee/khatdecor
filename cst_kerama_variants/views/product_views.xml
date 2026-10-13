@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- the characteristic as a column wherever a storekeeper reads variants -->
+    <record id="view_product_product_list_cst" model="ir.ui.view">
+        <field name="name">product.product.list.cst_characteristic</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_product_search_cst" model="ir.ui.view">
+        <field name="name">product.product.search.cst_characteristic</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_characteristic"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- group the catalogue by characteristic: every value of a product on its
+         own line, which is how the storekeepers count the shelves -->
+    <record id="view_product_product_search_groupby_cst" model="ir.ui.view">
+        <field name="name">product.product.search.cst_groupby</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <group>
+                    <filter name="groupby_cst_characteristic" string="Xarakteristika"
+                            context="{'group_by': 'cst_characteristic'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Odoo's Products menu lists templates: a product with three
+         characteristics is one line there. This action lists the variants, so
+         each characteristic is a line of its own with its own stock and prices.
+         It is the FIRST child of every «Products» menu (sequence 0): clicking
+         the parent opens its first child, so «Products» now lands here. The
+         template list stays one click away as the next item. -->
+    <record id="action_product_characteristics" model="ir.actions.act_window">
+        <field name="name">Mahsulotlar</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="context">{"search_default_filter_to_sell": 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Xarakteristikali mahsulot yo'q</p>
+            <p>Har bir qator - bitta xarakteristika, o'z qoldig'i va narxi bilan.
+               Mahsulotga xarakteristika biriktirish uchun «Xarakteristika biriktirish»
+               amalini tanlang: ko'rsatilgan har bir qiymat darhol alohida qator bo'ladi.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_product_characteristics_stock"
+              name="Mahsulotlar"
+              action="action_product_characteristics"
+              parent="stock.menu_stock_inventory_control" sequence="0"
+              groups="stock.group_stock_user"/>
+    <menuitem id="menu_product_characteristics_sale"
+              name="Mahsulotlar"
+              action="action_product_characteristics"
+              parent="sale.product_menu_catalog" sequence="0"
+              groups="sales_team.group_sale_salesman"/>
+    <menuitem id="menu_product_characteristics_purchase"
+              name="Mahsulotlar"
+              action="action_product_characteristics"
+              parent="purchase.menu_purchase_products" sequence="0"
+              groups="purchase.group_purchase_user"/>
+    <menuitem id="menu_product_characteristics_mrp"
+              name="Mahsulotlar"
+              action="action_product_characteristics"
+              parent="mrp.menu_mrp_bom" sequence="0"
+              groups="mrp.group_mrp_user"/>
+
+    <record id="view_stock_quant_list_cst" model="ir.ui.view">
+        <field name="name">stock.quant.list.cst_characteristic</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_list_cst" model="ir.ui.view">
+        <field name="name">stock.move.line.list.cst_characteristic</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

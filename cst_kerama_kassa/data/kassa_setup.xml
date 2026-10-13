@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Runs on every upgrade: cash journals and «HR» bank journals get a kassa. -->
+    <function model="cst.kassa" name="_cst_ensure_kassas"/>
+    <!-- Once: role tags (client / supplier / employee) from the existing contact tags. -->
+    <function model="res.company" name="_cst_kassa_seed_partner_tags"/>
+</odoo>

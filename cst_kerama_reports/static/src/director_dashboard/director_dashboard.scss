@@ -1,0 +1,227 @@
+/* Rahbar oynasi — tokens first, so light/dark swap in one place. Plain CSS on
+   purpose: the same file is what the design mock renders with. */
+.cst_dd {
+    --dd-surface: #fcfcfb;
+    --dd-plane: transparent;
+    --dd-ink: #0b0b0b;
+    --dd-ink-2: #52514e;
+    --dd-muted: #898781;
+    --dd-grid: #e1e0d9;
+    --dd-axis: #c3c2b7;
+    --dd-border: rgba(11, 11, 11, 0.10);
+    --dd-series: #2a78d6;
+    --dd-series-wash: rgba(42, 120, 214, 0.12);
+    --dd-in: #2a78d6;
+    --dd-out: #e34948;
+    --dd-good: #006300;
+    --dd-bad: #d03b3b;
+    --dd-warn: #fab219;
+    --dd-ghost: rgba(11, 11, 11, 0.05);
+    --dd-ord-1: #86b6ef;
+    --dd-ord-2: #5598e7;
+    --dd-ord-3: #2a78d6;
+    --dd-ord-4: #1c5cab;
+    --dd-hero-bg: #17667a;
+
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--dd-ink);
+    background: var(--dd-plane);
+    font-size: 13px;
+    line-height: 1.35;
+    /* This element is Odoo's .o_action: the web client already makes it a
+       height-100% flex column with overflow hidden, and that rule outranks
+       ours. Declared again here so the standalone mock renders the same. */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+.cst_dd.cst_dd_dark {
+    --dd-surface: #1a1a19;
+    --dd-ink: #ffffff;
+    --dd-ink-2: #c3c2b7;
+    --dd-muted: #898781;
+    --dd-grid: #2c2c2a;
+    --dd-axis: #383835;
+    --dd-border: rgba(255, 255, 255, 0.10);
+    --dd-series: #3987e5;
+    --dd-series-wash: rgba(57, 135, 229, 0.16);
+    --dd-in: #3987e5;
+    --dd-out: #e66767;
+    --dd-good: #0ca30c;
+    --dd-ghost: rgba(255, 255, 255, 0.06);
+    --dd-ord-1: #184f95;
+    --dd-ord-2: #1c5cab;
+    --dd-ord-3: #3987e5;
+    --dd-ord-4: #86b6ef;
+}
+.cst_dd * { box-sizing: border-box; }
+/* The scroller. Odoo hides the scrollbar of .o_action itself on large screens,
+   so scrolling one level down keeps a visible bar everywhere. The padding lives
+   here so it scrolls with the content; each block is centred on wide screens. */
+.cst_dd_wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 18px 22px 32px;
+    scroll-behavior: smooth;
+}
+.cst_dd_wrap > * { max-width: 1480px; margin-left: auto; margin-right: auto; }
+
+/* ---------- header + filter row ---------- */
+.cst_dd_head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.cst_dd_title { font-size: 22px; font-weight: 650; letter-spacing: -0.01em; margin: 0; }
+.cst_dd_sub { color: var(--dd-ink-2); margin-top: 2px; }
+.cst_dd_filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cst_dd_seg { display: inline-flex; border: 1px solid var(--dd-border); border-radius: 8px; overflow: hidden; background: var(--dd-surface); }
+.cst_dd_seg button { border: 0; background: transparent; color: var(--dd-ink-2); padding: 6px 12px; font: inherit; font-weight: 500; cursor: pointer; }
+.cst_dd_seg button + button { border-left: 1px solid var(--dd-border); }
+.cst_dd_seg button:hover { background: var(--dd-ghost); }
+.cst_dd_seg button.on { background: var(--dd-ink); color: var(--dd-surface); }
+.cst_dd_chip { border: 1px solid var(--dd-border); background: var(--dd-surface); color: var(--dd-ink-2); border-radius: 999px; padding: 5px 11px; font: inherit; cursor: pointer; }
+.cst_dd_chip.on { border-color: var(--dd-series); color: var(--dd-ink); box-shadow: inset 0 0 0 1px var(--dd-series); }
+.cst_dd_chip:hover { background: var(--dd-ghost); }
+.cst_dd_icon_btn { border: 1px solid var(--dd-border); background: var(--dd-surface); color: var(--dd-ink-2); border-radius: 8px; width: 32px; height: 32px; cursor: pointer; }
+
+/* ---------- grid + cards ---------- */
+.cst_dd_grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; }
+.cst_dd_card { grid-column: span 12; background: var(--dd-surface); border: 1px solid var(--dd-border); border-radius: 12px; padding: 14px 16px 12px; min-width: 0; }
+.cst_dd_card.span4 { grid-column: span 4; }
+.cst_dd_card.span6 { grid-column: span 6; }
+.cst_dd_card.span8 { grid-column: span 8; }
+@media (max-width: 1100px) { .cst_dd_card.span4, .cst_dd_card.span6, .cst_dd_card.span8 { grid-column: span 12; } }
+.cst_dd_card_head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.cst_dd_card_title { font-size: 13px; font-weight: 650; color: var(--dd-ink); margin: 0; }
+.cst_dd_card_note { color: var(--dd-muted); font-size: 12px; }
+.cst_dd_link { color: var(--dd-ink-2); font-size: 12px; cursor: pointer; background: none; border: 0; padding: 0; font: inherit; text-decoration: underline dotted; }
+.cst_dd_link:hover { color: var(--dd-ink); }
+.cst_dd_busy { opacity: 0.55; transition: opacity .15s; }
+
+/* ---------- hero ---------- */
+.cst_dd_hero_label { color: var(--dd-ink-2); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+.cst_dd_hero_row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 2px 0 6px; }
+.cst_dd_hero { font-size: 46px; font-weight: 650; line-height: 1.05; letter-spacing: -0.02em; }
+.cst_dd_hero small { font-size: 16px; font-weight: 500; color: var(--dd-ink-2); margin-left: 6px; letter-spacing: 0; }
+.cst_dd_delta { display: inline-flex; align-items: center; gap: 3px; font-weight: 600; font-size: 11px; padding: 1px 6px; border-radius: 6px; background: var(--dd-ghost); color: var(--dd-ink-2); white-space: nowrap; flex: 0 0 auto; }
+.cst_dd_delta.up { color: var(--dd-good); }
+.cst_dd_delta.down { color: var(--dd-bad); }
+.cst_dd_hero_figs { display: flex; gap: 22px; margin-top: 6px; flex-wrap: wrap; }
+.cst_dd_fig { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.cst_dd_fig i.key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+.cst_dd_fig .v { font-weight: 650; }
+.cst_dd_fig .l { color: var(--dd-ink-2); }
+
+/* ---------- stat tiles ---------- */
+.cst_dd_tiles { grid-column: span 12; display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 12px; }
+.cst_dd_tile { background: var(--dd-surface); border: 1px solid var(--dd-border); border-radius: 12px; padding: 10px 12px 8px; cursor: pointer; min-width: 0; transition: box-shadow .12s, transform .12s; position: relative; display: flex; flex-direction: column; gap: 3px; }
+.cst_dd_tile:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10); transform: translateY(-1px); }
+.cst_dd_tile_label { color: var(--dd-ink-2); font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.cst_dd_tile_row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.cst_dd_tile_value { font-size: 21px; font-weight: 650; letter-spacing: -0.01em; line-height: 1.2; white-space: nowrap; min-width: 0; }
+.cst_dd_tile_value small { font-size: 12px; color: var(--dd-ink-2); font-weight: 500; margin-left: 4px; }
+.cst_dd_tile_foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 26px; }
+.cst_dd_tile_sub { color: var(--dd-muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.cst_dd_tile_spark { flex: 0 0 auto; }
+.cst_dd_tile_spark path.line { fill: none; stroke: var(--dd-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.cst_dd_tile_spark path.last { fill: none; stroke: var(--dd-series); stroke-width: 2; stroke-linecap: round; }
+.cst_dd_tile_spark circle { fill: var(--dd-series); stroke: var(--dd-surface); stroke-width: 2; }
+
+/* ---------- charts (inline SVG) ---------- */
+.cst_dd_chart { width: 100%; height: auto; display: block; }
+.cst_dd_chart .grid { stroke: var(--dd-grid); stroke-width: 1; }
+.cst_dd_chart .axis { stroke: var(--dd-axis); stroke-width: 1; }
+.cst_dd_chart .tick { fill: var(--dd-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.cst_dd_chart .line { fill: none; stroke: var(--dd-series); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.cst_dd_chart .wash { fill: var(--dd-series-wash); }
+.cst_dd_chart .dot { fill: var(--dd-series); stroke: var(--dd-surface); stroke-width: 2; }
+.cst_dd_chart .bar_in { fill: var(--dd-in); }
+.cst_dd_chart .bar_out { fill: var(--dd-out); }
+.cst_dd_chart .bar { fill: var(--dd-series); }
+.cst_dd_chart .bar_label { fill: var(--dd-ink-2); font-size: 11px; font-variant-numeric: tabular-nums; }
+.cst_dd_chart .cat_label { fill: var(--dd-ink); font-size: 12px; }
+.cst_dd_chart .end_label { fill: var(--dd-ink); font-size: 12px; font-weight: 600; }
+.cst_dd_chart .hit { fill: transparent; cursor: pointer; }
+.cst_dd_chart g.cst_dd_row:hover .bar { filter: brightness(1.12); }
+.cst_dd_chart .cross { stroke: var(--dd-axis); stroke-width: 1; }
+.cst_dd_legend { display: flex; gap: 14px; flex-wrap: wrap; color: var(--dd-ink-2); font-size: 12px; margin-top: 4px; }
+.cst_dd_legend i { display: inline-block; width: 12px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; background: var(--dd-series); }
+.cst_dd_legend i.in { background: var(--dd-in); } .cst_dd_legend i.out { background: var(--dd-out); }
+.cst_dd_legend i.sq { height: 10px; width: 10px; border-radius: 3px; }
+.cst_dd_tip { position: absolute; pointer-events: none; background: var(--dd-ink); color: var(--dd-surface); border-radius: 6px; padding: 6px 9px; font-size: 12px; line-height: 1.35; z-index: 10; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,.18); }
+.cst_dd_tip .t { opacity: .7; font-size: 11px; }
+.cst_dd_tip .v { font-weight: 650; }
+.cst_dd_tip .k { display: inline-block; width: 10px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+.cst_dd_chart_wrap { position: relative; }
+
+/* ---------- aging (ordinal segmented bar) ---------- */
+.cst_dd_aging { display: flex; height: 18px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--dd-ghost); margin: 6px 0 8px; }
+.cst_dd_aging span { display: block; height: 100%; }
+.cst_dd_aging .a1 { background: var(--dd-ord-1); } .cst_dd_aging .a2 { background: var(--dd-ord-2); }
+.cst_dd_aging .a3 { background: var(--dd-ord-3); } .cst_dd_aging .a4 { background: var(--dd-ord-4); }
+.cst_dd_aging_rows { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: center; font-variant-numeric: tabular-nums; }
+.cst_dd_aging_rows .sw { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.cst_dd_aging_rows .n { text-align: right; font-weight: 600; }
+.cst_dd_aging_rows .l { color: var(--dd-ink-2); }
+
+/* ---------- lists / tables ---------- */
+.cst_dd_table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; table-layout: fixed; }
+.cst_dd_table tr { display: table-row; } .cst_dd_table td, .cst_dd_table th { display: table-cell; }
+.cst_dd_table th { text-align: left; color: var(--dd-muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; padding: 4px 6px; border-bottom: 1px solid var(--dd-grid); }
+.cst_dd_table td { padding: 6px 6px; border-bottom: 1px solid var(--dd-grid); }
+.cst_dd_table tr:last-child td { border-bottom: 0; }
+.cst_dd_table td.num, .cst_dd_table th.num { text-align: right; white-space: nowrap; }
+.cst_dd_table td.name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cst_dd_table th.name { width: 44%; }
+.cst_dd_table th.idx, .cst_dd_table td.idx { color: var(--dd-muted); width: 28px; }
+.cst_dd_table.cst_dd_boxes th.name { width: 38%; }
+.cst_dd_table.cst_dd_boxes th.num:nth-child(2) { width: 30%; }
+.cst_dd_table tr.cst_dd_row:hover td { background: var(--dd-ghost); cursor: pointer; }
+.cst_dd_table .muted { color: var(--dd-muted); }
+.cst_dd_table .strong { font-weight: 650; }
+.cst_dd_kind { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; vertical-align: middle; background: var(--dd-series); }
+.cst_dd_kind.bank { background: var(--dd-ord-4); }
+.cst_dd_empty { color: var(--dd-muted); padding: 18px 4px; text-align: center; }
+.cst_dd_loading { padding: 60px; text-align: center; color: var(--dd-muted); }
+.cst_dd_good { color: var(--dd-good); } .cst_dd_bad { color: var(--dd-bad); }
+
+/* ---------- table-view twin of a chart ---------- */
+.cst_dd_toggle { display: inline-flex; gap: 2px; border: 1px solid var(--dd-border); border-radius: 6px; overflow: hidden; }
+.cst_dd_toggle button { border: 0; background: transparent; color: var(--dd-muted); font: inherit; font-size: 11px; padding: 2px 8px; cursor: pointer; }
+.cst_dd_toggle button.on { background: var(--dd-ghost); color: var(--dd-ink); }
+.cst_dd_scroll { max-height: 260px; overflow: auto; }
+.cst_dd_error { margin: 20px; padding: 14px 16px; border: 1px solid var(--dd-bad); border-radius: 10px; color: var(--dd-bad); }
+
+/* ---------- responsive ---------- */
+/* 1100px: the 12-column grid already stacks every card (see .cst_dd_card.spanN). */
+@media (max-width: 768px) {
+    .cst_dd_wrap { padding: 12px 12px 24px; }
+    .cst_dd_head { margin-bottom: 10px; gap: 10px; }
+    .cst_dd_title { font-size: 18px; }
+    .cst_dd_grid { gap: 10px; }
+    .cst_dd_card { padding: 12px 12px 10px; border-radius: 10px; }
+    .cst_dd_card_head { flex-wrap: wrap; }
+    .cst_dd_hero { font-size: 34px; }
+    .cst_dd_hero small { font-size: 13px; }
+    .cst_dd_hero_figs { gap: 12px; }
+    .cst_dd_tiles { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+    .cst_dd_tile { padding: 8px 10px 6px; }
+    .cst_dd_tile_value { font-size: 18px; }
+    .cst_dd_table th, .cst_dd_table td { padding: 4px 4px; }
+    /* a name may take two lines on a phone rather than vanish into an ellipsis */
+    .cst_dd_table td.name { white-space: normal; overflow-wrap: anywhere; }
+    .cst_dd_scroll { max-height: 220px; }
+}
+@media (max-width: 480px) {
+    .cst_dd_wrap { padding: 10px 10px 20px; }
+    .cst_dd_hero { font-size: 28px; }
+    .cst_dd_hero_row { gap: 8px; }
+    .cst_dd_tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cst_dd_table { font-size: 12px; }
+    .cst_dd_table th.name { width: auto; }
+    .cst_dd_seg button, .cst_dd_chip { padding: 4px 8px; font-size: 12px; }
+    .cst_dd_icon_btn { width: 30px; height: 30px; }
+    .cst_dd_aging_rows { gap: 3px 8px; }
+}

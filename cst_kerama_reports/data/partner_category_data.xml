@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Utilities are ordinary suppliers billed through vendor bills; this
+             tag is what the «Kommunal xizmatlar akt sverkasi» wizard filters on. -->
+        <record id="partner_category_utilities" model="res.partner.category">
+            <field name="name">Kommunal xizmatlar</field>
+            <field name="color">4</field>
+        </record>
+    </data>
+</odoo>

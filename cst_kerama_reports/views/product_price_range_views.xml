@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_price_range_list" model="ir.ui.view">
+        <field name="name">cst.product.price.range.list</field>
+        <field name="model">cst.product.price.range</field>
+        <field name="arch" type="xml">
+            <list string="Mahsulot narx oralig'i" create="false" delete="false" edit="false">
+                <field name="product_id"/>
+                <field name="cst_characteristic" optional="show"/>
+                <field name="partner_id"/>
+                <field name="quantity" sum="Jami"/>
+                <field name="uom_id" optional="show"/>
+                <field name="min_price"/>
+                <field name="max_price"/>
+                <field name="spread" optional="show"/>
+                <field name="avg_price" optional="hide"/>
+                <field name="amount" sum="Jami" optional="hide"/>
+                <field name="doc_count" sum="Jami" optional="show"/>
+                <field name="first_date" optional="hide"/>
+                <field name="last_date" optional="show"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_price_range_pivot" model="ir.ui.view">
+        <field name="name">cst.product.price.range.pivot</field>
+        <field name="model">cst.product.price.range</field>
+        <field name="arch" type="xml">
+            <pivot string="Mahsulot narx oralig'i">
+                <field name="product_id" type="row"/>
+                <field name="cst_characteristic" type="row"/>
+                <field name="partner_id" type="col"/>
+                <field name="quantity" type="measure"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_product_price_range_search" model="ir.ui.view">
+        <field name="name">cst.product.price.range.search</field>
+        <field name="model">cst.product.price.range</field>
+        <field name="arch" type="xml">
+            <search string="Mahsulot narx oralig'i">
+                <field name="product_id"/>
+                <field name="cst_characteristic"/>
+                <field name="partner_id"/>
+                <filter name="has_spread" string="Narxi turlicha bo'lganlar"
+                        domain="[('spread', '&gt;', 0)]"/>
+                <group>
+                    <filter name="group_product" string="Mahsulot"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="group_characteristic" string="Xarakteristika"
+                            context="{'group_by': 'cst_characteristic'}"/>
+                    <filter name="group_partner" string="Kontragent"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_currency" string="Valyuta"
+                            context="{'group_by': 'currency_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- The same view read from the two sides the company cares about. -->
+    <record id="action_product_price_range_sale" model="ir.actions.act_window">
+        <field name="name">Mijozlar bilan mahsulot min-max</field>
+        <field name="res_model">cst.product.price.range</field>
+        <field name="view_mode">list,pivot</field>
+        <field name="domain">[('kind', '=', 'sale')]</field>
+        <field name="context">{'search_default_group_product': 1}</field>
+        <field name="search_view_id" ref="view_product_price_range_search"/>
+    </record>
+
+    <record id="action_product_price_range_purchase" model="ir.actions.act_window">
+        <field name="name">Ta'minotchilar bilan mahsulot min-max</field>
+        <field name="res_model">cst.product.price.range</field>
+        <field name="view_mode">list,pivot</field>
+        <field name="domain">[('kind', '=', 'purchase')]</field>
+        <field name="context">{'search_default_group_product': 1}</field>
+        <field name="search_view_id" ref="view_product_price_range_search"/>
+    </record>
+
+</odoo>

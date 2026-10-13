@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 31 -->
+    <menuitem id="menu_reports_production_fact" name="Ishlab chiqarish fakti"
+              parent="menu_reports_mrp" action="action_production_fact_wizard" sequence="5"/>
+    <!-- 33, 34, 35, 39 → Moliya -->
+    <menuitem id="menu_reports_taxes" name="Soliqlar" parent="menu_reports_finance" sequence="45"/>
+    <menuitem id="menu_reports_tax_movement" name="Soliqlar harakati"
+              parent="menu_reports_taxes" action="action_tax_movement_wizard" sequence="10"/>
+    <menuitem id="menu_reports_tax_statement" name="Soliq akt sverkasi"
+              parent="menu_reports_taxes" action="action_tax_statement_wizard" sequence="20"/>
+    <menuitem id="menu_reports_tax_native" name="Soliq hisoboti (Odoo)"
+              parent="menu_reports_taxes" action="account_reports.action_account_report_gt" sequence="30"/>
+    <menuitem id="menu_reports_assets_group" name="Asosiy vositalar" parent="menu_reports_finance" sequence="46"/>
+    <menuitem id="menu_reports_assets" name="Asosiy vositalar (qoldiq summalari bilan)"
+              parent="menu_reports_assets_group" action="action_assets_wizard" sequence="10"/>
+    <menuitem id="menu_reports_assets_native" name="Amortizatsiya jadvali (Odoo)"
+              parent="menu_reports_assets_group" action="account_asset.action_account_report_assets" sequence="20"/>
+    <menuitem id="menu_reports_assets_list" name="Asosiy vositalar ro'yxati (Odoo)"
+              parent="menu_reports_assets_group" action="account_asset.action_account_asset_form" sequence="30"/>
+    <menuitem id="menu_reports_bank_fees" name="Bank xarajatlari"
+              parent="menu_reports_cash" action="action_bank_fees_wizard" sequence="35"/>
+    <!-- 36 → Ta'minotchilar -->
+    <menuitem id="menu_reports_utility_statement" name="Kommunal xizmatlar akt sverkasi"
+              parent="menu_reports_suppliers" action="action_utility_statement_wizard"
+              groups="account.group_account_readonly,account.group_account_invoice" sequence="25"/>
+    <!-- 38 → Oylik -->
+    <menuitem id="menu_reports_card_payments" name="Plastik kartaga tashlangan pullar"
+              parent="menu_reports_payroll" action="action_card_payments_wizard" sequence="45"/>
+</odoo>

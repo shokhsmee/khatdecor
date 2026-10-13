@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hik_attendance_subscriber_user,access_hik_attendance_subscriber_user,model_hikvision_attendance_subscriber,base.group_user,1,0,0,0
+access_hik_attendance_subscriber_manager,access_hik_attendance_subscriber_manager,model_hikvision_attendance_subscriber,base.group_system,1,1,1,1
+access_hik_work_shift_officer,hik.work.shift officer,model_hik_work_shift,hr_attendance.group_hr_attendance_officer,1,1,1,0
+access_hik_work_shift_hr,hik.work.shift hr,model_hik_work_shift,hr.group_hr_user,1,1,1,1
+access_hik_work_shift_user,hik.work.shift user,model_hik_work_shift,base.group_user,1,0,0,0
+access_hik_work_shift_assign,hik.work.shift.assign,model_hik_work_shift_assign,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_hik_work_shift_assign_hr,hik.work.shift.assign hr,model_hik_work_shift_assign,hr.group_hr_user,1,1,1,1
+access_hik_attendance_daily,hik.attendance.daily,model_hik_attendance_daily,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_hik_attendance_daily_line,hik.attendance.daily.line,model_hik_attendance_daily_line,hr_attendance.group_hr_attendance_officer,1,1,1,1

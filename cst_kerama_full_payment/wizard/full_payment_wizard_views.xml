@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_full_payment_wizard_form" model="ir.ui.view">
+        <field name="name">cst.sale.full.payment.wizard.form</field>
+        <field name="model">cst.sale.full.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="To'liq to'lov">
+                <field name="company_id" invisible="1"/>
+                <field name="available_journal_ids" invisible="1"/>
+                <field name="order_currency_id" invisible="1"/>
+                <group>
+                    <group string="Buyurtma">
+                        <field name="order_id"/>
+                        <field name="partner_id"/>
+                        <field name="order_total"
+                               widget="monetary"
+                               options="{'currency_field': 'order_currency_id'}"/>
+                    </group>
+                    <group string="To'lov">
+                        <field name="journal_id"
+                               options="{'no_create': True, 'no_open': True}"/>
+                        <field name="currency_id"
+                               options="{'no_create': True, 'no_open': True}"/>
+                        <field name="payment_date"/>
+                        <field name="amount"
+                               class="fw-bold"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="communication"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_pay"
+                            string="To'lash"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Bekor qilish"
+                            class="btn-secondary"
+                            special="cancel"
+                            data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

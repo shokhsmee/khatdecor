@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_project.ProjectDashboard">
+        <div class="o_kerama_project_dashboard p-3">
+            <!-- Period filter -->
+            <div class="d-flex align-items-center mb-3 gap-2 flex-wrap">
+                <span class="fw-bold me-2">Projects Dashboard</span>
+                <div class="btn-group btn-group-sm">
+                    <t t-foreach="periods" t-as="p" t-key="p.key">
+                        <button class="btn"
+                                t-att-class="state.period === p.key ? 'btn-primary' : 'btn-outline-secondary'"
+                                t-on-click="() => this.setPeriod(p.key)">
+                            <t t-esc="p.label"/>
+                        </button>
+                    </t>
+                </div>
+                <select class="form-select form-select-sm w-auto"
+                        t-on-change="(ev) => this.onCurrencyChange(ev)"
+                        title="Read every amount in this currency">
+                    <option t-foreach="state.currencies" t-as="c" t-key="c.id"
+                            t-att-value="c.id" t-att-selected="c.id === state.currencyId">
+                        <t t-esc="c.name"/>
+                    </option>
+                </select>
+                <span t-if="state.data" class="text-muted small ms-2">
+                    <t t-esc="state.data.counts.projects"/> projects ·
+                    <t t-esc="state.data.counts.purchase_orders"/> purchase orders ·
+                    <t t-esc="state.data.counts.open_mrfs"/> open MRFs
+                </span>
+            </div>
+
+            <div t-if="state.loading" class="text-center p-5">
+                <span class="fa fa-spin fa-circle-o-notch fa-2x text-muted"/>
+            </div>
+            <t t-else="">
+                <!-- KPI row -->
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <KpiCard title="'Income'" icon="'fa-dollar'" color="'#017e84'"
+                                 values="money(state.data.totals.income)"/>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <KpiCard title="'Paid'" icon="'fa-check'" color="'#5cb85c'"
+                                 values="money(state.data.totals.paid)"/>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <KpiCard title="'Amount Due'" icon="'fa-exclamation-triangle'" color="'#d9534f'"
+                                 values="money(state.data.totals.due)"/>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <KpiCard title="'Purchases'" icon="'fa-shopping-cart'" color="'#f0ad4e'"
+                                 values="money(state.data.totals.purchases)"/>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <KpiCard title="'Expenses'" icon="'fa-money'" color="'#9b59b6'"
+                                 values="money(state.data.totals.expenses)"/>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <KpiCard title="'Margin'" icon="'fa-line-chart'" color="'#714B67'"
+                                 values="money(state.data.totals.margin)"/>
+                    </div>
+                </div>
+
+                <!-- Materials mini-stats -->
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-xl-3">
+                        <KpiCard title="'Materials to buy'" icon="'fa-cubes'" color="'#d9534f'"
+                                 value="state.data.materials.to_buy" suffix="' lines'"/>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <KpiCard title="'Materials ordered'" icon="'fa-truck'" color="'#5cb85c'"
+                                 value="state.data.materials.ordered" suffix="' lines'"/>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <KpiCard title="'Material Requests'" icon="'fa-file-text-o'" color="'#017e84'"
+                                 value="state.data.counts.mrfs"/>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <KpiCard title="'Open MRFs'" icon="'fa-hourglass-half'" color="'#f0ad4e'"
+                                 value="state.data.counts.open_mrfs"/>
+                    </div>
+                </div>
+
+                <!-- Charts row 1 -->
+                <div class="row g-3 mb-3">
+                    <div class="col-12 col-xl-7">
+                        <div class="card h-100">
+                            <div class="card-header fw-bold">Income vs Cost vs Margin (top 10 projects)</div>
+                            <div class="card-body">
+                                <ChartRenderer t-if="marginConfig" config="marginConfig" height="300"/>
+                                <div t-else="" class="text-muted text-center p-4">No project data for this period.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-5">
+                        <div class="card h-100">
+                            <div class="card-header fw-bold">Income &amp; Cost Over Time</div>
+                            <div class="card-body">
+                                <ChartRenderer t-if="overTimeConfig" config="overTimeConfig" height="300"/>
+                                <div t-else="" class="text-muted text-center p-4">No data yet.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts row 2 -->
+                <div class="row g-3 mb-3">
+                    <div class="col-12 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-header fw-bold">Cost Breakdown</div>
+                            <div class="card-body">
+                                <ChartRenderer t-if="costSplitConfig" config="costSplitConfig" height="260"/>
+                                <div t-else="" class="text-muted text-center p-4">No costs yet.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-header fw-bold">Amount Due by Project</div>
+                            <div class="card-body">
+                                <ChartRenderer t-if="dueConfig" config="dueConfig" height="260"/>
+                                <div t-else="" class="text-muted text-center p-4">Nothing due. 🎉</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-header fw-bold">Material Requests by Status</div>
+                            <div class="card-body">
+                                <ChartRenderer t-if="mrfConfig" config="mrfConfig" height="260"/>
+                                <div t-else="" class="text-muted text-center p-4">No material requests.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects table -->
+                <div class="card">
+                    <div class="card-header fw-bold">Projects</div>
+                    <div class="card-body p-0" style="max-height:420px;overflow:auto;">
+                        <table class="table table-sm table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th class="text-end">Income</th>
+                                    <th class="text-end">Paid</th>
+                                    <th class="text-end">Due</th>
+                                    <th class="text-end">Purchases</th>
+                                    <th class="text-end">Expenses</th>
+                                    <th class="text-end">Margin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="state.data.projects" t-as="p" t-key="p.id"
+                                    style="cursor:pointer"
+                                    t-on-click="() => this.openProject(p.id)">
+                                    <td><t t-esc="p.name"/></td>
+                                    <td class="text-end"><t t-esc="fmt(p.income)"/></td>
+                                    <td class="text-end text-success"><t t-esc="fmt(p.paid)"/></td>
+                                    <td class="text-end text-danger"><t t-esc="fmt(p.due)"/></td>
+                                    <td class="text-end"><t t-esc="fmt(p.purchases)"/></td>
+                                    <td class="text-end"><t t-esc="fmt(p.expenses)"/></td>
+                                    <td class="text-end fw-bold"><t t-esc="fmt(p.margin)"/></td>
+                                </tr>
+                                <tr t-if="!state.data.projects.length">
+                                    <td colspan="7" class="text-center text-muted p-3">
+                                        No projects with financial data in this period.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

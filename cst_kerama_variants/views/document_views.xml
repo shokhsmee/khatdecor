@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================= Sales ================= -->
+    <record id="view_order_form_cst_characteristic" model="ir.ui.view">
+        <field name="name">sale.order.form.cst_characteristic</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- next to the product itself: the line already picks a variant
+                 through product_id, this only says which one it is -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_template_id']"
+                   position="after">
+                <field name="cst_characteristic" optional="show" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_id']"
+                   position="attributes">
+                <attribute name="optional">show</attribute>
+                <attribute name="string">Variant</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree_cst" model="ir.ui.view">
+        <field name="name">sale.order.line.list.cst_characteristic</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <!-- this list shows the line description, not the product itself -->
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="product_id" optional="show" string="Variant"/>
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= Purchase ================= -->
+    <record id="purchase_order_form_cst_characteristic" model="ir.ui.view">
+        <field name="name">purchase.order.form.cst_characteristic</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_id']"
+                   position="after">
+                <field name="cst_characteristic" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_tree_cst" model="ir.ui.view">
+        <field name="name">purchase.order.line.list.cst_characteristic</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= Invoices & bills ================= -->
+    <record id="view_move_form_cst_characteristic" model="ir.ui.view">
+        <field name="name">account.move.form.cst_characteristic</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='product_id']"
+                   position="after">
+                <field name="cst_characteristic" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= Bills of materials ================= -->
+    <record id="mrp_bom_form_view_cst" model="ir.ui.view">
+        <field name="name">mrp.bom.form.cst_characteristic</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_id']"
+                   position="after">
+                <field name="cst_characteristic" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_tree_view_cst" model="ir.ui.view">
+        <field name="name">mrp.bom.list.cst_characteristic</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= Manufacturing orders ================= -->
+    <record id="mrp_production_tree_view_cst" model="ir.ui.view">
+        <field name="name">mrp.production.list.cst_characteristic</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

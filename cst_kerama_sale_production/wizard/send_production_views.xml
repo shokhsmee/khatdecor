@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cst_sale_production_wizard_form" model="ir.ui.view">
+        <field name="name">cst.sale.production.wizard.form</field>
+        <field name="model">cst.sale.production.wizard</field>
+        <field name="arch" type="xml">
+            <form class="o_cst_sale_production">
+                <field name="order_id" invisible="1"/>
+                <field name="short_count" invisible="1"/>
+                <div class="alert alert-success" role="alert" invisible="short_count">
+                    Everything this order needs is in stock or already in production.
+                    You can still tick a product to make more.
+                </div>
+                <div class="alert alert-warning" role="alert" invisible="not short_count">
+                    Some products are short. The ticked ones are sent to production: for each of them the
+                    «Yangi buyurtma» dialog opens, where you check the materials, operations and lines.
+                </div>
+                <group>
+                    <field name="warehouse_id" readonly="1"/>
+                </group>
+                <field name="line_ids" nolabel="1">
+                    <list editable="bottom" create="0" delete="0"
+                          decoration-success="status == 'ok'" decoration-info="status == 'production'"
+                          decoration-warning="status == 'short'" decoration-danger="status == 'no_bom'">
+                        <field name="selected" widget="boolean_toggle" readonly="not has_bom"/>
+                        <field name="sale_line_id" column_invisible="1"/>
+                        <field name="product_id"/>
+                        <field name="ordered_qty"/>
+                        <field name="delivered_qty" optional="hide"/>
+                        <field name="stock_qty"/>
+                        <field name="production_qty"/>
+                        <field name="short_qty"/>
+                        <field name="qty_to_produce" readonly="not selected"/>
+                        <field name="uom_id" options="{'no_open': True}"/>
+                        <field name="has_bom" column_invisible="1"/>
+                        <field name="status" widget="badge" decoration-success="status == 'ok'"
+                               decoration-info="status == 'production'" decoration-warning="status == 'short'"
+                               decoration-danger="status == 'no_bom'"/>
+                    </list>
+                </field>
+                <footer>
+                    <button name="action_send" type="object" string="Send to production" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

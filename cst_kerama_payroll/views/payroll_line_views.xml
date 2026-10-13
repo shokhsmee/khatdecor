@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_payroll_line_list" model="ir.ui.view">
+        <field name="name">cst.payroll.line.list</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <list string="Payroll Lines" multi_edit="1"
+                  decoration-muted="state == 'cancel'"
+                  decoration-success="kind == 'accrual'"
+                  decoration-danger="kind == 'deduction'">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="component_id"/>
+                <field name="kind" optional="hide"/>
+                <field name="product_id" optional="hide"/>
+                <field name="quantity" optional="hide" sum="Quantity"/>
+                <field name="rate" optional="hide"/>
+                <field name="amount" sum="Total"/>
+                <field name="signed_amount" sum="Net" optional="show"/>
+                <field name="is_official" widget="boolean_toggle" optional="show"/>
+                <field name="source_ref" optional="hide"/>
+                <field name="period_id" optional="hide"/>
+                <field name="move_id" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'posted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_form" model="ir.ui.view">
+        <field name="name">cst.payroll.line.form</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Line">
+                <header>
+                    <button name="action_open_source" type="object" string="Source Document"
+                            invisible="not source_ref" class="btn-secondary"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,posted"/>
+                </header>
+                <sheet>
+                    <field name="is_external" invisible="1"/>
+                    <div class="alert alert-info" role="alert" invisible="not is_external">
+                        Kassa hujjatidan kelgan qator: pul kassadan berilganda buxgalteriyaga yozilgan.
+                        O'zgartirish yoki o'chirish uchun kassa amaliyotini bekor qiling.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="is_external"/>
+                            <field name="component_id" readonly="is_external"/>
+                            <field name="date" readonly="is_external"/>
+                            <field name="period_id"/>
+                        </group>
+                        <group>
+                            <field name="amount" readonly="is_external"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="kind"/>
+                            <field name="is_official" readonly="is_external"/>
+                            <field name="is_taxable"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="How it was calculated"
+                           invisible="not product_id and not quantity">
+                        <group>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="rate"/>
+                        </group>
+                        <group>
+                            <field name="source_ref"/>
+                            <field name="source_model" invisible="1"/>
+                            <field name="source_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="name" placeholder="Description"/>
+                        <field name="partner_id"/>
+                        <field name="move_id" readonly="1"/>
+                        <field name="note" placeholder="Why this line exists."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_search" model="ir.ui.view">
+        <field name="name">cst.payroll.line.search</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <search string="Payroll Lines">
+                <field name="employee_id"/>
+                <field name="component_id"/>
+                <field name="period_id"/>
+                <field name="product_id"/>
+                <field name="cst_operation_name"/>
+                <field name="cst_workcenter_id"/>
+                <filter name="f_accrual" string="Хисобланди" domain="[('kind', '=', 'accrual')]"/>
+                <filter name="f_deduction" string="Ушланмалар" domain="[('kind', '=', 'deduction')]"/>
+                <filter name="f_employer" string="Employer Cost" domain="[('kind', '=', 'employer')]"/>
+                <separator/>
+                <filter name="f_official" string="Official" domain="[('is_official', '=', True)]"/>
+                <filter name="f_cash" string="Cash" domain="[('is_official', '=', False)]"/>
+                <separator/>
+                <filter name="f_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="f_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="f_posted" string="Posted" domain="[('state', '=', 'posted')]"/>
+                <separator/>
+                <filter name="f_date" string="Date" date="date"/>
+                <separator/>
+                <filter name="f_kpi_sales" string="Sotuv KPI"
+                        domain="[('component_id.computation', '=', 'kpi_sales')]"/>
+                <filter name="f_kpi_production" string="Ishbay KPI"
+                        domain="[('component_id.computation', '=', 'kpi_production')]"/>
+                <filter name="f_kpi_unloading" string="Yuk tushirish"
+                        domain="[('component_id.computation', '=', 'kpi_unloading')]"/>
+                <group>
+                    <filter name="g_employee" string="Employee" domain="[]" context="{'group_by': 'employee_id'}"/>
+                    <filter name="g_component" string="Component" domain="[]" context="{'group_by': 'component_id'}"/>
+                    <filter name="g_kind" string="Type" domain="[]" context="{'group_by': 'kind'}"/>
+                    <filter name="g_period" string="Period" domain="[]" context="{'group_by': 'period_id'}"/>
+                    <filter name="g_date" string="Month" domain="[]" context="{'group_by': 'date:month'}"/>
+                    <filter name="g_product" string="Product" domain="[]" context="{'group_by': 'product_id'}"/>
+                    <filter name="g_categ" string="Product Category" domain="[]" context="{'group_by': 'product_categ_id'}"/>
+                    <filter name="g_operation" string="Operatsiya" domain="[]" context="{'group_by': 'cst_operation_name'}"/>
+                    <filter name="g_shift" string="Smena" domain="[]" context="{'group_by': 'cst_shift'}"/>
+                    <filter name="g_workcenter" string="Ish markazi" domain="[]" context="{'group_by': 'cst_workcenter_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_payroll_line" model="ir.actions.act_window">
+        <field name="name">Payroll Lines</field>
+        <field name="res_model">cst.payroll.line</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="search_view_id" ref="view_payroll_line_search"/>
+        <field name="context">{'search_default_g_employee': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No movements yet</p>
+            <p>Every accrual, deduction and KPI bonus lands here. Compute a period
+               to generate salary lines, or add a bonus or advance by hand.</p>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_list_kpi_sales" model="ir.ui.view">
+        <field name="name">cst.payroll.line.list.kpi.sales</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <list string="Sotuv KPI" create="0">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="product_categ_id" optional="show"/>
+                <field name="product_id"/>
+                <field name="quantity" sum="Miqdori"/>
+                <field name="rate"/>
+                <field name="amount" sum="KPI summasi"/>
+                <field name="source_ref" string="Buyurtma"/>
+                <field name="period_id" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'posted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_pivot_kpi_sales" model="ir.ui.view">
+        <field name="name">cst.payroll.line.pivot.kpi.sales</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Sotuv KPI">
+                <field name="employee_id" type="row"/>
+                <field name="product_categ_id" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="quantity" type="measure"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_payroll_kpi_sales" model="ir.actions.act_window">
+        <field name="name">Sotuv KPI hisoboti</field>
+        <field name="res_model">cst.payroll.line</field>
+        <field name="view_mode">list,pivot,form</field>
+        <field name="view_id" ref="view_payroll_line_list_kpi_sales"/>
+        <field name="search_view_id" ref="view_payroll_line_search"/>
+        <field name="domain">[('component_id.computation', '=', 'kpi_sales')]</field>
+        <field name="context">{'search_default_g_employee': 1, 'search_default_g_categ': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No sales KPI yet</p>
+            <p>KPI accrues when a customer has paid an order in full. Set the rate
+               per unit on the products, make sure the salesperson is linked to an
+               employee whose pay scheme includes KPI, then compute the period.</p>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_list_kpi_production" model="ir.ui.view">
+        <field name="name">cst.payroll.line.list.kpi.production</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <list string="Ishbay KPI" create="0">
+                <field name="date"/>
+                <field name="cst_operation_name" string="Operatsiya"/>
+                <field name="cst_shift"/>
+                <field name="cst_workcenter_id" optional="show"/>
+                <field name="employee_id"/>
+                <field name="product_id" string="Mahsulot"/>
+                <field name="quantity" sum="Miqdori"/>
+                <field name="rate"/>
+                <field name="amount" sum="KPI summasi"/>
+                <field name="source_ref" string="Ish buyurtmasi" optional="show"/>
+                <field name="period_id" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'posted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_pivot_kpi_production" model="ir.ui.view">
+        <field name="name">cst.payroll.line.pivot.kpi.production</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Ishbay KPI">
+                <field name="cst_operation_name" type="row"/>
+                <field name="cst_shift" type="row"/>
+                <field name="employee_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="quantity" type="measure"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_payroll_kpi_production" model="ir.actions.act_window">
+        <field name="name">Ishbay KPI hisoboti</field>
+        <field name="res_model">cst.payroll.line</field>
+        <field name="view_mode">list,pivot,form</field>
+        <field name="view_id" ref="view_payroll_line_list_kpi_production"/>
+        <field name="search_view_id" ref="view_payroll_line_search"/>
+        <field name="domain">[('component_id.computation', '=', 'kpi_production')]</field>
+        <field name="context">{'search_default_g_operation': 1, 'search_default_g_shift': 2, 'search_default_g_employee': 3}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No piece rate yet</p>
+            <p>A finished work order pays everyone who worked it: quantity produced
+               times the rate on that product's own operation in the bill of
+               materials. Set the rates, then compute the period.</p>
+        </field>
+    </record>
+
+    <record id="view_payroll_line_list_kpi_unloading" model="ir.ui.view">
+        <field name="name">cst.payroll.line.list.kpi.unloading</field>
+        <field name="model">cst.payroll.line</field>
+        <field name="arch" type="xml">
+            <list string="Yuk tushirish" create="0">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="source_ref" string="Hujjat"/>
+                <field name="note" optional="show" string="Izoh"/>
+                <field name="amount" sum="Jami"/>
+                <field name="period_id" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'posted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_payroll_kpi_unloading" model="ir.actions.act_window">
+        <field name="name">Yuk tushirish hisoboti</field>
+        <field name="res_model">cst.payroll.line</field>
+        <field name="view_mode">list,pivot,form</field>
+        <field name="view_id" ref="view_payroll_line_list_kpi_unloading"/>
+        <field name="search_view_id" ref="view_payroll_line_search"/>
+        <field name="domain">[('component_id.computation', '=', 'kpi_unloading')]</field>
+        <field name="context">{'search_default_g_employee': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing unloaded yet</p>
+            <p>Name the crew and their money on the receipt itself, in its
+               «Yuk tushirish» tab. Validated documents reach the salary account
+               when the period is computed.</p>
+        </field>
+    </record>
+
+</odoo>

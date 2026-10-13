@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The first version of every template.  noupdate: once HR has
+             edited the wording in Word and uploaded it back, an upgrade
+             must not put the shipped file over it. -->
+
+
+        <record id="tmpl_ariza_qabul" model="cst.hr.doc.template">
+            <field name="name">Ariza (ishga qabul)</field>
+            <field name="code">ariza_qabul</field>
+            <field name="kind">kirish</field>
+            <field name="sequence">10</field>
+            <field name="filename">ariza_qabul.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/ariza_qabul.docx"/>
+        </record>
+
+        <record id="tmpl_buyruq_qabul" model="cst.hr.doc.template">
+            <field name="name">Buyruq — ishga qabul qilish to'g'risida</field>
+            <field name="code">buyruq_qabul</field>
+            <field name="kind">kirish</field>
+            <field name="sequence">20</field>
+            <field name="filename">buyruq_qabul.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/buyruq_qabul.docx"/>
+        </record>
+
+        <record id="tmpl_mehnat_shartnomasi" model="cst.hr.doc.template">
+            <field name="name">Mehnat shartnomasi</field>
+            <field name="code">mehnat_shartnomasi</field>
+            <field name="kind">kirish</field>
+            <field name="sequence">30</field>
+            <field name="filename">mehnat_shartnomasi.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/mehnat_shartnomasi.docx"/>
+        </record>
+
+        <record id="tmpl_rozilik_xati" model="cst.hr.doc.template">
+            <field name="name">Rozilik xati</field>
+            <field name="code">rozilik_xati</field>
+            <field name="kind">otkazish</field>
+            <field name="sequence">10</field>
+            <field name="filename">rozilik_xati.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/rozilik_xati.docx"/>
+        </record>
+
+        <record id="tmpl_qoshimcha_kelishuv" model="cst.hr.doc.template">
+            <field name="name">Qo'shimcha kelishuv</field>
+            <field name="code">qoshimcha_kelishuv</field>
+            <field name="kind">otkazish</field>
+            <field name="sequence">20</field>
+            <field name="filename">qoshimcha_kelishuv.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/qoshimcha_kelishuv.docx"/>
+        </record>
+
+        <record id="tmpl_buyruq_otkazish" model="cst.hr.doc.template">
+            <field name="name">Buyruq — boshqa lavozimga o'tkazish to'g'risida</field>
+            <field name="code">buyruq_otkazish</field>
+            <field name="kind">otkazish</field>
+            <field name="sequence">30</field>
+            <field name="filename">buyruq_otkazish.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/buyruq_otkazish.docx"/>
+        </record>
+
+        <record id="tmpl_ariza_boshash" model="cst.hr.doc.template">
+            <field name="name">Ariza (ishdan bo'shash)</field>
+            <field name="code">ariza_boshash</field>
+            <field name="kind">boshash</field>
+            <field name="sequence">10</field>
+            <field name="filename">ariza_boshash.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/ariza_boshash.docx"/>
+        </record>
+
+        <record id="tmpl_buyruq_boshash" model="cst.hr.doc.template">
+            <field name="name">Buyruq — mehnat shartnomasini bekor qilish to'g'risida</field>
+            <field name="code">buyruq_boshash</field>
+            <field name="kind">boshash</field>
+            <field name="sequence">20</field>
+            <field name="filename">buyruq_boshash.docx</field>
+            <field name="file" type="base64" file="cst_kerama_hr_docs/static/templates/buyruq_boshash.docx"/>
+        </record>
+
+    </data>
+</odoo>

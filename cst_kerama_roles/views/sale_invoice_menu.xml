@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Sotuv bo‘limi boshlig‘i has to reach the customer invoices, and the
+         Buxgalteriya hisobi menu is hidden for that role. In this database the
+         other accounting root, Hisob-faktura yuborish, is an empty shell — the
+         enterprise accounting app moved its children under Buxgalteriya hisobi
+         and Odoo does not show a root menu that leads to no action — so the
+         invoice list gets its own entry under Sotishlar ▸ Hisob-fakturaga.
+
+         The groups are the ones the accounting root itself carries, so whoever
+         may open an invoice sees the entry and nobody else does. Nazoratchi
+         lands here through the read-only group. -->
+
+    <menuitem id="menu_sale_customer_invoices"
+              name="Hisob-fakturalar"
+              parent="sale.menu_sale_invoicing"
+              action="account.action_move_out_invoice"
+              groups="account.group_account_invoice,account.group_account_readonly"
+              sequence="25"/>
+
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List view ── -->
+    <record id="hikvision_attendance_list_view" model="ir.ui.view">
+        <field name="name">hr.attendance.list.hikvision</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <!-- Check-In photo column right after check_in date -->
+            <field name="check_in" position="after">
+                <field name="check_in_image"
+                       string="In Photo"
+                       widget="image"
+                       options='{"size": [38, 38], "preview_image": "check_in_image"}'
+                       optional="show"/>
+            </field>
+            <!-- Check-Out photo column right after check_out date -->
+            <field name="check_out" position="after">
+                <field name="check_out_image"
+                       string="Out Photo"
+                       widget="image"
+                       options='{"size": [38, 38], "preview_image": "check_out_image"}'
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- ── Management list view (same columns) ── -->
+    <record id="hikvision_attendance_mgmt_list_view" model="ir.ui.view">
+        <field name="name">hr.attendance.list.mgmt.hikvision</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree_management"/>
+        <field name="arch" type="xml">
+            <field name="check_in" position="after">
+                <field name="check_in_image"
+                       string="In Photo"
+                       widget="image"
+                       options='{"size": [38, 38], "preview_image": "check_in_image"}'
+                       optional="show"/>
+            </field>
+            <field name="check_out" position="after">
+                <field name="check_out_image"
+                       string="Out Photo"
+                       widget="image"
+                       options='{"size": [38, 38], "preview_image": "check_out_image"}'
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- ── Form view ── -->
+    <record id="hikvision_attendance_form_view" model="ir.ui.view">
+        <field name="name">hr.attendance.form.hikvision</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Hikvision Face Photos" invisible="not check_in_image and not check_out_image">
+                    <group>
+                        <field name="check_in_image" widget="image"
+                               options='{"size": [128, 128]}'
+                               string="Check-In Photo"
+                               invisible="not check_in_image"/>
+                    </group>
+                    <group>
+                        <field name="check_out_image" widget="image"
+                               options='{"size": [128, 128]}'
+                               string="Check-Out Photo"
+                               invisible="not check_out_image"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

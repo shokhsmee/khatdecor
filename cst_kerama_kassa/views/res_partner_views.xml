@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_kassa" model="ir.ui.view">
+        <field name="name">res.partner.form.kassa</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_cst_kassa_account" type="object" class="oe_stat_button" icon="fa-money"
+                        groups="cst_kerama_kassa.group_kassa_user" invisible="parent_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Client account</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The Access Roles app grants every internal user full read/write/create/
+         unlink on its own models. That is a way in: a user could add
+         Settings / Administrator to the groups of their own role and the app
+         would push it onto them.
+
+         Read has to stay open — the menu filter reads the role and its Role
+         Management record as the logged-in user on every menu load — so the
+         write side is what moves to the Access Role administrator group. -->
+
+    <record id="access_roles.access_access_role" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_role_management" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_field_access" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_domain_model" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_button_registry" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_tab_registry" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_filter_registry" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_roles.access_groupby_registry" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- …and the administrators of the app keep the full set. -->
+    <record id="access_access_role_admin" model="ir.model.access">
+        <field name="name">access.role.admin</field>
+        <field name="model_id" ref="access_roles.model_access_role"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_role_management_admin" model="ir.model.access">
+        <field name="name">access.role.management.admin</field>
+        <field name="model_id" ref="access_roles.model_role_management"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_field_access_admin" model="ir.model.access">
+        <field name="name">access.field.access.admin</field>
+        <field name="model_id" ref="access_roles.model_field_access"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_domain_model_admin" model="ir.model.access">
+        <field name="name">access.domain.model.admin</field>
+        <field name="model_id" ref="access_roles.model_domain_model"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_button_registry_admin" model="ir.model.access">
+        <field name="name">access.button.registry.admin</field>
+        <field name="model_id" ref="access_roles.model_button_registry"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tab_registry_admin" model="ir.model.access">
+        <field name="name">access.tab.registry.admin</field>
+        <field name="model_id" ref="access_roles.model_tab_registry"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_filter_registry_admin" model="ir.model.access">
+        <field name="name">access.filter.registry.admin</field>
+        <field name="model_id" ref="access_roles.model_filter_registry"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_groupby_registry_admin" model="ir.model.access">
+        <field name="name">access.groupby.registry.admin</field>
+        <field name="model_id" ref="access_roles.model_groupby_registry"/>
+        <field name="group_id" ref="access_roles.access_role_group_administrator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- The Access Rights administrator (every Settings administrator holds it
+         through base.group_system) keeps them too, so assigning a role from the
+         Users form still works. -->
+    <record id="access_access_role_erp_manager" model="ir.model.access">
+        <field name="name">access.role.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_access_role"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_role_management_erp_manager" model="ir.model.access">
+        <field name="name">role.management.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_role_management"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_field_access_erp_manager" model="ir.model.access">
+        <field name="name">field.access.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_field_access"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_domain_model_erp_manager" model="ir.model.access">
+        <field name="name">domain.model.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_domain_model"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_button_registry_erp_manager" model="ir.model.access">
+        <field name="name">button.registry.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_button_registry"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tab_registry_erp_manager" model="ir.model.access">
+        <field name="name">tab.registry.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_tab_registry"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_filter_registry_erp_manager" model="ir.model.access">
+        <field name="name">filter.registry.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_filter_registry"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_groupby_registry_erp_manager" model="ir.model.access">
+        <field name="name">groupby.registry.erp.manager</field>
+        <field name="model_id" ref="access_roles.model_groupby_registry"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

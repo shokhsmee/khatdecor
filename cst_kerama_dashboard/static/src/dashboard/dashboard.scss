@@ -1,0 +1,155 @@
+.o_kerama_dashboard {
+    // Inherit the backend theme background (works in both light and dark mode).
+
+    // Modern card treatment for every card in the dashboard.
+    .card {
+        border: 1px solid rgba(128, 128, 128, 0.14);
+        border-radius: 0.85rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+
+    .o_kerama_filterbar {
+        .o_filter_label {
+            display: block;
+            margin-bottom: 0.1rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+    }
+
+    // ---- KPI cards ----
+    .o_kerama_kpi {
+        .o_kpi_icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .o_kpi_title {
+            font-size: 0.72rem;
+            letter-spacing: 0.03em;
+            opacity: 0.7;
+        }
+
+        .o_kpi_value {
+            font-size: 1.15rem;
+            line-height: 1.3;
+        }
+
+        .o_kpi_value_lg {
+            font-size: 1.7rem;
+        }
+
+        .o_kpi_suffix {
+            font-size: 0.85rem;
+            opacity: 0.65;
+        }
+
+        &.o_clickable {
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+                transform: translateY(-1px);
+            }
+        }
+    }
+
+    .o_min_w0 {
+        min-width: 0;
+    }
+
+    // ---- Chart card titles ----
+    .o_kerama_card_title {
+        position: relative;
+        margin-bottom: 1rem;
+        padding-left: 0.6rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        opacity: 0.85;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.05em;
+            bottom: 0.05em;
+            width: 3px;
+            border-radius: 2px;
+            background: #714B67;
+        }
+    }
+
+    .o_kerama_chart {
+        width: 100%;
+    }
+
+    .o_kerama_empty {
+        padding: 2rem 0;
+        text-align: center;
+        opacity: 0.5;
+    }
+
+    .o_kerama_lowstock {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .o_kerama_stockcard {
+        .card-header {
+            background: transparent;
+        }
+    }
+
+    .o_kerama_stocktable {
+        max-height: 65vh;
+        overflow-y: auto;
+
+        table {
+            // Fixed layout keeps the numeric columns tidy instead of letting
+            // the (few) columns sprawl across the whole width.
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            // Inherit the card background so the header blends with the theme
+            // (no hardcoded white band on the dark UI) while still hiding rows
+            // scrolling underneath the sticky header.
+            background: var(--card-bg, var(--o-view-background-color, inherit));
+            border-bottom: 1px solid var(--border-color, rgba(128, 128, 128, 0.25));
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        td, th {
+            padding-block: 0.45rem;
+        }
+
+        .o_col_product { width: 32%; }
+        .o_col_categ   { width: 18%; }
+        .o_col_num     { width: 11%; }
+        .o_col_uom     { width: 7%; }
+        .o_col_val     { width: 14%; }
+
+        .o_col_num, .o_col_val {
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+    }
+}

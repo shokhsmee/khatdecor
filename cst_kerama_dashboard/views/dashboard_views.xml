@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- One client action per tab so each top-level menu opens the right view.
+         All share the same OWL component (tag) and only differ by default_tab. -->
+    <record id="action_dashboard_sales" model="ir.actions.client">
+        <field name="name">Sales Dashboard</field>
+        <field name="tag">kerama_dashboard</field>
+        <field name="context">{'default_tab': 'sales'}</field>
+    </record>
+    <record id="action_dashboard_accounting" model="ir.actions.client">
+        <field name="name">Accounting Dashboard</field>
+        <field name="tag">kerama_dashboard</field>
+        <field name="context">{'default_tab': 'accounting'}</field>
+    </record>
+    <record id="action_dashboard_debts" model="ir.actions.client">
+        <field name="name">Debts Dashboard</field>
+        <field name="tag">kerama_dashboard</field>
+        <field name="context">{'default_tab': 'debts'}</field>
+    </record>
+    <record id="action_dashboard_inventory" model="ir.actions.client">
+        <field name="name">Inventory Dashboard</field>
+        <field name="tag">kerama_dashboard</field>
+        <field name="context">{'default_tab': 'inventory'}</field>
+    </record>
+    <record id="action_dashboard_stock" model="ir.actions.client">
+        <field name="name">Stock</field>
+        <field name="tag">kerama_dashboard</field>
+        <field name="context">{'default_tab': 'stock'}</field>
+    </record>
+
+    <menuitem id="menu_kerama_dashboard_root"
+              name="Dashboard"
+              web_icon="cst_kerama_dashboard,static/img/icon.png"
+              sequence="5"/>
+
+    <menuitem id="menu_kerama_dashboard_sales"
+              name="Sales"
+              parent="menu_kerama_dashboard_root"
+              action="action_dashboard_sales"
+              sequence="10"/>
+    <menuitem id="menu_kerama_dashboard_accounting"
+              name="Accounting"
+              parent="menu_kerama_dashboard_root"
+              action="action_dashboard_accounting"
+              sequence="20"/>
+    <menuitem id="menu_kerama_dashboard_debts"
+              name="Debts"
+              parent="menu_kerama_dashboard_root"
+              action="action_dashboard_debts"
+              sequence="30"/>
+    <menuitem id="menu_kerama_dashboard_inventory"
+              name="Inventory"
+              parent="menu_kerama_dashboard_root"
+              action="action_dashboard_inventory"
+              sequence="40"/>
+    <menuitem id="menu_kerama_dashboard_stock"
+              name="Stock"
+              parent="menu_kerama_dashboard_root"
+              action="action_dashboard_stock"
+              sequence="50"/>
+
+</odoo>

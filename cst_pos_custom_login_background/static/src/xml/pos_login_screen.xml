@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.LoginScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('login-overlay')]" position="before">
+            <t t-set="pos_background_url"
+               t-value="pos.config.login_screen_background ?
+                        '/web/image?model=pos.config&amp;id=' + pos.config.id + '&amp;field=login_screen_background' :
+                        ''"/>
+        </xpath>
+        <xpath expr="//div[hasclass('login-overlay')]" position="attributes">
+            <attribute name="t-attf-style"
+                       add="{{ pos_background_url ? 'background-image: url(' + pos_background_url + ') !important; background-size: cover !important;' : '' }}"
+                       separator=" "/>
+        </xpath>
+    </t>
+</templates>

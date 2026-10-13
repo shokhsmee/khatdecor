@@ -1,0 +1,45 @@
+<odoo>
+
+  <!-- Form view -->
+  <record id="view_moizvonki_settings_form" model="ir.ui.view">
+    <field name="name">moizvonki.settings.form</field>
+    <field name="model">moizvonki.settings</field>
+    <field name="arch" type="xml">
+      <form string="Sozlamalar">
+        <sheet>
+          <group string="Moizvonki Integration">
+            <field name="moizvonki_domain" placeholder="test"/>
+            <field name="moizvonki_user_name" placeholder="user@mail.ru"/>
+            <field name="moizvonki_api_key" password="True"/>
+            <field name="moizvonki_webhook_secret" password="True"/>
+          </group>
+
+          <group string="Webhook URL">
+            <div class="o_form_label">Use this URL in Moizvonki webhook.subscribe:</div>
+            <div>
+              <span>/moizvonki/webhook?secret=YOUR_SECRET</span>
+            </div>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Server action: open singleton record -->
+  <record id="action_open_moizvonki_settings" model="ir.actions.server">
+    <field name="name">Sozlamalar</field>
+    <field name="model_id" ref="model_moizvonki_settings"/>
+    <field name="state">code</field>
+    <field name="code">
+action = {
+    "type": "ir.actions.act_window",
+    "name": "Sozlamalar",
+    "res_model": "moizvonki.settings",
+    "view_mode": "form",
+    "res_id": env["moizvonki.settings"].get_singleton().id,
+    "target": "current",
+}
+    </field>
+  </record>
+
+</odoo>

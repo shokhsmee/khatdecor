@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="cst_kerama_purchase_ux.PoLinesInfo">
+        <a href="#" class="cst_po_lines_info text-info" title="Mahsulotlar va narxlar"
+           t-on-click.prevent.stop="onClick">
+            <i t-attf-class="fa {{ state.loading ? 'fa-spinner fa-spin' : 'fa-info-circle' }}"/>
+        </a>
+    </t>
+
+    <t t-name="cst_kerama_purchase_ux.PoLinesInfoPopover">
+        <div class="cst_po_lines_popover p-2">
+            <div t-if="!props.data.lines.length" class="text-muted">Mahsulot yo'q</div>
+            <table t-else="" class="table table-sm mb-0">
+                <thead>
+                    <tr>
+                        <th>Mahsulot</th>
+                        <th class="text-end">Miqdor</th>
+                        <th class="text-end">Narx</th>
+                        <th class="text-end">Summa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="props.data.lines" t-as="line" t-key="line_index">
+                        <tr t-if="line.section">
+                            <td colspan="4" class="fw-bold bg-light" t-esc="line.name"/>
+                        </tr>
+                        <tr t-else="">
+                            <td t-esc="line.name"/>
+                            <td class="text-end text-nowrap"><t t-esc="line.qty"/> <t t-esc="line.uom"/></td>
+                            <td class="text-end text-nowrap" t-esc="line.price"/>
+                            <td class="text-end text-nowrap" t-esc="line.subtotal"/>
+                        </tr>
+                    </t>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end fw-bold">Jami</td>
+                        <td class="text-end text-nowrap fw-bold" t-esc="props.data.total"/>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </t>
+
+</templates>

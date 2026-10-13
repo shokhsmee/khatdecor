@@ -1,0 +1,30 @@
+// A transfer card whose lines are all confirmed reads as done-and-waiting.
+.o_kanban_record:has(.cst_pick_ready) {
+    border-color: var(--bs-success, #28a745);
+    box-shadow: inset 3px 0 0 var(--bs-success, #28a745);
+}
+
+.cst_pick_ready {
+    display: inline-flex;
+    align-items: center;
+    margin-top: .25rem;
+    padding: 1px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--bs-success, #28a745);
+    background: color-mix(in srgb, var(--bs-success, #28a745) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--bs-success, #28a745) 30%, transparent);
+}
+
+.cst_pick_receiver {
+    display: inline-flex;
+    align-items: center;
+    margin-top: .25rem;
+    margin-left: .3rem;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bs-secondary-color, #6c757d);
+
+    .o_field_widget { display: inline; }
+}

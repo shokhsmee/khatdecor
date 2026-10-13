@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===== Xodim oyligi (individual) ===== -->
+    <record id="view_employee_card_wizard_form" model="ir.ui.view">
+        <field name="name">cst.employee.card.wizard.form</field>
+        <field name="model">cst.employee.card.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Xodim oyligi kartochkasi">
+                <group>
+                    <group>
+                        <field name="employee_id" options="{'no_create': True}"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="include_draft"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_employee_card_report" model="ir.actions.act_window">
+        <field name="name">Xodim oyligi (individual)</field>
+        <field name="res_model">cst.employee.card.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Jarimalar va bonuslar ===== -->
+    <record id="view_bonus_penalty_wizard_form" model="ir.ui.view">
+        <field name="name">cst.bonus.penalty.wizard.form</field>
+        <field name="model">cst.bonus.penalty.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Jarimalar va bonuslar">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="employee_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="include_draft"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_bonus_penalty_report" model="ir.actions.act_window">
+        <field name="name">Jarimalar va bonuslar</field>
+        <field name="res_model">cst.bonus.penalty.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== KPI ===== -->
+    <record id="view_kpi_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.kpi.report.wizard.form</field>
+        <field name="model">cst.kpi.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="KPI hisoboti">
+                <group>
+                    <group>
+                        <field name="computation" widget="radio"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="employee_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="include_draft"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_kpi_report" model="ir.actions.act_window">
+        <field name="name">KPI hisoboti</field>
+        <field name="res_model">cst.kpi.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Pullar harakati ===== -->
+    <record id="view_cash_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.cash.report.wizard.form</field>
+        <field name="model">cst.cash.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pullar harakati">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="detail"/>
+                    </group>
+                    <group>
+                        <field name="journal_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_cash_report" model="ir.actions.act_window">
+        <field name="name">Pullar harakati</field>
+        <field name="res_model">cst.cash.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Xarajatlar ===== -->
+    <record id="view_expense_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.expense.report.wizard.form</field>
+        <field name="model">cst.expense.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Xarajatlar hisoboti">
+                <group>
+                    <group>
+                        <field name="scope" widget="radio"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="display_currency_id" options="{'no_create': True}"/>
+                        <field name="include_direct_cost"/>
+                        <field name="detail"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_expense_report_cash" model="ir.actions.act_window">
+        <field name="name">Kassa orqali xarajatlar</field>
+        <field name="res_model">cst.expense.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context" eval="{'default_scope': 'cash', 'default_display_currency_id': ref('base.USD')}"/>
+    </record>
+    <record id="action_expense_report_all" model="ir.actions.act_window">
+        <field name="name">Xarajat harakati</field>
+        <field name="res_model">cst.expense.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_scope': 'all', 'default_detail': True}</field>
+    </record>
+
+    <!-- ===== Hisobdan chiqarilganlar ===== -->
+    <record id="view_writeoff_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.writeoff.report.wizard.form</field>
+        <field name="model">cst.writeoff.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hisobdan chiqarilganlar">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_writeoff_report" model="ir.actions.act_window">
+        <field name="name">Hisobdan chiqarilgan xomashyo va mahsulot</field>
+        <field name="res_model">cst.writeoff.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Reviziya ===== -->
+    <record id="view_inventory_count_wizard_form" model="ir.ui.view">
+        <field name="name">cst.inventory.count.wizard.form</field>
+        <field name="model">cst.inventory.count.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reviziya hisoboti">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_inventory_count_report" model="ir.actions.act_window">
+        <field name="name">Reviziya hisoboti</field>
+        <field name="res_model">cst.inventory.count.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Norma va fakt ===== -->
+    <record id="view_consumption_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.consumption.report.wizard.form</field>
+        <field name="model">cst.consumption.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Norma va fakt sarfi">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="only_deviations"/>
+                    </group>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_consumption_report" model="ir.actions.act_window">
+        <field name="name">Kam yoki ko'p sarflangan mahsulot va xomashyo</field>
+        <field name="res_model">cst.consumption.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Ombor batafsil ===== -->
+    <record id="view_stock_ledger_wizard_form" model="ir.ui.view">
+        <field name="name">cst.stock.ledger.wizard.form</field>
+        <field name="model">cst.stock.ledger.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Ombor batafsil hisoboti">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="hide_zero"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_xlsx" type="object" string="Excel" class="btn-primary" icon="fa-file-excel-o"/>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_stock_ledger_report" model="ir.actions.act_window">
+        <field name="name">Ombor batafsil hisoboti</field>
+        <field name="res_model">cst.stock.ledger.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ===== Min-max bo'yicha qoldiqlar ===== -->
+    <record id="view_minmax_report_wizard_form" model="ir.ui.view">
+        <field name="name">cst.minmax.report.wizard.form</field>
+        <field name="model">cst.minmax.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Min-max bo'yicha qoldiqlar">
+                <group>
+                    <group>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="only_deviations"/>
+                        <field name="include_without_rule"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <p class="text-muted">Min va max chegaralari Odoo'ning to'ldirish qoidalarida (Ombor ▸ Min-Max qoidalari) belgilanadi — bu hisobot ularni hozirgi qoldiq bilan yonma-yon ko'rsatadi.</p>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_xlsx" type="object" string="Excel" class="btn-secondary" icon="fa-file-excel-o"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_minmax_report" model="ir.actions.act_window">
+        <field name="name">Kam yoki ko'p turgan mahsulotlar (min-max)</field>
+        <field name="res_model">cst.minmax.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

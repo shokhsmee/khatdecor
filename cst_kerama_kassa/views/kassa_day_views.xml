@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_day_list" model="ir.ui.view">
+        <field name="name">cst.kassa.day.list</field>
+        <field name="model">cst.kassa.day</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-success="state == 'confirmed'" decoration-warning="state == 'closed'"
+                  decoration-info="state == 'open'">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="kassa_id"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="usd_rate" optional="show"/>
+                <field name="opening_balance" optional="show"/>
+                <field name="total_in"/>
+                <field name="total_out"/>
+                <field name="expected_balance"/>
+                <field name="counted_balance"/>
+                <field name="difference" decoration-danger="difference &lt; 0" decoration-success="difference &gt; 0"/>
+                <field name="opened_by_id" optional="hide"/>
+                <field name="confirmed_by_id" optional="show"/>
+                <field name="state" widget="badge" decoration-success="state == 'confirmed'"
+                       decoration-warning="state == 'closed'" decoration-info="state == 'open'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kassa_day_form" model="ir.ui.view">
+        <field name="name">cst.kassa.day.form</field>
+        <field name="model">cst.kassa.day</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <button name="action_new_in" type="object" string="+ Cash in" class="btn-success" invisible="state != 'open'"/>
+                    <button name="action_new_out" type="object" string="− Cash out" class="btn-danger" invisible="state != 'open'"/>
+                    <button name="action_new_transfer" type="object" string="⇄ To another kassa" invisible="state != 'open'"/>
+                    <button name="action_close" type="object" string="Close the day" class="btn-primary" invisible="state != 'open'"/>
+                    <button name="action_confirm" type="object" string="Confirm the day" class="btn-primary"
+                            invisible="state != 'closed'" groups="cst_kerama_kassa.group_kassa_manager"
+                            confirm="After confirmation the day is locked. Continue?"/>
+                    <button name="action_reopen" type="object" string="Reopen"
+                            invisible="state != 'closed' or not allow_reopen or not is_last_day"/>
+                    <button name="action_reopen" type="object" string="Reopen"
+                            invisible="state != 'confirmed' or not allow_reopen or not is_last_day"
+                            groups="cst_kerama_kassa.group_kassa_manager"
+                            confirm="Reopen a confirmed day? Its difference entry is reversed and the day is unlocked."/>
+                    <field name="allow_reopen" invisible="1"/>
+                    <field name="is_last_day" invisible="1"/>
+                    <button name="action_refresh" type="object" string="Refresh" invisible="state == 'confirmed'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_outside" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="outside_count" widget="statinfo" string="Other movements"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="kassa_id" readonly="1" options="{'no_open': True}"/></h1>
+                        <h3><field name="date"/> · <field name="name"/></h3>
+                    </div>
+                    <div class="cst_kassa_totals">
+                        <div class="cst_kassa_tile">
+                            <span>Opening balance</span>
+                            <field name="opening_balance"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_in">
+                            <span>Cash in</span>
+                            <field name="total_in"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_out">
+                            <span>Cash out</span>
+                            <field name="total_out"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_expected">
+                            <span>Expected balance</span>
+                            <field name="expected_balance"/>
+                        </div>
+                        <div class="cst_kassa_tile" invisible="state == 'open'">
+                            <span>Counted cash</span>
+                            <field name="counted_balance"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_out" invisible="state == 'open' or difference &gt;= 0">
+                            <span>Shortage</span>
+                            <field name="difference"/>
+                        </div>
+                        <div class="cst_kassa_tile cst_kassa_in" invisible="state == 'open' or difference &lt;= 0">
+                            <span>Surplus</span>
+                            <field name="difference"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="usd_rate" readonly="state != 'open'"/>
+                            <field name="opened_by_id"/>
+                            <field name="opened_at"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="closed_by_id" invisible="not closed_by_id"/>
+                            <field name="closed_at" invisible="not closed_at"/>
+                            <field name="confirmed_by_id" invisible="not confirmed_by_id"/>
+                            <field name="confirmed_at" invisible="not confirmed_at"/>
+                            <field name="difference_move_id" invisible="not difference_move_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Operations" name="operations">
+                            <field name="operation_ids" readonly="1">
+                                <list decoration-muted="state == 'cancel'" decoration-info="state == 'draft'">
+                                    <field name="name"/>
+                                    <field name="direction" widget="badge" decoration-success="direction == 'in'"
+                                           decoration-danger="direction == 'out'"/>
+                                    <field name="operation_type"/>
+                                    <field name="partner_id"/>
+                                    <field name="category_id" optional="show"/>
+                                    <field name="memo" optional="show"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="amount" sum="1"/>
+                                    <field name="created_by_id" optional="hide"/>
+                                    <field name="state" widget="badge" decoration-success="state == 'done'"
+                                           decoration-muted="state == 'cancel'"/>
+                                    <button name="action_print_receipt" type="object" icon="fa-print" title="Print receipt"
+                                            invisible="state != 'done'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="All cash movements" name="moves">
+                            <field name="move_line_ids" readonly="1">
+                                <list>
+                                    <field name="move_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="name"/>
+                                    <field name="amount_currency" string="Amount"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="debit" sum="1" optional="hide"/>
+                                    <field name="credit" sum="1" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Note" name="note">
+                            <field name="note" placeholder="Remarks for the day..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kassa_day_search" model="ir.ui.view">
+        <field name="name">cst.kassa.day.search</field>
+        <field name="model">cst.kassa.day</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="kassa_id"/>
+                <field name="name"/>
+                <field name="date"/>
+                <filter name="filter_open" string="Open" domain="[('state', '=', 'open')]"/>
+                <filter name="filter_closed" string="Waiting for confirmation" domain="[('state', '=', 'closed')]"/>
+                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+                <filter name="filter_diff" string="With difference" domain="[('difference', '!=', 0)]"/>
+                <separator/>
+                <filter name="filter_date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_kassa" string="Kassa" context="{'group_by': 'kassa_id'}"/>
+                    <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
+                    <filter name="group_month" string="Month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_kassa_day" model="ir.actions.act_window">
+        <field name="name">Cash days</field>
+        <field name="res_model">cst.kassa.day</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_kassa_day_search"/>
+    </record>
+
+    <record id="action_kassa_day_to_confirm" model="ir.actions.act_window">
+        <field name="name">Days to confirm</field>
+        <field name="res_model">cst.kassa.day</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_kassa_day_search"/>
+        <field name="context">{'search_default_filter_closed': 1}</field>
+    </record>
+</odoo>

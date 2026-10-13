@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Who unloaded the wagon is known at the dock and nowhere else, so the
+         crew and their money are recorded on the document itself. -->
+    <record id="view_picking_form_unloaders" model="ir.ui.view">
+        <field name="name">stock.picking.form.unloaders</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Yuk tushirish" name="cst_unloading"
+                      invisible="not cst_unload_visible"
+                      groups="stock.group_stock_user,cst_kerama_payroll.group_payroll_user">
+                    <field name="cst_unload_visible" invisible="1"/>
+                    <field name="cst_currency_id" invisible="1"/>
+                    <field name="cst_unloader_ids">
+                        <list editable="bottom">
+                            <field name="employee_id"
+                                   options="{'no_quick_create': True}"/>
+                            <field name="note" optional="show"
+                                   placeholder="Vagon raqami, smena..."/>
+                            <field name="amount" sum="Jami"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="company_id" column_invisible="1"/>
+                            <field name="is_accrued" widget="boolean_toggle"
+                                   readonly="1" optional="show"
+                                   string="Oylikka hisoblandi"/>
+                        </list>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="cst_unload_total"
+                               widget="monetary"
+                               options="{'currency_field': 'cst_currency_id'}"/>
+                    </group>
+                    <div class="text-muted">
+                        Тасдикланган хужжатдаги суммалар ойлик даври
+                        хисобланганда «Юк тушириш» устунига тушади.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- «Kontragent karточkasi»: every document of the period with the balance
+         standing before it and after it, so any single figure on the sheet can
+         be traced without adding a column up by hand. One block per currency,
+         because a debt in yuan and a debt in som are two different debts. -->
+    <template id="report_partner_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:26px;">№</th>
+                                    <th rowspan="2" style="width:60px;">Sana</th>
+                                    <th rowspan="2">Izoh</th>
+                                    <th colspan="2">
+                                        <span t-out="values['date_from']" t-options="{'widget': 'date'}"/>
+                                        kun boshiga qoldiq
+                                    </th>
+                                    <th colspan="2">Davr ichida aylanma</th>
+                                    <th colspan="2">
+                                        <span t-out="values['date_to']" t-options="{'widget': 'date'}"/>
+                                        kun oxiriga qoldiq
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Qarzimiz</th>
+                                    <th>Haqqimiz</th>
+                                    <th>Bizga kirim</th>
+                                    <th>Bizdan chiqim</th>
+                                    <th>Qarzimiz</th>
+                                    <th>Haqqimiz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']">
+                                    <tr><td colspan="9" class="mid">Davr ichida harakat topilmadi.</td></tr>
+                                </t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="9" t-out="block['company'].display_name"/>
+                                    </tr>
+                                    <t t-foreach="block['currencies']" t-as="cur">
+                                        <!-- the currency's own opening, turnover and closing -->
+                                        <tr class="cst_group">
+                                            <td class="mid" t-out="cur_index + 1"/>
+                                            <td colspan="2" t-out="cur['currency_name']"/>
+                                            <td class="num">
+                                                <span t-if="cur['open_we_owe']" t-out="cur['open_we_owe']"
+                                                      t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                            <td class="num">
+                                                <span t-if="cur['open_they_owe']" t-out="cur['open_they_owe']"
+                                                      t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                            <td class="num">
+                                                <span t-if="cur['inflow']" t-out="cur['inflow']"
+                                                      t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                            <td class="num">
+                                                <span t-if="cur['outflow']" t-out="cur['outflow']"
+                                                      t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                            <td class="num">
+                                                <span t-if="cur['close_we_owe']" t-out="cur['close_we_owe']"
+                                                      t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                            <td class="num">
+                                                <span t-if="cur['close_they_owe']" t-out="cur['close_they_owe']"
+                                                      t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                        </tr>
+                                        <t t-foreach="cur['lines']" t-as="line">
+                                            <tr t-att-class="'cst_pending' if line.get('pending') else None">
+                                                <td class="mid" t-out="line_index + 1"/>
+                                                <td class="mid" t-out="line['date']"
+                                                    t-options="{'widget': 'date'}"/>
+                                                <td t-out="line['label']"/>
+                                                <td class="num">
+                                                    <span t-if="line['before_we_owe']" t-out="line['before_we_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="line['before_they_owe']" t-out="line['before_they_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="line['inflow']" t-out="line['inflow']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="line['outflow']" t-out="line['outflow']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="line['after_we_owe']" t-out="line['after_we_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="line['after_they_owe']" t-out="line['after_they_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

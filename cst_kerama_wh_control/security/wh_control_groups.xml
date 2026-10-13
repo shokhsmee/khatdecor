@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="privilege_khatdecor_warehouse" model="res.groups.privilege">
+            <field name="name">Khatdecor Warehouse</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="description">Warehouse document controls.</field>
+            <field name="sequence">31</field>
+        </record>
+
+        <record id="group_wh_supervisor" model="res.groups">
+            <field name="name">Warehouse Supervisor</field>
+            <field name="privilege_id" ref="privilege_khatdecor_warehouse"/>
+            <field name="comment">May validate a receipt without a photo, close a
+                scrap without a photo, and validate an internal transfer on
+                behalf of its receiver.</field>
+        </record>
+
+    </data>
+</odoo>

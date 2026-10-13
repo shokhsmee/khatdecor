@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_kassa_day" model="ir.sequence">
+        <field name="name">Cash day</field>
+        <field name="code">cst.kassa.day</field>
+        <field name="prefix">KUN/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_kassa_operation" model="ir.sequence">
+        <field name="name">Cash operation</field>
+        <field name="code">cst.kassa.operation</field>
+        <field name="prefix">KAS/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

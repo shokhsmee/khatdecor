@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ 31. Ishlab chiqarish fakti ============ -->
+    <template id="report_production_fact">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <p t-if="not values['companies']" class="mid">Davr ichida tugallangan ishlab chiqarish yo'q.</p>
+                        <t t-foreach="values['companies']" t-as="block">
+                            <div class="cst_head">
+                                <h2>
+                                    <span t-out="values['date_from']" t-options="{'widget': 'date'}"/>–<span t-out="values['date_to']" t-options="{'widget': 'date'}"/>
+                                    davr oralig'ida <t t-out="block['company'].display_name"/>ning ishlab chiqarilgan mahsulotlari hisoboti
+                                </h2>
+                            </div>
+                            <table class="cst_rep" style="margin-bottom:14px;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:26px;">№</th>
+                                        <th>Mahsulot nomi</th>
+                                        <th style="width:110px;">Xarakteristika</th>
+                                        <th style="width:60px;">O'lchov</th>
+                                        <th style="width:80px;">Miqdori (yaroqli)</th>
+                                        <th style="width:70px;">2-sort</th>
+                                        <th style="width:70px;">Brak</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="n" t-value="0"/>
+                                    <t t-foreach="block['categories']" t-as="cat">
+                                        <tr class="cst_group">
+                                            <td/>
+                                            <td colspan="3" t-out="cat['category'].name or 'Kategoriyasiz'"/>
+                                            <td class="num" t-out="cat['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="cat['second']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="cat['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        </tr>
+                                        <t t-foreach="cat['products']" t-as="row">
+                                            <t t-set="n" t-value="n + 1"/>
+                                            <tr>
+                                                <td class="mid" t-out="n"/>
+                                                <td t-out="engine.product_label(row['product'])"/>
+                                                <td t-out="row['characteristic']"/>
+                                                <td class="mid" t-out="row['uom']"/>
+                                                <td class="num" t-out="row['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="row['second']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="row['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                    <tr class="cst_total">
+                                        <td colspan="4" class="mid">Jami (<t t-out="block['orders']"/> ta buyurtma)</td>
+                                        <td class="num" t-out="block['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <td class="num" t-out="block['second']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <td class="num" t-out="block['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ 33. Asosiy vositalar ============ -->
+    <template id="report_assets">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head"><h2 t-out="values['title']"/><div><span t-out="values['date_to']" t-options="{'widget': 'date'}"/> holatiga</div></div>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th>Asosiy vosita nomi</th>
+                                    <th style="width:70px;">Inventar raqami</th>
+                                    <th style="width:70px;">Ishlab chiqarilgan sanasi</th>
+                                    <th style="width:70px;">Sotib olingan sanasi</th>
+                                    <th style="width:110px;">Qayerda joylashgan</th>
+                                    <th style="width:90px;">Narxi</th>
+                                    <th style="width:90px;">Eskirish summasi</th>
+                                    <th style="width:90px;">Qoldiq narxi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']">
+                                    <tr><td colspan="9" class="mid">Asosiy vosita yo'q. Ular Buxgalteriya ▸ Asosiy vositalar bo'limida kiritiladi.</td></tr>
+                                </t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="6" t-out="block['company'].display_name"/>
+                                        <td class="num" t-out="block['value']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="block['depreciated']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="block['book_value']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </tr>
+                                    <t t-foreach="block['rows']" t-as="row">
+                                        <tr>
+                                            <td class="mid" t-out="row_index + 1"/>
+                                            <td><t t-out="row['asset'].name"/><span t-if="row['state'] == 'close'" class="text-muted"> (chiqarilgan)</span></td>
+                                            <td class="mid" t-out="row['inventory_no']"/>
+                                            <td class="mid"><span t-if="row['manufacture_date']" t-out="row['manufacture_date']" t-options="{'widget': 'date'}"/></td>
+                                            <td class="mid"><span t-if="row['acquisition_date']" t-out="row['acquisition_date']" t-options="{'widget': 'date'}"/></td>
+                                            <td t-out="row['location']"/>
+                                            <td class="num" t-out="row['value']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="row['depreciated']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="row['book_value']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ 34. Soliqlar harakati ============ -->
+    <template id="report_tax_movement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:26px;">№</th>
+                                    <th rowspan="2">Soliq turi</th>
+                                    <th colspan="2"><span t-out="values['date_from']" t-options="{'widget': 'date'}"/> kun boshiga qoldiq</th>
+                                    <th colspan="2">Davr ichida aylanma</th>
+                                    <th colspan="2"><span t-out="values['date_to']" t-options="{'widget': 'date'}"/> kun oxiriga qoldiq</th>
+                                </tr>
+                                <tr><th>Qarzimiz</th><th>Haqqimiz</th><th>Hisoblandi</th><th>To'landi</th><th>Qarzimiz</th><th>Haqqimiz</th></tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']"><tr><td colspan="8" class="mid">Davr ichida soliq harakati topilmadi.</td></tr></t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="2" class="mid" t-out="block['company'].display_name"/>
+                                        <t t-foreach="['open_we_owe','open_they_owe','assessed','paid','close_we_owe','close_they_owe']" t-as="k">
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['totals'][k]"/></t>
+                                        </t>
+                                    </tr>
+                                    <t t-foreach="block['rows']" t-as="row">
+                                        <tr>
+                                            <td class="mid" t-out="row_index + 1"/>
+                                            <td><t t-out="row['account'].name"/> <span class="text-muted" t-out="row['code']"/></td>
+                                            <t t-foreach="['open_we_owe','open_they_owe','assessed','paid','close_we_owe','close_they_owe']" t-as="k">
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row[k]"/></t>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                    <tr class="cst_total">
+                                        <td colspan="2" class="mid">Jami</td>
+                                        <t t-foreach="['open_we_owe','open_they_owe','assessed','paid','close_we_owe','close_they_owe']" t-as="k">
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['totals'][k]"/></t>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ 35. Soliq akt sverkasi ============ -->
+    <template id="report_tax_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:26px;">№</th>
+                                    <th rowspan="2" style="width:64px;">Sana</th>
+                                    <th rowspan="2">Izoh</th>
+                                    <th colspan="2">Davr ichida aylanma</th>
+                                    <th colspan="2">Oxirgi qoldiq</th>
+                                </tr>
+                                <tr><th>Hisoblandi</th><th>To'landi</th><th>Qarzimiz</th><th>Haqqimiz</th></tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']"><tr><td colspan="7" class="mid">Davr ichida harakat topilmadi.</td></tr></t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="3" class="mid"><t t-out="block['company'].display_name"/> · <t t-out="block['currency'].name"/></td>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['assessed']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['paid']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['close_we_owe']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['close_they_owe']"/></t>
+                                    </tr>
+                                    <tr class="cst_sub">
+                                        <td/>
+                                        <td class="mid" t-out="values['date_from']" t-options="{'widget': 'date'}"/>
+                                        <td><span t-out="values['date_from']" t-options="{'widget': 'date'}"/> kun boshiga qoldiq</td>
+                                        <td/><td/>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['open_we_owe']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['open_they_owe']"/></t>
+                                    </tr>
+                                    <t t-foreach="block['rows']" t-as="row">
+                                        <tr>
+                                            <td class="mid" t-out="row_index + 1"/>
+                                            <td class="mid" t-out="row['date']" t-options="{'widget': 'date'}"/>
+                                            <td t-out="row['label']"/>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['assessed']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['paid']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['we_owe']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['they_owe']"/></t>
+                                        </tr>
+                                    </t>
+                                    <tr class="cst_total">
+                                        <td/>
+                                        <td class="mid" t-out="values['date_to']" t-options="{'widget': 'date'}"/>
+                                        <td><span t-out="values['date_to']" t-options="{'widget': 'date'}"/> kun oxiriga qoldiq</td>
+                                        <td/><td/>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['close_we_owe']"/></t>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['close_they_owe']"/></t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ 38. Plastik kartaga o'tkazmalar ============ -->
+    <template id="report_card_payments">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-set="data" t-value="values['data']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th>
+                                    <th style="width:70px;">Sana</th>
+                                    <th>Xodim</th>
+                                    <th style="width:110px;">Plastik kartaga tashlangan pul</th>
+                                    <th style="width:80px;">Qaysi oy uchun</th>
+                                    <th style="width:90px;">Mazmuni</th>
+                                    <th>Izoh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not data['rows']"><tr><td colspan="7" class="mid">Davr ichida kartaga o'tkazma yo'q.</td></tr></t>
+                                <t t-foreach="data['rows']" t-as="row">
+                                    <tr>
+                                        <td class="mid" t-out="row_index + 1"/>
+                                        <td class="mid" t-out="row['date']" t-options="{'widget': 'date'}"/>
+                                        <td t-out="row['employee'].display_name"/>
+                                        <td class="num" t-out="row['amount']" t-options="{'widget': 'float', 'precision': 0}"/>
+                                        <td class="mid" t-out="row['month']"/>
+                                        <td t-out="row['kind']"/>
+                                        <td t-out="row['note']"/>
+                                    </tr>
+                                </t>
+                                <tr class="cst_total" t-if="data['rows']">
+                                    <td colspan="3" class="mid">Jami</td>
+                                    <td class="num" t-out="data['total']" t-options="{'widget': 'float', 'precision': 0}"/>
+                                    <td colspan="3"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <table class="cst_rep" style="width:55%;" t-if="data['by_employee']">
+                            <thead><tr><th style="width:26px;">№</th><th>Xodim</th><th style="width:110px;">Jami</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="data['by_employee']" t-as="row">
+                                    <td class="mid" t-out="row_index + 1"/>
+                                    <td t-out="row['employee'].display_name"/>
+                                    <td class="num" t-out="row['amount']" t-options="{'widget': 'float', 'precision': 0}"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ 39. Bank xarajatlari ============ -->
+    <template id="report_bank_fees">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+                        <p t-if="not values['companies']" class="mid">Davr ichida bank jurnallarida xarajat yozuvi topilmadi.</p>
+                        <t t-foreach="values['companies']" t-as="block">
+                            <t t-foreach="block['journals']" t-as="j">
+                                <table class="cst_rep" style="margin-bottom:12px;">
+                                    <thead>
+                                        <tr class="cst_company">
+                                            <td colspan="4"><t t-out="block['company'].display_name"/> — <t t-out="j['journal'].name"/></td>
+                                            <td class="num" t-out="j['fees']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:26px;">№</th>
+                                            <th style="width:70px;">Sana</th>
+                                            <th>Izoh</th>
+                                            <th style="width:160px;">Xarajat hisobi</th>
+                                            <th style="width:100px;">Summa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="j['months']" t-as="m">
+                                            <tr class="cst_group">
+                                                <td/>
+                                                <td class="mid" t-out="m['label']"/>
+                                                <td colspan="2">
+                                                    aylanma: kirim <t t-out="m['inflow']" t-options="{'widget': 'float', 'precision': 0}"/>,
+                                                    chiqim <t t-out="m['outflow']" t-options="{'widget': 'float', 'precision': 0}"/>
+                                                    <t t-if="m['inflow'] + m['outflow']"> · xarajat ulushi <t t-out="'%.2f' % (100.0 * m['fees'] / (m['inflow'] + m['outflow']))"/>%</t>
+                                                </td>
+                                                <td class="num" t-out="m['fees']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </tr>
+                                            <t t-foreach="m['rows']" t-as="row">
+                                                <tr>
+                                                    <td class="mid" t-out="row_index + 1"/>
+                                                    <td class="mid" t-out="row['date']" t-options="{'widget': 'date'}"/>
+                                                    <td t-out="row['label']"/>
+                                                    <td t-out="row['account']"/>
+                                                    <td class="num" t-out="row['amount']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                        <tr class="cst_total">
+                                            <td colspan="4" class="mid">
+                                                Jami xarajat · aylanma <t t-out="j['inflow'] + j['outflow']" t-options="{'widget': 'float', 'precision': 0}"/>
+                                                · ulushi <t t-out="'%.2f' % j['share']"/>%
+                                            </td>
+                                            <td class="num" t-out="j['fees']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

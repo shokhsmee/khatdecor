@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_warehouse_form_wh_flow" model="ir.ui.view">
+        <field name="name">stock.warehouse.form.wh.flow</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="cst_color" widget="color_picker"/>
+                <field name="cst_receiver_id" options="{'no_create': True}" widget="many2one_avatar_user"/>
+                <field name="cst_department_ids" widget="many2many_tags" readonly="1"
+                       invisible="not cst_department_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_warehouse_list_wh_flow" model="ir.ui.view">
+        <field name="name">stock.warehouse.list.wh.flow</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_color" widget="color_picker" optional="show"/>
+                <field name="cst_receiver_id" widget="many2one_avatar_user" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inventory Overview opens grouped by warehouse (СО, ХАО, ТОО … in warehouse order) -->
+    <record id="stock.stock_picking_type_action" model="ir.actions.act_window">
+        <field name="context">{'search_default_groupby_warehouse_id': 1}</field>
+    </record>
+</odoo>

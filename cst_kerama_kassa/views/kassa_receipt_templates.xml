@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 80 mm cash check; header/footer/logo come from the sales check layout. -->
+    <template id="kassa_receipt_document" name="Khatdecor Kassa Receipt">
+        <t t-call="cst_kerama_sale_receipt.receipt_layout">
+            <div class="center bold title" t-esc="title"/>
+            <div class="center bold">№: <t t-esc="op.name"/></div>
+            <div class="center" t-esc="posted"/>
+            <div class="center bold big" t-if="op.state == 'cancel'">*** BEKOR QILINGAN ***</div>
+            <div class="center bold big" t-if="op.state == 'draft'">*** QORALAMA — TO'LOV EMAS ***</div>
+
+            <hr class="sep"/>
+
+            <table class="totals">
+                <tr>
+                    <td class="bold">Kassa</td>
+                    <td class="right" t-esc="op.kassa_id.name"/>
+                </tr>
+                <tr>
+                    <td class="bold">Turi</td>
+                    <td class="right" t-esc="type_label"/>
+                </tr>
+                <tr t-if="op.partner_id">
+                    <td class="bold" t-esc="op.direction == 'in' and 'Kimdan' or 'Kimga'"/>
+                    <td class="right" t-esc="op.partner_id.name"/>
+                </tr>
+                <tr t-if="op.partner_id.phone">
+                    <td class="bold">Tel.</td>
+                    <td class="right" t-esc="op.partner_id.phone"/>
+                </tr>
+                <tr t-if="op.category_id">
+                    <td class="bold">Modda</td>
+                    <td class="right" t-esc="op.category_id.name"/>
+                </tr>
+                <tr t-if="op.memo">
+                    <td class="bold">Izoh</td>
+                    <td class="right" t-esc="op.memo"/>
+                </tr>
+            </table>
+
+            <hr class="sep"/>
+
+            <table class="totals">
+                <tr class="bold huge">
+                    <td>SUMMA</td>
+                    <td class="right"><t t-esc="amount"/> <t t-esc="currency_label"/></td>
+                </tr>
+            </table>
+            <div class="small" t-if="amount_words" t-esc="amount_words"/>
+            <table class="totals" t-if="rate">
+                <tr>
+                    <td class="bold">Dollar kursi</td>
+                    <td class="right" t-esc="rate"/>
+                </tr>
+                <tr class="bold">
+                    <td>Dollarda</td>
+                    <td class="right"><t t-esc="amount_company"/> <t t-esc="company_ccy"/></td>
+                </tr>
+            </table>
+
+            <t t-if="allocations or advance_left">
+                <hr class="sep"/>
+                <div class="bold" t-if="allocations">To'langan buyurtmalar:</div>
+                <table class="totals">
+                    <tr t-foreach="allocations" t-as="a">
+                        <td t-esc="a['name']"/>
+                        <td class="right"><t t-esc="a['amount']"/> <t t-esc="company_ccy"/></td>
+                    </tr>
+                    <tr t-if="advance_left">
+                        <td class="bold">Avansga qoldi</td>
+                        <td class="right"><t t-esc="advance_left"/> <t t-esc="company_ccy"/></td>
+                    </tr>
+                </table>
+            </t>
+
+            <t t-if="figures">
+                <hr class="sep"/>
+                <table class="totals">
+                    <tr class="bold big">
+                        <td>Qolgan qarz</td>
+                        <td class="right"><t t-esc="figures['debt']"/> <t t-esc="company_ccy"/></td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Avans</td>
+                        <td class="right"><t t-esc="figures['advance']"/> <t t-esc="company_ccy"/></td>
+                    </tr>
+                </table>
+                <div class="small center">Holat: <t t-esc="now"/></div>
+            </t>
+
+            <hr class="sep"/>
+
+            <table class="totals">
+                <tr>
+                    <td class="bold">Kassir</td>
+                    <td class="right" t-esc="op.created_by_id.name"/>
+                </tr>
+            </table>
+            <t t-if="op.operation_type == 'employee_advance'">
+                <div class="foot">Oldim: ______________________</div>
+                <div class="small center">(xodim imzosi)</div>
+            </t>
+        </t>
+    </template>
+</odoo>

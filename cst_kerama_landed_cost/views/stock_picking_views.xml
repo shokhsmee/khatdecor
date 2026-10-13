@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_landed_cost" model="ir.ui.view">
+        <field name="name">stock.picking.form.landed.cost</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_cst_apply_expenses" type="object"
+                        string="Add to Cost" class="oe_highlight"
+                        data-hotkey="shift+x"
+                        invisible="not cst_expense_ready or not cst_valuation_ok"
+                        groups="stock.group_stock_manager,account.group_account_invoice"
+                        confirm="The providers will be billed and the expenses will be added to the cost of the goods. This cannot be undone - a mistake has to be corrected with a negative expense line. Continue?"/>
+                <button name="action_cst_preview_expenses" type="object"
+                        string="Preview Split"
+                        invisible="not cst_expense_ready or not cst_valuation_ok"
+                        groups="stock.group_stock_manager,account.group_account_invoice"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_cst_view_landed_costs" type="object"
+                        class="oe_stat_button" icon="fa-usd"
+                        invisible="not cst_landed_cost_count">
+                    <field name="cst_landed_cost_count" widget="statinfo"
+                           string="Landed Costs"/>
+                </button>
+                <button name="action_cst_view_expense_bills" type="object"
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="not cst_expense_bill_count">
+                    <field name="cst_expense_bill_count" widget="statinfo"
+                           string="Expense Bills"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page name="cst_expenses" string="Expenses"
+                      invisible="not cst_expense_visible">
+                    <field name="cst_expense_visible" invisible="1"/>
+                    <field name="cst_valuation_ok" invisible="1"/>
+                    <field name="cst_expense_ready" invisible="1"/>
+                    <field name="cst_company_currency_id" invisible="1"/>
+
+                    <div class="alert alert-warning" role="alert"
+                         invisible="cst_valuation_ok or not cst_expense_ids">
+                        <i class="fa fa-exclamation-triangle me-1"/>
+                        None of the goods here is valued at average cost or FIFO,
+                        so an expense has no cost to land on. Set the costing
+                        method of their product category to
+                        <b>Average Cost (AVCO)</b> or <b>First In First Out (FIFO)</b> first.
+                    </div>
+                    <div class="alert alert-info" role="status"
+                         invisible="state == 'done' or not cst_expense_ids">
+                        <i class="fa fa-info-circle me-1"/>
+                        Validate the receipt first. Expenses can only be added to
+                        the cost once the goods are in stock - the button appears then.
+                    </div>
+                    <div class="alert alert-info" role="status"
+                         invisible="not cst_expense_ready or not cst_valuation_ok">
+                        <i class="fa fa-info-circle me-1"/>
+                        Press <b>Add to Cost</b> in the header: each service provider
+                        is billed, and the amounts are spread over the goods the way
+                        each line says.
+                    </div>
+
+                    <field name="cst_expense_ids" nolabel="1"
+                           readonly="state == 'cancel'">
+                        <list editable="bottom" string="Expenses">
+                            <field name="applied" column_invisible="1"/>
+                            <field name="company_id" column_invisible="1"/>
+                            <field name="company_currency_id" column_invisible="1"/>
+                            <field name="date" readonly="applied"/>
+                            <field name="partner_id" readonly="applied"
+                                   options="{'no_quick_create': True}"/>
+                            <field name="product_id" readonly="applied"
+                                   options="{'no_create': True}"/>
+                            <field name="name" optional="hide" readonly="applied"/>
+                            <field name="currency_id" readonly="applied"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="quantity" optional="hide" readonly="applied"/>
+                            <field name="price_unit" optional="hide" readonly="applied"/>
+                            <field name="amount" readonly="applied"/>
+                            <field name="currency_rate" readonly="applied"/>
+                            <field name="amount_company" readonly="applied"
+                                   sum="Total"/>
+                            <field name="split_method" readonly="applied"/>
+                            <field name="tax_ids" widget="many2many_tags"
+                                   optional="hide" readonly="applied"/>
+                            <field name="create_bill" optional="show"
+                                   readonly="applied"/>
+                            <field name="bill_id" optional="hide" readonly="1"/>
+                            <field name="landed_cost_id" optional="hide" readonly="1"/>
+                        </list>
+                    </field>
+
+                    <group class="oe_subtotal_footer" invisible="not cst_expense_ids">
+                        <field name="cst_expense_total"/>
+                        <field name="cst_expense_applied"/>
+                        <field name="cst_expense_pending" class="oe_subtotal_footer_separator"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

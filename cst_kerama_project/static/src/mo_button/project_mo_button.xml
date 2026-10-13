@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_project.NewMoButton">
+        <button type="button" class="btn o_cst_project_new_mo"
+                t-att-class="ready ? 'btn-primary' : 'btn-secondary'"
+                t-att-title="title" t-on-click="open">
+            <i class="fa fa-industry me-1" role="img"/>
+            <span>Ishlab chiqarish yaratish</span>
+            <i t-if="!ready" class="fa fa-exclamation-triangle ms-1 text-warning" role="img"/>
+        </button>
+    </t>
+</templates>

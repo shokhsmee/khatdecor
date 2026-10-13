@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_cst_project" model="ir.ui.view">
+        <field name="name">sale.order.form.cst.project.hub</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Simple "Create/Open Project" buttons. The native project_id field
+                 (added by sale_project) already covers connecting to an existing one. -->
+            <xpath expr="//header" position="inside">
+                <button name="action_cst_create_project" type="object"
+                        string="Create Project" class="btn-secondary"
+                        invisible="project_id"
+                        groups="project.group_project_user"/>
+                <button name="action_cst_open_project" type="object"
+                        string="Open Project" class="btn-secondary"
+                        invisible="not project_id"
+                        groups="project.group_project_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

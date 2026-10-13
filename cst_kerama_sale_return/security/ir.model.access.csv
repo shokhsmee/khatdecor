@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_sale_return_wizard,access.cst.sale.return.wizard,model_cst_sale_return_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_cst_sale_return_line,access.cst.sale.return.line,model_cst_sale_return_line,sales_team.group_sale_salesman,1,1,1,1

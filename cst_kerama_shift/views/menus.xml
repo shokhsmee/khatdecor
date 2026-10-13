@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_shift_root" name="Smena boshqaruvi" sequence="45" groups="cst_kerama_shift.group_shift_manager"
+              web_icon="cst_kerama_shift,static/description/icon.png"/>
+    <menuitem id="menu_departments" name="Bo'limlar" parent="menu_shift_root" action="action_departments" sequence="10"/>
+    <menuitem id="menu_shifts" name="Smenalar" parent="menu_shift_root" action="action_shifts" sequence="20"/>
+    <menuitem id="menu_shift_entries" name="Natijalar" parent="menu_shift_root" action="action_shift_entries" sequence="30"/>
+    <menuitem id="menu_shift_config" name="Sozlamalar" parent="menu_shift_root" sequence="90" groups="cst_kerama_shift.group_shift_admin"/>
+    <menuitem id="menu_shift_templates" name="Smena vaqtlari" parent="menu_shift_config" action="action_shift_templates" sequence="10"/>
+    <menuitem id="menu_shift_departments_config" name="Bo'limlar" parent="menu_shift_config" action="action_departments" sequence="20"/>
+</odoo>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_dispatch_app" model="ir.actions.client">
+        <field name="name">Jo'natish</field>
+        <field name="tag">cst_dispatch_app</field>
+    </record>
+
+    <record id="view_dispatch_list" model="ir.ui.view">
+        <field name="name">cst.dispatch.list</field>
+        <field name="model">cst.dispatch</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-info="state == 'draft'" decoration-warning="state == 'ready'"
+                  decoration-muted="state == 'cancel'">
+                <field name="name"/>
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <field name="warehouse_id" optional="show"/>
+                <field name="prepared_by_id" optional="show"/>
+                <field name="prepared_at" optional="show"/>
+                <field name="checked_by_id" optional="show"/>
+                <field name="checked_at" optional="show"/>
+                <field name="amount_before" optional="show"/>
+                <field name="amount_after" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="company_id" optional="hide" groups="base.group_multi_company"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_dispatch_form" model="ir.ui.view">
+        <field name="name">cst.dispatch.form</field>
+        <field name="model">cst.dispatch</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0">
+                <header>
+                    <button name="action_open_app" type="object" string="Ilovada ochish" class="btn-primary"
+                            invisible="state in ('done', 'cancel')"/>
+                    <button name="action_print_waybill_80" type="object" string="Yuk xati 80mm" icon="fa-print"/>
+                    <button name="action_print_waybill_a4" type="object" string="Yuk xati A4" icon="fa-print"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,ready,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="sale_order_id" options="{'no_open': True}"/>
+                            <field name="partner_id" options="{'no_open': True}"/>
+                            <field name="warehouse_id" options="{'no_open': True}"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="prepared_by_id"/>
+                            <field name="prepared_at"/>
+                            <field name="checked_by_id"/>
+                            <field name="checked_at"/>
+                            <field name="car_model"/>
+                            <field name="car_number"/>
+                            <field name="driver"/>
+                            <field name="driver_phone"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount_before"/>
+                            <field name="amount_after"/>
+                        </group>
+                        <group>
+                            <field name="picking_ids" widget="many2many_tags"/>
+                            <field name="invoice_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <field name="line_ids">
+                        <list>
+                            <field name="product_id" options="{'no_open': True}"/>
+                            <field name="is_extra"/>
+                            <field name="ordered_qty"/>
+                            <field name="delivered_qty"/>
+                            <field name="qty"/>
+                            <field name="checked_qty"/>
+                            <field name="uom_id"/>
+                        </list>
+                    </field>
+                    <field name="note" placeholder="Izoh"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_dispatch_search" model="ir.ui.view">
+        <field name="name">cst.dispatch.search</field>
+        <field name="model">cst.dispatch</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <filter name="f_draft" string="Tayyorlanmoqda" domain="[('state', '=', 'draft')]"/>
+                <filter name="f_ready" string="Jo'natishga tayyor" domain="[('state', '=', 'ready')]"/>
+                <filter name="f_done" string="Chiqarildi" domain="[('state', '=', 'done')]"/>
+                <group>
+                    <filter name="g_state" string="Holat" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter name="g_partner" string="Mijoz" domain="[]" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_dispatch_list" model="ir.actions.act_window">
+        <field name="name">Jo'natmalar</field>
+        <field name="res_model">cst.dispatch</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_dispatch_root" name="Jo'natish" sequence="44"
+              web_icon="cst_kerama_dispatch,static/description/icon.png"
+              groups="cst_kerama_dispatch.group_dispatch_warehouse,cst_kerama_dispatch.group_dispatch_gate,cst_kerama_dispatch.group_dispatch_transfer"/>
+    <menuitem id="menu_dispatch_app" name="Skaner" parent="menu_dispatch_root"
+              action="action_dispatch_app" sequence="1"/>
+    <menuitem id="menu_dispatch_list" name="Jo'natmalar" parent="menu_dispatch_root"
+              action="action_dispatch_list" sequence="10"/>
+</odoo>

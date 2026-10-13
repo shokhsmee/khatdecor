@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_shopfloor.PresenceClock">
+        <div t-if="show" class="o_cst_sf_clock d-flex align-items-center gap-2 px-2 rounded"
+             t-att-class="online ? 'o_cst_sf_clock--on' : 'o_cst_sf_clock--off'" t-att-title="name">
+            <i class="fa fa-clock-o fa-lg" role="img"/>
+            <t t-if="online">
+                <div class="d-flex flex-column">
+                    <span class="o_tabular_nums fw-bold o_cst_sf_clock_time" t-esc="worked"/>
+                    <small>kirdi <t t-esc="checkIn"/></small>
+                </div>
+            </t>
+            <t t-else="">
+                <span class="fw-bold">Offline</span>
+            </t>
+        </div>
+    </t>
+</templates>

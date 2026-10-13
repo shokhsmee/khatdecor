@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_return_wizard_form" model="ir.ui.view">
+        <field name="name">cst.sale.return.wizard.form</field>
+        <field name="model">cst.sale.return.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Qaytarish" class="o_cst_return_wizard">
+                <field name="company_id" invisible="1"/>
+                <field name="order_currency_id" invisible="1"/>
+                <field name="available_journal_ids" invisible="1"/>
+                <group>
+                    <group string="To'lov">
+                        <field name="order_id"/>
+                        <field name="partner_id"/>
+                        <field name="paid_total"
+                               widget="monetary"
+                               options="{'currency_field': 'order_currency_id'}"/>
+                        <field name="refund_amount"
+                               class="fw-bold"
+                               widget="monetary"
+                               options="{'currency_field': 'order_currency_id'}"/>
+                        <field name="journal_id"
+                               options="{'no_create': True, 'no_open': True}"/>
+                        <field name="payment_date"/>
+                        <field name="communication"/>
+                    </group>
+                </group>
+                <separator string="Mahsulot qaytarish"/>
+                <field name="line_ids" nolabel="1">
+                    <list editable="bottom" create="false" delete="false">
+                        <field name="sale_line_id" column_invisible="1" force_save="1"/>
+                        <field name="currency_id" column_invisible="1"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="ordered_qty" readonly="1" force_save="1"/>
+                        <field name="delivered_qty" readonly="1" optional="hide"/>
+                        <field name="return_qty"/>
+                        <field name="uom_id" readonly="1" optional="show"/>
+                        <field name="price_unit" readonly="1" optional="hide"/>
+                        <field name="price_total"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                    </list>
+                </field>
+                <footer>
+                    <button name="action_confirm_return"
+                            string="Tasdiqlash"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Bekor qilish"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

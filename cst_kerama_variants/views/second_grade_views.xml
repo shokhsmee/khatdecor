@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ the ordinary lists never show 2-sort ============ -->
+    <record id="action_product_characteristics" model="ir.actions.act_window">
+        <field name="domain">[("cst_is_second_grade", "=", False)]</field>
+    </record>
+
+    <!-- ============ 2-sort lives next to Scrap ============ -->
+    <record id="view_second_grade_product_list" model="ir.ui.view">
+        <field name="name">product.product.list.second_grade</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <list string="2-sort mahsulotlar" create="false">
+                <field name="default_code" optional="show"/>
+                <field name="name"/>
+                <field name="cst_grade_of_id" string="Asosiy mahsuloti"/>
+                <field name="qty_available" string="Qoldiq" sum="Jami"/>
+                <field name="uom_id" groups="uom.group_uom"/>
+                <field name="standard_price" string="Tannarx" optional="show"/>
+                <field name="list_price" string="Sotuv narxi" optional="show"/>
+                <field name="sale_ok" widget="boolean_toggle" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_second_grade_products" model="ir.actions.act_window">
+        <field name="name">2-sort mahsulotlar</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[("cst_is_second_grade", "=", True)]</field>
+        <field name="context">{"default_cst_is_second_grade": True, "default_sale_ok": True, "default_purchase_ok": False, "create": False}</field>
+        <field name="view_id" ref="view_second_grade_product_list"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">2-sort mahsulot yo'q</p>
+            <p>Smena yopilganda 2-sort deb belgilangan mahsulot shu yerga tushadi: asosiy
+               mahsulot brakka chiqariladi, uning o'rniga 2-sort egizagi omborga kirim bo'ladi.
+               Sotish mumkin, xarid qilinmaydi.</p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_second_grade_products"
+              name="2-sort mahsulotlar"
+              action="action_second_grade_products"
+              parent="stock.menu_stock_adjustments" sequence="60"
+              groups="stock.group_stock_user"/>
+
+    <!-- ============ the first-grade variant shows its 2-sort twin ============ -->
+    <record id="product_normal_form_view_second_grade" model="ir.ui.view">
+        <field name="name">product.product.form.second_grade</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="action_cst_open_second_grade"
+                        icon="fa-recycle" invisible="cst_is_second_grade"
+                        help="Shu mahsulotning 2-sort (brak toifasi) egizagi va uning ombordagi qoldig'i.">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="cst_second_grade_qty"/></span>
+                        <span class="o_stat_text">2-sort (scrap)</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="after">
+                <field name="cst_is_second_grade" invisible="1"/>
+                <field name="cst_grade_currency_id" invisible="1"/>
+                <div class="alert alert-warning mb-2" role="status" invisible="not cst_is_second_grade">
+                    <i class="fa fa-recycle me-2"/>Bu 2-sort mahsulot. Asosiy mahsuloti:
+                    <field name="cst_grade_of_id" readonly="1" class="fw-bold ms-1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 2-sort search filters on the stock lists -->
+    <record id="view_stock_quant_search_second_grade" model="ir.ui.view">
+        <field name="name">stock.quant.search.second_grade</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.quant_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="cst_no_second_grade" string="2-sortsiz"
+                        domain="[('product_id.cst_is_second_grade', '=', False)]"/>
+                <filter name="cst_second_grade" string="Faqat 2-sort"
+                        domain="[('product_id.cst_is_second_grade', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ============ Products submenus: only the variant list stays ============ -->
+    <record id="stock.menu_product_variant_config_stock" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="stock.product_product_menu" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="sale.menu_product_template_action" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="sale.menu_products" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="purchase.menu_procurement_partner_contact_form" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="purchase.product_product_menu" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="mrp.menu_mrp_product_form" model="ir.ui.menu"><field name="active" eval="False"/></record>
+    <record id="mrp.product_variant_mrp" model="ir.ui.menu"><field name="active" eval="False"/></record>
+
+</odoo>

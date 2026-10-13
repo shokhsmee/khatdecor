@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="cst_kerama_payroll.PayrollReport">
+    <div class="o_kpr">
+
+        <!-- ============ header ============ -->
+        <div class="o_kpr_head">
+            <div class="o_kpr_titles">
+                <h4>Ходимлар ойлиги буйича батафсил хисобот</h4>
+                <span class="o_kpr_period" t-if="state.data">
+                    <t t-esc="fmtDate(state.data.date_from)"/> — <t t-esc="fmtDate(state.data.date_to)"/>
+                </span>
+                <span class="o_kpr_flag" t-if="state.data and state.data.include_draft">
+                    қоралама билан
+                </span>
+            </div>
+
+            <!-- the four figures the report exists to produce -->
+            <div class="o_kpr_tiles" t-if="state.data">
+                <dl class="o_kpr_tile">
+                    <dt>Бошланғич қолдиқ</dt>
+                    <dd t-att-class="cls(state.data.totals.opening)"
+                        t-esc="fmt(state.data.totals.opening) or '0'"/>
+                </dl>
+                <dl class="o_kpr_tile o_kpr_tile--acc">
+                    <dt>Жами хисобланди</dt>
+                    <dd t-esc="fmt(state.data.totals.accrued_total) or '0'"/>
+                </dl>
+                <dl class="o_kpr_tile o_kpr_tile--ded">
+                    <dt>Жами ушланди</dt>
+                    <dd t-esc="fmt(state.data.totals.deducted_total) or '0'"/>
+                </dl>
+                <dl class="o_kpr_tile o_kpr_tile--bal">
+                    <dt>Охирги қолдиқ</dt>
+                    <dd t-att-class="cls(state.data.totals.closing)"
+                        t-esc="fmt(state.data.totals.closing) or '0'"/>
+                </dl>
+                <dl class="o_kpr_tile">
+                    <dt>Ходимлар</dt>
+                    <dd t-esc="state.data.totals.count"/>
+                </dl>
+            </div>
+
+            <!-- ============ filters ============ -->
+            <div class="o_kpr_filters">
+                <div class="o_kpr_group">
+                    <button t-foreach="presets" t-as="p" t-key="p.key"
+                            class="btn btn-sm"
+                            t-att-class="state.preset === p.key ? 'btn-primary' : 'btn-outline-secondary'"
+                            t-on-click="() => this.setPreset(p.key)">
+                        <t t-esc="p.label"/>
+                    </button>
+                </div>
+
+                <div class="o_kpr_group o_kpr_dates">
+                    <input type="date" class="form-control form-control-sm"
+                           t-att-value="state.dateFrom"
+                           t-on-change="(ev) => this.onDateChange('dateFrom', ev)"/>
+                    <span>—</span>
+                    <input type="date" class="form-control form-control-sm"
+                           t-att-value="state.dateTo"
+                           t-on-change="(ev) => this.onDateChange('dateTo', ev)"/>
+                </div>
+
+                <div class="o_kpr_sep"/>
+
+                <input type="text" class="form-control form-control-sm o_kpr_search"
+                       placeholder="Ходим ёки табель раками..."
+                       t-model="state.search"/>
+
+                <div class="o_kpr_group" t-if="companies.length > 1">
+                    <label t-foreach="companies" t-as="c" t-key="c.id" class="o_kpr_chip"
+                           t-att-class="{ 'o_kpr_chip--on': state.companyIds.includes(c.id) }">
+                        <input type="checkbox"
+                               t-att-checked="state.companyIds.includes(c.id)"
+                               t-on-change="() => this.toggleCompany(c.id)"/>
+                        <span t-esc="c.name"/>
+                    </label>
+                </div>
+
+                <div class="o_kpr_group">
+                    <label class="o_kpr_chip"
+                           t-att-class="{ 'o_kpr_chip--on': state.hideEmpty }">
+                        <input type="checkbox" t-att-checked="state.hideEmpty"
+                               t-on-change="() => this.toggle('hideEmpty')"/>
+                        <span>Фақат харакати борлар</span>
+                    </label>
+                    <label class="o_kpr_chip"
+                           t-att-class="{ 'o_kpr_chip--on': state.includeDraft }">
+                        <input type="checkbox" t-att-checked="state.includeDraft"
+                               t-on-change="() => this.toggle('includeDraft')"/>
+                        <span>Қоралама билан</span>
+                    </label>
+                </div>
+
+                <div class="o_kpr_group o_kpr_group--right">
+                    <button class="btn btn-sm btn-outline-secondary" title="Янгилаш"
+                            t-on-click="() => this.load()">
+                        <i class="fa fa-refresh"/>
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" t-on-click="exportXlsx"
+                            t-att-disabled="!state.data">
+                        <i class="fa fa-file-excel-o me-1"/>Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ states ============ -->
+        <div t-if="state.loading" class="o_kpr_state">
+            <i class="fa fa-circle-o-notch fa-spin fa-2x"/>
+        </div>
+        <div t-elif="state.error" class="o_kpr_state o_kpr_state--error">
+            <i class="fa fa-exclamation-triangle fa-2x"/>
+            <div t-esc="state.error"/>
+        </div>
+        <div t-elif="!state.data.companies.length" class="o_kpr_state">
+            <i class="fa fa-inbox fa-2x"/>
+            <div>Бу давр учун маълумот йўқ.</div>
+        </div>
+
+        <!-- ============ the report ============ -->
+        <div t-else="" class="o_kpr_scroll">
+            <table class="o_kpr_table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="o_kpr_c_num">№</th>
+                        <th rowspan="2" class="o_kpr_c_name">Ходим</th>
+                        <th rowspan="2" class="o_kpr_c_amt o_kpr_c_open">Бошланғич<br/>қолдиқ</th>
+                        <th t-att-colspan="columns.accruals.length + 1" class="o_kpr_g_acc">
+                            Хисобланди
+                        </th>
+                        <th t-att-colspan="columns.deductions.length + 1" class="o_kpr_g_ded">
+                            Ушланмалар
+                        </th>
+                        <th rowspan="2" class="o_kpr_c_amt o_kpr_c_close">Охирги<br/>қолдиқ</th>
+                    </tr>
+                    <tr>
+                        <th t-foreach="columns.accruals" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_h_acc" t-att-title="col.code"
+                            t-esc="col.name"/>
+                        <th class="o_kpr_c_amt o_kpr_c_sum o_kpr_h_acc">Жами</th>
+                        <th t-foreach="columns.deductions" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_h_ded" t-att-title="col.code"
+                            t-esc="col.name"/>
+                        <th class="o_kpr_c_amt o_kpr_c_sum o_kpr_h_ded">Жами<br/>ушланди</th>
+                    </tr>
+                </thead>
+
+                <tbody t-foreach="state.data.companies" t-as="company" t-key="company.id">
+                    <tr class="o_kpr_company">
+                        <td class="o_kpr_c_num"/>
+                        <td class="o_kpr_c_name" t-esc="company.name"/>
+                        <td class="o_kpr_c_amt o_kpr_c_open" t-att-class="cls(company.totals.opening)"
+                            t-esc="fmt(company.totals.opening)"/>
+                        <td t-foreach="columns.accruals" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_v_acc"
+                            t-esc="fmt(company.totals.accruals[col.id])"/>
+                        <td class="o_kpr_c_amt o_kpr_c_sum o_kpr_v_acc"
+                            t-esc="fmt(company.totals.accrued_total)"/>
+                        <td t-foreach="columns.deductions" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_v_ded"
+                            t-esc="fmt(company.totals.deductions[col.id])"/>
+                        <td class="o_kpr_c_amt o_kpr_c_sum o_kpr_v_ded"
+                            t-esc="fmt(company.totals.deducted_total)"/>
+                        <td class="o_kpr_c_amt o_kpr_c_close" t-att-class="cls(company.totals.closing)"
+                            t-esc="fmt(company.totals.closing)"/>
+                    </tr>
+
+                    <tr t-if="!visibleRows(company).length" class="o_kpr_none">
+                        <td/>
+                        <td t-att-colspan="colCount - 1">Қидирувга мос ходим топилмади.</td>
+                    </tr>
+
+                    <tr t-foreach="visibleRows(company)" t-as="row" t-key="row.id"
+                        class="o_kpr_row" t-att-class="{ 'o_kpr_left': !row.active }">
+                        <td class="o_kpr_c_num" t-esc="row_index + 1"/>
+                        <td class="o_kpr_c_name">
+                            <span t-esc="row.name"/>
+                            <span t-if="row.personnel_no" class="o_kpr_pers ms-1"
+                                  t-esc="'№' + row.personnel_no"/>
+                        </td>
+                        <td class="o_kpr_c_amt o_kpr_c_open o_kpr_click"
+                            t-att-class="cls(row.opening)"
+                            t-att-title="row.opening ? 'Давр бошигача булган харакатлар' : ''"
+                            t-on-click="() => this.openCell(row.id, null, true)"
+                            t-esc="fmt(row.opening)"/>
+                        <td t-foreach="columns.accruals" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_v_acc o_kpr_click"
+                            t-on-click="() => this.openCell(row.id, col.id)"
+                            t-esc="fmt(row.accruals[col.id])"/>
+                        <td class="o_kpr_c_amt o_kpr_c_sum o_kpr_v_acc o_kpr_click"
+                            t-on-click="() => this.openCell(row.id, null)"
+                            t-esc="fmt(row.accrued_total)"/>
+                        <td t-foreach="columns.deductions" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_v_ded o_kpr_click"
+                            t-on-click="() => this.openCell(row.id, col.id)"
+                            t-esc="fmt(row.deductions[col.id])"/>
+                        <td class="o_kpr_c_amt o_kpr_c_sum o_kpr_v_ded o_kpr_click"
+                            t-on-click="() => this.openCell(row.id, null)"
+                            t-esc="fmt(row.deducted_total)"/>
+                        <td class="o_kpr_c_amt o_kpr_c_close" t-att-class="cls(row.closing)"
+                            t-esc="fmt(row.closing)"/>
+                    </tr>
+                </tbody>
+
+                <tfoot t-if="state.data.companies.length > 1">
+                    <tr class="o_kpr_total">
+                        <td class="o_kpr_c_num"/>
+                        <td class="o_kpr_c_name">ЖАМИ</td>
+                        <td class="o_kpr_c_amt o_kpr_c_open" t-att-class="cls(state.data.totals.opening)"
+                            t-esc="fmt(state.data.totals.opening)"/>
+                        <td t-foreach="columns.accruals" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_v_acc"
+                            t-esc="fmt(state.data.totals.accruals[col.id])"/>
+                        <td class="o_kpr_c_amt o_kpr_c_sum o_kpr_v_acc"
+                            t-esc="fmt(state.data.totals.accrued_total)"/>
+                        <td t-foreach="columns.deductions" t-as="col" t-key="col.id"
+                            class="o_kpr_c_amt o_kpr_v_ded"
+                            t-esc="fmt(state.data.totals.deductions[col.id])"/>
+                        <td class="o_kpr_c_amt o_kpr_c_sum o_kpr_v_ded"
+                            t-esc="fmt(state.data.totals.deducted_total)"/>
+                        <td class="o_kpr_c_amt o_kpr_c_close" t-att-class="cls(state.data.totals.closing)"
+                            t-esc="fmt(state.data.totals.closing)"/>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</t>
+
+</templates>

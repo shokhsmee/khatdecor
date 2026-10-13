@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_shift.MoDialog">
+        <Dialog size="'xl'" title="title" contentClass="'o_cst_mo_dialog'">
+            <div t-if="state.loading" class="text-muted p-3">Yuklanmoqda…</div>
+            <div t-else="">
+                <div t-if="props.subtitle" class="text-muted mb-2" t-esc="props.subtitle"/>
+                <div t-if="state.plan.length" class="o_cst_mo_plan mb-3">
+                    <div class="fw-bold mb-1"><t t-esc="props.planTitle or 'Ishlab chiqarish kerak'"/></div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button t-foreach="state.plan" t-as="row" t-key="row.product_id" type="button"
+                                class="btn btn-sm o_cst_mo_planchip"
+                                t-att-class="{ active: row.product_id === state.productId }"
+                                t-on-click="() => this.pickPlanRow(row)">
+                            <span t-esc="row.name"/>
+                            <small t-if="row.characteristic" class="ms-1" t-esc="row.characteristic"/>
+                            <span class="badge text-bg-light ms-2"><t t-esc="fmt(row.qty)"/> <t t-esc="row.uom or ''"/></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-md-5">
+                        <label class="form-label fw-bold mb-1">Mahsulot</label>
+                        <input type="text" class="form-control mb-2" placeholder="Qidirish: nomi yoki kodi (lotin / kirill)…"
+                               t-att-value="state.filter" t-on-input="onFilterInput"/>
+                        <div class="o_cst_mo_plist list-group">
+                            <button t-foreach="filteredProducts" t-as="p" t-key="p.id" type="button"
+                                    class="list-group-item list-group-item-action o_cst_mo_pitem"
+                                    t-att-class="{ active: p.id === state.productId }"
+                                    t-on-click="() => this.selectProduct(p)">
+                                <div class="fw-bold" t-esc="p.name"/>
+                                <div class="small" t-if="p.characteristic" t-esc="p.characteristic"/>
+                                <div class="small opacity-75" t-if="p.operations">Operatsiyalar: <t t-esc="p.operations"/></div>
+                            </button>
+                            <div t-if="!filteredProducts.length" class="text-muted p-2">Topilmadi</div>
+                        </div>
+                        <div class="small text-muted mt-1"><t t-esc="filteredCount"/> ta mahsulot</div>
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div class="d-flex align-items-end gap-3 mb-3 flex-wrap">
+                            <div>
+                                <label class="form-label fw-bold mb-1">Miqdor</label>
+                                <input type="number" min="1" step="1" class="form-control form-control-lg o_cst_mo_qty"
+                                       t-att-value="state.qty" t-on-input="onQtyInput" placeholder="50"/>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div t-if="selectedProduct" class="o_cst_mo_picked">
+                                    <div class="o_cst_mo_picked_label">Tanlangan mahsulot</div>
+                                    <div class="fw-bold" t-esc="selectedProduct.name"/>
+                                    <div class="small text-muted" t-if="selectedProduct.characteristic" t-esc="selectedProduct.characteristic"/>
+                                </div>
+                                <div t-else="" class="o_cst_mo_picked o_cst_mo_picked--none">Chapdan mahsulot tanlang</div>
+                            </div>
+                        </div>
+                        <t t-if="selectedProduct">
+                            <h6 class="fw-bold">Operatsiyalar va stanoklar</h6>
+                            <table class="table table-sm align-middle o_cst_mo_ops">
+                                <tbody>
+                                    <tr t-foreach="state.operations" t-as="op" t-key="op.id" t-att-class="{ 'opacity-50': !op.selected }">
+                                        <td class="o_cst_mo_check">
+                                            <input type="checkbox" class="form-check-input" t-att-checked="op.selected"
+                                                   t-on-change="() => this.toggleOperation(op)"/>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold" t-esc="op.name"/>
+                                            <span class="small text-muted ms-1" t-if="op.department" t-esc="'· ' + op.department"/>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm" t-att-disabled="!op.selected"
+                                                    t-on-change="(ev) => this.setOperationWc(op, ev)">
+                                                <option t-foreach="op.options" t-as="wc" t-key="wc.id" t-att-value="wc.id"
+                                                        t-att-selected="wc.id === op.workcenter_id" t-esc="wc.name"/>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="!state.operations.length"><td colspan="3" class="text-muted">Texkartada operatsiya yo'q</td></tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="fw-bold mb-0">Xomashyo <small class="text-muted fw-normal" t-if="state.edited">— o'zgartirilgan</small></h6>
+                                <button t-if="state.edited" type="button" class="btn btn-link btn-sm" t-on-click="resetMaterials">Texkartadan qayta yuklash</button>
+                            </div>
+                            <div t-if="state.materials === null" class="text-muted small">Hisoblanmoqda…</div>
+                            <table t-else="" class="table table-sm align-middle o_cst_mo_mats">
+                                <thead><tr><th>Material</th><th class="text-end">Kerak</th><th class="text-end">Omborda</th><th></th></tr></thead>
+                                <tbody>
+                                    <tr t-foreach="state.materials" t-as="m" t-key="m.id">
+                                        <td>
+                                            <t t-esc="m.product"/> <small class="text-muted" t-esc="m.characteristic"/>
+                                            <small t-if="m.extra" class="text-muted ms-1">(qo'shimcha)</small>
+                                        </td>
+                                        <td class="text-end text-nowrap">
+                                            <input type="number" min="0" step="0.01" class="form-control form-control-sm d-inline-block o_cst_mo_mqty"
+                                                   t-att-value="m.qty" t-on-change="(ev) => this.setMaterialQty(m, ev)"/>
+                                            <small class="text-muted ms-1" t-esc="m.uom"/>
+                                            <div t-if="m.touched and !m.extra and m.qty !== m.needed" class="small text-muted">texkarta: <t t-esc="fmt(m.needed)"/></div>
+                                        </td>
+                                        <td class="text-end"><span t-att-class="m.ok ? 'text-success' : 'text-danger fw-bold'" t-esc="fmt(m.free)"/></td>
+                                        <td class="text-end">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Bu buyurtmadan olib tashlash"
+                                                    t-on-click="() => this.removeMaterial(m)"><i class="fa fa-times"/></button>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="!state.materials.length"><td colspan="4" class="text-muted">Komponent yo'q — pastdan qo'shing</td></tr>
+                                </tbody>
+                            </table>
+                            <div t-if="shortMaterials.length" class="alert alert-warning py-2 px-3 small">
+                                <i class="fa fa-exclamation-triangle me-1"/>
+                                Omborda yetmaydi: <t t-esc="shortMaterials.length"/> ta material. Buyurtma baribir yaratiladi,
+                                xomashyo kelgach zaxira qilinadi.
+                            </div>
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control-sm" t-att-value="state.extraQuery" t-on-input="onExtraInput"
+                                       placeholder="+ Qo'shimcha material: nomi yoki kodi…"/>
+                                <div t-if="state.extraResults.length" class="list-group o_cst_mo_extra shadow">
+                                    <button t-foreach="state.extraResults" t-as="p" t-key="p.id" type="button"
+                                            class="list-group-item list-group-item-action d-flex justify-content-between"
+                                            t-on-click="() => this.addExtraMaterial(p)">
+                                        <span><t t-esc="p.product"/> <small class="text-muted" t-esc="p.characteristic"/></span>
+                                        <small class="text-muted"><t t-esc="fmt(p.free)"/> <t t-esc="p.uom"/></small>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="small text-muted mt-1">Texkartaning o'ziga tegilmaydi: o'zgarishlar faqat shu buyurtmaga.</div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg" t-att-disabled="!canConfirm" t-on-click="confirm">
+                    <i class="fa fa-plus me-1"/>Buyurtma yaratish
+                </button>
+                <button class="btn btn-secondary btn-lg" t-on-click="props.close">Bekor</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

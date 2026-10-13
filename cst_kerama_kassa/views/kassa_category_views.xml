@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_category_list" model="ir.ui.view">
+        <field name="name">cst.kassa.category.list</field>
+        <field name="model">cst.kassa.category</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="direction"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="account_id"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_kassa_category_search" model="ir.ui.view">
+        <field name="name">cst.kassa.category.search</field>
+        <field name="model">cst.kassa.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="account_id"/>
+                <filter name="filter_in" string="Cash in" domain="[('direction', '=', 'in')]"/>
+                <filter name="filter_out" string="Cash out" domain="[('direction', '=', 'out')]"/>
+                <separator/>
+                <filter name="filter_archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_kassa_expense_category" model="ir.actions.act_window">
+        <field name="name">Expense categories</field>
+        <field name="res_model">cst.kassa.category</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[('direction', '=', 'out')]</field>
+        <field name="context">{'default_direction': 'out'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add an expense category</p>
+            <p>Press "New", type the name (rent, fuel, office...). The expense account is filled in for you; change it if this category belongs to another account.</p>
+        </field>
+    </record>
+
+    <record id="action_kassa_category" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">cst.kassa.category</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a cash in / cash out category</p>
+            <p>A category tells which expense or income account the money is booked to (rent, fuel, office...).</p>
+        </field>
+    </record>
+</odoo>

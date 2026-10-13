@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="cst_kerama_reports.ReportFilterBar">
+        <div class="cst_rf_bar">
+            <View t-props="viewProps"/>
+        </div>
+    </t>
+
+    <t t-inherit="web.ReportAction" t-inherit-mode="extension">
+        <xpath expr="//iframe" position="before">
+            <CstReportFilterBar t-if="cstFilter.info" info="cstFilter.info" onApply.bind="cstReloadReport"/>
+        </xpath>
+    </t>
+
+</templates>

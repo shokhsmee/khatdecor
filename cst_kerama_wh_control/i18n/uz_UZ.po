@@ -1,0 +1,462 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_wh_control
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-27 19:47+0000\n"
+"PO-Revision-Date: 2026-08-27 19:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek (Khatdecor)\n"
+"Language: uz_UZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_picking_form_wh_control
+msgid ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                        A photo of the goods is required before this receipt can be validated."
+msgstr ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                        Ushbu kirimni tasdiqlash uchun tovar rasmi majburiy."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.stock_scrap_form_view_wh_control
+msgid ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                    A photo of the goods is required before this scrap can be closed."
+msgstr ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                    Ushbu hisobdan chiqarishni yopish uchun tovar rasmi majburiy."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.stock_picking_kanban_wh_control
+msgid "<i class=\"fa fa-check-circle me-1\"/>Ready to validate"
+msgstr "<i class=\"fa fa-check-circle me-1\"/>Tasdiqlashga tayyor"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Add a photo"
+msgstr "Rasm qo'shish"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Add explanation…"
+msgstr "Izoh yozing…"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_scrap.py:0
+msgid ""
+"Attach a photo of the goods before closing scrap %s.\n"
+"\n"
+"Use the Photos field on the scrap order."
+msgstr ""
+"%s hisobdan chiqarish hujjatini yopishdan oldin tovar rasmini biriktiring.\n"
+"\n"
+"Hujjatdagi \"Rasmlar\" bo'limidan foydalaning."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_picking.py:0
+msgid ""
+"Attach a photo of the goods before validating receipt %s.\n"
+"\n"
+"Use the Photos tab on the transfer, or the camera button on a line in the Barcode app."
+msgstr ""
+"%s kirim hujjatini tasdiqlashdan oldin tovar rasmini biriktiring.\n"
+"\n"
+"Hujjatdagi \"Rasmlar\" bo'limidan yoki Shtrix-kod ilovasida qator yonidagi kamera tugmasidan foydalaning."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_note_dialog.js:0
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__body
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_note
+msgid "Comment"
+msgstr "Izoh"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/move_line_comment.py:0
+msgid "Comment on %s"
+msgstr "%s bo'yicha izoh"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Comment on this line"
+msgstr "Ushbu qatorga izoh"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.js:0
+msgid "Comment posted to the transfer."
+msgstr "Izoh hujjatga joylandi."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_comment_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_stock_move_line_detailed_operation_tree_wh_control
+msgid "Comments"
+msgstr "Izohlar"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__company_id
+msgid "Company"
+msgstr "Kompaniya"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_comment_count
+msgid "Cst Comment Count"
+msgstr "Izohlar soni"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_has_photo
+msgid "Cst Has Photo"
+msgstr "Rasm bor"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_photo_count
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_photo_count
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__cst_photo_count
+msgid "Cst Photo Count"
+msgstr "Rasmlar soni"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_photo_required
+msgid "Cst Photo Required"
+msgstr "Rasm majburiy"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_receiver_required
+msgid "Cst Receiver Required"
+msgstr "Qabul qiluvchi majburiy"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_all_picked
+msgid "Every line of this transfer has been confirmed."
+msgstr "Ushbu hujjatning barcha qatorlari tasdiqlangan."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move_line__cst_note
+msgid ""
+"Explanation about this line. Saved automatically; every change is kept in "
+"the comment history and posted on the transfer."
+msgstr ""
+"Ushbu qator haqida izoh. Avtomatik saqlanadi; har bir o'zgarish izohlar "
+"tarixida saqlanib, hujjatga joylanadi."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_wh_control
+#: model:res.groups.privilege,name:cst_kerama_wh_control.privilege_khatdecor_warehouse
+msgid "Khatdecor Warehouse"
+msgstr "Khatdecor ombori"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi yangilagan"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi yangilangan sana"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__line_id
+msgid "Line"
+msgstr "Qator"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_line_photo_ids
+msgid "Line Photos"
+msgstr "Qator rasmlari"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.js:0
+msgid "Line Photos & Comments"
+msgstr "Qator rasmlari va izohlari"
+
+#. module: cst_kerama_wh_control
+#: model:res.groups,comment:cst_kerama_wh_control.group_wh_supervisor
+msgid ""
+"May validate a receipt without a photo, close a\n"
+"                scrap without a photo, and validate an internal transfer on\n"
+"                behalf of its receiver."
+msgstr ""
+"Rasmsiz kirimni tasdiqlashi, rasmsiz hisobdan chiqarishni yopishi va ichki "
+"o'tkazmani qabul qiluvchi nomidan tasdiqlashi mumkin."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+msgid "No photo or comment was added to this line."
+msgstr "Ushbu qatorga rasm yoki izoh qo'shilmagan."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_picking.py:0
+msgid ""
+"Only %(receiver)s can validate transfer %(name)s.\n"
+"\n"
+"You are signed in as %(user)s."
+msgstr ""
+"%(name)s o'tkazmasini faqat %(receiver)s tasdiqlashi mumkin.\n"
+"\n"
+"Siz %(user)s sifatida kirgansiz."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_move_line.py:0
+msgid "Photo added for %s"
+msgstr "%s uchun rasm qo'shildi"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.js:0
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.js:0
+msgid "Photo added to this line."
+msgstr "Rasm ushbu qatorga qo'shildi."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_photo_ids
+msgid "Photographic proof of the goods. Required to validate a receipt."
+msgstr "Tovarning rasmli isboti. Kirimni tasdiqlash uchun majburiy."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_scrap__cst_photo_ids
+msgid "Photographic proof of the scrapped goods. Required to validate."
+msgstr ""
+"Hisobdan chiqarilayotgan tovarning rasmli isboti. Tasdiqlash uchun majburiy."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_photo_html
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_photo_ids
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_photo_ids
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__cst_photo_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_picking_form_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_stock_move_line_detailed_operation_tree_wh_control
+msgid "Photos"
+msgstr "Rasmlar"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move_line__cst_photo_ids
+msgid "Photos taken for this line only."
+msgstr "Faqat ushbu qator uchun olingan rasmlar."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_line_photo_ids
+msgid "Photos taken on the individual lines, e.g. from the Barcode app."
+msgstr "Alohida qatorlarda olingan rasmlar, masalan Shtrix-kod ilovasidan."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__product_id
+msgid "Product"
+msgstr "Mahsulot"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_all_picked
+msgid "Ready to Validate"
+msgstr "Tasdiqlashga tayyor"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_receiver_id
+msgid "Receiver"
+msgstr "Qabul qiluvchi"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Save the line first to add photos or comments."
+msgstr "Rasm yoki izoh qo'shish uchun avval qatorni saqlang."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Saved"
+msgstr "Saqlandi"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Saving…"
+msgstr "Saqlanmoqda…"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_scrap
+msgid "Scrap"
+msgstr ""
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Send"
+msgstr "Yuborish"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_picking.py:0
+msgid "Set the Receiver on internal transfer %s before validating."
+msgstr "%s ichki o'tkazmani tasdiqlashdan oldin qabul qiluvchini belgilang."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Take a photo of this line"
+msgstr "Ushbu qator uchun rasmga olish"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "The comment is posted on the transfer, naming this product."
+msgstr "Izoh ushbu mahsulot nomi bilan hujjatga joylanadi."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_cst_move_line_comment__picking_id
+msgid "The stock operation where the packing has been made"
+msgstr ""
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_move_line.py:0
+msgid "This line does not belong to a transfer yet."
+msgstr "Ushbu qator hali hech qanday hujjatga tegishli emas."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_picking
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__picking_id
+msgid "Transfer"
+msgstr ""
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_cst_move_line_comment
+msgid "Transfer Line Comment"
+msgstr "Hujjat qatori izohi"
+
+#. module: cst_kerama_wh_control
+#: model:res.groups,name:cst_kerama_wh_control.group_wh_supervisor
+msgid "Warehouse Supervisor"
+msgstr "Ombor nazoratchisi"
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.cst_move_line_comment_view_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+msgid "When"
+msgstr "Qachon"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_receiver_id
+msgid ""
+"Who takes delivery of this internal transfer. Only this person (or a "
+"warehouse supervisor) can validate it."
+msgstr ""
+"Ushbu ichki o'tkazmani kim qabul qiladi. Uni faqat shu shaxs (yoki ombor "
+"nazoratchisi) tasdiqlay oladi."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_move_line.py:0
+msgid "Write something before sending the comment."
+msgstr "Izohni yuborishdan oldin biror narsa yozing."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Write your comment…"
+msgstr "Izohingizni yozing…"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__user_id
+msgid "Written by"
+msgstr "Yozgan"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_driver
+msgid "Driver"
+msgstr "Haydovchi"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_car_model
+msgid "Car Model"
+msgstr "Avtomobil rusumi"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_car_number
+msgid "Car Number"
+msgstr "Avtomobil raqami"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand
+msgid "On Hand"
+msgstr "Omborda (qayerdan)"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand
+msgid ""
+"Actual quantity in the source location (sub-locations included), in the "
+"line's unit of measure."
+msgstr ""
+"Manba joylashuvidagi haqiqiy qoldiq (ichki joylar bilan birga), qator "
+"o'lchov birligida."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand_dest
+msgid "On Hand (destination)"
+msgstr "Omborda (qayerga)"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand_dest
+msgid ""
+"Actual quantity in the destination location (sub-locations included), in "
+"the line's unit of measure."
+msgstr ""
+"Qabul qiluvchi joylashuvdagi haqiqiy qoldiq (ichki joylar bilan), qator "
+"o'lchov birligida."

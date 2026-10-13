@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Shared look for every sheet in this app: thin grey grid, tight rows,
+         numbers right, a centred title with the period under it and the
+         moment of printing in the corner — the way the company's own sheets
+         are laid out. -->
+    <template id="report_style">
+        <style>
+            .cst_rep { font-size: 9px; width: 100%; border-collapse: collapse; }
+            .cst_rep th, .cst_rep td { border: 1px solid #7f7f7f; padding: 2px 4px;
+                                        vertical-align: middle; }
+            .cst_rep thead th { background: #d9d9d9; text-align: center;
+                                 font-weight: bold; }
+            .cst_rep .num { text-align: right; white-space: nowrap; }
+            .cst_rep .mid { text-align: center; }
+            .cst_rep tr.cst_company td { background: #d7f0d7; font-weight: bold; }
+            .cst_rep tr.cst_group td { background: #fff2cc; font-weight: bold; }
+            .cst_rep tr.cst_sub td { background: #fdf6e3; font-weight: bold; }
+            .cst_rep tr.cst_total td { background: #e8e8e8; font-weight: bold; }
+            .cst_rep tr.cst_pending td { color: #8a5a00; font-style: italic; }
+            .cst_rep .cst_note { display: block; font-size: 8px; color: #8a5a00; font-style: italic; }
+            .cst_head { text-align: center; margin-bottom: 6px; }
+            .cst_head h2 { font-size: 13px; margin: 0; font-weight: bold; }
+            .cst_head div { font-size: 11px; }
+            .cst_stamp { text-align: right; font-size: 9px; margin-bottom: 4px; }
+            .cst_photo { max-height: 70px; max-width: 90px; }
+        </style>
+        <!-- «Ekranda ko'rish»: qog'ozga moslangan 9px shrift monitorda juda kichik
+             o'qiladi. HTML rejimida (report_type == 'html') hamma o'lchamni ekran
+             o'lchamiga kattalashtiramiz; PDF/print o'zgarishsiz qoladi. Keng
+             jadval ekranga sig'masa, oyna (iframe) yonlama aylantiriladi —
+             Odoo'ning body'si Bootstrap .overflow-x-hidden (!important) bilan
+             keladi, aks holda jadval kesilib qolardi; scrollbar jadval oxirida
+             emas, oyna pastida turishi uchun body'ning o'zini ochamiz. -->
+        <t t-if="report_type == 'html'">
+            <style>
+                body.o_body_html { overflow-x: auto !important; }
+                .page { padding-bottom: 16px; }
+                .cst_rep { font-size: 14px; }
+                .cst_rep th, .cst_rep td { padding: 5px 8px; }
+                .cst_head { margin-bottom: 12px; }
+                .cst_head h2 { font-size: 22px; }
+                .cst_head div { font-size: 15px; }
+                .cst_stamp { font-size: 12px; margin-bottom: 8px; }
+                .cst_photo { max-height: 120px; max-width: 150px; }
+                /* 31 ustunli ombor daftari: ekranda 12px, ustunlar siqilmasin —
+                   jadval ekrandan keng bo'lib, yonlama aylantiriladi. */
+                .cst_rep.cst_ledger { font-size: 12px; min-width: 1800px; }
+                .cst_rep.cst_ledger th, .cst_rep.cst_ledger td { padding: 3px 5px; }
+            </style>
+        </t>
+    </template>
+
+    <template id="report_header">
+        <div class="cst_stamp">
+            <span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/>
+        </div>
+        <div class="cst_head">
+            <h2 t-out="title"/>
+            <div>
+                <span t-out="date_from" t-options="{'widget': 'date'}"/>–<span
+                    t-out="date_to" t-options="{'widget': 'date'}"/> davr oralig'i uchun
+            </div>
+        </div>
+    </template>
+
+    <template id="report_partner_movement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <t t-call="cst_kerama_reports.report_header">
+                            <t t-set="title" t-value="values['title']"/>
+                            <t t-set="date_from" t-value="values['date_from']"/>
+                            <t t-set="date_to" t-value="values['date_to']"/>
+                        </t>
+
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:26px;">№</th>
+                                    <th rowspan="2">Kontragent nomi<br/>(valyuta nomi)</th>
+                                    <th colspan="2">
+                                        <span t-out="values['date_from']" t-options="{'widget': 'date'}"/>
+                                        kun boshiga qoldiq
+                                    </th>
+                                    <th colspan="2">Davr ichida aylanma</th>
+                                    <th colspan="2">
+                                        <span t-out="values['date_to']" t-options="{'widget': 'date'}"/>
+                                        kun oxiriga qoldiq
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Qarzimiz</th>
+                                    <th>Haqqimiz</th>
+                                    <th>Kontragentdan kirim</th>
+                                    <th>Kontragentga chiqim</th>
+                                    <th>Qarzimiz</th>
+                                    <th>Haqqimiz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not values['companies']">
+                                    <tr><td colspan="8" class="mid">Davr ichida harakat topilmadi.</td></tr>
+                                </t>
+                                <t t-foreach="values['companies']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="8" t-out="block['company'].display_name"/>
+                                    </tr>
+                                    <t t-foreach="block['partners']" t-as="row">
+                                        <tr class="cst_sub">
+                                            <td class="mid" t-out="row_index + 1"/>
+                                            <td colspan="7" t-out="row['partner'].display_name"/>
+                                        </tr>
+                                        <t t-foreach="row['currencies']" t-as="cur">
+                                            <tr>
+                                                <td class="mid" t-out="cur_index + 1"/>
+                                                <td t-out="cur['currency_name']"/>
+                                                <td class="num">
+                                                    <span t-if="cur['open_we_owe']" t-out="cur['open_we_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="cur['open_they_owe']" t-out="cur['open_they_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="cur['inflow']" t-out="cur['inflow']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="cur['outflow']" t-out="cur['outflow']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="cur['close_we_owe']" t-out="cur['close_we_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                    <span t-if="cur.get('pending')" class="cst_note">shundan schyot-faktura kelmagan:
+                                                        <t t-out="cur['pending']" t-options="{'widget': 'float', 'precision': 2}"/></span>
+                                                </td>
+                                                <td class="num">
+                                                    <span t-if="cur['close_they_owe']" t-out="cur['close_they_owe']"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                    <span t-if="cur.get('pending_due')" class="cst_note">shundan hisob-faktura yozilmagan:
+                                                        <t t-out="cur['pending_due']" t-options="{'widget': 'float', 'precision': 2}"/></span>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

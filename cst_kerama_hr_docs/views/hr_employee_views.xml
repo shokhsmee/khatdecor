@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employee_form_hr_docs" model="ir.ui.view">
+        <field name="name">hr.employee.form.hr.docs</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_hr_events" type="object"
+                        class="oe_stat_button" icon="fa-folder-open-o"
+                        groups="hr.group_hr_user">
+                    <field name="cst_document_count" widget="statinfo"
+                           string="Hujjatlar"/>
+                </button>
+            </xpath>
+
+            <!-- Appended at the end of the notebook: the personnel file, kept
+                 the way the paper folder is — hiring, transfers, dismissal. -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Hujjatlar" name="cst_hr_docs" groups="hr.group_hr_user">
+                    <group>
+                        <group string="Pasport va manzil">
+                            <field name="cst_passport_issuer"
+                                   placeholder="Bag'dod tumani IIB"/>
+                            <field name="cst_region" placeholder="Farg'ona"/>
+                            <field name="cst_district" placeholder="Uchko'prik"/>
+                            <field name="cst_mfy" placeholder="Shirin suv"/>
+                            <field name="cst_street_name" placeholder="Navoiy"/>
+                            <field name="cst_full_address"/>
+                        </group>
+                    </group>
+                    <separator string="Ishga qabul"/>
+                    <field name="cst_event_hire_ids" nolabel="1"
+                           context="{'default_kind': 'kirish', 'default_employee_id': id}">
+                        <list decoration-muted="state == 'draft'">
+                            <field name="date"/>
+                            <field name="order_no"/>
+                            <field name="contract_no"/>
+                            <field name="department_id"/>
+                            <field name="job_title"/>
+                            <field name="ready_count" string="Tayyor"/>
+                            <field name="document_count" string="Hujjat"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'done'"/>
+                        </list>
+                    </field>
+                    <separator string="Boshqa lavozimga o'tkazish"/>
+                    <field name="cst_event_transfer_ids" nolabel="1"
+                           context="{'default_kind': 'otkazish', 'default_employee_id': id}">
+                        <list decoration-muted="state == 'draft'">
+                            <field name="date"/>
+                            <field name="order_no"/>
+                            <field name="contract_no" string="Qo'shimcha kelishuv №"/>
+                            <field name="department_id" string="Oldingi bo'lim"/>
+                            <field name="job_title" string="Oldingi lavozim"/>
+                            <field name="new_department_id" string="Yangi bo'lim"/>
+                            <field name="new_job_title" string="Yangi lavozim"/>
+                            <field name="ready_count" string="Tayyor"/>
+                            <field name="document_count" string="Hujjat"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'done'"/>
+                        </list>
+                    </field>
+                    <separator string="Ishdan bo'shatish"/>
+                    <field name="cst_event_leave_ids" nolabel="1"
+                           context="{'default_kind': 'boshash', 'default_employee_id': id}">
+                        <list decoration-muted="state == 'draft'">
+                            <field name="date"/>
+                            <field name="order_no"/>
+                            <field name="department_id"/>
+                            <field name="job_title"/>
+                            <field name="compensation_days" string="Ta'til kuni"/>
+                            <field name="ready_count" string="Tayyor"/>
+                            <field name="document_count" string="Hujjat"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'done'"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

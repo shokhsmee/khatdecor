@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_payroll_period_list" model="ir.ui.view">
+        <field name="name">cst.payroll.period.list</field>
+        <field name="model">cst.payroll.period</field>
+        <field name="arch" type="xml">
+            <list string="Payroll Periods" decoration-muted="state == 'closed'">
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="employee_count" string="Employees"/>
+                <field name="total_accrued" sum="Accrued"/>
+                <field name="total_deducted" sum="Deducted"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state in ('posted', 'closed')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_payroll_period_form" model="ir.ui.view">
+        <field name="name">cst.payroll.period.form</field>
+        <field name="model">cst.payroll.period</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Period">
+                <header>
+                    <button name="action_compute" type="object" string="Compute"
+                            class="btn-primary" invisible="state not in ('draft', 'computed')"
+                            help="Generate salary and KPI lines. Hand-entered lines are kept."/>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="btn-primary" invisible="state not in ('draft', 'computed')"/>
+                    <button name="action_post" type="object" string="Post to Accounting"
+                            class="btn-primary" invisible="state != 'confirmed'"
+                            confirm="This creates the journal entry for the whole period. Continue?"/>
+                    <button name="action_close" type="object" string="Close"
+                            invisible="state != 'posted'"/>
+                    <button name="action_reopen" type="object" string="Reopen"
+                            invisible="state != 'closed'"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state in ('draft', 'closed')"
+                            confirm="A posted period is reversed, not erased — the journal entry stays in the ledger with a reversal against it. Continue?"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,computed,confirmed,posted"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_lines" type="object" class="oe_stat_button"
+                                icon="fa-list-ul">
+                            <field name="line_count" widget="statinfo" string="Lines"/>
+                        </button>
+                        <button name="action_view_move" type="object" class="oe_stat_button"
+                                icon="fa-book" invisible="not move_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Journal</span>
+                                <span class="o_stat_text">Entry</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Сентябрь 2026"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="date_posted"/>
+                        </group>
+                        <group>
+                            <field name="employee_count"/>
+                            <field name="total_accrued"/>
+                            <field name="total_deducted"/>
+                            <field name="total_employer"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines" name="lines">
+                            <field name="line_ids" nolabel="1"
+                                   context="{'default_period_id': id, 'default_company_id': company_id, 'default_date': date_to}">
+                                <list editable="bottom"
+                                      decoration-success="kind == 'accrual'"
+                                      decoration-danger="kind == 'deduction'">
+                                    <field name="employee_id"/>
+                                    <field name="component_id"/>
+                                    <field name="kind" optional="show"/>
+                                    <field name="date"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="is_official" widget="boolean_toggle" optional="show"/>
+                                    <field name="quantity" optional="hide"/>
+                                    <field name="rate" optional="hide"/>
+                                    <field name="source_ref" optional="hide"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="company_id" column_invisible="1"/>
+                                    <field name="state" widget="badge" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_payroll_period" model="ir.actions.act_window">
+        <field name="name">Payroll Periods</field>
+        <field name="res_model">cst.payroll.period</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Open a payroll month</p>
+            <p>Compute generates the salary and KPI lines. Nothing reaches the
+               ledger until you confirm and post.</p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Camera + comment on every barcode line -->
+    <t t-inherit="stock_barcode.LineLowerButtons" t-inherit-mode="extension">
+        <xpath expr="//button[@name='deleteButton']" position="before">
+            <button t-if="cstCanAnnotate" name="cstPhotoButton"
+                    class="o_line_button cst_line_photo btn btn-light"
+                    t-att-class="cstPhotoCount ? 'o_line_button cst_line_photo btn btn-success' : 'o_line_button cst_line_photo btn btn-light'"
+                    title="Take a photo of this line"
+                    t-on-click.stop="cstTakePhoto">
+                <span class="fa fa-lg fa-camera"/>
+                <span t-if="cstPhotoCount" class="cst_line_photo__n" t-esc="cstPhotoCount"/>
+            </button>
+            <button t-if="cstCanAnnotate" name="cstCommentButton"
+                    t-att-class="cstCommentCount ? 'o_line_button cst_line_photo btn btn-info' : 'o_line_button cst_line_photo btn btn-light'"
+                    title="Comment on this line"
+                    t-on-click.stop="cstAddComment">
+                <span class="fa fa-lg fa-comment-o"/>
+                <span t-if="cstCommentCount" class="cst_line_photo__n" t-esc="cstCommentCount"/>
+            </button>
+        </xpath>
+    </t>
+
+    <t t-name="cst_kerama_wh_control.LineNoteDialog">
+        <Dialog title="title" size="'md'">
+            <div class="cst_note_dialog">
+                <p class="text-muted mb-2">
+                    <i class="fa fa-cube me-1"/><t t-esc="props.lineLabel"/>
+                </p>
+                <textarea t-ref="note" class="form-control" rows="4"
+                          placeholder="Write your comment…"
+                          t-on-input="onInput"/>
+                <p class="text-muted small mt-2 mb-0">
+                    The comment is posted on the transfer, naming this product.
+                </p>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary"
+                        t-att-disabled="!state.value.trim() or state.sending"
+                        t-on-click="confirm">Send</button>
+                <button class="btn btn-secondary" t-on-click="() => props.close()">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

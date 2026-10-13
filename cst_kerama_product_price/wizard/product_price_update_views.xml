@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="cst_product_price_update_view_form" model="ir.ui.view">
+        <field name="name">cst.product.price.update.form</field>
+        <field name="model">cst.product.price.update</field>
+        <field name="arch" type="xml">
+            <form string="Maxsulot narxlarini yangilash" class="o_cst_price_update">
+                <field name="state" invisible="1"/>
+
+                <!-- Settings + the two ways of changing prices -->
+                <div invisible="state == 'done'">
+                    <div class="alert alert-warning" role="alert"
+                         invisible="product_count != 0">
+                        Mahsulot tanlanmagan. Ro'yxatdan mahsulotlarni belgilab,
+                        amalni qaytadan oching.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="target" widget="radio"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="product_ids" widget="many2many_tags"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="price_currency" widget="radio"/>
+                            <field name="rate_date"
+                                   invisible="price_currency != 'usd'"/>
+                            <label for="usd_rate"
+                                   invisible="price_currency != 'usd'"/>
+                            <div class="o_row"
+                                 invisible="price_currency != 'usd'">
+                                <field name="usd_rate"
+                                       required="price_currency == 'usd'"/>
+                                <span class="text-muted">
+                                    <field name="company_currency_id"
+                                           readonly="1" nolabel="1"
+                                           options="{'no_open': True}"/>
+                                    / 1 USD
+                                </span>
+                            </div>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Excel" name="excel">
+                            <div class="alert alert-info" role="status">
+                                <b>1.</b> Shablonni yuklab olib, <b>Yangi narx</b>
+                                ustunini to'ldiring.
+                                <b>2.</b> To'ldirilgan faylni tanlab,
+                                <b>Narxlarni yuklash</b> tugmasini bosing.<br/>
+                                Mahsulotlar <b>shtrix-kod</b> bo'yicha topiladi -
+                                qolgan ustunlarni o'zgartirsa ham bo'ladi.
+                                Noto'g'ri satrlar o'tkazib yuboriladi va
+                                oxirida ro'yxat qilib ko'rsatiladi.
+                            </div>
+                            <div class="mb-3">
+                                <button name="action_download_template"
+                                        type="object" icon="fa-download"
+                                        string="Shablon yuklab olish"
+                                        class="btn-secondary"
+                                        invisible="product_count == 0"/>
+                                <span class="text-muted ms-2">
+                                    <field name="product_count" nolabel="1"
+                                           readonly="1" class="fw-bold"/>
+                                    ta mahsulot
+                                </span>
+                            </div>
+                            <group>
+                                <field name="upload_file"
+                                       filename="upload_filename"
+                                       string="To'ldirilgan fayl"/>
+                                <field name="upload_filename" invisible="1"/>
+                            </group>
+                            <div class="mt-2">
+                                <button name="action_upload_prices"
+                                        type="object" icon="fa-upload"
+                                        string="Narxlarni yuklash"
+                                        class="btn-primary"
+                                        invisible="not upload_file"
+                                        confirm="Fayldagi narxlar mahsulotlarga yoziladi. Davom etamizmi?"/>
+                            </div>
+                        </page>
+
+                        <page string="Ommaviy o'zgartirish" name="adjust">
+                            <div class="alert alert-info" role="status">
+                                Tanlangan mahsulotlarning narxini foiz yoki
+                                summa bo'yicha oshirish / kamaytirish.
+                                <b>Ko'rish</b> tugmasi hech narsani
+                                o'zgartirmaydi - faqat natijani ko'rsatadi.
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="adjust_type" widget="radio"/>
+                                    <field name="adjust_sign" widget="radio"/>
+                                </group>
+                                <group>
+                                    <label for="adjust_value"/>
+                                    <div class="o_row">
+                                        <field name="adjust_value"/>
+                                        <span class="text-muted"
+                                              invisible="adjust_type != 'percent'">%</span>
+                                        <span class="text-muted"
+                                              invisible="adjust_type == 'percent'">
+                                            <field name="adjust_unit" nolabel="1"
+                                                   readonly="1"/>
+                                        </span>
+                                    </div>
+                                </group>
+                            </group>
+                            <div class="mb-2">
+                                <button name="action_preview_adjustment"
+                                        type="object" icon="fa-search"
+                                        string="Ko'rish" class="btn-secondary"
+                                        invisible="product_count == 0"/>
+                                <button name="action_apply_adjustment"
+                                        type="object" icon="fa-check"
+                                        string="Qo'llash" class="btn-primary"
+                                        invisible="product_count == 0"
+                                        confirm="Tanlangan mahsulotlarning narxi o'zgaradi. Davom etamizmi?"/>
+                            </div>
+                            <field name="line_ids" nolabel="1"
+                                   invisible="state != 'preview'">
+                                <list string="Narx o'zgarishi" create="false"
+                                      delete="false" edit="false">
+                                    <field name="product_id"/>
+                                    <field name="barcode" optional="show"/>
+                                    <field name="current_price"/>
+                                    <field name="new_price"/>
+                                    <field name="difference"
+                                           decoration-success="difference &gt; 0"
+                                           decoration-danger="difference &lt; 0"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </div>
+
+                <!-- Report shown after a run -->
+                <div invisible="state != 'done'">
+                    <field name="result_html" nolabel="1" readonly="1"/>
+                </div>
+
+                <footer>
+                    <button name="action_back" type="object" string="Orqaga"
+                            class="btn-secondary" invisible="state != 'done'"/>
+                    <button string="Yopish" special="cancel"
+                            class="btn-primary" invisible="state != 'done'"/>
+                    <button string="Bekor qilish" special="cancel"
+                            class="btn-secondary" invisible="state == 'done'"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions menu of the product list -->
+    <record id="action_product_price_update_template" model="ir.actions.act_window">
+        <field name="name">Maxsulot narxlarini yangilash</field>
+        <field name="res_model">cst.product.price.update</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="binding_view_types">list,kanban</field>
+        <field name="group_ids"
+               eval="[(4, ref('product.group_product_manager'))]"/>
+    </record>
+
+    <record id="action_product_price_update_variant" model="ir.actions.act_window">
+        <field name="name">Maxsulot narxlarini yangilash</field>
+        <field name="res_model">cst.product.price.update</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="binding_view_types">list,kanban</field>
+        <field name="group_ids"
+               eval="[(4, ref('product.group_product_manager'))]"/>
+    </record>
+
+</odoo>

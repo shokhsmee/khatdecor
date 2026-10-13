@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_allocation_list" model="ir.ui.view">
+        <field name="name">cst.kassa.allocation.list</field>
+        <field name="model">cst.kassa.allocation</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" decoration-muted="state == 'undone'">
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="source_name"/>
+                <field name="operation_id" optional="show"/>
+                <field name="order_id"/>
+                <field name="invoice_id" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="amount" sum="1"/>
+                <field name="user_id" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                <button name="action_undo" type="object" string="Undo" icon="fa-undo" invisible="state != 'done'"
+                        confirm="Take this money off the order? It becomes the client's advance again."/>
+            </list>
+        </field>
+    </record>
+    <record id="view_kassa_allocation_search" model="ir.ui.view">
+        <field name="name">cst.kassa.allocation.search</field>
+        <field name="model">cst.kassa.allocation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="order_id"/>
+                <field name="source_name"/>
+                <filter name="filter_done" string="Settled" domain="[('state', '=', 'done')]"/>
+                <filter name="filter_undone" string="Undone" domain="[('state', '=', 'undone')]"/>
+                <separator/>
+                <filter name="filter_date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_partner" string="Client" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_order" string="Sales order" context="{'group_by': 'order_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_kassa_allocation" model="ir.actions.act_window">
+        <field name="name">Settlement history</field>
+        <field name="res_model">cst.kassa.allocation</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_kassa_allocation_search"/>
+        <field name="context">{'search_default_filter_done': 1}</field>
+    </record>
+</odoo>

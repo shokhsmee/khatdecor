@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_payroll_component_list" model="ir.ui.view">
+        <field name="name">cst.payroll.component.list</field>
+        <field name="model">cst.payroll.component</field>
+        <field name="arch" type="xml">
+            <list string="Payroll Components" default_order="kind,sequence">
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="kind" widget="badge"
+                       decoration-success="kind == 'accrual'"
+                       decoration-danger="kind == 'deduction'"
+                       decoration-info="kind == 'employer'"/>
+                <field name="computation"/>
+                <field name="is_official" widget="boolean_toggle"/>
+                <field name="is_taxable" widget="boolean_toggle"/>
+                <field name="account_debit_id" optional="show"/>
+                <field name="account_credit_id" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_payroll_component_form" model="ir.ui.view">
+        <field name="name">cst.payroll.component.form</field>
+        <field name="model">cst.payroll.component</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Component">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Ойлик суммаси"/></h1>
+                    </div>
+                    <group>
+                        <group string="Behaviour">
+                            <field name="code" placeholder="OYLIK"/>
+                            <field name="kind"/>
+                            <field name="computation"/>
+                            <field name="sequence"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group string="Payroll stream">
+                            <field name="is_official"/>
+                            <field name="is_taxable" invisible="not is_official"/>
+                        </group>
+                    </group>
+                    <group string="Accounting">
+                        <div class="text-muted" colspan="2">
+                            Leave these empty to use the company's payroll accounts
+                            (Settings ▸ Payroll). Set them only where this component
+                            differs — a cash advance leaves the till, a card advance
+                            leaves the bank.
+                        </div>
+                        <group>
+                            <field name="account_debit_id"/>
+                            <field name="account_credit_id"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="note" nolabel="1" placeholder="What this column means."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_payroll_component" model="ir.actions.act_window">
+        <field name="name">Components</field>
+        <field name="res_model">cst.payroll.component</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Define a column of the salary report</p>
+            <p>Accruals, deductions and employer costs. The report's columns follow
+               these records, so adding a bonus type needs no development.</p>
+        </field>
+    </record>
+
+</odoo>

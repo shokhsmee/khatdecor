@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_return_button" model="ir.ui.view">
+        <field name="name">sale.order.form.return.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <button name="action_confirm" id="action_confirm" position="after">
+                <button name="action_open_return_wizard"
+                        string="Qaytarish"
+                        type="object"
+                        class="btn-secondary"
+                        invisible="state != 'sale'"/>
+            </button>
+        </field>
+    </record>
+
+</odoo>

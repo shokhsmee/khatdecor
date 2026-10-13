@@ -1,0 +1,122 @@
+// Money block added to the project kanban card.
+.cst_k_fin {
+    // sits directly under the project name, above the customer/date block
+    margin: .45rem 0 .55rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--bs-border-color-translucent, rgba(128, 128, 128, .2));
+    font-variant-numeric: tabular-nums;
+
+    &__row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: .75rem;
+        line-height: 1.5;
+
+        &--total {
+            margin-top: .15rem;
+            padding-top: .25rem;
+            border-top: 1px dashed var(--bs-border-color-translucent, rgba(128, 128, 128, .2));
+        }
+    }
+
+    &__k {
+        flex: 0 0 auto;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        color: var(--bs-secondary-color, #6c757d);
+    }
+
+    &__v {
+        flex: 1 1 auto;
+        min-width: 0;
+        text-align: right;
+        font-size: 12.5px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__row--total &__v { font-size: 13.5px; font-weight: 700; }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .3rem;
+        margin-top: .45rem;
+    }
+}
+
+.cst_k_tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 7px;
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--bs-secondary-color, #6c757d);
+    background: var(--bs-tertiary-bg, rgba(128, 128, 128, .12));
+
+    i { font-size: 9px; opacity: .8; }
+}
+
+.cst_k_open {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 9px;
+    border-radius: 6px;
+    border: 1px solid var(--bs-border-color-translucent, rgba(128, 128, 128, .25));
+    background: transparent;
+    color: var(--bs-secondary-color, #6c757d);
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.6;
+    white-space: nowrap;
+    transition: color .12s, background-color .12s, border-color .12s;
+
+    i { font-size: 9px; }
+
+    &:hover {
+        color: var(--bs-emphasis-color, #000);
+        background: var(--bs-tertiary-bg, rgba(128, 128, 128, .12));
+        border-color: var(--bs-secondary-color, #6c757d);
+    }
+}
+
+.cst_k_status {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+    font-size: 10.5px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    i { font-size: 7px; }
+}
+
+// "Start Manufacturing" — shown only when every component is in stock
+.cst_k_make {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 9px;
+    border-radius: 6px;
+    border: 1px solid rgba(18, 165, 148, .5);
+    background: rgba(18, 165, 148, .1);
+    color: #0f8b7e;
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.6;
+    white-space: nowrap;
+    transition: color .12s, background-color .12s, border-color .12s;
+
+    i { font-size: 9px; }
+
+    &:hover {
+        background: rgba(18, 165, 148, .2);
+        border-color: #12a594;
+    }
+}

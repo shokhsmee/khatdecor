@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cst_telegram_chat_user,cst.telegram.chat user,model_cst_telegram_chat,account.group_account_invoice,1,1,0,0
+access_cst_telegram_chat_manager,cst.telegram.chat manager,model_cst_telegram_chat,account.group_account_manager,1,1,1,1
+access_cst_telegram_broadcast_user,cst.telegram.broadcast user,model_cst_telegram_broadcast,account.group_account_invoice,1,1,1,0
+access_cst_telegram_broadcast_manager,cst.telegram.broadcast manager,model_cst_telegram_broadcast,account.group_account_manager,1,1,1,1

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kassa_day_open_form" model="ir.ui.view">
+        <field name="name">cst.kassa.day.open.form</field>
+        <field name="model">cst.kassa.day.open</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="kassa_id" invisible="1"/>
+                <field name="ref_day_id" invisible="1"/>
+                <field name="rate_required" invisible="1"/>
+                <div class="alert alert-info" role="alert" invisible="not ref_day_id">
+                    Today's dollar rate is already entered in <b><field name="ref_kassa_name" class="d-inline"/></b>:
+                    <b><field name="ref_rate" class="d-inline"/></b>.
+                    Use it for this kassa too, or enter this kassa's own rate.
+                </div>
+                <group>
+                    <group>
+                        <field name="date"/>
+                        <field name="rate_mode" widget="radio" invisible="not ref_day_id"/>
+                        <field name="usd_rate" class="fs-3 fw-bold"
+                               readonly="ref_day_id and rate_mode == 'same'"
+                               required="rate_required"/>
+                    </group>
+                    <group>
+                        <field name="currency_id" readonly="1" options="{'no_open': True}"/>
+                    </group>
+                </group>
+                <div class="text-muted">
+                    1 dollar = this many units of the kassa currency. Every operation of the day takes this rate;
+                    it can still be changed on a single operation (for example when a client settles at another rate).
+                </div>
+                <footer>
+                    <button name="action_open" type="object" string="Open the day" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

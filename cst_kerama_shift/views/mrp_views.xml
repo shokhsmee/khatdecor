@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_workcenter_view_department" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.department</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='alternative_workcenter_ids']" position="before">
+                <field name="cst_department_id" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_workcenter_tree_department" model="ir.ui.view">
+        <field name="name">mrp.workcenter.list.department</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_department_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_workorder_tree_shift" model="ir.ui.view">
+        <field name="name">mrp.workorder.list.shift</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='workcenter_id']" position="after">
+                <field name="cst_shift_id" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_journal_dashboard_kanban_view_balance" model="ir.ui.view">
+        <field name="name">account.journal.dashboard.kanban.balance</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+        <field name="arch" type="xml">
+
+            <!-- bank, cash and credit: first line on the right of the card -->
+            <xpath expr="//div[@id='dashboard_bank_cash_right']" position="inside">
+                <div class="row" t-if="dashboard.cst_balance_visible">
+                    <div class="col overflow-hidden text-start">
+                        <a type="object" name="action_cst_open_journal_items"
+                           class="fw-bolder"><t t-out="dashboard.cst_balance_label"/></a>
+                    </div>
+                    <div class="col-auto text-end">
+                        <span dir="ltr" class="fw-bolder"><t t-out="dashboard.cst_balance"/></span>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- sale and purchase -->
+            <xpath expr="//t[@t-name='JournalBodySalePurchase']//div[@name='kanban_primary_right']"
+                   position="inside">
+                <div class="row" t-if="dashboard.cst_balance_visible">
+                    <div class="col overflow-hidden text-start">
+                        <a type="object" name="action_cst_open_journal_items"
+                           class="fw-bolder"><t t-out="dashboard.cst_balance_label"/></a>
+                    </div>
+                    <div class="col-auto text-end">
+                        <span dir="ltr" class="fw-bolder"><t t-out="dashboard.cst_balance"/></span>
+                    </div>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

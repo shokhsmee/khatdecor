@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_form_view_tile_m2" model="ir.ui.view">
+        <field name="name">product.template.form.tile.m2</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Helper boolean, kept hidden, drives visibility of the tile group -->
+            <field name="categ_id" position="before">
+                <field name="is_sqm_uom" invisible="1"/>
+            </field>
+
+            <!-- Append the tile fields to the left column as plain label/value
+                 rows (a nested <group> here breaks the parent's column layout). -->
+            <group name="group_general" position="inside">
+                <separator string="Tile Dimensions (Kafel)"
+                           colspan="2"
+                           invisible="not is_sqm_uom"/>
+                <field name="tile_height" invisible="not is_sqm_uom"/>
+                <field name="tile_width" invisible="not is_sqm_uom"/>
+                <field name="tile_area" readonly="1" invisible="not is_sqm_uom"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

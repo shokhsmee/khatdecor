@@ -1,0 +1,311 @@
+.o_kpr {
+    --kpr-acc: #12a594;
+    --kpr-ded: #e8590c;
+    --kpr-line: var(--o-gray-300, #dee2e6);
+    --kpr-line-soft: var(--o-gray-200, #e9ecef);
+    --kpr-head: var(--o-gray-100, #f4f5f7);
+    --kpr-body: var(--o-view-background-color, #fff);
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--kpr-body);
+    color: var(--o-main-text-color, #374151);
+
+    // ------------------------------------------------------------------
+    //  Header: title, figures, filters
+    // ------------------------------------------------------------------
+    .o_kpr_head {
+        flex: 0 0 auto;
+        padding: 12px 16px 10px;
+        border-bottom: 1px solid var(--kpr-line);
+        background: var(--o-webclient-background-color, #fbfbfb);
+    }
+
+    .o_kpr_titles {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        h4 { margin: 0; font-size: 1.0625rem; font-weight: 600; }
+    }
+
+    .o_kpr_period {
+        font-size: .8125rem;
+        color: var(--o-gray-600, #6c757d);
+    }
+
+    .o_kpr_flag {
+        padding: 1px 7px;
+        border-radius: 999px;
+        font-size: .75rem;
+        background: rgba(232, 89, 12, .12);
+        color: var(--kpr-ded);
+    }
+
+    // ---------- the four figures ----------
+    .o_kpr_tiles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 10px 0 12px;
+    }
+
+    .o_kpr_tile {
+        flex: 1 1 10rem;
+        min-width: 9rem;
+        padding: 7px 12px;
+        border: 1px solid var(--kpr-line-soft);
+        border-left: 3px solid var(--kpr-line);
+        border-radius: 6px;
+        background: var(--kpr-body);
+
+        &--acc { border-left-color: var(--kpr-acc); }
+        &--ded { border-left-color: var(--kpr-ded); }
+        &--bal { border-left-color: #6366f1; }
+
+        dt {
+            margin: 0;
+            font-size: .6875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .03em;
+            color: var(--o-gray-600, #6c757d);
+        }
+        dd {
+            margin: 0;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+    }
+
+    // ---------- filters ----------
+    .o_kpr_filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 10px;
+    }
+
+    .o_kpr_group {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        &--right { margin-left: auto; }
+    }
+
+    .o_kpr_sep {
+        width: 1px;
+        height: 1.5rem;
+        background: var(--kpr-line);
+    }
+
+    .o_kpr_dates input { width: 8.75rem; }
+    .o_kpr_search { width: 14rem; }
+
+    .o_kpr_chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        padding: 3px 9px;
+        border: 1px solid var(--kpr-line);
+        border-radius: 999px;
+        background: var(--kpr-body);
+        font-size: .8125rem;
+        font-weight: 400;
+        cursor: pointer;
+        white-space: nowrap;
+
+        input { margin: 0; }
+        &:hover { border-color: var(--o-gray-500, #adb5bd); }
+        &.o_kpr_chip--on {
+            border-color: var(--kpr-acc);
+            background: rgba(18, 165, 148, .08);
+            color: var(--kpr-acc);
+        }
+    }
+
+    // ------------------------------------------------------------------
+    //  Empty / loading / error
+    // ------------------------------------------------------------------
+    .o_kpr_state {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--o-gray-600, #6c757d);
+
+        &--error { color: #dc2626; text-align: center; padding: 0 2rem; }
+    }
+
+    // ------------------------------------------------------------------
+    //  The table
+    // ------------------------------------------------------------------
+    .o_kpr_scroll {
+        flex: 1 1 auto;
+        overflow: auto;
+        // The sticky right column needs somewhere to sit against.
+        position: relative;
+    }
+
+    table.o_kpr_table {
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: .8125rem;
+        margin: 0;
+        width: max-content;
+        min-width: 100%;
+    }
+
+    // Two header rows travel together: sticking the whole thead avoids
+    // hand-computed per-row offsets, which is what made the second row
+    // slide over the first body row.
+    .o_kpr_table thead {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+    }
+
+    .o_kpr_table th {
+        padding: 5px 8px;
+        background: var(--kpr-head);
+        border-bottom: 1px solid var(--kpr-line);
+        border-right: 1px solid var(--kpr-line-soft);
+        font-weight: 600;
+        font-size: .75rem;
+        line-height: 1.2;
+        text-align: center;
+        vertical-align: middle;
+        // Long component names wrap inside their column instead of forcing
+        // the table twice as wide as the screen.
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .o_kpr_table td {
+        padding: 4px 8px;
+        border-bottom: 1px solid var(--kpr-line-soft);
+        border-right: 1px solid var(--kpr-line-soft);
+        white-space: nowrap;
+    }
+
+    // ---------- column shapes ----------
+    .o_kpr_table {
+        .o_kpr_c_num {
+            width: 2.75rem;
+            min-width: 2.75rem;
+            text-align: right;
+            color: var(--o-gray-500, #adb5bd);
+            font-variant-numeric: tabular-nums;
+        }
+        .o_kpr_c_name {
+            width: 17rem;
+            min-width: 14rem;
+            text-align: left;
+        }
+        .o_kpr_c_amt {
+            width: 7.25rem;
+            min-width: 7.25rem;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        .o_kpr_c_open { border-left: 2px solid var(--kpr-line); }
+        .o_kpr_c_sum { font-weight: 600; background-color: rgba(0, 0, 0, .028); }
+        .o_kpr_c_close {
+            width: 8rem;
+            min-width: 8rem;
+            font-weight: 600;
+            border-left: 2px solid var(--kpr-line);
+        }
+
+        // The two group blocks get their own tint, so it is always obvious
+        // which side of the report a column belongs to.
+        .o_kpr_g_acc { border-top: 2px solid var(--kpr-acc); }
+        .o_kpr_g_ded { border-top: 2px solid var(--kpr-ded); }
+        th.o_kpr_g_acc, th.o_kpr_h_acc { background: rgba(18, 165, 148, .10); }
+        th.o_kpr_g_ded, th.o_kpr_h_ded { background: rgba(232, 89, 12, .10); }
+        td.o_kpr_v_acc { background-color: rgba(18, 165, 148, .035); }
+        td.o_kpr_v_ded { background-color: rgba(232, 89, 12, .035); }
+        td.o_kpr_v_acc.o_kpr_c_sum { background-color: rgba(18, 165, 148, .11); }
+        td.o_kpr_v_ded.o_kpr_c_sum { background-color: rgba(232, 89, 12, .11); }
+    }
+
+    // ---------- frozen columns ----------
+    // Every row publishes its own background so the frozen cells can paint
+    // an opaque copy of it; a transparent sticky cell shows the text it
+    // slides over, which is exactly what went wrong before.
+    .o_kpr_table tbody tr,
+    .o_kpr_table tfoot tr {
+        --kpr-row: var(--kpr-body);
+        background: var(--kpr-row);
+    }
+
+    // The company row is the first `tr` of each tbody, so plain nth-of-type
+    // parity gives the employee rows their stripes.
+    .o_kpr_table tbody tr.o_kpr_row:nth-of-type(even) {
+        --kpr-row: rgba(0, 0, 0, .022);
+    }
+    .o_kpr_table tbody tr.o_kpr_row:hover {
+        --kpr-row: rgba(18, 165, 148, .10);
+    }
+    .o_kpr_table tbody tr.o_kpr_left {
+        --kpr-row: rgba(0, 0, 0, .035);
+        font-style: italic;
+    }
+
+    .o_kpr_table {
+        th.o_kpr_c_num, td.o_kpr_c_num { position: sticky; left: 0; z-index: 2; }
+        th.o_kpr_c_name, td.o_kpr_c_name { position: sticky; left: 2.75rem; z-index: 2; }
+        th.o_kpr_c_close, td.o_kpr_c_close { position: sticky; right: 0; z-index: 2; }
+
+        td.o_kpr_c_num, td.o_kpr_c_name, td.o_kpr_c_close { background: var(--kpr-row); }
+        th.o_kpr_c_num, th.o_kpr_c_name { background: var(--kpr-head); z-index: 6; }
+        th.o_kpr_c_close { background: var(--kpr-head); z-index: 6; }
+
+        td.o_kpr_c_name { box-shadow: 1px 0 0 var(--kpr-line-soft); }
+        td.o_kpr_c_close { box-shadow: -1px 0 0 var(--kpr-line-soft); }
+    }
+
+    // ---------- rows ----------
+    .o_kpr_table {
+        .o_kpr_company {
+            --kpr-row: rgba(0, 0, 0, .06) !important;
+            font-weight: 700;
+
+            td { border-bottom: 1px solid var(--kpr-line); }
+            .o_kpr_c_name { letter-spacing: .01em; }
+        }
+
+        .o_kpr_total {
+            --kpr-row: var(--o-gray-200, #e9ecef) !important;
+            font-weight: 700;
+
+            td { border-top: 2px solid var(--kpr-line); }
+        }
+
+        .o_kpr_none td {
+            padding: 10px;
+            color: var(--o-gray-600, #6c757d);
+            font-style: italic;
+        }
+
+        .o_kpr_pers { color: var(--o-gray-500, #adb5bd); font-size: .6875rem; }
+        .o_kpr_neg { color: #dc2626; }
+
+        .o_kpr_click { cursor: pointer; }
+        .o_kpr_click:hover {
+            outline: 1px solid var(--kpr-acc);
+            outline-offset: -1px;
+            color: var(--kpr-acc);
+        }
+    }
+
+    tfoot { position: sticky; bottom: 0; z-index: 4; }
+}
