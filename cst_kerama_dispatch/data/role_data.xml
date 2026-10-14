@@ -22,4 +22,14 @@
     <record id="cst_kerama_roles.role_administrator" model="access.role">
         <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager'))]"/>
     </record>
+
+    <!-- Ishlab chiqarish menejeri: the Jo'natish app too (dispatch + «Ichki o'tkazmalar»).
+         Linked here, after cst_kerama_roles sets that role's list, so an upgrade of
+         this module puts it back. -->
+    <record id="cst_kerama_roles.role_production_manager" model="access.role">
+        <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager'))]"/>
+    </record>
+    <record id="cst_kerama_roles.rm_production" model="role.management">
+        <field name="cst_shown_menu_ids" eval="[Command.link(ref('menu_dispatch_root'))]"/>
+    </record>
 </odoo>

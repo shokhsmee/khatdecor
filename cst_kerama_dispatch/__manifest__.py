@@ -19,7 +19,7 @@ A dedicated access role «Jo'natish (ombor va eshik)» sees this app only.
     """,
     "author": "Khatdecor",
     "category": "Inventory",
-    "version": "19.0.1.3.0",
+    "version": "19.0.1.4.0",
     "depends": [
         "sale_stock",
         "hr",
