@@ -11,3 +11,4 @@ from . import stock_reports
 from . import stock_ledger
 from . import extra_reports
 from . import report_filter_bar
+from . import goods_movement

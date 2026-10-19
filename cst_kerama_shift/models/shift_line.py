@@ -66,6 +66,16 @@ class CstProductionShiftLine(models.Model):
         string="2-sort kirimlari", readonly=True)
     scrap_ids = fields.Many2many(
         "stock.scrap", "cst_shift_line_scrap_rel", "line_id", "scrap_id", string="Scrap'lar", readonly=True)
+    correction_production_ids = fields.Many2many(
+        "mrp.production", "cst_shift_line_correction_mo_rel", "line_id", "production_id",
+        string="Tuzatish buyurtmalari", readonly=True, copy=False,
+        help="Natija tuzatilib ko'paytirilganda qo'shimcha chiqarilgan miqdor uchun yaratilgan buyurtmalar.")
+    unbuild_ids = fields.Many2many(
+        "mrp.unbuild", "cst_shift_line_unbuild_rel", "line_id", "unbuild_id",
+        string="Tuzatish (qaytarish)", readonly=True, copy=False)
+    correction_move_ids = fields.Many2many(
+        "stock.move", "cst_shift_line_correction_move_rel", "line_id", "move_id",
+        string="Tuzatish harakatlari", readonly=True, copy=False)
 
     # ------------------------------------------------------------------ computes
     @api.depends("entry_ids.qty_good", "entry_ids.qty_second", "entry_ids.qty_scrap", "planned_qty")
@@ -289,6 +299,35 @@ class CstProductionShiftLine(models.Model):
         on the work order; nothing moves in stock yet.
         """
         self.ensure_one()
+        started = fields.Datetime.now()
+        self._post_output_now()
+        self._cst_backdate(started)
+
+    def _cst_backdate(self, since):
+        """Results typed after the shift (the 15.10 2-smena entered on 16.10)
+        belong to the shift's day: the order's finish date and the stock moves
+        it just made are put at the end of the shift. Stock levels do not
+        change, only the date the reports read; the accounting entry keeps
+        today's date."""
+        self.ensure_one()
+        moment = self.shift_id._cst_moment()
+        if not moment or abs((fields.Datetime.now() - moment).total_seconds()) < 60:
+            return
+        mo = self.production_id
+        moves = self.env["stock.move"].sudo().search([
+            ("state", "=", "done"), ("date", ">=", since),
+            "|", "|", "|", ("production_id", "=", mo.id), ("raw_material_production_id", "=", mo.id),
+            ("scrap_id", "in", self.scrap_ids.ids), ("id", "in", self.second_grade_move_ids.ids),
+        ])
+        if moves:
+            moves.write({"date": moment})
+            moves.move_line_ids.write({"date": moment})
+        if mo.state == "done" and mo.date_finished and mo.date_finished >= since:
+            mo.sudo().write({"date_finished": moment})
+        self.scrap_ids.filtered(lambda s: s.date_done and s.date_done >= since).sudo().write({"date_done": moment})
+
+    def _post_output_now(self):
+        self.ensure_one()
         entries = self.entry_ids.filtered(lambda e: not e.posted)
         good = sum(entries.mapped("qty_good"))
         second = sum(entries.mapped("qty_second"))
@@ -428,3 +467,158 @@ class CstProductionShiftLine(models.Model):
         self.ensure_one()
         return {"type": "ir.actions.act_window", "res_model": "mrp.production",
                 "res_id": self.production_id.id, "view_mode": "form"}
+
+    # ------------------------------------------------------------------ corrections
+    def _cst_scrap_location(self):
+        self.ensure_one()
+        scrap = self.scrap_ids.filtered(lambda s: s.state == "done")[:1]
+        if scrap:
+            return scrap.scrap_location_id
+        return self.env["stock.location"].search([
+            ("company_id", "in", (self.company_id.id, False)), ("usage", "=", "inventory")], order="id", limit=1)
+
+    def _cst_done_move(self, product, qty, source, destination, label):
+        """A plain done stock move -- the building block of a correction."""
+        self.ensure_one()
+        move = self.env["stock.move"].sudo().create({
+            "description_picking": label,
+            "product_id": product.id, "product_uom": product.uom_id.id, "product_uom_qty": qty,
+            "location_id": source.id, "location_dest_id": destination.id,
+            "company_id": self.company_id.id, "origin": "%s / %s" % (self.shift_id.name, label),
+            "picked": True,
+            "move_line_ids": [(0, 0, {
+                "product_id": product.id, "product_uom_id": product.uom_id.id, "quantity": qty,
+                "location_id": source.id, "location_dest_id": destination.id,
+            })],
+        })
+        move._action_confirm()
+        move._action_done()
+        self.correction_move_ids |= move
+        return move
+
+    def _cst_correction_pull_back(self, rows):
+        """Hook: bring ``[(product, qty)]`` back from wherever the output was
+        sent on to (cst_kerama_wh_flow), before it is taken away here."""
+        return True
+
+    def _cst_correction_push(self, rows):
+        """Hook: send ``[(product, qty)]`` added by a correction on, the way
+        the original output went (cst_kerama_wh_flow)."""
+        return True
+
+    def _cst_apply_correction(self, d_good, d_second, d_scrap, second_product=None):
+        """Make stock agree with a corrected result: posting a counter-document
+        for every difference, never editing what is already done.
+
+        Final operation, order done: fewer pieces → back from the next
+        warehouse, then an unbuild of the order (pieces out, materials back);
+        more pieces → a small correction order that consumes materials in the
+        same proportion as the original. 2-sort and brak move between the
+        scrap location, the 2-sort product and the first-grade product.
+        Earlier operation: only the work order's produced count changes.
+        """
+        self.ensure_one()
+        mo, wo = self.production_id, self.workorder_id
+        uom = mo.product_uom_id
+        d_total = d_good + d_second + d_scrap
+        if not self.is_final_operation:
+            if wo.state != "cancel":
+                wo.sudo().qty_produced = max(wo.qty_produced + d_good + d_second, 0.0)
+            return
+        if mo.state != "done":
+            raise UserError(_(
+                "%s hali yakunlanmagan: natijani smena ichida o'zgartiring (yangi yozuv), tuzatish faqat "
+                "yakunlangan buyurtma uchun.", mo.name))
+        main = mo.product_id
+        twin = second_product or (self.entry_ids.filtered("second_product_id")[:1].second_product_id) \
+            or main.cst_get_or_create_second_grade()
+        stock = mo.location_dest_id
+        scrap_location = self._cst_scrap_location()
+        # 1. what goes down must first come back from the next warehouse
+        back = []
+        if uom.compare(d_good, 0.0) < 0:
+            back.append((main, -d_good))
+        if uom.compare(d_second, 0.0) < 0:
+            back.append((twin, -d_second))
+        if back:
+            self._cst_correction_pull_back(back)
+        # 2. less 2-sort: the 2-sort pieces go, first-grade ones come back from scrap
+        if uom.compare(d_second, 0.0) < 0:
+            self._cst_done_move(twin, -d_second, stock, scrap_location, _("2-sort tuzatish (qaytarish)"))
+            self._cst_done_move(main, -d_second, scrap_location, stock, _("2-sort tuzatish (1-sortga)"))
+        # 3. less brak: the pieces were not spoiled after all
+        if uom.compare(d_scrap, 0.0) < 0:
+            self._cst_done_move(main, -d_scrap, scrap_location, stock, _("Brak tuzatish (qaytarish)"))
+        # 4. more pieces in total: a correction order makes them
+        if uom.compare(d_total, 0.0) > 0:
+            self._cst_correction_order(d_total)
+        # 5. more brak / more 2-sort, the regular way
+        if uom.compare(d_scrap, 0.0) > 0:
+            self._scrap(mo, wo, d_scrap, self.department_id.scrap_reason_tag_id, _("Brak (tuzatish)"))
+        if uom.compare(d_second, 0.0) > 0:
+            self._regrade_second(mo, wo, d_second, twin)
+        # 6. fewer pieces in total: unbuild them, the materials go back
+        if uom.compare(d_total, 0.0) < 0:
+            self._cst_correction_unbuild(-d_total)
+        # 7. what was added goes on to the next warehouse
+        push = []
+        if uom.compare(d_good, 0.0) > 0:
+            push.append((main, d_good))
+        if uom.compare(d_second, 0.0) > 0:
+            push.append((twin, d_second))
+        if push:
+            self._cst_correction_push(push)
+
+    def _cst_correction_order(self, qty):
+        """``qty`` more pieces of the order's product, made by a small order
+        that eats the materials the original one ate per piece."""
+        self.ensure_one()
+        mo = self.production_id
+        produced = mo.qty_produced or mo.product_qty
+        materials = {}
+        for move in mo.move_raw_ids.filtered(lambda m: m.state == "done"):
+            used = move.product_uom._compute_quantity(move.quantity, move.product_id.uom_id)
+            materials[move.product_id.id] = materials.get(move.product_id.id, 0.0) + used * qty / produced
+        Production = self.env["mrp.production"].sudo().with_company(mo.company_id).with_context(
+            cst_flow_department_id=self.department_id.id, from_project_action=True)
+        fix = Production.create({
+            "product_id": mo.product_id.id, "product_qty": qty, "product_uom_id": mo.product_uom_id.id,
+            "bom_id": mo.bom_id.id, "company_id": mo.company_id.id,
+            "picking_type_id": mo.picking_type_id.id,
+            "location_src_id": mo.location_src_id.id, "location_dest_id": mo.location_dest_id.id,
+            "origin": _("Tuzatish: %(mo)s · %(shift)s", mo=mo.name, shift=self.shift_id.name),
+        })
+        self.env["cst.mo.builder"]._mo_apply_materials(
+            fix, [{"product_id": pid, "qty": q} for pid, q in materials.items() if q > 0])
+        fix.action_confirm()
+        fix.action_assign()
+        fix.qty_producing = qty
+        fix._set_qty_producing()
+        for move in fix.move_raw_ids:
+            move.quantity = move.product_uom_qty
+            move.picked = True
+        fix.with_context(skip_backorder=True, skip_consumption=True, skip_immediate=True,
+                         skip_redirection=True, cst_posting_output=True).button_mark_done()
+        if fix.state != "done":
+            raise UserError(_("Tuzatish buyurtmasi %s yakunlanmadi (xomashyo yetarlimi?).", fix.name))
+        moment = self.shift_id._cst_moment()
+        fix.write({"date_finished": moment})
+        self.correction_production_ids |= fix
+        fix.message_post(body=_("Smena natijasi tuzatildi: %(line)s, +%(qty)s dona.",
+                                line=self.shift_id.display_name, qty=qty))
+        return fix
+
+    def _cst_correction_unbuild(self, qty):
+        """Take ``qty`` pieces back out of the order: product out of stock,
+        its materials back where they came from."""
+        self.ensure_one()
+        mo = self.production_id
+        unbuild = self.env["mrp.unbuild"].sudo().create({
+            "product_id": mo.product_id.id, "bom_id": mo.bom_id.id, "mo_id": mo.id,
+            "product_qty": qty, "product_uom_id": mo.product_uom_id.id,
+            "location_id": mo.location_dest_id.id, "location_dest_id": mo.location_src_id.id,
+            "company_id": mo.company_id.id,
+        })
+        unbuild.action_unbuild()
+        self.unbuild_ids |= unbuild
+        return unbuild

@@ -42,7 +42,11 @@ class CstPayrollLine(models.Model):
     company_id = fields.Many2one(
         "res.company", required=True, index=True,
         default=lambda self: self.env.company)
-    currency_id = fields.Many2one(related="company_id.currency_id")
+    # Stored, so a line keeps the currency it was written in if the company's
+    # payroll currency is ever changed.
+    currency_id = fields.Many2one(
+        "res.currency", compute="_compute_currency_id", store=True, precompute=True,
+        readonly=True, string="Valyuta")
     amount = fields.Monetary(required=True, currency_field="currency_id")
     signed_amount = fields.Monetary(
         compute="_compute_signed_amount", store=True, currency_field="currency_id",
@@ -106,6 +110,12 @@ class CstPayrollLine(models.Model):
         "CHECK(amount != 0)",
         "A payroll line of zero has nothing to record.",
     )
+
+    @api.depends("company_id")
+    def _compute_currency_id(self):
+        for line in self:
+            if not line.currency_id or line.state == "draft":
+                line.currency_id = line.company_id._cst_payroll_currency() if line.company_id else False
 
     @api.depends("component_id")
     def _compute_is_official(self):
@@ -221,12 +231,19 @@ class CstPayrollLine(models.Model):
         # Employer cost: an expense owed to the state, never to the employee.
         return expense if side == "debit" else company.cst_employer_tax_account_id
 
-    def _move_line_vals(self, date=None):
+    def _move_line_vals(self, date=None, rate=None):
         """Journal items for these lines, aggregated per account + partner +
         component so the entry stays readable but the partner ledger stays exact.
 
-        An account pinned to another currency (the so'm till since the switch to
-        dollars) also gets that currency's amount, or Odoo refuses the entry."""
+        The lines are in the payroll currency (so'm); the books are in the
+        company currency (dollars).  ``rate`` is so'm per dollar — the period's
+        rate — and every item carries its so'm amount too, so the employee's
+        partner ledger in so'm matches this module to the tiyin.  An account
+        pinned to a third currency gets that currency's amount, or Odoo
+        refuses the entry."""
+        company = self.company_id[:1] or self.env.company
+        company_currency = company.currency_id
+        date = date or fields.Date.context_today(self)
         buckets = {}
         for line in self:
             debit_account = line._account_for("debit")
@@ -242,19 +259,29 @@ class CstPayrollLine(models.Model):
                             "%s has no work contact, so the payable line cannot "
                             "name a partner.  Set one on the employee form.",
                             line.employee_id.display_name))
-                key = (account.id, partner.id if partner else False, line.component_id.id)
+                key = (account.id, partner.id if partner else False, line.component_id.id,
+                       line.currency_id.id)
                 bucket = buckets.setdefault(key, {
                     "account": account,
                     "partner": partner,
                     "component": line.component_id,
-                    "balance": 0.0,
+                    "currency": line.currency_id or company_currency,
+                    "amount": 0.0,
                 })
-                bucket["balance"] += sign * line.amount
+                bucket["amount"] += sign * line.amount
 
         vals = []
         for bucket in buckets.values():
-            if self.env.company.currency_id.is_zero(bucket["balance"]):
+            currency = bucket["currency"]
+            amount = currency.round(bucket["amount"])
+            if currency.is_zero(amount):
                 continue
+            if currency == company_currency:
+                balance = amount
+            elif rate and currency == company._cst_payroll_currency():
+                balance = company_currency.round(amount / rate)
+            else:
+                balance = currency._convert(amount, company_currency, company, date)
             label = bucket["component"].name
             if bucket["partner"]:
                 label = f"{label} — {bucket['partner'].display_name}"
@@ -262,16 +289,26 @@ class CstPayrollLine(models.Model):
                 "account_id": bucket["account"].id,
                 "partner_id": bucket["partner"].id if bucket["partner"] else False,
                 "name": label,
-                "balance": bucket["balance"],
+                "balance": balance,
             }
-            company = self.company_id[:1] or self.env.company
             account_currency = bucket["account"].currency_id
-            if account_currency and account_currency != company.currency_id:
+            if account_currency and account_currency != company_currency:
                 line_vals["currency_id"] = account_currency.id
-                line_vals["amount_currency"] = company.currency_id._convert(
-                    bucket["balance"], account_currency, company, date or fields.Date.context_today(self))
-            vals.append((0, 0, line_vals))
-        return vals
+                line_vals["amount_currency"] = amount if account_currency == currency else \
+                    company_currency._convert(balance, account_currency, company, date)
+            elif currency != company_currency and not account_currency:
+                line_vals["currency_id"] = currency.id
+                line_vals["amount_currency"] = amount
+            vals.append(line_vals)
+
+        # Each item was converted on its own: the cents of rounding go to the
+        # biggest one, so the entry balances in dollars as well as in so'm.
+        if vals:
+            gap = company_currency.round(sum(v["balance"] for v in vals))
+            if not company_currency.is_zero(gap):
+                biggest = max(vals, key=lambda v: abs(v["balance"]))
+                biggest["balance"] = company_currency.round(biggest["balance"] - gap)
+        return [(0, 0, v) for v in vals]
 
     # ------------------------------------------------------------------
     # Balances

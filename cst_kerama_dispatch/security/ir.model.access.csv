@@ -6,3 +6,5 @@ access_dispatch_line_wh,dispatch line warehouse,model_cst_dispatch_line,group_di
 access_dispatch_line_gate,dispatch line gate,model_cst_dispatch_line,group_dispatch_gate,1,1,0,0
 access_dispatch_hr_department,dispatch hr department read (menu loading),hr.model_hr_department,group_dispatch_warehouse,1,0,0,0
 access_dispatch_hr_department_gate,dispatch hr department read gate (menu loading),hr.model_hr_department,group_dispatch_gate,1,0,0,0
+access_cst_picking_correction,picking correction wizard,model_cst_picking_correction,cst_kerama_shift.group_doc_correction,1,1,1,1
+access_cst_picking_correction_line,picking correction wizard line,model_cst_picking_correction_line,cst_kerama_shift.group_doc_correction,1,1,1,1

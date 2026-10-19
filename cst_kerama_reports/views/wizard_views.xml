@@ -121,7 +121,7 @@
                         <field name="date_from"/>
                         <field name="date_to"/>
                         <field name="warehouse_ids" widget="many2many_tags"
-                               options="{'no_create': True}"/>
+                               options="{'no_create': True}" placeholder="Hamma omborlar (bo'sh = hammasi)"/>
                     </group>
                     <group>
                         <field name="category_ids" widget="many2many_tags"

@@ -1,7 +1,7 @@
 import logging
 
-from odoo import _, fields, models
-from odoo.exceptions import UserError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -15,6 +15,31 @@ class MrpProduction(models.Model):
     cst_flow_picking_ids = fields.One2many(
         "stock.picking", "cst_production_id", string="Ombor ko'chirishlari")
     cst_flow_picking_count = fields.Integer(compute="_compute_cst_flow_picking_count")
+    # one plain-language stage instead of Odoo's state + an open transfer:
+    # the order is finished when the goods are made, and only «received»
+    # once they are booked into the next warehouse
+    cst_stage = fields.Selection([
+        ("draft", "Qoralama"),
+        ("queue", "Navbatda"),
+        ("progress", "Ishlab chiqarishda"),
+        ("finished", "Yakunlandi"),
+        ("received", "Omborga qabul qilindi"),
+        ("cancel", "Bekor qilindi"),
+    ], string="Bosqich", compute="_compute_cst_stage", store=True, index=True,
+        help="Ishlab chiqarishda → Yakunlandi (tayyor mahsulot chiqdi) → Omborga qabul qilindi "
+             "(keyingi omborga kirim qilindi).")
+
+    @api.depends("state", "cst_flow_picking_ids.state", "cst_flow_picking_ids.cst_flow_kind")
+    def _compute_cst_stage(self):
+        simple = {"draft": "draft", "confirmed": "queue", "progress": "progress",
+                  "to_close": "progress", "cancel": "cancel"}
+        for production in self:
+            if production.state != "done":
+                production.cst_stage = simple.get(production.state, "progress")
+                continue
+            waiting = production.cst_flow_picking_ids.filtered(
+                lambda p: p.cst_flow_kind == "output" and p.state not in ("done", "cancel"))
+            production.cst_stage = "finished" if waiting else "received"
 
     def _compute_cst_flow_picking_count(self):
         for production in self:
@@ -208,11 +233,60 @@ class MrpProduction(models.Model):
         })
         picking.action_confirm()
         picking.action_assign()
-        label = _("Xomashyo so'rovi") if kind == "supply" else _("Tayyor mahsulot yuborildi")
+        if kind == "supply":
+            label = _("Xomashyo so'rovi")
+        elif self._cst_receive_output(picking):
+            label = _("Tayyor mahsulot omborga qabul qilindi")
+        else:
+            label = _("Tayyor mahsulot yuborildi, omborda qabul kutilmoqda")
         self.message_post(body=_("%(label)s: %(picking)s (%(src)s → %(dst)s).", label=label,
                                  picking=picking._get_html_link(), src=location.display_name,
                                  dst=location_dest.display_name))
         return picking
+
+    @api.model
+    def _cst_validate_quietly(self, picking):
+        """Validate the reserved part of ``picking`` past the receiver rule; False
+        if it cannot be done (nothing reserved, a guard refuses) -- nothing changes then."""
+        if picking.state != "assigned":
+            return False
+        moves = picking.move_ids.filtered(lambda m: m.state not in ("done", "cancel"))
+        # what is reserved is physically there; a part that could not be
+        # reserved is no longer at the source and is dropped (no backorder)
+        if not any(move.product_uom.compare(move.quantity, 0.0) > 0 for move in moves):
+            return False
+        try:
+            with self.env.cr.savepoint():
+                missing = moves.filtered(lambda m: m.product_uom.compare(m.quantity, 0.0) <= 0)
+                if missing:
+                    missing._action_cancel()
+                for move in moves - missing:
+                    move.picked = True
+                picking.with_context(
+                    cst_skip_wh_control=True, skip_backorder=True, cancel_backorder=True,
+                    picking_ids_not_to_backorder=picking.ids, skip_sms=True,
+                ).button_validate()
+                if picking.state != "done":
+                    raise UserError(_("%s tasdiqlanmadi.", picking.name))
+        except (UserError, ValidationError) as error:
+            self.env.invalidate_all()
+            _logger.warning("wh_flow: %s not validated automatically: %s", picking.name, error)
+            return False
+        stamp = {}
+        now = fields.Datetime.now()
+        if "cst_received_at" in picking._fields:
+            stamp.update(cst_received_at=now, cst_received_by_id=self.env.uid)
+        if "cst_sent_at" in picking._fields and not picking.cst_sent_at:
+            stamp.update(cst_sent_at=now, cst_sent_by_id=self.env.uid)
+        if stamp:
+            picking.write(stamp)
+        return True
+
+    def _cst_receive_output(self, picking):
+        """Finished goods are booked into the next warehouse the moment the
+        order finishes -- nobody has to accept the transfer by hand. If the
+        stock is not there (the transfer could not reserve), it stays open."""
+        return self._cst_validate_quietly(picking)
 
     def action_cancel(self):
         # a cancelled order's raw-material requests are no longer wanted

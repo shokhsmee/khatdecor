@@ -11,6 +11,9 @@ class CstProductionShiftEntry(models.Model):
 
     line_id = fields.Many2one("cst.production.shift.line", string="Buyurtma", required=True, ondelete="cascade", index=True)
     shift_id = fields.Many2one(related="line_id.shift_id", store=True, index=True)
+    # results belong to the shift's day, whenever they were typed
+    shift_date = fields.Date(related="line_id.shift_id.date", store=True, string="Smena sanasi", index=True)
+    template_id = fields.Many2one(related="line_id.shift_id.template_id", store=True, string="Smena vaqti")
     department_id = fields.Many2one(related="line_id.department_id", store=True)
     production_id = fields.Many2one(related="line_id.production_id", store=True)
     product_id = fields.Many2one(related="line_id.product_id", store=True)
@@ -30,6 +33,8 @@ class CstProductionShiftEntry(models.Model):
     qty_material = fields.Float(string="Material braki", digits="Product Unit of Measure")
     note = fields.Char(string="Eslatma")
     posted = fields.Boolean(string="Omborga o'tgan", readonly=True, copy=False)
+    corrected = fields.Boolean(string="Tuzatilgan", readonly=True, copy=False)
+    correction_log = fields.Text(string="Tuzatishlar", readonly=True, copy=False)
 
     @api.constrains("qty_good", "qty_second", "qty_scrap", "qty_material", "material_product_id")
     def _check_positive(self):
@@ -60,9 +65,12 @@ class CstProductionShiftEntry(models.Model):
         return entries
 
     def write(self, vals):
+        if self.env.context.get("cst_correction"):
+            return super().write(vals)  # the «Tuzatish» wizard, stock already corrected
         if any(e.posted for e in self) and set(vals) & {"qty_good", "qty_second", "qty_scrap", "qty_material",
                                                              "second_product_id", "material_product_id", "line_id"}:
-            raise UserError(_("Omborga o'tgan natijani o'zgartirib bo'lmaydi. Yangi yozuv kiriting."))
+            raise UserError(_("Omborga o'tgan natijani o'zgartirib bo'lmaydi. Yangi yozuv kiriting "
+                              "yoki administrator «Tuzatish» qilsin."))
         return super().write(vals)
 
     def unlink(self):
@@ -70,3 +78,14 @@ class CstProductionShiftEntry(models.Model):
         if any(e.posted for e in self) and not self.env.context.get("cst_undo"):
             raise UserError(_("Omborga o'tgan natijani o'chirib bo'lmaydi."))
         return super().unlink()
+
+    def action_open_correction(self):
+        """«Tuzatish» on a booked result: new quantities and a reason."""
+        self.ensure_one()
+        if not self.env.user.has_group("cst_kerama_shift.group_doc_correction"):
+            raise UserError(_("Yakunlangan natijani faqat administrator yoki rahbar tuzatadi."))
+        return {
+            "type": "ir.actions.act_window", "name": _("Natijani tuzatish"),
+            "res_model": "cst.production.shift.correction", "view_mode": "form", "target": "new",
+            "context": {"default_entry_id": self.id},
+        }

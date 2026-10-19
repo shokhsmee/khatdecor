@@ -53,7 +53,7 @@ company, while *Bosh omborchi* and *Rahbar* get all of them.
     """,
     "author": "Khatdecor",
     "category": "Security",
-    "version": "19.0.1.4.0",
+    "version": "19.0.1.5.0",
     "depends": [
         "access_roles",
         "cst_kerama_kassa",
@@ -80,6 +80,11 @@ company, while *Bosh omborchi* and *Rahbar* get all of them.
         "cst_kerama_reports",
         "cst_kerama_shift",
         "muk_product",
+        "contacts",
+        "moizvonki_calls",
+        "project_todo",
+        "muk_ai",
+        "stock_barcode",
     ],
     "data": [
         "security/access_roles_acl.xml",

@@ -32,7 +32,7 @@ class CstPayrollEntryWizard(models.TransientModel):
         domain="[('company_id', '=', company_id)]")
     default_amount = fields.Monetary(
         string="Har biriga", currency_field="currency_id")
-    currency_id = fields.Many2one(related="company_id.currency_id")
+    currency_id = fields.Many2one(related="company_id.cst_payroll_currency_id")
 
     line_ids = fields.One2many(
         "cst.payroll.entry.wizard.line", "wizard_id", string="Qatorlar")

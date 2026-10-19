@@ -13,7 +13,7 @@ class StockPicking(models.Model):
     cst_unload_total = fields.Monetary(
         string="Jami", compute="_compute_cst_unload_total",
         currency_field="cst_currency_id")
-    cst_currency_id = fields.Many2one(related="company_id.currency_id")
+    cst_currency_id = fields.Many2one(related="company_id.cst_payroll_currency_id")
     cst_unload_visible = fields.Boolean(compute="_compute_cst_unload_visible")
 
     @api.depends("cst_unloader_ids.amount")

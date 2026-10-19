@@ -76,7 +76,7 @@ class CstPayrollReport(models.AbstractModel):
             companies.append({
                 "id": company.id,
                 "name": company.display_name,
-                "currency": company.currency_id.name,
+                "currency": company._cst_payroll_currency().name,
                 "rows": rows,
                 "totals": self._sum_rows(rows, accruals, deductions),
             })

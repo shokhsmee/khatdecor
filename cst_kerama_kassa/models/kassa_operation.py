@@ -61,8 +61,10 @@ class KassaOperation(models.Model):
         "res.partner.category", compute="_compute_partner_tag_ids", string="Allowed employee tags")
     partner_tag_warning = fields.Char(compute="_compute_partner_tag_ids", string="Tag warning")
     payroll_period_id = fields.Many2one(related="payroll_line_id.period_id", string="Payroll period")
+    employee_pay_currency_id = fields.Many2one(
+        related="company_id.cst_payroll_currency_id", string="Payroll currency")
     employee_balance = fields.Monetary(
-        compute="_compute_employee_balance", currency_field="company_currency_id",
+        compute="_compute_employee_balance", currency_field="employee_pay_currency_id",
         string="Salary balance", groups="cst_kerama_payroll.group_payroll_user",
         help="What the company still owes the employee (accrued - withheld). Negative: overdrawn.")
     amount = fields.Monetary(required=True, tracking=True, currency_field="currency_id")
@@ -615,6 +617,16 @@ class KassaOperation(models.Model):
         """
         self.ensure_one()
         component = self.env.ref("cst_kerama_payroll.component_avans_naqd")
+        company = self.company_id
+        pay_currency = company._cst_payroll_currency()
+        # the salary account is kept in so'm: the so'm handed out, as is; a
+        # dollar advance at the day's rate
+        if self.currency_id == pay_currency:
+            amount = self.amount
+        elif pay_currency == company.currency_id:
+            amount = self.amount_company
+        else:
+            amount = pay_currency.round(self.amount_company * company._cst_payroll_rate(self.date))
         period = self.env["cst.payroll.period"].sudo().search([
             ("company_id", "=", self.company_id.id),
             ("date_from", "<=", self.date),
@@ -627,7 +639,8 @@ class KassaOperation(models.Model):
             "company_id": self.company_id.id,
             "date": self.date,
             "period_id": period.id or False,
-            "amount": self.amount_company,
+            "amount": amount,
+            "currency_id": pay_currency.id,
             "name": _("Kassa advance %(name)s", name=self.name),
             "note": self.memo or False,
             "is_manual": True,

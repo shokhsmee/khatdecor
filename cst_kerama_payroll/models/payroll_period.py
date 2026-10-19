@@ -22,7 +22,15 @@ class CstPayrollPeriod(models.Model):
         help="Date of the journal entry.  Defaults to the last day of the period.")
     company_id = fields.Many2one(
         "res.company", required=True, default=lambda self: self.env.company)
-    currency_id = fields.Many2one(related="company_id.currency_id")
+    currency_id = fields.Many2one(
+        "res.currency", related="company_id.cst_payroll_currency_id", string="Oylik valyutasi")
+    company_currency_id = fields.Many2one(related="company_id.currency_id", string="Kompaniya valyutasi")
+    is_foreign_pay = fields.Boolean(compute="_compute_is_foreign_pay")
+    cst_rate = fields.Float(
+        string="Dollar kursi", digits=(16, 2), tracking=True,
+        compute="_compute_cst_rate", store=True, readonly=False, precompute=True,
+        help="1 dollar necha so'm: oylik provodkasi shu kurs bo'yicha dollarga o'tkaziladi. "
+             "Hisoblash sanasidagi kassa kursi olinadi; tasdiqlashdan oldin o'zgartirish mumkin.")
 
     state = fields.Selection(
         [
@@ -61,6 +69,19 @@ class CstPayrollPeriod(models.Model):
                 lines.filtered(lambda l: l.kind == "deduction").mapped("amount"))
             period.total_employer = sum(
                 lines.filtered(lambda l: l.kind == "employer").mapped("amount"))
+
+    @api.depends("currency_id", "company_currency_id")
+    def _compute_is_foreign_pay(self):
+        for period in self:
+            period.is_foreign_pay = bool(period.currency_id) and period.currency_id != period.company_currency_id
+
+    @api.depends("company_id", "date_to", "date_posted")
+    def _compute_cst_rate(self):
+        for period in self:
+            if period.state not in ("draft", "computed") and period.cst_rate:
+                continue
+            date = period.date_posted or period.date_to
+            period.cst_rate = period.company_id._cst_payroll_rate(date) if period.company_id and date else 0.0
 
     @api.onchange("date_to")
     def _onchange_date_to(self):
@@ -151,7 +172,7 @@ class CstPayrollPeriod(models.Model):
         """
         self.ensure_one()
         component = self._component("component_oylik")
-        currency = self.company_id.currency_id
+        currency = self.currency_id
         month_start = fields.Date.start_of(self.date_to, "month")
         month_end = fields.Date.end_of(self.date_to, "month")
         month_days = (month_end - month_start).days + 1
@@ -243,7 +264,7 @@ class CstPayrollPeriod(models.Model):
         """
         self.ensure_one()
         component = self._component("component_bonus_kpi")
-        currency = self.company_id.currency_id
+        currency = self.currency_id
         by_user = self._employee_by_user()
         accrued = self._kpi_accrued_source_ids(component, "sale.order")
 
@@ -376,7 +397,7 @@ class CstPayrollPeriod(models.Model):
         """
         self.ensure_one()
         component = self._component("component_ishbay")
-        currency = self.company_id.currency_id
+        currency = self.currency_id
         employees = self._employees()
         accrued = self._kpi_accrued_workorder_keys(component)
 
@@ -502,7 +523,7 @@ class CstPayrollPeriod(models.Model):
         """
         self.ensure_one()
         component = self._component("component_yuk_tushirish")
-        currency = self.company_id.currency_id
+        currency = self.currency_id
         employees = self._employees()
 
         unloaders = self.env["cst.picking.unloader"].search([
@@ -555,7 +576,7 @@ class CstPayrollPeriod(models.Model):
         by the employer — all on the official, taxable base only."""
         self.ensure_one()
         company = self.company_id
-        currency = company.currency_id
+        currency = self.currency_id
         rates = [
             ("component_soliq_jshds", company.cst_income_tax_rate),
             ("component_inps", company.cst_pension_rate),
@@ -610,12 +631,17 @@ class CstPayrollPeriod(models.Model):
             if not lines:
                 raise UserError(_("“%s” has nothing left to post.", period.name))
 
+            if period.is_foreign_pay and period.cst_rate <= 0:
+                raise UserError(_(
+                    "“%s”: dollar kursi kiritilmagan — oylikni dollarga o'tkazib bo'lmaydi.", period.name))
             move = period.env["account.move"].create({
                 "journal_id": journal.id,
                 "company_id": period.company_id.id,
                 "date": period.date_posted or period.date_to,
                 "ref": _("Payroll — %s", period.name),
-                "line_ids": lines._move_line_vals(period.date_posted or period.date_to),
+                "line_ids": lines._move_line_vals(
+                    period.date_posted or period.date_to,
+                    rate=period.cst_rate if period.is_foreign_pay else None),
             })
             move.action_post()
             lines.write({"state": "posted", "move_id": move.id})

@@ -23,6 +23,14 @@ class IrUiMenu(models.Model):
                 keep.add(menu.id)
         return frozenset(visible) & keep
 
+    def _load_menus_blacklist(self):
+        """hr counts the user's managed departments here as the user. The
+        read access on hr.department for internal users was switched off by
+        hand, so menu loading crashed for everyone outside HR and the browser
+        fell back to its stored (possibly another user's) app list. Run the
+        check with sudo — it only decides whether «Bo'limlar» is shown."""
+        return super(IrUiMenu, self.sudo())._load_menus_blacklist()
+
     @api.model
     def load_menus(self, debug):
         """Cache the menu tree per user again.

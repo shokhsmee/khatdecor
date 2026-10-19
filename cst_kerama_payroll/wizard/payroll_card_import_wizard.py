@@ -36,7 +36,7 @@ class CstPayrollCardImportWizard(models.TransientModel):
         default="upload", required=True)
     company_id = fields.Many2one(
         "res.company", required=True, default=lambda self: self.env.company)
-    currency_id = fields.Many2one(related="company_id.currency_id")
+    currency_id = fields.Many2one(related="company_id.cst_payroll_currency_id")
     component_id = fields.Many2one(
         "cst.payroll.component", string="Qaysi ustunga", required=True,
         domain="[('kind', '=', 'deduction')]",

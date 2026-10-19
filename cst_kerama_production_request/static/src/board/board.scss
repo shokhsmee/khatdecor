@@ -1,0 +1,166 @@
+/* Ishlab chiqarish zayafkalari — after the shop's mock: white cards on a warm
+   plane, teal actions, pill tabs, a sticky bar for what is ticked. */
+.o_cpr {
+    --cpr-plane: #f4f3ef;
+    --cpr-card: #ffffff;
+    --cpr-ink: #1e1d1a;
+    --cpr-ink-2: #55534d;
+    --cpr-muted: #8b887f;
+    --cpr-border: rgba(20, 20, 20, .11);
+    --cpr-primary: #17715f;
+    --cpr-primary-ink: #ffffff;
+    --cpr-primary-wash: #e3f1ec;
+    --cpr-sent: #3b5bcc;
+    --cpr-sent-wash: #e5eafb;
+    --cpr-progress: #2f7d6b;
+    --cpr-progress-wash: #dff0ea;
+    --cpr-done: #2a8a3e;
+    --cpr-done-wash: #e2f3e2;
+    --cpr-warn: #b06f00;
+    --cpr-warn-wash: #fbf0d8;
+    --cpr-bad: #c2332a;
+    --cpr-bad-wash: #fbe4e1;
+    --cpr-urgent-wash: #fff6e8;
+    --cpr-select-wash: #eef6f3;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    background: var(--cpr-plane);
+    color: var(--cpr-ink);
+    font-size: 13px;
+    * { box-sizing: border-box; }
+}
+.o_cpr.o_cpr_dark {
+    --cpr-plane: #171715; --cpr-card: #201f1c; --cpr-ink: #ecebe4; --cpr-ink-2: #c4c1b7; --cpr-muted: #8f8c82;
+    --cpr-border: rgba(255, 255, 255, .11); --cpr-primary: #2fa58b; --cpr-primary-wash: #1d332d;
+    --cpr-sent: #8ea6ff; --cpr-sent-wash: #252c45; --cpr-progress: #6cc7b0; --cpr-progress-wash: #1f3530;
+    --cpr-done: #7ad08a; --cpr-done-wash: #213423; --cpr-warn: #e6b04a; --cpr-warn-wash: #3a2f17;
+    --cpr-bad: #ff8a80; --cpr-bad-wash: #3d2220; --cpr-urgent-wash: #2e2717; --cpr-select-wash: #1f2c28;
+}
+.o_cpr_scroll { flex: 1 1 auto; overflow: auto; padding: 20px 24px 12px; }
+.o_cpr_muted { color: var(--cpr-muted); }
+.o_cpr .small { font-size: 11.5px; }
+
+.o_cpr_head {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px;
+    h1 { font-size: 22px; font-weight: 700; margin: 0 0 2px; color: var(--cpr-ink); }
+    p { margin: 0; color: var(--cpr-ink-2); }
+}
+.o_cpr_head_btns { display: flex; gap: 8px; flex-shrink: 0; }
+
+.o_cpr_btn {
+    border: 1px solid transparent; border-radius: 8px; padding: 9px 16px; font-weight: 600; font-size: 13px;
+    cursor: pointer; line-height: 1.2; white-space: nowrap;
+    &:disabled { opacity: .45; cursor: not-allowed; }
+}
+.o_cpr_btn--primary { background: var(--cpr-primary); color: var(--cpr-primary-ink); }
+.o_cpr_btn--secondary { background: var(--cpr-primary-wash); color: var(--cpr-primary); border-color: var(--cpr-primary); }
+.o_cpr_btn--ghost { background: var(--cpr-card); color: var(--cpr-ink-2); border-color: var(--cpr-border); }
+
+.o_cpr_depts {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 16px;
+}
+.o_cpr_dept {
+    background: var(--cpr-card); border: 1px solid var(--cpr-border); border-radius: 10px; padding: 12px 14px;
+    cursor: pointer; min-height: 86px;
+    &:hover { border-color: var(--cpr-primary); }
+    &.is-active { border-color: var(--cpr-primary); box-shadow: 0 0 0 2px var(--cpr-primary-wash); }
+}
+.o_cpr_dept_name { font-weight: 700; margin-bottom: 2px; }
+.o_cpr_chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+
+.o_cpr_tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.o_cpr_tab {
+    background: var(--cpr-card); border: 1px solid var(--cpr-border); color: var(--cpr-ink); border-radius: 999px;
+    padding: 9px 16px; font-weight: 500; cursor: pointer;
+    .n { margin-left: 4px; font-weight: 700; }
+    &.is-active { background: var(--cpr-primary); border-color: var(--cpr-primary); color: var(--cpr-primary-ink); }
+}
+
+.o_cpr_filters {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px;
+    label { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--cpr-ink-2); }
+    .form-select { width: auto; min-width: 130px; }
+}
+.o_cpr_check input { width: 16px; height: 16px; accent-color: var(--cpr-primary); }
+.o_cpr_search { flex: 1 1 220px; min-width: 200px; }
+
+.o_cpr_table_wrap { background: var(--cpr-card); border: 1px solid var(--cpr-border); border-radius: 10px; overflow: auto; }
+.o_cpr_table {
+    width: 100%; border-collapse: collapse;
+    th {
+        position: sticky; top: 0; z-index: 1; background: var(--cpr-card); text-align: left; font-weight: 600;
+        color: var(--cpr-ink-2); padding: 10px 8px; border-bottom: 1px solid var(--cpr-border); white-space: nowrap;
+    }
+    td { padding: 8px 8px; border-bottom: 1px solid var(--cpr-border); vertical-align: middle; }
+    .num { text-align: right; white-space: nowrap; }
+    .c_chk { width: 34px; }
+    .c_chk input, .c_mid input { width: 17px; height: 17px; accent-color: var(--cpr-primary); }
+    .c_mid { text-align: center; }
+    .c_product { min-width: 170px; }
+    .c_bom { min-width: 140px; .form-select { max-width: 190px; } }
+    .c_partner { min-width: 110px; }
+    .c_state { white-space: nowrap; }
+    tr.is-urgent > td { background: var(--cpr-urgent-wash); }
+    tr.is-selected > td { background: var(--cpr-select-wash); }
+    a { color: var(--cpr-primary); }
+}
+.o_cpr_prod { font-weight: 500; }
+.o_cpr_short { color: var(--cpr-bad); }
+.o_cpr_qty { width: 84px; background: var(--cpr-plane); }
+.o_cpr_kind {
+    display: inline-block; border: 1px solid var(--cpr-border); border-radius: 5px; padding: 1px 7px; font-size: 12px;
+}
+.o_cpr_empty { text-align: center; color: var(--cpr-muted); padding: 28px !important; }
+.o_cpr_icon {
+    border: 0; background: transparent; color: var(--cpr-bad); padding: 2px 6px; margin-left: 4px; cursor: pointer;
+}
+
+.o_cpr_state {
+    display: inline-block; border-radius: 999px; padding: 2px 9px; font-size: 12px; font-weight: 500;
+    background: var(--cpr-plane); color: var(--cpr-ink-2);
+}
+.o_cpr_state--need { background: var(--cpr-warn-wash); color: var(--cpr-warn); }
+.o_cpr_state--sent { background: var(--cpr-sent-wash); color: var(--cpr-sent); }
+.o_cpr_state--progress { background: var(--cpr-progress-wash); color: var(--cpr-progress); }
+.o_cpr_state--done { background: var(--cpr-done-wash); color: var(--cpr-done); }
+.o_cpr_state--released { background: var(--cpr-plane); color: var(--cpr-muted); }
+
+.o_cpr_mat {
+    display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--cpr-border); border-radius: 7px;
+    background: var(--cpr-card); color: var(--cpr-ink); padding: 4px 10px; font-size: 12.5px; white-space: nowrap;
+    cursor: pointer;
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cpr-muted); display: inline-block; }
+}
+button.o_cpr_mat { border-color: var(--cpr-primary); }
+.o_cpr_mat--ok .dot { background: var(--cpr-done); }
+.o_cpr_mat--move .dot, .o_cpr_mat--requested .dot { background: var(--cpr-warn); }
+.o_cpr_mat--short .dot, .o_cpr_mat--none .dot { background: var(--cpr-bad); }
+.o_cpr_mat--na { border-color: var(--cpr-border) !important; color: var(--cpr-muted); }
+
+.o_cpr_detail > td { background: var(--cpr-plane); }
+.o_cpr_mtable {
+    width: 100%; border-collapse: collapse; background: var(--cpr-card); border-radius: 8px;
+    th, td { padding: 5px 8px; border-bottom: 1px solid var(--cpr-border); position: static; }
+    .num { text-align: right; }
+}
+
+.o_cpr_bar {
+    flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin: 0 24px 16px; padding: 12px 16px; background: var(--cpr-card); border: 1px solid var(--cpr-primary);
+    border-radius: 10px;
+    label { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--cpr-ink-2); }
+    .form-select { width: auto; min-width: 170px; }
+}
+.o_cpr_bar_right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+    .o_cpr_scroll { padding: 14px 12px 8px; }
+    .o_cpr_head { flex-direction: column; }
+    .o_cpr_depts { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .o_cpr_dept { min-height: 0; padding: 8px 10px; }
+    .o_cpr_bar { margin: 0 12px 12px; padding: 8px 10px; gap: 6px; }
+    .o_cpr_bar_right { gap: 6px; .o_cpr_btn { padding: 8px 10px; } }
+}

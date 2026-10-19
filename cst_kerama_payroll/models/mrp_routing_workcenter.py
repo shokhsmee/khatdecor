@@ -20,9 +20,10 @@ class MrpRoutingWorkcenter(models.Model):
         "res.currency", compute="_compute_cst_currency_id", string="Currency")
 
     @api.depends("company_id")
+    @api.depends_context("company")
     def _compute_cst_currency_id(self):
         # A BOM shared across companies has no company_id, and a Monetary with
         # no currency renders blank — fall back to the company in context.
-        fallback = self.env.company.currency_id
+        # The piece rate is paid with the salary — in the payroll currency.
         for operation in self:
-            operation.cst_currency_id = operation.company_id.currency_id or fallback
+            operation.cst_currency_id = (operation.company_id or self.env.company)._cst_payroll_currency()

@@ -19,9 +19,9 @@ class ProductProduct(models.Model):
         help="Belgilansa, shu variant uchun pastdagi stavka qo'llanadi (nol bo'lsa ham). "
              "Belgilanmasa, mahsulotning umumiy stavkasi olinadi.")
     cst_kpi_rate_variant = fields.Monetary(
-        string="Sotuv KPI (shu variant uchun)", currency_field="currency_id")
+        string="Sotuv KPI (shu variant uchun)", currency_field="cst_pay_currency_id")
     cst_kpi_rate_effective = fields.Monetary(
-        string="Amaldagi sotuv KPI", currency_field="currency_id",
+        string="Amaldagi sotuv KPI", currency_field="cst_pay_currency_id",
         compute="_compute_cst_kpi_rate_effective", store=True,
         help="Hisoblashda ishlatiladigan stavka: variantniki (belgilangan bo'lsa) yoki "
              "mahsulotning umumiy stavkasi.")

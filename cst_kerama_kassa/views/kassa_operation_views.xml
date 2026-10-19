@@ -110,6 +110,7 @@
 
                     <group invisible="operation_type != 'employee_advance' or not employee_id" string="Payroll">
                         <group>
+                            <field name="employee_pay_currency_id" invisible="1"/>
                             <field name="employee_balance" groups="cst_kerama_payroll.group_payroll_user"/>
                             <field name="payroll_period_id" invisible="not payroll_line_id"/>
                             <field name="payroll_line_id" invisible="not payroll_line_id"

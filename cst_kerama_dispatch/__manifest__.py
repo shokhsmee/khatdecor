@@ -19,7 +19,7 @@ A dedicated access role «Jo'natish (ombor va eshik)» sees this app only.
     """,
     "author": "Khatdecor",
     "category": "Inventory",
-    "version": "19.0.1.4.0",
+    "version": "19.0.1.6.0",
     "depends": [
         "sale_stock",
         "hr",
@@ -28,6 +28,7 @@ A dedicated access role «Jo'natish (ombor va eshik)» sees this app only.
         "cst_kerama_roles",
         "cst_kerama_sale_receipt",
         "cst_kerama_variants",
+        "cst_kerama_shift",
     ],
     "data": [
         "security/security.xml",
@@ -35,6 +36,7 @@ A dedicated access role «Jo'natish (ombor va eshik)» sees this app only.
         "data/sequence.xml",
         "views/dispatch_views.xml",
         "views/waybill_templates.xml",
+        "views/picking_correction_views.xml",
         "data/role_data.xml",
     ],
     "assets": {

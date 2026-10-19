@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="tasnif_first" model="cst.product.tasnif">
+        <field name="name">1-sort</field><field name="code">1S</field><field name="sequence">10</field>
+    </record>
+    <record id="tasnif_second" model="cst.product.tasnif">
+        <field name="name">2-sort</field><field name="code">2S</field><field name="sequence">20</field>
+    </record>
+    <record id="tasnif_defect" model="cst.product.tasnif">
+        <field name="name">Brak (nuqsonli)</field><field name="code">BRAK</field><field name="sequence">30</field>
+    </record>
+</odoo>

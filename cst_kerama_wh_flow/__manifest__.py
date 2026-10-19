@@ -27,7 +27,7 @@ Omborlar zanjiri (2026-09-28 sxemasi)::
     """,
     "author": "Khatdecor",
     "category": "Inventory/Inventory",
-    "version": "19.0.1.3.0",
+    "version": "19.0.1.5.0",
     "depends": ["cst_kerama_shift", "cst_kerama_wh_control", "cst_kerama_shopfloor",
                 "cst_kerama_sale_production", "sale_stock", "purchase_stock"],
     "data": [

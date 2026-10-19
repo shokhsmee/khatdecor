@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_request_list" model="ir.ui.view">
+        <field name="name">cst.production.request.list</field>
+        <field name="model">cst.production.request</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-danger="urgent and state in ('sent', 'progress')" decoration-muted="state == 'cancel'">
+                <field name="name"/>
+                <field name="create_date" string="Sana" widget="date"/>
+                <field name="kind"/>
+                <field name="partner_id"/>
+                <field name="sale_order_id"/>
+                <field name="product_id"/>
+                <field name="bom_id" optional="show"/>
+                <field name="department_id"/>
+                <field name="qty" sum="Jami"/>
+                <field name="qty_produced" optional="show"/>
+                <field name="uom_id" optional="hide"/>
+                <field name="urgent" widget="boolean_toggle" readonly="1"/>
+                <field name="production_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'sent'" decoration-warning="state == 'progress'"
+                       decoration-success="state in ('done', 'released')"/>
+                <field name="create_uid" string="Kim yaratdi" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_production_request_form" model="ir.ui.view">
+        <field name="name">cst.production.request.form</field>
+        <field name="model">cst.production.request</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="sent,progress,done,released"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_production" type="object" class="oe_stat_button" icon="fa-industry"
+                                invisible="not production_ids">
+                            <field name="production_id" widget="statinfo" string="Buyurtma"/>
+                        </button>
+                    </div>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="kind"/>
+                            <field name="sale_order_id" invisible="kind != 'order'"/>
+                            <field name="partner_id" invisible="kind != 'order'"/>
+                            <field name="product_id"/>
+                            <field name="bom_id"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="qty"/>
+                            <field name="qty_produced"/>
+                            <field name="demand_qty" invisible="kind != 'order'"/>
+                            <field name="stock_qty" invisible="kind != 'order'"/>
+                            <field name="short_qty" invisible="kind != 'order'"/>
+                            <field name="urgent" readonly="1"/>
+                            <field name="released_date" invisible="not released"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="released" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="production_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="product_qty"/>
+                            <field name="qty_produced"/>
+                            <field name="cst_stage" widget="badge"/>
+                        </list>
+                    </field>
+                    <field name="note" placeholder="Izoh..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_production_request_search" model="ir.ui.view">
+        <field name="name">cst.production.request.search</field>
+        <field name="model">cst.production.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="sale_order_id"/>
+                <field name="product_id"/>
+                <field name="department_id"/>
+                <filter name="open" string="Ochiq" domain="[('state', 'in', ('sent', 'progress', 'done'))]"/>
+                <filter name="urgent" string="Tezkor" domain="[('urgent', '=', True)]"/>
+                <separator/>
+                <filter name="order" string="Zakaz" domain="[('kind', '=', 'order')]"/>
+                <filter name="stock" string="Ombor to'ldirish" domain="[('kind', '=', 'stock')]"/>
+                <separator/>
+                <filter name="by_state" string="Holat" context="{'group_by': 'state'}"/>
+                <filter name="by_department" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                <filter name="by_partner" string="Mijoz" context="{'group_by': 'partner_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_production_requests" model="ir.actions.act_window">
+        <field name="name">Zayafkalar ro'yxati</field>
+        <field name="res_model">cst.production.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+    </record>
+
+    <record id="action_production_request_board" model="ir.actions.client">
+        <field name="name">Ishlab chiqarish zayafkalari</field>
+        <field name="tag">cst_production_request_board</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- the order shows which request it came from -->
+    <record id="view_mrp_production_form_cst_request" model="ir.ui.view">
+        <field name="name">mrp.production.form.cst.request</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin'][not(ancestor::field)]" position="after">
+                <field name="cst_request_id" invisible="not cst_request_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

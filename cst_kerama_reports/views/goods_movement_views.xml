@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_goods_movement_wizard_form" model="ir.ui.view">
+        <field name="name">cst.goods.movement.wizard.form</field>
+        <field name="model">cst.goods.movement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tovar harakati">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Hamma omborlar (bo'sh = hammasi)"/>
+                        <field name="together"/>
+                    </group>
+                    <group>
+                        <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="hide_zero"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <p class="text-muted">Har mahsulot bo'yicha: boshlang'ich qoldiq, kirim (xarid, ishlab chiqarishdan,
+                    ko'chirish, boshqa), chiqim (sotuv, ishlab chiqarishga, ko'chirish, spisaniya) va oxirgi qoldiq.</p>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_xlsx" type="object" string="Excel" class="btn-secondary" icon="fa-file-excel-o"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_goods_movement_report" model="ir.actions.act_window">
+        <field name="name">Tovar harakati</field>
+        <field name="res_model">cst.goods.movement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_reports_goods_movement"
+              name="Tovar harakati (Товарнинг ҳаракати)"
+              parent="menu_reports_stock"
+              action="action_goods_movement_report"
+              sequence="5"/>
+</odoo>

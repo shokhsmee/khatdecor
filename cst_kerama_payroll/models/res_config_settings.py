@@ -4,6 +4,8 @@ from odoo import fields, models
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
+    cst_payroll_currency_id = fields.Many2one(
+        related="company_id.cst_payroll_currency_id", readonly=False)
     cst_payroll_journal_id = fields.Many2one(
         related="company_id.cst_payroll_journal_id", readonly=False)
     cst_salary_payable_account_id = fields.Many2one(

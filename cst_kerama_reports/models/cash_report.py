@@ -543,10 +543,22 @@ class CstDirectorDashboard(models.AbstractModel):
         Line = self.env["cst.payroll.line"].sudo()
         base = [("company_id", "in", companies.ids), ("state", "in", ("confirmed", "posted")),
                 ("kind", "in", ("accrual", "deduction"))]
-        owed = sum(Line.search(base).mapped("signed_amount"))
-        accrued = Line._read_group(
-            base + [("kind", "=", "accrual"), ("date", ">=", month_start)],
-            aggregates=["amount:sum"])[0][0] or 0.0
+        today = fields.Date.context_today(self)
+
+        def in_company_currency(domain, field):
+            # salaries are kept in so'm, the dashboard reads dollars: at today's payroll rate
+            total = 0.0
+            for company, currency, amount in Line._read_group(
+                    domain, groupby=["company_id", "currency_id"], aggregates=[f"{field}:sum"]):
+                if currency and currency != company.currency_id:
+                    rate = company._cst_payroll_rate(today) if hasattr(company, "_cst_payroll_rate") else 0.0
+                    amount = amount / rate if rate else currency._convert(
+                        amount, company.currency_id, company, today)
+                total += amount
+            return total
+
+        owed = in_company_currency(base, "signed_amount")
+        accrued = in_company_currency(base + [("kind", "=", "accrual"), ("date", ">=", month_start)], "amount")
         return {"owed": owed, "month_accrued": accrued}
 
     @api.model

@@ -68,13 +68,19 @@
                             <field name="date_from"/>
                             <field name="date_to"/>
                             <field name="date_posted"/>
+                            <field name="is_foreign_pay" invisible="1"/>
+                            <label for="cst_rate" invisible="not is_foreign_pay"/>
+                            <div class="o_row" invisible="not is_foreign_pay">
+                                <span>1 <field name="company_currency_id" class="oe_inline" readonly="1" options="{'no_open': True}"/> =</span>
+                                <field name="cst_rate" class="oe_inline" readonly="state not in ('draft', 'computed')"/>
+                                <field name="currency_id" class="oe_inline" readonly="1" options="{'no_open': True}"/>
+                            </div>
                         </group>
                         <group>
                             <field name="employee_count"/>
                             <field name="total_accrued"/>
                             <field name="total_deducted"/>
                             <field name="total_employer"/>
-                            <field name="currency_id" invisible="1"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="cst_kerama_production_request.Board">
+    <div class="o_action o_cpr" t-att-class="{ o_cpr_dark: dark }">
+        <div class="o_cpr_scroll">
+            <!-- header -->
+            <div class="o_cpr_head">
+                <div>
+                    <h1>Ishlab chiqarish zayafkalari</h1>
+                    <p>Boshlang'ich filtr: yetmaydigan va hali berilmagan zakazlar. «Hammasi» tabi butun jarayonni ko'rsatadi.</p>
+                </div>
+                <div class="o_cpr_head_btns">
+                    <button type="button" class="o_cpr_btn o_cpr_btn--ghost" t-on-click="() => this.load()" title="Yangilash">
+                        <i t-attf-class="fa fa-refresh {{ state.loading ? 'fa-spin' : '' }}"/>
+                    </button>
+                    <button type="button" class="o_cpr_btn o_cpr_btn--primary" t-on-click="openStockRequest">
+                        <i class="fa fa-plus me-1"/>Ombor to'ldirish zayafkasi
+                    </button>
+                </div>
+            </div>
+
+            <div t-if="state.error" class="alert alert-danger" t-esc="state.error"/>
+
+            <!-- departments -->
+            <div class="o_cpr_depts">
+                <div t-foreach="state.departments" t-as="dep" t-key="dep.id" class="o_cpr_dept"
+                     t-att-class="{ 'is-active': isDept(dep) }" t-on-click="() => this.pickDepartment(dep)">
+                    <div class="o_cpr_dept_name" t-esc="dep.name"/>
+                    <div class="o_cpr_muted"><t t-esc="dep.count"/> zayafka<t t-if="dep.warehouse"> · <t t-esc="dep.warehouse"/></t></div>
+                    <div class="o_cpr_chips">
+                        <span t-foreach="dep.chips" t-as="chip" t-key="chip.state" t-attf-class="o_cpr_state o_cpr_state--{{ chip.state }}">
+                            <t t-esc="chip.label"/> <t t-esc="chip.count"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tabs -->
+            <div class="o_cpr_tabs">
+                <button t-foreach="tabs" t-as="tab" t-key="tab.id" type="button" class="o_cpr_tab"
+                        t-att-class="{ 'is-active': state.tab === tab.id }" t-on-click="() => this.setTab(tab.id)">
+                    <t t-esc="tab.label"/> <span class="n" t-esc="tabCount(tab.id)"/>
+                </button>
+            </div>
+
+            <!-- filters -->
+            <div class="o_cpr_filters">
+                <label>Tur
+                    <select class="form-select" t-model="state.kind">
+                        <option value="all">Hammasi</option>
+                        <option value="order">Zakaz</option>
+                        <option value="stock">Ombor to'ldirish</option>
+                    </select>
+                </label>
+                <label>Bo'lim
+                    <select class="form-select" t-model="state.departmentId">
+                        <option value="">Barcha bo'limlar</option>
+                        <option t-foreach="state.departments" t-as="dep" t-key="dep.id" t-att-value="dep.id" t-esc="dep.name"/>
+                    </select>
+                </label>
+                <label class="o_cpr_check"><input type="checkbox" t-model="state.onlyShort"/> Faqat yetmaydi</label>
+                <label class="o_cpr_check"><input type="checkbox" t-model="state.withoutBom"/> Texkartasizlar ham</label>
+                <label>Ustuvorlik
+                    <select class="form-select" t-model="state.priority">
+                        <option value="all">Hammasi</option>
+                        <option value="urgent">Tezkor</option>
+                        <option value="normal">Oddiy</option>
+                    </select>
+                </label>
+                <input type="search" class="form-control o_cpr_search" placeholder="Mijoz, SO, mahsulot..." t-model="state.search"/>
+            </div>
+
+            <!-- table -->
+            <div class="o_cpr_table_wrap">
+                <table class="o_cpr_table">
+                    <thead>
+                        <tr>
+                            <th class="c_chk"><input type="checkbox" t-att-checked="allChecked" t-on-change="toggleAll"/></th>
+                            <th>Tur</th>
+                            <th>Mijoz</th>
+                            <th>SO</th>
+                            <th>Mahsulot</th>
+                            <th>Tex karta</th>
+                            <th class="num">Zakaz</th>
+                            <th class="num">Qoldiq</th>
+                            <th class="num">Yetmaydi</th>
+                            <th>Zayafka soni</th>
+                            <th class="c_mid">Tezkor</th>
+                            <th>Xomashyo</th>
+                            <th>Holat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="visibleRows" t-as="row" t-key="row.key">
+                            <tr t-att-class="{ 'is-selected': state.selected[row.key], 'is-urgent': row.urgent }">
+                                <td class="c_chk">
+                                    <input type="checkbox" t-att-checked="!!state.selected[row.key]" t-att-disabled="!isSelectable(row)"
+                                           t-on-change="() => this.toggle(row)"/>
+                                </td>
+                                <td><span class="o_cpr_kind" t-esc="row.kind_label"/></td>
+                                <td class="c_partner">
+                                    <t t-esc="row.partner or '—'"/>
+                                    <div t-if="row.request" class="o_cpr_muted small" t-esc="row.request"/>
+                                </td>
+                                <td>
+                                    <a t-if="row.order_id" href="#" t-on-click.prevent="() => this.openRecord('sale.order', row.order_id)" t-esc="row.order"/>
+                                    <span t-else="" class="o_cpr_muted">—</span>
+                                    <div class="o_cpr_muted small" t-esc="row.date"/>
+                                </td>
+                                <td class="c_product">
+                                    <div class="o_cpr_prod" t-esc="row.product"/>
+                                    <div t-if="row.characteristic" class="o_cpr_muted small" t-esc="row.characteristic"/>
+                                </td>
+                                <td class="c_bom">
+                                    <t t-if="!row.boms.length"><span class="o_cpr_muted">Texkarta yo'q</span></t>
+                                    <select t-elif="row.type === 'need' and row.boms.length > 1" class="form-select form-select-sm"
+                                            t-on-change="(ev) => this.onBom(row, ev)">
+                                        <option t-foreach="row.boms" t-as="bom" t-key="bom.id" t-att-value="bom.id"
+                                                t-att-selected="bom.id === row.bom_id" t-esc="bom.name"/>
+                                    </select>
+                                    <span t-else="" t-esc="bomOf(row) and bomOf(row).name"/>
+                                    <div t-if="row.boms.length" class="o_cpr_muted small">→ <t t-esc="departmentLabel(row)"/></div>
+                                </td>
+                                <td class="num" t-esc="num(row.ordered)"/>
+                                <td class="num" t-esc="num(row.stock)"/>
+                                <td class="num">
+                                    <b t-att-class="{ 'o_cpr_short': row.short > 0 }" t-esc="num(row.short)"/>
+                                    <div t-if="row.type === 'need' and row.in_production > 0" class="o_cpr_muted small" title="Shu qator uchun ishlab chiqarishda">
+                                        +<t t-esc="num(row.in_production)"/> i/ch
+                                    </div>
+                                </td>
+                                <td>
+                                    <input t-if="row.type === 'need'" type="number" min="0" step="any" class="form-control form-control-sm o_cpr_qty"
+                                           t-att-value="row.qty" t-att-disabled="!row.boms.length" t-on-input="(ev) => this.onQty(row, ev)"/>
+                                    <t t-else="">
+                                        <b t-esc="num(row.qty)"/>
+                                        <div t-if="row.produced" class="o_cpr_muted small">chiqdi <t t-esc="num(row.produced)"/></div>
+                                    </t>
+                                </td>
+                                <td class="c_mid">
+                                    <input type="checkbox" t-att-checked="row.urgent"
+                                           t-att-disabled="row.type === 'request' and !['sent', 'progress'].includes(row.state)"
+                                           t-on-change="(ev) => this.onUrgent(row, ev)"/>
+                                </td>
+                                <td>
+                                    <button type="button" t-att-class="materialClass(row)" t-on-click="() => this.toggleExpand(row)"
+                                            t-att-title="row.material.pickings or ''">
+                                        <i class="dot"/><t t-esc="row.material.label"/>
+                                    </button>
+                                </td>
+                                <td class="c_state">
+                                    <span t-att-class="stateClass(row)" t-esc="row.state_label"/>
+                                    <div t-if="row.stage_note" class="o_cpr_muted small" t-esc="row.stage_note"/>
+                                    <div t-if="row.mos and row.mos.length" class="small">
+                                        <t t-foreach="row.mos" t-as="mo" t-key="mo.id">
+                                            <a href="#" t-on-click.prevent="() => this.openRecord('mrp.production', mo.id)" t-esc="mo.name"/>
+                                            <t t-if="!mo_last">, </t>
+                                        </t>
+                                    </div>
+                                    <button t-if="row.can_cancel" type="button" class="o_cpr_icon" title="Zayafkani bekor qilish"
+                                            t-on-click="() => this.cancelRequest(row)"><i class="fa fa-trash"/></button>
+                                </td>
+                            </tr>
+                            <tr t-if="state.expanded === row.key" class="o_cpr_detail">
+                                <td colspan="13">
+                                    <t t-if="row.material.materials and row.material.materials.length">
+                                        <div class="o_cpr_muted small mb-1">
+                                            Bo'lim ombori: <b t-esc="row.material.warehouse or '—'"/>
+                                            <t t-if="row.material.supply"> · xomashyo omborlari: <t t-esc="row.material.supply"/></t>
+                                            · <t t-esc="num(row.qty || 1)"/> dona uchun
+                                        </div>
+                                        <table class="o_cpr_mtable">
+                                            <thead><tr><th>Xomashyo</th><th class="num">Kerak</th><th class="num">Bo'lim omborida</th><th class="num">Boshqa omborlarda</th><th>Holat</th></tr></thead>
+                                            <tbody>
+                                                <tr t-foreach="row.material.materials" t-as="m" t-key="m.id">
+                                                    <td><t t-esc="m.product"/><span t-if="m.characteristic" class="o_cpr_muted"> — <t t-esc="m.characteristic"/></span></td>
+                                                    <td class="num"><t t-esc="num(m.need)"/> <t t-esc="m.uom"/></td>
+                                                    <td class="num" t-esc="num(m.free)"/>
+                                                    <td class="num" t-esc="num(m.supply)"/>
+                                                    <td><span t-attf-class="o_cpr_mat o_cpr_mat--{{ m.status }}"><i class="dot"/><t t-esc="m.label"/></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                    <div t-elif="row.type === 'request'" class="o_cpr_muted small">
+                                        Buyurtmaning xomashyosi ishlab chiqarish buyurtmasida band qilingan<t t-if="row.material.pickings"> · ko'chirish: <t t-esc="row.material.pickings"/></t>.
+                                    </div>
+                                    <div t-else="" class="o_cpr_muted small">Xomashyo ro'yxati yo'q.</div>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr t-if="!visibleRows.length and !state.loading">
+                            <td colspan="13" class="o_cpr_empty">Bu filtr bo'yicha qator yo'q</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- bottom bar -->
+        <div class="o_cpr_bar">
+            <div>Tanlandi: <b t-esc="selectedRows.length"/> qator · jami <b t-esc="selectedQty"/> dona</div>
+            <div class="o_cpr_bar_right">
+                <label>Bo'limga
+                    <select class="form-select" t-att-value="state.target" t-on-change="onTarget">
+                        <option value="">Texkarta bo'yicha</option>
+                        <option t-foreach="state.departments" t-as="dep" t-key="dep.id" t-att-value="dep.id" t-esc="dep.name"/>
+                    </select>
+                </label>
+                <button type="button" class="o_cpr_btn o_cpr_btn--primary" t-att-disabled="!toCreate.length or state.busy" t-on-click="createRequests">
+                    Zayafka yaratish<t t-if="toCreate.length"> (<t t-esc="toCreate.length"/>)</t>
+                </button>
+                <button type="button" class="o_cpr_btn o_cpr_btn--secondary" t-att-disabled="!toRelease.length or state.busy" t-on-click="releaseSelected">
+                    Sotuvga chiqarish<t t-if="toRelease.length"> (<t t-esc="toRelease.length"/>)</t>
+                </button>
+            </div>
+        </div>
+    </div>
+</t>
+
+</templates>

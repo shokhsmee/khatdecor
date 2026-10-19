@@ -14,6 +14,7 @@
                 <tr><td class="bold">Xaridor</td><td class="right" t-esc="partner.name"/></tr>
                 <tr t-if="partner_phone"><td class="bold">Tel.</td><td class="right" t-esc="partner_phone"/></tr>
                 <tr t-if="dispatch.warehouse_id"><td class="bold">Ombor</td><td class="right" t-esc="dispatch.warehouse_id.name"/></tr>
+                <tr><td class="bold">Reys</td><td class="right bold"><t t-esc="dispatch.trip_no"/><t t-if="dispatch.trip_mode == 'partial'"> (qisman)</t><t t-else=""> (oxirgi)</t></td></tr>
                 <tr t-if="dispatch.car_model"><td class="bold">Mashina</td><td class="right" t-esc="dispatch.car_model"/></tr>
                 <tr t-if="dispatch.car_number"><td class="bold">Raqami</td><td class="right bold" style="white-space:nowrap" t-esc="dispatch.car_number"/></tr>
                 <tr t-if="dispatch.driver"><td class="bold">Haydovchi</td><td class="right" t-esc="dispatch.driver"/></tr>
@@ -107,7 +108,7 @@
                         </tr>
                         <tr>
                             <td class="k">Telefon</td><td t-esc="partner_phone"/>
-                            <td class="k">Ombor</td><td t-esc="dispatch.warehouse_id.name or ''"/>
+                            <td class="k">Ombor</td><td><t t-esc="dispatch.warehouse_id.name or ''"/> · Reys <b t-esc="dispatch.trip_no"/><t t-if="dispatch.trip_mode == 'partial'"> (qisman)</t><t t-else=""> (oxirgi)</t></td>
                         </tr>
                         <tr>
                             <td class="k">Mashina</td><td><t t-esc="dispatch.car_model or ''"/> <b style="white-space:nowrap" t-esc="dispatch.car_number or ''"/></td>

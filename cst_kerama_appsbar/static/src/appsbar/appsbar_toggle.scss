@@ -3,6 +3,12 @@
     .mk_apps_sidebar {
         height: auto;
         min-height: calc(100% - 34px);
+        // MuK spreads the children with space-between; with the toggle as a
+        // third child a short app list was pushed down to the bottom
+        justify-content: flex-start;
+        .mk_apps_sidebar_logo {
+            margin-top: auto;
+        }
     }
     .mk_apps_sidebar_toggle {
         display: flex;

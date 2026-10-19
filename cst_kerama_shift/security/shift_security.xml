@@ -26,6 +26,18 @@
         <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
     </record>
 
+    <!-- «Tuzatish»: done shift results and done internal transfers. Administrator
+         (base.group_system) and the Rahbar role (linked in cst_kerama_dispatch). -->
+    <record id="group_doc_correction" model="res.groups">
+        <field name="name">Yakunlangan hujjatlarni tuzatish</field>
+        <field name="privilege_id" ref="privilege_shift"/>
+        <field name="implied_ids" eval="[(4, ref('group_shift_admin'))]"/>
+        <field name="comment">Bajarilgan ichki ko'chirish va yakunlangan smena natijasini sabab bilan tuzatadi (ombor qarshi hujjat bilan tuzatiladi).</field>
+    </record>
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_doc_correction'))]"/>
+    </record>
+
     <data noupdate="1">
         <record id="rule_shift_manager" model="ir.rule">
             <field name="name">Smena: menejer o'z bo'limini ko'radi</field>

@@ -36,3 +36,4 @@ access_utility_statement_wizard_account,cst.utility.statement.wizard.account,mod
 access_utility_statement_wizard_invoice,cst.utility.statement.wizard.invoice,model_cst_utility_statement_wizard,account.group_account_invoice,1,1,1,1
 access_card_payments_wizard_payroll,cst.card.payments.wizard.payroll,model_cst_card_payments_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1
 access_bank_fee_wizard_account,cst.bank.fee.wizard.account,model_cst_bank_fee_wizard,account.group_account_readonly,1,1,1,1
+access_goods_movement_wizard_stock,cst.goods.movement.wizard.stock,model_cst_goods_movement_wizard,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_request_salesman,request salesman,model_cst_production_request,sales_team.group_sale_salesman,1,1,1,0
+access_request_mrp_user,request mrp user,model_cst_production_request,mrp.group_mrp_user,1,1,1,0
+access_request_mrp_manager,request mrp manager,model_cst_production_request,mrp.group_mrp_manager,1,1,1,1

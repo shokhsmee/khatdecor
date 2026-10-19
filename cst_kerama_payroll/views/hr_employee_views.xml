@@ -21,6 +21,9 @@
 
             <!-- Versions have no form view of their own in Odoo 19; their
                  fields are edited here, beside Wage in HR Settings. -->
+            <xpath expr="//div[@name='wage']" position="inside">
+                <field name="cst_pay_currency_id" invisible="1"/>
+            </xpath>
             <xpath expr="//div[@name='wage']" position="after">
                 <label for="cst_salary_scheme"/>
                 <div class="o_row" name="cst_salary_scheme">

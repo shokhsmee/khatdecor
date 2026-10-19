@@ -23,13 +23,22 @@ class CstProductionShiftClose(models.TransientModel):
     line_ids = fields.One2many("cst.production.shift.close.line", "wizard_id", string="Xodimlar")
     note = fields.Text(string="Izoh")
     summary_html = fields.Html(compute="_compute_summary", sanitize=False)
+    can_edit_kpi = fields.Boolean(compute="_compute_can_edit_kpi")
+
+    @api.depends_context("uid")
+    def _compute_can_edit_kpi(self):
+        value = self.env["cst.production.shift.worker"]._can_edit_kpi()
+        for wizard in self:
+            wizard.can_edit_kpi = value
 
     @api.model
     def default_get(self, fields_list):
         values = super().default_get(fields_list)
         shift = self.env["cst.production.shift"].browse(values.get("shift_id") or self.env.context.get("default_shift_id"))
         if shift:
-            values.setdefault("kpi_total", shift.kpi_total)
+            # KPI is HR's: a manager closes with whatever HR already put in (usually 0)
+            values["kpi_total"] = shift.kpi_total if not self.env["cst.production.shift.worker"]._can_edit_kpi() \
+                else values.get("kpi_total", shift.kpi_total)
             values.setdefault("penalty_total", shift.penalty_total)
             values["line_ids"] = [(0, 0, v) for v in self._employee_lines(
                 shift, values["kpi_total"] or 0.0, values["penalty_total"] or 0.0)]
@@ -43,6 +52,8 @@ class CstProductionShiftClose(models.TransientModel):
         kpi_share = currency.round(kpi_total / n) if n else 0.0
         penalty_share = currency.round(penalty_total / n) if n else 0.0
         Productivity = self.env["mrp.workcenter.productivity"].sudo()
+        # a reopened shift: the KPI HR already gave each person stays theirs
+        kept = {w.employee_id.id: w.kpi_amount for w in shift.worker_ids.sudo()}
         rows = []
         for i, employee in enumerate(employees):
             lines = shift.line_ids.filtered(lambda l, e=employee: e in l.employee_ids)
@@ -52,6 +63,8 @@ class CstProductionShiftClose(models.TransientModel):
             ]).mapped("duration"))
             # the rounding remainder lands on the last worker so the shares add up
             kpi = kpi_share if i < n - 1 else currency.round(kpi_total - kpi_share * (n - 1))
+            if kept and not self.env["cst.production.shift.worker"]._can_edit_kpi():
+                kpi = kept.get(employee.id, 0.0)
             penalty = penalty_share if i < n - 1 else currency.round(penalty_total - penalty_share * (n - 1))
             rows.append({
                 "employee_id": employee.id,
@@ -71,7 +84,8 @@ class CstProductionShiftClose(models.TransientModel):
     def _compute_summary(self):
         for wizard in self:
             rows = []
-            for line in wizard.shift_id.line_ids:
+            lines = wizard.shift_id.line_ids
+            for line in lines:
                 rows.append(
                     "<tr><td>%s</td><td class='text-muted'>%s</td><td class='text-end'>%g</td>"
                     "<td class='text-end fw-bold'>%g</td><td class='text-end'>%g</td>"
@@ -82,8 +96,13 @@ class CstProductionShiftClose(models.TransientModel):
             wizard.summary_html = (
                 "<table class='table table-sm mb-0'><thead><tr><th>Mahsulot</th><th>Liniya</th>"
                 "<th class='text-end'>Reja</th><th class='text-end'>1-sort</th><th class='text-end'>2-sort</th>"
-                "<th class='text-end'>Brak</th><th>Holat</th></tr></thead><tbody>%s</tbody></table>"
-                % ("".join(rows) or "<tr><td colspan='7' class='text-muted'>Buyurtma yo'q</td></tr>"))
+                "<th class='text-end'>Brak</th><th>Holat</th></tr></thead><tbody>%s</tbody>"
+                "<tfoot><tr class='fw-bold border-top'><td>Jami</td><td></td><td class='text-end'>%g</td>"
+                "<td class='text-end'>%g</td><td class='text-end'>%g</td><td class='text-end text-danger'>%g</td>"
+                "<td></td></tr></tfoot></table>"
+                % ("".join(rows) or "<tr><td colspan='7' class='text-muted'>Buyurtma yo'q</td></tr>",
+                   sum(lines.mapped("planned_qty")), sum(lines.mapped("qty_good")),
+                   sum(lines.mapped("qty_second")), sum(lines.mapped("qty_scrap"))))
 
     @api.onchange("kpi_total", "penalty_total")
     def _onchange_totals(self):
@@ -105,6 +124,9 @@ class CstProductionShiftClose(models.TransientModel):
         currency = shift.currency_id
         if not self.line_ids:
             raise UserError(_("Smenada xodim yo'q. Avval xodimlarni belgilang."))
+        if not self.can_edit_kpi:
+            # the KPI fields are read-only for the manager; whatever came back is HR's
+            self.kpi_total = sum(self.line_ids.mapped("kpi_amount"))
         # a manager who typed the totals and never touched the rows meant an equal split
         untouched_kpi = currency.is_zero(sum(self.line_ids.mapped("kpi_amount"))) and not currency.is_zero(self.kpi_total)
         untouched_penalty = currency.is_zero(sum(self.line_ids.mapped("penalty_amount"))) and not currency.is_zero(self.penalty_total or 0.0)

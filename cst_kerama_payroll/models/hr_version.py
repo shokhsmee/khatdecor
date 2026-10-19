@@ -8,6 +8,11 @@ class HrVersion(models.Model):
 
     _inherit = "hr.version"
 
+    # The wage is agreed in so'm whatever currency the books are kept in.
+    cst_pay_currency_id = fields.Many2one(
+        "res.currency", related="company_id.cst_payroll_currency_id", string="Oylik valyutasi")
+    wage = fields.Monetary(currency_field="cst_pay_currency_id")
+
     cst_salary_scheme = fields.Selection(
         [
             ("fixed", "Salary only"),
@@ -19,7 +24,7 @@ class HrVersion(models.Model):
         help="Salary only — a fixed monthly wage.  KPI only — paid per action "
              "(piece rate, sales, unloading).  Salary + KPI — both.")
     cst_official_wage = fields.Monetary(
-        string="Official Wage", tracking=True, groups="hr.group_hr_manager",
+        string="Official Wage", tracking=True, currency_field="cst_pay_currency_id", groups="hr.group_hr_manager",
         help="The declared part of the monthly wage.  Income tax, pension and "
              "social tax are computed on this amount; the remainder is booked "
              "to the cash expense account and is not taxed.")

@@ -30,7 +30,7 @@ top of the same lines in the following phases.
     """,
     "author": "Khatdecor",
     "category": "Human Resources",
-    "version": "19.0.1.2.0",
+    "version": "19.0.1.3.0",
     "depends": ["hr", "account", "sale", "mrp", "mrp_workorder", "stock"],
     "data": [
         "security/payroll_groups.xml",

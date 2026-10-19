@@ -224,3 +224,101 @@ class MinMaxController(http.Controller):
                         r += 1
         book.close()
         return stream.getvalue()
+
+
+class GoodsMovementController(http.Controller):
+    """«Tovar harakati» as a workbook: same rows and columns as the screen."""
+
+    @http.route("/cst_reports/goods_movement/xlsx/<int:wizard_id>", type="http", auth="user", methods=["GET"])
+    def goods_movement_xlsx(self, wizard_id, **kwargs):
+        if not request.env.user.has_group("stock.group_stock_user"):
+            raise AccessError(_("Ombor hisobotini o'qishga ruxsatingiz yo'q."))
+        wizard = request.env["cst.goods.movement.wizard"].browse(wizard_id).exists()
+        if not wizard:
+            raise MissingError(_("Hisobot parametrlari topilmadi — qaytadan oching."))
+        content = self._build_workbook(wizard._report_values())
+        return request.make_response(content, headers=[
+            ("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+            ("Content-Disposition", content_disposition(
+                "tovar_harakati_%s_%s.xlsx" % (wizard.date_from, wizard.date_to))),
+        ])
+
+    def _build_workbook(self, values):
+        import xlsxwriter
+
+        stream = io.BytesIO()
+        book = xlsxwriter.Workbook(stream, {"in_memory": True})
+        sheet = book.add_worksheet("Tovar harakati")
+        base = {"font_size": 9, "border": 1, "valign": "vcenter"}
+        number = "# ##0.###;-# ##0.###;"
+        f_title = book.add_format({"bold": True, "font_size": 12, "align": "center"})
+        f_head = book.add_format({**base, "bold": True, "align": "center", "text_wrap": True, "bg_color": "#D9D9D9"})
+        f_text = book.add_format(base)
+        f_num = book.add_format({**base, "num_format": number})
+        levels = {
+            "block": ("#D7F0D7", True), "group": ("#FFF2CC", True), "leaf": ("#FDF6E3", True), "row": (None, False)}
+        fmt = {}
+        for level, (colour, bold) in levels.items():
+            extra = {"bg_color": colour} if colour else {}
+            fmt[level] = (book.add_format({**base, **extra, "bold": bold}),
+                          book.add_format({**base, **extra, "bold": bold, "num_format": number}))
+        engine = values["wizard"].env["cst.warehouse.report"]
+        columns = values["columns"]
+
+        first_num = 4
+        n_in, n_out = len(columns["in"]), len(columns["out"])
+        last = first_num + 1 + n_in + 1 + n_out + 1
+        sheet.merge_range(0, 0, 0, last, values["title"], f_title)
+        sheet.write(1, 0, "%s — %s" % (values["date_from"].strftime("%d.%m.%Y"),
+                                       values["date_to"].strftime("%d.%m.%Y")), f_text)
+        for col, (name, width) in enumerate([("№", 5), ("Mahsulot", 42), ("Xarakteristika", 18), ("O'lchov", 8)]):
+            sheet.set_column(col, col, width)
+            sheet.merge_range(3, col, 4, col, name, f_head)
+        sheet.set_column(first_num, last, 12)
+        sheet.merge_range(3, first_num, 4, first_num, "Boshlang'ich qoldiq", f_head)
+        c = first_num + 1
+        sheet.merge_range(3, c, 3, c + n_in, "Kirim", f_head)
+        for i, (_key, label) in enumerate(columns["in"]):
+            sheet.write(4, c + i, label, f_head)
+        sheet.write(4, c + n_in, "Jami kirim", f_head)
+        c += n_in + 1
+        sheet.merge_range(3, c, 3, c + n_out, "Chiqim", f_head)
+        for i, (_key, label) in enumerate(columns["out"]):
+            sheet.write(4, c + i, label, f_head)
+        sheet.write(4, c + n_out, "Jami chiqim", f_head)
+        sheet.merge_range(3, last, 4, last, "Oxirgi qoldiq", f_head)
+        sheet.freeze_panes(5, 2)
+
+        def numbers(r, t, f):
+            cells = [t["opening"]] + [t["flows"][k] for k, _l in columns["in"]] + [t["in_total"]] \
+                + [t["flows"][k] for k, _l in columns["out"]] + [t["out_total"], t["closing"]]
+            for i, v in enumerate(cells):
+                sheet.write_number(r, first_num + i, v or 0.0, f)
+
+        def heading(r, label, t, level):
+            f_t, f_n = fmt[level]
+            sheet.merge_range(r, 0, r, first_num - 1, label, f_t)
+            numbers(r, t, f_n)
+
+        r = 5
+        for block in values["data"]["blocks"]:
+            heading(r, "%s (%d ta mahsulot)" % (block["label"], block["count"]), block["totals"], "block")
+            r += 1
+            for g in block["groups"]:
+                heading(r, engine.category_label(g["category"]), g["totals"], "group")
+                r += 1
+                for leaf in g["leaves"]:
+                    if leaf["category"] != g["category"]:
+                        heading(r, leaf["category"].name or "", leaf["totals"], "leaf")
+                        r += 1
+                    for i, row in enumerate(leaf["products"], 1):
+                        sheet.write_number(r, 0, i, f_text)
+                        sheet.write(r, 1, engine.product_label(row["product"]), f_text)
+                        sheet.write(r, 2, row["characteristic"] or "", f_text)
+                        sheet.write(r, 3, row["uom"] or "", f_text)
+                        numbers(r, row, f_num)
+                        r += 1
+        if len(values["data"]["blocks"]) > 1:
+            heading(r, "Jami", values["data"]["totals"], "block")
+        book.close()
+        return stream.getvalue()

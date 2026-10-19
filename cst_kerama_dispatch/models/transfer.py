@@ -307,6 +307,10 @@ class CstTransferUi(models.AbstractModel):
             "received_at": self._when(receipt.cst_received_at or p.cst_received_at),
             "receipt_name": receipt.name or "",
             "can_cancel": status == "new" and p.company_id.id in self._cids(),
+            # «Tuzatish»: administrator / rahbar on a done transfer
+            "can_correct": bool(self.env.user.has_group("cst_kerama_shift.group_doc_correction")
+                                and p._cst_correctable()),
+            "corrections": [line for line in (p.cst_correction_log or "").splitlines() if line.strip()],
         })
         return data
 

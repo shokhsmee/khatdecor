@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- KPI per worker: HR's list, also reachable from the shift form -->
+    <record id="view_shift_worker_list" model="ir.ui.view">
+        <field name="name">cst.production.shift.worker.list</field>
+        <field name="model">cst.production.shift.worker</field>
+        <field name="arch" type="xml">
+            <list string="Smena KPI" editable="bottom" create="false" delete="false">
+                <field name="currency_id" column_invisible="1"/>
+                <field name="can_edit" column_invisible="1"/>
+                <field name="shift_date" readonly="1"/>
+                <field name="department_id" readonly="1" options="{'no_open': True}"/>
+                <field name="template_id" readonly="1" options="{'no_open': True}"/>
+                <field name="shift_id" readonly="1" optional="hide" options="{'no_open': True}"/>
+                <field name="employee_name" readonly="1"/>
+                <field name="worked" readonly="1"/>
+                <field name="qty_good" readonly="1" sum="Jami"/>
+                <field name="kpi_suggested" readonly="1" sum="Jami" optional="show"/>
+                <field name="kpi_amount" sum="Jami" readonly="not can_edit"/>
+                <field name="penalty_amount" sum="Jami" readonly="not can_edit"/>
+                <field name="note" optional="show" readonly="not can_edit"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_shift_worker_search" model="ir.ui.view">
+        <field name="name">cst.production.shift.worker.search</field>
+        <field name="model">cst.production.shift.worker</field>
+        <field name="arch" type="xml">
+            <search string="Smena KPI">
+                <field name="employee_name"/>
+                <field name="department_id"/>
+                <field name="shift_id"/>
+                <filter name="no_kpi" string="KPI kiritilmagan" domain="[('kpi_amount', '=', 0)]"/>
+                <filter name="this_month" string="Shu oy" domain="[('shift_date', '>=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter name="shift_date" string="Smena sanasi" date="shift_date"/>
+                <group>
+                    <filter name="group_shift" string="Smena" context="{'group_by': 'shift_id'}"/>
+                    <filter name="group_department" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_employee" string="Xodim" context="{'group_by': 'employee_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_shift_workers" model="ir.actions.act_window">
+        <field name="name">Smena KPI</field>
+        <field name="res_model">cst.production.shift.worker</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_shift_worker_search"/>
+        <field name="domain">[('shift_state', '=', 'closed')]</field>
+        <field name="context">{'search_default_this_month': 1, 'search_default_group_shift': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Yopilgan smena yo'q</p>
+            <p>Smena yopilganda uning xodimlari shu yerda chiqadi: har biriga qilgan ishiga qarab KPI yozing.
+               KPI oylikka va ishlab chiqarilgan mahsulot tannarxiga o'tadi.</p>
+        </field>
+    </record>
+
+    <!-- KPI rates: what one 1-sort piece earns -->
+    <record id="view_kpi_rate_list" model="ir.ui.view">
+        <field name="name">cst.shift.kpi.rate.list</field>
+        <field name="model">cst.shift.kpi.rate</field>
+        <field name="arch" type="xml">
+            <list string="KPI stavkalari" editable="bottom">
+                <field name="currency_id" column_invisible="1"/>
+                <field name="department_id" options="{'no_create': True}"/>
+                <field name="workcenter_id" options="{'no_create': True}"/>
+                <field name="product_tmpl_id" options="{'no_create': True}"/>
+                <field name="categ_id" options="{'no_create': True}"/>
+                <field name="rate"/>
+                <field name="date_from"/>
+                <field name="note" optional="show"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_kpi_rates" model="ir.actions.act_window">
+        <field name="name">KPI stavkalari</field>
+        <field name="res_model">cst.shift.kpi.rate</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Stavka hali yo'q</p>
+            <p>1 dona 1-sort uchun KPI: bo'lim, liniya, mahsulot yoki kategoriya bo'yicha. Eng aniq stavka
+               ishlatiladi (mahsulot+liniya → mahsulot → kategoriya+liniya → kategoriya → liniya → bo'lim).
+               Bu faqat HR uchun taklif: «Stavkadan to'ldirish» tugmasi xodim ulushi × stavkani yozadi.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_shift_kpi_rates" name="KPI stavkalari" parent="menu_shift_config" action="action_kpi_rates" sequence="30"/>
+    <menuitem id="menu_shift_workers" name="Smena KPI" parent="menu_shift_root" action="action_shift_workers" sequence="35"/>
+    <menuitem id="menu_hr_shift_kpi" name="Smena KPI" parent="hr.menu_hr_root" action="action_shift_workers" sequence="44"
+              groups="hr.group_hr_user"/>
+    <menuitem id="menu_hr_shift_kpi_rates" name="Smena KPI stavkalari" parent="hr.menu_hr_root" action="action_kpi_rates" sequence="46"
+              groups="hr.group_hr_user"/>
+
+    <record id="ir_cron_kpi_cost" model="ir.cron">
+        <field name="name">Smena: KPI'ni mahsulot tannarxiga o'tkazish</field>
+        <field name="model_id" ref="model_cst_production_shift"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_post_kpi_cost()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="active" eval="True"/>
+    </record>
+
+    <data noupdate="1">
+        <record id="product_kpi_cost" model="product.product">
+            <field name="name">Smena KPI (ish haqi, tannarxga)</field>
+            <field name="type">service</field>
+            <field name="landed_cost_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="list_price">0</field>
+        </record>
+    </data>
+</odoo>

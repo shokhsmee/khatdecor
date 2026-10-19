@@ -302,6 +302,10 @@
                     <div t-if="t.status === 'sent' and !t.can_receive" class="o_cst_tr_hint mt-2">
                         <t t-esc="t.receiver"/> qabul qilishini kutmoqda.
                     </div>
+                    <div t-if="t.corrections and t.corrections.length" class="mt-2">
+                        <div class="fw-bold">Tuzatishlar</div>
+                        <div t-foreach="t.corrections" t-as="c" t-key="c_index" class="o_cst_tr_muted small" t-esc="c"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -317,6 +321,9 @@
             </t>
             <button t-if="receiving" class="btn o_cst_tr_btn_primary o_cst_tr_btn_lg o_cst_tr_btn_xl" t-att-disabled="state.busy" t-on-click="receive">
                 Qabul qilish
+            </button>
+            <button t-if="t.can_correct" class="btn btn-warning o_cst_tr_btn_lg" t-att-disabled="state.busy" t-on-click="openCorrection">
+                <i class="fa fa-pencil-square-o me-1"/>Tuzatish
             </button>
         </div>
     </t>

@@ -184,7 +184,7 @@
                         <field name="date_to"/>
                     </group>
                     <group>
-                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Hamma omborlar (bo'sh = hammasi)"/>
                         <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
                     </group>
                 </group>
@@ -215,7 +215,7 @@
                         <field name="date_to"/>
                     </group>
                     <group>
-                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Hamma omborlar (bo'sh = hammasi)"/>
                         <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
                     </group>
                 </group>
@@ -276,7 +276,7 @@
                     <group>
                         <field name="date_from"/>
                         <field name="date_to"/>
-                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Hamma omborlar (bo'sh = hammasi)"/>
                     </group>
                     <group>
                         <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
@@ -308,7 +308,7 @@
             <form string="Min-max bo'yicha qoldiqlar">
                 <group>
                     <group>
-                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Hamma omborlar (bo'sh = hammasi)"/>
                         <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
                     </group>
                     <group>

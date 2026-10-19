@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cst_product_tasnif_list" model="ir.ui.view">
+        <field name="name">cst.product.tasnif.list</field>
+        <field name="model">cst.product.tasnif</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_cst_product_tasnif" model="ir.actions.act_window">
+        <field name="name">Mahsulot tasniflari</field>
+        <field name="res_model">cst.product.tasnif</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+    <menuitem id="menu_cst_product_tasnif" name="Mahsulot tasniflari"
+              parent="sale.menu_sale_config" action="action_cst_product_tasnif" sequence="40"/>
+
+    <record id="product_template_form_tasnif" model="ir.ui.view">
+        <field name="name">product.template.form.tasnif</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="cst_tasnif_id" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_tasnif" model="ir.ui.view">
+        <field name="name">sale.order.form.tasnif</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="before">
+                <field name="cst_tasnif_id" optional="show" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

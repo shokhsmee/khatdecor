@@ -34,6 +34,9 @@ class CstProductionFactReport(models.AbstractModel):
                       hour=23, minute=59, second=59))]
         if product_ids:
             domain.append(("product_id", "in", product_ids))
+        if self.env.context.get("cst_fact_skip_mo_ids"):
+            # counted elsewhere (cst_kerama_shift: shift results, by shift date)
+            domain.append(("id", "not in", self.env.context["cst_fact_skip_mo_ids"]))
         orders = self.env["mrp.production"].sudo().search(domain)
         result = []
         for company in companies:
@@ -85,7 +88,10 @@ class CstProductionFactReport(models.AbstractModel):
                 second += qty
             else:
                 scrap += qty
-        return {"quantity": max(produced - second - scrap, 0.0), "second": second, "scrap": scrap}
+        # pieces taken back out of the order (unbuild) were not made after all
+        unbuilt = sum(u.product_uom_id._compute_quantity(u.product_qty, uom)
+                      for u in mo.unbuild_ids.filtered(lambda u: u.state == "done"))
+        return {"quantity": max(produced - second - scrap - unbuilt, 0.0), "second": second, "scrap": scrap}
 
 
 class CstAssetReport(models.AbstractModel):
@@ -308,7 +314,7 @@ class CstCardPaymentsReport(models.AbstractModel):
         for r in rows:
             per_employee[r["employee"]] += r["amount"]
         return {"rows": rows, "total": sum(r["amount"] for r in rows),
-                "currency": companies[:1].currency_id,
+                "currency": companies[:1]._cst_payroll_currency(),
                 "by_employee": sorted(({"employee": e, "amount": a} for e, a in per_employee.items()),
                                       key=lambda r: -r["amount"])}
 

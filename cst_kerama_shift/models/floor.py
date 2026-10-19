@@ -59,6 +59,13 @@ class CstProductionFloor(models.AbstractModel):
         return datetime.now(self._tz(department)).date()
 
     @api.model
+    def _work_day(self, department):
+        """The day the screen is about: the open shift's date (a 2-smena of the
+        15th still running on the 16th is the 15th), else today."""
+        shift = department.open_shift_id
+        return shift.date if shift else self._today(department)
+
+    @api.model
     def _can_manage(self, department):
         user = self.env.user
         return user.has_group("cst_kerama_shift.group_shift_admin") or user in department.manager_user_ids
@@ -95,7 +102,7 @@ class CstProductionFloor(models.AbstractModel):
                 "open_shift_label": d.open_shift_label or "",
                 "queue": d.queue_count, "late": d.late_count, "today": d.today_count, "tomorrow": d.tomorrow_count,
                 "running": d.running_count, "today_good": d.today_good, "today_scrap": d.today_scrap,
-                "employees": d.employee_count,
+                "employees": d.employee_count, "day_label": d.work_day_label,
                 "bars": graph[0]["values"] if graph else [],
                 "bars_max": max([v["value"] for v in graph[0]["values"]] + [1]) if graph else 1,
             })
@@ -104,7 +111,7 @@ class CstProductionFloor(models.AbstractModel):
     @api.model
     def get_department_data(self, department_id):
         department = self._department(department_id)
-        today = self._today(department)
+        today = self._work_day(department)
         Shift = self.env["cst.production.shift"]
         shifts_today = Shift.search([("department_id", "=", department.id), ("date", "=", today),
                                      ("state", "!=", "cancel")])
@@ -133,6 +140,7 @@ class CstProductionFloor(models.AbstractModel):
                 "id": department.id, "name": department.name, "code": department.code,
                 "output_kind": dict(department._fields["output_kind"].selection)[department.output_kind],
                 "today": fields.Date.to_string(today), "today_label": today.strftime("%d.%m.%Y"),
+                "is_today": today == self._today(department),
                 "lines": [{"id": w.id, "name": w.name} for w in department.workcenter_ids],
             },
             "can_manage": self._can_manage(department),
@@ -158,7 +166,8 @@ class CstProductionFloor(models.AbstractModel):
         in_shift = shift.employee_ids if shift else self.env["hr.employee"]
         present = shift.attendance_employee_ids if shift else self.env["hr.employee"]
         rows = []
-        for employee in (staff | in_shift).sorted("name"):
+        # names and job titles only — the shift manager needs no HR rights for this
+        for employee in (staff | in_shift).sudo().sorted("name"):
             rows.append({
                 "id": employee.id, "name": employee.name, "initials": self._initials(employee.name),
                 "job": employee.job_title or "", "present": employee in present,
@@ -604,10 +613,16 @@ class CstProductionFloor(models.AbstractModel):
     @api.model
     def close_preview(self, shift_id, kpi_total, penalty_total):
         shift = self.env["cst.production.shift"].browse(int(shift_id))
+        can_edit_kpi = self.env["cst.production.shift.worker"]._can_edit_kpi()
+        if not can_edit_kpi:
+            kpi_total = shift.kpi_total  # KPI is HR's to enter
         rows = self.env["cst.production.shift.close"]._employee_lines(shift, float(kpi_total or 0), float(penalty_total or 0))
         for row in rows:
             row["name"] = self.env["hr.employee"].browse(row["employee_id"]).name
-        return {"shares": rows,
+        lines = shift.line_ids
+        return {"shares": rows, "can_edit_kpi": can_edit_kpi, "kpi_total": float(kpi_total or 0),
+                "totals": {"planned": sum(lines.mapped("planned_qty")), "good": sum(lines.mapped("qty_good")),
+                           "second": sum(lines.mapped("qty_second")), "scrap": sum(lines.mapped("qty_scrap"))},
                 "open_lines": len(shift.line_ids.filtered(lambda l: l.state in ("progress", "paused")))}
 
     @api.model
@@ -615,6 +630,8 @@ class CstProductionFloor(models.AbstractModel):
         shift = self.env["cst.production.shift"].browse(int(shift_id))
         shift._check_manager()
         currency = shift.currency_id
+        if not self.env["cst.production.shift.worker"]._can_edit_kpi():
+            kpi_total = sum(float(row.get("kpi_amount") or 0) for row in shares)
         pairs = []
         for row in shares:
             employee = self.env["hr.employee"].browse(int(row["employee_id"]))

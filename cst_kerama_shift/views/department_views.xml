@@ -66,7 +66,7 @@
                         </page>
                         <page string="Xodimlar" name="employees">
                             <field name="employee_ids" widget="many2many" options="{'no_create': True}">
-                                <list><field name="name"/><field name="job_title" optional="show"/><field name="barcode" string="Face ID kodi" optional="show"/></list>
+                                <list><field name="name"/><field name="job_title" optional="show"/><field name="barcode" string="Face ID kodi" optional="show" groups="hr.group_hr_user"/></list>
                             </field>
                         </page>
                         <page string="Smena vaqtlari" name="templates">
@@ -91,7 +91,7 @@
                 <field name="open_shift_id"/><field name="open_shift_label"/>
                 <field name="queue_count"/><field name="running_count"/>
                 <field name="today_good"/><field name="today_scrap"/><field name="today_planned"/>
-                <field name="employee_count"/><field name="late_count"/><field name="today_count"/><field name="tomorrow_count"/>
+                <field name="employee_count"/><field name="work_day_label"/><field name="late_count"/><field name="today_count"/><field name="tomorrow_count"/>
                 <templates>
                     <t t-name="menu">
                         <div class="container">
@@ -150,7 +150,7 @@
                                         <span class="col-7">Jarayonda</span><span class="col-5 text-end fw-bold" t-esc="record.running_count.value"/>
                                     </a>
                                     <a class="row text-decoration-none" name="action_view_today_entries" type="object">
-                                        <span class="col-7">Bugun 1-sort / brak</span><span class="col-5 text-end fw-bold"><span class="text-success" t-esc="record.today_good.value"/> / <span class="text-danger" t-esc="record.today_scrap.value"/></span>
+                                        <span class="col-7"><t t-esc="record.work_day_label.value"/> 1-sort / brak</span><span class="col-5 text-end fw-bold"><span class="text-success" t-esc="record.today_good.value"/> / <span class="text-danger" t-esc="record.today_scrap.value"/></span>
                                     </a>
                                 </div>
                             </div>

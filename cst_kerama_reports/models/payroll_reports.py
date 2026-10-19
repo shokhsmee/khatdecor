@@ -123,7 +123,7 @@ class CstEmployeeCardReport(models.AbstractModel):
             })
         return {
             "employee": employee,
-            "currency": companies[:1].currency_id,
+            "currency": companies[:1]._cst_payroll_currency(),
             "opening": opening,
             "rows": rows,
             "accrued": accrued,
@@ -173,7 +173,7 @@ class CstBonusPenaltyReport(models.AbstractModel):
         employees = sorted(per_employee.values(),
                            key=lambda b: (b["employee"].name or "").lower())
         return {
-            "currency": companies[:1].currency_id,
+            "currency": companies[:1]._cst_payroll_currency(),
             "employees": employees,
             "by_type": sorted(
                 ({"component": c, "amount": a} for c, a in by_type.items()),
@@ -241,4 +241,4 @@ class CstKpiReport(models.AbstractModel):
                 "employees": rows,
                 "amount": sum(e["amount"] for e in rows),
             })
-        return {"companies": result, "currency": companies[:1].currency_id}
+        return {"companies": result, "currency": companies[:1]._cst_payroll_currency()}

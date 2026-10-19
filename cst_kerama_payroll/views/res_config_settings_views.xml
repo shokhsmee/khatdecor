@@ -10,6 +10,13 @@
                 <app data-string="Payroll" string="Payroll" name="cst_kerama_payroll"
                      groups="cst_kerama_payroll.group_payroll_manager">
 
+                    <block title="Valyuta" name="payroll_currency">
+                        <setting string="Oylik valyutasi"
+                                 help="Oklad, KPI, avans va jarimalar shu valyutada kiritiladi va hisobotda shu valyutada ko'rinadi. Provodka kompaniya valyutasiga oylik davridagi kurs bo'yicha o'tadi.">
+                            <field name="cst_payroll_currency_id" options="{'no_create': True}"/>
+                        </setting>
+                    </block>
+
                     <block title="KPI" name="payroll_kpi">
                         <setting string="Yuk tushirish — default summa"
                                  help="Suggested payment per unloader. It only pre-fills the line; the warehouse can change it on the document.">

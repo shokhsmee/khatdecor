@@ -47,6 +47,14 @@ class CstDispatch(models.Model):
     driver = fields.Char("Haydovchi")
     driver_phone = fields.Char("Haydovchi telefoni")
     note = fields.Text("Izoh")
+    # a big order leaves the gate in several trucks: every trip but the last
+    # delivers what passed and leaves the rest on a backorder; the last one
+    # closes the order the way a single dispatch always did
+    trip_mode = fields.Selection([
+        ("final", "Oxirgi reys (buyurtma yopiladi)"),
+        ("partial", "Qisman reys (qoldig'i keyingi reysda)"),
+    ], string="Reys", default="final", required=True, tracking=True)
+    trip_no = fields.Integer("Reys №", compute="_compute_trip_no")
     amount_before = fields.Monetary("Summa (oldin)", readonly=True)
     amount_after = fields.Monetary("Summa (keyin)", readonly=True)
     picking_ids = fields.Many2many(
@@ -54,6 +62,12 @@ class CstDispatch(models.Model):
     invoice_ids = fields.Many2many(
         "account.move", string="Hisob-fakturalar", readonly=True,
         groups="account.group_account_invoice")
+
+    def _compute_trip_no(self):
+        for d in self:
+            trips = self.sudo().search([("sale_order_id", "=", d.sale_order_id.id),
+                                        ("state", "!=", "cancel")], order="id")
+            d.trip_no = (trips.ids.index(d.id) + 1) if d.id in trips.ids else len(trips) + 1
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -204,6 +218,8 @@ class CstDispatch(models.Model):
             "amount_before": self.amount_before,
             "amount_after": self.amount_after,
             "currency": self.currency_id.symbol or self.currency_id.name or "",
+            "trip_mode": self.trip_mode,
+            "trip_no": self.trip_no,
         }
 
     @api.model
@@ -290,6 +306,8 @@ class CstDispatch(models.Model):
         base = order.amount_total if d.state != "done" else d.amount_before
         if d.state == "done":
             estimate = d.amount_after
+        elif d.trip_mode == "partial":
+            estimate = base  # a partial trip leaves the order as it is
         else:
             final = "checked_qty" if d.state == "ready" else "qty"
             delta = 0.0
@@ -327,6 +345,21 @@ class CstDispatch(models.Model):
             line.checked_qty = qty
         else:
             raise UserError(_("Noto'g'ri maydon."))
+        return True
+
+    @api.model
+    def ui_set_trip(self, dispatch_id, mode):
+        """Warehouse (preparing) or gate (checking): is this the last truck?"""
+        d = self._cst_get(dispatch_id)
+        if mode not in ("final", "partial"):
+            raise UserError(_("Noto'g'ri reys turi."))
+        if d.state == "draft":
+            self._cst_require(GROUP_WH)
+        elif d.state == "ready":
+            self._cst_require(GROUP_GATE)
+        else:
+            raise UserError(_("Yakunlangan jo'natmaning reysini o'zgartirib bo'lmaydi."))
+        d.trip_mode = mode
         return True
 
     @api.model
@@ -528,10 +561,20 @@ class CstDispatch(models.Model):
         def target(line):
             return line.sale_line_id.qty_delivered + line.checked_qty
 
+        partial = self.trip_mode == "partial"
         decrease = lines.filtered(lambda l: l.sale_line_id and float_compare(
             target(l), l.sale_line_id.product_uom_qty, precision_digits=prec) < 0)
         increase = lines.filtered(lambda l: l.sale_line_id and float_compare(
             target(l), l.sale_line_id.product_uom_qty, precision_digits=prec) > 0)
+        if partial:
+            # a trip only carries part of the order: the order keeps its
+            # quantities, the rest waits on the backorder for the next trip
+            if increase:
+                raise UserError(_(
+                    "Qisman reysda buyurtma qoldig'idan ko'p jo'natib bo'lmaydi (%s). Ortiqchasini "
+                    "oxirgi reysda kiriting yoki reysni «Oxirgi reys» qiling.",
+                    ", ".join(increase.product_id.mapped("display_name"))))
+            decrease = self.env["cst.dispatch.line"]
         for line in decrease | increase:
             sl = line.sale_line_id
             changes.append((sl.product_id.display_name, sl.product_uom_qty, target(line)))
@@ -579,16 +622,18 @@ class CstDispatch(models.Model):
             # moves of this picking we did not deliver (order lines left out of the dispatch)
             picking.move_ids.filtered(
                 lambda m: m.state not in ("done", "cancel") and not m.picked).write({"quantity": 0.0})
-            res = picking.with_context(
-                skip_backorder=True, cancel_backorder=True,
-                picking_ids_not_to_backorder=picking.ids,
-                skip_sms=True,
-            ).button_validate()
+            ctx = dict(skip_backorder=True, skip_sms=True,
+                       cst_skip_qty_sync=True)  # the gate already set the order qty
+            if not partial:
+                ctx.update(cancel_backorder=True, picking_ids_not_to_backorder=picking.ids)
+            res = picking.with_context(**ctx).button_validate()
             if isinstance(res, dict) and picking.state != "done":
                 raise UserError(_("%s yetkazib berishini tasdiqlab bo'lmadi.", picking.name))
         # deliveries whose demand is now fully covered: drop the leftovers
+        # (a partial trip leaves them for the next truck)
         for picking in order.picking_ids.filtered(
-                lambda p: p.picking_type_code == "outgoing" and p.state not in ("done", "cancel")):
+                lambda p: not partial and p.picking_type_code == "outgoing"
+                and p.state not in ("done", "cancel")):
             moves = picking.move_ids.filtered(
                 lambda m: m.state not in ("done", "cancel") and m.sale_line_id and float_compare(
                     m.sale_line_id.qty_delivered, m.sale_line_id.product_uom_qty,
@@ -619,13 +664,25 @@ class CstDispatch(models.Model):
         if was_locked:
             order.action_lock()
 
+        if partial:
+            order.invalidate_recordset()
+            rows = Markup("").join(
+                Markup("<li>%s: %s, qoldi %s</li>") % (
+                    l.product_id.display_name, self._cst_fmt(l.checked_qty),
+                    self._cst_fmt(max(l.sale_line_id.product_uom_qty - l.sale_line_id.qty_delivered, 0.0)))
+                for l in lines.filtered("sale_line_id"))
+            order.message_post(body=Markup("<p>%s</p><ul>%s</ul>") % (
+                _("Reys %(n)s (%(d)s) chiqarildi — qisman, qoldig'i keyingi reysda:", n=self.trip_no, d=self.name),
+                rows))
+
         if changes:
             rows = "".join(
                 "<li>%s: %s → %s</li>" % (name, self._cst_fmt(old), self._cst_fmt(new))
                 for name, old, new in changes)
             order.message_post(body=Markup(
                 "<p>%s</p><ul>%s</ul><p>%s</p>") % (
-                _("Jo'natma %s eshikda tasdiqlandi. Miqdor o'zgarishlari:", self.name),
+                _("Jo'natma %(d)s (reys %(n)s) eshikda tasdiqlandi. Miqdor o'zgarishlari:",
+                  d=self.name, n=self.trip_no),
                 Markup(rows),
                 _("Summa: %(a)s → %(b)s", a=amount_before, b=order.amount_total)))
 

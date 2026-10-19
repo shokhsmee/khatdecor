@@ -65,6 +65,7 @@ class CstProductionDepartment(models.Model):
     today_planned = fields.Float(string="Bugun reja", compute="_compute_dashboard", digits="Product Unit of Measure")
     employee_count = fields.Integer(compute="_compute_dashboard")
     open_shift_label = fields.Char(compute="_compute_dashboard")
+    work_day_label = fields.Char(compute="_compute_dashboard", help="Kartadagi raqamlar qaysi kun uchun: ochiq smena sanasi yoki bugun.")
     late_count = fields.Integer(string="Kech", compute="_compute_dashboard")
     today_count = fields.Integer(string="Bugun", compute="_compute_dashboard")
     tomorrow_count = fields.Integer(string="Ertaga", compute="_compute_dashboard")
@@ -91,7 +92,8 @@ class CstProductionDepartment(models.Model):
         Floor = self.env["cst.production.floor"]
         for department in self:
             shift = department.open_shift_id
-            today = Floor._today(department)
+            today = Floor._work_day(department)
+            department.work_day_label = "Bugun" if today == Floor._today(department) else today.strftime("%d.%m")
             lines_today = department.shift_ids.filtered(
                 lambda s: s.date == today and s.state != "cancel").line_ids
             taken = shift.line_ids.filtered(lambda l: l.state in ("todo", "progress", "paused")).workorder_id \
@@ -176,11 +178,12 @@ class CstProductionDepartment(models.Model):
 
     def action_view_today_entries(self):
         self.ensure_one()
-        today = self.env["cst.production.floor"]._today(self)
+        today = self.env["cst.production.floor"]._work_day(self)
         return {
-            "type": "ir.actions.act_window", "name": _("%s — bugungi natijalar", self.name),
+            "type": "ir.actions.act_window", "name": _("%(dept)s — %(day)s natijalari", dept=self.name,
+                                                        day=today.strftime("%d.%m.%Y")),
             "res_model": "cst.production.shift.entry", "view_mode": "list,pivot",
-            "domain": [("department_id", "=", self.id), ("shift_id.date", "=", today)],
+            "domain": [("department_id", "=", self.id), ("shift_date", "=", today)],
         }
 
     def action_open_floor(self):

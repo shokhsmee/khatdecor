@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_reports.ReportsHome">
+        <div class="o_action cst_rh">
+            <div class="cst_rh_wrap">
+                <h2 class="cst_rh_title">Xisobotlar</h2>
+                <div t-if="!sections.length" class="text-muted">Sizga ochiq hisobot yo'q.</div>
+                <div class="cst_rh_grid">
+                    <section t-foreach="sections" t-as="sec" t-key="sec.id" class="cst_rh_card">
+                        <h3 class="cst_rh_card_title" t-esc="sec.name"/>
+                        <ul class="cst_rh_list">
+                            <li t-foreach="sec.items" t-as="item" t-key="item.id">
+                                <a href="#" t-on-click.prevent="() => this.open(item)">
+                                    <span t-if="item.group" class="cst_rh_group"><t t-esc="item.group"/> › </span>
+                                    <t t-esc="item.name"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

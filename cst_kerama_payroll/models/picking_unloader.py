@@ -23,7 +23,7 @@ class CstPickingUnloader(models.Model):
         check_company=True)
     company_id = fields.Many2one(
         "res.company", related="picking_id.company_id", store=True, index=True)
-    currency_id = fields.Many2one(related="company_id.currency_id")
+    currency_id = fields.Many2one(related="company_id.cst_payroll_currency_id")
     amount = fields.Monetary(
         required=True, currency_field="currency_id",
         default=lambda self: self.env.company.cst_unload_rate_default,

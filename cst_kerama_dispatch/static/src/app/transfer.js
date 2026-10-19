@@ -23,6 +23,7 @@ export class TransferSection extends Component {
         this.notification = useService("notification");
         this.dialog = useService("dialog");
         this.barcode = useService("barcode");
+        this.action = useService("action");
         this.cameraSupported = isBarcodeScannerSupported();
         this.state = useState({
             view: "list",
@@ -187,6 +188,13 @@ export class TransferSection extends Component {
         this.state.results = [];
         this.state.productSearch = "";
         await this.loadRecent();
+    }
+    /** «Tuzatish» of a done transfer: the backend dialog, then a fresh view. */
+    async openCorrection() {
+        await this.action.doAction({
+            type: "ir.actions.act_window", res_model: "cst.picking.correction", views: [[false, "form"]],
+            target: "new", name: "Ko'chirishni tuzatish", context: { default_picking_id: this.t.id },
+        }, { onClose: () => this.open({ id: this.t.id }) });
     }
     async open(row) {
         const data = await this.call("ui_load", [row.id]);

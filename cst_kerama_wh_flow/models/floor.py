@@ -30,16 +30,28 @@ class CstProductionFloor(models.AbstractModel):
 
     def _before_undo(self, production):
         # pieces already on their way to the next warehouse come back first;
-        # once received there they are that warehouse's stock -- stop
+        # received ones (booked automatically at finish) are returned, which
+        # only works while they are still there -- sold goods stop the undo
         output = self.env["stock.picking"].sudo().search([
             ("cst_production_id", "=", production.id), ("cst_flow_kind", "=", "output"), ("state", "!=", "cancel")])
-        received = output.filtered(lambda p: p.state == "done")
-        if received:
-            raise UserError(_("%(mo)s: tayyor mahsulot %(pick)s bilan boshqa omborga o'tkazilgan va qabul qilingan, "
-                              "o'chirib bo'lmaydi.", mo=production.name, pick=", ".join(received.mapped("name"))))
-        if output:
-            output.action_cancel()
+        for picking in output.filtered(lambda p: p.state == "done"):
+            self._cst_return_output(production, picking)
+        pending = output.filtered(lambda p: p.state != "done")
+        if pending:
+            pending.action_cancel()
         return super()._before_undo(production)
+
+    def _cst_return_output(self, production, picking):
+        wizard = self.env["stock.return.picking"].sudo().create({"picking_id": picking.id})
+        for line in wizard.product_return_moves:
+            line.quantity = line.move_id.quantity
+        back = wizard._create_return()
+        if not production._cst_validate_quietly(back):
+            back.action_cancel()
+            raise UserError(_("%(mo)s: tayyor mahsulot %(pick)s bilan «%(wh)s»ga qabul qilingan va u yerda endi "
+                              "to'liq yo'q (sotilgan yoki ko'chirilgan), o'chirib bo'lmaydi.",
+                              mo=production.name, pick=picking.name,
+                              wh=picking.location_dest_id.warehouse_id.name or picking.location_dest_id.display_name))
 
     def _materials_for(self, production, department):
         warehouse = production.location_src_id.warehouse_id or department._cst_warehouse()

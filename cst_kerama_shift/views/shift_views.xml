@@ -38,7 +38,8 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" type="object" name="action_view_payroll_lines" icon="fa-money" invisible="payroll_line_count == 0">
+                        <button class="oe_stat_button" type="object" name="action_view_payroll_lines" icon="fa-money" invisible="payroll_line_count == 0"
+                                groups="cst_kerama_payroll.group_payroll_user,cst_kerama_payroll.group_payroll_manager">
                             <field name="payroll_line_count" widget="statinfo" string="Oylik qatorlari"/>
                         </button>
                     </div>
@@ -64,8 +65,9 @@
                     </group>
                     <notebook>
                         <page string="Xodimlar" name="employees">
+                            <div class="fw-bold mb-1">Smenadagi xodimlar: <field name="employee_count" class="d-inline"/></div>
                             <field name="employee_ids" widget="many2many_tags" readonly="state not in ('draft', 'open')" options="{'no_create': True}"/>
-                            <label for="attendance_employee_ids" string="Face ID bo'yicha kelganlar"/>
+                            <div class="text-muted mt-3 mb-1">Face ID bo'yicha kelganlar — bo'lim xodimlari va smena xodimlaridan, smena vaqtida (boshlanishidan 2 soat oldin – tugashigacha) kelganlar:</div>
                             <field name="attendance_employee_ids" widget="many2many_tags" readonly="1"/>
                         </page>
                         <page string="Buyurtmalar" name="lines">
@@ -81,10 +83,10 @@
                                     <field name="workcenter_id" options="{'no_create': True}"/>
                                     <field name="sale_origin" optional="show"/>
                                     <field name="order_qty" optional="hide"/>
-                                    <field name="planned_qty"/>
-                                    <field name="qty_good"/>
-                                    <field name="qty_second"/>
-                                    <field name="qty_scrap"/>
+                                    <field name="planned_qty" sum="Jami"/>
+                                    <field name="qty_good" sum="Jami"/>
+                                    <field name="qty_second" sum="Jami"/>
+                                    <field name="qty_scrap" sum="Jami"/>
                                     <field name="progress_pct" widget="progressbar"/>
                                     <field name="is_final_operation" optional="show"/>
                                     <field name="employee_ids" widget="many2many_tags" optional="hide"/>
@@ -98,21 +100,27 @@
                             </field>
                         </page>
                         <page string="Natijalar" name="entries">
+                            <field name="can_correct" invisible="1"/>
                             <field name="entry_ids" readonly="state != 'open'" context="{'default_shift_id': id}">
-                                <list editable="bottom" decoration-muted="posted">
+                                <list editable="bottom" decoration-muted="posted and not corrected" decoration-warning="corrected">
                                     <field name="datetime"/>
                                     <field name="line_id" domain="[('shift_id', '=', parent.id)]" options="{'no_create': True}"/>
                                     <field name="product_id"/>
                                     <field name="workcenter_id"/>
-                                    <field name="qty_good"/>
-                                    <field name="qty_second"/>
+                                    <field name="qty_good" sum="Jami"/>
+                                    <field name="qty_second" sum="Jami"/>
                                     <field name="second_product_id" optional="show" options="{'no_create': True}"/>
-                                    <field name="qty_scrap"/>
+                                    <field name="qty_scrap" sum="Jami"/>
                                     <field name="material_product_id" optional="show" options="{'no_create': True}"/>
                                     <field name="qty_material" optional="show"/>
                                     <field name="note"/>
                                     <field name="user_id" widget="many2one_avatar_user"/>
                                     <field name="posted"/>
+                                    <field name="corrected" optional="show"/>
+                                    <field name="correction_log" optional="hide"/>
+                                    <button name="action_open_correction" type="object" string="Tuzatish" icon="fa-pencil-square-o"
+                                            class="btn-link text-warning" invisible="not posted or not parent.can_correct"
+                                            groups="cst_kerama_shift.group_doc_correction"/>
                                 </list>
                             </field>
                         </page>
@@ -130,8 +138,33 @@
                                     <field name="employee_count"/>
                                     <field name="kpi_per_employee"/>
                                     <field name="penalty_total" readonly="1"/>
+                                    <field name="kpi_capitalized" invisible="kpi_capitalized == 0 and kpi_total == 0"/>
+                                    <field name="kpi_cost_pending" invisible="not kpi_cost_pending" readonly="1"/>
+                                    <field name="kpi_cost_note" invisible="not kpi_cost_note"/>
                                 </group>
                             </group>
+                            <field name="can_edit_kpi" invisible="1"/>
+                            <div class="d-flex gap-2 mb-2" invisible="state != 'closed' or not can_edit_kpi">
+                                <button name="action_create_workers" type="object" string="KPI qatorlarini yaratish" class="btn-secondary" invisible="worker_ids"/>
+                                <button name="action_fill_kpi_from_rates" type="object" string="Stavkadan to'ldirish" class="btn-secondary" invisible="not worker_ids"
+                                        confirm="Har xodimning KPI'si stavka bo'yicha hisoblangan qiymat bilan almashtiriladi. Davom etilsinmi?"/>
+                                <button name="action_post_kpi_cost" type="object" string="KPI'ni hozir tannarxga o'tkazish" class="btn-secondary" invisible="not kpi_cost_pending"/>
+                            </div>
+                            <div class="text-muted small mb-1" invisible="can_edit_kpi">KPI'ni HR bo'limi kiritadi; bu yerda faqat ko'rinadi.</div>
+                            <field name="worker_ids" readonly="state != 'closed' or not can_edit_kpi">
+                                <list editable="bottom" create="false" delete="false">
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="employee_id" readonly="1" options="{'no_open': True}"/>
+                                    <field name="worked"/>
+                                    <field name="qty_good" sum="Jami"/>
+                                    <field name="minutes" widget="float_time" optional="hide"/>
+                                    <field name="kpi_suggested" sum="Jami" optional="show"/>
+                                    <field name="kpi_amount" sum="Jami"/>
+                                    <field name="penalty_amount" sum="Jami"/>
+                                    <field name="note" optional="show"/>
+                                </list>
+                            </field>
+                            <field name="kpi_cost_ids" readonly="1" invisible="not kpi_cost_ids" widget="many2many_tags" groups="stock.group_stock_manager"/>
                             <field name="note" placeholder="Izoh..."/>
                         </page>
                     </notebook>
@@ -183,8 +216,10 @@
         <field name="name">cst.production.shift.entry.list</field>
         <field name="model">cst.production.shift.entry</field>
         <field name="arch" type="xml">
-            <list string="Smena natijalari" create="false">
-                <field name="datetime"/>
+            <list string="Smena natijalari" create="false" decoration-warning="corrected">
+                <field name="shift_date"/>
+                <field name="template_id" optional="show"/>
+                <field name="datetime" string="Kiritilgan vaqt" optional="hide"/>
                 <field name="shift_id"/>
                 <field name="department_id"/>
                 <field name="workcenter_id"/>
@@ -197,6 +232,10 @@
                 <field name="qty_material" optional="show"/>
                 <field name="user_id" widget="many2one_avatar_user"/>
                 <field name="posted"/>
+                <field name="corrected" optional="show"/>
+                <field name="correction_log" optional="hide"/>
+                <button name="action_open_correction" type="object" string="Tuzatish" icon="fa-pencil-square-o"
+                        class="btn-link text-warning" invisible="not posted" groups="cst_kerama_shift.group_doc_correction"/>
             </list>
         </field>
     </record>
@@ -207,16 +246,78 @@
             <pivot string="Smena natijalari">
                 <field name="department_id" type="row"/>
                 <field name="product_id" type="row"/>
-                <field name="datetime" interval="day" type="col"/>
+                <field name="shift_date" interval="day" type="col"/>
                 <field name="qty_good" type="measure"/>
                 <field name="qty_second" type="measure"/>
                 <field name="qty_scrap" type="measure"/>
             </pivot>
         </field>
     </record>
+    <record id="view_shift_entry_search" model="ir.ui.view">
+        <field name="name">cst.production.shift.entry.search</field>
+        <field name="model">cst.production.shift.entry</field>
+        <field name="arch" type="xml">
+            <search string="Smena natijalari">
+                <field name="product_id"/>
+                <field name="production_id"/>
+                <field name="shift_id"/>
+                <field name="department_id"/>
+                <field name="workcenter_id"/>
+                <filter name="this_month" string="Shu oy" domain="[('shift_date', '>=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter name="shift_date" string="Smena sanasi" date="shift_date"/>
+                <separator/>
+                <filter name="corrected" string="Tuzatilgan" domain="[('corrected', '=', True)]"/>
+                <group>
+                    <filter name="group_department" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_shift_date" string="Smena sanasi" context="{'group_by': 'shift_date:day'}"/>
+                    <filter name="group_shift" string="Smena" context="{'group_by': 'shift_id'}"/>
+                    <filter name="group_product" string="Mahsulot" context="{'group_by': 'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
     <record id="action_shift_entries" model="ir.actions.act_window">
         <field name="name">Smena natijalari</field>
         <field name="res_model">cst.production.shift.entry</field>
         <field name="view_mode">list,pivot</field>
+        <field name="search_view_id" ref="view_shift_entry_search"/>
+    </record>
+
+    <!-- «Tuzatish»: correcting a booked result -->
+    <record id="view_shift_correction_form" model="ir.ui.view">
+        <field name="name">cst.production.shift.correction.form</field>
+        <field name="model">cst.production.shift.correction</field>
+        <field name="arch" type="xml">
+            <form string="Natijani tuzatish">
+                <field name="entry_id" invisible="1"/>
+                <div class="mb-2">
+                    <div class="fw-bold"><field name="shift_id" readonly="1" nolabel="1"/></div>
+                    <div><field name="production_id" readonly="1" nolabel="1" class="me-2"/> · <field name="product_id" readonly="1" nolabel="1"/></div>
+                </div>
+                <div class="alert alert-info small" role="status">
+                    Ombor ham tuzatiladi: kamaytirilsa — mahsulot keyingi ombordan qaytariladi va buyurtma qisman
+                    qaytariladi (xomashyo omborga qaytadi); ko'paytirilsa — qo'shimcha tuzatish buyurtmasi yaratiladi.
+                    Bajarilgan hujjatlar o'zgartirilmaydi, farq alohida hujjat bilan yoziladi.
+                </div>
+                <group>
+                    <group string="Hozir">
+                        <field name="old_good"/>
+                        <field name="old_second"/>
+                        <field name="old_scrap"/>
+                    </group>
+                    <group string="To'g'risi">
+                        <field name="new_good"/>
+                        <field name="new_second"/>
+                        <field name="new_scrap"/>
+                    </group>
+                </group>
+                <field name="reason" placeholder="Nega tuzatilmoqda? (majburiy)" required="1"/>
+                <footer>
+                    <button name="action_confirm" type="object" string="Tuzatish" class="btn-primary"
+                            confirm="Natija va ombor qoldig'i tuzatiladi. Davom etilsinmi?"/>
+                    <button special="cancel" string="Bekor" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
     </record>
 </odoo>

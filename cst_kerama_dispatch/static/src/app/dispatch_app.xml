@@ -62,7 +62,7 @@
                         <t t-if="state.home.transfers_to_me"> · <b>menga kelgan: <t t-esc="state.home.transfers_to_me"/></b></t>
                     </div>
                 </button>
-                <button class="o_cst_dp_tile o_cst_dp_tile_hist" t-on-click="() => this.goList('history')">
+                <button t-if="state.home.can_wh or state.home.can_gate" class="o_cst_dp_tile o_cst_dp_tile_hist" t-on-click="() => this.goList('history')">
                     <i class="fa fa-history"/>
                     <div class="o_cst_dp_tile_name">Tarix</div>
                     <div class="o_cst_dp_tile_count">Bugun chiqarildi: <span t-esc="state.home.done_today"/></div>
@@ -237,10 +237,29 @@
                         <t t-esc="money(d.estimate)"/> <t t-esc="d.currency"/>
                     </b>
                 </div>
+                <div t-if="!canEditVehicle" class="text-muted">Reys <t t-esc="d.trip_no"/> · <t t-if="d.trip_mode === 'partial'">qisman</t><t t-else="">oxirgi</t></div>
                 <div t-if="d.pickings" class="text-muted">Yetkazib berish: <t t-esc="d.pickings"/></div>
                 <div t-if="d.invoices" class="text-muted">Hisob-faktura: <t t-esc="d.invoices"/></div>
                 <div t-if="!canEditVehicle and (d.car_model or d.car_number or d.driver)" class="text-muted">
                     <i class="fa fa-truck"/> <t t-esc="d.car_model"/> <t t-esc="d.car_number"/> · <t t-esc="d.driver"/> <t t-esc="d.driver_phone"/>
+                </div>
+            </div>
+
+            <!-- trip: is this the last truck of the order? -->
+            <div t-if="canEditVehicle" class="o_cst_dp_trip mt-3">
+                <div class="fw-bold mb-1"><i class="fa fa-road"/> Reys <t t-esc="d.trip_no"/></div>
+                <div class="btn-group w-100" role="group">
+                    <button type="button" t-att-class="'btn btn-lg ' + (d.trip_mode === 'final' ? 'btn-primary' : 'btn-outline-primary')"
+                        t-on-click="() => this.setTrip('final')" t-att-disabled="state.busy">
+                        Oxirgi reys — buyurtma yopiladi
+                    </button>
+                    <button type="button" t-att-class="'btn btn-lg ' + (d.trip_mode === 'partial' ? 'btn-warning' : 'btn-outline-warning')"
+                        t-on-click="() => this.setTrip('partial')" t-att-disabled="state.busy">
+                        Qisman reys — qoldig'i keyingi mashinada
+                    </button>
+                </div>
+                <div t-if="d.trip_mode === 'partial'" class="text-muted small mt-1">
+                    Faqat shu mashinaga yuklangan miqdor chiqariladi; buyurtma o'zgarmaydi, qoldig'i «Ombor»da yana chiqadi.
                 </div>
             </div>
 

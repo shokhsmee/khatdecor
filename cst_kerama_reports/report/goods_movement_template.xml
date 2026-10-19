@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_goods_movement" model="ir.actions.report">
+        <field name="name">Tovar harakati</field>
+        <field name="model">cst.goods.movement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_goods_movement</field>
+        <field name="report_file">cst_kerama_reports.report_goods_movement</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_goods_movement_html" model="ir.actions.report">
+        <field name="name">Tovar harakati (ekranda)</field>
+        <field name="model">cst.goods.movement.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_goods_movement</field>
+        <field name="report_file">cst_kerama_reports.report_goods_movement</field>
+    </record>
+
+    <!-- one row of numbers: opening, the in columns, total in, the out columns, total out, closing -->
+    <template id="goods_movement_cells">
+        <td class="num"><span t-if="t['opening']" t-out="t['opening']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+        <t t-foreach="columns['in']" t-as="col">
+            <td class="num"><span t-if="t['flows'][col[0]]" t-out="t['flows'][col[0]]" t-options="{'widget': 'float', 'precision': 3}"/></td>
+        </t>
+        <td class="num gm_in"><span t-if="t['in_total']" t-out="t['in_total']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+        <t t-foreach="columns['out']" t-as="col">
+            <td class="num"><span t-if="t['flows'][col[0]]" t-out="t['flows'][col[0]]" t-options="{'widget': 'float', 'precision': 3}"/></td>
+        </t>
+        <td class="num gm_out"><span t-if="t['out_total']" t-out="t['out_total']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+        <td class="num gm_close"><span t-out="t['closing']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+    </template>
+
+    <template id="report_goods_movement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="columns" t-value="values['columns']"/>
+                <t t-set="data" t-value="values['data']"/>
+                <t t-set="engine" t-value="doc.env['cst.warehouse.report']"/>
+                <t t-set="width" t-value="4 + 1 + len(columns['in']) + 1 + len(columns['out']) + 1 + 1"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <style>
+                            .cst_rep td.gm_in, .cst_rep th.gm_in { background: #eaf3fc; font-weight: bold; }
+                            .cst_rep td.gm_out, .cst_rep th.gm_out { background: #fcebea; font-weight: bold; }
+                            .cst_rep td.gm_close, .cst_rep th.gm_close { background: #eef7ee; font-weight: bold; }
+                        </style>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head">
+                            <h2 t-out="values['title']"/>
+                            <div>
+                                <span t-out="values['date_from']" t-options="{'widget': 'date'}"/> —
+                                <span t-out="values['date_to']" t-options="{'widget': 'date'}"/>
+                            </div>
+                        </div>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:26px;">№</th>
+                                    <th rowspan="2">Mahsulot</th>
+                                    <th rowspan="2" style="width:90px;">Xarakteristika</th>
+                                    <th rowspan="2" style="width:44px;">O'lchov</th>
+                                    <th rowspan="2" style="width:66px;">Boshlang'ich qoldiq</th>
+                                    <th t-att-colspan="len(columns['in']) + 1" class="gm_in">Kirim</th>
+                                    <th t-att-colspan="len(columns['out']) + 1" class="gm_out">Chiqim</th>
+                                    <th rowspan="2" style="width:66px;" class="gm_close">Oxirgi qoldiq</th>
+                                </tr>
+                                <tr>
+                                    <t t-foreach="columns['in']" t-as="col"><th style="width:62px;" t-out="col[1]"/></t>
+                                    <th style="width:62px;" class="gm_in">Jami kirim</th>
+                                    <t t-foreach="columns['out']" t-as="col"><th style="width:62px;" t-out="col[1]"/></t>
+                                    <th style="width:62px;" class="gm_out">Jami chiqim</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not data['blocks']">
+                                    <tr><td t-att-colspan="width" class="mid">Tanlangan davrda harakat ham, qoldiq ham yo'q.</td></tr>
+                                </t>
+                                <t t-foreach="data['blocks']" t-as="block">
+                                    <tr class="cst_company">
+                                        <td colspan="4"><t t-out="block['label']"/> (<t t-out="block['count']"/> ta mahsulot)</td>
+                                        <t t-set="t" t-value="block['totals']"/>
+                                        <t t-call="cst_kerama_reports.goods_movement_cells"/>
+                                    </tr>
+                                    <t t-foreach="block['groups']" t-as="g">
+                                        <tr class="cst_group">
+                                            <td colspan="4" t-out="engine.category_label(g['category'])"/>
+                                            <t t-set="t" t-value="g['totals']"/>
+                                            <t t-call="cst_kerama_reports.goods_movement_cells"/>
+                                        </tr>
+                                        <t t-foreach="g['leaves']" t-as="c">
+                                            <tr class="cst_sub" t-if="c['category'] != g['category']">
+                                                <td colspan="4" t-out="c['category'].name"/>
+                                                <t t-set="t" t-value="c['totals']"/>
+                                                <t t-call="cst_kerama_reports.goods_movement_cells"/>
+                                            </tr>
+                                            <t t-foreach="c['products']" t-as="row">
+                                                <tr>
+                                                    <td class="mid" t-out="row_index + 1"/>
+                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-out="row['characteristic']"/>
+                                                    <td class="mid" t-out="row['uom']"/>
+                                                    <t t-set="t" t-value="row"/>
+                                                    <t t-call="cst_kerama_reports.goods_movement_cells"/>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                                <tr class="cst_company" t-if="len(data['blocks']) &gt; 1">
+                                    <td colspan="4">Jami</td>
+                                    <t t-set="t" t-value="data['totals']"/>
+                                    <t t-call="cst_kerama_reports.goods_movement_cells"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

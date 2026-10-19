@@ -21,9 +21,11 @@ class HrEmployee(models.Model):
         help="Жисмоний шахснинг шахсий идентификация раками — 14 та ракам.  "
              "Банк карталарига утказилган пулларни Excel'дан юклашда ходим "
              "айнан шу буйича топилади.")
+    cst_pay_currency_id = fields.Many2one(
+        "res.currency", related="company_id.cst_payroll_currency_id", string="Oylik valyutasi")
     cst_payroll_balance = fields.Monetary(
         string="Salary Balance", compute="_compute_cst_payroll_balance",
-        currency_field="currency_id", groups="hr.group_hr_manager",
+        currency_field="cst_pay_currency_id", groups="hr.group_hr_manager",
         help="What the company still owes this employee.  Negative means the "
              "employee has drawn more than has been accrued.")
     cst_payroll_line_count = fields.Integer(
@@ -36,7 +38,7 @@ class HrEmployee(models.Model):
         inherited=True, groups="hr.group_hr_manager")
     cst_official_wage = fields.Monetary(
         readonly=False, related="version_id.cst_official_wage",
-        inherited=True, groups="hr.group_hr_manager")
+        inherited=True, groups="hr.group_hr_manager", currency_field="cst_pay_currency_id")
 
     _personnel_no_uniq = models.Constraint(
         "unique(cst_personnel_no, company_id)",

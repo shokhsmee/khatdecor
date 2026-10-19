@@ -30,7 +30,7 @@
                             <div class="row-kv"><span>Bugun</span><b t-esc="dep.today"/></div>
                             <div t-if="dep.tomorrow" class="row-kv"><span>Ertaga</span><b t-esc="dep.tomorrow"/></div>
                             <div class="row-kv"><span>Jarayonda</span><b t-esc="dep.running"/></div>
-                            <div class="row-kv"><span>Bugun 1-sort / brak</span><b><span class="good" t-esc="num(dep.today_good)"/> / <span class="bad" t-esc="num(dep.today_scrap)"/></b></div>
+                            <div class="row-kv"><span><t t-esc="dep.day_label"/> 1-sort / brak</span><b><span class="good" t-esc="num(dep.today_good)"/> / <span class="bad" t-esc="num(dep.today_scrap)"/></b></div>
                         </div>
                     </div>
                     <!-- orders by planned day, like Inventory's overview bars -->
@@ -57,7 +57,7 @@
                 <button t-if="canAct" type="button" class="cst_sf_btn cst_sf_btn--accent cst_sf_banner_new" t-on-click="() => this.startNewOrder()"><i class="fa fa-plus me-1"/>Yangi buyurtma qo'shish</button>
             </div>
             <span class="cst_sf_banner_title"><t t-esc="d.department.name.toUpperCase()"/> ISHLAB CHIQARISH OYNASI</span>
-            <span class="cst_sf_banner_date"><i class="fa fa-calendar me-1"/><t t-esc="d.department.today_label"/></span>
+            <span class="cst_sf_banner_date" t-att-title="d.department.is_today ? '' : 'Ochiq smena sanasi'"><i class="fa fa-calendar me-1"/><t t-esc="d.department.today_label"/><t t-if="!d.department.is_today"> · smena kuni</t></span>
         </div>
 
         <div class="cst_sf_body" t-att-class="{ cst_sf_busy: state.busy, 'cst_sf_body--side': state.side }">
@@ -196,7 +196,7 @@
 
                 <!-- history -->
                 <section class="cst_sf_card">
-                    <h3 class="cst_sf_h3">Ishlab chiqarish tarixi <small class="muted">bugun</small></h3>
+                    <h3 class="cst_sf_h3">Ishlab chiqarish tarixi <small class="muted"><t t-esc="d.department.today_label"/></small></h3>
                     <table class="cst_sf_table">
                         <thead><tr><th>Vaqt</th><th>Smena</th><th>Kim</th><th>Buyurtma</th><th>Mahsulot</th><th>Liniya</th><th class="n">1-sort</th><th class="n">2-sort</th><th class="n">Brak</th><th>Eslatma</th></tr></thead>
                         <tbody>
@@ -204,12 +204,12 @@
                                 <td t-esc="h.time"/><td class="muted" t-esc="h.shift"/><td t-esc="h.user"/><td t-esc="h.mo"/><td t-esc="h.product"/><td t-esc="h.workcenter"/>
                                 <td class="n" t-esc="num(h.good)"/><td class="n second" t-esc="num(h.second)"/><td class="n scrap" t-esc="num(h.scrap)"/><td class="muted"><t t-esc="h.note"/><div t-if="h.second_product" class="small">2-sort → <t t-esc="h.second_product"/></div><div t-if="h.material" class="small scrap">Material braki: <t t-esc="h.material"/></div></td>
                             </tr>
-                            <tr t-if="!d.history.length"><td colspan="10" class="cst_sf_empty">Bugun hali natija kiritilmagan.</td></tr>
+                            <tr t-if="!d.history.length"><td colspan="10" class="cst_sf_empty"><t t-esc="d.department.today_label"/> uchun hali natija kiritilmagan.</td></tr>
                         </tbody>
                     </table>
                 </section>
                 <section class="cst_sf_tiles">
-                    <div class="cst_sf_tile t-plan"><div class="k">Bugungi reja (dona)</div><div class="v" t-esc="num(d.kpis.planned)"/><div class="s"><t t-esc="d.kpis.orders"/> ta buyurtma</div></div>
+                    <div class="cst_sf_tile t-plan"><div class="k">Reja (dona) · <t t-esc="d.department.today_label"/></div><div class="v" t-esc="num(d.kpis.planned)"/><div class="s"><t t-esc="d.kpis.orders"/> ta buyurtma</div></div>
                     <div class="cst_sf_tile t-good"><div class="k">Ishlab chiqarilgan (1-sort)</div><div class="v" t-esc="num(d.kpis.good)"/><div class="s"><t t-esc="pct(d.kpis.plan_pct)"/> bajarildi</div></div>
                     <div class="cst_sf_tile t-second"><div class="k">2-sort (brak toifasi)</div><div class="v" t-esc="num(d.kpis.second)"/><div class="s" t-esc="pct(d.kpis.second_pct)"/></div>
                     <div class="cst_sf_tile t-scrap"><div class="k">Brak (noto'liq)</div><div class="v" t-esc="num(d.kpis.scrap)"/><div class="s" t-esc="pct(d.kpis.scrap_pct)"/></div>
@@ -251,7 +251,7 @@
                     <button t-if="shift and canAct" type="button" class="cst_sf_btn cst_sf_btn--ghost w-100 mt-2" t-on-click="startEmployees"><i class="fa fa-users me-1"/>Xodimlarni boshqarish</button>
                 </section>
                 <section class="cst_sf_card">
-                    <div class="cst_sf_h4"><i class="fa fa-bullseye me-1"/>Bugungi reja</div>
+                    <div class="cst_sf_h4"><i class="fa fa-bullseye me-1"/>Reja · <t t-esc="d.department.today_label"/></div>
                     <div class="row-kv"><span>Jami reja</span><b><t t-esc="num(d.kpis.planned)"/> dona</b></div>
                     <div class="row-kv"><span>Jami buyurtma</span><b><t t-esc="d.kpis.orders"/> ta</b></div>
                     <div class="row-kv"><span>Bajarilishi kerak</span><b><t t-esc="num(d.kpis.remaining)"/> dona</b></div>
@@ -474,9 +474,11 @@
                     <table class="cst_sf_table compact">
                         <thead><tr><th>Mahsulot</th><th>Liniya</th><th class="n">Reja</th><th class="n">1-sort</th><th class="n">2-sort</th><th class="n">Brak</th></tr></thead>
                         <tbody><tr t-foreach="lines" t-as="line" t-key="line.id"><td t-esc="line.product"/><td class="muted" t-esc="line.workcenter"/><td class="n" t-esc="num(line.planned)"/><td class="n"><b t-esc="num(line.good)"/></td><td class="n second" t-esc="num(line.second)"/><td class="n scrap" t-esc="num(line.scrap)"/></tr></tbody>
+                        <tfoot><tr class="cst_sf_total"><td>Jami</td><td/><td class="n" t-esc="num(closeTotals.planned)"/><td class="n" t-esc="num(closeTotals.good)"/><td class="n second" t-esc="num(closeTotals.second)"/><td class="n scrap" t-esc="num(closeTotals.scrap)"/></tr></tfoot>
                     </table>
                     <div class="cst_sf_form_row mt-2">
-                        <label>Umumiy KPI summasi<input type="number" min="0" step="1000" t-model="state.form.kpi_total" t-on-change="recomputeShares"/></label>
+                        <label t-if="state.form.can_edit_kpi">Umumiy KPI summasi<input type="number" min="0" step="1000" t-model="state.form.kpi_total" t-on-change="recomputeShares"/></label>
+                        <div t-else="" class="muted small">KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham).</div>
                         <label>Brak jarimasi (jami)<input type="number" min="0" step="1000" t-model="state.form.penalty_total" t-on-change="recomputeShares"/></label>
                     </div>
                     <div class="cst_sf_kpi_tiles">
@@ -489,7 +491,7 @@
                         <tbody>
                             <tr t-foreach="state.form.shares" t-as="s" t-key="s.employee_id">
                                 <td t-esc="s.name"/><td class="muted small" t-esc="s.worked"/><td class="n" t-esc="num(s.minutes) + ' daq'"/>
-                                <td class="n"><input type="number" class="cst_sf_cell_input" t-model="s.kpi_amount"/></td>
+                                <td class="n"><input t-if="state.form.can_edit_kpi" type="number" class="cst_sf_cell_input" t-model="s.kpi_amount"/><t t-else="" t-esc="money(s.kpi_amount)"/></td>
                                 <td class="n"><input type="number" class="cst_sf_cell_input" t-model="s.penalty_amount"/></td>
                             </tr>
                         </tbody>

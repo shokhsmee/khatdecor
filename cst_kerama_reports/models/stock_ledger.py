@@ -84,6 +84,21 @@ class CstStockLedgerReport(models.AbstractModel):
         return None, None
 
     @api.model
+    def _classified(self, lines, inside, warehouse_of):
+        """(line, warehouse, column) for every side a line counts on: a
+        transfer between two of the chosen warehouses leaves one and enters
+        the other, so it is an outflow there as well as an inflow here."""
+        for line in lines:
+            src, dst = line.location_id.id, line.location_dest_id.id
+            if src in inside and dst in inside and warehouse_of.get(src) != warehouse_of.get(dst):
+                yield line, warehouse_of.get(dst), "transfer_in"
+                yield line, warehouse_of.get(src), "transfer_out"
+                continue
+            wh, flow = self._classify(line, inside, warehouse_of)
+            if flow:
+                yield line, wh, flow
+
+    @api.model
     def _line_value(self, line):
         """The move's stored value, shared across its lines; None if unvalued."""
         move = line.move_id
@@ -134,10 +149,7 @@ class CstStockLedgerReport(models.AbstractModel):
         # (warehouse, product) -> {"open": qty, flows: {key: [qty, value, unvalued_qty]}}
         cells = defaultdict(lambda: {"open": 0.0,
                                      "flows": defaultdict(lambda: [0.0, 0.0, 0.0])})
-        for line in lines:
-            wh, flow = self._classify(line, inside, warehouse_of)
-            if not flow:
-                continue
+        for line, wh, flow in self._classified(lines, inside, warehouse_of):
             cell = cells[(wh, line.product_id.id)]
             qty = line.quantity_product_uom
             if line.date < period_start:

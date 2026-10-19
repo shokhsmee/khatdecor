@@ -1,0 +1,2 @@
+/* the queue card's top row carries one more chip («Tezkor»): let it wrap */
+.cst_sf_col--queue .cst_sf_kcard_top { flex-wrap: wrap; gap: 4px; }

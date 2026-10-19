@@ -23,13 +23,49 @@
         <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager'))]"/>
     </record>
 
-    <!-- Ishlab chiqarish menejeri: the Jo'natish app too (dispatch + «Ichki o'tkazmalar»).
-         Linked here, after cst_kerama_roles sets that role's list, so an upgrade of
-         this module puts it back. -->
+    <!-- Ishlab chiqarish menejeri uses only «Ichki o'tkazmalar» in Jo'natish: the
+         transfer group (no Ombor / Eshik tiles) and the Skaner menu, not the
+         Jo'natmalar list. Linked here, after cst_kerama_roles sets that role's
+         list, so an upgrade of this module puts it back. -->
     <record id="cst_kerama_roles.role_production_manager" model="access.role">
-        <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager'))]"/>
+        <field name="groups_ids" eval="[
+            Command.unlink(ref('cst_kerama_dispatch.group_dispatch_manager')),
+            Command.link(ref('cst_kerama_dispatch.group_dispatch_transfer')),
+        ]"/>
     </record>
     <record id="cst_kerama_roles.rm_production" model="role.management">
+        <field name="cst_shown_menu_ids" eval="[
+            Command.unlink(ref('menu_dispatch_root')),
+            Command.unlink(ref('menu_dispatch_app')),
+            Command.link(ref('menu_dispatch_transfers')),
+        ]"/>
+    </record>
+
+    <!-- Managers see Jo'natish through their ROLE: the Access Roles app rewrites
+         a user's groups from the role, so ticking a group on one user is undone. -->
+    <record id="cst_kerama_roles.role_director" model="access.role">
+        <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager')),
+                                        Command.link(ref('cst_kerama_shift.group_doc_correction'))]"/>
+    </record>
+    <!-- «Tuzatish» of done transfers and shift results: Administrator and Rahbar -->
+    <record id="cst_kerama_roles.role_administrator" model="access.role">
+        <field name="groups_ids" eval="[Command.link(ref('cst_kerama_shift.group_doc_correction'))]"/>
+    </record>
+    <record id="cst_kerama_roles.role_sales_head" model="access.role">
+        <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager'))]"/>
+    </record>
+    <record id="cst_kerama_roles.role_chief_warehouse" model="access.role">
+        <field name="groups_ids" eval="[Command.link(ref('cst_kerama_dispatch.group_dispatch_manager'))]"/>
+    </record>
+    <!-- Jo'natish is in these roles' «shown menus» lists too (Sotuv bo'limi
+         boshlig'i for «Ichki o'tkazmalar»). -->
+    <record id="cst_kerama_roles.rm_sales_head" model="role.management">
+        <field name="cst_shown_menu_ids" eval="[Command.link(ref('menu_dispatch_root'))]"/>
+    </record>
+    <record id="cst_kerama_roles.rm_chief_warehouse" model="role.management">
+        <field name="cst_shown_menu_ids" eval="[Command.link(ref('menu_dispatch_root'))]"/>
+    </record>
+    <record id="cst_kerama_roles.rm_warehouse" model="role.management">
         <field name="cst_shown_menu_ids" eval="[Command.link(ref('menu_dispatch_root'))]"/>
     </record>
 </odoo>

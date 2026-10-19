@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- a queue card raised by a production request: «Tezkor» and who it is for -->
+    <t t-inherit="cst_kerama_shift.ShiftFloor" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'cst_sf_col--queue')]//div[contains(@class, 'cst_sf_kcard_top')]" position="inside">
+            <span t-if="row.urgent" class="cst_sf_chip cst_sf_chip--bad"><i class="fa fa-bolt me-1"/>Tezkor</span>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'cst_sf_col--queue')]//div[@t-if='row.origin']" position="after">
+            <div class="muted small" t-if="row.request"><t t-esc="row.request"/><t t-if="row.partner"> · <t t-esc="row.partner"/></t></div>
+        </xpath>
+    </t>
+</templates>

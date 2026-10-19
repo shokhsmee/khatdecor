@@ -23,6 +23,7 @@
                 <field name="amount_after" optional="show"/>
                 <field name="currency_id" column_invisible="1"/>
                 <field name="company_id" optional="hide" groups="base.group_multi_company"/>
+                <field name="trip_mode" optional="show"/>
                 <field name="state" widget="badge"/>
             </list>
         </field>
@@ -55,6 +56,8 @@
                             <field name="checked_by_id"/>
                             <field name="checked_at"/>
                             <field name="car_model"/>
+                            <field name="trip_mode"/>
+                            <field name="trip_no"/>
                             <field name="car_number"/>
                             <field name="driver"/>
                             <field name="driver_phone"/>
@@ -115,8 +118,21 @@
     <menuitem id="menu_dispatch_root" name="Jo'natish" sequence="44"
               web_icon="cst_kerama_dispatch,static/description/icon.png"
               groups="cst_kerama_dispatch.group_dispatch_warehouse,cst_kerama_dispatch.group_dispatch_gate,cst_kerama_dispatch.group_dispatch_transfer"/>
+    <!-- Skaner / Jo'natmalar are the warehouse and gate work; someone who only
+         moves stock between warehouses gets «Ichki o'tkazmalar» straight away
+         (shown to transfer-only users, see ir_ui_menu.py) -->
     <menuitem id="menu_dispatch_app" name="Skaner" parent="menu_dispatch_root"
-              action="action_dispatch_app" sequence="1"/>
+              action="action_dispatch_app" sequence="1"
+              groups="cst_kerama_dispatch.group_dispatch_warehouse,cst_kerama_dispatch.group_dispatch_gate"/>
     <menuitem id="menu_dispatch_list" name="Jo'natmalar" parent="menu_dispatch_root"
-              action="action_dispatch_list" sequence="10"/>
+              action="action_dispatch_list" sequence="10"
+              groups="cst_kerama_dispatch.group_dispatch_warehouse,cst_kerama_dispatch.group_dispatch_gate"/>
+    <record id="action_dispatch_transfers" model="ir.actions.client">
+        <field name="name">Ichki o'tkazmalar</field>
+        <field name="tag">cst_dispatch_app</field>
+        <field name="params" eval="{'screen': 'transfers'}"/>
+    </record>
+    <menuitem id="menu_dispatch_transfers" name="Ichki o'tkazmalar" parent="menu_dispatch_root"
+              action="action_dispatch_transfers" sequence="2"
+              groups="cst_kerama_dispatch.group_dispatch_transfer"/>
 </odoo>

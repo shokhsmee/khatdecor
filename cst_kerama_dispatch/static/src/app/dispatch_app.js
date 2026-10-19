@@ -39,6 +39,9 @@ export class DispatchApp extends Component {
             const did = this.props.action?.params?.dispatch_id;
             if (did) {
                 await this.openDispatch(did);
+            } else if (this.props.action?.params?.screen === "transfers" || this.transferOnly) {
+                // «Ichki o'tkazmalar» menu, or a user who has nothing else here
+                this.state.screen = "transfers";
             }
         });
         onWillUnmount(() => clearTimeout(this.searchTimer));
@@ -136,7 +139,18 @@ export class DispatchApp extends Component {
     async loadHome() {
         this.state.home = await this.call("ui_home");
     }
+    /** Only «Ichki o'tkazmalar» here: no warehouse or gate work. */
+    get transferOnly() {
+        const h = this.state.home || {};
+        return h.can_transfer && !h.can_wh && !h.can_gate;
+    }
     async goHome() {
+        if (this.transferOnly) {
+            // the home tiles would be one tile: stay on the transfers
+            this.state.screen = "transfers";
+            await this.loadHome();
+            return;
+        }
         this.state.screen = "home";
         this.state.dispatch = null;
         this.state.search = "";
@@ -295,6 +309,10 @@ export class DispatchApp extends Component {
     // ------------------------------------------------------------ state changes
     get canEditVehicle() {
         return this.canEditQty || this.canCheck;
+    }
+    async setTrip(mode) {
+        await this.call("ui_set_trip", [this.d.id, mode]);
+        await this.reload();
     }
     async onFieldChange(field, ev) {
         this.d[field] = ev.target.value;

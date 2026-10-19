@@ -46,3 +46,17 @@ class ResCompany(models.Model):
         if vals:
             self.sudo().search([]).write(vals)
         ICP.set_param("cst_kerama_kassa.partner_tags_seeded", "1")
+
+    def _cst_payroll_rate(self, date):
+        """The cashier's rate of the day rather than Odoo's: the latest so'm
+        kassa day on or before ``date`` that was opened with a dollar rate."""
+        self.ensure_one()
+        pay = self._cst_payroll_currency()
+        if pay != self.currency_id and date:
+            day = self.env["cst.kassa.day"].sudo().search([
+                ("company_id", "=", self.id), ("currency_id", "=", pay.id),
+                ("date", "<=", date), ("usd_rate", ">", 0),
+            ], order="date desc, id desc", limit=1)
+            if day:
+                return day.usd_rate
+        return super()._cst_payroll_rate(date)

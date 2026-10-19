@@ -5,7 +5,10 @@ from . import shift_template
 from . import shift
 from . import shift_line
 from . import shift_entry
+from . import shift_worker
 from . import mrp_workcenter
 from . import mrp_workorder
 from . import payroll_period
 from . import floor
+from . import report_fact
+from . import stock_landed_cost

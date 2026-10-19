@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sales: a section of its own next to Orders -->
+    <menuitem id="menu_sale_production_requests_root" name="Ishlab chiqarish zayafkalari" parent="sale.sale_menu_root"
+              sequence="4" groups="sales_team.group_sale_salesman,mrp.group_mrp_user"/>
+    <menuitem id="menu_sale_production_request_board" name="Rejalashtirish" parent="menu_sale_production_requests_root"
+              action="action_production_request_board" sequence="1"/>
+    <menuitem id="menu_sale_production_request_list" name="Zayafkalar ro'yxati" parent="menu_sale_production_requests_root"
+              action="action_production_requests" sequence="2"/>
+    <!-- and in Smena boshqaruvi, for the production side -->
+    <menuitem id="menu_shift_production_request_board" name="Ishlab chiqarish zayafkalari" parent="cst_kerama_shift.menu_shift_root"
+              action="action_production_request_board" sequence="7"/>
+</odoo>

@@ -323,14 +323,26 @@ export class ShiftFloor extends Component {
     async startClose() {
         const preview = await this.orm.call("cst.production.floor", "close_preview", [this.shift.id, this.shift.kpi_total || 0, this.shift.penalty_total || 0]);
         this.openDialog("close", {
-            kpi_total: this.shift.kpi_total || 0, penalty_total: this.shift.penalty_total || 0,
+            kpi_total: preview.kpi_total || 0, penalty_total: this.shift.penalty_total || 0,
             shares: preview.shares, open_lines: preview.open_lines, note: "",
+            can_edit_kpi: preview.can_edit_kpi, totals: preview.totals,
         });
     }
     async recomputeShares() {
         const f = this.state.form;
         const preview = await this.orm.call("cst.production.floor", "close_preview", [this.shift.id, Number(f.kpi_total || 0), Number(f.penalty_total || 0)]);
         f.shares = preview.shares;
+    }
+    /** Sums under the product table of «Smenani yakunlash». */
+    get closeTotals() {
+        const t = { planned: 0, good: 0, second: 0, scrap: 0 };
+        for (const line of this.lines) {
+            t.planned += Number(line.planned || 0);
+            t.good += Number(line.good || 0);
+            t.second += Number(line.second || 0);
+            t.scrap += Number(line.scrap || 0);
+        }
+        return t;
     }
     get shareSums() {
         const shares = (this.state.form && this.state.form.shares) || [];

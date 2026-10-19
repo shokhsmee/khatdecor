@@ -5,6 +5,13 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/field[@name='state']" position="after">
+                <field name="cst_stage" widget="statusbar"
+                       statusbar_visible="queue,progress,finished,received"/>
+            </xpath>
             <xpath expr="//header" position="inside">
                 <button name="action_cst_request_supply" type="object" string="Xomashyo so'rash"
                         invisible="state not in ('confirmed', 'progress')"
@@ -15,6 +22,57 @@
                         icon="fa-exchange" invisible="not cst_flow_picking_count">
                     <field name="cst_flow_picking_count" string="Ombor ko'chirishlari" widget="statinfo"/>
                 </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- the stage, not Odoo's state, in the list and on the cards -->
+    <record id="mrp_production_list_wh_flow" model="ir.ui.view">
+        <field name="name">mrp.production.list.wh.flow</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state'][@widget='badge']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state'][@widget='badge']" position="after">
+                <field name="cst_stage" widget="badge" optional="show"
+                       decoration-muted="cst_stage == 'draft'"
+                       decoration-info="cst_stage == 'queue'"
+                       decoration-warning="cst_stage in ('progress', 'finished')"
+                       decoration-success="cst_stage == 'received'"
+                       decoration-danger="cst_stage == 'cancel'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_kanban_wh_flow" model="ir.ui.view">
+        <field name="name">mrp.production.kanban.wh.flow</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban//span/field[@name='state']" position="replace">
+                <field name="cst_stage"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_search_wh_flow" model="ir.ui.view">
+        <field name="name">mrp.production.search.wh.flow</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter_cancel']" position="after">
+                <separator/>
+                <filter name="cst_stage_progress" string="Ishlab chiqarishda"
+                        domain="[('cst_stage', '=', 'progress')]"/>
+                <filter name="cst_stage_finished" string="Yakunlandi (qabul kutilmoqda)"
+                        domain="[('cst_stage', '=', 'finished')]"/>
+                <filter name="cst_stage_received" string="Omborga qabul qilindi"
+                        domain="[('cst_stage', '=', 'received')]"/>
+            </xpath>
+            <xpath expr="//filter[@name='status']" position="after">
+                <filter name="groupby_cst_stage" string="Bosqich" context="{'group_by': 'cst_stage'}"/>
             </xpath>
         </field>
     </record>

@@ -16,8 +16,16 @@
          than no menu at all.
          ========================================================== -->
 
+    <!-- the app opens on its own overview, not on the first report of the list
+         (for a role whose first report is a wizard that was a dialog over an
+         empty screen) -->
+    <record id="action_reports_home" model="ir.actions.client">
+        <field name="name">Xisobotlar</field>
+        <field name="tag">cst_reports_home</field>
+    </record>
     <menuitem id="menu_reports_root"
               name="Xisobotlar"
+              action="action_reports_home"
               web_icon="cst_kerama_reports,static/description/icon.png"
               sequence="36"/>
 

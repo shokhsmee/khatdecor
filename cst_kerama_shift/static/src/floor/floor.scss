@@ -125,6 +125,7 @@
 .cst_sf_table tbody tr { cursor: default; }
 .cst_sf_table.compact td, .cst_sf_table.compact th { padding: 4px 6px; }
 .cst_sf_table td.bad { color: var(--sf-scrap); font-weight: 700; }
+.cst_sf_table tfoot tr.cst_sf_total td { font-weight: 700; border-top: 2px solid var(--sf-border); border-bottom: 0; }
 .cst_sf_actions { white-space: nowrap; }
 .cst_sf_actions .cst_sf_btn + .cst_sf_btn { margin-left: 4px; }
 .cst_sf_empty { color: var(--sf-muted); text-align: center; padding: 18px !important; }
