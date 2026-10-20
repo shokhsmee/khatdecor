@@ -1,0 +1,206 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_no_negative
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_move.py:0
+msgid ""
+"  • %(product)s in %(location)s: need %(needed).2f, have %(available).2f"
+msgstr ""
+"  • %(product)s в %(location)s: нужно %(needed).2f, есть %(available).2f"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_move.py:0
+msgid ""
+"%(what)s would take stock below zero:\n"
+"\n"
+"%(rows)s\n"
+"\n"
+"Receive or correct the stock first, or ask someone with the \"Allow Negative Stock\" right to do it."
+msgstr ""
+"%(what)s приведёт к отрицательному остатку:\n"
+"\n"
+"%(rows)s\n"
+"\n"
+"Сначала оприходуйте или исправьте остаток, либо попросите сотрудника с правом «Разрешить отрицательный остаток» сделать это."
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,name:cst_kerama_no_negative.group_allow_negative_cash
+msgid "Allow Negative Cash"
+msgstr "Разрешить отрицательную кассу"
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,name:cst_kerama_no_negative.group_allow_negative_stock
+msgid "Allow Negative Stock"
+msgstr "Разрешить отрицательный остаток"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_journal__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_quant__display_name
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_scrap__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/mrp_production.py:0
+msgid "Finishing %s"
+msgstr "Завершение %s"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_journal__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_move__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_move__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_picking__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_quant__id
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_stock_scrap__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_account_journal
+msgid "Journal"
+msgstr "Журнал"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_account_move
+msgid "Journal Entry"
+msgstr "Проводка"
+
+#. module: cst_kerama_no_negative
+#: model:res.groups.privilege,name:cst_kerama_no_negative.privilege_khatdecor_controls
+msgid "Khatdecor Controls"
+msgstr "Контроль Khatdecor"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Заказ на производство"
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,comment:cst_kerama_no_negative.group_allow_negative_cash
+msgid ""
+"May post journal entries that take a cash\n"
+"                account below zero."
+msgstr ""
+"Может проводить записи, уводящие кассовый\n"
+"                счёт ниже нуля."
+
+#. module: cst_kerama_no_negative
+#: model:res.groups,comment:cst_kerama_no_negative.group_allow_negative_stock
+msgid ""
+"May validate transfers, scraps and manufacturing\n"
+"                orders that take an internal location below zero."
+msgstr ""
+"Может подтверждать перемещения, списания и заказы\n"
+"                на производство, уводящие внутреннее местоположение ниже нуля."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,field_description:cst_kerama_no_negative.field_account_journal__cst_prevent_negative_balance
+msgid "Prevent Negative Balance"
+msgstr "Запрет отрицательного остатка"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_quant
+msgid "Quants"
+msgstr "Кванты"
+
+#. module: cst_kerama_no_negative
+#: model:ir.model.fields,help:cst_kerama_no_negative.field_account_journal__cst_prevent_negative_balance
+msgid ""
+"Refuse to post an entry that would take this journal's account below zero — "
+"a cash box cannot pay out money it does not hold. On by default for cash "
+"journals."
+msgstr ""
+"Запрещает проводить запись, уводящую счёт этого журнала ниже нуля — касса не"
+" может выдать деньги, которых в ней нет. По умолчанию включено для кассовых "
+"журналов."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_scrap
+msgid "Scrap"
+msgstr "Брак"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_picking.py:0
+msgid ""
+"Scrapping would take stock below zero:\n"
+"\n"
+"  • %(product)s in %(location)s: need %(needed).2f, have %(available).2f\n"
+"\n"
+"Receive or correct the stock first, or ask someone with the \"Allow Negative Stock\" right to do it."
+msgstr ""
+"Списание приведёт к отрицательному остатку:\n"
+"\n"
+"  • %(product)s в %(location)s: нужно %(needed).2f, есть %(available).2f\n"
+"\n"
+"Сначала оприходуйте или исправьте остаток, либо попросите сотрудника с правом «Разрешить отрицательный остаток» сделать это."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_move
+msgid "Stock Move"
+msgstr "Движение запасов"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_quant.py:0
+msgid ""
+"Stock cannot go negative.\n"
+"\n"
+"%(product)s in %(location)s would end at %(qty).2f %(uom)s.\n"
+"\n"
+"Receive or correct the stock first, or ask someone with the \"Allow Negative Stock\" right to do it."
+msgstr ""
+"Остаток не может быть отрицательным.\n"
+"\n"
+"%(product)s в %(location)s станет %(qty).2f %(uom)s.\n"
+"\n"
+"Сначала оприходуйте или исправьте остаток, либо попросите сотрудника с правом «Разрешить отрицательный остаток» сделать это."
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/account_move.py:0
+msgid ""
+"The cash box cannot go negative.\n"
+"\n"
+"%(account)s would end at %(balance).2f %(currency)s.\n"
+"\n"
+"Register the incoming cash first, or ask someone with the \"Allow Negative Cash\" right to post this."
+msgstr ""
+"Касса не может уйти в минус.\n"
+"\n"
+"%(account)s станет %(balance).2f %(currency)s.\n"
+"\n"
+"Сначала зарегистрируйте поступление денег, либо попросите сотрудника с правом «Разрешить отрицательную кассу» провести это."
+
+#. module: cst_kerama_no_negative
+#: model:ir.model,name:cst_kerama_no_negative.model_stock_picking
+msgid "Transfer"
+msgstr "Перевод"
+
+#. module: cst_kerama_no_negative
+#. odoo-python
+#: code:addons/cst_kerama_no_negative/models/stock_picking.py:0
+msgid "Validating %s"
+msgstr "Подтверждение %s"

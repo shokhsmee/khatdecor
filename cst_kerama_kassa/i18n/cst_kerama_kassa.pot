@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 19:47+0000\n"
-"PO-Revision-Date: 2026-09-29 19:47+0000\n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1611,6 +1611,14 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: cst_kerama_kassa
+#: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__employee_pay_currency_id
+msgid ""
+"Oklad, KPI, avans, jarima va oylik hisoboti shu valyutada yuritiladi. "
+"Buxgalteriya provodkasi kompaniya valyutasiga davrdagi kurs bo'yicha "
+"o'tkaziladi."
+msgstr ""
+
+#. module: cst_kerama_kassa
 #: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
 msgid "Oldest debts, any currency"
 msgstr ""
@@ -1906,6 +1914,11 @@ msgstr ""
 #. module: cst_kerama_kassa
 #: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_operation_form
 msgid "Payroll"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#: model:ir.model.fields,field_description:cst_kerama_kassa.field_cst_kassa_operation__employee_pay_currency_id
+msgid "Payroll currency"
 msgstr ""
 
 #. module: cst_kerama_kassa

@@ -1,0 +1,595 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_product_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "%(row)s-satr (%(barcode)s): narx manfiy bo'lishi mumkin emas."
+msgstr "Строка %(row)s (%(barcode)s): цена не может быть отрицательной."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "%(row)s-satr (%(barcode)s): yangi narx bo'sh yoki son emas."
+msgstr "Строка %(row)s (%(barcode)s): новая цена пустая или не число."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"%(row)s-satr: shtrix-kod \"%(barcode)s\" %(first)s-satrda allaqachon bor, "
+"e'tiborga olinmadi."
+msgstr ""
+"Строка %(row)s: штрихкод \"%(barcode)s\" уже есть в строке %(first)s, "
+"пропущено."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "%(row)s-satr: shtrix-kod \"%(barcode)s\" bo'yicha mahsulot topilmadi."
+msgstr "Строка %(row)s: товар со штрихкодом \"%(barcode)s\" не найден."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "%(row)s-satr: shtrix-kod ko'rsatilmagan."
+msgstr "Строка %(row)s: штрихкод не указан."
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "/ 1 USD"
+msgstr "/ 1 USD"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__usd_rate
+msgid ""
+"1 dollar necha kompaniya valyutasiga teng. Tizim kursidan olinadi, lekin "
+"qo'lda o'zgartirish mumkin."
+msgstr ""
+"Сколько единиц валюты компании стоит 1 доллар. Берётся из курса системы, но "
+"можно изменить вручную."
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid ""
+"<b>1.</b> Shablonni yuklab olib, <b>Yangi narx</b>\n"
+"                                ustunini to'ldiring.\n"
+"                                <b>2.</b> To'ldirilgan faylni tanlab,\n"
+"                                <b>Narxlarni yuklash</b> tugmasini bosing.<br/>\n"
+"                                Mahsulotlar <b>shtrix-kod</b> bo'yicha topiladi -\n"
+"                                qolgan ustunlarni o'zgartirsa ham bo'ladi.\n"
+"                                Noto'g'ri satrlar o'tkazib yuboriladi va\n"
+"                                oxirida ro'yxat qilib ko'rsatiladi."
+msgstr ""
+"<b>1.</b> Скачайте шаблон и заполните столбец\n"
+"                                <b>Yangi narx</b>.\n"
+"                                <b>2.</b> Выберите заполненный файл и\n"
+"                                нажмите кнопку <b>Загрузить цены</b>.<br/>\n"
+"                                Товары ищутся по <b>штрихкоду</b> -\n"
+"                                остальные столбцы можно менять.\n"
+"                                Ошибочные строки пропускаются и\n"
+"                                в конце показываются списком."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "<br/>Kurs: 1 %(usd)s = %(rate)s"
+msgstr "<br/>Курс: 1 %(usd)s = %(rate)s"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "<li>... va yana %s satr</li>"
+msgstr "<li>... и ещё %s строк</li>"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "<li>O'tkazib yuborildi: <b>%s</b> satr</li>"
+msgstr "<li>Пропущено: <b>%s</b> строк</li>"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "<li>O'zgarmadi (narx bir xil): %s</li>"
+msgstr "<li>Без изменений (цена та же): %s</li>"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "<li>Yangilandi: <b>%s</b> mahsulot</li>"
+msgstr "<li>Обновлено: <b>%s</b> товаров</li>"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "<span class=\"text-muted\" invisible=\"adjust_type != 'percent'\">%</span>"
+msgstr "<span class=\"text-muted\" invisible=\"adjust_type != 'percent'\">%</span>"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_unit
+msgid "Adjust Unit"
+msgstr "Единица"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_sign
+msgid "Amal"
+msgstr "Действие"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Avval Excel faylni tanlang."
+msgstr "Сначала выберите Excel-файл."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__adjust_sign__subtract
+msgid "Ayirish (-)"
+msgstr "Уменьшить (-)"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Bekor qilish"
+msgstr "Отмена"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"Bu o'zgartirish quyidagi mahsulotlarning narxini manfiy qiladi:\n"
+"\n"
+"%(products)s\n"
+"\n"
+"Qiymatni kamaytiring yoki bu mahsulotlarni ro'yxatdan chiqaring."
+msgstr ""
+"Это изменение сделает цену следующих товаров отрицательной:\n"
+"\n"
+"%(products)s\n"
+"\n"
+"Уменьшите значение или исключите эти товары из списка."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "CSV faylning kodlashini aniqlab bo'lmadi."
+msgstr "Не удалось определить кодировку CSV-файла."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__create_date
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__display_name
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__price_currency__usd
+msgid "Dollar (USD)"
+msgstr "Доллар (USD)"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__usd_rate
+msgid "Dollar kursi"
+msgstr "Курс доллара"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__rate_date
+msgid "Dollar kursi shu sanaga ko'ra olinadi."
+msgstr "Курс доллара берётся на эту дату."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Dollar kursini kiriting - kurs noldan katta bo'lishi kerak."
+msgstr "Введите курс доллара - курс должен быть больше нуля."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__price_currency
+msgid ""
+"Dollar tanlansa, shablondagi va ommaviy o'zgartirishdagi summalar dollarda "
+"kiritiladi va kurs bo'yicha kompaniya valyutasiga aylantiriladi."
+msgstr ""
+"Если выбран доллар, суммы в шаблоне и при массовом изменении вводятся в "
+"долларах и пересчитываются в валюту компании по курсу."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__state__done
+msgid "Done"
+msgstr "Выполнено"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Excel"
+msgstr "Excel"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__upload_file
+msgid "Excel fayl"
+msgstr "Excel-файл"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Excel fayl: %s"
+msgstr "Excel-файл: %s"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Excel faylni o'qish uchun 'openpyxl' kutubxonasi kerak."
+msgstr "Для чтения Excel-файла нужна библиотека 'openpyxl'."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Excel shablonini yaratish uchun 'xlsxwriter' kutubxonasi kerak."
+msgstr "Для создания Excel-шаблона нужна библиотека 'xlsxwriter'."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"Faqat .xlsx va .csv fayllar qabul qilinadi. Eski .xls faylni Excelda \"Excel"
+" Workbook (.xlsx)\" sifatida saqlab, qayta yuklang."
+msgstr ""
+"Принимаются только файлы .xlsx и .csv. Сохраните старый файл .xls в Excel "
+"как \"Excel Workbook (.xlsx)\" и загрузите снова."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"Faylda \"Shtrix-kod\" va \"Yangi narx\" ustunlari topilmadi. Shablonni "
+"yuklab olib, undan foydalaning."
+msgstr ""
+"В файле не найдены столбцы \"Shtrix-kod\" и \"Yangi narx\". Скачайте шаблон "
+"и используйте его."
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"Faylda yangilash uchun yaroqli satr topilmadi.\n"
+"\n"
+"%s"
+msgstr ""
+"В файле не найдено ни одной пригодной для обновления строки.\n"
+"\n"
+"%s"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Fayldagi narxlar mahsulotlarga yoziladi. Davom etamizmi?"
+msgstr "Цены из файла будут записаны в товары. Продолжить?"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"Faylni o'qib bo'lmadi. Uni .xlsx formatida saqlanganiga ishonch hosil "
+"qiling."
+msgstr ""
+"Не удалось прочитать файл. Убедитесь, что он сохранён в формате .xlsx."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__adjust_type__percent
+msgid "Foiz (%)"
+msgstr "Процент (%)"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Foiz 100 dan katta bo'lishi mumkin emas."
+msgstr "Процент не может быть больше 100."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__id
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update_line__barcode
+msgid "International Article Number used for product identification."
+msgstr ""
+"Международный номер товара (EAN), используемый для идентификации товара."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__current_price
+msgid "Joriy narx"
+msgstr "Текущая цена"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Kamida bitta mahsulot tanlang."
+msgstr "Выберите хотя бы один товар."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Ko'rish"
+msgstr "Просмотр"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__company_id
+msgid "Kompaniya"
+msgstr "Компания"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__company_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__currency_id
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__price_currency__company
+msgid "Kompaniya valyutasi"
+msgstr "Валюта компании"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__rate_date
+msgid "Kurs sanasi"
+msgstr "Дата курса"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__write_date
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__write_date
+msgid "Last Updated on"
+msgstr "Изменено"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__product_id
+msgid "Mahsulot"
+msgstr "Товар"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid ""
+"Mahsulot tanlanmagan. Ro'yxatdan mahsulotlarni belgilab,\n"
+"                        amalni qaytadan oching."
+msgstr ""
+"Товары не выбраны. Отметьте товары в списке и\n"
+"                        откройте действие снова."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__product_ids
+msgid "Mahsulotlar"
+msgstr "Товары"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+#: model:ir.actions.act_window,name:cst_kerama_product_price.action_product_price_update_template
+#: model:ir.actions.act_window,name:cst_kerama_product_price.action_product_price_update_variant
+#: model:ir.model,name:cst_kerama_product_price.model_cst_product_price_update
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Maxsulot narxlarini yangilash"
+msgstr "Обновление цен товаров"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Narx o'zgarishi"
+msgstr "Изменение цены"
+
+#. module: cst_kerama_product_price
+#: model:ir.model,name:cst_kerama_product_price.model_cst_product_price_update_line
+msgid "Narx o'zgarishini ko'rish"
+msgstr "Предпросмотр изменения цены"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Narxlarni yuklash"
+msgstr "Загрузить цены"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__result_html
+msgid "Natija"
+msgstr "Результат"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__difference
+msgid "O'zgarish"
+msgstr "Изменение"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "O'zgartirish qiymatini kiriting (noldan katta)."
+msgstr "Введите значение изменения (больше нуля)."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_type
+msgid "O'zgartirish turi"
+msgstr "Тип изменения"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Ommaviy o'zgartirish"
+msgstr "Массовое изменение"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Ommaviy o'zgartirish: %s"
+msgstr "Массовое изменение: %s"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Orqaga"
+msgstr "Назад"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__state__preview
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__product_count
+msgid "Product Count"
+msgstr "Кол-во товаров"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__target
+msgid "Qaysi narx"
+msgstr "Какая цена"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_value
+msgid "Qiymat"
+msgstr "Значение"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Qo'llash"
+msgstr "Применить"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__adjust_sign__add
+msgid "Qo'shish (+)"
+msgstr "Увеличить (+)"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__template_file
+msgid "Shablon"
+msgstr "Шаблон"
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Shablon uchun kamida bitta mahsulot tanlang."
+msgstr "Выберите хотя бы один товар для шаблона."
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Shablon yuklab olish"
+msgstr "Скачать шаблон"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__product_ids
+msgid ""
+"Shablonga chiqadigan va ommaviy o'zgartirish qo'llanadigan mahsulotlar."
+msgstr ""
+"Товары, которые попадут в шаблон и к которым применяется массовое изменение."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__barcode
+msgid "Shtrix-kod"
+msgstr "Штрихкод"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__target__price
+msgid "Sotish narxi"
+msgstr "Цена продажи"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__state
+msgid "State"
+msgstr "Статус"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__adjust_type__amount
+msgid "Summa"
+msgstr "Сумма"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Tanlangan mahsulotlarning narxi o'zgaradi. Davom etamizmi?"
+msgstr "Цены выбранных товаров изменятся. Продолжить?"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid ""
+"Tanlangan mahsulotlarning narxini foiz yoki\n"
+"                                summa bo'yicha oshirish / kamaytirish.\n"
+"                                <b>Ko'rish</b> tugmasi hech narsani\n"
+"                                o'zgartirmaydi - faqat natijani ko'rsatadi."
+msgstr ""
+"Повышение / понижение цены выбранных товаров на процент или\n"
+"                                сумму.\n"
+"                                Кнопка <b>Просмотр</b> ничего не\n"
+"                                меняет - только показывает результат."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__target__cost
+msgid "Tannarx"
+msgstr "Себестоимость"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__company_id
+msgid ""
+"Tannarx shu kompaniya uchun yangilanadi (tannarx har bir kompaniyada alohida"
+" saqlanadi). Sotish narxi barcha kompaniyalar uchun umumiy."
+msgstr ""
+"Себестоимость обновляется для этой компании (себестоимость хранится отдельно"
+" в каждой компании). Цена продажи общая для всех компаний."
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__template_filename
+msgid "Template Filename"
+msgstr "Имя файла шаблона"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "To'ldirilgan fayl"
+msgstr "Заполненный файл"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__upload_filename
+msgid "Upload Filename"
+msgstr "Имя загруженного файла"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__price_currency
+msgid "Valyuta"
+msgstr "Валюта"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__wizard_id
+msgid "Wizard"
+msgstr "Мастер"
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__new_price
+msgid "Yangi narx"
+msgstr "Новая цена"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Yopish"
+msgstr "Закрыть"
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "ta mahsulot"
+msgstr "товаров"

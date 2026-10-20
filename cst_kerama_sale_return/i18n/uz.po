@@ -1,0 +1,258 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_sale_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,help:cst_kerama_sale_return.field_cst_sale_return_wizard__refund_amount
+msgid ""
+"Amount of money to refund to the customer. Defaults to the value of the "
+"returned products (taxes included) but can be adjusted."
+msgstr ""
+"Mijozga qaytariladigan pul summasi. Standart bo'yicha qaytarilgan "
+"mahsulotlar qiymati (soliqlar bilan), lekin o'zgartirish mumkin."
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__available_journal_ids
+msgid "Available Journal"
+msgstr "Mavjud jurnal"
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Bekor qilish"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__uom_id
+msgid "Birlik"
+msgstr "Birlik"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__company_id
+msgid "Company"
+msgstr "Kompaniya"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__order_currency_id
+msgid "Currency"
+msgstr "Valyuta"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__partner_id
+msgid "Customer"
+msgstr "Mijoz"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__discount
+msgid "Discount (%)"
+msgstr "Chegirma (%)"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Ko'rsatiladigan nom"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__communication
+msgid "Izoh"
+msgstr "Izoh"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__journal_id
+msgid "Jurnal"
+msgstr "Jurnal"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi o'zgartirgan"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi o'zgartirilgan sana"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__product_id
+msgid "Mahsulot"
+msgstr "Mahsulot"
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Mahsulot qaytarish"
+msgstr "Mahsulot qaytarish"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__line_ids
+msgid "Mahsulotlar"
+msgstr "Mahsulotlar"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__sale_line_id
+msgid "Order Line"
+msgstr "Buyurtma qatori"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,help:cst_kerama_sale_return.field_cst_sale_return_wizard__journal_id
+msgid ""
+"Payment journal used to refund the money to the customer. Leave the refund "
+"amount at 0 to only issue a credit note without paying."
+msgstr ""
+"Mijozga pul qaytarish uchun to'lov jurnali. Faqat kredit-nota chiqarib, pul "
+"to'lamaslik uchun qaytariladigan summani 0 qoldiring."
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid "Please set a return quantity on at least one product."
+msgstr "Kamida bitta mahsulotga qaytariladigan miqdorni kiriting."
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__return_qty
+msgid "Qaytariladigan miqdor"
+msgstr "Qaytariladigan miqdor"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__refund_amount
+msgid "Qaytariladigan summa"
+msgstr "Qaytariladigan summa"
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/models/sale_order.py:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_order_form_return_button
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Qaytarish"
+msgstr "Qaytarish"
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid "Qaytarish (kredit-nota)"
+msgstr "Qaytarish (kredit-nota)"
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid "Qaytarish: %(order)s"
+msgstr "Qaytarish: %(order)s"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model,name:cst_kerama_sale_return.model_sale_order
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__order_id
+msgid "Sales Order"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model,name:cst_kerama_sale_return.model_cst_sale_return_wizard
+msgid "Sales Order Return / Refund"
+msgstr "Sotuv buyurtmasini qaytarish / pulni qaytarish"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model,name:cst_kerama_sale_return.model_cst_sale_return_line
+msgid "Sales Order Return Line"
+msgstr "Sotuv buyurtmasini qaytarish qatori"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__payment_date
+msgid "Sana"
+msgstr "Sana"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__ordered_qty
+msgid "Sotilgan miqdor"
+msgstr "Sotilgan miqdor"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__price_total
+msgid "Summa"
+msgstr "Summa"
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Tasdiqlash"
+msgstr "Tasdiqlash"
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/models/sale_order.py:0
+msgid "The order must be confirmed before a return can be registered."
+msgstr ""
+"Qaytarishni ro'yxatdan o'tkazishdan oldin buyurtma tasdiqlangan bo'lishi "
+"kerak."
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__paid_total
+msgid "To'langan summa"
+msgstr "To'langan summa"
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "To'lov"
+msgstr "To'lov"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,help:cst_kerama_sale_return.field_cst_sale_return_wizard__paid_total
+msgid "Total amount the customer has already paid on this order."
+msgstr "Mijoz ushbu buyurtma bo'yicha allaqachon to'lagan jami summa."
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__price_unit
+msgid "Unit Price"
+msgstr "Birlik narxi"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__wizard_id
+msgid "Wizard"
+msgstr "Yordamchi oyna"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__delivered_qty
+msgid "Yetkazib berilgan"
+msgstr "Yetkazib berilgan"
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid ""
+"You cannot return more than was ordered for %(product)s (ordered: "
+"%(ordered)s, return: %(ret)s)."
+msgstr ""
+"%(product)s uchun buyurtma qilinganidan ko'p qaytarib bo'lmaydi (buyurtma: "
+"%(ordered)s, qaytarish: %(ret)s)."

@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* zxs_internal_payment_transfer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:08+0000\n"
+"PO-Revision-Date: 2026-10-19 18:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: zxs_internal_payment_transfer
+#: model_terms:ir.ui.view,arch_db:zxs_internal_payment_transfer.view_account_payment_form_internal_transfer
+msgid "<span class=\"o_stat_text\">Paired Transfer</span>"
+msgstr "<span class=\"o_stat_text\">Juft o'tkazma</span>"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "A paired internal transfer payment was created: %(link)s"
+msgstr "Juft ichki o'tkazma to'lovi yaratildi: %(link)s"
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_payment__destination_amount
+msgid "Amount Received"
+msgstr "Qabul qilingan summa"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid ""
+"Configure an Internal Transfer account under Accounting -> Configuration -> "
+"Settings."
+msgstr ""
+"Ichki o'tkazma schyotini Buxgalteriya -> Sozlamalar -> Sozlamalar bo'limida "
+"belgilang."
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_payment__destination_currency_id
+msgid "Destination Currency"
+msgstr "Qabul qiluvchi valyuta"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_payment__destination_journal_id
+msgid "Destination Journal"
+msgstr "Qabul qiluvchi jurnal"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Destination journal is required for internal transfers."
+msgstr "Ichki o'tkazmalar uchun qabul qiluvchi jurnal majburiy."
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_journal__display_name
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_payment__display_name
+msgid "Display Name"
+msgstr "Ko‘rsatiladigan nom"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Exchange difference on %s"
+msgstr "%s bo'yicha kurs farqi"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Gain"
+msgstr "Daromad"
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_journal__id
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_payment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,field_description:zxs_internal_payment_transfer.field_account_payment__is_internal_transfer
+#: model_terms:ir.ui.view,arch_db:zxs_internal_payment_transfer.account_journal_dashboard_kanban_view_internal_transfer
+msgid "Internal Transfer"
+msgstr "Ichki o'tkazma"
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.ui.menu,name:zxs_internal_payment_transfer.menu_action_account_payments_transfer
+#: model_terms:ir.ui.view,arch_db:zxs_internal_payment_transfer.view_account_payment_search_internal_transfer
+msgid "Internal Transfers"
+msgstr "Ichki o'tkazmalar"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Internal transfer amount must be greater than zero."
+msgstr "Ichki o'tkazma summasi noldan katta bo'lishi kerak."
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid ""
+"Internal transfers must be confirmed as Send payments. The matching Receive "
+"payment is created automatically on %(journal)s."
+msgstr ""
+"Ichki o'tkazmalar Yuborish to'lovi sifatida tasdiqlanishi kerak. Mos Qabul "
+"qilish to'lovi %(journal)s jurnalida avtomatik yaratiladi."
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model,name:zxs_internal_payment_transfer.model_account_journal
+msgid "Journal"
+msgstr "Jurnal"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Loss"
+msgstr "Zarar"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid ""
+"No %(payment_type)s payment method is configured on journal %(journal)s. "
+"Configure Outstanding Payments/Receipts on the journal payment methods."
+msgstr ""
+"%(journal)s jurnalida %(payment_type)s to'lov usuli sozlanmagan. Jurnalning "
+"to'lov usullarida tranzit to'lovlar/tushumlar schyotini belgilang."
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid ""
+"No Exchange %(kind)s account is configured, so the %(amount)s this transfer "
+"differs by cannot be booked. Set it under Accounting -> Configuration -> "
+"Settings."
+msgstr ""
+"Kurs %(kind)s schyoti sozlanmagan, shuning uchun bu o'tkazmadagi %(amount)s "
+"farqni provodka qilib bo'lmaydi. Uni Buxgalteriya -> Sozlamalar -> "
+"Sozlamalar bo'limida belgilang."
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Paired Internal Transfer"
+msgstr "Juft ichki o'tkazma"
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model,name:zxs_internal_payment_transfer.model_account_payment
+msgid "Payments"
+msgstr "To‘lovlar"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Source and destination journals must be different."
+msgstr "Jo'natuvchi va qabul qiluvchi jurnallar har xil bo'lishi kerak."
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,help:zxs_internal_payment_transfer.field_account_payment__destination_currency_id
+msgid ""
+"The currency the destination journal is held in.  A journal tied to one "
+"currency can only receive that currency."
+msgstr ""
+"Qabul qiluvchi jurnal yuritiladigan valyuta. Bitta valyutaga bog'langan "
+"jurnal faqat shu valyutani qabul qila oladi."
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "This payment was created from: %(link)s"
+msgstr "Bu to'lov quyidagidan yaratilgan: %(link)s"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid ""
+"This transfer converts %(source)s into %(destination)s, and the two sides "
+"differ by %(amount)s. Set an Exchange Gain or Loss Journal under Accounting "
+"-> Configuration -> Settings so the difference can be booked."
+msgstr ""
+"Bu o'tkazma %(source)s ni %(destination)s ga aylantiradi va ikki tomon "
+"%(amount)s ga farq qiladi. Farqni provodka qilish uchun Buxgalteriya -> "
+"Sozlamalar -> Sozlamalar bo'limida kurs farqi jurnalini belgilang."
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Transfer from %s"
+msgstr "%s dan o'tkazma"
+
+#. module: zxs_internal_payment_transfer
+#. odoo-python
+#: code:addons/zxs_internal_payment_transfer/models/account_payment.py:0
+msgid "Transfer to %s"
+msgstr "%s ga o'tkazma"
+
+#. module: zxs_internal_payment_transfer
+#: model:ir.model.fields,help:zxs_internal_payment_transfer.field_account_payment__destination_amount
+msgid ""
+"What lands in the destination journal.  Filled in at the rate of the payment"
+" date; type over it to use the rate you actually got."
+msgstr ""
+"Qabul qiluvchi jurnalga tushadigan summa. To'lov sanasidagi kurs bo'yicha "
+"to'ldiriladi; haqiqatda olingan kursni qo'llash uchun ustidan yozing."

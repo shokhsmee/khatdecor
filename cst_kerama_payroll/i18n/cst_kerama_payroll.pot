@@ -1,0 +1,2861 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_entry_wizard.py:0
+msgid "%(component)s — %(count)s ta xodim"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "%(component)s — %(operation)s / %(order)s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "%(component)s — %(order)s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "%(component)s — %(picking)s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_line.py:0
+msgid ""
+"%s has no work contact, so the payable line cannot name a partner.  Set one "
+"on the employee form."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_component.py:0
+msgid ""
+"%s is marked taxable but not official.  Only the official stream is taxed — "
+"untick one of the two."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_line.py:0
+msgid ""
+"%s posted line(s) cannot be deleted.  Reset the period to draft first — that"
+" cancels the journal entry."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/res_company.py:0
+msgid ""
+"%s: oylik qatorlari allaqachon bor — oylik valyutasini endi o'zgartirib "
+"bo'lmaydi (eski summalar boshqa valyutada qolib ketadi)."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__cst_rate
+msgid ""
+"1 dollar necha so'm: oylik provodkasi shu kurs bo'yicha dollarga "
+"o'tkaziladi. Hisoblash sanasidagi kassa kursi olinadi; tasdiqlashdan oldin "
+"o'zgartirish mumkin."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_line__cst_shift__1
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__mrp_workorder__cst_shift__1
+msgid "1-smena"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_employee_form_payroll
+msgid "14 ta raqam"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_line__cst_shift__2
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__mrp_workorder__cst_shift__2
+msgid "2-smena"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid ""
+"<span class=\"o_stat_text\">Journal</span>\n"
+"                                <span class=\"o_stat_text\">Entry</span>"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_kpi_production
+msgid ""
+"A finished work order pays everyone who worked it: quantity produced\n"
+"               times the rate on that product's own operation in the bill of\n"
+"               materials. Set the rates, then compute the period."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_cst_payroll_component_code_uniq
+msgid "A payroll component code must be unique."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_cst_payroll_line_amount_not_zero
+msgid "A payroll line of zero has nothing to record."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_cst_payroll_period_dates_ordered
+msgid "A payroll period must end on or after it starts."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid ""
+"A posted period is reversed, not erased — the journal entry stays in the "
+"ledger with a reversal against it. Continue?"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Accounting"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__date_posted
+msgid "Accounting Date"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__kind__accrual
+msgid "Accrual"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_component__kind
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_entry_wizard__kind
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__kind
+msgid ""
+"Accruals increase what the company owes the employee, deductions reduce it."
+"  An employer cost (social tax) reaches the ledger but never the employee's "
+"balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_component
+msgid ""
+"Accruals, deductions and employer costs. The report's columns follow\n"
+"               these records, so adding a bonus type needs no development."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__is_accrued
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_list
+msgid "Accrued"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__active
+msgid "Active"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__cst_kpi_rate_effective
+msgid "Amaldagi sotuv KPI"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__amount
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__amount
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__amount
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__amount
+msgid "Amount"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_cst_picking_unloader_amount_not_zero
+msgid "An unloading payment of zero has nothing to record."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Archived"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_line
+msgid "Barcha yozuvlar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Behaviour"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Bekor qilish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_product_product__cst_kpi_use_variant
+msgid ""
+"Belgilansa, shu variant uchun pastdagi stavka qo'llanadi (nol bo'lsa ham). "
+"Belgilanmasa, mahsulotning umumiy stavkasi olinadi."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_entry_wizard_line
+msgid "Bonus / jarima qatori"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_entry_wizard
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_entry_wizard
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_entry_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Bonus / jarima yozish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__is_external
+msgid "Booked elsewhere"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.js:0
+msgid "Boshqa"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.js:0
+msgid "Bu oy"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_product_variant_kpi_rate
+msgid ""
+"Bu ro'yxatda faqat xarakteristikasi bor variantlar chiqadi. «Variant stavkasi\n"
+"               alohida» belgilansa, shu variant o'z stavkasini oladi; aks holda mahsulotning\n"
+"               umumiy stavkasi qo'llanadi."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.js:0
+msgid "Bu yil"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_sales
+msgid "Buyurtma"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_line__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__partner_id
+msgid ""
+"Carried onto the payable journal item so the partner ledger and this report "
+"show the same balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Cash"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Close"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_period__state__closed
+msgid "Closed"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__code
+msgid "Code"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__company_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__company_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__company_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__company_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__company_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__company_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__company_id
+msgid "Company"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__component_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Component"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_component
+msgid "Components"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__computation
+msgid "Computation"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Compute"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_period
+msgid ""
+"Compute generates the salary and KPI lines. Nothing reaches the\n"
+"               ledger until you confirm and post."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_period__state__computed
+msgid "Computed"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Confirm"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Confirm “%s” before posting it to the ledger."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_line__state__confirmed
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_period__state__confirmed
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Confirmed"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__partner_id
+msgid "Contact"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__is_taxable
+msgid "Counts towards the income tax, pension and social tax base."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__create_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__account_credit_id
+msgid "Credit Account"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_payroll_line_count
+msgid "Cst Payroll Line Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_stock_picking__cst_unload_visible
+msgid "Cst Unload Visible"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_routing_workcenter__cst_currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Date"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__date_posted
+msgid "Date of the journal entry.  Defaults to the last day of the period."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__period_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__period_id
+msgid "Davr"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__account_debit_id
+msgid "Debit Account"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__is_official
+msgid ""
+"Declared payroll.  Defaults from the component but can be set per line, "
+"because the same column (Ойлик суммаси) usually carries an official part and"
+" a cash part for the same employee."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_list
+msgid "Deducted"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__kind__deduction
+msgid "Deduction"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_unload_rate_default
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_unload_rate_default
+msgid "Default Unloading Payment"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_component
+msgid "Define a column of the salary report"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__name
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_form
+msgid "Description"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_version__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_routing_workcenter__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_workorder__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_sale_order__display_name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__cst_rate
+msgid "Dollar kursi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_line__state__draft
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_period__state__draft
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Draft"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__duplicate_count
+msgid "Duplicate Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_mrp_routing_workcenter_list_kpi_config
+msgid "Duration (minutes)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_hr_employee
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__employee_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__employee_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__employee_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Employee"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__employee_count
+msgid "Employee Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_employee_tax_account_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_employee_tax_account_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Employee Tax Payable"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__wage
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_version__wage
+msgid "Employee's monthly gross wage."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_list
+msgid "Employees"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Employer Cost"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_employer_tax_account_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_employer_tax_account_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Employer Tax Payable"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__kind__employer
+msgid "Employer cost"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__manual
+msgid "Entered by hand"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_component__is_taxable
+msgid "Enters the base for income tax, pension and social tax."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_line
+msgid ""
+"Every accrual, deduction and KPI bonus lands here. Compute a period\n"
+"               to generate salary lines, or add a bonus or advance by hand."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Excel"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__file
+msgid "Excel fayl"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid ""
+"Excel файлда камида икки устун булиши керак:\n"
+"                        <b>PINFL</b> (ёки ЖШШИР) ва <b>Summa</b> (ёки Сумма).\n"
+"                        Хохласангиз <b>FIO</b> устуни хам булсин — у факат\n"
+"                        текшириш учун курсатилади.\n"
+"                        Ходим айнан <b>ЖШШИР</b> буйича топилади, исм буйича эмас."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Excel: %s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_salary_expense_cash_account_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_salary_expense_cash_account_id
+msgid ""
+"Expense account for the undeclared part, kept apart so the official profit "
+"and loss can be read on its own."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_card_import_wizard__state__upload
+msgid "Fayl"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__file_name_text
+msgid "Fayldagi ism"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__file_name
+msgid "File Name"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Generate salary and KPI lines. Hand-entered lines are kept."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_product_variant_kpi_rate
+msgid "Hali variantli mahsulot yo'q"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__default_amount
+msgid "Har biriga"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_product_product__cst_kpi_rate_effective
+msgid ""
+"Hisoblashda ishlatiladigan stavka: variantniki (belgilangan bo'lsa) yoki "
+"mahsulotning umumiy stavkasi."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_reports
+msgid "Hisobotlar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_form
+msgid "How it was calculated"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__balance
+msgid "Hozirgi qoldiq"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_unloading
+msgid "Hujjat"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_report__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_version__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_routing_workcenter__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_workorder__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_template__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_sale_order__id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__message_has_error
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_income_tax_rate
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_income_tax_rate
+msgid "Income Tax (%)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_employee_tax_account_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_employee_tax_account_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Income tax and pension withheld from employees, owed to the state."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__is_foreign_pay
+msgid "Is Foreign Pay"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__is_official
+msgid "Is Official"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__is_taxable
+msgid "Is Taxable"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_production
+msgid "Ish buyurtmasi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_ledger
+msgid "Ish haqi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Ish markazi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_pivot_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Ishbay KPI"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_routing_workcenter__cst_kpi_rate
+msgid "Ishbay KPI (1 dona uchun)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_kpi_production
+msgid "Ishbay KPI hisoboti"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_mrp_operation_kpi_rate
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_kpi_operation_rate
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_mrp_routing_workcenter_list_kpi_config
+msgid "Ishbay KPI stavkalari"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__note
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_unloading
+msgid "Izoh"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__pinfl
+msgid "JSHSHIR"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_pinfl
+msgid "JSHSHIR (PINFL)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_employee_search_payroll
+msgid "JSHSHIR yo'q"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_stock_picking__cst_unload_total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_mrp_routing_workcenter_list_kpi_config
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_unloading
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_picking_form_unloaders
+msgid "Jami"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Jami summa"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__move_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__move_id
+msgid "Journal Entry"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_payroll_journal_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_payroll_journal_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Journal that carries the payroll entries."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "KPI"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_sale_order__cst_kpi_paid_date
+msgid "KPI Date (fully paid)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__rate
+msgid "KPI Rate"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_kpi_sales
+msgid ""
+"KPI accrues when a customer has paid an order in full. Set the rate\n"
+"               per unit on the products, make sure the salesperson is linked to an\n"
+"               employee whose pay scheme includes KPI, then compute the period."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_version__cst_salary_scheme__kpi
+msgid "KPI only"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_sales
+msgid "KPI summasi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_bonus_kpi
+msgid "KPI бонуси"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "KPI олмайдиган ходимларнинг буюртмалари"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "KPI ставкаси белгиланмаган махсулотлар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__kpi_production
+msgid "KPI — manufacturing"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__kpi_sales
+msgid "KPI — sales"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__kpi_unloading
+msgid "KPI — unloading"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_card_import_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Kartaga o'tkazilgan pullarni yuklash"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_card_import_line
+msgid "Kartaga o'tkazma qatori"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_card_import
+msgid "Kartaga o'tkazmalar (Excel)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_card_import_wizard
+msgid "Kartaga o'tkazmalarni yuklash (Excel)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_form
+msgid ""
+"Kassa hujjatidan kelgan qator: pul kassadan berilganda buxgalteriyaga yozilgan.\n"
+"                        O'zgartirish yoki o'chirish uchun kassa amaliyotini bekor qiling."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__product_categ_id
+msgid ""
+"Kept on the line so the sales-KPI report can group manager -> category -> "
+"product without joining through the product."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:res.groups.privilege,name:cst_kerama_payroll.privilege_khatdecor_payroll
+msgid "Khatdecor Payroll"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__kind
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__kind
+msgid "Kind"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_entry
+msgid "Kiritish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Ko'p xodimga birdan"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__company_currency_id
+msgid "Kompaniya valyutasi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__write_date
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid ""
+"Leave these empty to use the company's payroll accounts\n"
+"                            (Settings ▸ Payroll). Set them only where this component\n"
+"                            differs — a cash advance leaves the till, a card advance\n"
+"                            leaves the bank."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__line_ids
+msgid "Line"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__line_count
+msgid "Line Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Lines"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_product_list_kpi
+msgid "Mahsulot"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Masalan: 12-vagon tushirish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__matched_count
+msgid "Matched Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__matched_total
+msgid "Matched Total"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:res.groups,comment:cst_kerama_payroll.group_payroll_manager
+msgid ""
+"May configure components and rates, compute a\n"
+"                period and post it to accounting."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:res.groups,comment:cst_kerama_payroll.group_payroll_user
+msgid ""
+"May enter bonuses, fines and advances, and read\n"
+"                the salary reports.  Cannot post to the ledger."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_sales
+msgid "Miqdori"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Month"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__monthly_wage
+msgid "Monthly wage"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__name
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__name
+msgid "Name"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_kpi_unloading
+msgid ""
+"Name the crew and their money on the receipt itself, in its\n"
+"               «Yuk tushirish» tab. Validated documents reach the salary account\n"
+"               when the period is computed."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list
+msgid "Net"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__component_id
+msgid "Nima uchun"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_line
+msgid "No movements yet"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_mrp_operation_kpi_rate
+msgid "No operations yet"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid ""
+"No payroll journal set for %s.\n"
+"\n"
+"Settings ▸ Payroll ▸ Salary Journal."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_kpi_production
+msgid "No piece rate yet"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_product_kpi_rate
+msgid "No products yet"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_kpi_sales
+msgid "No sales KPI yet"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__note
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__note
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__note
+msgid "Note"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Notes"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_line.py:0
+msgid ""
+"Nothing tells me which account to %(side)s for “%(component)s” in %(company)s.\n"
+"\n"
+"Set it on the component (Payroll ▸ Configuration ▸ Components) or fill in the company's payroll accounts under Settings ▸ Payroll."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_kpi_unloading
+msgid "Nothing unloaded yet"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.js:0
+msgid "O'tgan oy"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "OYLIK"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__is_official
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Official"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_official_wage
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_version__cst_official_wage
+msgid "Official Wage"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid ""
+"Oklad, KPI, avans va jarimalar shu valyutada kiritiladi va hisobotda shu "
+"valyutada ko'rinadi. Provodka kompaniya valyutasiga oylik davridagi kurs "
+"bo'yicha o'tadi."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_card_import_line__currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_card_import_wizard__currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_entry_wizard__currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_picking_unloader__currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_pay_currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_version__cst_pay_currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_payroll_currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_payroll_currency_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_stock_picking__cst_currency_id
+msgid ""
+"Oklad, KPI, avans, jarima va oylik hisoboti shu valyutada yuritiladi. "
+"Buxgalteriya provodkasi kompaniya valyutasiga davrdagi kurs bo'yicha "
+"o'tkaziladi."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_mrp_operation_kpi_rate
+msgid ""
+"One rate per finished product per operation. Set it here or in the\n"
+"               bill of materials' Operations tab — it is the same line."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Only a posted period can be closed."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_payroll_period
+msgid "Open a payroll month"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__cst_operation_name
+msgid "Operation"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_mrp_routing_workcenter_list_kpi_config
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_production
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Operatsiya"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Orqaga"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_root
+msgid "Oylik"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_period
+msgid "Oylik davrlari"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_report
+msgid "Oylik hisoboti (batafsil)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_pay_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_version__cst_pay_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__cst_pay_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_template__cst_pay_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_payroll_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_payroll_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_stock_picking__cst_currency_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Oylik valyutasi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_picking_form_unloaders
+msgid "Oylikka hisoblandi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid ""
+"Paid by the employer. An expense, never a deduction — it does not touch the "
+"employee's balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_component__is_official
+msgid ""
+"Part of the declared payroll.  Unticked components form the cash stream and "
+"are posted to a separate expense account."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_salary_scheme
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_version__cst_salary_scheme
+msgid "Pay Scheme"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Payroll"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_component
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Payroll Component"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_list
+msgid "Payroll Components"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_line
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_form
+msgid "Payroll Line"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_line
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__payroll_line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Payroll Lines"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Payroll Lines — %s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:res.groups,name:cst_kerama_payroll.group_payroll_manager
+msgid "Payroll Manager"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:res.groups,name:cst_kerama_payroll.group_payroll_user
+msgid "Payroll Officer"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_period
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Payroll Period"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_period
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_list
+msgid "Payroll Periods"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_payroll_report
+msgid "Payroll Running Account Report"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid ""
+"Payroll component “%s” is missing.  Reinstall or upgrade the module to "
+"restore the default components."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Payroll stream"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Payroll — %s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_pension_rate
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_pension_rate
+msgid "Pension / INPS (%)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__period_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Period"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_personnel_no
+msgid "Personnel No."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_picking_unloader__picking_id
+msgid "Picking"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__signed_amount
+msgid ""
+"Positive for an accrual, negative for a deduction.  Employer costs are zero "
+"here — they never move the employee's balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Post to Accounting"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_line__state__posted
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_period__state__posted
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Posted"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__cst_operation_name
+msgid ""
+"Printer / Kesish / Preslash.  Copied from the work order, so the piece-rate "
+"report can group by it."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_product_template
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__product_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Product"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__product_categ_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Product Category"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__line_ids
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__line_ids
+msgid "Qatorlar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Qatorlarga qo'shish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__component_id
+msgid "Qaysi ustunga"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__is_manual
+msgid "Qo'lda kiritilgan"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__quantity
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list
+msgid "Quantity"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid ""
+"Rates apply to the official stream only. Leave a rate at\n"
+"                            zero and that tax is not calculated at all."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Reopen"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__reason
+msgid "Sabab"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_employee_form_payroll
+msgid "Salary"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_version__cst_salary_scheme__mixed
+msgid "Salary + KPI"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/hr_employee.py:0
+msgid "Salary Account — %s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_payroll_balance
+msgid "Salary Balance"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_salary_expense_cash_account_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_salary_expense_cash_account_id
+msgid "Salary Expense (Cash)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_salary_expense_account_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_salary_expense_account_id
+msgid "Salary Expense (Official)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Salary Expense — cash"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Salary Expense — official"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_payroll_journal_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_payroll_journal_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Salary Journal"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Salary Payable"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_salary_payable_account_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_salary_payable_account_id
+msgid "Salary Payable Account"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_version__cst_salary_scheme__fixed
+msgid "Salary only"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_salary_scheme
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_version__cst_salary_scheme
+msgid ""
+"Salary only — a fixed monthly wage.  KPI only — paid per action (piece rate,"
+" sales, unloading).  Salary + KPI — both."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.actions.act_window,help:cst_kerama_payroll.action_product_kpi_rate
+msgid ""
+"Set what a sales manager earns per unit sold. The rate applies from\n"
+"               now on — every KPI line already calculated keeps the rate it was\n"
+"               calculated with, so past months never change."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_component__code
+msgid "Short identifier used by the report and by the KPI engine."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__signed_amount
+msgid "Signed Amount"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__cst_shift
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_mrp_workorder__cst_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Smena"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_company__cst_social_tax_rate
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_res_config_settings__cst_social_tax_rate
+msgid "Social Tax (%)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_kpi_sales
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_sales
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_pivot_kpi_sales
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Sotuv KPI"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__cst_kpi_rate
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_template__cst_kpi_rate
+msgid "Sotuv KPI (1 dona uchun)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_product_form_kpi
+msgid "Sotuv KPI (mahsulot umumiy)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__cst_kpi_rate_variant
+msgid "Sotuv KPI (shu variant uchun)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_kpi_sales
+msgid "Sotuv KPI hisoboti"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_product_kpi_rate
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_kpi_rate
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_template_list_kpi
+msgid "Sotuv KPI stavkalari"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_product_variant_kpi_rate
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_kpi_rate_variant
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_product_list_kpi
+msgid "Sotuv KPI stavkalari (variantlar)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__source_ref
+msgid "Source"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_form
+msgid "Source Document"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__source_id
+msgid "Source ID"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__source_model
+msgid "Source Model"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_config
+msgid "Sozlamalar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__state
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__state
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__state
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__state
+msgid "State"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid ""
+"Suggested payment per unloader. It only pre-fills the line; the warehouse "
+"can change it on the document."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Takror shubhasi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__is_duplicate
+msgid "Takror?"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Tax rates"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__tax_income
+msgid "Tax — income tax"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__tax_pension
+msgid "Tax — pension (INPS)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_component__computation__tax_social
+msgid "Tax — social (employer)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_component__is_taxable
+msgid "Taxable"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_card_import_wizard__state__preview
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Tekshirish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_hr_employee_pinfl_uniq
+msgid "That PINFL already belongs to another employee."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_cst_picking_unloader_employee_once_per_picking
+msgid ""
+"That employee is already on this document — change the amount instead of "
+"adding a second line."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.constraint,message:cst_kerama_payroll.constraint_hr_employee_personnel_no_uniq
+msgid "That personnel number is already used by another employee."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_official_wage
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_version__cst_official_wage
+msgid ""
+"The declared part of the monthly wage.  Income tax, pension and social tax "
+"are computed on this amount; the remainder is booked to the cash expense "
+"account and is not taxed."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__is_external
+msgid ""
+"The journal entry of this line was made by another document (a kassa "
+"advance).  The period shows it and counts it in the balance, but never "
+"posts, resets or deletes it — only the source document can."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/hr_version.py:0
+msgid "The official wage cannot be more than the total wage for %s."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid ""
+"The undeclared part, kept apart so the official P&L can be read on its own."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "This creates the journal entry for the whole period. Continue?"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_line.py:0
+msgid ""
+"This line comes from a kassa document.  Cancel the kassa operation instead —"
+" the payroll line is removed with it."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_line.py:0
+msgid ""
+"This line comes from a kassa document.  Change or cancel the kassa operation"
+" instead — the payroll line follows it."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_line.py:0
+msgid "This line was entered by hand — it has no source document."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_card_import_line__state__matched
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Topildi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__cst_payroll_card_import_line__state__unmatched
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Topilmadi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Total"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__total_accrued
+msgid "Total Accrued"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__total_deducted
+msgid "Total Deducted"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__total_employer
+msgid "Total Employer"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__kind
+msgid "Turi"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Type"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__note
+msgid "Umumiy izoh"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_settings
+msgid "Umumiy sozlamalar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_product_list_kpi
+msgid "Umumiy stavka"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_cst_picking_unloader
+msgid "Unloading Payment"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_wizard__unmatched_count
+msgid "Unmatched Count"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_component
+msgid "Ustunlar (komponentlar)"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_picking_form_unloaders
+msgid "Vagon raqami, smena..."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__currency_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Valyuta"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_product_product__cst_kpi_use_variant
+msgid "Variant stavkasi alohida"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_template_list_kpi
+msgid "Variantlar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_hr_version
+msgid "Version"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__wage
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_version__wage
+msgid "Wage"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_period__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_period__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_salary_payable_account_id
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_salary_payable_account_id
+msgid ""
+"What the company owes its employees.  Must be a payable-type account, "
+"otherwise Odoo will not keep a per-employee balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid ""
+"What the company owes its employees. Use a payable-type account, otherwise "
+"Odoo keeps no per-employee balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__balance
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_payroll_balance
+msgid ""
+"What the company still owes this employee.  Negative means the employee has "
+"drawn more than has been accrued."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "What this column means."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_component__computation
+msgid "Where the amount comes from when a period is computed."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_form
+msgid "Why this line exists."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_pension_rate
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_pension_rate
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Withheld from the employee."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__wizard_id
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_line__cst_workcenter_id
+msgid "Work Center"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_mrp_routing_workcenter
+msgid "Work Center Usage"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model,name:cst_kerama_payroll.model_mrp_workorder
+msgid "Work Order"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_product_product_list_kpi
+msgid "Xarakteristika"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_card_import_line__employee_id
+msgid "Xodim"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_cst_payroll_entry_wizard__employee_ids
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_employee
+msgid "Xodimlar"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/controllers/payroll_report.py:0
+msgid "You are not allowed to read the payroll report."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Yozish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_stock_picking__cst_unloader_ids
+#: model:ir.ui.menu,name:cst_kerama_payroll.menu_payroll_kpi_unloading
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_list_kpi_unloading
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_picking_form_unloaders
+msgid "Yuk tushirish"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.actions.act_window,name:cst_kerama_payroll.action_payroll_kpi_unloading
+msgid "Yuk tushirish hisoboti"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Yuk tushirish — default summa"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Yuklash"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid ""
+"«%(name)s» файлини укиб булмади.  Excel (.xlsx) файл юкланг.\n"
+"\n"
+"%(error)s"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/picking_unloader.py:0
+msgid ""
+"«%(names)s» учун юк тушириш суммаси аллакачон ойликка хисобланган, шунинг учун уни %(action)s мумкин эмас.\n"
+"\n"
+"Ойлик даврини коралама холатига кайтариб, кайта хисоблангандан сунг узгартириш мумкин булади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+#: code:addons/cst_kerama_payroll/wizard/payroll_entry_wizard.py:0
+msgid "«%s» даври тасдикланган — унга янги катор кушиб булмайди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Аввал файлни юкланг."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_entry_wizard.py:0
+msgid "Аввал ходимларни танланг."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_avans_plastik
+msgid ""
+"Банк карта оркали.  Кредит счёти сифатида банк\n"
+"                счётини курсатинг."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_oylik
+msgid ""
+"Белгиланган ойлик маош.  Манба — ходимнинг жорий\n"
+"                версиясидаги «Wage» майдони.  Расмий ва накд кисмга ажралади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_entry_wizard.py:0
+msgid "Бирорта катор тулдирилмаган."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid ""
+"Бирорта катор ходимга бог'ланмади.  Ходимлар картасида ЖШШИР тулдирилганини "
+"текширинг."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_entry_wizard__component_id
+msgid "Бонус, жарима ёки бошка тулов тури."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_boshqa
+msgid "Бошка ушланмалар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Бошланғич"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Бошланғич қолдиқ"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Бу ЖШШИР билан ходим топилмади"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Бу давр учун маълумот йўқ."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_bonus_boshliq
+msgid "Булим бошлиги бонуси"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_picking_unloader__note
+msgid "Вагон раками, смена, ёки бошка изох."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_yuk_tushirish
+msgid "Вагон ёки машина туширганлик учун."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_soliq_jshds
+msgid "Даромад солиги"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Даромад солиги — income tax"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_income_tax_rate
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_income_tax_rate
+msgid "Даромад солиғи (ЖШДС) withheld from the employee."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid ""
+"Диккат: шу кун учун айнан шундай каторлар аллакачон бор.\n"
+"                        Файл иккинчи марта юкланаётган булиши мумкин."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "ЖАМИ"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "ЖШШИР 14 та ракам эмас"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/hr_employee.py:0
+msgid "ЖШШИР 14 та ракамдан иборат булиши керак — «%s» тугри келмайди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "ЖШШИР ёзилмаган"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Жами"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Жами ушланди"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Жами хисобланди"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_jarima
+msgid "Жарима"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_pinfl
+msgid ""
+"Жисмоний шахснинг шахсий идентификация раками — 14 та ракам.  Банк "
+"карталарига утказилган пулларни Excel'дан юклашда ходим айнан шу буйича "
+"топилади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_inps
+msgid "ИНПС"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "ИНПС — pension"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_soliq_ijtimoiy
+msgid "Ижтимоий солик"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.res_config_settings_view_form_payroll
+msgid "Ижтимоий солик — social tax"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_social_tax_rate
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_social_tax_rate
+msgid ""
+"Ижтимоий солиқ, borne by the employer.  An expense, not a deduction — it "
+"never touches the employee's balance."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_entry_wizard__period_id
+msgid "Ихтиёрий.  Курсатилмаса, катор санаси буйича хисоботга тушади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_soliq_ijtimoiy
+msgid ""
+"Иш берувчи туловчи солик.  Харажат сифатида\n"
+"                бухгалтерияга тушади, лекин ходимнинг колдигини узгартирмайди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_bonus_vaqt
+msgid "Иш вакти бонуси"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Иш хаки схемаси «Salary only»"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_ishbay
+msgid "Ишбай иш хаки"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Ишбай олмайдиган ходимлар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Ишбай ставкаси белгиланмаган операциялар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_ishbay
+msgid "Ишлаб чикарилган махсулот микдорига караб."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_mrp_workorder__cst_shift
+msgid ""
+"Кайси сменада бажарилди.  Ишбай хисоботи участка ва смена буйича "
+"гурухланади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_card_import_wizard__component_id
+msgid ""
+"Картага утказилган пул ходимга берилган пул — ушланмалар устунига тушади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_avans_naqd
+msgid ""
+"Кассадан берилган пул.  Кредит счёти сифатида\n"
+"                касса счётини курсатинг."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Ким ишлагани маълум эмас"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_entry_wizard_form
+msgid "Кулда ёзилган каторлар давр кайта хисобланганда учирилмайди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_avans_naqd
+msgid "Накд аванс"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_payroll_line__is_manual
+msgid ""
+"Одам узи ёзган катор.  Давр кайта хисобланганда учирилмайди — акс холда "
+"кулда ёзилган «Юк тушириш» ёки «Ишбай» бонуси жимгина йуколарди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_oylik
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_component_form
+msgid "Ойлик суммаси"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Охирги"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Охирги қолдиқ"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_avans_plastik
+msgid "Пластик аванс"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_bonus_rahbar
+msgid "Рахбар бонуси"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_period_form
+msgid "Сентябрь 2026"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Смена курсатилмаган"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_product_product__cst_kpi_rate
+#: model:ir.model.fields,help:cst_kerama_payroll.field_product_template__cst_kpi_rate
+msgid ""
+"Сотув менежери шу махсулотнинг бир бирлигини сотиб, пули тулик тушганда оладиган сумма.  Ноль булса — бу махсулот учун KPI хисобланмайди.\n"
+"\n"
+"Ставка узгартирилса, факат кейинги хисоблашларга таъсир килади: хар бир KPI катори узи хисобланган ставкани саклаб колади, шунинг учун ёпилган ойлар узгармайди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_bonus_kpi
+msgid ""
+"Сотув менежерлари учун: сотилган махсулот\n"
+"                донасига белгиланган ставка."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Сотувчиси ходим эмас"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Спецификацияда бундай операция йук"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,note:cst_kerama_payroll.component_soliq_jshds
+msgid ""
+"Ставка компания созламаларида белгиланади.\n"
+"                Ставка нолга тенг булса — умуман хисобланмайди."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Сумма нол"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_personnel_no
+msgid ""
+"Табель рақами.  The key for payroll imports and reports — names repeat, this must not.\n"
+"\n"
+"HR-only on purpose: a stored employee field without `groups=` is fetched for every user who so much as reads an employee name, and `hr.employee.public` has no column for it — which made every employee many2many (Shop Floor operators, chatter avatars) raise an access error for non-HR users."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_picking_form_unloaders
+msgid ""
+"Тасдикланган хужжатдаги суммалар ойлик даври\n"
+"                        хисобланганда «Юк тушириш» устунига тушади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid "Топилган каторлар ойлик хисобига ёзилади.  Давом этамизми?"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_card_import_wizard_form
+msgid ""
+"Топилмаган каторлар <b>юкланмайди</b>.  Ходим картасида\n"
+"                        ЖШШИР тулдирилганини текширинг ёки каторда ходимни\n"
+"                        кулда танланг."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_sale_order__cst_kpi_paid_date
+msgid ""
+"Тулик тулов тушган кун.  Сотув KPI шу кун кирадиган ойлик даврида "
+"хисобланади.  Буш булса — хали тулик тулов булмаган."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Ушланмалар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Файл буш."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid ""
+"Файлда ЖШШИР ва сумма устунлари топилмади.\n"
+"\n"
+"Сарлавха каторида «PINFL» (ёки ЖШШИР) ва «Summa» (ёки Сумма) деб ёзилган устунлар булиши керак."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Файлда бирорта катор топилмади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Фақат харакати борлар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_payroll.view_payroll_line_search
+msgid "Хисобланди"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Ходим"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Ходим картасида «Related User» тулдирилиши керак"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Ходим ёки табель раками..."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Ходимлар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+#: model:ir.actions.client,name:cst_kerama_payroll.action_payroll_report
+msgid "Ходимлар ойлиги буйича батафсил хисобот"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Шу кунги айнан шундай катор аллакачон бор"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_mrp_routing_workcenter__cst_kpi_rate
+msgid ""
+"Шу операцияни шу махсулот учун бажарган ходим бир дона тайёр махсулот учун оладиган сумма.  Ноль булса — бу операция учун ишбай хисобланмайди.\n"
+"\n"
+"Ставка узгартирилса, факат кейинги хисоблашларга таъсир килади: хисобланган хар бир катор уз ставкасини саклаб колади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_cst_picking_unloader__amount
+msgid "Шу ходимга шу юкни туширганлик учун туланадиган сумма."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_company__cst_unload_rate_default
+#: model:ir.model.fields,help:cst_kerama_payroll.field_res_config_settings__cst_unload_rate_default
+msgid ""
+"Юк туширган хар бир ходим учун таклиф килинадиган сумма.  Хужжатда "
+"узгартириш мумкин — бу факат бошлангич киймат."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#: model:cst.payroll.component,name:cst_kerama_payroll.component_yuk_tushirish
+msgid "Юк тушириш"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "Юк тушириш: KPI олмайдиган ходимлар"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/wizard/payroll_card_import_wizard.py:0
+msgid "Юкланди — %s ta qator"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Янгилаш"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid ""
+"иш буюртмаси кулда кушилган ва махсулотнинг хеч бир спецификациясида шу "
+"номли операция мавжуд эмас — операцияни спецификацияга кушиб, ставкасини "
+"белгиланг"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "иш буюртмасида таймер босилмаган ва ходим тайинланмаган"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "иш хаки схемаси KPI'ни уз ичига олмайди ёки бошка компанияда"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "махсулот картасидаги «Sotuv KPI» майдонини тулдиринг"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid ""
+"спецификация (BoM) ичидаги операция каторида «Ishbay KPI» майдонини "
+"тулдиринг"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/picking_unloader.py:0
+msgid "узгартириш"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/picking_unloader.py:0
+msgid "учириш"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "ушланди"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "хисобланди, лекин хисоботда смена устуни буш булади"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Қидирувга мос ходим топилмади."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "Қоралама билан"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "қолдиқ"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-javascript
+#: code:addons/cst_kerama_payroll/static/src/payroll_report/payroll_report.xml:0
+msgid "қоралама билан"
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "“%s” has no lines.  Compute it, or add lines by hand."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "“%s” has nothing left to post."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "“%s” is already confirmed."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "“%s” is already confirmed.  Reset it to draft before recomputing."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "“%s” is closed.  Reopen it deliberately before changing anything."
+msgstr ""
+
+#. module: cst_kerama_payroll
+#. odoo-python
+#: code:addons/cst_kerama_payroll/models/payroll_period.py:0
+msgid "“%s”: dollar kursi kiritilmagan — oylikni dollarga o'tkazib bo'lmaydi."
+msgstr ""

@@ -1,0 +1,542 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "(company currency)"
+msgstr "(валюта компании)"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "(in UZS)"
+msgstr "(в UZS)"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "(units in vs out)"
+msgstr "(единиц: приход и расход)"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "(units)"
+msgstr "(единиц)"
+
+#. module: cst_kerama_dashboard
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_accounting
+msgid "Accounting"
+msgstr "Бухгалтерия"
+
+#. module: cst_kerama_dashboard
+#: model:ir.actions.client,name:cst_kerama_dashboard.action_dashboard_accounting
+msgid "Accounting Dashboard"
+msgstr "Панель бухгалтерии"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "All"
+msgstr "Все"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "All debt orders"
+msgstr "Все заказы с долгом"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "All good — nothing low"
+msgstr "Всё в порядке — дефицита нет"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "All warehouses"
+msgstr "Все склады"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Amount due"
+msgstr "Сумма к оплате"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Available"
+msgstr "Свободный остаток"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "By salesperson"
+msgstr "По продавцам"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Cash in vs out"
+msgstr "Приход и расход денег"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Category"
+msgstr "Категория"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Client"
+msgstr "Клиент"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Companies"
+msgstr "Компании"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: cst_kerama_dashboard
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_root
+msgid "Dashboard"
+msgstr "Панель"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Debt aging (by order date)"
+msgstr "Возраст долга (по дате заказа)"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Debt by currency"
+msgstr "Долг по валютам"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Debt order"
+msgstr "Заказ с долгом"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Debt over time"
+msgstr "Долг во времени"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Debtor orders"
+msgstr "Заказы должников"
+
+#. module: cst_kerama_dashboard
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_debts
+msgid "Debts"
+msgstr "Долги"
+
+#. module: cst_kerama_dashboard
+#: model:ir.actions.client,name:cst_kerama_dashboard.action_dashboard_debts
+msgid "Debts Dashboard"
+msgstr "Панель долгов"
+
+#. module: cst_kerama_dashboard
+#: model:ir.model.fields,field_description:cst_kerama_dashboard.field_kerama_dashboard__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Done"
+msgstr "Выполнено"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "From"
+msgstr "С"
+
+#. module: cst_kerama_dashboard
+#: model:ir.model.fields,field_description:cst_kerama_dashboard.field_kerama_dashboard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_dashboard
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_inventory
+msgid "Inventory"
+msgstr "Склад"
+
+#. module: cst_kerama_dashboard
+#: model:ir.actions.client,name:cst_kerama_dashboard.action_dashboard_inventory
+msgid "Inventory Dashboard"
+msgstr "Панель склада"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Journal"
+msgstr "Журнал"
+
+#. module: cst_kerama_dashboard
+#: model:ir.model,name:cst_kerama_dashboard.model_kerama_dashboard
+msgid "Kerama Dynamic Dashboard data provider"
+msgstr "Поставщик данных динамической панели Kerama"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Late"
+msgstr "Просрочено"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Low / out-of-stock products"
+msgstr "Товары с низким / нулевым остатком"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Min"
+msgstr "Мин."
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No data"
+msgstr "Нет данных"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No debt"
+msgstr "Нет долга"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No debtor orders"
+msgstr "Нет заказов с долгом"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No moves"
+msgstr "Нет движений"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No m² stock"
+msgstr "Нет остатка в м²"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No operations"
+msgstr "Нет операций"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No products in stock for this selection"
+msgstr "По этому выбору нет товаров на складе"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No stock"
+msgstr "Нет остатка"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "On hand"
+msgstr "В наличии"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Operations"
+msgstr "Операции"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Order date"
+msgstr "Дата заказа"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Order status funnel"
+msgstr "Воронка статусов заказов"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Payments by journal"
+msgstr "Оплаты по журналам"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Product"
+msgstr "Товар"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Profit & Loss"
+msgstr "Прибыли и убытки"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Reserved"
+msgstr "Зарезервировано"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Reset"
+msgstr "Сбросить"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "S00012"
+msgstr "S00012"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "SO #"
+msgstr "№ заказа"
+
+#. module: cst_kerama_dashboard
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_sales
+msgid "Sales"
+msgstr "Продажи"
+
+#. module: cst_kerama_dashboard
+#: model:ir.actions.client,name:cst_kerama_dashboard.action_dashboard_sales
+msgid "Sales Dashboard"
+msgstr "Панель продаж"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Sales by company"
+msgstr "Продажи по компаниям"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Sales by currency"
+msgstr "Продажи по валютам"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Sales over time"
+msgstr "Продажи во времени"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Sales · Purchases · Expenses over time"
+msgstr "Продажи · Закупки · Расходы во времени"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Salesperson"
+msgstr "Продавец"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Status"
+msgstr "Статус"
+
+#. module: cst_kerama_dashboard
+#: model:ir.actions.client,name:cst_kerama_dashboard.action_dashboard_stock
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_stock
+msgid "Stock"
+msgstr "Остатки"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Stock by warehouse"
+msgstr "Остатки по складам"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Stock moves over time"
+msgstr "Движения товаров во времени"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Stock on hand by product"
+msgstr "Остатки по товарам"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid ""
+"The scaffold, filter bar and shared components are ready;\n"
+"                           this tab is built in the next phase."
+msgstr ""
+"Каркас, панель фильтров и общие компоненты готовы;\n"
+"                           эта вкладка будет сделана на следующем этапе."
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "To"
+msgstr "По"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "To process"
+msgstr "К обработке"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top"
+msgstr "Топ"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top customers"
+msgstr "Топ клиентов"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top debtors"
+msgstr "Топ должников"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top expense accounts"
+msgstr "Топ счетов расходов"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top products (by value)"
+msgstr "Топ товаров (по стоимости)"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top products on hand (qty)"
+msgstr "Топ товаров в наличии (кол-во)"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "USD"
+msgstr "USD"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "UZS"
+msgstr "UZS"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "UoM"
+msgstr "Ед. изм."
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Value"
+msgstr "Стоимость"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Warehouse"
+msgstr "Склад"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "by value"
+msgstr "по стоимости"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "dashboard — coming next"
+msgstr "панель — скоро"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "m² in stock by category"
+msgstr "м² на складе по категориям"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "name / code…"
+msgstr "название / код…"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "name…"
+msgstr "название…"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "of"
+msgstr "из"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "product(s)"
+msgstr "товар(ов)"

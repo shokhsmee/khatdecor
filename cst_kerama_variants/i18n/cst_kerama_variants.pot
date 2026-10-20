@@ -1,0 +1,614 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_variants
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_variants
+#. odoo-python
+#: code:addons/cst_kerama_variants/models/second_grade.py:0
+msgid "%s uchun 2-sort variantini yaratib bo'lmadi."
+msgstr ""
+
+#. module: cst_kerama_variants
+#. odoo-python
+#: code:addons/cst_kerama_variants/models/second_grade.py:0
+msgid "%s — 2-sort"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_size_183_sm_277_sm
+msgid "183 см, 277 см"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_size_188_sm_277_sm
+msgid "188 см, 277 см"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_second_grade_id
+msgid "2-sort egizagi"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_is_second_grade
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_template__cst_is_second_grade
+msgid "2-sort mahsulot"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.actions.act_window,help:cst_kerama_variants.action_second_grade_products
+msgid "2-sort mahsulot yo'q"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.actions.act_window,name:cst_kerama_variants.action_second_grade_products
+#: model:ir.ui.menu,name:cst_kerama_variants.menu_second_grade_products
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_second_grade_product_list
+msgid "2-sort mahsulotlar"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_second_grade_value
+msgid "2-sort qiymati"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_second_grade_qty
+msgid "2-sort qoldig'i"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_stock_quant_search_second_grade
+msgid "2-sortsiz"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_3d
+msgid "3D"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_40_gr
+msgid "40 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_50_gr
+msgid "50 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_60_gr
+msgid "60 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_65_gr
+msgid "65 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_70_gr
+msgid "70 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_75_gr
+msgid "75 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_80_gr
+msgid "80 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_85_gr
+msgid "85 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_density_90_gr
+msgid "90 гр"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.product_normal_form_view_second_grade
+msgid "<i class=\"fa fa-recycle me-2\"/>Bu 2-sort mahsulot. Asosiy mahsuloti:"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.product_normal_form_view_second_grade
+msgid "<span class=\"o_stat_text\">2-sort (scrap)</span>"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_grade_tmpl_of_id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_template__cst_grade_tmpl_of_id
+msgid "Asosiy mahsulot (shablon)"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_grade_of_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_second_grade_product_list
+msgid "Asosiy mahsuloti"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_product__cst_is_second_grade
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_template__cst_is_second_grade
+msgid ""
+"Asosiy mahsulotning 2-sort (brak toifasi) egizagi. Mahsulotlar va ombor "
+"ro'yxatlarida ko'rinmaydi, brak bo'limidagi «2-sort mahsulotlar» menyusidan "
+"ochiladi; sotiladi, xarid qilinmaydi."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid "Biriktirish"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__size_extra_ids
+msgid "Boshqa o'lchamlari"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__surface_extra_ids
+msgid "Boshqa ustki qismlari"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__density_extra_ids
+msgid "Boshqa zichliklari"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_product__cst_grade_of_id
+msgid "Bu 2-sort mahsulot qaysi asosiy mahsulot (variant)ning egizagi."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_product__cst_grade_tmpl_of_id
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_template__cst_grade_tmpl_of_id
+msgid "Bu 2-sort shablon qaysi asosiy mahsulotning variantlari uchun."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_mrp_bom__cst_characteristic
+msgid ""
+"Characteristic this bill of materials is written for. Empty means it serves "
+"every variant of the product."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_grade_currency_id
+msgid "Cst Grade Currency"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_attribute__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_template_attribute_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_quant__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_product__cst_second_grade_value
+msgid "Egizak 2-sort mahsulot qoldig'ining tannarx bo'yicha qiymati."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_product__cst_second_grade_qty
+msgid "Egizak 2-sort mahsulotning ombordagi miqdori (scrap qiymati)."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_stock_quant_search_second_grade
+msgid "Faqat 2-sort"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.actions.act_window,help:cst_kerama_variants.action_product_characteristics
+msgid ""
+"Har bir qator - bitta xarakteristika, o'z qoldig'i va narxi bilan.\n"
+"               Mahsulotga xarakteristika biriktirish uchun «Xarakteristika biriktirish»\n"
+"               amalini tanlang: ko'rsatilgan har bir qiymat darhol alohida qator bo'ladi."
+msgstr ""
+
+#. module: cst_kerama_variants
+#. odoo-python
+#: code:addons/cst_kerama_variants/wizard/variant_assign.py:0
+msgid "Hech bo'lmaganda bitta xarakteristika qiymatini tanlang."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid "Hozirgi mahsulot qanday? (bitta qiymat)"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_account_move_line__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_bom__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_attribute__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_template__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_template_attribute_line__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_sale_order_line__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_move__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_move_line__id
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_quant__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_second_grade_product_list
+msgid "Jami"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.actions.act_window,name:cst_kerama_variants.action_product_characteristics
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__product_tmpl_ids
+#: model:ir.ui.menu,name:cst_kerama_variants.menu_product_characteristics_mrp
+#: model:ir.ui.menu,name:cst_kerama_variants.menu_product_characteristics_purchase
+#: model:ir.ui.menu,name:cst_kerama_variants.menu_product_characteristics_sale
+#: model:ir.ui.menu,name:cst_kerama_variants.menu_product_characteristics_stock
+msgid "Mahsulotlar"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__summary
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid "Natija"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid ""
+"Ombordagi mavjud mahsulot shu qiymatlarni oladi — kodi, qoldig'i va tarixi "
+"saqlanib qoladi. Tegishli bo'lmagan xarakteristikani bo'sh qoldiring."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_product_attribute
+msgid "Product Attribute"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_product_template_attribute_line
+msgid "Product Template Attribute Line"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_second_grade_product_list
+msgid "Qoldiq"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.product_normal_form_view_second_grade
+msgid ""
+"Shu mahsulotning 2-sort (brak toifasi) egizagi va uning ombordagi qoldig'i."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_product_product__cst_second_grade_id
+msgid "Shu variantning 2-sort mahsuloti, bo'lsa."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.actions.act_window,help:cst_kerama_variants.action_second_grade_products
+msgid ""
+"Smena yopilganda 2-sort deb belgilangan mahsulot shu yerga tushadi: asosiy\n"
+"               mahsulot brakka chiqariladi, uning o'rniga 2-sort egizagi omborga kirim bo'ladi.\n"
+"               Sotish mumkin, xarid qilinmaydi."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_second_grade_product_list
+msgid "Sotuv narxi"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model,name:cst_kerama_variants.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_second_grade_product_list
+msgid "Tannarx"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute,name:cst_kerama_variants.attribute_surface
+msgid "Ustki qismi"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__surface_id
+msgid "Ustki qismi (hozirgi)"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute,name:cst_kerama_variants.attribute_size
+msgid "Uzunligi va eni"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__size_id
+msgid "Uzunligi va eni (hozirgi)"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_order_form_cst_characteristic
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_order_line_tree_cst
+msgid "Variant"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_mrp_production__cst_characteristic
+msgid "Variant characteristic of the product being manufactured."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,help:cst_kerama_variants.field_account_move_line__cst_characteristic
+#: model:ir.model.fields,help:cst_kerama_variants.field_mrp_bom_line__cst_characteristic
+#: model:ir.model.fields,help:cst_kerama_variants.field_purchase_order_line__cst_characteristic
+#: model:ir.model.fields,help:cst_kerama_variants.field_sale_order_line__cst_characteristic
+#: model:ir.model.fields,help:cst_kerama_variants.field_stock_move__cst_characteristic
+msgid "Variant characteristic of the product on this line."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_account_move_line__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_bom__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_bom_line__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_mrp_production__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_product_product__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_purchase_order_line__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_sale_order_line__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_move__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_move_line__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_stock_quant__cst_characteristic
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_product_product_search_groupby_cst
+msgid "Xarakteristika"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.actions.act_window,name:cst_kerama_variants.action_variant_assign_wizard
+#: model:ir.actions.act_window,name:cst_kerama_variants.action_variant_assign_wizard_variant
+#: model:ir.model,name:cst_kerama_variants.model_cst_variant_assign_wizard
+#: model:ir.ui.menu,name:cst_kerama_variants.menu_variant_assign
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid "Xarakteristika biriktirish"
+msgstr ""
+
+#. module: cst_kerama_variants
+#. odoo-python
+#: code:addons/cst_kerama_variants/wizard/variant_assign.py:0
+msgid "Xarakteristika biriktirish — natija"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.actions.act_window,help:cst_kerama_variants.action_product_characteristics
+msgid "Xarakteristikali mahsulot yo'q"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid "Yana qanday variantlarda bo'ladi?"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model_terms:ir.ui.view,arch_db:cst_kerama_variants.view_variant_assign_wizard_form
+msgid "Yopish"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute,name:cst_kerama_variants.attribute_density
+msgid "Zichligi"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:ir.model.fields,field_description:cst_kerama_variants.field_cst_variant_assign_wizard__density_id
+msgid "Zichligi (hozirgi)"
+msgstr ""
+
+#. module: cst_kerama_variants
+#. odoo-python
+#: code:addons/cst_kerama_variants/models/product_template.py:0
+msgid ""
+"«%(product)s» already has a «%(attribute)s» line. Add the value to that line"
+" instead of a second one: a variant carries one value per characteristic, "
+"and a second line would put two values on one product."
+msgstr ""
+
+#. module: cst_kerama_variants
+#. odoo-python
+#: code:addons/cst_kerama_variants/wizard/variant_assign.py:0
+msgid ""
+"«%s»: mavjud mahsulot arxivga tushib qolardi — bekor qilindi. Har uch "
+"xarakteristika uchun «hozirgi» qiymatni ko'rsating."
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_archa
+msgid "Арча"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_baxmal
+msgid "Бахмал"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_bulut
+msgid "Булут"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_gladkiy
+msgid "Гладкий"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_glyantsevy
+msgid "Глянцевый"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_drevesniy
+msgid "Древесный"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_koja
+msgid "Кожа"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_kristal
+msgid "Кристал"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_matoviy
+msgid "Матовый"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_pechak
+msgid "Печак"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_pod_derevo
+msgid "Под Дерево"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_tr_matoviy
+msgid "ТР Матовый"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_tekstil
+msgid "Текстиль"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_tekstura
+msgid "Текстура"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_tomchi
+msgid "Томчи"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_tosh
+msgid "Тош"
+msgstr ""
+
+#. module: cst_kerama_variants
+#: model:product.attribute.value,name:cst_kerama_variants.value_surface_shpon_tr
+msgid "Шпон ТР."
+msgstr ""

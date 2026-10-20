@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <!-- a queue card raised by a production request: «Tezkor» and who it is for -->
+    <!-- On the department window an order shows «Tezkor» (the card turns red-tinted),
+         the request and client it came from, and one raw-material line in three
+         colours: yetarli / o'tkazma kerak / yetmaydi. -->
     <t t-inherit="cst_kerama_shift.ShiftFloor" t-inherit-mode="extension">
-        <xpath expr="//div[contains(@class, 'cst_sf_col--queue')]//div[contains(@class, 'cst_sf_kcard_top')]" position="inside">
-            <span t-if="row.urgent" class="cst_sf_chip cst_sf_chip--bad"><i class="fa fa-bolt me-1"/>Tezkor</span>
+        <!-- queue: the old reserved / not reserved chip gives way to the material line below -->
+        <xpath expr="//div[contains(@class, 'cst_sf_col--queue')]//div[contains(@class, 'cst_sf_kcard_top')]/span[1]" position="replace">
+            <span t-if="row.urgent" class="cst_sf_chip cst_sf_chip--urgent"><i class="fa fa-bolt me-1"/>Tezkor</span>
         </xpath>
         <xpath expr="//div[contains(@class, 'cst_sf_col--queue')]//div[@t-if='row.origin']" position="after">
             <div class="muted small" t-if="row.request"><t t-esc="row.request"/><t t-if="row.partner"> · <t t-esc="row.partner"/></t></div>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'cst_sf_col--queue')]//div[contains(@class, 'cst_sf_kcard_qty')]" position="after">
+            <div t-if="row.mat_status" t-attf-class="cst_sf_mat cst_sf_mat--{{ row.mat_status }}"><i class="dot"/><t t-esc="row.mat_label"/></div>
+        </xpath>
+
+        <!-- lines -->
+        <xpath expr="//div[@t-foreach='col.lines']/div[contains(@class, 'cst_sf_kcard_top')]" position="inside">
+            <span t-if="line.urgent" class="cst_sf_chip cst_sf_chip--urgent"><i class="fa fa-bolt me-1"/>Tezkor</span>
+        </xpath>
+        <xpath expr="//div[@t-foreach='col.lines']/div[@t-if='line.characteristic']" position="after">
+            <div class="muted small" t-if="line.request"><t t-esc="line.request"/><t t-if="line.partner"> · <t t-esc="line.partner"/></t></div>
+        </xpath>
+        <xpath expr="//div[@t-foreach='col.lines']/div[contains(@class, 'cst_sf_kcard_qty')]" position="after">
+            <div t-if="line.mat_status" t-attf-class="cst_sf_mat cst_sf_mat--{{ line.mat_status }}"><i class="dot"/><t t-esc="line.mat_label"/></div>
+        </xpath>
+
+        <!-- done -->
+        <xpath expr="//div[@t-foreach='doneLines']/div[contains(@class, 'cst_sf_kcard_top')]" position="inside">
+            <span t-if="line.urgent" class="cst_sf_chip cst_sf_chip--urgent"><i class="fa fa-bolt me-1"/>Tezkor</span>
+        </xpath>
+
+        <!-- the selected order -->
+        <xpath expr="//div[contains(@class, 'cst_sf_detail_prod')]" position="before">
+            <div t-if="selectedLine.urgent or selectedLine.request" class="cst_sf_detail_req">
+                <span t-if="selectedLine.urgent" class="cst_sf_chip cst_sf_chip--urgent"><i class="fa fa-bolt me-1"/>Tezkor buyurtma</span>
+                <span t-if="selectedLine.request" class="muted small"><t t-esc="selectedLine.request"/><t t-if="selectedLine.partner"> · <t t-esc="selectedLine.partner"/></t></span>
+            </div>
         </xpath>
     </t>
 </templates>

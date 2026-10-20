@@ -1,0 +1,250 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_sale_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,help:cst_kerama_sale_return.field_cst_sale_return_wizard__refund_amount
+msgid ""
+"Amount of money to refund to the customer. Defaults to the value of the "
+"returned products (taxes included) but can be adjusted."
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__available_journal_ids
+msgid "Available Journal"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Bekor qilish"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__uom_id
+msgid "Birlik"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__company_id
+msgid "Company"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__order_currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__communication
+msgid "Izoh"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__journal_id
+msgid "Jurnal"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__product_id
+msgid "Mahsulot"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Mahsulot qaytarish"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__line_ids
+msgid "Mahsulotlar"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__sale_line_id
+msgid "Order Line"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,help:cst_kerama_sale_return.field_cst_sale_return_wizard__journal_id
+msgid ""
+"Payment journal used to refund the money to the customer. Leave the refund "
+"amount at 0 to only issue a credit note without paying."
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid "Please set a return quantity on at least one product."
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__return_qty
+msgid "Qaytariladigan miqdor"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__refund_amount
+msgid "Qaytariladigan summa"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/models/sale_order.py:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_order_form_return_button
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Qaytarish"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid "Qaytarish (kredit-nota)"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid "Qaytarish: %(order)s"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model,name:cst_kerama_sale_return.model_sale_order
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__order_id
+msgid "Sales Order"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model,name:cst_kerama_sale_return.model_cst_sale_return_wizard
+msgid "Sales Order Return / Refund"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model,name:cst_kerama_sale_return.model_cst_sale_return_line
+msgid "Sales Order Return Line"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__payment_date
+msgid "Sana"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__ordered_qty
+msgid "Sotilgan miqdor"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__price_total
+msgid "Summa"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "Tasdiqlash"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/models/sale_order.py:0
+msgid "The order must be confirmed before a return can be registered."
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_wizard__paid_total
+msgid "To'langan summa"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_return.view_sale_return_wizard_form
+msgid "To'lov"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,help:cst_kerama_sale_return.field_cst_sale_return_wizard__paid_total
+msgid "Total amount the customer has already paid on this order."
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__price_unit
+msgid "Unit Price"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#: model:ir.model.fields,field_description:cst_kerama_sale_return.field_cst_sale_return_line__delivered_qty
+msgid "Yetkazib berilgan"
+msgstr ""
+
+#. module: cst_kerama_sale_return
+#. odoo-python
+#: code:addons/cst_kerama_sale_return/wizard/return_wizard.py:0
+msgid ""
+"You cannot return more than was ordered for %(product)s (ordered: "
+"%(ordered)s, return: %(ret)s)."
+msgstr ""

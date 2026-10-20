@@ -1,0 +1,1897 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_dispatch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "%(orig)s tuzatishi. Sabab: %(reason)s"
+msgstr "%(orig)s tuzatishi. Sabab: %(reason)s"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "%(p)s: %(c)s / %(q)s"
+msgstr "%(p)s: %(c)s / %(q)s"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "%(p)s: %(q)s"
+msgstr "%(p)s: %(q)s"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid ""
+"%(product)s: %(loc)s joyida tuzatish uchun yetarli qoldiq yo'q (kerak "
+"%(need)s, bor %(have)s)."
+msgstr ""
+"%(product)s: %(loc)s joyida tuzatish uchun yetarli qoldiq yo'q (kerak "
+"%(need)s, bor %(have)s)."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid ""
+"%(u)s «%(c)s» kompaniyasiga kira olmaydi — boshqa qabul qiluvchini tanlang."
+msgstr ""
+"%(u)s «%(c)s» kompaniyasiga kira olmaydi — boshqa qabul qiluvchini tanlang."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "%s bu jo'natmada yo'q! Ombor menejeriga qaytaring."
+msgstr "%s bu jo'natmada yo'q! Ombor menejeriga qaytaring."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "%s buyurtmasi tasdiqlangan holatda emas."
+msgstr "%s buyurtmasi tasdiqlangan holatda emas."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "%s jo'natmasini tasdiqlab bo'lmadi."
+msgstr "%s jo'natmasini tasdiqlab bo'lmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "%s kompaniyasida ichki ko'chirish turi yo'q."
+msgstr "%s kompaniyasida ichki ko'chirish turi yo'q."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "%s kun oldin"
+msgstr "%s kun oldin"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "%s ni tasdiqlab bo'lmadi."
+msgstr "%s ni tasdiqlab bo'lmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid ""
+"%s omborida yetarli emas:\n"
+"%s"
+msgstr ""
+"%s omborida yetarli emas:\n"
+"%s"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "%s tasdiqlanmadi."
+msgstr "%s tasdiqlanmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "%s uchun ichki ko'chirish turi topilmadi."
+msgstr "%s uchun ichki ko'chirish turi topilmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid ""
+"%s uchun ochiq yetkazib berish topilmadi. Administratorga murojaat qiling."
+msgstr ""
+"%s uchun ochiq yetkazib berish topilmadi. Administratorga murojaat qiling."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "%s yetkazib berishini tasdiqlab bo'lmadi."
+msgstr "%s yetkazib berishini tasdiqlab bo'lmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "(buyurtma"
+msgstr "(buyurtma"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "(hali eshikdan chiqmagan)"
+msgstr "(hali eshikdan chiqmagan)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "(oxirgi)"
+msgstr "(oxirgi)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "(oxirgilari; filtr bilan toraytiring)"
+msgstr "(oxirgilari; filtr bilan toraytiring)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "(qisman)"
+msgstr "(qisman)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "* qo'shimcha mahsulot"
+msgstr "* qo'shimcha mahsulot"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "+ Yangi ichki o'tkazma"
+msgstr "+ Yangi ichki o'tkazma"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid ", oldin berilgan"
+msgstr ", oldin berilgan"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "80mm"
+msgstr "80mm"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "<i>(qo'shimcha)</i>"
+msgstr "<i>(qo'shimcha)</i>"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "A4"
+msgstr "A4"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_needaction
+msgid "Action Needed"
+msgstr "Harakat talab qilinadi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_attachment_count
+msgid "Attachment Count"
+msgstr "Ilovalar soni"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Avvalgisini takrorlash"
+msgstr "Avvalgisini takrorlash"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+msgid ""
+"Bajarilgan hujjat o'zgartirilmaydi: farq alohida hujjat bilan yoziladi — ko'p ko'chirilgan bo'lsa\n"
+"                    ortig'i qaytariladi, kam bo'lsa qolgani qo'shimcha ko'chiriladi. Ikkalasi ham darhol tasdiqlanadi."
+msgstr ""
+"Bajarilgan hujjat o'zgartirilmaydi: farq alohida hujjat bilan yoziladi — ko'p ko'chirilgan bo'lsa\n"
+"                    ortig'i qaytariladi, kam bo'lsa qolgani qo'shimcha ko'chiriladi. Ikkalasi ham darhol tasdiqlanadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Bajarilgan hujjatni faqat administrator yoki rahbar tuzatadi."
+msgstr "Bajarilgan hujjatni faqat administrator yoki rahbar tuzatadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+msgid "Bekor"
+msgstr "Bekor"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__state__cancel
+msgid "Bekor qilindi"
+msgstr "Bekor qilindi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Bekor qilish"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__uom_id
+msgid "Birlik"
+msgstr "Birlik"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid ""
+"Boshqa kompaniya tanlansa, \"Kompaniyalararo\" belgisi chiqadi va qabul "
+"qiluvchi kompaniya xodimi tasdiqlaydi."
+msgstr ""
+"Boshqa kompaniya tanlansa, \"Kompaniyalararo\" belgisi chiqadi va qabul "
+"qiluvchi kompaniya xodimi tasdiqlaydi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/controllers/main.py:0
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Bu amal uchun huquqingiz yo'q."
+msgstr "Bu amal uchun huquqingiz yo'q."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Bu buyurtmada jo'natiladigan mahsulot qolmagan."
+msgstr "Bu buyurtmada jo'natiladigan mahsulot qolmagan."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Bu ichki o'tkazma allaqachon jo'natilgan."
+msgstr "Bu ichki o'tkazma allaqachon jo'natilgan."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Bu ichki o'tkazma endi o'zgartirilmaydi."
+msgstr "Bu ichki o'tkazma endi o'zgartirilmaydi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Bu ichki o'tkazma qabul qilish holatida emas."
+msgstr "Bu ichki o'tkazma qabul qilish holatida emas."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Bu ilova uchun huquqingiz yo'q."
+msgstr "Bu ilova uchun huquqingiz yo'q."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Bu jo'natma yopilgan."
+msgstr "Bu jo'natma yopilgan."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_stock_picking__cst_correction_of_id
+msgid ""
+"Bu ko'chirish shu bajarilgan hujjatdagi miqdor xatosini tuzatish uchun "
+"yaratilgan."
+msgstr ""
+"Bu ko'chirish shu bajarilgan hujjatdagi miqdor xatosini tuzatish uchun "
+"yaratilgan."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Bugun chiqarildi:"
+msgstr "Bugun chiqarildi:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__ordered_qty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Buyurtma"
+msgstr "Buyurtma"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__sale_line_id
+msgid "Buyurtma qatori"
+msgstr "Buyurtma qatori"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Buyurtma summasi:"
+msgstr "Buyurtma summasi:"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Buyurtma tasdiqlanmagan."
+msgstr "Buyurtma tasdiqlanmagan."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Buyurtma topilmadi."
+msgstr "Buyurtma topilmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Buyurtmani tayyorlash"
+msgstr "Buyurtmani tayyorlash"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,comment:cst_kerama_dispatch.group_dispatch_gate
+msgid "Checks ready orders at the gate and approves them."
+msgstr "Tayyor buyurtmalarni eshikda tekshiradi va tasdiqlaydi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__state__done
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_search
+msgid "Chiqarildi"
+msgstr "Chiqarildi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__checked_at
+msgid "Chiqarilgan vaqt"
+msgstr "Chiqarilgan vaqt"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Chiqdi:"
+msgstr "Chiqdi:"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Chop etildi:"
+msgstr "Chop etildi:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__create_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__create_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_can_correct
+msgid "Cst Can Correct"
+msgstr "Tuzatish mumkin"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Davlat raqami (01 A 123 BC)"
+msgstr "Davlat raqami (01 A 123 BC)"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__dispatch_id
+msgid "Dispatch"
+msgstr "Jo'natish"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_transfer_ui__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_ir_ui_menu__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_sale_order__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Ko‘rsatiladigan nom"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Eshik: chiqishni tekshirish"
+msgstr "Eshik: chiqishni tekshirish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Eshik: tekshirish"
+msgstr "Eshik: tekshirish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Eshikda"
+msgstr "Eshikda"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__checked_qty
+msgid "Eshikda sanaldi"
+msgstr "Eshikda sanaldi"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Faqat bajarilgan ichki ko'chirish tuzatiladi (kompaniyalararo emas)."
+msgstr "Faqat bajarilgan ichki ko'chirish tuzatiladi (kompaniyalararo emas)."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Faqat jo'natilmagan ichki o'tkazmani bekor qilish mumkin."
+msgstr "Faqat jo'natilmagan ichki o'tkazmani bekor qilish mumkin."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Faqat o'z kompaniyangiz omboridan jo'nata olasiz."
+msgstr "Faqat o'z kompaniyangiz omboridan jo'nata olasiz."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Faqat qabul qiluvchi (%s) qabul qila oladi."
+msgstr "Faqat qabul qiluvchi (%s) qabul qila oladi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid ""
+"Faqat shu mashinaga yuklangan miqdor chiqariladi; buyurtma o'zgarmaydi, "
+"qoldig'i «Ombor»da yana chiqadi."
+msgstr ""
+"Faqat shu mashinaga yuklangan miqdor chiqariladi; buyurtma o'zgarmaydi, "
+"qoldig'i «Ombor»da yana chiqadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Faqat tovar qo'shish mumkin (xizmat emas)."
+msgstr "Faqat tovar qo'shish mumkin (xizmat emas)."
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+msgid "Farq uchun ko'chirish yaratiladi va tasdiqlanadi. Davom etilsinmi?"
+msgstr "Farq uchun ko'chirish yaratiladi va tasdiqlanadi. Davom etilsinmi?"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Filtrni tozalash"
+msgstr "Filtrni tozalash"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_follower_ids
+msgid "Followers"
+msgstr "Kuzatuvchilar"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Kuzatuvchilar (hamkorlar)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Hali yo'q"
+msgstr "Hali yo'q"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Hamma omborlar"
+msgstr "Hamma omborlar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Hammasi"
+msgstr "Hammasi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Hammasi ✓"
+msgstr "Hammasi ✓"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid ""
+"Har bir mahsulotni skanerlang yoki ✓ bosing — sanoq buyurtma bilan "
+"solishtiriladi"
+msgstr ""
+"Har bir mahsulotni skanerlang yoki ✓ bosing — sanoq buyurtma bilan "
+"solishtiriladi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__has_message
+msgid "Has Message"
+msgstr "Xabar bor"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__driver
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Haydovchi"
+msgstr "Haydovchi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Haydovchi ismi"
+msgstr "Haydovchi ismi"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Haydovchi tel."
+msgstr "Haydovchi tel."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__driver_phone
+msgid "Haydovchi telefoni"
+msgstr "Haydovchi telefoni"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Hech narsa qabul qilinmadi. Kamida bitta miqdor kiriting."
+msgstr "Hech narsa qabul qilinmadi. Kamida bitta miqdor kiriting."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Hech narsa yo'q"
+msgstr "Hech narsa yo'q"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Hisob-faktura:"
+msgstr "Hisob-faktura:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__invoice_ids
+msgid "Hisob-fakturalar"
+msgstr "Hisob-fakturalar"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__state
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_search
+msgid "Holat"
+msgstr "Holat"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Holat:"
+msgstr "Holat:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__picking_id
+msgid "Hujjat"
+msgstr "Hujjat"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__old_qty
+msgid "Hujjatda"
+msgstr "Hujjatda"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_transfer_ui__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_ir_ui_menu__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_sale_order__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_picking_correction
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+msgid "Ichki ko'chirishni tuzatish"
+msgstr "Ichki ko'chirishni tuzatish"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_picking_correction_line
+msgid "Ichki ko'chirishni tuzatish: mahsulot"
+msgstr "Ichki ko'chirishni tuzatish: mahsulot"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_transfer_ui
+msgid "Ichki o'tkazma (ilova)"
+msgstr "Ichki o'tkazma (ilova)"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Ichki o'tkazma topilmadi."
+msgstr "Ichki o'tkazma topilmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.actions.client,name:cst_kerama_dispatch.action_dispatch_transfers
+#: model:ir.ui.menu,name:cst_kerama_dispatch.menu_dispatch_transfers
+msgid "Ichki o'tkazmalar"
+msgstr "Ichki o'tkazmalar"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_dispatch__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Belgilangan bo'lsa, yangi xabarlar e'tiboringizni talab qiladi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_dispatch__message_has_error
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_dispatch__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Belgilangan bo'lsa, ayrim xabarlarni yetkazishda xatolik bor."
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_form
+msgid "Ilovada ochish"
+msgstr "Ilovada ochish"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Imzo: ________________"
+msgstr "Imzo: ________________"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_stock_picking__cst_final_location_id
+msgid ""
+"Inter-company transfer: this picking only takes the goods to the transit "
+"location, the receipt in the other company brings them here."
+msgstr ""
+"Kompaniyalararo o'tkazma: bu hujjat mahsulotni faqat tranzit joyiga olib "
+"boradi, bu yerga esa boshqa kompaniyadagi kirim olib keladi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_is_follower
+msgid "Is Follower"
+msgstr "Kuzatuvchimi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__note
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_form
+msgid "Izoh"
+msgstr "Izoh"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Izoh:"
+msgstr "Izoh:"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Jami soni"
+msgstr "Jami soni"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Jami summa"
+msgstr "Jami summa"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Jami:"
+msgstr "Jami:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_sent_by_id
+msgid "Jo'natdi"
+msgstr "Jo'natdi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Jo'natdi:"
+msgstr "Jo'natdi:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__qty
+msgid "Jo'natiladi"
+msgstr "Jo'natiladi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Jo'natiladi:"
+msgstr "Jo'natiladi:"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Jo'natiladigan miqdor yo'q. Kamida bitta mahsulot kiriting."
+msgstr "Jo'natiladigan miqdor yo'q. Kamida bitta mahsulot kiriting."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Jo'natildi"
+msgstr "Jo'natildi"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Jo'natildi → %(d)s, qabul qiluvchi: %(r)s"
+msgstr "Jo'natildi → %(d)s, qabul qiluvchi: %(r)s"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Jo'natilgan"
+msgstr "Jo'natilgan"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_sent_at
+msgid "Jo'natilgan vaqt"
+msgstr "Jo'natilgan vaqt"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.actions.client,name:cst_kerama_dispatch.action_dispatch_app
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_dispatch
+#: model:ir.ui.menu,name:cst_kerama_dispatch.menu_dispatch_root
+#: model:res.groups.privilege,name:cst_kerama_dispatch.privilege_dispatch
+msgid "Jo'natish"
+msgstr "Jo'natish"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_dispatch_line
+msgid "Jo'natish qatori"
+msgstr "Jo'natish qatori"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,name:cst_kerama_dispatch.group_dispatch_gate
+msgid "Jo'natish: eshik qorovuli"
+msgstr "Jo'natish: eshik qorovuli"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,name:cst_kerama_dispatch.group_dispatch_transfer
+msgid "Jo'natish: ichki o'tkazmalar"
+msgstr "Jo'natish: ichki o'tkazmalar"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,name:cst_kerama_dispatch.group_dispatch_warehouse
+msgid "Jo'natish: ombor menejeri"
+msgstr "Jo'natish: ombor menejeri"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,name:cst_kerama_dispatch.group_dispatch_manager
+msgid "Jo'natish: ombor va eshik"
+msgstr "Jo'natish: ombor va eshik"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__state__ready
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_search
+msgid "Jo'natishga tayyor"
+msgstr "Jo'natishga tayyor"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Jo'natma %(d)s (reys %(n)s) eshikda tasdiqlandi. Miqdor o'zgarishlari:"
+msgstr ""
+"Jo'natma %(d)s (reys %(n)s) eshikda tasdiqlandi. Miqdor o'zgarishlari:"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid ""
+"Jo'natma %(d)s: farq uchun hisob-faktura avtomatik yaratilmadi (%(e)s). "
+"Buxgalter qo'lda yaratsin."
+msgstr ""
+"Jo'natma %(d)s: farq uchun hisob-faktura avtomatik yaratilmadi (%(e)s). "
+"Buxgalter qo'lda yaratsin."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_ic_origin_id
+msgid "Jo'natma (boshqa kompaniya)"
+msgstr "Jo'natma (boshqa kompaniya)"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Jo'natma holati o'zgargan («%s»). Sahifani yangilang."
+msgstr "Jo'natma holati o'zgargan («%s»). Sahifani yangilang."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Jo'natma topilmadi."
+msgstr "Jo'natma topilmadi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.actions.act_window,name:cst_kerama_dispatch.action_dispatch_list
+#: model:ir.ui.menu,name:cst_kerama_dispatch.menu_dispatch_list
+msgid "Jo'natmalar"
+msgstr "Jo'natmalar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Kamera bilan skanerlash"
+msgstr "Kamera bilan skanerlash"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Kamida bitta mahsulot qo'shing."
+msgstr "Kamida bitta mahsulot qo'shing."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Kerak:"
+msgstr "Kerak:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Kim"
+msgstr "Kim"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Ko'chirishni tuzatish: %s"
+msgstr "Ko'chirishni tuzatish: %s"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Ko'rish"
+msgstr "Ko'rish"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__company_id
+msgid "Kompaniya"
+msgstr "Kompaniya"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Kompaniyalararo"
+msgstr "Kompaniyalararo"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid ""
+"Kompaniyalararo ichki o'tkazma to'liq qabul qilinadi. Farq bo'lsa, qabul "
+"qilgach qaytarib jo'nating."
+msgstr ""
+"Kompaniyalararo ichki o'tkazma to'liq qabul qilinadi. Farq bo'lsa, qabul "
+"qilgach qaytarib jo'nating."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Kutilmoqda"
+msgstr "Kutilmoqda"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi tahrir qilgan"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__write_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__write_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi tahrir sanasi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__product_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__product_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Mahsulot"
+msgstr "Mahsulot"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Mahsulot nomi yoki shtrix-kod bo'yicha qidirish"
+msgstr "Mahsulot nomi yoki shtrix-kod bo'yicha qidirish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Mahsulot qidiring yoki shtrix-kodini skanerlang"
+msgstr "Mahsulot qidiring yoki shtrix-kodini skanerlang"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Mahsulot qo'shish"
+msgstr "Mahsulot qo'shish"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Mahsulot topilmadi."
+msgstr "Mahsulot topilmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Mahsulotlar"
+msgstr "Mahsulotlar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid ""
+"Mahsulotni skanerlang: +1 qo'shiladi (yangi mahsulot bo'lsa — qo'shimcha "
+"qator)"
+msgstr ""
+"Mahsulotni skanerlang: +1 qo'shiladi (yangi mahsulot bo'lsa — qo'shimcha "
+"qator)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Mashina"
+msgstr "Mashina"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__car_number
+msgid "Mashina raqami"
+msgstr "Mashina raqami"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__car_model
+msgid "Mashina rusumi"
+msgstr "Mashina rusumi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Mashina rusumi (masalan Isuzu)"
+msgstr "Mashina rusumi (masalan Isuzu)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Mashina va haydovchi"
+msgstr "Mashina va haydovchi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Men yuborganlar"
+msgstr "Men yuborganlar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Menga kelganlar"
+msgstr "Menga kelganlar"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_ir_ui_menu
+msgid "Menu"
+msgstr "Menyu"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_has_error
+msgid "Message Delivery error"
+msgstr "Xabar yetkazishda xatolik"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_ids
+msgid "Messages"
+msgstr "Xabarlar"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_search
+msgid "Mijoz"
+msgstr "Mijoz"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Miqdor"
+msgstr "Miqdor"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Miqdor manfiy bo'lishi mumkin emas."
+msgstr "Miqdor manfiy bo'lishi mumkin emas."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Miqdorlar o'zgarmadi."
+msgstr "Miqdorlar o'zgarmadi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__move_id
+msgid "Move"
+msgstr "Ko'chirish"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Narx"
+msgstr "Narx"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__price_unit
+msgid "Narx (QQS bilan)"
+msgstr "Narx (QQS bilan)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+msgid "Nega tuzatilmoqda? (majburiy)"
+msgstr "Nega tuzatilmoqda? (majburiy)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Nomi, kodi yoki shtrix-kodi…"
+msgstr "Nomi, kodi yoki shtrix-kodi…"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Noto'g'ri maydon."
+msgstr "Noto'g'ri maydon."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Noto'g'ri reys turi."
+msgstr "Noto'g'ri reys turi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Harakatlar soni"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_has_error_counter
+msgid "Number of errors"
+msgstr "Xatolar soni"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_dispatch__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Harakat talab qiladigan xabarlar soni"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_dispatch__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Yetkazishda xatolik bo'lgan xabarlar soni"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "O'lch."
+msgstr "O'lch."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__uom_id
+msgid "O'lchov birligi"
+msgstr "O'lchov birligi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__delivered_qty
+msgid "Oldin yetkazilgan"
+msgstr "Oldin yetkazilgan"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__warehouse_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Ombor"
+msgstr "Ombor"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Ombor: buyurtmani tayyorlash"
+msgstr "Ombor: buyurtmani tayyorlash"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/stock_picking.py:0
+msgid "Omborchi yetkazib berishda miqdorni o'zgartirdi — buyurtma yangilandi:"
+msgstr ""
+"Omborchi yetkazib berishda miqdorni o'zgartirdi — buyurtma yangilandi:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Omborda"
+msgstr "Omborda"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Omborda:"
+msgstr "Omborda:"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Omborga qaytarildi: %s"
+msgstr "Omborga qaytarildi: %s"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Omborga qaytarish"
+msgstr "Omborga qaytarish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Omborlar o'rtasida"
+msgstr "Omborlar o'rtasida"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__trip_mode__final
+msgid "Oxirgi reys (buyurtma yopiladi)"
+msgstr "Oxirgi reys (buyurtma yopiladi)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Oxirgi reys — buyurtma yopiladi"
+msgstr "Oxirgi reys — buyurtma yopiladi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Oxirgi so'ralganlar"
+msgstr "Oxirgi so'ralganlar"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,comment:cst_kerama_dispatch.group_dispatch_warehouse
+msgid "Prepares sales orders for dispatch: quantities, extra products."
+msgstr ""
+"Sotuv buyurtmalarini jo'natishga tayyorlaydi: miqdorlar, qo'shimcha "
+"mahsulotlar."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_ic_receipt_id
+msgid "Qabul (boshqa kompaniya)"
+msgstr "Qabul (boshqa kompaniya)"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_received_by_id
+msgid "Qabul qildi"
+msgstr "Qabul qildi"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Qabul qildi (mijoz / haydovchi)"
+msgstr "Qabul qildi (mijoz / haydovchi)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Qabul qildi: ____________"
+msgstr "Qabul qildi: ____________"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Qabul qilindi"
+msgstr "Qabul qilindi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_received_at
+msgid "Qabul qilingan vaqt"
+msgstr "Qabul qilingan vaqt"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Qabul qilish"
+msgstr "Qabul qilish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Qabul qiluvchi"
+msgstr "Qabul qiluvchi"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "Qabul qiluvchini tanlang."
+msgstr "Qabul qiluvchini tanlang."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Qator topilmadi."
+msgstr "Qator topilmadi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__line_ids
+msgid "Qatorlar"
+msgstr "Qatorlar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Qayerdan"
+msgstr "Qayerdan"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Qayerga"
+msgstr "Qayerga"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Qidirish: buyurtma, mijoz… (yoki skanerlang)"
+msgstr "Qidirish: buyurtma, mijoz… (yoki skanerlang)"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__trip_mode__partial
+msgid "Qisman reys (qoldig'i keyingi reysda)"
+msgstr "Qisman reys (qoldig'i keyingi reysda)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Qisman reys — qoldig'i keyingi mashinada"
+msgstr "Qisman reys — qoldig'i keyingi mashinada"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid ""
+"Qisman reysda buyurtma qoldig'idan ko'p jo'natib bo'lmaydi (%s). "
+"Ortiqchasini oxirgi reysda kiriting yoki reysni «Oxirgi reys» qiling."
+msgstr ""
+"Qisman reysda buyurtma qoldig'idan ko'p jo'natib bo'lmaydi (%s). "
+"Ortiqchasini oxirgi reysda kiriting yoki reysni «Oxirgi reys» qiling."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__is_extra
+msgid "Qo'shimcha mahsulot"
+msgstr "Qo'shimcha mahsulot"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Qoralama avtomatik saqlanadi"
+msgstr "Qoralama avtomatik saqlanadi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__name
+msgid "Raqam"
+msgstr "Raqam"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Raqam yoki mahsulot"
+msgstr "Raqam yoki mahsulot"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Raqami"
+msgstr "Raqami"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__rating_ids
+msgid "Ratings"
+msgstr "Baholar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__trip_mode
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Reys"
+msgstr "Reys"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Reys %(n)s (%(d)s) chiqarildi — qisman, qoldig'i keyingi reysda:"
+msgstr "Reys %(n)s (%(d)s) chiqarildi — qisman, qoldig'i keyingi reysda:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__trip_no
+msgid "Reys №"
+msgstr "Reys №"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS yetkazishda xatolik"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "STIR:"
+msgstr "STIR:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__reason
+msgid "Sabab"
+msgstr "Sabab"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_sale_order
+msgid "Sales Order"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Salom,"
+msgstr "Salom,"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Sanadan"
+msgstr "Sanadan"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Sanagacha"
+msgstr "Sanagacha"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Sanaldi:"
+msgstr "Sanaldi:"
+
+#. module: cst_kerama_dispatch
+#: model:res.groups,comment:cst_kerama_dispatch.group_dispatch_transfer
+msgid ""
+"Sends goods between warehouses and receives the ones addressed to them."
+msgstr ""
+"Omborlar o'rtasida mahsulot jo'natadi va o'ziga yuborilganlarini qabul "
+"qiladi."
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__sequence
+msgid "Sequence"
+msgstr "Tartib raqami"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Shtrix-kod"
+msgstr "Shtrix-kod"
+
+#. module: cst_kerama_dispatch
+#: model:ir.ui.menu,name:cst_kerama_dispatch.menu_dispatch_app
+msgid "Skaner"
+msgstr "Skaner"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Soni"
+msgstr "Soni"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__sale_order_id
+msgid "Sotuv buyurtmasi"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Status"
+msgstr "Holat"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Summa"
+msgstr "Summa"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__amount_after
+msgid "Summa (keyin)"
+msgstr "Summa (keyin)"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__amount_before
+msgid "Summa (oldin)"
+msgstr "Summa (oldin)"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Summa: %(a)s → %(b)s"
+msgstr "Summa: %(a)s → %(b)s"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Tarix"
+msgstr "Tarix"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Tasdiqlash va chiqarish"
+msgstr "Tasdiqlash va chiqarish"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Tasdiqlash: jo'natishga tayyor"
+msgstr "Tasdiqlash: jo'natishga tayyor"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Taxminiy yangi summa:"
+msgstr "Taxminiy yangi summa:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Tayyor"
+msgstr "Tayyor"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__prepared_by_id
+msgid "Tayyorladi"
+msgstr "Tayyorladi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__prepared_at
+msgid "Tayyorlangan vaqt"
+msgstr "Tayyorlangan vaqt"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__state__draft
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_search
+msgid "Tayyorlanmoqda"
+msgstr "Tayyorlanmoqda"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__checked_by_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Tekshirdi (eshik)"
+msgstr "Tekshirdi (eshik)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Tekshirdi (eshik):"
+msgstr "Tekshirdi (eshik):"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Tel."
+msgstr "Tel."
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Tel.:"
+msgstr "Tel.:"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Telefon"
+msgstr "Telefon"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__new_qty
+msgid "To'g'risi"
+msgstr "To'g'risi"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Topshirdi (ombor)"
+msgstr "Topshirdi (ombor)"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Topshirdi:"
+msgstr "Topshirdi:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_stock_picking
+msgid "Transfer"
+msgstr "O‘tkazma"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Turi"
+msgstr "Turi"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Tuzatildi: %(changes)s. Sabab: %(reason)s. Hujjat: %(docs)s"
+msgstr "Tuzatildi: %(changes)s. Sabab: %(reason)s. Hujjat: %(docs)s"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_correction_of_id
+msgid "Tuzatilgan hujjat"
+msgstr "Tuzatilgan hujjat"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_picking_form_cst_correction
+msgid "Tuzatish"
+msgstr "Tuzatish"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Tuzatish sababini yozing."
+msgstr "Tuzatish sababini yozing."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+msgid "Tuzatish: %s"
+msgstr "Tuzatish: %s"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_correction_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_picking_form_cst_correction
+msgid "Tuzatishlar"
+msgstr "Tuzatishlar"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_correction_log
+msgid "Tuzatishlar tarixi"
+msgstr "Tuzatishlar tarixi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__currency_id
+msgid "Valyuta"
+msgstr "Valyuta"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Vaqt"
+msgstr "Vaqt"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__website_message_ids
+msgid "Website Messages"
+msgstr "Veb-sayt xabarlari"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_dispatch__website_message_ids
+msgid "Website communication history"
+msgstr "Veb-sayt orqali muloqot tarixi"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__wizard_id
+msgid "Wizard"
+msgstr "Yordamchi oyna"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Xarakteristika"
+msgstr "Xarakteristika"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Xarakteristika:"
+msgstr "Xarakteristika:"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "Xaridor"
+msgstr "Xaridor"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "YUK XATI"
+msgstr "YUK XATI"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_final_location_id
+msgid "Yakuniy manzil (kompaniyalararo)"
+msgstr "Yakuniy manzil (kompaniyalararo)"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "Yakunlangan jo'natmaning reysini o'zgartirib bo'lmaydi."
+msgstr "Yakunlangan jo'natmaning reysini o'zgartirib bo'lmaydi."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Yangi"
+msgstr "Yangi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Yangi ichki o'tkazma"
+msgstr "Yangi ichki o'tkazma"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Yangi summa:"
+msgstr "Yangi summa:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Yetkazib berish:"
+msgstr "Yetkazib berish:"
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__picking_ids
+msgid "Yetkazib berishlar"
+msgstr "Yetkazib berishlar"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "Yuborish ("
+msgstr "Yuborish ("
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
+msgid "Yuk qabul qilindi"
+msgstr "Yuk qabul qilindi"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/controllers/main.py:0
+msgid "Yuk xati %s"
+msgstr "Yuk xati %s"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_form
+msgid "Yuk xati 80mm"
+msgstr "Yuk xati 80mm"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_form
+msgid "Yuk xati A4"
+msgstr "Yuk xati A4"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Yuk xati — 80 mm (Xprinter)"
+msgstr "Yuk xati — 80 mm (Xprinter)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Yuk xati — A4 (oddiy printer)"
+msgstr "Yuk xati — A4 (oddiy printer)"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "bugun %s"
+msgstr "bugun %s"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "buyurtma"
+msgstr "buyurtma"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "ixtiyoriy"
+msgstr "ixtiyoriy"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "kecha %s"
+msgstr "kecha %s"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "logo"
+msgstr "logo"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "mahsulot"
+msgstr "mahsulot"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "menga kelgan:"
+msgstr "menga kelgan:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "oxirgi"
+msgstr "oxirgi"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "qabul qilishini kutmoqda."
+msgstr "qabul qilishini kutmoqda."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "qisman"
+msgstr "qisman"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "ta"
+msgstr "ta"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "ta jo'natishga tayyor"
+msgstr "ta jo'natishga tayyor"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "ta mahsulot"
+msgstr "ta mahsulot"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "ta mahsulot)"
+msgstr "ta mahsulot)"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "tayyorlanmoqda"
+msgstr "tayyorlanmoqda"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "«%s» shtrix-kodli mahsulot topilmadi."
+msgstr "«%s» shtrix-kodli mahsulot topilmadi."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "«Qayerdan» omborini tanlang."
+msgstr "«Qayerdan» omborini tanlang."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "«Qayerdan» va «Qayerga» bir xil bo'lmasin."
+msgstr "«Qayerdan» va «Qayerga» bir xil bo'lmasin."
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "«Qayerga» omborini tanlang."
+msgstr "«Qayerga» omborini tanlang."
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "· 24 soatdan ortiq"
+msgstr "· 24 soatdan ortiq"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "· Qabul hujjati:"
+msgstr "· Qabul hujjati:"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "· Qabul qildi:"
+msgstr "· Qabul qildi:"
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+msgid "· Reys"
+msgstr "· Reys"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "· kompaniyalararo"
+msgstr "· kompaniyalararo"
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+msgid "— tanlang —"
+msgstr "— tanlang —"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/transfer.py:0
+msgid "• %(p)s: kerak %(n)s, bor %(h)s %(u)s"
+msgstr "• %(p)s: kerak %(n)s, bor %(h)s %(u)s"

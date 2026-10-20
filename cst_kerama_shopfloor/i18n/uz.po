@@ -1,0 +1,291 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_shopfloor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "%(order)s — %(kind)s"
+msgstr "%(order)s — %(kind)s"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "%s allaqachon yopilgan."
+msgstr "%s allaqachon yopilgan."
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "%s — Brak (scrap)"
+msgstr "%s — Brak (scrap)"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_patch.js:0
+msgid "%s — natija"
+msgstr "%s — natija"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "1-sort"
+msgstr "1-sort"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "2-sort"
+msgstr "2-sort"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "2-sort +"
+msgstr "2-sort +"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "2-sort / Brak yozish"
+msgstr "2-sort / Brak yozish"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "Bekor"
+msgstr "Bekor"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "Brak"
+msgstr "Brak"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "Brak +"
+msgstr "Brak +"
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model.fields,help:cst_kerama_shopfloor.field_mrp_production__cst_sale_ref
+msgid ""
+"Bu buyurtma qaysi sotuv buyurtmasi(lari) uchun: sotuv qatori, loyihaning "
+"sotuvlari yoki manba matnidagi raqam bo'yicha."
+msgstr ""
+"Bu buyurtma qaysi sotuv buyurtmasi(lari) uchun: sotuv qatori, loyihaning "
+"sotuvlari yoki manba matnidagi raqam bo'yicha."
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "Bu buyurtma sizga biriktirilmagan."
+msgstr "Bu buyurtma sizga biriktirilmagan."
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model.fields,help:cst_kerama_shopfloor.field_mrp_workorder__cst_operator_ids
+msgid ""
+"Bu ish buyurtmasi kimning ishi: biriktirilganlar, ishlayotganlar va smena "
+"qatoridagi xodimlar. Shop Floor'da operator faqat shu ro'yxatda bo'lgan "
+"buyurtmalarni ko'radi."
+msgstr ""
+"Bu ish buyurtmasi kimning ishi: biriktirilganlar, ishlayotganlar va smena "
+"qatoridagi xodimlar. Shop Floor'da operator faqat shu ro'yxatda bo'lgan "
+"buyurtmalarni ko'radi."
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "Buyurtma topilmadi."
+msgstr "Buyurtma topilmadi."
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_cst_shopfloor__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_mrp_workorder__display_name
+msgid "Display Name"
+msgstr "Ko‘rsatiladigan nom"
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model,name:cst_kerama_shopfloor.model_hr_employee
+msgid "Employee"
+msgstr "Xodim"
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_cst_shopfloor__id
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_hr_employee__id
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_mrp_workorder__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "Ish buyurtmasi topilmadi."
+msgstr "Ish buyurtmasi topilmadi."
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "Izoh (ixtiyoriy)"
+msgstr "Izoh (ixtiyoriy)"
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model,name:cst_kerama_shopfloor.model_cst_shopfloor
+msgid "Khatdecor Shop Floor"
+msgstr "Khatdecor Shop Floor"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "Mahsulot topilmadi."
+msgstr "Mahsulot topilmadi."
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model,name:cst_kerama_shopfloor.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Ishlab chiqarish buyurtmasi"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_patch.js:0
+msgid "Mening ishlarim"
+msgstr "Mening ishlarim"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid ""
+"Natija bo'lim smenasining yozuviga tushadi. Buyurtma yopilganda 2-sort egizak mahsulotga,\n"
+"                brak scrap'ga o'tadi; yozilmagan qoldiq 1-sort hisoblanadi."
+msgstr ""
+"Natija bo'lim smenasining yozuviga tushadi. Buyurtma yopilganda 2-sort egizak mahsulotga,\n"
+"                brak scrap'ga o'tadi; yozilmagan qoldiq 1-sort hisoblanadi."
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.js:0
+msgid "Natija yozildi (%s)"
+msgstr "Natija yozildi (%s)"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/presence_clock.xml:0
+msgid "Offline"
+msgstr "Oflayn"
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_mrp_workorder__cst_operator_ids
+msgid "Operatorlar"
+msgstr "Operatorlar"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "Saqlash"
+msgstr "Saqlash"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "Shop Floor"
+msgstr "Shop Floor"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid "Shop Floor · %s"
+msgstr "Shop Floor · %s"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "Siz online emassiz — Face ID'dan o'ting."
+msgstr "Siz online emassiz — Face ID'dan o'ting."
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model.fields,field_description:cst_kerama_shopfloor.field_mrp_production__cst_sale_ref
+msgid "Sotuv buyurtmasi"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid ""
+"Tanlangan stanoklarda (%s) ishlashga ruxsatingiz yo'q. Boshqa stanok "
+"tanlang."
+msgstr ""
+"Tanlangan stanoklarda (%s) ishlashga ruxsatingiz yo'q. Boshqa stanok "
+"tanlang."
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "Tekshirish"
+msgstr "Tekshirish"
+
+#. module: cst_kerama_shopfloor
+#: model:ir.model,name:cst_kerama_shopfloor.model_mrp_workorder
+msgid "Work Order"
+msgstr "Ish buyurtmasi"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_patch.js:0
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "Yangi buyurtma"
+msgstr "Yangi buyurtma"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "bugungi kirish yozuvi topilmadi, ish vaqti hisoblanmaydi."
+msgstr "bugungi kirish yozuvi topilmadi, ish vaqti hisoblanmaydi."
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/presence_clock.xml:0
+msgid "kirdi"
+msgstr "kirdi"
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/shopfloor_templates.xml:0
+msgid "ta"
+msgstr "ta"
+
+#. module: cst_kerama_shopfloor
+#. odoo-python
+#: code:addons/cst_kerama_shopfloor/models/shopfloor.py:0
+msgid ""
+"«%(wc)s» stanogining bo'limida ochiq smena yo'q. Natijani menejer smena "
+"ochgach kiriting."
+msgstr ""
+"«%(wc)s» stanogining bo'limida ochiq smena yo'q. Natijani menejer smena "
+"ochgach kiriting."
+
+#. module: cst_kerama_shopfloor
+#. odoo-javascript
+#: code:addons/cst_kerama_shopfloor/static/src/shopfloor/result_dialog.xml:0
+msgid "· qoldi:"
+msgstr "· qoldi:"

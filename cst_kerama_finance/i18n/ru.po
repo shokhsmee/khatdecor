@@ -1,0 +1,157 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_finance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_finance
+#: model:ir.model,name:cst_kerama_finance.model_cst_bank_statement_import_wizard
+#: model:ir.ui.menu,name:cst_kerama_finance.menu_bank_statement_import_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_finance.view_bank_statement_import_wizard_form
+msgid "Bank vipiskasini yuklash"
+msgstr "Загрузка банковской выписки"
+
+#. module: cst_kerama_finance
+#: model:ir.actions.act_window,name:cst_kerama_finance.action_bank_statement_import_wizard
+msgid "Bank vipiskasini yuklash (Excel)"
+msgstr "Загрузка банковской выписки (Excel)"
+
+#. module: cst_kerama_finance
+#: model:ir.model,name:cst_kerama_finance.model_base_import_import
+msgid "Base Import"
+msgstr "Импорт Базы"
+
+#. module: cst_kerama_finance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_finance.view_bank_statement_import_wizard_form
+msgid "Bekor qilish"
+msgstr "Отмена"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__create_date
+msgid "Created on"
+msgstr "Дата создания"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_account_journal__display_name
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_base_import_import__display_name
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__file
+msgid "Fayl"
+msgstr "Файл"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__file_name
+msgid "File Name"
+msgstr "Имя файла"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_account_journal__id
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_base_import_import__id
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_finance
+#: model:ir.model,name:cst_kerama_finance.model_account_journal
+msgid "Journal"
+msgstr "Журнал"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__journal_id
+msgid "Jurnal"
+msgstr "Журнал"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__write_date
+msgid "Last Updated on"
+msgstr "Дата последнего изменения"
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,field_description:cst_kerama_finance.field_cst_bank_statement_import_wizard__formats
+msgid "Qo'llab-quvvatlanadi"
+msgstr "Поддерживается"
+
+#. module: cst_kerama_finance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_finance.view_bank_statement_import_wizard_form
+msgid "Yuklash"
+msgstr "Загрузить"
+
+#. module: cst_kerama_finance
+#. odoo-python
+#: code:addons/cst_kerama_finance/wizard/bank_statement_import_wizard.py:0
+msgid ""
+"«%(name)s» — бу формат кутилмаган.\n"
+"\n"
+"Юкланадиган форматлар: %(formats)s"
+msgstr ""
+"«%(name)s» — неожиданный формат.\n"
+"\n"
+"Поддерживаемые форматы: %(formats)s"
+
+#. module: cst_kerama_finance
+#. odoo-python
+#: code:addons/cst_kerama_finance/wizard/bank_statement_import_wizard.py:0
+msgid ""
+"«%s» журналида асосий хисоб курсатилмаган, шунинг учун випискани юклаб "
+"булмайди."
+msgstr ""
+"В журнале «%s» не указан основной счёт, поэтому выписку загрузить нельзя."
+
+#. module: cst_kerama_finance
+#: model:ir.model.fields,help:cst_kerama_finance.field_cst_bank_statement_import_wizard__journal_id
+msgid "Виписка кайси кассага ёки банк хисобига тегишли."
+msgstr "К какой кассе или банковскому счёту относится выписка."
+
+#. module: cst_kerama_finance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_finance.view_bank_statement_import_wizard_form
+msgid ""
+"Сатрлар <b>сана буйича тартибланган</b> булиши шарт.\n"
+"                        Дебет — пул чиқими, Кредит — пул кирими."
+msgstr ""
+"Строки <b>должны быть отсортированы по дате</b>.\n"
+"                        Дебет — расход денег, Кредит — приход денег."
+
+#. module: cst_kerama_finance
+#: model_terms:ir.ui.view,arch_db:cst_kerama_finance.view_bank_statement_import_wizard_form
+msgid ""
+"Файлни юклагандан сунг устунлар <b>автоматик мос келади</b>\n"
+"                        (Сана, Ҳужжат, Контрагент, Изоҳ, Дебет, Кредит, Қолдиқ —\n"
+"                        узбекча, русча ёки инглизча номланган булса ҳам).\n"
+"                        Керак булса «Тест» тугмаси билан текшириб куринг,\n"
+"                        сунг «Импорт»."
+msgstr ""
+"После загрузки файла столбцы <b>сопоставляются автоматически</b>\n"
+"                        (Дата, Документ, Контрагент, Комментарий, Дебет, Кредит, Остаток —\n"
+"                        даже если названы по-узбекски, по-русски или по-английски).\n"
+"                        При необходимости проверьте кнопкой «Тест»,\n"
+"                        затем «Импорт»."

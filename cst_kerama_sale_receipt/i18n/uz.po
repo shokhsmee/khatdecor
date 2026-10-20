@@ -1,0 +1,211 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_sale_receipt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_sale_receipt
+#: model:cst.product.tasnif,name:cst_kerama_sale_receipt.tasnif_first
+msgid "1-sort"
+msgstr "1-sort"
+
+#. module: cst_kerama_sale_receipt
+#: model:cst.product.tasnif,name:cst_kerama_sale_receipt.tasnif_second
+msgid "2-sort"
+msgstr "2-sort"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__active
+msgid "Active"
+msgstr "Faol"
+
+#. module: cst_kerama_sale_receipt
+#: model:cst.product.tasnif,name:cst_kerama_sale_receipt.tasnif_defect
+msgid "Brak (nuqsonli)"
+msgstr "Brak (nuqsonli)"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.view_order_form_sale_receipt
+msgid "Chek chiqarish"
+msgstr "Chek chiqarish"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_product_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_sale_order__display_name
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Ko‘rsatiladigan nom"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Farqi"
+msgstr "Farqi"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_product_template__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_sale_order__id
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Jami soni"
+msgstr "Jami soni"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Jami summa"
+msgstr "Jami summa"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__code
+msgid "Kod"
+msgstr "Kod"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi tahrir qilgan"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi tahrir sanasi"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,help:cst_kerama_sale_receipt.field_product_product__cst_tasnif_id
+#: model:ir.model.fields,help:cst_kerama_sale_receipt.field_product_template__cst_tasnif_id
+msgid ""
+"Mahsulot holati (masalan 1-sort, 2-sort, brak). Sotuv qatoriga avtomatik "
+"o'tadi."
+msgstr ""
+"Mahsulot holati (masalan 1-sort, 2-sort, brak). Sotuv qatoriga avtomatik "
+"o'tadi."
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model,name:cst_kerama_sale_receipt.model_cst_product_tasnif
+msgid "Mahsulot tasnifi"
+msgstr "Mahsulot tasnifi"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.actions.act_window,name:cst_kerama_sale_receipt.action_cst_product_tasnif
+#: model:ir.ui.menu,name:cst_kerama_sale_receipt.menu_cst_product_tasnif
+msgid "Mahsulot tasniflari"
+msgstr "Mahsulot tasniflari"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,help:cst_kerama_sale_receipt.field_sale_order_line__cst_tasnif_id
+msgid "Mahsulotdan olinadi, qatorda o'zgartirish mumkin. Chekda chiqariladi."
+msgstr "Mahsulotdan olinadi, qatorda o'zgartirish mumkin. Chekda chiqariladi."
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.receipt_layout
+msgid "Manzil:"
+msgstr "Manzil:"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.receipt_layout
+msgid "Odoo tomonidan ishlab chiqildi"
+msgstr "Odoo tomonidan ishlab chiqildi"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model,name:cst_kerama_sale_receipt.model_product_template
+msgid "Product"
+msgstr "Mahsulot"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.receipt_layout
+msgid "STIR:"
+msgstr "STIR:"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model,name:cst_kerama_sale_receipt.model_sale_order
+msgid "Sales Order"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model,name:cst_kerama_sale_receipt.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Sotish buyurtmasi satri"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__sequence
+msgid "Sequence"
+msgstr "Tartib raqami"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Soliq"
+msgstr "Soliq"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Sotuvchi"
+msgstr "Sotuvchi"
+
+#. module: cst_kerama_sale_receipt
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_cst_product_tasnif__name
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_product_product__cst_tasnif_id
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_product_template__cst_tasnif_id
+#: model:ir.model.fields,field_description:cst_kerama_sale_receipt.field_sale_order_line__cst_tasnif_id
+msgid "Tasnif"
+msgstr "Tasnif"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.receipt_layout
+msgid "Tel.:"
+msgstr "Tel.:"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Valyuta"
+msgstr "Valyuta"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Xarakteristika:"
+msgstr "Xarakteristika:"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Xaridingizdan mamnunmiz!"
+msgstr "Xaridingizdan mamnunmiz!"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "Xaridor"
+msgstr "Xaridor"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.receipt_layout
+msgid "logo"
+msgstr "logo"
+
+#. module: cst_kerama_sale_receipt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_receipt.sale_receipt_document
+msgid "x"
+msgstr "x"

@@ -1,0 +1,225 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_purchase_ux
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "40 A 123 BC"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                        Buyurtma ochilishi bilan rasm yuklash mumkin — narxlar\n"
+"                        kiritilishini kutmasdan."
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        Xarajatlar (transport, bojxona, yuk tushirish…) qabul\n"
+"                        hujjatining «Xarajatlar» sahifasida kiritiladi va shu\n"
+"                        yerda ko'rinadi."
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,help:cst_kerama_purchase_ux.field_purchase_order__cst_photo_ids
+#: model:ir.model.fields,help:cst_kerama_purchase_ux.field_stock_picking__cst_purchase_photo_ids
+msgid ""
+"Buyurtma ochilganda yuklanadigan rasmlar — narxlar kiritilishidan oldin ham."
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__cst_photo_count
+msgid "Cst Photo Count"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__id
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__is_shipped
+msgid "Is Shipped"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Jami"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Jami hisobda"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Jami miqdor"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Jami qabul"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Jami summa"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__company_currency_id
+msgid "Kompaniya valyutasi"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+msgid "Mahsulot"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+msgid "Mahsulot yo'q"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+msgid "Mahsulotlar va narxlar"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+msgid "Miqdor"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+msgid "Narx"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model,name:cst_kerama_purchase_ux.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model,name:cst_kerama_purchase_ux.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Qabul"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Qabul (kirim) hujjatidagi rasmlar"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__cst_receipt_expense_ids
+msgid "Qabul xarajatlari"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__cst_receipt_photo_ids
+msgid "Qabuldagi rasmlar"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,help:cst_kerama_purchase_ux.field_purchase_order_line__cst_line_total
+msgid ""
+"Qator summasi (soliqsiz). Yozilsa birlik narxi = summa / miqdor bo'lib "
+"hisoblanadi."
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__cst_photo_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.view_picking_form_cst_ux
+msgid "Rasmlar"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#. odoo-javascript
+#: code:addons/cst_kerama_purchase_ux/static/src/po_lines_info/po_lines_info.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order_line__cst_line_total
+msgid "Summa"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model,name:cst_kerama_purchase_ux.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__cst_car_number
+msgid "Transport vositasi raqami"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_form_cst_ux
+msgid "Xarajatlar"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_purchase_order__cst_receipt_expense_total
+msgid "Xarajatlar jami"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,field_description:cst_kerama_purchase_ux.field_stock_picking__cst_purchase_photo_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.view_picking_form_cst_ux
+msgid "Xarid buyurtmasidagi rasmlar"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_view_search_cst_shipped
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.view_purchase_order_filter_cst_shipped
+msgid "Yetkazildi"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.purchase_order_view_search_cst_shipped
+#: model_terms:ir.ui.view,arch_db:cst_kerama_purchase_ux.view_purchase_order_filter_cst_shipped
+msgid "Yetkazilmadi"
+msgstr ""
+
+#. module: cst_kerama_purchase_ux
+#: model:ir.model.fields,help:cst_kerama_purchase_ux.field_purchase_order__cst_car_number
+msgid "Yuk ortilgan mashina/vagon raqami.  Qabul hujjatiga o'zi o'tadi."
+msgstr ""

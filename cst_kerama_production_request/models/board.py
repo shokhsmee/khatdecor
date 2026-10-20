@@ -8,23 +8,25 @@ Rows come in two shapes:
   orders, and whatever production already holds for the line is taken off.
 * a *request*: a zayafka already raised, read back from its manufacturing order.
 
-Raw material is checked against the making department's warehouse: there is
-enough («Bor»), the department's raw-material warehouses hold the rest
-(«Ko'chirish kerak»), or it is short («Yetmaydi»).
+Raw material is checked against the making department's warehouse: it is
+there («Bor», green), another warehouse of the company holds it and a transfer
+is needed («O'tkazma kerak», yellow), or the company has not got it at all
+(«Yetmaydi», red).
 """
 from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import AccessError, UserError, ValidationError
 
-MATERIAL_LABELS = {
-    "ok": "Bor",
-    "move": "Ko'chirish kerak",
-    "short": "Yetmaydi",
-    "none": "Texkarta yo'q",
-    "requested": "Ko'chirish so'raldi",
-    "na": "—",
-}
+def material_labels(env):
+    return {
+        "ok": env._("Bor"),
+        "move": env._("O'tkazma kerak"),
+        "short": env._("Yetmaydi"),
+        "none": env._("Texkarta yo'q"),
+        "requested": env._("Ko'chirish so'raldi"),
+        "na": "—",
+    }
 MATERIAL_RANK = {"ok": 0, "move": 1, "requested": 1, "short": 2, "none": 3, "na": -1}
 
 
@@ -71,17 +73,29 @@ class CstProductionRequestBoard(models.AbstractModel):
     @api.model
     def _bom_data(self, boms):
         rows = []
+        # a texkarta holds for every finish (Глянцевый, Гладкий, ...) of the product;
+        # several bills differ by MDF brand / paper weight, named by their code
         for index, bom in enumerate(boms):
             department = self._bom_department(bom)
-            label = bom.code or _("Texkarta %s", index + 1)
-            if index == 0:
-                label = _("%s (asosiy)", label)
+            if len(boms) == 1:
+                label = bom.code or _("Yagona texkarta")
+            else:
+                label = bom.code or _("Texkarta %s", index + 1)
+                if index == 0:
+                    label = _("%s (asosiy)", label)
+            components = ", ".join(
+                "%s × %s" % (line.product_id.product_tmpl_id.name, ("%g" % line.product_qty))
+                for line in bom.bom_line_ids)
             rows.append({
-                "id": bom.id, "name": label,
+                "id": bom.id, "name": label, "components": components,
                 "department_id": department.id or False, "department": department.name or "",
                 "operations": ", ".join(bom.operation_ids.sorted(lambda o: (o.sequence, o.id)).mapped("name")),
             })
         return rows
+
+    @api.model
+    def _company_warehouses(self, company):
+        return self.env["stock.warehouse"].sudo().search([("company_id", "=", company.id)])
 
     @api.model
     def _free_map(self, products, warehouse):
@@ -176,10 +190,11 @@ class CstProductionRequestBoard(models.AbstractModel):
         for key, product, bom, qty, department in items:
             needs = exploded[key]
             if needs is None:
-                result[key] = {"status": "none", "label": MATERIAL_LABELS["none"], "materials": []}
+                result[key] = {"status": "none", "label": material_labels(self.env)["none"], "materials": []}
                 continue
             warehouse = department._cst_warehouse() if department else self.env["stock.warehouse"]
-            supply = department.supply_warehouse_ids if department else self.env["stock.warehouse"]
+            # yellow = somewhere else in the company, a transfer brings it over
+            supply = self._company_warehouses(department.company_id if department else self._company()) - warehouse
             worst, rows = "ok", []
             for component, need in needs.items():
                 here = free_in(warehouse, component)
@@ -197,26 +212,26 @@ class CstProductionRequestBoard(models.AbstractModel):
                     "id": component.id, "product": component.product_tmpl_id.name or "",
                     "characteristic": component.cst_characteristic or "",
                     "need": need, "free": here, "supply": elsewhere, "uom": uom.name,
-                    "status": status, "label": MATERIAL_LABELS[status],
+                    "status": status, "label": material_labels(self.env)[status],
                 })
             rows.sort(key=lambda r: -MATERIAL_RANK[r["status"]])
-            result[key] = {"status": worst, "label": MATERIAL_LABELS[worst], "materials": rows,
-                           "warehouse": warehouse.name or "", "supply": ", ".join(supply.mapped("name"))}
+            result[key] = {"status": worst, "label": material_labels(self.env)[worst], "materials": rows,
+                           "warehouse": warehouse.name or ""}
         return result
 
     @api.model
     def _request_material(self, request):
         mos = request.production_ids.filtered(lambda p: p.state not in ("done", "cancel"))
         if request.state != "sent" or not mos:
-            return {"status": "na", "label": MATERIAL_LABELS["na"], "materials": []}
+            return {"status": "na", "label": material_labels(self.env)["na"], "materials": []}
         if all((mo.components_availability_state or "available") == "available" for mo in mos):
-            return {"status": "ok", "label": MATERIAL_LABELS["ok"], "materials": []}
+            return {"status": "ok", "label": material_labels(self.env)["ok"], "materials": []}
         asked = mos.cst_flow_picking_ids.filtered(
             lambda p: p.cst_flow_kind == "supply" and p.state not in ("done", "cancel"))
         if asked:
-            return {"status": "requested", "label": MATERIAL_LABELS["requested"], "materials": [],
+            return {"status": "requested", "label": material_labels(self.env)["requested"], "materials": [],
                     "pickings": ", ".join(asked.mapped("name"))}
-        return {"status": "short", "label": MATERIAL_LABELS["short"], "materials": []}
+        return {"status": "short", "label": material_labels(self.env)["short"], "materials": []}
 
     # ------------------------------------------------------------------ rows
     @api.model
@@ -248,15 +263,15 @@ class CstProductionRequestBoard(models.AbstractModel):
             order = line.order_id
             row = self._product_info(line.product_id)
             row.update({
-                "key": "need-%s" % line.id, "type": "need", "kind": "order", "kind_label": "Zakaz",
+                "key": "need-%s" % line.id, "type": "need", "kind": "order", "kind_label": _("Zakaz"),
                 "sale_line_id": line.id, "order_id": order.id, "order": order.name,
                 "partner": order.partner_id.name or "", "date": fields.Date.to_string(order.date_order.date()) if order.date_order else "",
                 "boms": bom_data.get(line.product_id.id, []), "bom_id": d["bom"].id or False,
                 "department_id": d["department"].id or False, "department": d["department"].name or "",
                 "ordered": d["to_deliver"], "reserved": d["reserved"], "stock": d["stock"],
                 "in_production": d["in_production"], "short": d["short"], "qty": d["short"],
-                "urgent": False, "state": "need", "state_label": "Berilmagan",
-                "material": materials.get(line.id) or {"status": "na", "label": MATERIAL_LABELS["na"], "materials": []},
+                "urgent": False, "state": "need", "state_label": _("Berilmagan"),
+                "material": materials.get(line.id) or {"status": "na", "label": material_labels(self.env)["na"], "materials": []},
                 "can_release": d["short"] <= 0 and d["stock"] > d["reserved"],
             })
             rows.append(row)
@@ -264,16 +279,16 @@ class CstProductionRequestBoard(models.AbstractModel):
 
     @api.model
     def _request_row(self, request):
-        state_label = dict(request._fields["state"].selection).get(request.state, request.state)
+        state_label = dict(request._fields["state"]._description_selection(self.env)).get(request.state, request.state)
         mos = request.production_ids.sorted("id")
         live = mos.filtered(lambda p: p.state != "cancel")
         stage_note = ""
         if request.state == "progress" and live and all(p.state == "done" for p in live):
-            stage_note = "Yakunlandi, omborga ko'chirilmoqda"
+            stage_note = _("Yakunlandi, omborga ko'chirilmoqda")
         row = self._product_info(request.product_id)
         row.update({
             "key": "req-%s" % request.id, "type": "request", "kind": request.kind,
-            "kind_label": "Zakaz" if request.kind == "order" else "Ombor",
+            "kind_label": _("Zakaz") if request.kind == "order" else _("Ombor"),
             "request_id": request.id, "request": request.name,
             "sale_line_id": request.sale_line_id.id or False,
             "order_id": request.sale_order_id.id or False, "order": request.sale_order_id.name or "",
@@ -308,7 +323,7 @@ class CstProductionRequestBoard(models.AbstractModel):
         for department in self._departments(company):
             mine = requests.filtered(lambda r: r.department_id == department and r.state in ("sent", "progress", "done"))
             chips = []
-            for state, label in (("sent", "Yuborildi"), ("progress", "Ishlab chiqarilmoqda"), ("done", "Tayyor")):
+            for state, label in (("sent", _("Yuborildi")), ("progress", _("Ishlab chiqarilmoqda")), ("done", _("Tayyor"))):
                 count = len(mine.filtered(lambda r, s=state: r.state == s))
                 if count:
                     chips.append({"state": state, "label": label, "count": count})
@@ -328,7 +343,7 @@ class CstProductionRequestBoard(models.AbstractModel):
         else:
             department = self._bom_department(bom) if bom else self.env["cst.production.department"]
         if not product:
-            return {"status": "none", "label": MATERIAL_LABELS["none"], "materials": []}
+            return {"status": "none", "label": material_labels(self.env)["none"], "materials": []}
         return self._material_check([("row", product, bom, float(qty or 0), department)])["row"]
 
     # ------------------------------------------------------------------ create

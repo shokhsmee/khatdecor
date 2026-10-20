@@ -81,6 +81,7 @@
                             <th>Mijoz</th>
                             <th>SO</th>
                             <th>Mahsulot</th>
+                            <th>Xarakteristika</th>
                             <th>Tex karta</th>
                             <th class="num">Zakaz</th>
                             <th class="num">Qoldiq</th>
@@ -108,9 +109,10 @@
                                     <span t-else="" class="o_cpr_muted">—</span>
                                     <div class="o_cpr_muted small" t-esc="row.date"/>
                                 </td>
-                                <td class="c_product">
-                                    <div class="o_cpr_prod" t-esc="row.product"/>
-                                    <div t-if="row.characteristic" class="o_cpr_muted small" t-esc="row.characteristic"/>
+                                <td class="c_product"><div class="o_cpr_prod" t-esc="row.product"/></td>
+                                <td class="c_char">
+                                    <span t-if="row.characteristic" class="o_cpr_char" t-esc="row.characteristic"/>
+                                    <span t-else="" class="o_cpr_muted">—</span>
                                 </td>
                                 <td class="c_bom">
                                     <t t-if="!row.boms.length"><span class="o_cpr_muted">Texkarta yo'q</span></t>
@@ -119,8 +121,9 @@
                                         <option t-foreach="row.boms" t-as="bom" t-key="bom.id" t-att-value="bom.id"
                                                 t-att-selected="bom.id === row.bom_id" t-esc="bom.name"/>
                                     </select>
-                                    <span t-else="" t-esc="bomOf(row) and bomOf(row).name"/>
-                                    <div t-if="row.boms.length" class="o_cpr_muted small">→ <t t-esc="departmentLabel(row)"/></div>
+                                    <span t-else="" t-esc="bomOf(row) and bomOf(row).name" t-att-title="bomOf(row) and bomOf(row).components"/>
+                                    <div t-if="row.boms.length" class="o_cpr_muted small" t-att-title="bomOf(row) and bomOf(row).components">→ <t t-esc="departmentLabel(row)"/></div>
+                                    <div t-if="bomOf(row) and bomOf(row).components" class="o_cpr_muted small o_cpr_bomcomp" t-esc="bomOf(row).components"/>
                                 </td>
                                 <td class="num" t-esc="num(row.ordered)"/>
                                 <td class="num" t-esc="num(row.stock)"/>
@@ -163,15 +166,14 @@
                                 </td>
                             </tr>
                             <tr t-if="state.expanded === row.key" class="o_cpr_detail">
-                                <td colspan="13">
+                                <td colspan="14">
                                     <t t-if="row.material.materials and row.material.materials.length">
                                         <div class="o_cpr_muted small mb-1">
                                             Bo'lim ombori: <b t-esc="row.material.warehouse or '—'"/>
-                                            <t t-if="row.material.supply"> · xomashyo omborlari: <t t-esc="row.material.supply"/></t>
                                             · <t t-esc="num(row.qty || 1)"/> dona uchun
                                         </div>
                                         <table class="o_cpr_mtable">
-                                            <thead><tr><th>Xomashyo</th><th class="num">Kerak</th><th class="num">Bo'lim omborida</th><th class="num">Boshqa omborlarda</th><th>Holat</th></tr></thead>
+                                            <thead><tr><th>Xomashyo</th><th class="num">Kerak</th><th class="num">Bo'lim omborida</th><th class="num">Kompaniyaning boshqa omborlarida</th><th>Holat</th></tr></thead>
                                             <tbody>
                                                 <tr t-foreach="row.material.materials" t-as="m" t-key="m.id">
                                                     <td><t t-esc="m.product"/><span t-if="m.characteristic" class="o_cpr_muted"> — <t t-esc="m.characteristic"/></span></td>
@@ -191,7 +193,7 @@
                             </tr>
                         </t>
                         <tr t-if="!visibleRows.length and !state.loading">
-                            <td colspan="13" class="o_cpr_empty">Bu filtr bo'yicha qator yo'q</td>
+                            <td colspan="14" class="o_cpr_empty">Bu filtr bo'yicha qator yo'q</td>
                         </tr>
                     </tbody>
                 </table>

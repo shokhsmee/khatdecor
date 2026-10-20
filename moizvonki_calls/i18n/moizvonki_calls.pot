@@ -1,0 +1,340 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* moizvonki_calls
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "<span>/moizvonki/webhook?secret=YOUR_SECRET</span>"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__answer_datetime
+msgid "Answer Datetime"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_form
+msgid "Audio"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_hr_employee__moizvonki_call_count
+msgid "Calls"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields.selection,name:moizvonki_calls.selection__moizvonki_call__direction__out
+msgid "Chiqish"
+msgstr ""
+
+#. module: moizvonki_calls
+#. odoo-python
+#: code:addons/moizvonki_calls/models/moizvonki_call.py:0
+msgid "Configure Moizvonki credentials in Settings first."
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__create_uid
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__create_date
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_form
+msgid "DAVOMIYLIGI"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__db_call_id
+msgid "Db Call"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__direction
+msgid "Direction"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__display_name
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model,name:moizvonki_calls.model_hr_employee
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__employee_id
+msgid "Employee"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__end_datetime
+msgid "End Datetime"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__event_pbx_call_id
+msgid "Event Pbx Call"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__duration_display
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Gaplashish vaqti"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__duration_sec
+msgid "Gaplashish vaqti (sek)"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Holati"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_hr_employee__id
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__id
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields.selection,name:moizvonki_calls.selection__moizvonki_call__status__answered
+msgid "Javob berilgan"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields.selection,name:moizvonki_calls.selection__moizvonki_call__status__missed
+msgid "Javob berilmagan"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__from_number
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Kimdan"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__to_number
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Kimga"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields.selection,name:moizvonki_calls.selection__moizvonki_call__direction__in
+msgid "Kirish"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__write_uid
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__write_date
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__moizvonki_api_key
+msgid "Moizvonki API key"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model,name:moizvonki_calls.model_moizvonki_call
+msgid "Moizvonki Call"
+msgstr ""
+
+#. module: moizvonki_calls
+#. odoo-python
+#: code:addons/moizvonki_calls/models/moizvonki_call.py:0
+msgid "Moizvonki HTTP error %s: %s"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "Moizvonki Integration"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model,name:moizvonki_calls.model_moizvonki_settings
+msgid "Moizvonki Settings"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__user_id_moizvonki
+msgid "Moizvonki User ID"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__moizvonki_domain
+msgid "Moizvonki domain (subdomain)"
+msgstr ""
+
+#. module: moizvonki_calls
+#. odoo-python
+#: code:addons/moizvonki_calls/models/moizvonki_call.py:0
+msgid "Moizvonki request failed: %s"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__moizvonki_user_name
+msgid "Moizvonki user email"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.actions.server,name:moizvonki_calls.ir_cron_moizvonki_sync_calls_ir_actions_server
+msgid "Moizvonki: Sync Calls"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields.selection,name:moizvonki_calls.selection__moizvonki_call__status__unknown
+msgid "Noma'lum"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__player_url
+msgid "Play URL"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__audio_embed
+msgid "Player"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_form
+msgid "Qo'ng'iroq"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.ui.menu,name:moizvonki_calls.menu_moizvonki_root
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.hr_employee_form_inherit_moizvonki
+msgid "Qo'ng'iroqlar"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.actions.act_window,name:moizvonki_calls.action_moizvonki_calls
+#: model:ir.ui.menu,name:moizvonki_calls.menu_moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Qo'ng'iroqlar tarixi"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__raw_json
+msgid "Raw JSON"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.actions.server,name:moizvonki_calls.action_open_moizvonki_settings
+#: model:ir.ui.menu,name:moizvonki_calls.menu_moizvonki_settings
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "Sozlamalar"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__start_datetime
+msgid "Start Datetime"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__status
+msgid "Status"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__external_number
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Tashqi raqam"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_form
+msgid "Texnik ma'lumot"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Turi"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "Use this URL in Moizvonki webhook.subscribe:"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__user_login
+msgid "User Login (email)"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Vaqti"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "Webhook URL"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_settings__moizvonki_webhook_secret
+msgid "Webhook secret (optional)"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__employee_name
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Xodim"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_form
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Xodim email"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__recording_url
+msgid "Yozuv"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model:ir.model.fields,field_description:moizvonki_calls.field_moizvonki_call__has_recording
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_call_list
+msgid "Yozuv mavjud"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "test"
+msgstr ""
+
+#. module: moizvonki_calls
+#: model_terms:ir.ui.view,arch_db:moizvonki_calls.view_moizvonki_settings_form
+msgid "user@mail.ru"
+msgstr ""

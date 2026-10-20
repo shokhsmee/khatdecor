@@ -6,15 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 10:49+0000\n"
-"PO-Revision-Date: 2026-05-31 10:49+0000\n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: uz\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
@@ -41,8 +40,6 @@ msgid "(units)"
 msgstr "(dona)"
 
 #. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
 #: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_accounting
 msgid "Accounting"
 msgstr "Buxgalteriya"
@@ -85,6 +82,12 @@ msgstr "To'lanishi kerak summa"
 #. module: cst_kerama_dashboard
 #. odoo-javascript
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Available"
+msgstr "Bo'sh qoldiq"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "By salesperson"
 msgstr "Sotuvchi bo'yicha"
 
@@ -93,6 +96,12 @@ msgstr "Sotuvchi bo'yicha"
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "Cash in vs out"
 msgstr "Kirim va chiqim pul"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Category"
+msgstr "Kategoriya"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
@@ -148,8 +157,6 @@ msgid "Debtor orders"
 msgstr "Qarzdor buyurtmalari"
 
 #. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
 #: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_debts
 msgid "Debts"
 msgstr "Qarzlar"
@@ -182,8 +189,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
 #: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_inventory
 msgid "Inventory"
 msgstr "Ombor"
@@ -261,6 +266,12 @@ msgstr "Operatsiyalar yo'q"
 #. module: cst_kerama_dashboard
 #. odoo-javascript
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "No products in stock for this selection"
+msgstr "Bu tanlov bo'yicha omborda mahsulot yo'q"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "No stock"
 msgstr "Zaxira yo'q"
 
@@ -309,6 +320,12 @@ msgstr "Foyda va zarar"
 #. module: cst_kerama_dashboard
 #. odoo-javascript
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Reserved"
+msgstr "Band qilingan"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "Reset"
 msgstr "Tozalash"
 
@@ -325,8 +342,6 @@ msgid "SO #"
 msgstr "Buyurtma №"
 
 #. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
 #: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_sales
 msgid "Sales"
 msgstr "Sotuvlar"
@@ -373,6 +388,12 @@ msgid "Status"
 msgstr "Holati"
 
 #. module: cst_kerama_dashboard
+#: model:ir.actions.client,name:cst_kerama_dashboard.action_dashboard_stock
+#: model:ir.ui.menu,name:cst_kerama_dashboard.menu_kerama_dashboard_stock
+msgid "Stock"
+msgstr "Qoldiq"
+
+#. module: cst_kerama_dashboard
 #. odoo-javascript
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "Stock by warehouse"
@@ -383,6 +404,12 @@ msgstr "Ombor bo'yicha zaxira"
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "Stock moves over time"
 msgstr "Vaqt bo'yicha zaxira harakatlari"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Stock on hand by product"
+msgstr "Mahsulot bo'yicha qoldiq"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
@@ -405,6 +432,12 @@ msgstr "Gacha"
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "To process"
 msgstr "Qayta ishlanadi"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Top"
+msgstr "Top"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
@@ -451,8 +484,26 @@ msgstr "UZS"
 #. module: cst_kerama_dashboard
 #. odoo-javascript
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "UoM"
+msgstr "Birlik"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "Value"
+msgstr "Qiymati"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "Warehouse"
 msgstr "Ombor"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "by value"
+msgstr "qiymat bo'yicha"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
@@ -469,125 +520,23 @@ msgstr "Kategoriya bo'yicha m² zaxira"
 #. module: cst_kerama_dashboard
 #. odoo-javascript
 #: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "name / code…"
+msgstr "nomi / kodi…"
+
+#. module: cst_kerama_dashboard
+#. odoo-javascript
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
 msgid "name…"
 msgstr "nomi…"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Total Sales"
-msgstr "Jami sotuvlar"
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "of"
+msgstr "dan"
 
 #. module: cst_kerama_dashboard
 #. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Orders"
-msgstr "Buyurtmalar"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Debt Due"
-msgstr "To'lanadigan qarz"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Cash In"
-msgstr "Kirim pul"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "m² Sold"
-msgstr "Sotilgan m²"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Invoices"
-msgstr "Hisob-fakturalar"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Sales (Invoiced)"
-msgstr "Sotuvlar (faktura qilingan)"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Purchases"
-msgstr "Xaridlar"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Expenses"
-msgstr "Xarajatlar"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Net Cash Flow"
-msgstr "Sof pul oqimi"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Net Profit"
-msgstr "Sof foyda"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Debt Orders"
-msgstr "Qarz buyurtmalari"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Total Debt"
-msgstr "Jami qarz"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Debtor Clients"
-msgstr "Qarzdor mijozlar"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Avg Debt / Order"
-msgstr "O'rtacha qarz / buyurtma"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Stock Valuation"
-msgstr "Zaxira qiymati"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Products in Stock"
-msgstr "Zaxiradagi mahsulotlar"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Units on Hand"
-msgstr "Mavjud dona"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "m² on Hand"
-msgstr "Mavjud m²"
-
-#. module: cst_kerama_dashboard
-#. odoo-javascript
-#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.js:0
-msgid "Low / Out of Stock"
-msgstr "Kam / tugagan"
+#: code:addons/cst_kerama_dashboard/static/src/dashboard/dashboard.xml:0
+msgid "product(s)"
+msgstr "ta mahsulot"

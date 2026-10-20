@@ -1,0 +1,2364 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__production_state
+msgid ""
+" * Draft: The MO is not confirmed yet.\n"
+" * Confirmed: The MO is confirmed, the stock rules and the reordering of the components are trigerred.\n"
+" * In Progress: The production has started (on the MO or on the WO).\n"
+" * To Close: The production is done, the MO has to be closed.\n"
+" * Done: The MO is closed, the stock moves are posted. \n"
+" * Cancelled: The MO has been cancelled, can't be confirmed anymore."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_quality_pct
+msgid "1-sort ulushi"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "12 months"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_qty_second
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "2-sort"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "<i class=\"fa fa-clock-o me-1\"/>Due"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid ""
+"<i class=\"fa fa-exclamation-triangle me-2\"/>\n"
+"                        Still waiting for (free/needed):"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "<i class=\"fa fa-external-link me-1\"/>Open"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                                Products of the material request are loaded here. Add a line to\n"
+"                                manufacture something the request does not cover, then press\n"
+"                                <b>Load operations &amp; materials</b> to fill the other tabs\n"
+"                                from its bill of materials."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                                Set <b>Used By</b> to the operation that consumes a material and\n"
+"                                it is only taken when that operation is part of the order. Leave\n"
+"                                it empty for a material the order always needs. The bill of\n"
+"                                materials itself is never changed."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                                Untick the operations this order does not run — only ticked ones\n"
+"                                become work orders. Split an operation over several work centers\n"
+"                                by adding a line for the same operation: the quantities of one\n"
+"                                operation must add up to the quantity of its product."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                                <span>\n"
+"                                    Add every product this project needs. Set <b>Supply</b> to\n"
+"                                    <b>Buy</b> to order it from a vendor, or <b>Manufacture</b>\n"
+"                                    to produce it from its bill of materials. <b>In Stock</b>,\n"
+"                                    <b>To Buy</b> and <b>To Produce</b> are filled in from the\n"
+"                                    warehouse and can be adjusted.\n"
+"                                </span>"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "<i class=\"fa fa-wrench me-1\"/>Start Manufacturing"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "<span class=\"cst_k_fin__k\">Cost</span>"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "<span class=\"cst_k_fin__k\">Income</span>"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "<span class=\"cst_k_fin__k\">Margin</span>"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid ""
+"<span class=\"text-muted\" invisible=\"buy_line_count != 0 or manufacture_line_count != 0\">\n"
+"                                    No lines yet\n"
+"                                </span>"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Add a product"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid "Add at least one line before submitting."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "Add at least one product to manufacture."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "All"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+msgid "All Time"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_mrf_line_ids
+msgid ""
+"All material lines requested for this project, with stock location and "
+"purchase status."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Amount"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_amount_due
+msgid "Amount Due"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "Amount Due by Project"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_amount_paid
+msgid "Amount already received on the project's sale orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_amount_due
+msgid "Amount still owed on the project's sale orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Approve"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__approver_id
+msgid "Approved By"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid ""
+"Assign a purchaser on every line that still needs buying:\n"
+"%s"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__assigned
+msgid "Assigned"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_workorder__cst_split_qty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.mrp_production_workorder_tree_cst_split
+msgid "Assigned Qty"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__bom_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__bom_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__bom_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__bom_id
+msgid "Bill of Materials"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__bom_line_id
+msgid "Bill of Materials Line"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__bom_id
+msgid "Bill of materials used when this line is manufactured."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_qty_scrap
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Brak"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_qty_scrap
+msgid ""
+"Brakka chiqqan mahsulot soni shu loyihaning ishlab chiqarish buyurtmalarida."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/mo_button/project_mo_button.js:0
+msgid "Bu loyiha bo'yicha ishlab chiqarish kerak"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request_line__kind__buy
+msgid "Buy"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__buy_line_count
+msgid "Buy Line Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__kind
+msgid ""
+"Buy: purchase the shortage from a vendor.\n"
+"Manufacture: produce it in-house from its bill of materials."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Buyer"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__purchaser_id
+msgid "Buyer this line is distributed to."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Check Materials"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.actions.act_window,help:cst_kerama_project.action_cst_material_request
+msgid ""
+"Check a project's material needs against the warehouse and\n"
+"               distribute the shortage to purchasers."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_quality_pct
+msgid ""
+"Chiqarilgan mahsulotning necha foizi birinchi toifa: (jami − 2-sort − brak) "
+"/ jami."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "Choose a work center for operation %(operation)s of %(product)s."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Collected"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__company_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__company_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__company_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_currency_id
+msgid "Company Currency"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid ""
+"Compare this project's sale-order needs against warehouse stock, then buy "
+"the missing components and manufacture the products that have a bill of "
+"materials."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__component_ids
+msgid "Component"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__cst_components_available
+msgid "Components Ready"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Components are in stock for"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid ""
+"Components are in stock: configure the operations and start manufacturing"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_manufacture_missing
+msgid ""
+"Components the warehouse cannot cover yet, with what is free and what is "
+"needed."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Consumed value"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_cost_label
+msgid "Cost"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+msgid "Cost (purchases + expenses)"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "Cost Breakdown"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Cost split"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_material_cost
+msgid ""
+"Cost-price value of the components consumed by this project's manufacturing "
+"orders. Shown for information: the money itself is already counted under "
+"Purchases when the material was bought."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Costs & Margin"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_cost_by_currency
+msgid "Costs as Ordered"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Create Manufacturing Orders"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_order_form_cst_project
+msgid "Create Project"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Create RFQs"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.actions.act_window,help:cst_kerama_project.action_cst_material_request
+msgid "Create a material request"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__create_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__create_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__create_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_expense_count
+msgid "Cst Expense Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_mo_count
+msgid "Cst Mo Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_mrf_count
+msgid "Cst Mrf Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_purchase_count
+msgid "Cst Purchase Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_sale_count
+msgid "Cst Sale Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_production__cst_currency_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Currency"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__currency_id
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__currency_id
+msgid ""
+"Currency the prices of this request are written in. Material bought in "
+"dollars can be estimated in dollars; the figure is converted to the company "
+"currency wherever it is totalled."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_display_currency_id
+msgid ""
+"Currency this project's figures are read in. Every sale order, purchase and "
+"expense is converted into it at the rate of its own date, so a project sold "
+"in dollars and bought in so'm can be read in either. The accounting itself "
+"stays in the company currency."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Custom"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Customer"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Dashboard"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Date"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Description"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_hr_expense__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_kerama_project_dashboard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_workorder__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:cst_kerama_project.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Distribute to Purchasers"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__selected
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Do it"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Document"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__done
+msgid "Done"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Drafts"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Due"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Employee"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__amount_estimated
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_list
+msgid "Estimated Cost"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__amount_estimated_company
+msgid "Estimated Cost (Company)"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Every component is in the warehouse for"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/mo_button/project_mo_button.js:0
+msgid ""
+"Every component is in the warehouse: choose the product, the quantity, the "
+"materials and the operations."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__cst_ready_to_manufacture
+msgid ""
+"Every component of the products still to produce is free in the warehouse."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid ""
+"Everything needed is available in warehouse %s — nothing to buy or "
+"manufacture."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_manufacture_ready
+msgid ""
+"Everything this project still has to produce can be started right now: every"
+" component is either already in the warehouse or has been bought and "
+"received."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_hr_expense
+msgid "Expense"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_expense_total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Expenses"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Filter rows…"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Financials"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Follow-up"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "For Product"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__qty_available
+msgid "Free-to-use quantity in the request's warehouse."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_hr_expense__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_kerama_project_dashboard__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_workorder__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_purchase_order__id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__message_has_error
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_qty_second
+msgid ""
+"Ikkinchi toifada chiqqan mahsulot soni: smenalarda kiritilgan 2-sort va shu "
+"buyurtmalarda 2-sort sababi bilan yozilgan hisobdan chiqarishlar."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__qty_available
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__qty_available
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "In Stock"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "In stock"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Include quotations, RFQs, draft orders and unapproved expenses"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_income_label
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_income_total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Income"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "Income & Cost Over Time"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Income & cost flow"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_income_by_currency
+msgid "Income as Invoiced"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_margin
+msgid "Income minus purchases minus expenses."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "Income vs Cost vs Margin (top 10 projects)"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__amount_estimated
+msgid ""
+"Indicative value of this request: vendor price (or cost price) times the "
+"quantity still to buy or produce."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Internal notes..."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/mo_button/project_mo_button.js:0
+#: code:addons/cst_kerama_project/static/src/mo_button/project_mo_button.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Ishlab chiqarish yaratish"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_kerama_project_dashboard
+msgid "Khatdecor Project Dashboard Data Provider"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__write_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__write_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__write_date
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__line_ids
+msgid "Line"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__line_index
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__line_index
+msgid "Line Index"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Lines"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Load operations & materials"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "M"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "MO"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__production_state
+msgid "MO Status"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_list
+msgid "MOs"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_mo_open_count
+msgid "MOs in Progress"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "MRF"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid "Mahsulot topilmadi."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Make"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.mrp_production_workorder_tree_cst_split
+msgid "Manager"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_operation__user_id
+msgid "Manager answering for this operation on this work center."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request_line__kind__manufacture
+msgid "Manufacture"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__manufacture_line_count
+msgid "Manufacture Line Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Manufacturing"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_mrp_production
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__production_id
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+#: code:addons/cst_kerama_project/models/project_project.py:0
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__production_ids
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_production_ids
+msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Manufacturing status"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_margin
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_margin_label
+msgid "Margin"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Mark Done"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__product_id
+msgid "Material"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_production__cst_material_cost
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_material_cost
+msgid "Material Cost"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/mrp_production.py:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__request_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_production__cst_mrf_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Material Request"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_cst_material_request
+msgid "Material Request (MRF)"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_cst_material_request_line
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_production__cst_mrf_line_id
+msgid "Material Request Line"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+#: model:ir.actions.act_window,name:cst_kerama_project.action_cst_material_request
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_mrf_ids
+#: model:ir.ui.menu,name:cst_kerama_project.menu_cst_material_request
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Material Requests"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "Material Requests by Status"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Material cost"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Material value"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__component_ids
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_mrf_line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Materials"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Materials Used"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Materials used"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__is_short
+msgid "Missing"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__cst_missing_components
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_manufacture_missing
+msgid "Missing Components"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Month"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Most consumed materials"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__mrf_line_id
+msgid "Mrf Line"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_search
+msgid "My Requests"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__product_qty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Needed"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid "New"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid "New Manufacturing Order"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "No bill of materials found for %s."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No components consumed yet."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid "No confirmed sale order lines found for this project."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No costs yet."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "No data yet."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No expenses."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "No manufacturing operation type found for company %s."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No manufacturing orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No material lines."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No material requests."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "No project data for this period."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No project selected."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "No projects with financial data in this period."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No purchase orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "No sale orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid "No warehouse found for company %s."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__note
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Notes"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Nothing consumed yet."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "Nothing due. 🎉"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid "Nothing left to buy on this request."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "Nothing left to manufacture on this project."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid "Nothing left to manufacture on this request."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Nothing produced yet."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Nothing recorded in this period."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid "Nowhere in stock"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__stock_by_location
+msgid "On-hand quantity of this product per internal location."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_search
+msgid "Open"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_order_form_cst_project
+msgid "Open Project"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Open requests"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_project_kanban_cst_hub
+msgid "Open the project form"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid ""
+"Open this project's own dashboard: sales, purchases, manufacturing and "
+"expenses."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__operation_ids
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__operation_id
+msgid "Operation"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid ""
+"Operation %(operation)s of %(product)s is split over %(split)s pcs, but "
+"%(total)s must be produced."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_mrp_workorder__cst_manager_id
+msgid "Operation Manager"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_component__operation_id
+msgid ""
+"Operation that consumes this material. Leave it empty for a material the "
+"order always needs; set it and the material is only taken when that "
+"operation is part of the order."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__operation_ids
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__operation_count
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Operations"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Operations & Work Centers"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Order"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__purchase_line_id
+msgid "PO Line"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__purchase_state
+msgid "PO Status"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_list
+msgid "POs"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_amount_paid
+msgid "Paid"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Planned"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_qty_planned
+msgid "Planned Qty"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__qty_produced
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Produced"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__line_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__product_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__line_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__product_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__product_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Product"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Production"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__production_count
+msgid "Production Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Products"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Products ready"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_manufacture_ready_count
+msgid "Products to Produce"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Progress"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_project/models/sale_order.py:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: model:ir.model,name:cst_kerama_project.model_project_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__project_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__project_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__project_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_hr_expense__project_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_purchase_order__project_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_search
+msgid "Project"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.actions.client,name:cst_kerama_project.action_project_hub
+#: model:ir.ui.menu,name:cst_kerama_project.menu_kerama_project_hub
+msgid "Project Hub"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_hr_expense__project_id
+msgid ""
+"Project this expense (xarajat) belongs to. Its analytic account is applied "
+"so the cost appears on the project."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_purchase_order__project_id
+msgid ""
+"Project this purchase is made for. Its analytic account is applied to the "
+"order lines so the cost appears on the project."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: model:ir.ui.menu,name:cst_kerama_project.menu_kerama_project_dashboard
+msgid "Projects"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: model:ir.actions.client,name:cst_kerama_project.action_project_dashboard
+msgid "Projects Dashboard"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__purchase_count
+msgid "Purchase Count"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_purchase_order
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__purchase_order_id
+msgid "Purchase Order"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__purchase_order_ids
+msgid "Purchase Orders"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Purchase orders"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__purchaser_id
+msgid "Purchaser"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_purchase_total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Purchases"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Qty"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__product_qty
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__product_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_qty_produced
+msgid "Quantity already produced by this project's manufacturing orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_qty_consumed
+msgid ""
+"Quantity of components consumed by this project's manufacturing orders."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__qty_to_produce
+msgid ""
+"Quantity to manufacture. Computed as required minus free stock; adjustable."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Quarter"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__purchased
+msgid "RFQs Created"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Read every amount in this currency"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_qty_produced
+msgid "Ready Products"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Ready products"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__cst_ready_to_manufacture
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_manufacture_ready
+msgid "Ready to Manufacture"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__name
+msgid "Reference"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__request_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__request_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid "Request"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__date_request
+msgid "Request Date"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__requested_by
+msgid "Requested By"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Requests"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Required"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__product_qty
+msgid "Required Qty"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__user_id
+msgid "Responsible"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Sale orders"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Sales"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid ""
+"Same materials, more control: choose the operations, split them over the "
+"work centers and name who is responsible."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__sequence
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "Set a quantity to produce for %s."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+msgid ""
+"Set a vendor on these lines first:\n"
+"%s"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_mrp_workorder__cst_split_qty
+msgid ""
+"Share of the manufacturing order this work center takes on for this "
+"operation. Empty means the whole quantity."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__qty_to_buy
+msgid ""
+"Shortage to purchase. Computed as required minus free stock; adjustable."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_display_currency_id
+msgid "Show Amounts In"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/mo_button/project_mo_button.js:0
+msgid "Some components are still missing (free/needed): %s"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Start"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+#: model:ir.model,name:cst_kerama_project.model_cst_manufacture_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Start Manufacturing"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_cst_manufacture_wizard_component
+msgid "Start Manufacturing: Material"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_cst_manufacture_wizard_operation
+msgid "Start Manufacturing: Operation"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_cst_manufacture_wizard_line
+msgid "Start Manufacturing: Product"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Start manufacturing"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Start over"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__state
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__state
+msgid "State"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_search
+msgid "Status"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Stock is checked against this warehouse."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "Submit"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__kind
+msgid "Supply"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_component__line_index
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_operation__line_index
+msgid "Technical: position of the product line while building."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid ""
+"The operations and materials of every product are rebuilt from the bills of "
+"materials. Anything configured here is lost. Continue?"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__amount_estimated_company
+msgid "The same estimate read in the company currency."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__cst_components_available
+msgid "The warehouse holds every component this line needs to be produced."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid ""
+"These components are not in the warehouse yet (free/needed):\n"
+"%s"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+msgid "This Month"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+msgid "This Quarter"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.js:0
+msgid "This Year"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid ""
+"This project has nothing left to manufacture: either its sold products have "
+"no bill of materials, or every one of them is already in stock or covered by"
+" a manufacturing order."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "Tick at least one operation for %s."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields.selection,name:cst_kerama_project.selection__cst_material_request__state__to_approve
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_search
+msgid "To Approve"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__qty_to_buy
+msgid "To Buy"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__qty_to_produce
+msgid "To Produce"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__qty_to_supply
+msgid "To Supply"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "To buy"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "To produce"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Total"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_expense_total
+msgid ""
+"Total of the expenses linked to this project, in the currency chosen under "
+"Show Amounts In."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_income_total
+msgid ""
+"Total of the project's confirmed sale orders, in the currency chosen under "
+"Show Amounts In."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_purchase_total
+msgid ""
+"Total of the purchase orders linked to this project, in the currency chosen "
+"under Show Amounts In."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_qty_planned
+msgid ""
+"Total quantity the project's manufacturing orders are meant to produce."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__product_uom_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__product_uom_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__product_uom_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Unit"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__price_unit
+msgid "Unit Price"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__price_subtotal
+msgid "Unit price times the quantity still to buy or produce."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_operation__selected
+msgid ""
+"Untick an operation this order does not run. Only ticked operations become "
+"work orders, and only their materials are used."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__will_consume
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Used"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__operation_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.view_cst_manufacture_wizard_form
+msgid "Used By"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_project_project__cst_qty_consumed
+msgid "Used Materials"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Used products"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Value"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_mrp_production__cst_material_cost
+msgid "Value of the components consumed by this order, at cost price."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__cst_characteristic
+msgid ""
+"Variant characteristic of the product asked for. Each characteristic is "
+"bought, produced and counted on its own."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__vendor_id
+msgid "Vendor"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__price_unit
+msgid ""
+"Vendor price when known, otherwise the product's cost price. Adjustable."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "W"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard__warehouse_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__warehouse_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_cost_by_currency
+msgid ""
+"What the purchase orders and expenses themselves say, currency by currency, "
+"before any conversion."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_project_project__cst_income_by_currency
+msgid ""
+"What the sale orders themselves say, currency by currency, before any "
+"conversion."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_material_request_line__qty_to_supply
+msgid "What this line still needs: to buy, or to produce."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "Where"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__stock_by_location
+msgid "Where Is It"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_component__will_consume
+msgid "Whether this order will actually take the material."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_mrp_workorder__cst_manager_id
+msgid "Who answers for this operation on this work center."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,help:cst_kerama_project.field_cst_manufacture_wizard_operation__employee_ids
+msgid "Who does the work on the shop floor."
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__wizard_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__wizard_id
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__workcenter_id
+msgid "Work Center"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model,name:cst_kerama_project.model_mrp_workorder
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__name
+msgid "Work Order"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_operation__employee_ids
+msgid "Workers"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_component__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_manufacture_wizard_line__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_project.field_cst_material_request_line__cst_characteristic
+msgid "Xarakteristika"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.js:0
+msgid "Year"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "by cost value"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/material_request.py:0
+#: code:addons/cst_kerama_project/wizard/manufacture_wizard.py:0
+msgid "id"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "items"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "of income"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "open MRFs"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "orders"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "per"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "product"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.edit_project_cst_hub
+msgid ""
+"product(s). Use <b>Ishlab chiqarish yaratish</b> above: it opens the same\n"
+"                            screen the Shop Floor uses, with the bill of materials, the operations and\n"
+"                            the lines all editable before the order is raised."
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-python
+#: code:addons/cst_kerama_project/models/project_project.py:0
+msgid "project_id"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "projects ·"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_dashboard/dashboard.xml:0
+msgid "purchase orders ·"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "running"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "s"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "to buy"
+msgstr ""
+
+#. module: cst_kerama_project
+#. odoo-javascript
+#: code:addons/cst_kerama_project/static/src/project_hub/project_hub.xml:0
+msgid "to make, still waiting for (free/needed):"
+msgstr ""
+
+#. module: cst_kerama_project
+#: model_terms:ir.ui.view,arch_db:cst_kerama_project.cst_material_request_view_form
+msgid "to manufacture"
+msgstr ""

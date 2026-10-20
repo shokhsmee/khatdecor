@@ -3,18 +3,19 @@
 import { Component, onWillStart, useState } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
+import { _t } from "@web/core/l10n/translation";
 import { cookie } from "@web/core/browser/cookie";
 import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
 import { CstMoDialog, skeleton, fmtNumber } from "@cst_kerama_shift/mo_builder/mo_dialog";
 
 const MODEL = "cst.production.request.board";
 const TABS = [
-    { id: "all", label: "Hammasi" },
-    { id: "need", label: "Berilmagan" },
-    { id: "sent", label: "Yuborildi" },
-    { id: "progress", label: "Ishlab chiqarilmoqda" },
-    { id: "done", label: "Tayyor" },
-    { id: "released", label: "Sotuvga chiqarilgan" },
+    { id: "all", label: _t("Hammasi") },
+    { id: "need", label: _t("Berilmagan") },
+    { id: "sent", label: _t("Yuborildi") },
+    { id: "progress", label: _t("Ishlab chiqarilmoqda") },
+    { id: "done", label: _t("Tayyor") },
+    { id: "released", label: _t("Sotuvga chiqarilgan") },
 ];
 
 /**
@@ -178,7 +179,7 @@ export class ProductionRequestBoard extends Component {
             return dep ? dep.name : "";
         }
         const bom = this.bomOf(row);
-        return (bom && bom.department) || "bo'lim tanlanmagan";
+        return (bom && bom.department) || _t("bo'lim tanlanmagan");
     }
     onQty(row, ev) {
         const value = Number(String(ev.target.value).replace(",", "."));
@@ -205,7 +206,7 @@ export class ProductionRequestBoard extends Component {
         const ok = await this.call("set_urgent", [row.request_id, value]);
         if (ok) {
             row.urgent = value;
-            this.notification.add(value ? `${row.request}: tezkor — navbat boshida` : `${row.request}: oddiy navbat`, { type: "info" });
+            this.notification.add(value ? _t("%s: tezkor — navbat boshida", row.request) : _t("%s: oddiy navbat", row.request), { type: "info" });
         }
     }
     recheck(row, delay = 400) {
@@ -241,7 +242,7 @@ export class ProductionRequestBoard extends Component {
         const res = await this.call("create_requests", [payload, this.state.target ? Number(this.state.target) : false]);
         if (!res) return;
         if (res.created.length) {
-            this.notification.add(`Zayafka yaratildi: ${res.created.join(", ")}`, { type: "success" });
+            this.notification.add(_t("Zayafka yaratildi: %s", res.created.join(", ")), { type: "success" });
         }
         for (const err of res.errors) this.notification.add(err, { type: "danger", sticky: true });
         for (const r of rows) {
@@ -254,13 +255,13 @@ export class ProductionRequestBoard extends Component {
         const rows = this.toRelease;
         if (!rows.length) return;
         this.dialog.add(ConfirmationDialog, {
-            title: "Sotuvga chiqarish",
-            body: `${rows.length} ta qator: tayyor mahsulot sotuv buyurtmasining jo'natmasiga band qilinadi.`,
-            confirmLabel: "Chiqarish",
+            title: _t("Sotuvga chiqarish"),
+            body: _t("%s ta qator: tayyor mahsulot sotuv buyurtmasining jo'natmasiga band qilinadi.", rows.length),
+            confirmLabel: _t("Chiqarish"),
             confirm: async () => {
                 const res = await this.call("release", [rows.map((r) => r.key)]);
                 if (!res) return;
-                this.notification.add(`Sotuvga chiqarildi: ${res.done.length} ta · band qilindi ${this.num(res.reserved)}`, { type: "success" });
+                this.notification.add(_t("Sotuvga chiqarildi: %(n)s ta · band qilindi %(qty)s", { n: res.done.length, qty: this.num(res.reserved) }), { type: "success" });
                 for (const r of rows) delete this.state.selected[r.key];
                 await this.load();
             },
@@ -269,9 +270,9 @@ export class ProductionRequestBoard extends Component {
     }
     cancelRequest(row) {
         this.dialog.add(ConfirmationDialog, {
-            title: "Zayafkani bekor qilish",
-            body: `${row.request} va uning ishlab chiqarish buyurtmasi bekor qilinadi.`,
-            confirmLabel: "Bekor qilish",
+            title: _t("Zayafkani bekor qilish"),
+            body: _t("%s va uning ishlab chiqarish buyurtmasi bekor qilinadi.", row.request),
+            confirmLabel: _t("Bekor qilish"),
             confirm: async () => {
                 const ok = await this.call("cancel_request", [row.request_id]);
                 if (ok) await this.load();
@@ -282,14 +283,14 @@ export class ProductionRequestBoard extends Component {
     openStockRequest() {
         const spec = (method) => ({ model: MODEL, method, args: [] });
         this.dialog.add(CstMoDialog, {
-            title: "Ombor to'ldirish zayafkasi",
-            subtitle: "Sotuv buyurtmasisiz — tayyor mahsulot omborga",
+            title: _t("Ombor to'ldirish zayafkasi"),
+            subtitle: _t("Sotuv buyurtmasisiz — tayyor mahsulot omborga"),
             optionsCall: spec("mo_options"),
             previewCall: spec("mo_preview"),
             createCall: spec("create_stock_request"),
             searchCall: spec("mo_search_products"),
             onCreated: async (res) => {
-                this.notification.add(`${res.request}: ${res.name} bo'lim navbatiga tushdi`, { type: "success" });
+                this.notification.add(_t("%(req)s: %(mo)s bo'lim navbatiga tushdi", { req: res.request, mo: res.name }), { type: "success" });
                 await this.load();
             },
         });

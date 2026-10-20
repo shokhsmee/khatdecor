@@ -1,0 +1,924 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_production_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "%s (asosiy)"
+msgstr "%s (основной)"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/production_request.py:0
+msgid "%s hali tayyor emas."
+msgstr "%s ещё не готов."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "%s hozirgina xuddi shu qator va son bilan yaratildi."
+msgstr "%s только что был создан с той же строкой и количеством."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/production_request.py:0
+msgid "%s: ishlab chiqarish boshlangan, zayafkani bekor qilib bo'lmaydi."
+msgstr "%s: производство уже начато, заявку нельзя отменить."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "%s: texkarta (BoM) yo'q."
+msgstr "%s: нет техкарты (BoM)."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "%s: texkartada operatsiya yo'q — «Bo'limga» tanlang."
+msgstr "%s: в техкарте нет операций — выберите «В цех»."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "%s: zayafka soni noldan katta bo'lishi kerak."
+msgstr "%s: количество в заявке должно быть больше нуля."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_needaction
+msgid "Action Needed"
+msgstr "Требуется действие"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "Количество вложений"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Barcha bo'limlar"
+msgstr "Все цеха"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__state__cancel
+msgid "Bekor qilindi"
+msgstr "Отменена"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__uom_id
+msgid "Birlik"
+msgstr "Ед. изм."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__department_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Bo'lim"
+msgstr "Цех"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__urgent
+msgid "Bo'lim navbatida birinchi turadi (buyurtma ustuvorligi «Shoshilinch»)."
+msgstr "Стоит первой в очереди цеха (приоритет заказа «Срочно»)."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Bo'lim ombori:"
+msgstr "Склад цеха:"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Bo'lim omborida"
+msgstr "На складе цеха"
+
+#. module: cst_kerama_production_request
+#: model:ir.model,name:cst_kerama_production_request.model_cst_production_floor
+msgid "Bo'lim oynasi"
+msgstr "Окно цеха"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Bo'limga"
+msgstr "В цех"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid ""
+"Boshlang'ich filtr: yetmaydigan va hali berilmagan zakazlar. «Hammasi» tabi "
+"butun jarayonni ko'rsatadi."
+msgstr ""
+"Начальный фильтр: заказы с нехваткой, ещё не переданные. Вкладка «Все» "
+"показывает весь процесс."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Bu filtr bo'yicha qator yo'q"
+msgstr "По этому фильтру строк нет"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__production_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_form
+msgid "Buyurtma"
+msgstr "Заказ"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Buyurtmaning xomashyosi ishlab chiqarish buyurtmasida band qilingan"
+msgstr "Сырьё заказа зарезервировано в заказе на производство"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__cancelled
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__create_date
+msgid "Created on"
+msgstr "Дата создания"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr "Единица измерения по умолчанию для всех складских операций."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_department__display_name
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_floor__display_name
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__display_name
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request_board__display_name
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Faqat yetmaydi"
+msgstr "Только с нехваткой"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_follower_ids
+msgid "Followers"
+msgstr "Подписчики"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Подписчики (партнёры)"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Hammasi"
+msgstr "Все"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__has_message
+msgid "Has Message"
+msgstr "Есть сообщение"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__state
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Holat"
+msgstr "Статус"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_department__id
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_floor__id
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__id
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request_board__id
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Если отмечено, новые сообщения требуют вашего внимания."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__message_has_error
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Если отмечено, в некоторых сообщениях есть ошибка доставки."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_is_follower
+msgid "Is Follower"
+msgstr "Является подписчиком"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__qty_produced
+msgid "Ishlab chiqarildi"
+msgstr "Произведено"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__state__progress
+msgid "Ishlab chiqarilmoqda"
+msgstr "В производстве"
+
+#. module: cst_kerama_production_request
+#: model:ir.model,name:cst_kerama_production_request.model_cst_production_department
+msgid "Ishlab chiqarish bo'limi"
+msgstr "Производственный цех"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__production_ids
+msgid "Ishlab chiqarish buyurtmalari"
+msgstr "Заказы на производство"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.actions.client,name:cst_kerama_production_request.action_production_request_board
+#: model:ir.ui.menu,name:cst_kerama_production_request.menu_sale_production_requests_root
+#: model:ir.ui.menu,name:cst_kerama_production_request.menu_shift_production_request_board
+msgid "Ishlab chiqarish zayafkalari"
+msgstr "Заявки на производство"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid ""
+"Ishlab chiqarish zayafkalari faqat sotuv va ishlab chiqarish xodimlari "
+"uchun."
+msgstr ""
+"Заявки на производство доступны только сотрудникам продаж и производства."
+
+#. module: cst_kerama_production_request
+#: model:ir.model,name:cst_kerama_production_request.model_cst_production_request_board
+msgid "Ishlab chiqarish zayafkalari oynasi"
+msgstr "Окно заявок на производство"
+
+#. module: cst_kerama_production_request
+#: model:ir.model,name:cst_kerama_production_request.model_cst_production_request
+msgid "Ishlab chiqarish zayafkasi"
+msgstr "Заявка на производство"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid ""
+"Ishlab chiqarish zayafkasi %(req)s: %(product)s × %(qty)s → %(dept)s "
+"(%(mo)s)."
+msgstr ""
+"Заявка на производство %(req)s: %(product)s × %(qty)s → %(dept)s (%(mo)s)."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Ishlab chiqarish zayafkasi %s bo'yicha."
+msgstr "По заявке на производство %s."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__note
+msgid "Izoh"
+msgstr "Примечание"
+
+#. module: cst_kerama_production_request
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_form
+msgid "Izoh..."
+msgstr "Примечание..."
+
+#. module: cst_kerama_production_request
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_list
+msgid "Jami"
+msgstr "Итого"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Kerak"
+msgstr "Нужно"
+
+#. module: cst_kerama_production_request
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_list
+msgid "Kim yaratdi"
+msgstr "Кто создал"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Kompaniyaning boshqa omborlarida"
+msgstr "На других складах компании"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__write_date
+msgid "Last Updated on"
+msgstr "Дата последнего изменения"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__product_id
+msgid "Mahsulot"
+msgstr "Товар"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Mahsulot topilmadi."
+msgstr "Товар не найден."
+
+#. module: cst_kerama_production_request
+#: model:ir.model,name:cst_kerama_production_request.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Заказ на производство"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_has_error
+msgid "Message Delivery error"
+msgstr "Ошибка доставки сообщения"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_ids
+msgid "Messages"
+msgstr "Сообщения"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Mijoz"
+msgstr "Клиент"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Mijoz, SO, mahsulot..."
+msgstr "Клиент, SO, товар..."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Miqdor noldan katta bo'lishi kerak."
+msgstr "Количество должно быть больше нуля."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Количество действий"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "Количество ошибок"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Количество сообщений, требующих действия"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Количество сообщений с ошибкой доставки"
+
+#. module: cst_kerama_production_request
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Ochiq"
+msgstr "Открытые"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Oddiy"
+msgstr "Обычный"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__kind__stock
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Ombor to'ldirish"
+msgstr "Пополнение склада"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Ombor to'ldirish zayafkasi"
+msgstr "Заявка на пополнение склада"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__stock_qty
+msgid "Qoldiq"
+msgstr "Остаток"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__rating_ids
+msgid "Ratings"
+msgstr "Оценки"
+
+#. module: cst_kerama_production_request
+#: model:ir.ui.menu,name:cst_kerama_production_request.menu_sale_production_request_board
+msgid "Rejalashtirish"
+msgstr "Планирование"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Ошибка доставки SMS"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "SO"
+msgstr "SO"
+
+#. module: cst_kerama_production_request
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_list
+msgid "Sana"
+msgstr "Дата"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Shu qator uchun ishlab chiqarishda"
+msgstr "В производстве по этой строке"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__sale_order_id
+msgid "Sotuv buyurtmasi"
+msgstr "Заказ клиента"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__sale_line_id
+msgid "Sotuv qatori"
+msgstr "Строка заказа"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Sotuv qatori topilmadi yoki buyurtma tasdiqlanmagan."
+msgstr "Строка заказа не найдена или заказ не подтверждён."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__state__released
+msgid "Sotuvga chiqarildi"
+msgstr "Передано в продажу"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/production_request.py:0
+msgid "Sotuvga chiqarildi."
+msgstr "Передано в продажу."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__released
+msgid "Sotuvga chiqarilgan"
+msgstr "Передано в продажу"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__released_date
+msgid "Sotuvga chiqarilgan sana"
+msgstr "Дата передачи в продажу"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Sotuvga chiqarish"
+msgstr "Передать в продажу"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Tanlandi:"
+msgstr "Выбрано:"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__state__done
+msgid "Tayyor"
+msgstr "Готово"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__bom_id
+msgid "Tex karta"
+msgstr "Техкарта"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Texkarta %s"
+msgstr "Техкарта %s"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Texkarta bo'yicha"
+msgstr "По техкарте"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Texkarta yo'q"
+msgstr "Нет техкарты"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Texkartada operatsiya yo'q, bo'limni aniqlab bo'lmadi."
+msgstr "В техкарте нет операций, не удалось определить цех."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Texkartasizlar ham"
+msgstr "Включая без техкарты"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: code:addons/cst_kerama_production_request/static/src/floor_patch/floor_patch.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__urgent
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Tezkor"
+msgstr "Срочно"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/floor_patch/floor_patch.xml:0
+msgid "Tezkor buyurtma"
+msgstr "Срочный заказ"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__kind
+msgid "Tur"
+msgstr "Тип"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Ustuvorlik"
+msgstr "Приоритет"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__website_message_ids
+msgid "Website Messages"
+msgstr "Сообщения сайта"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__website_message_ids
+msgid "Website communication history"
+msgstr "История общения на сайте"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Xarakteristika"
+msgstr "Характеристика"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Xomashyo"
+msgstr "Сырьё"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Xomashyo ro'yxati yo'q."
+msgstr "Нет списка сырья."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Yangilash"
+msgstr "Обновить"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__short_qty
+msgid "Yetmaydi"
+msgstr "Не хватает"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__state__sent
+msgid "Yuborildi"
+msgstr "Отправлено"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__demand_qty
+#: model:ir.model.fields.selection,name:cst_kerama_production_request.selection__cst_production_request__kind__order
+#: model_terms:ir.ui.view,arch_db:cst_kerama_production_request.view_production_request_search
+msgid "Zakaz"
+msgstr "Заказ"
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__name
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_mrp_production__cst_request_id
+msgid "Zayafka"
+msgstr "Заявка"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/production_request.py:0
+msgid "Zayafka bekor qilindi."
+msgstr "Заявка отменена."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_production_request.field_cst_production_request__qty
+msgid "Zayafka soni"
+msgstr "Количество в заявке"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Zayafka topilmadi."
+msgstr "Заявка не найдена."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__demand_qty
+msgid ""
+"Zayafka yaratilgan paytda buyurtmada jo'natilishi kerak bo'lgan miqdor."
+msgstr "Количество к отгрузке по заказу на момент создания заявки."
+
+#. module: cst_kerama_production_request
+#: model:ir.model.fields,help:cst_kerama_production_request.field_cst_production_request__stock_qty
+msgid "Zayafka yaratilgan paytda shu buyurtma uchun omborda bor edi."
+msgstr "Остаток на складе для этого заказа на момент создания заявки."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Zayafka yaratish"
+msgstr "Создать заявку"
+
+#. module: cst_kerama_production_request
+#: model:ir.actions.act_window,name:cst_kerama_production_request.action_production_requests
+#: model:ir.ui.menu,name:cst_kerama_production_request.menu_sale_production_request_list
+msgid "Zayafkalar ro'yxati"
+msgstr "Список заявок"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "Zayafkani bekor qilish"
+msgstr "Отменить заявку"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "chiqdi"
+msgstr "выпущено"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "dona"
+msgstr "шт"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "dona uchun"
+msgstr "на шт"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "i/ch"
+msgstr "произв."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "qator · jami"
+msgstr "строк · итого"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "zayafka"
+msgstr "заявок"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "«%s» bo'limida liniya (stanok) yo'q."
+msgstr "В цехе «%s» нет линии (станка)."
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "«%s» uchun texkarta (BoM) yo'q."
+msgstr "Для «%s» нет техкарты (BoM)."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.xml:0
+msgid "· ko'chirish:"
+msgstr "· перемещение:"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "%(req)s: %(mo)s bo'lim navbatiga tushdi"
+msgstr "%(req)s: %(mo)s поставлен в очередь цеха"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid ""
+"%s ta qator: tayyor mahsulot sotuv buyurtmasining jo'natmasiga band "
+"qilinadi."
+msgstr ""
+"Строк: %s — готовая продукция будет зарезервирована под отгрузку заказа "
+"клиента."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "%s va uning ishlab chiqarish buyurtmasi bekor qilinadi."
+msgstr "%s и его заказ на производство будут отменены."
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "%s: oddiy navbat"
+msgstr "%s: обычная очередь"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "%s: tezkor — navbat boshida"
+msgstr "%s: срочно — в начале очереди"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "Bekor qilish"
+msgstr "Отменить"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "Berilmagan"
+msgstr "Не передано"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Bor"
+msgstr "Есть"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "Chiqarish"
+msgstr "Передать"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Ko'chirish so'raldi"
+msgstr "Перемещение запрошено"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+#: code:addons/cst_kerama_production_request/models/floor.py:0
+msgid "O'tkazma kerak"
+msgstr "Нужно перемещение"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Ombor"
+msgstr "Склад"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "Sotuv buyurtmasisiz — tayyor mahsulot omborga"
+msgstr "Без заказа клиента — готовая продукция на склад"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "Sotuvga chiqarildi: %(n)s ta · band qilindi %(qty)s"
+msgstr "Передано в продажу: %(n)s · зарезервировано %(qty)s"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/floor.py:0
+msgid "Xomashyo yetarli"
+msgstr "Сырья достаточно"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/floor.py:0
+msgid "Xomashyo yetmaydi"
+msgstr "Сырья не хватает"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Yagona texkarta"
+msgstr "Единственная техкарта"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "Yakunlandi, omborga ko'chirilmoqda"
+msgstr "Завершено, перемещается на склад"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "Zayafka yaratildi: %s"
+msgstr "Заявка создана: %s"
+
+#. module: cst_kerama_production_request
+#. odoo-javascript
+#: code:addons/cst_kerama_production_request/static/src/board/board.js:0
+msgid "bo'lim tanlanmagan"
+msgstr "цех не выбран"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "done"
+msgstr "done"
+
+#. module: cst_kerama_production_request
+#. odoo-python
+#: code:addons/cst_kerama_production_request/models/board.py:0
+msgid "progress"
+msgstr "progress"

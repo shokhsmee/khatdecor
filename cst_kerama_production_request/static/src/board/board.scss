@@ -99,16 +99,22 @@
     .c_chk { width: 34px; }
     .c_chk input, .c_mid input { width: 17px; height: 17px; accent-color: var(--cpr-primary); }
     .c_mid { text-align: center; }
-    .c_product { min-width: 170px; }
-    .c_bom { min-width: 140px; .form-select { max-width: 190px; } }
-    .c_partner { min-width: 110px; }
+    .c_product { min-width: 140px; }
+    .c_char { min-width: 90px; max-width: 140px; }
+    .c_bom { min-width: 130px; .form-select { max-width: 170px; } }
+    .c_partner { min-width: 100px; }
     .c_state { white-space: nowrap; }
     tr.is-urgent > td { background: var(--cpr-urgent-wash); }
     tr.is-selected > td { background: var(--cpr-select-wash); }
     a { color: var(--cpr-primary); }
 }
 .o_cpr_prod { font-weight: 500; }
+.o_cpr_bomcomp { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .o_cpr_short { color: var(--cpr-bad); }
+.o_cpr_char {
+    display: inline-block; background: var(--cpr-primary-wash); color: var(--cpr-primary); border-radius: 6px;
+    padding: 2px 8px; font-size: 12px; font-weight: 500;
+}
 .o_cpr_qty { width: 84px; background: var(--cpr-plane); }
 .o_cpr_kind {
     display: inline-block; border: 1px solid var(--cpr-border); border-radius: 5px; padding: 1px 7px; font-size: 12px;
@@ -135,9 +141,9 @@
     .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cpr-muted); display: inline-block; }
 }
 button.o_cpr_mat { border-color: var(--cpr-primary); }
-.o_cpr_mat--ok .dot { background: var(--cpr-done); }
-.o_cpr_mat--move .dot, .o_cpr_mat--requested .dot { background: var(--cpr-warn); }
-.o_cpr_mat--short .dot, .o_cpr_mat--none .dot { background: var(--cpr-bad); }
+.o_cpr_mat--ok { background: var(--cpr-done-wash); border-color: var(--cpr-done) !important; color: var(--cpr-done); .dot { background: var(--cpr-done); } }
+.o_cpr_mat--move, .o_cpr_mat--requested { background: var(--cpr-warn-wash); border-color: var(--cpr-warn) !important; color: var(--cpr-warn); .dot { background: var(--cpr-warn); } }
+.o_cpr_mat--short, .o_cpr_mat--none { background: var(--cpr-bad-wash); border-color: var(--cpr-bad) !important; color: var(--cpr-bad); .dot { background: var(--cpr-bad); } }
 .o_cpr_mat--na { border-color: var(--cpr-border) !important; color: var(--cpr-muted); }
 
 .o_cpr_detail > td { background: var(--cpr-plane); }

@@ -1,0 +1,173 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_ai_voice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_ai_voice
+#: model_terms:ir.ui.view,arch_db:cst_kerama_ai_voice.res_config_settings_view_form_ai_voice
+msgid "AI Voice"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model_terms:ir.ui.view,arch_db:cst_kerama_ai_voice.res_config_settings_view_form_ai_voice
+msgid ""
+"AI chatidagi mikrofon tugmasi shu model bilan ishlaydi. OpenAI kaliti muk_ai"
+" sozlamasidan olinadi."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model,name:cst_kerama_ai_voice.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields,field_description:cst_kerama_ai_voice.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields,field_description:cst_kerama_ai_voice.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-javascript
+#: code:addons/cst_kerama_ai_voice/static/src/voice_composer.js:0
+msgid "Matnga o'girilmoqda..."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model_terms:ir.ui.view,arch_db:cst_kerama_ai_voice.res_config_settings_view_form_ai_voice
+msgid "Model"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model_terms:ir.ui.view,arch_db:cst_kerama_ai_voice.res_config_settings_view_form_ai_voice
+msgid ""
+"Modelga qaysi til va qanday atamalar kutilayotganini aytadi. Til kodini "
+"bermaymiz — OpenAI 'uz' ni qabul qilmaydi."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "OpenAI калити топилмади.  AI созламаларида уни киритинг."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-javascript
+#: code:addons/cst_kerama_ai_voice/static/src/voice_composer.js:0
+msgid "Ovoz bilan yozish"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model_terms:ir.ui.view,arch_db:cst_kerama_ai_voice.res_config_settings_view_form_ai_voice
+msgid "Ovozdan matnga"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields,field_description:cst_kerama_ai_voice.field_res_config_settings__cst_ai_voice_model
+msgid "Ovozni matnga o'girish modeli"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields,field_description:cst_kerama_ai_voice.field_res_config_settings__cst_ai_voice_prompt
+#: model_terms:ir.ui.view,arch_db:cst_kerama_ai_voice.res_config_settings_view_form_ai_voice
+msgid "Tanish uchun izoh"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-javascript
+#: code:addons/cst_kerama_ai_voice/static/src/voice_composer.js:0
+msgid "To'xtatish"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields.selection,name:cst_kerama_ai_voice.selection__res_config_settings__cst_ai_voice_model__gpt-4o-mini-transcribe
+msgid "gpt-4o-mini-transcribe (arzonroq)"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields.selection,name:cst_kerama_ai_voice.selection__res_config_settings__cst_ai_voice_model__gpt-4o-transcribe
+msgid "gpt-4o-transcribe (aniqroq)"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Ёзув буш чикди."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Ёзув жуда узун (%s MB).  Кискарок гапиринг."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-javascript
+#: code:addons/cst_kerama_ai_voice/static/src/voice_composer.js:0
+msgid "Бу браузер овоз ёзишни куллаб-кувватламайди."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Кутилмаган формат: %s"
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Матнга угариб булмади (%s)."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-javascript
+#: code:addons/cst_kerama_ai_voice/static/src/voice_composer.js:0
+msgid "Матнга угариб булмади."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-javascript
+#: code:addons/cst_kerama_ai_voice/static/src/voice_composer.js:0
+msgid "Микрофонга рухсат берилмади."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#: model:ir.model.fields,help:cst_kerama_ai_voice.field_res_config_settings__cst_ai_voice_prompt
+msgid ""
+"Моделга кайси тил ва кандай атамалар кутилаётганини айтади.  Тил кодини "
+"бериб булмайди — OpenAI 'uz' ни кабул килмайди, шунинг учун тил айнан шу "
+"изох оркали билдирилади."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Овоз файли юборилмади."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Хеч нарса эшитилмади."
+msgstr ""
+
+#. module: cst_kerama_ai_voice
+#. odoo-python
+#: code:addons/cst_kerama_ai_voice/controllers/voice.py:0
+msgid "Хизмат билан алока йук."
+msgstr ""

@@ -1,2 +1,21 @@
-/* the queue card's top row carries one more chip («Tezkor»): let it wrap */
-.cst_sf_col--queue .cst_sf_kcard_top { flex-wrap: wrap; gap: 4px; }
+/* the card's top row carries one more chip («Tezkor»): let it wrap */
+.cst_sf_kcard_top { flex-wrap: wrap; gap: 4px; }
+.cst_sf .cst_sf_chip--urgent { background: #c8352b; color: #fff; font-weight: 700; }
+.cst_sf_detail_req { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+/* an urgent order stands out on the board: red edge, warm tint */
+.cst_sf .cst_sf_kcard:has(.cst_sf_chip--urgent) {
+    border-color: rgba(200, 53, 43, .45);
+    border-left-color: #c8352b;
+    background: #fff1ef;
+}
+.cst_sf.cst_sf_dark .cst_sf_kcard:has(.cst_sf_chip--urgent) { background: #3a201d; }
+
+/* raw material, three colours */
+.cst_sf_mat {
+    display: flex; align-items: center; gap: 7px; margin-top: 7px; font-weight: 600; font-size: 12.5px;
+    .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+}
+.cst_sf_mat--ok { color: var(--sf-good); .dot { background: var(--sf-good); } }
+.cst_sf_mat--move { color: var(--sf-second); .dot { background: var(--sf-second); } }
+.cst_sf_mat--short { color: var(--sf-scrap); .dot { background: var(--sf-scrap); } }

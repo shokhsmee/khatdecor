@@ -1,0 +1,3547 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_shift
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "%(dept)s bo'limida %(date)s kuni %(shift)s allaqachon ochilgan."
+msgstr "%(dept)s bo'limida %(date)s kuni %(shift)s allaqachon ochilgan."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "%(dept)s · %(shift)s"
+msgstr "%(dept)s · %(shift)s"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/department.py:0
+msgid "%(dept)s — %(day)s natijalari"
+msgstr "%(dept)s — %(day)s natijalari"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "%(mo)s: o'chirib bo'lmaydi — %(why)s."
+msgstr "%(mo)s: o'chirib bo'lmaydi — %(why)s."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid ""
+"%(order)s: %(total)s dona kiritildi, buyurtmada esa %(left)s dona qoldi. "
+"Ortiqcha chiqarilgan bo'lsa buyurtma miqdorini oshiring."
+msgstr ""
+"%(order)s: %(total)s dona kiritildi, buyurtmada esa %(left)s dona qoldi. "
+"Ortiqcha chiqarilgan bo'lsa buyurtma miqdorini oshiring."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid ""
+"%(order)s: buyurtmada %(qty)s dona qoldi, undan ko'p kiritildi (%(over)s "
+"dona ortiqcha). Ortiqcha chiqarilgan bo'lsa avval buyurtma miqdorini "
+"oshiring."
+msgstr ""
+"%(order)s: buyurtmada %(qty)s dona qoldi, undan ko'p kiritildi (%(over)s "
+"dona ortiqcha). Ortiqcha chiqarilgan bo'lsa avval buyurtma miqdorini "
+"oshiring."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid ""
+"%(product)s: %(qty)s %(uom)s brakka chiqarish uchun %(loc)s joyida yetarli "
+"qoldiq yo'q."
+msgstr ""
+"%(product)s: %(qty)s %(uom)s brakka chiqarish uchun %(loc)s joyida yetarli "
+"qoldiq yo'q."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid ""
+"%(product)s: %(qty)s dona brakka chiqarish uchun %(loc)s joyida yetarli "
+"qoldiq yo'q."
+msgstr ""
+"%(product)s: %(qty)s dona brakka chiqarish uchun %(loc)s joyida yetarli "
+"qoldiq yo'q."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "%(shift)s: %(good)s dona qilingan"
+msgstr "%(shift)s: %(good)s dona qilingan"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid ""
+"%(shift)s: oylik qatorlari allaqachon tasdiqlangan (%(n)s ta). KPI yoki "
+"jarimani o'zgartirish uchun avval oylikda ularni qoralamaga qaytaring."
+msgstr ""
+"%(shift)s: oylik qatorlari allaqachon tasdiqlangan (%(n)s ta). KPI yoki "
+"jarimani o'zgartirish uchun avval oylikda ularni qoralamaga qaytaring."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_worker.py:0
+msgid "%(who)s: KPI %(kpi)s, jarima %(penalty)s (%(user)s)."
+msgstr "%(who)s: KPI %(kpi)s, jarima %(penalty)s (%(user)s)."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid ""
+"%s hali yakunlanmagan: natijani smena ichida o'zgartiring (yangi yozuv), "
+"tuzatish faqat yakunlangan buyurtma uchun."
+msgstr ""
+"%s hali yakunlanmagan: natijani smena ichida o'zgartiring (yangi yozuv), "
+"tuzatish faqat yakunlangan buyurtma uchun."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid ""
+"%s hozirgina xuddi shu mahsulot va miqdor bilan yaratildi. Ikkinchi marta "
+"bosilgan bo'lsa — kerak emas."
+msgstr ""
+"%s hozirgina xuddi shu mahsulot va miqdor bilan yaratildi. Ikkinchi marta "
+"bosilgan bo'lsa — kerak emas."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.js:0
+msgid "%s yaratildi"
+msgstr "%s yaratildi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "%s — 2-sort"
+msgstr "%s — 2-sort"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/department.py:0
+msgid "%s — navbat"
+msgstr "%s — navbat"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/department.py:0
+msgid "%s — smenalar"
+msgstr "%s — smenalar"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid ""
+"%s: natija kiritilgan yoki omborda harakat bo'lgan, bekor qilib bo'lmaydi. "
+"Buyurtmani yakunlang yoki menejerga murojaat qiling."
+msgstr ""
+"%s: natija kiritilgan yoki omborda harakat bo'lgan, bekor qilib bo'lmaydi. "
+"Buyurtmani yakunlang yoki menejerga murojaat qiling."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "(Face ID orqali kelganlar belgilangan)"
+msgstr "(Face ID orqali kelganlar belgilangan)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "(boshqa bo'lim:"
+msgstr "(boshqa bo'lim:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "(qo'shimcha)"
+msgstr "(qo'shimcha)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "+ Qo'shimcha material qo'shish: nomi yoki kodi (lotin/kirill)"
+msgstr "+ Qo'shimcha material qo'shish: nomi yoki kodi (lotin/kirill)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "+ Qo'shimcha material: nomi yoki kodi…"
+msgstr "+ Qo'shimcha material: nomi yoki kodi…"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+". Sotuvdan kelgan buyurtmalar «Yangi buyurtmalar» navbatida turadi; bu yerda"
+" bo'lim o'z buyurtmasini yaratadi."
+msgstr ""
+". Sotuvdan kelgan buyurtmalar «Yangi buyurtmalar» navbatida turadi; bu yerda"
+" bo'lim o'z buyurtmasini yaratadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__rate
+msgid "1 dona 1-sort uchun"
+msgstr "1 dona 1-sort uchun"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_kpi_rates
+msgid ""
+"1 dona 1-sort uchun KPI: bo'lim, liniya, mahsulot yoki kategoriya bo'yicha. Eng aniq stavka\n"
+"               ishlatiladi (mahsulot+liniya → mahsulot → kategoriya+liniya → kategoriya → liniya → bo'lim).\n"
+"               Bu faqat HR uchun taklif: «Stavkadan to'ldirish» tugmasi xodim ulushi × stavkani yozadi."
+msgstr ""
+"1 dona 1-sort uchun KPI: bo'lim, liniya, mahsulot yoki kategoriya bo'yicha. Eng aniq stavka\n"
+"               ishlatiladi (mahsulot+liniya → mahsulot → kategoriya+liniya → kategoriya → liniya → bo'lim).\n"
+"               Bu faqat HR uchun taklif: «Stavkadan to'ldirish» tugmasi xodim ulushi × stavkani yozadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_template__sequence
+msgid "1, 2, 3 — oylik hisobotidagi «Smena» ustuniga shu raqam ketadi."
+msgstr "1, 2, 3 — oylik hisobotidagi «Smena» ustuniga shu raqam ketadi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_shift_templates
+msgid ""
+"1-smena 06:00–14:00, 2-smena 14:00–22:00, 3-smena 22:00–06:00. Soatlarni shu"
+" yerda o'zgartiring; tungi smena boshlangan kuniga yoziladi."
+msgstr ""
+"1-smena 06:00–14:00, 2-smena 14:00–22:00, 3-smena 22:00–06:00. Soatlarni shu"
+" yerda o'zgartiring; tungi smena boshlangan kuniga yoziladi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__qty_good
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__qty_good
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__qty_good
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__qty_good
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "1-sort"
+msgstr "1-sort"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "1-sort %(g0)s → %(g1)s, 2-sort %(s0)s → %(s1)s, brak %(b0)s → %(b1)s"
+msgstr "1-sort %(g0)s → %(g1)s, 2-sort %(s0)s → %(s1)s, brak %(b0)s → %(b1)s"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "1-sort (dona)"
+msgstr "1-sort (dona)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__qty_good
+msgid "1-sort (ulushi)"
+msgstr "1-sort (ulushi)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "1-sort / brak"
+msgstr "1-sort / brak"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "1-sort:"
+msgstr "1-sort:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__qty_second
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__qty_second
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__qty_second
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__qty_second
+#: model:stock.scrap.reason.tag,name:cst_kerama_shift.scrap_reason_second_grade
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "2-sort"
+msgstr "2-sort"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "2-sort (brak toifasi)"
+msgstr "2-sort (brak toifasi)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "2-sort (brak)"
+msgstr "2-sort (brak)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_production__cst_second_qty
+msgid "2-sort (kiritilgan)"
+msgstr "2-sort (kiritilgan)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__second_grade_move_ids
+msgid "2-sort kirimlari"
+msgstr "2-sort kirimlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__second_product_id
+msgid "2-sort mahsuloti"
+msgstr "2-sort mahsuloti"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry__second_product_id
+msgid ""
+"2-sort qaysi mahsulot bo'lib omborga kirishi. Bo'sh bo'lsa — mahsulotning "
+"avtomatik «— 2-sort» egizagi."
+msgstr ""
+"2-sort qaysi mahsulot bo'lib omborga kirishi. Bo'sh bo'lsa — mahsulotning "
+"avtomatik «— 2-sort» egizagi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "2-sort qaysi mahsulotga kirsin"
+msgstr "2-sort qaysi mahsulotga kirsin"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "2-sort tuzatish (1-sortga)"
+msgstr "2-sort tuzatish (1-sortga)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "2-sort tuzatish (qaytarish)"
+msgstr "2-sort tuzatish (qaytarish)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "2-sort yoki brak yozilgan"
+msgstr "2-sort yoki brak yozilgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "2-sort →"
+msgstr "2-sort →"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "2-sort:"
+msgstr "2-sort:"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "2-sort: %s"
+msgstr "2-sort: %s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__mrp_workorder__cst_shift__3
+msgid "3-smena"
+msgstr "3-smena"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<i class=\"fa fa-circle me-1 small\"/>Smena ochiq"
+msgstr "<i class=\"fa fa-circle me-1 small\"/>Smena ochiq"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<span class=\"col-7\">Bugun</span>"
+msgstr "<span class=\"col-7\">Bugun</span>"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<span class=\"col-7\">Ertaga</span>"
+msgstr "<span class=\"col-7\">Ertaga</span>"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<span class=\"col-7\">Jarayonda</span>"
+msgstr "<span class=\"col-7\">Jarayonda</span>"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<span class=\"col-7\">Kech</span>"
+msgstr "<span class=\"col-7\">Kech</span>"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<span>Ko'rish</span>"
+msgstr "<span>Ko'rish</span>"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "<span>Sozlash</span>"
+msgstr "<span>Sozlash</span>"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_needaction
+msgid "Action Needed"
+msgstr "Harakat talab qilinadi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__active
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__active
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__active
+msgid "Active"
+msgstr "Faol"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__allowed_template_ids
+msgid "Allowed Template"
+msgstr "Ruxsat etilgan shablon"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__date_from
+msgid "Amal qiladi (dan)"
+msgstr "Amal qiladi (dan)"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid "Arxiv"
+msgstr "Arxiv"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_attachment_count
+msgid "Attachment Count"
+msgstr "Biriktirmalar soni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Avtomatik:"
+msgstr "Avtomatik:"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Avval ishni boshlang: %s"
+msgstr "Avval ishni boshlang: %s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift_line__state__done
+msgid "Bajarildi"
+msgstr "Bajarildi"
+
+#. module: cst_kerama_shift
+#: model:res.groups,comment:cst_kerama_shift.group_doc_correction
+msgid ""
+"Bajarilgan ichki ko'chirish va yakunlangan smena natijasini sabab bilan "
+"tuzatadi (ombor qarshi hujjat bilan tuzatiladi)."
+msgstr ""
+"Bajarilgan ichki ko'chirish va yakunlangan smena natijasini sabab bilan "
+"tuzatadi (ombor qarshi hujjat bilan tuzatiladi)."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Bajarilganlar"
+msgstr "Bajarilganlar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__progress_pct
+msgid "Bajarilishi %"
+msgstr "Bajarilishi %"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Bajarilishi kerak"
+msgstr "Bajarilishi kerak"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_report_form
+msgid "Bekor"
+msgstr "Bekor"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift__state__cancel
+msgid "Bekor qilingan"
+msgstr "Bekor qilingan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Bekor qilish"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__department_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__department_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__department_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__department_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__department_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__department_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workcenter__cst_department_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workorder__cst_department_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "Bo'lim"
+msgstr "Bo'lim"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "Bo'lim kartochkasi"
+msgstr "Bo'lim kartochkasi"
+
+#. module: cst_kerama_shift
+#: model:res.groups,name:cst_kerama_shift.group_shift_manager
+msgid "Bo'lim menejeri"
+msgstr "Bo'lim menejeri"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.actions.client,name:cst_kerama_shift.action_floor
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_floor
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_floor
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "Bo'lim oynasi"
+msgstr "Bo'lim oynasi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Bo'lim oynasidan bekor qilindi (%s)."
+msgstr "Bo'lim oynasidan bekor qilindi (%s)."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid ""
+"Bo'lim oynasidan o'chirildi (%(dept)s): %(qty)s dona qaytarildi, xomashyo "
+"omborga qaytdi (%(ub)s)."
+msgstr ""
+"Bo'lim oynasidan o'chirildi (%(dept)s): %(qty)s dona qaytarildi, xomashyo "
+"omborga qaytdi (%(ub)s)."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Bo'lim topilmadi."
+msgstr "Bo'lim topilmadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__shift_template_ids
+msgid "Bo'limda ishlatiladigan smenalar. Bo'sh qolsa hammasi."
+msgstr "Bo'limda ishlatiladigan smenalar. Bo'sh qolsa hammasi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Bo'limga xodim biriktirilmagan."
+msgstr "Bo'limga xodim biriktirilmagan."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_departments
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__department_ids
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_departments
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_departments_config
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_list
+msgid "Bo'limlar"
+msgstr "Bo'limlar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Bo'limlar ro'yxatiga qaytish"
+msgstr "Bo'limlar ro'yxatiga qaytish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_shift_kpi_rate__workcenter_id
+msgid "Bo'sh = bo'limning hamma liniyalari."
+msgstr "Bo'sh = bo'limning hamma liniyalari."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_shift_kpi_rate__product_tmpl_id
+msgid "Bo'sh = hamma mahsulot."
+msgstr "Bo'sh = hamma mahsulot."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid ""
+"Bo'sh qolsa hamma smena vaqtlari ishlatiladi. Soatlar Sozlamalar ▸ Smena "
+"vaqtlari'da o'zgartiriladi."
+msgstr ""
+"Bo'sh qolsa hamma smena vaqtlari ishlatiladi. Soatlar Sozlamalar ▸ Smena "
+"vaqtlari'da o'zgartiriladi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__date_start
+msgid "Boshlandi"
+msgstr "Boshlandi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__date_from
+msgid "Boshlanish"
+msgstr "Boshlanish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__date_start
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__hour_from
+msgid "Boshlanishi"
+msgstr "Boshlanishi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Boshlash"
+msgstr "Boshlash"
+
+#. module: cst_kerama_shift
+#: model:stock.scrap.reason.tag,name:cst_kerama_shift.scrap_reason_bosma
+msgid "Bosma nuqsoni"
+msgstr "Bosma nuqsoni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__qty_scrap
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__qty_scrap
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__qty_scrap
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__qty_scrap
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "Brak"
+msgstr "Brak"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_production__cst_scrap_qty
+msgid "Brak (kiritilgan)"
+msgstr "Brak (kiritilgan)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Brak (noto'liq)"
+msgstr "Brak (noto'liq)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Brak (tuzatish)"
+msgstr "Brak (tuzatish)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__material_product_id
+msgid "Brak bo'lgan material"
+msgstr "Brak bo'lgan material"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid "Brak bo'lgan materialni tanlang."
+msgstr "Brak bo'lgan materialni tanlang."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__penalty_total
+msgid "Brak jarimasi"
+msgstr "Brak jarimasi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__penalty_total
+msgid "Brak jarimasi (jami)"
+msgstr "Brak jarimasi (jami)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Brak jarimasi — %s"
+msgstr "Brak jarimasi — %s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__scrap_reason_tag_id
+msgid "Brak sababi"
+msgstr "Brak sababi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Brak tuzatish (qaytarish)"
+msgstr "Brak tuzatish (qaytarish)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Brak:"
+msgstr "Brak:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+"Bu bo'lim bajaradigan operatsiyasi bor texkarta topilmadi. «Hamma "
+"mahsulotlar»ni yoqing yoki texkartada operatsiyani shu bo'lim liniyasiga "
+"bog'lang."
+msgstr ""
+"Bu bo'lim bajaradigan operatsiyasi bor texkarta topilmadi. «Hamma "
+"mahsulotlar»ni yoqing yoki texkartada operatsiyani shu bo'lim liniyasiga "
+"bog'lang."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry__workcenter_id
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__workcenter_id
+msgid "Bu buyurtma shu smenada qaysi liniyada bajariladi."
+msgstr "Bu buyurtma shu smenada qaysi liniyada bajariladi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Bu buyurtmadan olib tashlash"
+msgstr "Bu buyurtmadan olib tashlash"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_mrp_workorder__cst_shift_id
+msgid ""
+"Bu ish buyurtmasi qaysi smenada bajarilgan. Smenaga bog'langan ish oylikda "
+"smena fondi orqali to'lanadi, alohida ishbay yozilmaydi."
+msgstr ""
+"Bu ish buyurtmasi qaysi smenada bajarilgan. Smenaga bog'langan ish oylikda "
+"smena fondi orqali to'lanadi, alohida ishbay yozilmaydi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_mrp_workcenter__cst_department_id
+#: model:ir.model.fields,help:cst_kerama_shift.field_mrp_workorder__cst_department_id
+msgid ""
+"Bu liniya qaysi bo'limga tegishli. Bo'lim smenasi shu liniyaning ish "
+"buyurtmalarini oladi."
+msgstr ""
+"Bu liniya qaysi bo'limga tegishli. Bo'lim smenasi shu liniyaning ish "
+"buyurtmalarini oladi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "Bu natija hali omborga o'tmagan — uni oddiy tahrirlash mumkin."
+msgstr "Bu natija hali omborga o'tmagan — uni oddiy tahrirlash mumkin."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid ""
+"Bu smenaning oylik qatorlari tasdiqlangan (%s ta); avval oylikda ularni "
+"qoralamaga qaytaring."
+msgstr ""
+"Bu smenaning oylik qatorlari tasdiqlangan (%s ta); avval oylikda ularni "
+"qoralamaga qaytaring."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__today_count
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Bugun"
+msgstr "Bugun"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__today_good
+msgid "Bugun 1-sort"
+msgstr "Bugun 1-sort"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__today_scrap
+msgid "Bugun brak"
+msgstr "Bugun brak"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__today_planned
+msgid "Bugun reja"
+msgstr "Bugun reja"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__employee_ids
+msgid ""
+"Bugun shu smenada ishlagan xodimlar. KPI fondi ular o'rtasida bo'linadi."
+msgstr ""
+"Bugun shu smenada ishlagan xodimlar. KPI fondi ular o'rtasida bo'linadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Bugun yakunlangan yo'q"
+msgstr "Bugun yakunlangan yo'q"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "Bugungi natija"
+msgstr "Bugungi natija"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "Bugungi natijalar"
+msgstr "Bugungi natijalar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__production_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__line_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__production_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__production_id
+msgid "Buyurtma"
+msgstr "Buyurtma"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Buyurtma ma'lumotlari"
+msgstr "Buyurtma ma'lumotlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__sale_origin
+msgid "Buyurtma manbai"
+msgstr "Buyurtma manbai"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__order_qty
+msgid "Buyurtma miqdori"
+msgstr "Buyurtma miqdori"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Buyurtma tanlanmagan."
+msgstr "Buyurtma tanlanmagan."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Buyurtma topilmadi."
+msgstr "Buyurtma topilmadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Buyurtma yaratish"
+msgstr "Buyurtma yaratish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Buyurtmada qoldi:"
+msgstr "Buyurtmada qoldi:"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Buyurtmalar"
+msgstr "Buyurtmalar"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Buyurtmani faqat bo'lim menejeri bekor qila oladi."
+msgstr "Buyurtmani faqat bo'lim menejeri bekor qila oladi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_correction__is_final
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__is_final_operation
+msgid ""
+"Buyurtmaning oxirgi operatsiyasi: natija kiritilganda mahsulot omborga "
+"tushadi."
+msgstr ""
+"Buyurtmaning oxirgi operatsiyasi: natija kiritilganda mahsulot omborga "
+"tushadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__can_correct
+msgid "Can Correct"
+msgstr "Tuzata oladi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__can_edit
+msgid "Can Edit"
+msgstr "Tahrirlay oladi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__can_edit_kpi
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__can_edit_kpi
+msgid "Can Edit Kpi"
+msgstr "KPI'ni tahrirlay oladi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Chapdan mahsulot tanlang"
+msgstr "Chapdan mahsulot tanlang"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__output_kind
+msgid "Chiqaradigan mahsulot"
+msgstr "Chiqaradigan mahsulot"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Chiqarilgani omborga o'tadi, qolgani keyingi smenaga"
+msgstr "Chiqarilgani omborga o'tadi, qolgani keyingi smenaga"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__create_uid
+msgid "Created by"
+msgstr "Kim yaratdi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_mo_builder__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_payroll_period__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_fact_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_floor__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workcenter__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workorder__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_stock_landed_cost__display_name
+msgid "Display Name"
+msgstr "Nomi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__employee_ids
+msgid "Doimiy xodimlar"
+msgstr "Doimiy xodimlar"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_report_form
+msgid "Ekranda ko'rish"
+msgstr "Ekranda ko'rish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__employee_count
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__employee_count
+msgid "Employee Count"
+msgstr "Xodimlar soni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__tomorrow_count
+msgid "Ertaga"
+msgstr "Ertaga"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__note
+msgid "Eslatma"
+msgstr "Eslatma"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_report_form
+msgid "Excel'ga yuklash"
+msgstr "Excel'ga yuklash"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__attendance_employee_ids
+msgid "Face ID bo'yicha kelganlar"
+msgstr "Face ID bo'yicha kelganlar"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid ""
+"Face ID bo'yicha kelganlar — bo'lim xodimlari va smena xodimlaridan, smena "
+"vaqtida (boshlanishidan 2 soat oldin – tugashigacha) kelganlar:"
+msgstr ""
+"Face ID bo'yicha kelganlar — bo'lim xodimlari va smena xodimlaridan, smena "
+"vaqtida (boshlanishidan 2 soat oldin – tugashigacha) kelganlar:"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid "Face ID kodi"
+msgstr "Face ID kodi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Face ID orqali keldi"
+msgstr "Face ID orqali keldi"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Face ID'dan yangilash"
+msgstr "Face ID'dan yangilash"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Faol"
+msgstr "Faol"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Faqat bo'lim menejeri o'chira oladi."
+msgstr "Faqat bo'lim menejeri o'chira oladi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Faqat ochiq smena yopiladi."
+msgstr "Faqat ochiq smena yopiladi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Faqat qoralama smena ochiladi."
+msgstr "Faqat qoralama smena ochiladi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Faqat yopilgan smena qayta ochiladi."
+msgstr "Faqat yopilgan smena qayta ochiladi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Filtrni tozalash"
+msgstr "Filtrni tozalash"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_follower_ids
+msgid "Followers"
+msgstr "Kuzatuvchilar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Kuzatuvchilar (hamkorlar)"
+
+#. module: cst_kerama_shift
+#: model:res.groups,comment:cst_kerama_shift.group_shift_admin
+msgid ""
+"Hamma bo'limni ko'radi, bo'lim va smena vaqtlarini sozlaydi, yopilgan "
+"smenani qayta ochadi."
+msgstr ""
+"Hamma bo'limni ko'radi, bo'lim va smena vaqtlarini sozlaydi, yopilgan "
+"smenani qayta ochadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Hamma mahsulotlar (boshqa bo'lim operatsiyalari ham)"
+msgstr "Hamma mahsulotlar (boshqa bo'lim operatsiyalari ham)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid ""
+"Hamma miqdor nol bo'lib qoldi. Natijani butunlay bekor qilish uchun bo'lim "
+"oynasidagi «o'chirish»dan foydalaning."
+msgstr ""
+"Hamma miqdor nol bo'lib qoldi. Natijani butunlay bekor qilish uchun bo'lim "
+"oynasidagi «o'chirish»dan foydalaning."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_per_employee
+msgid "Har xodimga"
+msgstr "Har xodimga"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid ""
+"Har xodimning KPI'si stavka bo'yicha hisoblangan qiymat bilan "
+"almashtiriladi. Davom etilsinmi?"
+msgstr ""
+"Har xodimning KPI'si stavka bo'yicha hisoblangan qiymat bilan "
+"almashtiriladi. Davom etilsinmi?"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__has_message
+msgid "Has Message"
+msgstr "Xabar bor"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Havola (texkarta)"
+msgstr "Havola (texkarta)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid "Hech bo'lmaganda bitta miqdor kiriting."
+msgstr "Hech bo'lmaganda bitta miqdor kiriting."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/mo_builder.py:0
+msgid "Hech bo'lmaganda bitta operatsiya tanlang."
+msgstr "Hech bo'lmaganda bitta operatsiya tanlang."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Hisoblanmoqda…"
+msgstr "Hisoblanmoqda…"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/controllers/shift_register.py:0
+msgid "Hisobot topilmadi."
+msgstr "Hisobot topilmadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Holat"
+msgstr "Holat"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+msgid "Hozir"
+msgstr "Hozir"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Hozir boshlash"
+msgstr "Hozir boshlash"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Hozir boshlash (ish buyurtmasi start bo'ladi)"
+msgstr "Hozir boshlash (ish buyurtmasi start bo'ladi)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__old_good
+msgid "Hozir: 1-sort"
+msgstr "Hozir: 1-sort"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__old_second
+msgid "Hozir: 2-sort"
+msgstr "Hozir: 2-sort"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__old_scrap
+msgid "Hozir: brak"
+msgstr "Hozir: brak"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_mo_builder__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_payroll_period__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_fact_report__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_floor__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workcenter__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workorder__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_stock_landed_cost__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "ISHLAB CHIQARISH OYNASI"
+msgstr "ISHLAB CHIQARISH OYNASI"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Belgilansa, yangi xabarlar e'tiboringizni talab qiladi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__message_has_error
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Belgilansa, ba'zi xabarlarda yetkazish xatosi bor."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_is_follower
+msgid "Is Follower"
+msgstr "Kuzatuvchi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Ish boshlangan smenani bekor qilib bo'lmaydi, uni yoping."
+msgstr "Ish boshlangan smenani bekor qilib bo'lmaydi, uni yoping."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__workorder_id
+msgid "Ish buyurtmasi"
+msgstr "Ish buyurtmasi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Ish buyurtmasi %s allaqachon yopilgan."
+msgstr "Ish buyurtmasi %s allaqachon yopilgan."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ish vaqti"
+msgstr "Ish vaqti"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__minutes
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__minutes
+msgid "Ish vaqti (daq.)"
+msgstr "Ish vaqti (daq.)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ishlab chiqarilgan"
+msgstr "Ishlab chiqarilgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ishlab chiqarilgan (1-sort)"
+msgstr "Ishlab chiqarilgan (1-sort)"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_department
+msgid "Ishlab chiqarish bo'limi"
+msgstr "Ishlab chiqarish bo'limi"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_mo_builder
+msgid "Ishlab chiqarish buyurtmasi ustasi"
+msgstr "Ishlab chiqarish buyurtmasi ustasi"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_fact_report
+msgid "Ishlab chiqarish fakti"
+msgstr "Ishlab chiqarish fakti"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ishlab chiqarish jarayoni"
+msgstr "Ishlab chiqarish jarayoni"
+
+#. module: cst_kerama_shift
+#: model:res.groups,name:cst_kerama_shift.group_shift_admin
+msgid "Ishlab chiqarish rahbari"
+msgstr "Ishlab chiqarish rahbari"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ishlab chiqarish tarixi"
+msgstr "Ishlab chiqarish tarixi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Ishni boshlash"
+msgstr "Ishni boshlash"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ishni davom ettirish"
+msgstr "Ishni davom ettirish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ishni ochish"
+msgstr "Ishni ochish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__note
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__note
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__note
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__note
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__note
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid "Izoh"
+msgstr "Izoh"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Izoh..."
+msgstr "Izoh..."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__qty_total
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_list
+msgid "Jami"
+msgstr "Jami"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Jami buyurtma"
+msgstr "Jami buyurtma"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Jami chiqarilgan:"
+msgstr "Jami chiqarilgan:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Jami reja"
+msgstr "Jami reja"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift_line__state__progress
+msgid "Jarayonda"
+msgstr "Jarayonda"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__penalty_amount
+msgid "Jarima"
+msgstr "Jarima"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__penalty_amount
+msgid "Jarima ulushi"
+msgstr "Jarima ulushi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_close.py:0
+msgid "Jarima ulushlari yig'indisi (%s) umumiy jarimaga (%s) teng emas."
+msgstr "Jarima ulushlari yig'indisi (%s) umumiy jarimaga (%s) teng emas."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Jarima ulushlari yig'indisi umumiy jarimaga teng emas."
+msgstr "Jarima ulushlari yig'indisi umumiy jarimaga teng emas."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__kpi_amount
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "KPI"
+msgstr "KPI"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_total
+msgid "KPI fondi"
+msgstr "KPI fondi"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "KPI kiritilmagan"
+msgstr "KPI kiritilmagan"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__kpi_cost_pending
+msgid ""
+"KPI o'zgardi, lekin hali mahsulot tannarxiga qo'shilmagan (har 10 daqiqada "
+"avtomatik o'tadi)."
+msgstr ""
+"KPI o'zgardi, lekin hali mahsulot tannarxiga qo'shilmagan (har 10 daqiqada "
+"avtomatik o'tadi)."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "KPI qatorlarini yaratish"
+msgstr "KPI qatorlarini yaratish"
+
+#. module: cst_kerama_shift
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_kpi_rates
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_kpi_rates
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_kpi_rate_list
+msgid "KPI stavkalari"
+msgstr "KPI stavkalari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_worker__kpi_suggested
+msgid ""
+"KPI stavkalari (Sozlamalar ▸ KPI stavkalari) × xodimning 1-sort ulushi. "
+"Faqat taklif."
+msgstr ""
+"KPI stavkalari (Sozlamalar ▸ KPI stavkalari) × xodimning 1-sort ulushi. "
+"Faqat taklif."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_cost_ids
+msgid "KPI tannarx hujjatlari"
+msgstr "KPI tannarx hujjatlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_cost_pending
+msgid "KPI tannarxga o'tkazilishi kerak"
+msgstr "KPI tannarxga o'tkazilishi kerak"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "KPI tannarxga qo'shildi: %(amount)s (%(doc)s)."
+msgstr "KPI tannarxga qo'shildi: %(amount)s (%(doc)s)."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__kpi_amount
+msgid "KPI ulushi"
+msgstr "KPI ulushi"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "KPI va jarima"
+msgstr "KPI va jarima"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_worker.py:0
+msgid "KPI yopilgan smenada kiritiladi."
+msgstr "KPI yopilgan smenada kiritiladi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "KPI'ni HR bo'limi kiritadi; bu yerda faqat ko'rinadi."
+msgstr "KPI'ni HR bo'limi kiritadi; bu yerda faqat ko'rinadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+"KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham)."
+msgstr ""
+"KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham)."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid ""
+"KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham). "
+"Jarimani shu yerda yozing."
+msgstr ""
+"KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham). "
+"Jarimani shu yerda yozing."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "KPI'ni faqat HR kiritadi."
+msgstr "KPI'ni faqat HR kiritadi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "KPI'ni hozir tannarxga o'tkazish"
+msgstr "KPI'ni hozir tannarxga o'tkazish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__kanban_dashboard_graph
+msgid "Kanban Dashboard Graph"
+msgstr "Kanban dashboard grafigi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__work_day_label
+msgid "Kartadagi raqamlar qaysi kun uchun: ochiq smena sanasi yoki bugun."
+msgstr "Kartadagi raqamlar qaysi kun uchun: ochiq smena sanasi yoki bugun."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Kartani bosib bo'lim oynasiga kiring"
+msgstr "Kartani bosib bo'lim oynasiga kiring"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__categ_id
+msgid "Kategoriya"
+msgstr "Kategoriya"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__late_count
+msgid "Kech"
+msgstr "Kech"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Keldi"
+msgstr "Keldi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Kerak"
+msgstr "Kerak"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Kerak (o'zgartirish mumkin)"
+msgstr "Kerak (o'zgartirish mumkin)"
+
+#. module: cst_kerama_shift
+#: model:stock.scrap.reason.tag,name:cst_kerama_shift.scrap_reason_kesish
+msgid "Kesish nuqsoni"
+msgstr "Kesish nuqsoni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift_line__state__carried
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Keyingi smenaga"
+msgstr "Keyingi smenaga"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Kim"
+msgstr "Kim"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__user_id
+msgid "Kim kiritdi"
+msgstr "Kim kiritdi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__closed_by
+msgid "Kim yopdi"
+msgstr "Kim yopdi"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_list
+msgid "Kiritilgan vaqt"
+msgstr "Kiritilgan vaqt"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__code
+msgid "Kod"
+msgstr "Kod"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__company_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__company_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__company_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__company_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__company_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__company_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__company_id
+msgid "Kompaniya"
+msgstr "Kompaniya"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Komponent yo'q"
+msgstr "Komponent yo'q"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Komponent yo'q — pastdan qo'shing"
+msgstr "Komponent yo'q — pastdan qo'shing"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Kutayotgan buyurtma yo'q"
+msgstr "Kutayotgan buyurtma yo'q"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift_line__state__todo
+msgid "Kutilmoqda"
+msgstr "Kutilmoqda"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi yangilagan"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi yangilangan sana"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__line_count
+msgid "Line Count"
+msgstr "Qatorlar soni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__workcenter_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__workcenter_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__workcenter_id
+msgid "Liniya"
+msgstr "Liniya"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Liniya bo'sh"
+msgstr "Liniya bo'sh"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__running_count
+msgid "Liniyada"
+msgstr "Liniyada"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__product_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__product_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__product_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__product_tmpl_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+msgid "Mahsulot"
+msgstr "Mahsulot"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_shift_kpi_rate__categ_id
+msgid "Mahsulot tanlanmagan bo'lsa, shu kategoriyadagi mahsulotlarga."
+msgstr "Mahsulot tanlanmagan bo'lsa, shu kategoriyadagi mahsulotlarga."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Mahsulot tanlanmagan — ro'yxatdan bittasini bosing"
+msgstr "Mahsulot tanlanmagan — ro'yxatdan bittasini bosing"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Mahsulot · havola"
+msgstr "Mahsulot · havola"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Ishlab chiqarish buyurtmasi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry__material_product_id
+msgid ""
+"Masalan preslashda buzilgan обой: texkarta xomashyosidan qaysi biri brakka "
+"chiqdi."
+msgstr ""
+"Masalan preslashda buzilgan обой: texkarta xomashyosidan qaysi biri brakka "
+"chiqdi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Material"
+msgstr "Material"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__qty_material
+msgid "Material braki"
+msgstr "Material braki"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Material braki (masalan обой)"
+msgstr "Material braki (masalan обой)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Material braki:"
+msgstr "Material braki:"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__manager_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Menejer"
+msgstr "Menejer"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_shifts
+msgid ""
+"Menejer bo'lim oynasidan smenani ochadi; bu ro'yxat hamma smenaning "
+"registri."
+msgstr ""
+"Menejer bo'lim oynasidan smenani ochadi; bu ro'yxat hamma smenaning "
+"registri."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid ""
+"Menejer faqat o'z bo'limida smena ochadi va yopadi. Rahbar hamma bo'limni "
+"ko'radi."
+msgstr ""
+"Menejer faqat o'z bo'limida smena ochadi va yopadi. Rahbar hamma bo'limni "
+"ko'radi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__manager_user_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid "Menejerlar"
+msgstr "Menejerlar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_has_error
+msgid "Message Delivery error"
+msgstr "Xabar yetkazishda xato"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_ids
+msgid "Messages"
+msgstr "Xabarlar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Miqdor"
+msgstr "Miqdor"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Miqdor (dona)"
+msgstr "Miqdor (dona)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+#: code:addons/cst_kerama_shift/models/mo_builder.py:0
+msgid "Miqdor noldan katta bo'lishi kerak."
+msgstr "Miqdor noldan katta bo'lishi kerak."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Miqdori"
+msgstr "Miqdori"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Miqdorlar"
+msgstr "Miqdorlar"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "Miqdorlar manfiy bo'lishi mumkin emas."
+msgstr "Miqdorlar manfiy bo'lishi mumkin emas."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "Miqdorlar o'zgarmadi."
+msgstr "Miqdorlar o'zgarmadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__entry_id
+msgid "Natija"
+msgstr "Natija"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Natija kiritilmasdan yakunlandi — to'liq 1-sort"
+msgstr "Natija kiritilmasdan yakunlandi — to'liq 1-sort"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Natija kiritish"
+msgstr "Natija kiritish"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "Natija tuzatildi (%(mo)s, %(product)s): %(change)s. Sabab: %(reason)s"
+msgstr "Natija tuzatildi (%(mo)s, %(product)s): %(change)s. Sabab: %(reason)s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__correction_production_ids
+msgid ""
+"Natija tuzatilib ko'paytirilganda qo'shimcha chiqarilgan miqdor uchun "
+"yaratilgan buyurtmalar."
+msgstr ""
+"Natija tuzatilib ko'paytirilganda qo'shimcha chiqarilgan miqdor uchun "
+"yaratilgan buyurtmalar."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+msgid "Natija va ombor qoldig'i tuzatiladi. Davom etilsinmi?"
+msgstr "Natija va ombor qoldig'i tuzatiladi. Davom etilsinmi?"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__entry_ids
+msgid "Natija yozuvlari"
+msgstr "Natija yozuvlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__entry_ids
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_entries
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Natijalar"
+msgstr "Natijalar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Natijani saqlab, buyurtmani shu smenada yakunlaydi"
+msgstr "Natijani saqlab, buyurtmani shu smenada yakunlaydi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+msgid "Natijani tuzatish"
+msgstr "Natijani tuzatish"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "Navbat"
+msgstr "Navbat"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__queue_count
+msgid "Navbatda"
+msgstr "Navbatda"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+msgid "Nega tuzatilmoqda? (majburiy)"
+msgstr "Nega tuzatilmoqda? (majburiy)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Noma'lum amal."
+msgstr "Noma'lum amal."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Amallar soni"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_has_error_counter
+msgid "Number of errors"
+msgstr "Xatolar soni"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Harakat talab qiladigan xabarlar soni"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Yetkazishda xato bo'lgan xabarlar soni"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "O'chirib bo'lmaydi: %s"
+msgstr "O'chirib bo'lmaydi: %s"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "O'chirish (ombordan qaytarish)"
+msgstr "O'chirish (ombordan qaytarish)"
+
+#. module: cst_kerama_shift
+#: model:res.groups,comment:cst_kerama_shift.group_shift_manager
+msgid ""
+"O'z bo'limida smena ochadi va yopadi, buyurtmalarni liniyaga qo'yadi, natija"
+" kiritadi."
+msgstr ""
+"O'z bo'limida smena ochadi va yopadi, buyurtmalarni liniyaga qo'yadi, natija"
+" kiritadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift__state__open
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Ochiq"
+msgstr "Ochiq"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__open_shift_id
+msgid "Ochiq smena"
+msgstr "Ochiq smena"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__include_open
+msgid "Ochiq smenalar ham"
+msgstr "Ochiq smenalar ham"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Ochish"
+msgstr "Ochish"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Odoo'da yakunlangan (avtomatik yozuv)"
+msgstr "Odoo'da yakunlangan (avtomatik yozuv)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__currency_id
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_close__currency_id
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_close_line__currency_id
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_worker__currency_id
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_shift_kpi_rate__currency_id
+msgid ""
+"Oklad, KPI, avans, jarima va oylik hisoboti shu valyutada yuritiladi. "
+"Buxgalteriya provodkasi kompaniya valyutasiga davrdagi kurs bo'yicha "
+"o'tkaziladi."
+msgstr ""
+"Oklad, KPI, avans, jarima va oylik hisoboti shu valyutada yuritiladi. "
+"Buxgalteriya provodkasi kompaniya valyutasiga davrdagi kurs bo'yicha "
+"o'tkaziladi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+msgid ""
+"Ombor ham tuzatiladi: kamaytirilsa — mahsulot keyingi ombordan qaytariladi va buyurtma qisman\n"
+"                    qaytariladi (xomashyo omborga qaytadi); ko'paytirilsa — qo'shimcha tuzatish buyurtmasi yaratiladi.\n"
+"                    Bajarilgan hujjatlar o'zgartirilmaydi, farq alohida hujjat bilan yoziladi."
+msgstr ""
+"Ombor ham tuzatiladi: kamaytirilsa — mahsulot keyingi ombordan qaytariladi va buyurtma qisman\n"
+"                    qaytariladi (xomashyo omborga qaytadi); ko'paytirilsa — qo'shimcha tuzatish buyurtmasi yaratiladi.\n"
+"                    Bajarilgan hujjatlar o'zgartirilmaydi, farq alohida hujjat bilan yoziladi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Omborda"
+msgstr "Omborda"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Omborda yetmaydi:"
+msgstr "Omborda yetmaydi:"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__posted
+msgid "Omborga o'tgan"
+msgstr "Omborga o'tgan"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid "Omborga o'tgan natijani o'chirib bo'lmaydi."
+msgstr "Omborga o'tgan natijani o'chirib bo'lmaydi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid ""
+"Omborga o'tgan natijani o'zgartirib bo'lmaydi. Yangi yozuv kiriting yoki "
+"administrator «Tuzatish» qilsin."
+msgstr ""
+"Omborga o'tgan natijani o'zgartirib bo'lmaydi. Yangi yozuv kiriting yoki "
+"administrator «Tuzatish» qilsin."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__is_final
+msgid "Omborga tushadi"
+msgstr "Omborga tushadi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__open_line_count
+msgid "Open Line Count"
+msgstr "Ochiq qatorlar soni"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__open_shift_label
+msgid "Open Shift Label"
+msgstr "Ochiq smena yorlig'i"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Operatsiyalar va stanoklar"
+msgstr "Operatsiyalar va stanoklar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Operatsiyalar:"
+msgstr "Operatsiyalar:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Oraliq operatsiya: 2-sort omborga oxirgi bosqichda o'tadi."
+msgstr "Oraliq operatsiya: 2-sort omborga oxirgi bosqichda o'tadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__is_final_operation
+msgid "Oxirgi operatsiya"
+msgstr "Oxirgi operatsiya"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+"Oxirgi operatsiya: «Yakunlash» (yoki «Tugatish») bosilganda 1-sort omborga, "
+"brak scrap'ga, 2-sort o'z mahsulotiga o'tadi."
+msgstr ""
+"Oxirgi operatsiya: «Yakunlash» (yoki «Tugatish») bosilganda 1-sort omborga, "
+"brak scrap'ga, 2-sort o'z mahsulotiga o'tadi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__payroll_line_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Oylik qatorlari"
+msgstr "Oylik qatorlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__currency_id
+msgid "Oylik valyutasi"
+msgstr "Oylik valyutasi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Panel"
+msgstr "Panel"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__payroll_line_count
+msgid "Payroll Line Count"
+msgstr "Oylik qatorlari soni"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_payroll_period
+msgid "Payroll Period"
+msgstr "Oylik davri"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid "Preslash bo'limi"
+msgstr "Preslash bo'limi"
+
+#. module: cst_kerama_shift
+#: model:stock.scrap.reason.tag,name:cst_kerama_shift.scrap_reason_press
+msgid "Press nuqsoni"
+msgstr "Press nuqsoni"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Qayta ochish"
+msgstr "Qayta ochish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Qidirish (lotin yoki kirill)"
+msgstr "Qidirish (lotin yoki kirill)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Qidirish: nomi yoki kodi (lotin / kirill)…"
+msgstr "Qidirish: nomi yoki kodi (lotin / kirill)…"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__worked
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__worked
+msgid "Qilgan ishi"
+msgstr "Qilgan ishi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__code
+msgid "Qisqa kod: BOSMA, KESISH, PRESLASH."
+msgstr "Qisqa kod: BOSMA, KESISH, PRESLASH."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Qoldi"
+msgstr "Qoldi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__backorder_production_id
+msgid "Qoldiq buyurtma"
+msgstr "Qoldiq buyurtma"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift__state__draft
+msgid "Qoralama"
+msgstr "Qoralama"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__color
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__color
+msgid "Rang"
+msgstr "Rang"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__name
+msgid "Raqam"
+msgstr "Raqam"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__sequence
+msgid "Raqami"
+msgstr "Raqami"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__rating_ids
+msgid "Ratings"
+msgstr "Baholar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__sale_origin
+msgid ""
+"Reference of the document that generated this production order request."
+msgstr "Ushbu ishlab chiqarish zayafkasini yaratgan hujjat havolasi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__qty_planned
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__qty_planned
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "Reja"
+msgstr "Reja"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__plan_pct
+msgid "Reja %"
+msgstr "Reja %"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Reja (dona) ·"
+msgstr "Reja (dona) ·"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Reja ·"
+msgstr "Reja ·"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Rejaga nisbatan"
+msgstr "Rejaga nisbatan"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS yetkazishda xato"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__reason
+msgid "Sabab"
+msgstr "Sabab"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__shift_date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Sana"
+msgstr "Sana"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Saqlash"
+msgstr "Saqlash"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__scrap_ids
+msgid "Scrap'lar"
+msgstr "Scrap'lar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__sequence
+msgid "Sequence"
+msgstr "Ketma-ketlik"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__shift_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__shift_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__shift_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__shift_id
+msgid "Shift"
+msgstr "Smena"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__shift_count
+msgid "Shift Count"
+msgstr "Smenalar soni"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/mrp_workorder.py:0
+msgid "Shop Floor'da yakunlandi (qoldiq 1-sort)"
+msgstr "Shop Floor'da yakunlandi (qoldiq 1-sort)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/mrp_production.py:0
+msgid "Shop Floor'da yopildi (qoldiq 1-sort)"
+msgstr "Shop Floor'da yopildi (qoldiq 1-sort)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__manager_user_ids
+msgid "Shu bo'limda smena ochib-yopa oladigan foydalanuvchilar."
+msgstr "Shu bo'limda smena ochib-yopa oladigan foydalanuvchilar."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__scrap_reason_tag_id
+msgid "Shu bo'limdan chiqqan brak scrap'ga shu sabab bilan yoziladi."
+msgstr "Shu bo'limdan chiqqan brak scrap'ga shu sabab bilan yoziladi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__employee_ids
+msgid "Shu buyurtmada ishlaganlar. Bo'sh qolsa smenadagi hamma xodim."
+msgstr "Shu buyurtmada ishlaganlar. Bo'sh qolsa smenadagi hamma xodim."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "Shu oy"
+msgstr "Shu oy"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__planned_qty
+msgid "Shu smenada nechta chiqarish mo'ljallangan."
+msgstr "Shu smenada nechta chiqarish mo'ljallangan."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Sifat ko'rsatkichlari"
+msgstr "Sifat ko'rsatkichlari"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Sifat ulushlari"
+msgstr "Sifat ulushlari"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid ""
+"Siz «%s» bo'limining menejeri emassiz. Faqat bo'lim menejeri smena ochadi va"
+" yopadi."
+msgstr ""
+"Siz «%s» bo'limining menejeri emassiz. Faqat bo'lim menejeri smena ochadi va"
+" yopadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__template_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__shift_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workorder__cst_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "Smena"
+msgstr "Smena"
+
+#. module: cst_kerama_shift
+#: model:cst.payroll.component,name:cst_kerama_shift.component_smena_kpi
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_shift_workers
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_hr_shift_kpi
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_workers
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "Smena KPI"
+msgstr "Smena KPI"
+
+#. module: cst_kerama_shift
+#: model:product.template,name:cst_kerama_shift.product_kpi_cost_product_template
+msgid "Smena KPI (ish haqi, tannarxga)"
+msgstr "Smena KPI (ish haqi, tannarxga)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_stock_landed_cost__cst_kpi_pay_amount
+msgid "Smena KPI (oylik valyutasida)"
+msgstr "Smena KPI (oylik valyutasida)"
+
+#. module: cst_kerama_shift
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_hr_shift_kpi_rates
+msgid "Smena KPI stavkalari"
+msgstr "Smena KPI stavkalari"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_shift_kpi_rate
+msgid "Smena KPI stavkasi"
+msgstr "Smena KPI stavkasi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Smena KPI — %s"
+msgstr "Smena KPI — %s"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Smena KPI: %s"
+msgstr "Smena KPI: %s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__date
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry__shift_date
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_worker__shift_date
+msgid "Smena boshlangan kun. Tungi smena ham boshlangan kuniga yoziladi."
+msgstr "Smena boshlangan kun. Tungi smena ham boshlangan kuniga yoziladi."
+
+#. module: cst_kerama_shift
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_root
+#: model:res.groups.privilege,name:cst_kerama_shift.privilege_shift
+msgid "Smena boshqaruvi"
+msgstr "Smena boshqaruvi"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_line
+msgid "Smena buyurtmasi"
+msgstr "Smena buyurtmasi"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid "Smena haqida izoh..."
+msgstr "Smena haqida izoh..."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__shift_state
+msgid "Smena holati"
+msgstr "Smena holati"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Smena kartochkasi"
+msgstr "Smena kartochkasi"
+
+#. module: cst_kerama_shift
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_shift_entries
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_pivot
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+msgid "Smena natijalari"
+msgstr "Smena natijalari"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_entry
+msgid "Smena natijasi"
+msgstr "Smena natijasi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Smena natijasi tuzatildi: %(line)s, +%(qty)s dona."
+msgstr "Smena natijasi tuzatildi: %(line)s, +%(qty)s dona."
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_correction
+msgid "Smena natijasini tuzatish"
+msgstr "Smena natijasini tuzatish"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Smena ochildi: %s xodim."
+msgstr "Smena ochildi: %s xodim."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__employee_ids
+msgid ""
+"Smena ochilganda ro'yxatda chiqadigan xodimlar; kelganlari Face ID bo'yicha "
+"belgilanadi."
+msgstr ""
+"Smena ochilganda ro'yxatda chiqadigan xodimlar; kelganlari Face ID bo'yicha "
+"belgilanadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Smena ochilmagan"
+msgstr "Smena ochilmagan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Smena ochiq"
+msgstr "Smena ochiq"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid "Smena ochiq emas, natija kiritib bo'lmaydi."
+msgstr "Smena ochiq emas, natija kiritib bo'lmaydi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Smena ochiq emas."
+msgstr "Smena ochiq emas."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Smena ochiq emas: %s"
+msgstr "Smena ochiq emas: %s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workorder__cst_shift_line_ids
+msgid "Smena qatorlari"
+msgstr "Smena qatorlari"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Smena qayta ochildi."
+msgstr "Smena qayta ochildi."
+
+#. module: cst_kerama_shift
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_shift_report
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_report
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_reports_shift_register
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_report
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_report_form
+msgid "Smena registri"
+msgstr "Smena registri"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_report.py:0
+msgid "Smena registri %s – %s"
+msgstr "Smena registri %s – %s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_line__backorder_production_id
+msgid "Smena rejadan kam chiqarganda qolgan miqdor uchun yaratilgan buyurtma."
+msgstr ""
+"Smena rejadan kam chiqarganda qolgan miqdor uchun yaratilgan buyurtma."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__planned_qty
+msgid "Smena rejasi"
+msgstr "Smena rejasi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Smena rejasi (dona)"
+msgstr "Smena rejasi (dona)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__shift_date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "Smena sanasi"
+msgstr "Smena sanasi"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_template.py:0
+msgid "Smena soatlari 0 dan 24 gacha bo'lishi kerak."
+msgstr "Smena soatlari 0 dan 24 gacha bo'lishi kerak."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_department__tz
+msgid "Smena soatlari shu mintaqa bo'yicha o'qiladi."
+msgstr "Smena soatlari shu mintaqa bo'yicha o'qiladi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_close__kpi_total
+msgid ""
+"Smena uchun mukofot fondi. Xodimlarga teng bo'linadi; ulushni qo'lda "
+"o'zgartirish mumkin."
+msgstr ""
+"Smena uchun mukofot fondi. Xodimlarga teng bo'linadi; ulushni qo'lda "
+"o'zgartirish mumkin."
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_template
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__template_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__template_id
+msgid "Smena vaqti"
+msgstr "Smena vaqti"
+
+#. module: cst_kerama_shift
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_shift_templates
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__shift_template_ids
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_templates
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_shift_templates
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_template_list
+msgid "Smena vaqtlari"
+msgstr "Smena vaqtlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_worker
+msgid "Smena xodimi (KPI)"
+msgstr "Smena xodimi (KPI)"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Smena xodimlari: %(old)s → %(new)s xodim (%(what)s)."
+msgstr "Smena xodimlari: %(old)s → %(new)s xodim (%(what)s)."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_shifts
+msgid "Smena yo'q"
+msgstr "Smena yo'q"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid ""
+"Smena yopildi. 1-sort %(good)s, 2-sort %(second)s, brak %(scrap)s. KPI fondi"
+" %(kpi)s, jarima %(penalty)s."
+msgstr ""
+"Smena yopildi. 1-sort %(good)s, 2-sort %(second)s, brak %(scrap)s. KPI fondi"
+" %(kpi)s, jarima %(penalty)s."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__kpi_total
+msgid "Smena yopilganda menejer kiritadi; xodimlarga bo'linadi."
+msgstr "Smena yopilganda menejer kiritadi; xodimlarga bo'linadi."
+
+#. module: cst_kerama_shift
+#: model:cst.payroll.component,note:cst_kerama_shift.component_smena_kpi
+msgid ""
+"Smena yopilganda menejer kiritgan KPI fondining xodimga tushgan ulushi."
+msgstr ""
+"Smena yopilganda menejer kiritgan KPI fondining xodimga tushgan ulushi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_shift_workers
+msgid ""
+"Smena yopilganda uning xodimlari shu yerda chiqadi: har biriga qilgan ishiga qarab KPI yozing.\n"
+"               KPI oylikka va ishlab chiqarilgan mahsulot tannarxiga o'tadi."
+msgstr ""
+"Smena yopilganda uning xodimlari shu yerda chiqadi: har biriga qilgan ishiga qarab KPI yozing.\n"
+"               KPI oylikka va ishlab chiqarilgan mahsulot tannarxiga o'tadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "Smena yopiq"
+msgstr "Smena yopiq"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_mrp_workorder__cst_shift_id
+msgid "Smena yozuvi"
+msgstr "Smena yozuvi"
+
+#. module: cst_kerama_shift
+#: model:ir.actions.server,name:cst_kerama_shift.ir_cron_kpi_cost_ir_actions_server
+msgid "Smena: KPI'ni mahsulot tannarxiga o'tkazish"
+msgstr "Smena: KPI'ni mahsulot tannarxiga o'tkazish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Smenada xodim belgilanmagan — «Xodimlarni boshqarish» orqali qo'shing."
+msgstr ""
+"Smenada xodim belgilanmagan — «Xodimlarni boshqarish» orqali qo'shing."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_close.py:0
+msgid "Smenada xodim yo'q. Avval xodimlarni belgilang."
+msgstr "Smenada xodim yo'q. Avval xodimlarni belgilang."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__employee_ids
+msgid "Smenadagi xodimlar"
+msgstr "Smenadagi xodimlar"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Smenadagi xodimlar:"
+msgstr "Smenadagi xodimlar:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.actions.act_window,name:cst_kerama_shift.action_shifts
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__shift_ids
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shifts
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Smenalar"
+msgstr "Smenalar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Smenani boshlash"
+msgstr "Smenani boshlash"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Smenani ochish"
+msgstr "Smenani ochish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_close
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Smenani yakunlash"
+msgstr "Smenani yakunlash"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_close_line
+msgid "Smenani yakunlash: xodim"
+msgstr "Smenani yakunlash: xodim"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_template__hour_from
+msgid "Soat, masalan 6.0 = 06:00, 14.5 = 14:30."
+msgstr "Soat, masalan 6.0 = 06:00, 14.5 = 14:30."
+
+#. module: cst_kerama_shift
+#: model:ir.ui.menu,name:cst_kerama_shift.menu_shift_config
+msgid "Sozlamalar"
+msgstr "Sozlamalar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__workcenter_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+msgid "Stanoklar (liniyalar)"
+msgstr "Stanoklar (liniyalar)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__state
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__shift_state
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__state
+msgid "State"
+msgstr "Holat"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__kpi_suggested
+msgid "Stavka bo'yicha"
+msgstr "Stavka bo'yicha"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_kpi_rates
+msgid "Stavka hali yo'q"
+msgstr "Stavka hali yo'q"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_shift_kpi_rate__date_from
+msgid ""
+"Stavka o'zgarsa yangi qator qo'shing — eski smenalar eski stavkada qoladi."
+msgstr ""
+"Stavka o'zgarsa yangi qator qo'shing — eski smenalar eski stavkada qoladi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Stavkadan to'ldirish"
+msgstr "Stavkadan to'ldirish"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_stock_landed_cost
+msgid "Stock Landed Cost"
+msgstr "Tovar qo‘shimcha xarajatlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__summary_html
+msgid "Summary Html"
+msgstr "Xulosa (HTML)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Tanlangan mahsulot"
+msgstr "Tanlangan mahsulot"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Tanlangan texkarta «%s» mahsulotiga tegishli emas."
+msgstr "Tanlangan texkarta «%s» mahsulotiga tegishli emas."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_cost_note
+msgid "Tannarx izohi"
+msgstr "Tannarx izohi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_capitalized
+msgid "Tannarxga qo'shilgan KPI"
+msgstr "Tannarxga qo'shilgan KPI"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Tannarxga qo'shilmadi: dollar kursi topilmadi."
+msgstr "Tannarxga qo'shilmadi: dollar kursi topilmadi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Tannarxga qo'shilmadi: smenada omborga tushgan 1-sort mahsulot yo'q."
+msgstr "Tannarxga qo'shilmadi: smenada omborga tushgan 1-sort mahsulot yo'q."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_department__output_kind__finished
+msgid "Tayyor mahsulot"
+msgstr "Tayyor mahsulot"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Tekshirilmoqda…"
+msgstr "Tekshirilmoqda…"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Texkarta operatsiyalari:"
+msgstr "Texkarta operatsiyalari:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+"Texkarta xomashyosidan brakka chiqadi; tayyor mahsulot sonini "
+"o'zgartirmaydi."
+msgstr ""
+"Texkarta xomashyosidan brakka chiqadi; tayyor mahsulot sonini "
+"o'zgartirmaydi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Texkartada operatsiya yo'q"
+msgstr "Texkartada operatsiya yo'q"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Texkartadan qayta yuklash"
+msgstr "Texkartadan qayta yuklash"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Texkartaning o'ziga tegilmaydi: o'zgarishlar faqat shu buyurtmaga."
+msgstr "Texkartaning o'ziga tegilmaydi: o'zgarishlar faqat shu buyurtmaga."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_stock_landed_cost__cst_kpi_pay_amount
+msgid ""
+"The shift KPI this cost carries, in so'm — the shift compares it with its "
+"KPI fund."
+msgstr ""
+"Bu tannarx olib yuradigan smena KPI'si, so'mda — smena uni o'z KPI fondi "
+"bilan solishtiradi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__new_good
+msgid "To'g'ri 1-sort"
+msgstr "To'g'ri 1-sort"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__new_second
+msgid "To'g'ri 2-sort"
+msgstr "To'g'ri 2-sort"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__new_scrap
+msgid "To'g'ri brak"
+msgstr "To'g'ri brak"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+msgid "To'g'risi"
+msgstr "To'g'risi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift_line__state__paused
+msgid "To'xtatilgan"
+msgstr "To'xtatilgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "To'xtatish"
+msgstr "To'xtatish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Topilmadi"
+msgstr "Topilmadi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__date_end
+msgid "Tugadi"
+msgstr "Tugadi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__date_to
+msgid "Tugash"
+msgstr "Tugash"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__date_end
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__hour_to
+msgid "Tugashi"
+msgstr "Tugashi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Tugatish"
+msgstr "Tugatish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__crosses_midnight
+msgid "Tun o'rtasidan o'tadi"
+msgstr "Tun o'rtasidan o'tadi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__corrected
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_search
+msgid "Tuzatilgan"
+msgstr "Tuzatilgan"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_correction_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_entry_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Tuzatish"
+msgstr "Tuzatish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__unbuild_ids
+msgid "Tuzatish (qaytarish)"
+msgstr "Tuzatish (qaytarish)"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__correction_production_ids
+msgid "Tuzatish buyurtmalari"
+msgstr "Tuzatish buyurtmalari"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Tuzatish buyurtmasi %s yakunlanmadi (xomashyo yetarlimi?)."
+msgstr "Tuzatish buyurtmasi %s yakunlanmadi (xomashyo yetarlimi?)."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__correction_move_ids
+msgid "Tuzatish harakatlari"
+msgstr "Tuzatish harakatlari"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "Tuzatish sababini yozing."
+msgstr "Tuzatish sababini yozing."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "Tuzatish: %(mo)s · %(shift)s"
+msgstr "Tuzatish: %(mo)s · %(shift)s"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__correction_log
+msgid "Tuzatishlar"
+msgstr "Tuzatishlar"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__kpi_total
+msgid "Umumiy KPI summasi"
+msgstr "Umumiy KPI summasi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Umumiy bajarilish"
+msgstr "Umumiy bajarilish"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__product_uom_id
+msgid "Unit"
+msgstr "Birlik"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__datetime
+msgid "Vaqt"
+msgstr "Vaqt"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__tz
+msgid "Vaqt mintaqasi"
+msgstr "Vaqt mintaqasi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__website_message_ids
+msgid "Website Messages"
+msgstr "Veb-sayt xabarlari"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift__website_message_ids
+msgid "Website communication history"
+msgstr "Veb-saytdagi muloqot tarixi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__wizard_id
+msgid "Wizard"
+msgstr "Yordamchi oyna"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Ish markazi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__work_day_label
+msgid "Work Day Label"
+msgstr "Ish kuni yorlig'i"
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_mrp_workorder
+msgid "Work Order"
+msgstr "Ish buyurtmasi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__workcenter_count
+msgid "Workcenter Count"
+msgstr "Liniyalar soni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__cst_characteristic
+msgid "Xarakteristika"
+msgstr "Xarakteristika"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__employee_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__employee_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_worker_search
+msgid "Xodim"
+msgstr "Xodim"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_worker__qty_good
+msgid ""
+"Xodim ishlagan buyurtmalardagi 1-sort, buyurtmadagi xodimlar soniga "
+"bo'lingan."
+msgstr ""
+"Xodim ishlagan buyurtmalardagi 1-sort, buyurtmadagi xodimlar soniga "
+"bo'lingan."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_worker__employee_name
+msgid "Xodim ismi"
+msgstr "Xodim ismi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.constraint,message:cst_kerama_shift.constraint_cst_production_shift_worker_shift_employee_uniq
+msgid "Xodim smenada bir marta bo'ladi."
+msgstr "Xodim smenada bir marta bo'ladi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__line_ids
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__employee_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Xodimlar"
+msgstr "Xodimlar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__worker_ids
+msgid "Xodimlar KPI"
+msgstr "Xodimlar KPI"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_worker.py:0
+msgid "Xodimlar KPI va jarimasini faqat HR o'zgartiradi."
+msgstr "Xodimlar KPI va jarimasini faqat HR o'zgartiradi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/wizard/shift_close.py:0
+msgid ""
+"Xodimlar ulushlari yig'indisi (%s) umumiy KPI summasiga (%s) teng emas."
+msgstr ""
+"Xodimlar ulushlari yig'indisi (%s) umumiy KPI summasiga (%s) teng emas."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "Xodimlar ulushlari yig'indisi umumiy KPI summasiga teng emas."
+msgstr "Xodimlar ulushlari yig'indisi umumiy KPI summasiga teng emas."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Xodimlarni boshqarish"
+msgstr "Xodimlarni boshqarish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Xom ashyo qoldiqlari"
+msgstr "Xom ashyo qoldiqlari"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Xomashyo"
+msgstr "Xomashyo"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Xomashyo (kiritilgan miqdor uchun)"
+msgstr "Xomashyo (kiritilgan miqdor uchun)"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
+msgid "Yakun"
+msgstr "Yakun"
+
+#. module: cst_kerama_shift
+#: model:res.groups,name:cst_kerama_shift.group_doc_correction
+msgid "Yakunlangan hujjatlarni tuzatish"
+msgstr "Yakunlangan hujjatlarni tuzatish"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+#: code:addons/cst_kerama_shift/wizard/shift_correction.py:0
+msgid "Yakunlangan natijani faqat administrator yoki rahbar tuzatadi."
+msgstr "Yakunlangan natijani faqat administrator yoki rahbar tuzatadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Yakunlash"
+msgstr "Yakunlash"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Yangi"
+msgstr "Yangi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.js:0
+msgid "Yangi buyurtma"
+msgstr "Yangi buyurtma"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Yangi buyurtma qo'shish"
+msgstr "Yangi buyurtma qo'shish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Yangi buyurtmalar"
+msgstr "Yangi buyurtmalar"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_department__output_kind__semi
+msgid "Yarim tayyor mahsulot"
+msgstr "Yarim tayyor mahsulot"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields.selection,name:cst_kerama_shift.selection__cst_production_shift__state__closed
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_search
+msgid "Yopilgan"
+msgstr "Yopilgan"
+
+#. module: cst_kerama_shift
+#: model_terms:ir.actions.act_window,help:cst_kerama_shift.action_shift_workers
+msgid "Yopilgan smena yo'q"
+msgstr "Yopilgan smena yo'q"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "Yopilgan smenani faqat ishlab chiqarish rahbari qayta ochadi."
+msgstr "Yopilgan smenani faqat ishlab chiqarish rahbari qayta ochadi."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__closed_at
+msgid "Yopilgan vaqt"
+msgstr "Yopilgan vaqt"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "Yuklanmoqda…"
+msgstr "Yuklanmoqda…"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__sequence
+msgid "Zanjirdagi o'rni"
+msgstr "Zanjirdagi o'rni"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "allaqachon qaytarilgan"
+msgstr "allaqachon qaytarilgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "bajarildi"
+msgstr "bajarildi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "brak"
+msgstr "brak"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "buyurtma bo'yicha ishlab chiqarish jarayoni"
+msgstr "buyurtma bo'yicha ishlab chiqarish jarayoni"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "buyurtma bu bo'limda to'liq yakunlanmagan"
+msgstr "buyurtma bu bo'limda to'liq yakunlanmagan"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "chiqarildi: %s"
+msgstr "chiqarildi: %s"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "dona"
+msgstr "dona"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "dona (1-sort + 2-sort + brak jami shundan oshmasin)"
+msgstr "dona (1-sort + 2-sort + brak jami shundan oshmasin)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "dona — 2-sort va brak 1-sortdan avtomatik ayriladi."
+msgstr "dona — 2-sort va brak 1-sortdan avtomatik ayriladi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "faqat yakunlangan buyurtma"
+msgstr "faqat yakunlangan buyurtma"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "id"
+msgstr "id"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "kashmir, ldsp, 110093, 75 гр…"
+msgstr "kashmir, ldsp, 110093, 75 гр…"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "keldi"
+msgstr "keldi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "kutadi:"
+msgstr "kutadi:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "liniya"
+msgstr "liniya"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "masalan: press nuqsoni"
+msgstr "masalan: press nuqsoni"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "navbatda"
+msgstr "navbatda"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "ochiq"
+msgstr "ochiq"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "omborda"
+msgstr "omborda"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "qo'shildi: %s"
+msgstr "qo'shildi: %s"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid "qoldig'i alohida buyurtmaga (%s) o'tgan"
+msgstr "qoldig'i alohida buyurtmaga (%s) o'tgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "qoldiq:"
+msgstr "qoldiq:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "ta"
+msgstr "ta"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "ta buyurtma"
+msgstr "ta buyurtma"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+"ta buyurtma hali jarayonda: chiqarilgani omborga o'tadi, qolgani keyingi "
+"smenaga ochiq qoladi."
+msgstr ""
+"ta buyurtma hali jarayonda: chiqarilgani omborga o'tadi, qolgani keyingi "
+"smenaga ochiq qoladi."
+
+#. module: cst_kerama_shift
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_close_form
+msgid ""
+"ta buyurtma hali jarayonda: yopilganda chiqarilgani omborga o'tadi, qolgani "
+"keyingi smenaga ochiq qoladi."
+msgstr ""
+"ta buyurtma hali jarayonda: yopilganda chiqarilgani omborga o'tadi, qolgani "
+"keyingi smenaga ochiq qoladi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "ta mahsulot"
+msgstr "ta mahsulot"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid ""
+"ta material. Buyurtma baribir yaratiladi,\n"
+"                                xomashyo kelgach zaxira qilinadi."
+msgstr ""
+"ta material. Buyurtma baribir yaratiladi,\n"
+"                                xomashyo kelgach zaxira qilinadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "texkarta:"
+msgstr "texkarta:"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "uchun hali natija kiritilmagan."
+msgstr "uchun hali natija kiritilmagan."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_department_kanban
+msgid "xodim"
+msgstr "xodim"
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "«%s» allaqachon jarayonda yoki tugatilgan."
+msgstr "«%s» allaqachon jarayonda yoki tugatilgan."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift.py:0
+msgid "«%s» bo'limida allaqachon ochiq smena bor. Avval uni yoping."
+msgstr "«%s» bo'limida allaqachon ochiq smena bor. Avval uni yoping."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid "«%s» bu smenada yakunlangan. Yangi qator oching."
+msgstr "«%s» bu smenada yakunlangan. Yangi qator oching."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/department.py:0
+msgid "«%s» kodli bo'lim allaqachon bor."
+msgstr "«%s» kodli bo'lim allaqachon bor."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+msgid ""
+"«%s» texkartasida bu bo'lim bajaradigan operatsiya yo'q. Buyurtma yaratildi,"
+" lekin u boshqa bo'limning navbatiga tushdi."
+msgstr ""
+"«%s» texkartasida bu bo'lim bajaradigan operatsiya yo'q. Buyurtma yaratildi,"
+" lekin u boshqa bo'limning navbatiga tushdi."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/floor.py:0
+#: code:addons/cst_kerama_shift/models/mo_builder.py:0
+msgid "«%s» uchun texkarta (BoM) yo'q."
+msgstr "«%s» uchun texkarta (BoM) yo'q."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "· smena kuni"
+msgstr "· smena kuni"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_mrp_workorder__cst_shift
+msgid ""
+"Кайси сменада бажарилди.  Ишбай хисоботи участка ва смена буйича "
+"гурухланади."
+msgstr ""
+"Qaysi smenada bajarildi.  Ishbay hisoboti uchastka va smena bo'yicha "
+"guruhlanadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "— hammasi —"
+msgstr "— hammasi —"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+msgid "— o'zgartirilgan"
+msgstr "— o'zgartirilgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "— yo'q —"
+msgstr "— yo'q —"

@@ -1,0 +1,458 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_wh_flow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:08+0000\n"
+"PO-Revision-Date: 2026-10-19 18:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "%(label)s: %(picking)s (%(src)s → %(dst)s)."
+msgstr "%(label)s: %(picking)s (%(src)s → %(dst)s)."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/floor.py:0
+msgid ""
+"%(mo)s: tayyor mahsulot %(pick)s bilan «%(wh)s»ga qabul qilingan va u yerda "
+"endi to'liq yo'q (sotilgan yoki ko'chirilgan), o'chirib bo'lmaydi."
+msgstr ""
+"%(mo)s: готовая продукция принята на «%(wh)s» документом %(pick)s и там её "
+"уже нет в полном объёме (продана или перемещена), удалить нельзя."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/shift_line.py:0
+msgid ""
+"%(wh)s omborida tuzatish uchun yetarli mahsulot yo'q (sotilgan yoki "
+"ko'chirilgan bo'lishi mumkin): %(rows)s."
+msgstr ""
+"На складе %(wh)s недостаточно товара для исправления (возможно, продан или "
+"перемещён): %(rows)s."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "%s tasdiqlanmadi."
+msgstr "%s не подтверждён."
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Bajarilgan sana"
+msgstr "Дата выполнения"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__mrp_production__cst_stage__cancel
+msgid "Bekor qilindi"
+msgstr "Отменён"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_mrp_production__cst_flow_department_id
+msgid "Bo'lim (ombor bo'yicha)"
+msgstr "Цех (по складу)"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_cst_production_department__warehouse_id
+msgid ""
+"Bo'lim buyurtmalari shu omborda ochiladi: xomashyo shu ombordan olinadi, "
+"tayyor mahsulot shu omborga tushadi."
+msgstr ""
+"Заказы цеха открываются на этом складе: сырьё берётся с этого склада, "
+"готовая продукция поступает на этот склад."
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_department_form_wh_flow
+msgid "Bo'lim ombori"
+msgstr "Склад цеха"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_cst_production_floor
+msgid "Bo'lim oynasi"
+msgstr "Окно цеха"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_mrp_production__cst_stage
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_search_wh_flow
+msgid "Bosqich"
+msgstr "Этап"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_stock_picking__cst_production_id
+msgid "Bu ko'chirish shu buyurtma uchun avtomatik yaratilgan."
+msgstr "Это перемещение создано автоматически для данного заказа."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_mrp_production__cst_flow_department_id
+msgid "Buyurtma shu bo'limning omborida ochilgan."
+msgstr "Заказ открыт на складе этого цеха."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_cst_production_department__cst_auto_supply
+msgid ""
+"Buyurtma tasdiqlanganda yetmagan xomashyo uchun ichki ko'chirish yaratiladi."
+msgstr ""
+"При подтверждении заказа для недостающего сырья создаётся внутреннее "
+"перемещение."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "Buyurtma «%(dept)s» bo'limining omboriga o'tkazildi: %(wh)s."
+msgstr "Заказ переведён на склад цеха «%(dept)s»: %(wh)s."
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_department_form_wh_flow
+msgid ""
+"Buyurtma «Ishlaydigan ombor»da ochiladi: xomashyo shu ombordan olinadi, natija shu\n"
+"                        omborga tushadi. Yetmagan xomashyo «Xomashyo omborlari»dan ichki ko'chirish bilan so'raladi.\n"
+"                        1-sort va 2-sort natija «Tayyor mahsulot ketadigan ombor»ga ko'chiriladi; uni o'sha omborning\n"
+"                        qabul qiluvchisi tasdiqlaydi. Yangi ombor ochsangiz, shu ro'yxatlarda o'zi chiqadi."
+msgstr ""
+"Заказ открывается на «Рабочем складе»: сырьё берётся с этого склада, результат поступает на этот\n"
+"                        склад. Недостающее сырьё запрашивается со «Складов сырья» внутренним перемещением.\n"
+"                        Результат 1-го и 2-го сорта перемещается на «Склад готовой продукции»; его подтверждает\n"
+"                        получатель этого склада. Если создадите новый склад, он сам появится в этих списках."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_mrp_production__cst_flow_picking_count
+msgid "Cst Flow Picking Count"
+msgstr "Кол-во складских перемещений"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_mo_builder__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_floor__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_shift_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "Hamma xomashyo bo'lim omborida bor yoki allaqachon so'ralgan."
+msgstr "Всё сырьё есть на складе цеха или уже запрошено."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_mo_builder__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_floor__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_shift_line__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_mrp_production__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_move__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_picking__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_warehouse__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_cst_production_department
+msgid "Ishlab chiqarish bo'limi"
+msgstr "Производственный цех"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_picking__cst_production_id
+msgid "Ishlab chiqarish buyurtmasi"
+msgstr "Заказ на производство"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_cst_mo_builder
+msgid "Ishlab chiqarish buyurtmasi ustasi"
+msgstr "Мастер заказа на производство"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__mrp_production__cst_stage__progress
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_search_wh_flow
+msgid "Ishlab chiqarishda"
+msgstr "В производстве"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_mrp_production__cst_stage
+msgid ""
+"Ishlab chiqarishda → Yakunlandi (tayyor mahsulot chiqdi) → Omborga qabul "
+"qilindi (keyingi omborga kirim qilindi)."
+msgstr ""
+"В производстве → Завершён (готовая продукция выпущена) → Принят на склад "
+"(оприходован на следующий склад)."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__stock_picking__cst_move_kind__output
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Ishlab chiqarishdan"
+msgstr "Из производства"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_warehouse__cst_department_ids
+msgid "Ishlaydigan bo'limlar"
+msgstr "Рабочие цеха"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__warehouse_id
+msgid "Ishlaydigan ombor"
+msgstr "Рабочий склад"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__stock_picking__cst_move_kind__transfer
+msgid "Ko'chirish"
+msgstr "Перемещение"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_picking__cst_flow_kind
+msgid "Ko'chirish turi"
+msgstr "Тип перемещения"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Заказ на производство"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_cst_production_department__output_warehouse_id
+msgid ""
+"Natija kiritilganda 1-sort va 2-sort mahsulot shu omborga ko'chiriladi."
+msgstr ""
+"При вводе результата продукция 1-го и 2-го сорта перемещается на этот склад."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_cst_production_department__cst_auto_forward
+msgid ""
+"Natija omborga tushishi bilan keyingi omborga ichki ko'chirish yaratiladi."
+msgstr ""
+"Как только результат поступает на склад, создаётся внутреннее перемещение на"
+" следующий склад."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__mrp_production__cst_stage__queue
+msgid "Navbatda"
+msgstr "В очереди"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Oddiy ko'chirishlar"
+msgstr "Обычные перемещения"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_mrp_production__cst_flow_picking_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_form_wh_flow
+msgid "Ombor ko'chirishlari"
+msgstr "Складские перемещения"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__mrp_production__cst_stage__received
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_search_wh_flow
+msgid "Omborga qabul qilindi"
+msgstr "Принят на склад"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_department_form_wh_flow
+msgid "Omborlar"
+msgstr "Склады"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_stock_warehouse__cst_color
+msgid "Omborning barcha operatsiyalari Ombor sharhida shu rangda ko'rinadi."
+msgstr "Все операции склада отображаются в обзоре склада этим цветом."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_warehouse__cst_receiver_id
+msgid "Qabul qiluvchi"
+msgstr "Получатель"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__mrp_production__cst_stage__draft
+msgid "Qoralama"
+msgstr "Черновик"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_warehouse__cst_color
+msgid "Rang"
+msgstr "Цвет"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Sana"
+msgstr "Дата"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Sana (reja)"
+msgstr "Дата (план)"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_stock_warehouse__cst_receiver_id
+msgid ""
+"Shu omborga keladigan ichki ko'chirishlarga avtomatik yoziladi; faqat u "
+"(yoki ombor nazoratchisi) tasdiqlay oladi."
+msgstr ""
+"Автоматически указывается во внутренних перемещениях на этот склад; "
+"подтвердить может только он (или контролёр склада)."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_cst_production_shift_line
+msgid "Smena buyurtmasi"
+msgstr "Заказ смены"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_stock_move
+msgid "Stock Move"
+msgstr "Движение запасов"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__stock_picking__cst_flow_kind__output
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_department_form_wh_flow
+msgid "Tayyor mahsulot"
+msgstr "Готовая продукция"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_move__cst_forward_production_id
+msgid "Tayyor mahsulot (buyurtma)"
+msgstr "Готовая продукция (заказ)"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__output_warehouse_id
+msgid "Tayyor mahsulot ketadigan ombor"
+msgstr "Склад готовой продукции"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "Tayyor mahsulot omborga qabul qilindi"
+msgstr "Готовая продукция принята на склад"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "Tayyor mahsulot yuborildi, omborda qabul kutilmoqda"
+msgstr "Готовая продукция отправлена, ожидается приёмка на складе"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__cst_auto_forward
+msgid "Tayyor mahsulotni avtomatik yuborish"
+msgstr "Автоматически отправлять готовую продукцию"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_stock_picking
+msgid "Transfer"
+msgstr "Перевод"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_picking__cst_move_kind
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Turi"
+msgstr "Тип"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/shift_line.py:0
+msgid "Tuzatish: %(mo)s · %(shift)s"
+msgstr "Исправление: %(mo)s · %(shift)s"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/shift_line.py:0
+msgid "Tuzatish: %(picking)s bilan %(wh)s'dan qaytarildi."
+msgstr "Исправление: возвращено с %(wh)s документом %(picking)s."
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model,name:cst_kerama_wh_flow.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Склад"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__supply_warehouse_ids
+msgid "Xomashyo omborlari"
+msgstr "Склады сырья"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_form_wh_flow
+msgid "Xomashyo so'rash"
+msgstr "Запросить сырьё"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__stock_picking__cst_flow_kind__supply
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__stock_picking__cst_move_kind__supply
+msgid "Xomashyo so'rovi"
+msgstr "Запрос сырья"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_stock_move__cst_supply_production_id
+msgid "Xomashyo so'rovi (buyurtma)"
+msgstr "Запрос сырья (заказ)"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.view_picking_search_wh_flow
+msgid "Xomashyo so'rovlari"
+msgstr "Запросы сырья"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,field_description:cst_kerama_wh_flow.field_cst_production_department__cst_auto_supply
+msgid "Xomashyoni avtomatik so'rash"
+msgstr "Автоматически запрашивать сырьё"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields.selection,name:cst_kerama_wh_flow.selection__mrp_production__cst_stage__finished
+msgid "Yakunlandi"
+msgstr "Завершён"
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_search_wh_flow
+msgid "Yakunlandi (qabul kutilmoqda)"
+msgstr "Завершён (ожидает приёмки)"
+
+#. module: cst_kerama_wh_flow
+#: model:ir.model.fields,help:cst_kerama_wh_flow.field_cst_production_department__supply_warehouse_ids
+msgid ""
+"Yetmagan xomashyo shu omborlardan so'raladi (qaysi birida bo'sh qoldiq "
+"bo'lsa)."
+msgstr ""
+"Недостающее сырьё запрашивается с этих складов (с того, где есть свободный "
+"остаток)."
+
+#. module: cst_kerama_wh_flow
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_flow.mrp_production_form_wh_flow
+msgid "Yetmagan xomashyo uchun bo'lim omboriga ichki ko'chirish yaratadi."
+msgstr "Создаёт внутреннее перемещение на склад цеха для недостающего сырья."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "id"
+msgstr "id"
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/mrp_production.py:0
+msgid "«%s» omborida ichki ko'chirish turi yo'q."
+msgstr "На складе «%s» нет типа внутреннего перемещения."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/department.py:0
+msgid ""
+"«%s»: tayyor mahsulot ketadigan ombor ishlaydigan ombordan farq qilishi "
+"kerak."
+msgstr "«%s»: склад готовой продукции должен отличаться от рабочего склада."
+
+#. module: cst_kerama_wh_flow
+#. odoo-python
+#: code:addons/cst_kerama_wh_flow/models/department.py:0
+msgid "«%s»: xomashyo omborlari ichida bo'limning o'z ombori bo'lmasin."
+msgstr "«%s»: среди складов сырья не должно быть собственного склада цеха."

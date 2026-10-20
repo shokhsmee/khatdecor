@@ -1,0 +1,185 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_full_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__amount
+msgid "Amount"
+msgstr "Summa"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__available_journal_ids
+msgid "Available Journal"
+msgstr "Mavjud jurnal"
+
+#. module: cst_kerama_full_payment
+#: model_terms:ir.ui.view,arch_db:cst_kerama_full_payment.view_sale_full_payment_wizard_form
+msgid "Bekor qilish"
+msgstr "Bekor qilish"
+
+#. module: cst_kerama_full_payment
+#: model_terms:ir.ui.view,arch_db:cst_kerama_full_payment.view_sale_full_payment_wizard_form
+msgid "Buyurtma"
+msgstr "Buyurtma"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__company_id
+msgid "Company"
+msgstr "Kompaniya"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_sale_order__cst_can_full_pay
+msgid "Cst Can Full Pay"
+msgstr "To'liq to'lash mumkin"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__partner_id
+msgid "Customer"
+msgstr "Mijoz"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Ko'rsatiladigan nom"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,help:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__amount
+msgid "Full amount to pay, expressed in the selected payment currency."
+msgstr "To'lanadigan to'liq summa, tanlangan to'lov valyutasida."
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi o'zgartirgan"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi o'zgartirilgan sana"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__communication
+msgid "Memo"
+msgstr "Izoh"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__order_currency_id
+msgid "Order Currency"
+msgstr "Buyurtma valyutasi"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__order_total
+msgid "Order Total"
+msgstr "Buyurtma jami"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__currency_id
+msgid "Payment Currency"
+msgstr "To'lov valyutasi"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__payment_date
+msgid "Payment Date"
+msgstr "To'lov sanasi"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__journal_id
+msgid "Payment Journal"
+msgstr "To'lov jurnali"
+
+#. module: cst_kerama_full_payment
+#. odoo-python
+#: code:addons/cst_kerama_full_payment/wizard/full_payment_wizard.py:0
+msgid "Please select a payment journal."
+msgstr "Iltimos, to'lov jurnalini tanlang."
+
+#. module: cst_kerama_full_payment
+#: model:ir.model,name:cst_kerama_full_payment.model_sale_order
+#: model:ir.model.fields,field_description:cst_kerama_full_payment.field_cst_sale_full_payment_wizard__order_id
+msgid "Sales Order"
+msgstr "Sotuv buyurtmasi"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model,name:cst_kerama_full_payment.model_cst_sale_full_payment_wizard
+msgid "Sales Order Full Payment"
+msgstr "Sotuv buyurtmasini to'liq to'lash"
+
+#. module: cst_kerama_full_payment
+#. odoo-python
+#: code:addons/cst_kerama_full_payment/models/sale_order.py:0
+msgid "The order must be confirmed before registering a full payment."
+msgstr ""
+"To'liq to'lovni ro'yxatdan o'tkazishdan oldin buyurtma tasdiqlanishi kerak."
+
+#. module: cst_kerama_full_payment
+#. odoo-python
+#: code:addons/cst_kerama_full_payment/wizard/full_payment_wizard.py:0
+msgid "There is nothing left to pay on this order."
+msgstr "Bu buyurtma bo'yicha to'lanadigan narsa qolmagan."
+
+#. module: cst_kerama_full_payment
+#. odoo-python
+#: code:addons/cst_kerama_full_payment/wizard/full_payment_wizard.py:0
+msgid ""
+"This order has nothing left to invoice, so a full payment cannot be "
+"registered."
+msgstr ""
+"Bu buyurtmada hisob-faktura qilinadigan narsa qolmagan, shuning uchun to'liq"
+" to'lovni ro'yxatdan o'tkazib bo'lmaydi."
+
+#. module: cst_kerama_full_payment
+#: model_terms:ir.ui.view,arch_db:cst_kerama_full_payment.view_sale_full_payment_wizard_form
+msgid "To'lash"
+msgstr "To'lash"
+
+#. module: cst_kerama_full_payment
+#. odoo-python
+#: code:addons/cst_kerama_full_payment/models/sale_order.py:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_full_payment.view_order_form_full_payment_button
+#: model_terms:ir.ui.view,arch_db:cst_kerama_full_payment.view_sale_full_payment_wizard_form
+msgid "To'liq to'lov"
+msgstr "To'liq to'lov"
+
+#. module: cst_kerama_full_payment
+#: model_terms:ir.ui.view,arch_db:cst_kerama_full_payment.view_sale_full_payment_wizard_form
+msgid "To'lov"
+msgstr "To'lov"
+
+#. module: cst_kerama_full_payment
+#: model:ir.model.fields,help:cst_kerama_full_payment.field_sale_order__cst_can_full_pay
+msgid ""
+"Whether there is still something to collect on this order, so the full-"
+"payment button should be offered."
+msgstr ""
+"Bu buyurtma bo'yicha hali undiriladigan summa bormi, ya'ni to'liq to'lov "
+"tugmasini ko'rsatish kerakmi."

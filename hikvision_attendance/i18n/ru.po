@@ -1,0 +1,833 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hikvision_attendance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:08+0000\n"
+"PO-Revision-Date: 2026-10-19 18:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/work_shift.py:0
+msgid "%(n)s ta xodim «%(shift)s»ga biriktirildi."
+msgstr "%(n)s сотрудник(ов) назначено на смену «%(shift)s»."
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/work_shift.py:0
+msgid "%s ta davomat qayta hisoblandi."
+msgstr "Пересчитано записей посещаемости: %s."
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "123456:AAH..."
+msgstr "123456:AAH..."
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_employee_form_hik_shift
+msgid "<i class=\"fa fa-clock-o fa-fw me-1 text-primary\" title=\"Ish smenasi\"/>"
+msgstr "<i class=\"fa fa-clock-o fa-fw me-1 text-primary\" title=\"Рабочая смена\"/>"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_employee_form_face_id
+msgid "<i class=\"fa fa-user-circle-o fa-fw me-1 text-primary\" title=\"Face ID\"/>"
+msgstr "<i class=\"fa fa-user-circle-o fa-fw me-1 text-primary\" title=\"Face ID\"/>"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "@%s (%s)"
+msgstr "@%s (%s)"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__active
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__hik_bot_invite_link
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Admin Invite Link"
+msgstr "Ссылка-приглашение для админов"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__hik_bot_invite_token
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Admin Invite Token"
+msgstr "Токен приглашения админов"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Admin tap qiladi, Telegram bot ochiladi va invite token bilan ulanadi"
+msgstr ""
+"Админ нажимает, открывается Telegram-бот и подключается по токену "
+"приглашения"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Adminlar bu kod bilan botga kirib ro'yxatdan o'tadi"
+msgstr "Админы входят в бота по этому коду и регистрируются"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_res_config_settings__hik_bot_invite_token
+msgid ""
+"Admins must enter the bot via /start <token>. Regenerate to revoke access."
+msgstr ""
+"Админы входят в бота через /start <token>. Перегенерируйте, чтобы отозвать "
+"доступ."
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_hr_attendance
+msgid "Attendance"
+msgstr "Посещаемость"
+
+#. module: hikvision_attendance
+#: model:ir.ui.menu,name:hikvision_attendance.menu_hik_attendance_bot_root
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Attendance Bot"
+msgstr "Бот посещаемости"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Bardosh"
+msgstr "Допуск"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_form
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_assign_form
+msgid "Bekor"
+msgstr "Отмена"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_assign_form
+msgid "Biriktirish"
+msgstr "Назначить"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__department_id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__department_id
+msgid "Bo'lim"
+msgstr "Цех"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/work_shift.py:0
+msgid "Boshlanish va tugash vaqti bir xil bo'lmasin."
+msgstr "Время начала и окончания не должны совпадать."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_hik_work_shift__hour_to
+msgid ""
+"Boshlanishdan kichik bo'lsa smena yarim tundan o'tadi (masalan 17:00–02:00)."
+msgstr ""
+"Если меньше времени начала, смена переходит через полночь (например "
+"17:00–02:00)."
+
+#. module: hikvision_attendance
+#: model:ir.actions.act_window,name:hikvision_attendance.action_hik_attendance_subscriber
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_hik_attendance_subscriber_list
+msgid "Bot Subscribers"
+msgstr "Подписчики бота"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Bot Token"
+msgstr "Токен бота"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__hik_bot_username
+msgid "Bot Username"
+msgstr "Имя пользователя бота"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Bot Username (auto)"
+msgstr "Имя пользователя бота (авто)"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "Bot connected"
+msgstr "Бот подключён"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "Bot token and Odoo base URL are both required."
+msgstr "Токен бота и базовый URL Odoo обязательны."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_res_config_settings__hik_bot_token
+msgid "BotFather dan olingan token (masalan, 123456:AAH...)."
+msgstr "Токен, полученный от BotFather (например, 123456:AAH...)."
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "BotFather orqali olingan token"
+msgstr "Токен, полученный через BotFather"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_res_config_settings__hik_bot_username
+msgid "Botning @username (without @). Auto-filled by 'Sync Bot Info'."
+msgstr ""
+"@username бота (без @). Заполняется автоматически через 'Sync Bot Info'."
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Bu eski havolani bekor qiladi. Davom etamizmi?"
+msgstr "Это аннулирует старую ссылку. Продолжить?"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_wed
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Ch"
+msgstr "Ср"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__chat_id
+msgid "Chat"
+msgstr "Чат"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__check_in_image
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_form_view
+msgid "Check-In Photo"
+msgstr "Фото входа"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__check_out_image
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_form_view
+msgid "Check-Out Photo"
+msgstr "Фото выхода"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__check_out
+msgid "Chiqdi"
+msgstr "Ушёл"
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_res_config_settings
+msgid "Config Settings"
+msgstr "Настройки"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__create_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__create_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__create_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__create_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__create_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__create_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__create_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__create_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__create_date
+msgid "Created on"
+msgstr "Дата создания"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_offday
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__offday
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hr_attendance__hik_status__offday
+msgid "Dam olish kuni"
+msgstr "Выходной день"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__duration
+msgid "Davomiyligi (soat)"
+msgstr "Продолжительность (ч)"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_mon
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Du"
+msgstr "Пн"
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_hr_employee
+msgid "Employee"
+msgstr "Сотрудник"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__early
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hr_attendance__hik_status__early
+msgid "Erta ketdi"
+msgstr "Ушёл раньше"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_search_hik_shift
+msgid "Erta ketganlar"
+msgstr "Ушедшие раньше"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__early_min
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_early_min
+msgid "Erta ketish (daq)"
+msgstr "Ранний уход (мин)"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__early_tolerance
+msgid "Erta ketish bardoshi (daq)"
+msgstr "Допуск раннего ухода (мин)"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_employee__face_id
+msgid "Face ID"
+msgstr "Face ID"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_employee_form_face_id
+msgid "Face ID (kameradagi Employee ID)"
+msgstr "Face ID (Employee ID в камере)"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_hr_employee__hik_shift_id
+msgid "Face ID kirish-chiqishi shu smena vaqtiga solishtiriladi."
+msgstr "Вход и выход по Face ID сравниваются со временем этой смены."
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/hr_employee.py:0
+msgid "Face ID «%(code)s» allaqachon %(name)s xodimiga berilgan."
+msgstr "Face ID «%(code)s» уже присвоен сотруднику %(name)s."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__first_name
+msgid "First Name"
+msgstr "Имя"
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_hikvision_attendance_subscriber
+msgid "Hikvision Attendance Telegram Subscriber"
+msgstr "Подписчик Telegram посещаемости Hikvision"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_hr_employee__face_id
+msgid ""
+"Hikvision Face ID terminalidagi xodimning Employee ID raqami. Kamera voqeasi"
+" shu raqam bo'yicha xodimga bog'lanadi."
+msgstr ""
+"Employee ID сотрудника в терминале Hikvision Face ID. Событие камеры "
+"привязывается к сотруднику по этому номеру."
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_form_view
+msgid "Hikvision Face Photos"
+msgstr "Фото Hikvision Face"
+
+#. module: hikvision_attendance
+#: model:ir.ui.menu,name:hikvision_attendance.menu_hik_reports
+msgid "Hisobotlar"
+msgstr "Отчёты"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Hodimlar Kirish/Chiqish qilganda admin-larga bildirishnoma yuboradi."
+msgstr "Отправляет уведомления админам, когда сотрудники приходят/уходят."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__status
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_status
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_line_search
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_search_hik_shift
+msgid "Holat"
+msgstr "Статус"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_employee__id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_list_view
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_mgmt_list_view
+msgid "In Photo"
+msgstr "Фото входа"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__hour_from
+msgid "Ish boshlanishi"
+msgstr "Начало работы"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__days_label
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Ish kunlari"
+msgstr "Рабочие дни"
+
+#. module: hikvision_attendance
+#: model:ir.actions.act_window,name:hikvision_attendance.hik_work_shift_action
+#: model:ir.ui.menu,name:hikvision_attendance.menu_hik_work_shift
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_list
+msgid "Ish smenalari"
+msgstr "Рабочие смены"
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_hik_work_shift
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_employee__hik_shift_id
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_employee_form_hik_shift
+msgid "Ish smenasi"
+msgstr "Рабочая смена"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__hour_to
+msgid "Ish tugashi"
+msgstr "Окончание работы"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Ish vaqti"
+msgstr "Рабочее время"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__worked_hours
+msgid "Ishlagan (soat)"
+msgstr "Отработано (ч)"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_line_list
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_list_hik_shift
+msgid "Jami"
+msgstr "Итого"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_fri
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Ju"
+msgstr "Пт"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__late
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hr_attendance__hik_status__late
+msgid "Kechikdi"
+msgstr "Опоздал"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__late_early
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hr_attendance__hik_status__late_early
+msgid "Kechikdi va erta ketdi"
+msgstr "Опоздал и ушёл раньше"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__late_min
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_late_min
+msgid "Kechikish (daq)"
+msgstr "Опоздание (мин)"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__late_tolerance
+msgid "Kechikish bardoshi (daq)"
+msgstr "Допуск опоздания (мин)"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_pivot_hik
+msgid "Kechikishlar"
+msgstr "Опоздания"
+
+#. module: hikvision_attendance
+#: model:ir.actions.act_window,name:hikvision_attendance.hr_attendance_action_hik_monthly
+#: model:ir.ui.menu,name:hikvision_attendance.menu_hik_monthly
+msgid "Kechikishlar (oylik)"
+msgstr "Опоздания (за месяц)"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_line_search
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_search_hik_shift
+msgid "Kechikkanlar"
+msgstr "Опоздавшие"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__absent
+msgid "Kelmadi"
+msgstr "Не пришёл"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_line_search
+msgid "Kelmaganlar"
+msgstr "Не пришедшие"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__check_in
+msgid "Kirdi"
+msgstr "Пришёл"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_form
+msgid "Ko'rsatish"
+msgstr "Показать"
+
+#. module: hikvision_attendance
+#: model:ir.actions.act_window,name:hikvision_attendance.hik_attendance_daily_action
+#: model:ir.model,name:hikvision_attendance.model_hik_attendance_daily
+#: model:ir.ui.menu,name:hikvision_attendance.menu_hik_daily
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_form
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_line_list
+msgid "Kunlik davomat"
+msgstr "Ежедневная посещаемость"
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_hik_attendance_daily_line
+msgid "Kunlik davomat qatori"
+msgstr "Строка ежедневной посещаемости"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/work_shift.py:0
+msgid "Kunlik davomat — %s"
+msgstr "Ежедневная посещаемость — %s"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__last_name
+msgid "Last Name"
+msgstr "Фамилия"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__last_notified
+msgid "Last Notified"
+msgstr "Последнее уведомление"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__write_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__write_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__write_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__write_uid
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__write_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__write_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__write_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__write_date
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__write_date
+msgid "Last Updated on"
+msgstr "Дата последнего изменения"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__line_ids
+msgid "Line"
+msgstr "Строка"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "MyAttendanceBot"
+msgstr "MyAttendanceBot"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__ok
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hr_attendance__hik_status__ok
+msgid "O'z vaqtida"
+msgstr "Вовремя"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__hik_bot_odoo_base_url
+msgid "Odoo Public Base URL"
+msgstr "Публичный базовый URL Odoo"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Odoo Public URL"
+msgstr "Публичный URL Odoo"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_list_view
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hikvision_attendance_mgmt_list_view
+msgid "Out Photo"
+msgstr "Фото выхода"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_thu
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Pa"
+msgstr "Чт"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_res_config_settings__hik_bot_odoo_base_url
+msgid ""
+"Public URL of this Odoo (e.g. https://weteachprof.shokhsmee.uz). Used to "
+"register Telegram webhook."
+msgstr ""
+"Публичный URL этого Odoo (например https://weteachprof.shokhsmee.uz). "
+"Используется для регистрации Telegram webhook."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__color
+msgid "Rang"
+msgstr "Цвет"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Regenerate (revokes old)"
+msgstr "Перегенерировать (отзывает старую)"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Register Webhook"
+msgstr "Зарегистрировать webhook"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__registered_at
+msgid "Registered At"
+msgstr "Дата регистрации"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_planned_end
+msgid "Reja: chiqish"
+msgstr "План: уход"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_planned_start
+msgid "Reja: kirish"
+msgstr "План: приход"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__date
+msgid "Sana"
+msgstr "Дата"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_tue
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Se"
+msgstr "Вт"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__sequence
+msgid "Sequence"
+msgstr "Последовательность"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "Set the bot token first."
+msgstr "Сначала укажите токен бота."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_sat
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Sh"
+msgstr "Сб"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_res_config_settings__hik_bot_invite_link
+msgid ""
+"Share this link with admins. They tap it → Telegram opens → bot adds them."
+msgstr ""
+"Отправьте эту ссылку админам. Они нажимают → открывается Telegram → бот "
+"добавляет их."
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid ""
+"Shu oydagi davomatlar smenaning hozirgi vaqtiga qayta solishtiriladi. Davom "
+"etasizmi?"
+msgstr ""
+"Посещаемость за этот месяц будет заново сверена с текущим временем смены. "
+"Продолжить?"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Shu oyni qayta hisoblash"
+msgstr "Пересчитать этот месяц"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_hik_work_shift__early_tolerance
+msgid "Shuncha daqiqagacha erta ketish hisoblanmaydi."
+msgstr "Ранний уход в пределах стольких минут не учитывается."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,help:hikvision_attendance.field_hik_work_shift__late_tolerance
+msgid "Shuncha daqiqagacha kechikish hisoblanmaydi."
+msgstr "Опоздание в пределах стольких минут не учитывается."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily__shift_id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__shift_id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__name
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__shift_id
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hr_attendance__hik_shift_id
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_attendance_daily_line_search
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_search_hik_shift
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_employee_filter_hik_shift
+msgid "Smena"
+msgstr "Смена"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hr_attendance_form_hik_shift
+msgid "Smena bo'yicha"
+msgstr "По сменам"
+
+#. module: hikvision_attendance
+#: model_terms:ir.actions.act_window,help:hikvision_attendance.hik_work_shift_action
+msgid "Smena qo'shing: nomi, ish vaqti, ish kunlari."
+msgstr "Добавьте смену: название, рабочее время, рабочие дни."
+
+#. module: hikvision_attendance
+#: model:ir.actions.act_window,name:hikvision_attendance.hik_work_shift_assign_action
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_assign_form
+msgid "Smenaga biriktirish"
+msgstr "Назначить на смену"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hik_attendance_daily_line__status__none
+#: model:ir.model.fields.selection,name:hikvision_attendance.selection__hr_attendance__hik_status__none
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.view_employee_filter_hik_shift
+msgid "Smenasiz"
+msgstr "Без смены"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/work_shift.py:0
+msgid "Soat 00:00 dan 23:59 gacha bo'lishi kerak."
+msgstr "Время должно быть от 00:00 до 23:59."
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__status_order
+msgid "Status Order"
+msgstr "Порядок статуса"
+
+#. module: hikvision_attendance
+#: model:ir.ui.menu,name:hikvision_attendance.menu_hik_attendance_subscriber
+msgid "Subscribers"
+msgstr "Подписчики"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Sync Bot Info"
+msgstr "Синхронизировать данные бота"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Telegram Bot Sozlamalari"
+msgstr "Настройки Telegram-бота"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__hik_bot_token
+msgid "Telegram Bot Token"
+msgstr "Токен Telegram-бота"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hikvision_attendance_subscriber__telegram_username
+msgid "Telegram Username"
+msgstr "Имя пользователя Telegram"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "Telegram webhook ro'yxatga olish uchun"
+msgstr "Для регистрации Telegram webhook"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__time_label
+msgid "Vaqti"
+msgstr "Время"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_res_config_settings__hik_bot_webhook_secret
+msgid "Webhook Secret"
+msgstr "Секрет webhook"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "Webhook set"
+msgstr "Webhook установлен"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__wizard_id
+msgid "Wizard"
+msgstr "Мастер"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_attendance_daily_line__employee_id
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Xodim"
+msgstr "Сотрудник"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Xodim qo'shish"
+msgstr "Добавить сотрудника"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__employee_ids
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift_assign__employee_ids
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Xodimlar"
+msgstr "Сотрудники"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__employee_count
+msgid "Xodimlar soni"
+msgstr "Количество сотрудников"
+
+#. module: hikvision_attendance
+#: model:ir.model,name:hikvision_attendance.model_hik_work_shift_assign
+msgid "Xodimlarni smenaga biriktirish"
+msgstr "Назначение сотрудников на смену"
+
+#. module: hikvision_attendance
+#: model:ir.model.fields,field_description:hikvision_attendance.field_hik_work_shift__day_sun
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "Ya"
+msgstr "Вс"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "getMe failed: %s"
+msgstr "Ошибка getMe: %s"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "getMe orqali to'ldiriladi"
+msgstr "Заполняется через getMe"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.res_config_settings_view_form_hik_attendance_bot
+msgid "https://weteachprof.shokhsmee.uz"
+msgstr "https://weteachprof.shokhsmee.uz"
+
+#. module: hikvision_attendance
+#: model_terms:ir.ui.view,arch_db:hikvision_attendance.hik_work_shift_form
+msgid "masalan: 1-smena"
+msgstr "например: 1-я смена"
+
+#. module: hikvision_attendance
+#. odoo-python
+#: code:addons/hikvision_attendance/models/res_config_settings.py:0
+msgid "setWebhook failed: %s"
+msgstr "Ошибка setWebhook: %s"

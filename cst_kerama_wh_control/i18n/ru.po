@@ -1,0 +1,498 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_wh_control
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:08+0000\n"
+"PO-Revision-Date: 2026-10-19 18:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_picking_form_wh_control
+msgid ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                        A photo of the goods is required before this receipt can be validated."
+msgstr ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                        Перед проведением этого прихода требуется фото товара."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.stock_scrap_form_view_wh_control
+msgid ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                    A photo of the goods is required before this scrap can be closed."
+msgstr ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                    Перед закрытием этого списания требуется фото товара."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.stock_scrap_form_view2_wh_control
+msgid ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                    Yopishdan oldin tovar rasmini biriktiring (telefon kamerasi ham bo'ladi)."
+msgstr ""
+"<i class=\"fa fa-camera me-1\"/>\n"
+"                    Перед закрытием прикрепите фото товара (можно с камеры телефона)."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.stock_picking_kanban_wh_control
+msgid "<i class=\"fa fa-check-circle me-1\"/>Ready to validate"
+msgstr "<i class=\"fa fa-check-circle me-1\"/>Готово к проведению"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand_dest
+msgid ""
+"Actual quantity in the destination location (sub-locations included), in the"
+" line's unit of measure."
+msgstr ""
+"Фактическое количество в месте назначения (включая вложенные "
+"местоположения), в единице измерения строки."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand
+msgid ""
+"Actual quantity in the source location (sub-locations included), in the "
+"line's unit of measure."
+msgstr ""
+"Фактическое количество в месте отправления (включая вложенные "
+"местоположения), в единице измерения строки."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Add a photo"
+msgstr "Добавить фото"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Add explanation…"
+msgstr "Добавить пояснение…"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_scrap.py:0
+msgid ""
+"Attach a photo of the goods before closing scrap %s.\n"
+"\n"
+"Use the Photos field on the scrap order."
+msgstr ""
+"Перед закрытием списания %s прикрепите фото товара.\n"
+"\n"
+"Используйте поле «Фото» в документе списания."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_picking.py:0
+msgid ""
+"Attach a photo of the goods before validating receipt %s.\n"
+"\n"
+"Use the Photos tab on the transfer, or the camera button on a line in the Barcode app."
+msgstr ""
+"Перед проведением прихода %s прикрепите фото товара.\n"
+"\n"
+"Используйте вкладку «Фото» в перемещении или кнопку камеры на строке в приложении «Штрихкод»."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_car_model
+msgid "Car Model"
+msgstr "Модель авто"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_car_number
+msgid "Car Number"
+msgstr "Номер авто"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_note_dialog.js:0
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__body
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_note
+msgid "Comment"
+msgstr "Комментарий"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/move_line_comment.py:0
+msgid "Comment on %s"
+msgstr "Комментарий к %s"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Comment on this line"
+msgstr "Комментарий к этой строке"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.js:0
+msgid "Comment posted to the transfer."
+msgstr "Комментарий добавлен в перемещение."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_comment_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_stock_move_line_detailed_operation_tree_wh_control
+msgid "Comments"
+msgstr "Комментарии"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_comment_count
+msgid "Cst Comment Count"
+msgstr "Кол-во комментариев"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_has_photo
+msgid "Cst Has Photo"
+msgstr "Есть фото"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_photo_count
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_photo_count
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__cst_photo_count
+msgid "Cst Photo Count"
+msgstr "Кол-во фото"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_photo_required
+msgid "Cst Photo Required"
+msgstr "Требуется фото"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_receiver_required
+msgid "Cst Receiver Required"
+msgstr "Требуется получатель"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_transport_visible
+msgid "Cst Transport Visible"
+msgstr "Транспорт виден"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_driver
+msgid "Driver"
+msgstr "Водитель"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_all_picked
+msgid "Every line of this transfer has been confirmed."
+msgstr "Все строки этого перемещения подтверждены."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move_line__cst_note
+msgid ""
+"Explanation about this line. Saved automatically; every change is kept in "
+"the comment history and posted on the transfer."
+msgstr ""
+"Пояснение к этой строке. Сохраняется автоматически; каждое изменение "
+"хранится в истории комментариев и публикуется в перемещении."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__id
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_wh_control
+#: model:res.groups.privilege,name:cst_kerama_wh_control.privilege_khatdecor_warehouse
+msgid "Khatdecor Warehouse"
+msgstr "Склад Khatdecor"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__write_date
+msgid "Last Updated on"
+msgstr "Изменено"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__line_id
+msgid "Line"
+msgstr "Строка"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_line_photo_ids
+msgid "Line Photos"
+msgstr "Фото строк"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.js:0
+msgid "Line Photos & Comments"
+msgstr "Фото и комментарии строк"
+
+#. module: cst_kerama_wh_control
+#: model:res.groups,comment:cst_kerama_wh_control.group_wh_supervisor
+msgid ""
+"May validate a receipt without a photo, close a\n"
+"                scrap without a photo, and validate an internal transfer on\n"
+"                behalf of its receiver."
+msgstr ""
+"Может провести приход без фото, закрыть\n"
+"                списание без фото и провести внутреннее перемещение\n"
+"                от имени получателя."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_car_model
+msgid "Model of the vehicle that carried the goods."
+msgstr "Модель транспорта, на котором привезли товар."
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+msgid "No photo or comment was added to this line."
+msgstr "К этой строке не добавлено ни фото, ни комментария."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand
+msgid "On Hand"
+msgstr "Остаток"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move__cst_qty_on_hand_dest
+msgid "On Hand (destination)"
+msgstr "Остаток (назначение)"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_picking.py:0
+msgid ""
+"Only %(receiver)s can validate transfer %(name)s.\n"
+"\n"
+"You are signed in as %(user)s."
+msgstr ""
+"Только %(receiver)s может провести перемещение %(name)s.\n"
+"\n"
+"Вы вошли как %(user)s."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_move_line.py:0
+msgid "Photo added for %s"
+msgstr "Добавлено фото для %s"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.js:0
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.js:0
+msgid "Photo added to this line."
+msgstr "Фото добавлено к этой строке."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_photo_ids
+msgid "Photographic proof of the goods. Required to validate a receipt."
+msgstr "Фотоподтверждение товара. Обязательно для проведения прихода."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_scrap__cst_photo_ids
+msgid "Photographic proof of the scrapped goods. Required to validate."
+msgstr "Фотоподтверждение списанного товара. Обязательно для проведения."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_photo_html
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_move_line__cst_photo_ids
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_photo_ids
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_scrap__cst_photo_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_picking_form_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_stock_move_line_detailed_operation_tree_wh_control
+msgid "Photos"
+msgstr "Фото"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_move_line__cst_photo_ids
+msgid "Photos taken for this line only."
+msgstr "Фото, сделанные только для этой строки."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_line_photo_ids
+msgid "Photos taken on the individual lines, e.g. from the Barcode app."
+msgstr ""
+"Фото, сделанные на отдельных строках, например, из приложения «Штрихкод»."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_car_number
+msgid "Plate number of the vehicle that carried the goods."
+msgstr "Госномер транспорта, на котором привезли товар."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__product_id
+msgid "Product"
+msgstr "Товар"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Перемещение продукта (Позиции движения запасов)"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_all_picked
+msgid "Ready to Validate"
+msgstr "Готово к проведению"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_stock_picking__cst_receiver_id
+msgid "Receiver"
+msgstr "Получатель"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Save the line first to add photos or comments."
+msgstr "Сначала сохраните строку, чтобы добавить фото или комментарии."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Saved"
+msgstr "Сохранено"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras_field.xml:0
+msgid "Saving…"
+msgstr "Сохранение…"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_scrap
+msgid "Scrap"
+msgstr "Брак"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Send"
+msgstr "Отправить"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_picking.py:0
+msgid "Set the Receiver on internal transfer %s before validating."
+msgstr "Перед проведением укажите получателя во внутреннем перемещении %s."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_move
+msgid "Stock Move"
+msgstr "Движение запасов"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Take a photo of this line"
+msgstr "Сфотографировать эту строку"
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "The comment is posted on the transfer, naming this product."
+msgstr "Комментарий публикуется в перемещении с указанием этого товара."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_cst_move_line_comment__picking_id
+msgid "The stock operation where the packing has been made"
+msgstr "Складская операция, в которой выполнена упаковка"
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_move_line.py:0
+msgid "This line does not belong to a transfer yet."
+msgstr "Эта строка ещё не относится ни к одному перемещению."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_stock_picking
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__picking_id
+msgid "Transfer"
+msgstr "Перевод"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model,name:cst_kerama_wh_control.model_cst_move_line_comment
+msgid "Transfer Line Comment"
+msgstr "Комментарий к строке перемещения"
+
+#. module: cst_kerama_wh_control
+#: model:res.groups,name:cst_kerama_wh_control.group_wh_supervisor
+msgid "Warehouse Supervisor"
+msgstr "Начальник склада"
+
+#. module: cst_kerama_wh_control
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.cst_move_line_comment_view_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_wh_control.view_move_line_form_wh_control
+msgid "When"
+msgstr "Когда"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_driver
+msgid "Who drove the goods in or out."
+msgstr "Кто привёз или вывез товар."
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,help:cst_kerama_wh_control.field_stock_picking__cst_receiver_id
+msgid ""
+"Who takes delivery of this internal transfer. Only this person (or a "
+"warehouse supervisor) can validate it."
+msgstr ""
+"Кто принимает это внутреннее перемещение. Провести его может только этот "
+"человек (или начальник склада)."
+
+#. module: cst_kerama_wh_control
+#. odoo-python
+#: code:addons/cst_kerama_wh_control/models/stock_move_line.py:0
+msgid "Write something before sending the comment."
+msgstr "Напишите что-нибудь перед отправкой комментария."
+
+#. module: cst_kerama_wh_control
+#. odoo-javascript
+#: code:addons/cst_kerama_wh_control/static/src/barcode/line_extras.xml:0
+msgid "Write your comment…"
+msgstr "Напишите комментарий…"
+
+#. module: cst_kerama_wh_control
+#: model:ir.model.fields,field_description:cst_kerama_wh_control.field_cst_move_line_comment__user_id
+msgid "Written by"
+msgstr "Автор"

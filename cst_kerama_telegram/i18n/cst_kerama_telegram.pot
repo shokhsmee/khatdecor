@@ -1,0 +1,925 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_telegram
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:07+0000\n"
+"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"\n"
+"⚠️ Ёзган исми контрагент номига ухшамайди: «%s»"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"%(header)s\n"
+"\n"
+"Хозир: <b>%(role)s</b> сифатида"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "(биринчи 30 таси курсатилди)"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "(охирги %(shown)s та ёзув курсатилди, жами %(total)s та)"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"<b>%(partner)s</b>\n"
+"%(role)s сифатида\n"
+"\n"
+"%(verdict)s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"<b>АКТ СВЕРКА</b>\n"
+"%(partner)s\n"
+"%(role)s сифатида\n"
+"%(period)s\n"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "<b>Туланмаган хужжатлар</b>\n"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "@%(username)s — %(url)s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid ""
+"@BotFather bergan token. Saqlagandan keyin 'Botni ulash' tugmasini bosing."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_res_config_settings__cst_telegram_bot_token
+msgid "@BotFather берган токен."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_needaction
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_attachment_count
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__audience
+msgid "Audience"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__available_roles
+msgid "Available Roles"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__claimed_name
+msgid "Aytgan ismi"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+msgid "Aytgan ma'lumoti"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__state__blocked
+msgid "Bloklangan"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+msgid "Bloklash"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__state__linked
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_search
+msgid "Bog'langan"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+msgid "Bog'lash va tasdiqlash"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_config_settings__cst_telegram_bot_token
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid "Bot token"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid "Botni ulash"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__chat_id
+msgid "Chat"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__company_id
+msgid "Company"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model,name:cst_kerama_telegram.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model,name:cst_kerama_telegram.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__create_date
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_partner__cst_telegram_count
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_users__cst_telegram_count
+msgid "Cst Telegram Count"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_api__display_name
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_bot__display_name
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__display_name
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__display_name
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__failed_count
+msgid "Failed Count"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_follower_ids
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_partner_ids
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.ui.menu,name:cst_kerama_telegram.menu_telegram_chat
+msgid "Foydalanuvchilar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.actions.act_window,help:cst_kerama_telegram.action_telegram_chat
+msgid "Hali hech kim yozmagan"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.actions.act_window,help:cst_kerama_telegram.action_telegram_broadcast
+msgid "Hali xabar yuborilmagan"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_broadcast__audience__all
+msgid "Hammasi"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__has_message
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_config_settings__cst_telegram_status
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_search
+msgid "Holati"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_api__id
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_bot__id
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__id
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__id
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_config_settings__id
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__message_needaction
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__message_has_error
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__message_has_sms_error
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__message_has_error
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_is_follower
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__state__awaiting_name
+msgid "Ism kutilmoqda"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_search
+msgid "Kontragent"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__partner_ids
+msgid "Kontragentlar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_search
+msgid "Kontragentsiz"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__last_seen
+msgid "Last Seen"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__write_date
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_form
+msgid "Masalan: Yangi narxlar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__state__pending
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_search
+msgid "Menejer bog'lashi kerak"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_has_error
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_ids
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__role_mode__customer
+msgid "Mijoz"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_broadcast__audience__customer
+msgid "Mijozlar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_needaction_counter
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_has_error_counter
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__message_needaction_counter
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__message_has_error_counter
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "PDF тайёрлашда хатолик булди.  Кейинрок уриниб куринг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__phone
+msgid "Phone"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__phone_key
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_partner__cst_phone_key
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_users__cst_phone_key
+msgid "Phone Key"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__recipient_count
+msgid "Qabul qiluvchilar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__role_mode
+msgid "Qaysi sifatida"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+msgid "Qaytadan so'rash"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_broadcast__state__draft
+msgid "Qoralama"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_form
+msgid "Qoralamaga qaytarish"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__state__awaiting_phone
+msgid "Raqam kutilmoqda"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__rating_ids
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__message_has_sms_error
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__name
+msgid "Sarlavha"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__sent_count
+msgid "Sent Count"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__sent_date
+msgid "Sent Date"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__state
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__state
+msgid "State"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_broadcast__audience__selected
+msgid "Tanlanganlar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_partner__cst_telegram_chat_ids
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_users__cst_telegram_chat_ids
+#: model:ir.ui.menu,name:cst_kerama_telegram.menu_telegram_root
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_search
+msgid "Telegram"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model,name:cst_kerama_telegram.model_cst_telegram_bot
+msgid "Telegram Bot"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model,name:cst_kerama_telegram.model_cst_telegram_api
+msgid "Telegram Bot API"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model,name:cst_kerama_telegram.model_cst_telegram_broadcast
+msgid "Telegram Broadcast"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model,name:cst_kerama_telegram.model_cst_telegram_chat
+msgid "Telegram Chat"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid "Telegram bot"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.actions.act_window,name:cst_kerama_telegram.action_telegram_chat
+msgid "Telegram foydalanuvchilari"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__tg_name
+msgid "Telegram name"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid "Telegram shu manzilga xabar yuboradi."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__tg_username
+msgid "Telegram username"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.actions.act_window,name:cst_kerama_telegram.action_telegram_broadcast
+msgid "Telegram xabarlari"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Telegram билан алока йук"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_api.py:0
+msgid "Telegram билан алока йук: %s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_api.py:0
+msgid ""
+"Telegram бот токени киритилмаган.\n"
+"\n"
+"Созламалар ▸ Бухгалтерия ▸ Telegram бот булимига @BotFather берган токенни ёзинг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_api.py:0
+msgid "Telegram рад этди: %s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Telegram факат HTTPS манзилга улана олади.  Хозирги манзил: %s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.constraint,message:cst_kerama_telegram.constraint_cst_telegram_chat_chat_uniq
+msgid "That Telegram chat is already known."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid "Uzish"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.res_config_settings_view_form_telegram
+msgid "Webhook"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_res_config_settings__cst_telegram_webhook_url
+msgid "Webhook URL"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Webhook олиб ташланди."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__website_message_ids
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_chat__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__website_message_ids
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_form
+msgid "Xabar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,field_description:cst_kerama_telegram.field_cst_telegram_broadcast__body
+msgid "Xabar matni"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_form
+msgid "Xabar matni..."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.ui.menu,name:cst_kerama_telegram.menu_telegram_broadcast
+msgid "Xabar yuborish"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_list
+msgid "Xabarlar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__state__new
+msgid "Yangi"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_chat__role_mode__vendor
+msgid "Yetkazib beruvchi"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_broadcast__audience__vendor
+msgid "Yetkazib beruvchilar"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields.selection,name:cst_kerama_telegram.selection__cst_telegram_broadcast__state__sent
+msgid "Yuborilgan"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_form
+msgid "Yuborish"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_broadcast.py:0
+msgid "«%s» аллакачон юборилган."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Аввал бот токенини киритиб, сакланг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_chat.py:0
+msgid "Аввал контрагентни танланг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Акт сверка кайси давр учун?"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Акт сверка — %s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"Ассалому алайкум!\n"
+"\n"
+"Мен <b>Khatdecor</b> ботиман.  Сизга баланс, акт сверка ва тулланмаган хисоб-фактураларни курсатаман.\n"
+"\n"
+"Аввал узингизни танитинг — пастдаги тугма орқали <b>телефон рақамингизни</b> юборинг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Бот уланди"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Бот учирилди"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.actions.act_window,help:cst_kerama_telegram.action_telegram_broadcast
+msgid ""
+"Ботда узини танитган мижозларга ёки етказиб берувчиларга\n"
+"               хабар юборинг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Бошлангич колдик: <b>%s</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"Бу бошка одамнинг раками.  Илтимос, <b>уз ракамингизни</b> тугма орқали "
+"юборинг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_chat_form
+msgid ""
+"Бу одам ботда узини танитди, лекин раками базада топилмади.\n"
+"                        Пастда керакли контрагентни танланг ва «Бог'лаш» тугмасини босинг —\n"
+"                        унга автоматик хабар боради, раками эса контрагент картасига ёзилади."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"Бу рақам бир нечта контрагентга ёзилган.  <b>Исм-фамилиянгизни</b> ёзинг — "
+"кайси бири эканини аниклайман."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Жами: <b>%s</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Илтимос, тулик исм-фамилиянгизни ёзинг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Керакли булимни танланг:"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Компания сизга қарздор: <b>%s so'm</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_chat.py:0
+msgid "Контрагентга бог'ланди: %s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.actions.act_window,help:cst_kerama_telegram.action_telegram_chat
+msgid ""
+"Мижоз ботга <b>/start</b> ёзиб, ракамини юборганда шу ерда пайдо\n"
+"               булади.  Раками базада топилмаса — «Менежер бог'лаши керак»\n"
+"               холатида туради."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_broadcast__body
+msgid "Оддий матн.  <b>калин</b> ва <i>курсив</i> ишлатса булади."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Охирги колдик: <b>%s so'm</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"Рахмат!  Маълумотларингиз менежерга юборилди.\n"
+"\n"
+"Тасдикланганидан сунг сизга хабар бераман."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Рақам топилди.  Тасдиқлаш учун <b>исм-фамилиянгизни</b> ёзинг."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"Рақамингиз базада топилмади.  <b>Исм-фамилиянгизни</b> ёзинг — менежерга "
+"суров юбораман."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Сиз компанияга қарздорсиз: <b>%s so'm</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Сизнинг қарзингиз: <b>%s so'm</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Телеграм оркали узини танитди: %s"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_res_partner__cst_phone_key
+#: model:ir.model.fields,help:cst_kerama_telegram.field_res_users__cst_phone_key
+msgid ""
+"Телефон ракамининг охирги 9 та раками.  Бот шу буйича излайди, чунки базада "
+"бир хил ракам турлича ёзилган."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Токен бор, webhook урнатилмаган"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Токен киритилмаган"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Туланди: <b>%s</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Туланмаган хужжат йук. ✅"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/res_config_settings.py:0
+msgid "Уланган: %(url)s  (кутилаётган: %(pending)s)"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__claimed_name
+msgid "Фойдаланувчи узи ёзган исм-фамилия."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model_terms:ir.ui.view,arch_db:cst_kerama_telegram.view_telegram_broadcast_form
+msgid "Хабар ботда узини танитган контрагентларга юборилади.  Давом этамизми?"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_broadcast.py:0
+msgid "Хеч ким топилмади.  Ботда узини танитган контрагентлар булиши керак."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Хисобланди: <b>%s</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid ""
+"Хуш келибсиз, <b>%(name)s</b>!\n"
+"Сиз <b>%(roles)s</b> сифатида руйхатдансиз."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#: model:ir.model.fields,help:cst_kerama_telegram.field_cst_telegram_chat__partner_id
+msgid "Шу чат кайси контрагентга тегишли."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_broadcast.py:0
+msgid "Юборилди: %(sent)s та, етиб бормади: %(failed)s та."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Янги суров: %(name)s, %(phone)s — контрагент топилмади."
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Қарздорлик йўқ. ✅"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "Қарзингиз йўқ.  Олдиндан тўлов: <b>%s so'm</b>"
+msgstr ""
+
+#. module: cst_kerama_telegram
+#. odoo-python
+#: code:addons/cst_kerama_telegram/models/telegram_bot.py:0
+msgid "🔄 %s sifatida ko'rish"
+msgstr ""

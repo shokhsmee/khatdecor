@@ -1,0 +1,3263 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:05+0000\n"
+"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,print_report_name:cst_kerama_reports.action_report_partner_statement
+msgid "'Akt sverka %s' % (object.partner_id.display_name or '')"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,print_report_name:cst_kerama_reports.action_report_partner_movement
+msgid "'Kontragentlar harakati %s - %s' % (object.date_from, object.date_to)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,print_report_name:cst_kerama_reports.action_report_warehouse
+msgid "'Omborlar hisoboti %s - %s' % (object.date_from, object.date_to)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,print_report_name:cst_kerama_reports.action_report_employee_card
+msgid "'Oylik %s' % (object.employee_id.display_name or '')"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,print_report_name:cst_kerama_reports.action_report_fuel
+msgid "'Yoqilgi hisoboti %s - %s' % (object.date_from, object.date_to)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "(chiqarilgan)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid ""
+",\n"
+"                                                    chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "1 soat uchun sarf miqdori"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "1 yildan ortiq jim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "100 km uchun sarf miqdori"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "2-sort"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_statement_third_party
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_third_party_statement
+msgid "3-shaxs akt sverkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_partner_movement_wizard__kind__third_party
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_third_parties
+msgid "3-shaxslar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_movement_third_party
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_third_party_movement
+msgid "3-shaxslar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "30 kundan ortiq jim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
+msgid "40 A 058 TT"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "90 kundan ortiq jim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__active
+msgid "Active"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_partner_statement
+#: model:ir.model,name:cst_kerama_reports.model_cst_partner_statement_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+msgid "Akt sverka"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_customer_statement_native
+msgid "Akt sverka (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_partner_statement_html
+msgid "Akt sverka (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/res_partner.py:0
+msgid "Akt sverka: %s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_assets_native
+msgid "Amortizatsiya jadvali (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Asosiy vosita nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid ""
+"Asosiy vosita yo'q. Ular Buxgalteriya ▸ Asosiy vositalar bo'limida "
+"kiritiladi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_assets
+#: model:ir.model,name:cst_kerama_reports.model_cst_asset_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_asset_report_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_assets_group
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+msgid "Asosiy vositalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_assets_html
+msgid "Asosiy vositalar (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_assets_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_assets
+msgid "Asosiy vositalar (qoldiq summalari bilan)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+msgid ""
+"Asosiy vositalar Buxgalteriya ▸ Asosiy vositalar bo'limida yuritiladi; "
+"inventar raqami, ishlab chiqarilgan sana va joylashuv har bir vosita "
+"kartochkasida to'ldiriladi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_assets_list
+msgid "Asosiy vositalar ro'yxati (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_account_asset
+msgid "Asset/Revenue Recognition"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_trial_balance
+msgid "Aylanma balans"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_fuel_log__state__done
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Bajarilgan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid ""
+"Bajarilgan yozuvni o'chirib bo'lmaydi — u ombor harakatini yaratgan. Teskari"
+" yozuv kiriting."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_bs
+msgid "Balans"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__journal_ids
+msgid "Bank jurnallari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_bank_cash_items
+msgid "Bank va kassa yozuvlari (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_bank_fees_wizard
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_bank_fees
+#: model:ir.model,name:cst_kerama_reports.model_cst_bank_fee_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_bank_fee_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_bank_fees
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bank_fees_wizard_form
+msgid "Bank xarajatlari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_bank_fees_html
+msgid "Bank xarajatlari (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_machine__worked_hours
+msgid "Barcha tasdiqlangan chiqimlarda yozilgan soatlar yig'indisi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_expense_report_wizard__scope__all
+msgid "Barcha xarajatlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bank_fees_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bonus_penalty_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_card_payments_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_inventory_count_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_kpi_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
+msgid "Bekor qilish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_payroll_component__cst_bonus_report
+msgid "Belgilangan komponent «Jarimalar va bonuslar» hisobotida ko'rsatiladi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:product.template,name:cst_kerama_reports.product_petrol
+msgid "Benzin"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__first_date
+msgid "Birinchi hujjat"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+msgid "Bizdan chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+msgid "Bizga kirim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__hide_empty
+msgid "Bo'sh qatorlarni yashirish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_cash_report_wizard__journal_ids
+msgid "Bo'sh qoldirilsa, barcha kassa va bank jurnallari chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_report_wizard__product_ids
+msgid "Bo'sh qoldirilsa, barcha yoqilg'i turlari birga hisoblanadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_goods_movement_wizard__warehouse_ids
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_warehouse_report_wizard__warehouse_ids
+msgid "Bo'sh qoldirilsa, ruxsat etilgan barcha omborlar chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_movement_wizard__partner_ids
+msgid "Bo'sh qoldirilsa, tanlangan turdagi barcha kontragentlar chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_payroll_component__cst_bonus_report__bonus
+msgid "Bonus"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+msgid "Bonus yoki jarima mavzusi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+msgid "Bonus yoki jarima turi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_component__cst_bonus_report
+msgid "Bonus/jarima hisobotida"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_general_ledger
+msgid "Bosh kitob"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+msgid "Boshlang'ich qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_exec
+msgid "Boshqaruv xulosasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "Brak"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_product_product__cst_is_fuel
+#: model:ir.model.fields,help:cst_kerama_reports.field_product_template__cst_is_fuel
+msgid ""
+"Bu mahsulot yoqilg'i hisobotida tanlanadigan yoqilg'i turi sifatida "
+"ko'rsatiladi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Bu oy"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Bu oy savdo yo'q"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Bu oy xarajat yozuvi yo'q"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Buxgalteriya yozuvi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Buyurtma"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Buyurtma kerak"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_fuel_log__kind__out
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.actions.act_window,help:cst_kerama_reports.action_fuel_log
+msgid ""
+"Chiqim mahsulotni hisobdan chiqaradi: mashina, spidometr\n"
+"               ko'rsatkichi va ishlagan vaqti bilan birga yoziladi, ombor\n"
+"               qoldig'i esa haqiqiy holatda qoladi. Spidometri yo'q texnikada\n"
+"               (kara, generator, press) soatni to'ldiring — hisobot sarfni\n"
+"               1 soatga nisbatan chiqaradi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Chiqimda mashinani ko'rsatish shart."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_moves_outgoing
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_outgoing
+msgid "Chiqimlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_scrap_native
+msgid "Chiqindilar (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_partner_statement
+msgid "Counterparty Running Account"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__plate
+msgid "Davlat raqami"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Davr"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__date_from
+msgid "Davr boshi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_movement_wizard__hide_empty
+msgid ""
+"Davr boshida ham, oxirida ham qoldig'i bo'lmagan va davr ichida harakat "
+"qilmagan kontragentlar chiqmaydi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Davr boshiga qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+msgid "Davr ichida KPI yozuvlari yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "Davr ichida aylanma"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "Davr ichida bank jurnallarida xarajat yozuvi topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+msgid "Davr ichida bonus yoki jarima yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "Davr ichida harakat topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Davr ichida harakat yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
+msgid "Davr ichida hisobdan chiqarish yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+msgid "Davr ichida kartaga o'tkazma yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+msgid "Davr ichida pul harakati yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Davr ichida reviziya yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+msgid "Davr ichida soliq harakati topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+msgid "Davr ichida tugallangan ishlab chiqarish hujjati yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "Davr ichida tugallangan ishlab chiqarish yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+msgid "Davr ichida xarajat yozuvlari yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+msgid "Davr ichida yozuv yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Davr oralig'ida sarflagan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Davr oralig'ida yurgan km"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__date_to
+msgid "Davr oxiri"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/wizard/fuel_report_wizard.py:0
+#: code:addons/cst_kerama_reports/wizard/partner_movement_wizard.py:0
+#: code:addons/cst_kerama_reports/wizard/partner_statement_wizard.py:0
+#: code:addons/cst_kerama_reports/wizard/report_wizards2.py:0
+#: code:addons/cst_kerama_reports/wizard/warehouse_report_wizard.py:0
+msgid "Davr oxiri boshidan oldin bo'lishi mumkin emas."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_director_dashboard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_component__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_report_base__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_report_filter_bar__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_report_base__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bank_fees_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bonus_penalty_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_card_payments_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_inventory_count_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_kpi_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
+msgid "Ekranda ko'rish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Eng katta qarzdorlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Eng ko'p sotilgan mahsulotlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__min_price
+msgid "Eng past narx"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__max_price
+msgid "Eng yuqori narx"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Eskirish summasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
+msgid "Excel"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+msgid "Fakt"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__only_deviations
+msgid "Faqat farqi borlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__only_deviations
+msgid "Faqat kam yoki ko'p turganlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_expense_report_wizard__scope__cash
+msgid "Faqat kassa orqali"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__spread
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Farqi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_pl
+msgid "Foyda va zarar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
+msgid "Fura, yuk mashinasi…"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:product.template,name:cst_kerama_reports.product_gas
+msgid "Gaz (metan)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.actions.act_window,help:cst_kerama_reports.action_partner_last_operation
+msgid "Hali hisob-kitob harakati yo'q"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_inventory_count_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
+msgid "Hamma omborlar (bo'sh = hammasi)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "Haqqimiz"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__detail
+msgid "Har bir harakat bilan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_product_price_range__cst_characteristic
+msgid "Har bir xarakteristika alohida sotib olinadi va alohida narxlanadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__detail
+msgid "Har bir yozuv bilan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_expense_report_wizard__display_currency_id
+msgid "Har bir yozuv o'z sanasidagi kurs bo'yicha o'giriladi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+msgid ""
+"Har mahsulot bo'yicha: boshlang'ich qoldiq, kirim (xarid, ishlab chiqarishdan,\n"
+"                    ko'chirish, boshqa), chiqim (sotuv, ishlab chiqarishga, ko'chirish, spisaniya) va oxirgi qoldiq."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Harakat topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_stock_moves
+msgid "Harakatlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_analysis
+msgid "Harakatlar tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__days_idle
+msgid "Harakatsiz kun"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__days_display
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+msgid "Harakatsiz kun farqi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__hide_zero
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__hide_zero
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__hide_zero
+msgid "Harakatsiz qatorlarni yashirish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__driver_id
+msgid "Haydovchi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_invoice_analysis
+msgid "Hisob-faktura tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_writeoff_report
+msgid "Hisobdan chiqarilgan xomashyo va mahsulot"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_writeoff
+#: model:ir.model,name:cst_kerama_reports.model_cst_writeoff_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_writeoff_report_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_writeoff
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
+msgid "Hisobdan chiqarilganlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_writeoff_html
+msgid "Hisobdan chiqarilganlar (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__include_closed
+msgid "Hisobdan chiqarilganlarni ham"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "Hisoblandi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_report_filter_bar
+msgid "Hisobot ekranidagi filtrlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/controllers/stock_ledger.py:0
+msgid "Hisobot parametrlari topilmadi — qaytadan oching."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_machine__name
+msgid "Hisobotda ko'rinadigan nom, masalan «Kara 001»."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+msgid "Holat sanasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__state
+msgid "Holati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__doc_count
+msgid "Hujjatlar soni"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_director_dashboard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_component__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_report_base__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_report_filter_bar__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_report_base__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__message_has_error
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__cst_inventory_no
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Inventar raqami"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_workorder_analysis
+msgid "Ish buyruqlari tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_kpi_report_wizard__computation__kpi_production
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_kpi_production
+msgid "Ishbay KPI"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__cst_manufacture_date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Ishlab chiqarilgan sanasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_mrp
+msgid "Ishlab chiqarish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_production_fact_wizard
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_production_fact
+#: model:ir.model,name:cst_kerama_reports.model_cst_production_fact_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_production_fact_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_production_fact
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+msgid "Ishlab chiqarish fakti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_production_fact_html
+msgid "Ishlab chiqarish fakti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+msgid "Ishlab chiqarish hujjati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_mrp_analysis
+msgid "Ishlab chiqarish tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_moves_from_production
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_from_production
+msgid "Ishlab chiqarishdan qabul qilingan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_moves_to_production
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_to_production
+msgid "Ishlab chiqarishga berilgan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__worked_hours
+msgid "Ishlagan vaqt"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Ishlagan vaqt manfiy bo'lishi mumkin emas."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Ishlagan vaqti (soat)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__note
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__note
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "Izoh"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
+msgid "Izoh / Mahsulot"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
+msgid "Izoh…"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "JAMI"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_list
+msgid "Jami"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "Jami ("
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+msgid "Jami chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__worked_hours
+msgid "Jami ishlagan vaqt"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+msgid "Jami kirim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Jami pul — kassa va bank"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_list
+msgid "Jami soat"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "Jami xarajat · aylanma"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_payroll_component__cst_bonus_report__penalty
+msgid "Jarima"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+msgid "Jarima va bonus turlari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_bonus_penalty_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_bonus_penalty
+#: model:ir.model,name:cst_kerama_reports.model_cst_bonus_penalty_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_bonus_penalty_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_bonus_penalty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bonus_penalty_wizard_form
+msgid "Jarimalar va bonuslar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_bonus_penalty_html
+msgid "Jarimalar va bonuslar (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Jurnal"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_journal_items
+msgid "Jurnal yozuvlari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_kpi_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_kpi
+#: model:ir.model,name:cst_kerama_reports.model_cst_kpi_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_kpi_report_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_kpi
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_kpi_report_wizard_form
+msgid "KPI hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_kpi_html
+msgid "KPI hisoboti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+msgid "KPI narxi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_kpi_native
+msgid "KPI ro'yxatlari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+msgid "KPI summasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__computation
+msgid "KPI turi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_consumption
+msgid "Kalkulyatsiyaga nisbatan farq (norma / fakt)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Kam (min dan)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Kam chiqdi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_consumption_report
+msgid "Kam yoki ko'p sarflangan mahsulot va xomashyo"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_minmax_report
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_minmax
+msgid "Kam yoki ko'p turgan mahsulotlar (min-max)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
+msgid "Kara 001"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_cash
+msgid "Kassa"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__journal_ids
+msgid "Kassa / bank"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+msgid "Kassa / bank · Izoh"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_expense_report_cash
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_expense_cash
+msgid "Kassa orqali xarajatlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_expense_report_wizard__scope__cash_bank
+msgid "Kassa va bank orqali"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Kassa va bank qoldiqlari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Kassa yoki bank jurnali topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__category_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__category_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__category_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__category_ids
+msgid "Kategoriyalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__kind
+msgid "Kimlar bo'yicha"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_fuel_log__kind__in
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Kirim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_history
+msgid "Kirim/chiqim tarixi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_moves_incoming
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_incoming
+msgid "Kirimlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_ledgers
+msgid "Kitoblar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Ko'p (max dan)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Ko'p chiqdi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__partner_id
+msgid "Kommunal xizmat ta'minotchisi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:res.partner.category,name:cst_kerama_reports.partner_category_utilities
+msgid "Kommunal xizmatlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
+msgid ""
+"Kommunal xizmatlar Odoo'da oddiy ta'minotchi hisob-fakturasi (Xarid / "
+"Buxgalteriya ▸ Ta'minotchi hisob-fakturalari) va «To'lovni qayd etish» "
+"orqali yuritiladi. Ta'minotchi kontaktiga «Kommunal xizmatlar» tegi "
+"qo'yilsa, shu ro'yxatda chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_utility_statement_wizard
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_utility_statement
+#: model:ir.model,name:cst_kerama_reports.model_cst_utility_statement_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_utility_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
+msgid "Kommunal xizmatlar akt sverkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_utility_statement_html
+msgid "Kommunal xizmatlar akt sverkasi (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__company_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__company_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__company_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__company_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "Kompaniya"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__company_ids
+msgid "Kompaniyalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Kompaniyalar bo'yicha savdo"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__component_ids
+msgid "Komponentlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__partner_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__partner_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
+msgid "Kontragent"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_partner_ledger
+msgid "Kontragent kitobi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+msgid "Kontragent nomi<br/>(valyuta nomi)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+msgid "Kontragent · Izoh · Jurnal"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+msgid "Kontragentdan kirim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+msgid "Kontragentga chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__partner_ids
+msgid "Kontragentlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
+msgid "Kontragentlar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_partner_movement_html
+msgid "Kontragentlar harakati (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_partner_movement_wizard
+msgid "Kontragentlar harakati hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+msgid "Kun"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Kunlik kirim va chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Kutilayotgan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__product_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
+msgid "Mahsulot"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Mahsulot (xomashyo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_product_margin
+msgid "Mahsulot foyda/zarari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_price_range_purchase
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_price_range_sale
+msgid "Mahsulot min-max narxi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_product_price_range
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_pivot
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
+msgid "Mahsulot narx oralig'i"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "Mahsulot nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Mahsulot olindi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Mahsulot qaytarib berildi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Mahsulot qaytarildi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Mahsulot sotildi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__product_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__product_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__product_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__product_ids
+msgid "Mahsulotlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_sales_by_product
+msgid "Mahsulotlar bo'yicha"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_fuel_machine
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__name
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
+msgid "Mashina"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Mashina rusumi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_fuel_machine
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__machine_ids
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_fuel_machines
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_list
+msgid "Mashinalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Mashinalarga chiqim qilinmagan."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_mrp_materials
+msgid "Materiallar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Max"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+msgid "Mazmuni"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+msgid "Menejer nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "Mijoz"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_statement_customer
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_customer_statement
+msgid "Mijoz akt sverkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__partner_id
+msgid "Mijoz nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.actions.act_window,help:cst_kerama_reports.action_partner_last_operation
+msgid ""
+"Mijoz nomiga ikki marta bosilsa akt sverka, harakat mazmuniga ikki\n"
+"               marta bosilsa o'sha hujjat ochiladi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_partner_movement_wizard__kind__customer
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_customers
+msgid "Mijozlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_product_price_range__kind__sale
+msgid "Mijozlar bilan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_product_price_range_sale
+msgid "Mijozlar bilan mahsulot min-max"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_sales_by_customer
+msgid "Mijozlar bo'yicha savdo"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_movement_customer
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_customer_movement
+msgid "Mijozlar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_last_operation
+#: model:ir.model,name:cst_kerama_reports.model_cst_partner_last_operation
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_last_operation
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "Mijozning oxirgi operatsiyasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Min"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+msgid ""
+"Min va max chegaralari Odoo'ning to'ldirish qoidalarida (Ombor ▸ Min-Max "
+"qoidalari) belgilanadi — bu hisobot ularni hozirgi qoldiq bilan yonma-yon "
+"ko'rsatadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_minmax_report_wizard__only_deviations
+msgid "Min va max oralig'ida turgan mahsulotlar ko'rsatilmaydi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_orderpoints
+msgid "Min-Max qoidalari (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_minmax
+#: model:ir.model,name:cst_kerama_reports.model_cst_minmax_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_minmax_report_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+msgid "Min-max bo'yicha qoldiqlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_minmax_html
+msgid "Min-max bo'yicha qoldiqlar (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_minmax_report_wizard__include_without_rule
+msgid ""
+"Min/max belgilanmagan, lekin qoldig'i bor mahsulotlar ham chiqadi — nimaga "
+"chegara qo'yish kerakligini ko'rish uchun."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid ""
+"Min/max qoidasi bo'lgan mahsulot topilmadi. Chegaralar Inventarizatsiya ▸ "
+"To'ldirish qoidalarida belgilanadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Miqdor"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Miqdor noldan katta bo'lishi kerak."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__quantity
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__quantity
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
+msgid "Miqdori"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "Miqdori (yaroqli)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_finance
+msgid "Moliya"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Muddati kelmagan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.js:0
+msgid "Muddati o'tgan buyurtmalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Narxi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
+msgid "Narxi turlicha bo'lganlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+msgid "Norma"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_consumption
+#: model:ir.model,name:cst_kerama_reports.model_cst_consumption_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_consumption_report_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
+msgid "Norma va fakt sarfi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_consumption_html
+msgid "Norma va fakt sarfi (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_consumption_report_wizard__only_deviations
+msgid "Normadan farq qilmagan komponentlar ko'rsatilmaydi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+msgid "Normadan farq yo'q"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+msgid "Normadan farqli sarflangan mahsulot nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "O'lch."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__uom_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__uom_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
+msgid "O'lchov"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__avg_price
+msgid "O'rtacha narx"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "Oldindan to'laganlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_stock
+msgid "Ombor"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_stock_ledger_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_stock_ledger_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_stock_ledger_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_stock_ledger
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
+msgid "Ombor batafsil hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_stock_ledger_html
+msgid "Ombor batafsil hisoboti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__stock_move_id
+msgid "Ombor harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/controllers/stock_ledger.py:0
+msgid "Ombor hisobotini o'qishga ruxsatingiz yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__location_id
+msgid "Ombor joyi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_warehouse_performance
+msgid "Ombor samaradorligi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__warehouse_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__warehouse_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__warehouse_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__warehouse_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__warehouse_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__warehouse_ids
+msgid "Omborlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_warehouse
+#: model:ir.model,name:cst_kerama_reports.model_cst_warehouse_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_warehouse_report_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
+msgid "Omborlar hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_warehouse_html
+msgid "Omborlar hisoboti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_warehouse_report
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_warehouse_sheet
+msgid "Omborlar hisoboti (rasmli)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__together
+msgid "Omborlarni birlashtirish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__last_order_id
+msgid "Oxirgi buyurtma"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__last_operation
+msgid "Oxirgi harakat mazmuni"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__last_date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "Oxirgi harakat sanasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__last_move_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__last_date
+msgid "Oxirgi hujjat"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+msgid "Oxirgi hujjatni ochish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__odometer
+msgid "Oxirgi km"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+msgid "Oxirgi qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_payroll
+msgid "Oylik"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bank_fees_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_bonus_penalty_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_card_payments_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_inventory_count_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_kpi_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
+msgid "PDF"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_payroll_component
+msgid "Payroll Component"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_payroll_report_base
+msgid "Payroll report helpers"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_period_wizard
+msgid "Period wizard base"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_card_payments
+#: model:ir.model,name:cst_kerama_reports.model_cst_card_payments_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_card_payments_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_card_payments_wizard_form
+msgid "Plastik kartaga o'tkazmalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_card_payments_html
+msgid "Plastik kartaga o'tkazmalar (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+msgid "Plastik kartaga tashlangan pul"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_card_payments_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_card_payments
+msgid "Plastik kartaga tashlangan pullar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Pul berildi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "Pul olindi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_cashflow
+msgid "Pul oqimi (Cash Flow)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_cash_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_cash
+#: model:ir.model,name:cst_kerama_reports.model_cst_cash_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_cash_report_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_cash_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
+msgid "Pullar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_cash_html
+msgid "Pullar harakati (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__scope
+msgid "Qamrov"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Qarz yoshi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Qarzdor yo'q"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_search
+msgid "Qarzdorlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__balance
+msgid "Qarzdorligi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_aged_receivable
+msgid "Qarzdorlik yoshi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "Qarzimiz"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_aged_payable
+msgid "Qarzlarimiz yoshi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__cst_location
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Qayerda joylashgan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__machine_id
+msgid "Qaysi mashinaga"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+msgid "Qaysi mashinaga quyilgan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+msgid "Qaysi oy uchun"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Qayta baholandi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__include_without_rule
+msgid "Qoidasi yo'q mahsulotlarni ham"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "Qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Qoldiq narxi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_stock_on_hand
+msgid "Qoldiqlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_fuel_log__state__draft
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Qoralama"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__include_draft
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__include_draft
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__include_draft
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__include_draft
+msgid "Qoralama yozuvlar bilan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.actions.client,name:cst_kerama_reports.action_director_dashboard
+#: model:ir.model,name:cst_kerama_reports.model_cst_director_dashboard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_director
+msgid "Rahbar oynasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__name
+msgid "Raqami"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_inventory_count_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_inventory_count
+#: model:ir.model,name:cst_kerama_reports.model_cst_inventory_count_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_inventory_count_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_inventory_count
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_inventory_count_wizard_form
+msgid "Reviziya hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_inventory_count_html
+msgid "Reviziya hisoboti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_move_line_search_lot
+msgid "Rulon / partiya"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_lots
+msgid "Rulon va partiyalar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_moves_by_lot
+msgid "Rulon va partiyalar bo'yicha"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_moves_by_lot
+msgid "Rulon va partiyalar bo'yicha harakat"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__model_name
+msgid "Rusumi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:product.template,name:cst_kerama_reports.product_diesel
+msgid "Salyarka (dizel yoqilg'isi)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Sana"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_inventory_at_date
+msgid "Sanadagi qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_sales
+msgid "Savdo"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_sales_analysis
+msgid "Savdo tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_account_asset__cst_location
+msgid "Sex, ombor, xona — hisobotda ko'rinadigan joy."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__worked_hours
+msgid ""
+"Shu yoqilg'i bilan mashina necha soat ishlagani. Spidometri yo'q texnika "
+"(kara, generator, press) uchun sarf shu soatlarga nisbatan hisoblanadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/reports_home/reports_home.xml:0
+msgid "Sizga ochiq hisobot yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Sof"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_tax_statement_wizard
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_tax_statement
+#: model:ir.model,name:cst_kerama_reports.model_cst_tax_statement_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_tax_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
+msgid "Soliq akt sverkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_tax_statement_html
+msgid "Soliq akt sverkasi (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__account_ids
+msgid "Soliq hisoblari"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_tax_native
+msgid "Soliq hisoboti (Odoo)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+msgid "Soliq turi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__account_id
+msgid "Soliq turi (hisob)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_tax_movement_wizard__account_ids
+msgid ""
+"Soliq turlari — hisob raqamlari. Standart ro'yxat soliq sozlamalari, oylik "
+"soliq komponentlari va 64xx/65xx hisoblaridan yig'iladi; o'zgartirish "
+"mumkin."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_tax_report
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_taxes
+msgid "Soliqlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_tax_movement_wizard
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_tax_movement
+#: model:ir.model,name:cst_kerama_reports.model_cst_tax_movement_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
+msgid "Soliqlar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_tax_movement_html
+msgid "Soliqlar harakati (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Soni"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Sotib olindi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Sotib olingan sanasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_expense_report_wizard__include_direct_cost
+msgid "Sotilgan mahsulot tannarxi (direct cost) hisoblarini ham ko'rsatish."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_kpi_report_wizard__computation__kpi_sales
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_kpi_sales
+msgid "Sotuv KPI"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Sotuvchi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Sotuvchilar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_sales_by_person
+msgid "Sotuvchilar bo'yicha"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__odometer_km
+msgid "Spidometr (km)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_card_payments_wizard__component_ids
+msgid "Standart: kodida PLASTIK / KARTA bo'lgan ushlanmalar."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_stock_report_base
+msgid "Stock report helpers"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "Summa"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__amount
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Summasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+msgid "Surati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__show_image
+msgid "Suratlari bilan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__partner_id
+msgid "Ta'minotchi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_statement_supplier
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_supplier_statement
+msgid "Ta'minotchi akt sverkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_partner_movement_wizard__kind__supplier
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_suppliers
+msgid "Ta'minotchilar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_product_price_range__kind__purchase
+msgid "Ta'minotchilar bilan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_product_price_range_purchase
+msgid "Ta'minotchilar bilan mahsulot min-max"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_movement_supplier
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_supplier_movement
+msgid "Ta'minotchilar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_customer_analysis
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_supplier_analysis
+msgid "Tahlillar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+msgid "Tanlangan davrda harakat ham, qoldiq ham yo'q."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+msgid "Tanlangan davrda harakat topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_goods_movement_wizard__together
+msgid ""
+"Tanlangan omborlar bitta ombor deb ko'riladi: ular orasidagi ko'chirishlar "
+"ko'rsatilmaydi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Tannarxi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__include_direct_cost
+msgid "Tannarxni ham qo'shish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_list
+msgid "Tasdiqlash"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__product_ids
+msgid "Tayyor mahsulotlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "To'landi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Tovar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+msgid "Tovar (xomashyo) nomi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_goods_movement_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_goods_movement
+#: model:ir.model,name:cst_kerama_reports.model_cst_goods_movement_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_goods_movement_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
+msgid "Tovar harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_goods_movement_html
+msgid "Tovar harakati (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_goods_movement
+msgid "Tovar harakati (Товарнинг ҳаракати)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__kind
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__kind
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Turi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employee_card
+msgid "Ushlandi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_oee
+msgid "Uskuna samaradorligi (OEE)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__display_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__currency_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
+msgid "Valyuta"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_expense_report_all
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_expense_all
+msgid "Xarajat harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "Xarajat hisobi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+msgid "Xarajat turi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Xarajatlar guruh bo'yicha"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_expense
+#: model:ir.model,name:cst_kerama_reports.model_cst_expense_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_expense_report_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
+msgid "Xarajatlar hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_expense_html
+msgid "Xarajatlar hisoboti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+msgid "Xarakt."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__cst_characteristic
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__cst_characteristic
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_consumption
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
+msgid "Xarakteristika"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_purchase_analysis
+msgid "Xarid tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/reports_home/reports_home.xml:0
+#: model:ir.actions.client,name:cst_kerama_reports.action_reports_home
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_root
+msgid "Xisobotlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__employee_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_card_payments
+msgid "Xodim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_employee_card_report
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_payroll_card
+msgid "Xodim oyligi (individual)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_employee_card
+#: model:ir.model,name:cst_kerama_reports.model_cst_employee_card_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_employee_card_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+msgid "Xodim oyligi kartochkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_employee_card_html
+msgid "Xodim oyligi kartochkasi (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__employee_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_card_payments_wizard__employee_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_kpi_report_wizard__employee_ids
+msgid "Xodimlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_payroll_summary
+msgid "Xodimlar oyligi (umumiy)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Yangilash"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__product_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_product_product__cst_is_fuel
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__cst_is_fuel
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_fuel
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
+msgid "Yoqilg'i"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_fuel_log
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Yoqilg'i harakati"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Yoqilg'i harakati: %s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.actions.act_window,help:cst_kerama_reports.action_fuel_log
+msgid "Yoqilg'i harakatini kiriting"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_fuel_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_fuel
+#: model:ir.model,name:cst_kerama_reports.model_cst_fuel_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_fuel_report_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_fuel_report
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
+msgid "Yoqilg'i hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_fuel_html
+msgid "Yoqilg'i hisoboti (ekranda)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:product.template,description:cst_kerama_reports.product_diesel
+msgid ""
+"Yoqilg'i hisobotida ishlatiladi. Chiqim\n"
+"                mashinaga quyilganda hisobdan chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_fuel_log
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_fuel_log
+msgid "Yoqilg'i kirim/chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Yoqilg'i kirimi: %s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__odometer_km
+msgid ""
+"Yoqilg'i quyilgan paytdagi umumiy km. Davr ichida yurgan kilometr shu "
+"ko'rsatkichlar farqidan hisoblanadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__location_id
+msgid ""
+"Yoqilg'i saqlanadigan joy: kirimda shu joyga tushadi, chiqimda shu joydan "
+"hisobdan chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__product_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
+msgid "Yoqilg'i turi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Yoqilg'i: %(product)s → %(machine)s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__log_count
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_list
+msgid "Yozuvlar"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_kpi_unloading
+msgid "Yuk tushirish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_kpi_report_wizard__computation__kpi_unloading
+msgid "Yuk tushirish KPI"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "Yuklanmoqda…"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "aylanma: kirim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "bugun"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "buyurtma"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+msgid "da"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_header
+msgid "davr oralig'i uchun"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "davr oralig'ida"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "grafik"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "hammasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "holatiga"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "jadval"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "kirim,"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "kun"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "kun boshiga qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
+msgid "kun oxiriga qoldiq"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "kun ·"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "muddati o'tgan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "ning ishlab chiqarilgan mahsulotlari hisoboti"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+msgid "organizatsiya"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "qator"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "qoida yo'q"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+msgid "shundan hisob-faktura yozilmagan:"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
+msgid "shundan schyot-faktura kelmagan:"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "sof oqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+msgid "ta buyurtma)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "ta kam"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+msgid "ta ko'p"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+msgid "ta mahsulot)"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "«%s» kompaniyasi uchun hisobdan chiqarish joyi (inventory) topilmadi."
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "· hisobot"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "· savdo tahlili"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "· tahlil"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "· ulushi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
+msgid "· xarajat ulushi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-javascript
+#: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+msgid "· yangilangan"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "№ %(name)s : Mahsulot olindi (xarid buyurtmasi)%(ref)s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "№ %(name)s : Mahsulot sotildi (buyurtma)%(ref)s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid ""
+"№ %(picking)s : Mahsulot sotildi (yuk chiqarildi): %(order)s, %(product)s "
+"%(qty)s %(uom)s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid ""
+"№ %(receipt)s : Mahsulot olindi — hisob-faktura kutilmoqda: %(order)s, "
+"%(product)s %(qty)s %(uom)s"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "№ %(refund)s : %(what)s: %(order)s, %(product)s %(qty)s %(uom)s"
+msgstr ""

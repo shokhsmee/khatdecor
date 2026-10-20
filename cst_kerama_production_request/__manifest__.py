@@ -20,7 +20,7 @@ Khatdecor Ishlab chiqarish zayafkalari
     """,
     "author": "Khatdecor",
     "category": "Manufacturing",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "depends": ["cst_kerama_wh_flow", "cst_kerama_sale_production", "cst_kerama_shift", "sale_stock", "sale_mrp"],
     "data": [
         "security/security.xml",

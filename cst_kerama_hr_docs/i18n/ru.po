@@ -1,0 +1,756 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_hr_docs
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_hr_docs
+#. odoo-python
+#: code:addons/cst_kerama_hr_docs/models/hr_document.py:0
+msgid ""
+"2. %(name)sga Mehnat kodeksining 234-moddasiga asosan foydalanilmagan barcha"
+" yillik asosiy ta'tillari uchun (%(days)s) kunlik kompensasiya to'lab "
+"berilsin"
+msgstr ""
+"2. %(name)sga Mehnat kodeksining 234-moddasiga asosan foydalanilmagan barcha"
+" yillik asosiy ta'tillari uchun (%(days)s) kunlik kompensasiya to'lab "
+"berilsin"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_needaction
+msgid "Action Needed"
+msgstr "Требуется действие"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_form
+msgid "Ariza (ishga qabul)"
+msgstr "Заявление (приём на работу)"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Asos mehnat shartnomasi"
+msgstr "Основной трудовой договор"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_attachment_count
+msgid "Attachment Count"
+msgstr "Кол-во вложений"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Bag'dod tumani IIB"
+msgstr "ОВД Багдадского района"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__department_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Bo'lim"
+msgstr "Отдел"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__compensation_days
+msgid ""
+"Bo'shash buyrug'ida kompensatsiya bandini chiqaradi.  0 bo'lsa band umuman "
+"yozilmaydi."
+msgstr ""
+"Выводит пункт о компенсации в приказе об увольнении.  Если 0, пункт не "
+"пишется вовсе."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_event_leave_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Bo'shatish"
+msgstr "Увольнение"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_doc_template__kind__otkazish
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_event__kind__otkazish
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Boshqa lavozimga o'tkazish"
+msgstr "Перевод на другую должность"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Bu yil"
+msgstr "Этот год"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.constraint,message:cst_kerama_hr_docs.constraint_cst_hr_doc_template_code_uniq
+msgid "Bunday kodli shablon allaqachon bor."
+msgstr "Шаблон с таким кодом уже существует."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_hr_employee__cst_passport_issuer
+msgid "Buyruq va arizada shu matn chop etiladi, masalan «Bag'dod tumani IIB»."
+msgstr ""
+"Этот текст печатается в приказе и заявлении, например «Bag'dod tumani IIB»."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_res_company__cst_hr_company_label
+msgid "Buyruq va shartnomalarda korxona shu ko'rinishda yoziladi."
+msgstr "В приказах и договорах предприятие пишется в таком виде."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__order_no
+msgid "Buyruq №"
+msgstr "Приказ №"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_company_form_hr_docs
+msgid ""
+"Buyruq, ariza va shartnomalarda korxona nomi, direktor\n"
+"                        va hujjat tuzilgan joy shu yerdan olinadi."
+msgstr ""
+"Название предприятия, директор и место составления документа\n"
+"                        в приказах, заявлениях и договорах берутся отсюда."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model,name:cst_kerama_hr_docs.model_res_company
+msgid "Companies"
+msgstr "Компании"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__create_date
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__create_date
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__create_date
+msgid "Created on"
+msgstr "Дата создания"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_document_count
+msgid "Cst Document Count"
+msgstr "Кол-во документов"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_event_count
+msgid "Cst Event Count"
+msgstr "Кол-во кадровых событий"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_res_company__cst_hr_director
+msgid "Direktor (hujjatlarda)"
+msgstr "Директор (в документах)"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__display_name
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__display_name
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_res_company__display_name
+msgid "Display Name"
+msgstr "Отображаемое название"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__document_count
+msgid "Document Count"
+msgstr "Кол-во документов"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model,name:cst_kerama_hr_docs.model_hr_employee
+msgid "Employee"
+msgstr "Сотрудник"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Farg'ona"
+msgstr "Фергана"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__filename
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__filename
+msgid "Fayl nomi"
+msgstr "Имя файла"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_follower_ids
+msgid "Followers"
+msgstr "Подписчики"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Подписчики (партнёры)"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__compensation_days
+msgid "Foydalanilmagan ta'til kuni"
+msgstr "Дни неиспользованного отпуска"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__kind
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__kind
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Harakat turi"
+msgstr "Тип события"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__has_message
+msgid "Has Message"
+msgstr "Есть сообщение"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__state
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__state
+msgid "Holati"
+msgstr "Статус"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Hozirgi holati"
+msgstr "Текущее состояние"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__name
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_list_embedded
+msgid "Hujjat"
+msgstr "Документ"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__name
+msgid "Hujjat nomi"
+msgstr "Название документа"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_form
+msgid "Hujjat shabloni"
+msgstr "Шаблон документа"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.actions.act_window,name:cst_kerama_hr_docs.action_hr_doc_template
+#: model:ir.ui.menu,name:cst_kerama_hr_docs.menu_hr_doc_template
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_list
+msgid "Hujjat shablonlari"
+msgstr "Шаблоны документов"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_res_company__cst_hr_place
+msgid "Hujjat tuzilgan joy"
+msgstr "Место составления документа"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__document_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Hujjatlar"
+msgstr "Документы"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__date_text
+msgid "Hujjatlarda «03 avgust 2026 yil» ko'rinishida chiqadi."
+msgstr "В документах выводится в виде «03 avgust 2026 yil»."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_res_company__cst_hr_company_label
+msgid "Hujjatlardagi nomi"
+msgstr "Название в документах"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_hr_employee__cst_full_address
+msgid ""
+"Hujjatlarga tushadigan manzil.  Bo'laklardan o'zi yig'iladi, lekin qo'lda "
+"ham yozish mumkin."
+msgstr ""
+"Адрес, попадающий в документы.  Собирается из частей автоматически, но можно"
+" ввести и вручную."
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Hujjatlarni yaratish"
+msgstr "Создать документы"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__id
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__id
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__id
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__id
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_res_company__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Если отмечено, новые сообщения требуют вашего внимания."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__message_has_error
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Если отмечено, при доставке некоторых сообщений возникла ошибка."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_is_follower
+msgid "Is Follower"
+msgstr "Подписчик"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_doc_template__kind__boshash
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_event__kind__boshash
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Ishdan bo'shatish"
+msgstr "Увольнение"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_event_hire_ids
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_doc_template__kind__kirish
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_event__kind__kirish
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Ishga qabul"
+msgstr "Приём на работу"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__contract_no
+msgid ""
+"Ishga qabulda — mehnat shartnomasi raqami, o'tkazishda — qo'shimcha kelishuv"
+" raqami."
+msgstr ""
+"При приёме — номер трудового договора, при переводе — номер дополнительного "
+"соглашения."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__note
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__note
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Izoh"
+msgstr "Примечание"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Izoh…"
+msgstr "Примечание…"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model,name:cst_kerama_hr_docs.model_cst_hr_event
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__kind
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__event_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Kadr harakati"
+msgstr "Кадровое событие"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.actions.act_window,name:cst_kerama_hr_docs.action_hr_event
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_event_ids
+#: model:ir.ui.menu,name:cst_kerama_hr_docs.menu_hr_event
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_list_embedded
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Kadr harakatlari"
+msgstr "Кадровые события"
+
+#. module: cst_kerama_hr_docs
+#. odoo-python
+#: code:addons/cst_kerama_hr_docs/models/hr_employee.py:0
+msgid "Kadr harakatlari — %s"
+msgstr "Кадровые события — %s"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model,name:cst_kerama_hr_docs.model_cst_hr_document
+msgid "Kadr hujjati"
+msgstr "Кадровый документ"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model,name:cst_kerama_hr_docs.model_cst_hr_doc_template
+msgid "Kadr hujjati shabloni"
+msgstr "Шаблон кадрового документа"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.ui.menu,name:cst_kerama_hr_docs.menu_hr_docs_root
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_company_form_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_document_list
+msgid "Kadr hujjatlari"
+msgstr "Кадровые документы"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_street_name
+msgid "Ko'cha"
+msgstr "Улица"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__code
+msgid "Kod"
+msgstr "Код"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__company_id
+msgid "Kompaniya"
+msgstr "Компания"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__write_date
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__write_date
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__write_date
+msgid "Last Updated on"
+msgstr "Дата последнего изменения"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__job_title
+msgid "Lavozim"
+msgstr "Должность"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_mfy
+msgid "MFY"
+msgstr "Махалля (МФЙ)"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__base_contract_no
+msgid "Mehnat shartnomasi raqami"
+msgstr "Номер трудового договора"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__base_contract_date
+msgid "Mehnat shartnomasi sanasi"
+msgstr "Дата трудового договора"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_has_error
+msgid "Message Delivery error"
+msgstr "Ошибка доставки сообщения"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_ids
+msgid "Messages"
+msgstr "Сообщения"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Navoiy"
+msgstr "Навои"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Кол-во действий"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_has_error_counter
+msgid "Number of errors"
+msgstr "Кол-во ошибок"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Кол-во сообщений, требующих действия"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Кол-во сообщений с ошибкой доставки"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "O'tkaziladigan lavozim"
+msgstr "Новая должность"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_event_transfer_ids
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "O'tkazish"
+msgstr "Перевод"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Oldingi bo'lim"
+msgstr "Прежний отдел"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Oldingi lavozim"
+msgstr "Прежняя должность"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_passport_issuer
+msgid "Pasport kim tomonidan berilgan"
+msgstr "Кем выдан паспорт"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Pasport va manzil"
+msgstr "Паспорт и адрес"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__base_contract_date
+msgid "Qo'shimcha kelishuv qaysi mehnat shartnomasiga tuzilayotgani."
+msgstr "К какому трудовому договору составляется дополнительное соглашение."
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Qo'shimcha kelishuv №"
+msgstr "Доп. соглашение №"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_event__state__draft
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Qoralama"
+msgstr "Черновик"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Qoralamaga"
+msgstr "В черновик"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__rating_ids
+msgid "Ratings"
+msgstr "Оценки"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__ready_count
+msgid "Ready Count"
+msgstr "Кол-во готовых"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Ошибка доставки SMS"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__date
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__date
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Sana"
+msgstr "Дата"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__date_text
+msgid "Sana (so'z bilan)"
+msgstr "Дата (прописью)"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__template_id
+msgid "Shablon"
+msgstr "Шаблон"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_doc_template__code
+msgid ""
+"Shablonni kod orqali topish uchun — faylni almashtirganda ham o'zgarmaydi."
+msgstr "Для поиска шаблона по коду — не меняется даже при замене файла."
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_form
+msgid ""
+"Shablonni yuklab oling, Word'da tahrirlang va qaytadan\n"
+"                        yuklang.  Matn ichidagi <code>{{fish}}</code>,\n"
+"                        <code>{{bolim}}</code>, <code>{{lavozim}}</code>,\n"
+"                        <code>{{sana_matn}}</code>, <code>{{buyruq_no}}</code>,\n"
+"                        <code>{{shartnoma_no}}</code>, <code>{{passport}}</code>,\n"
+"                        <code>{{jshshir}}</code>, <code>{{kim_bergan}}</code>,\n"
+"                        <code>{{manzil}}</code>, <code>{{telefon}}</code>,\n"
+"                        <code>{{yangi_bolim}}</code>, <code>{{yangi_lavozim}}</code>,\n"
+"                        <code>{{msh_sana}}</code>, <code>{{msh_no}}</code>,\n"
+"                        <code>{{tatil_kompensatsiya}}</code>,\n"
+"                        <code>{{kompaniya}}</code>, <code>{{direktor}}</code>,\n"
+"                        <code>{{shahar}}</code> belgilarini o'chirmang — hujjat\n"
+"                        yaratilganda ular xodim ma'lumotlari bilan almashtiriladi."
+msgstr ""
+"Скачайте шаблон, отредактируйте в Word и загрузите\n"
+"                        снова.  Не удаляйте в тексте метки <code>{{fish}}</code>,\n"
+"                        <code>{{bolim}}</code>, <code>{{lavozim}}</code>,\n"
+"                        <code>{{sana_matn}}</code>, <code>{{buyruq_no}}</code>,\n"
+"                        <code>{{shartnoma_no}}</code>, <code>{{passport}}</code>,\n"
+"                        <code>{{jshshir}}</code>, <code>{{kim_bergan}}</code>,\n"
+"                        <code>{{manzil}}</code>, <code>{{telefon}}</code>,\n"
+"                        <code>{{yangi_bolim}}</code>, <code>{{yangi_lavozim}}</code>,\n"
+"                        <code>{{msh_sana}}</code>, <code>{{msh_no}}</code>,\n"
+"                        <code>{{tatil_kompensatsiya}}</code>,\n"
+"                        <code>{{kompaniya}}</code>, <code>{{direktor}}</code>,\n"
+"                        <code>{{shahar}}</code> — при создании документа\n"
+"                        они заменяются данными сотрудника."
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__contract_no
+msgid "Shartnoma №"
+msgstr "Договор №"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Shirin suv"
+msgstr "Ширин сув"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_doc_template__kind
+msgid "Shu turdagi harakat yaratilganda ushbu hujjat ro'yxatga qo'shiladi."
+msgstr "При создании события этого типа данный документ добавляется в список."
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Ta'til kuni"
+msgstr "Дни отпуска"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__sequence
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__sequence
+msgid "Tartib"
+msgstr "Порядок"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_event__state__done
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Tasdiqlangan"
+msgstr "Подтверждён"
+
+#. module: cst_kerama_hr_docs
+#. odoo-python
+#: code:addons/cst_kerama_hr_docs/models/hr_event.py:0
+msgid ""
+"Tasdiqlangan kadr harakatini o'chirib bo'lmaydi — avval qoralamaga "
+"qaytaring."
+msgstr ""
+"Подтверждённое кадровое событие удалить нельзя — сначала верните его в "
+"черновик."
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Tasdiqlash"
+msgstr "Подтвердить"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_document__state__ready
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_list_embedded
+msgid "Tayyor"
+msgstr "Готово"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_full_address
+msgid "To'liq manzil"
+msgstr "Полный адрес"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_district
+msgid "Tuman"
+msgstr "Район"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Uchko'prik"
+msgstr "Учкуприк"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_hr_employee__cst_region
+msgid "Viloyat"
+msgstr "Область"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__website_message_ids
+msgid "Website Messages"
+msgstr "Сообщения с сайта"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,help:cst_kerama_hr_docs.field_cst_hr_event__website_message_ids
+msgid "Website communication history"
+msgstr "История общения через сайт"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__file
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_document_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Word fayli"
+msgstr "Файл Word"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_doc_template__file
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_doc_template_form
+msgid "Word shabloni"
+msgstr "Шаблон Word"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__employee_id
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__employee_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_search
+msgid "Xodim"
+msgstr "Сотрудник"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__new_department_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Yangi bo'lim"
+msgstr "Новый отдел"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_event__new_job_title
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_employee_form_hr_docs
+msgid "Yangi lavozim"
+msgstr "Новая должность"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields,field_description:cst_kerama_hr_docs.field_cst_hr_document__generated_on
+msgid "Yaratilgan"
+msgstr "Создан"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.actions.act_window,name:cst_kerama_hr_docs.action_hr_document
+#: model:ir.ui.menu,name:cst_kerama_hr_docs.menu_hr_document
+msgid "Yaratilgan hujjatlar"
+msgstr "Созданные документы"
+
+#. module: cst_kerama_hr_docs
+#: model:ir.model.fields.selection,name:cst_kerama_hr_docs.selection__cst_hr_document__state__todo
+msgid "Yaratilmagan"
+msgstr "Не создан"
+
+#. module: cst_kerama_hr_docs
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_document_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_hr_docs.view_hr_event_form
+msgid "Yaratish"
+msgstr "Создать"
+
+#. module: cst_kerama_hr_docs
+#. odoo-python
+#: code:addons/cst_kerama_hr_docs/models/hr_document.py:0
+msgid ""
+"python-docx kutubxonasi o'rnatilmagan — Word hujjatlarini yaratib bo'lmaydi."
+"  Server administratoriga murojaat qiling."
+msgstr ""
+"Библиотека python-docx не установлена — документы Word создать нельзя.  "
+"Обратитесь к администратору сервера."
+
+#. module: cst_kerama_hr_docs
+#. odoo-python
+#: code:addons/cst_kerama_hr_docs/models/hr_document.py:0
+msgid "«%s» shabloniga Word fayli biriktirilmagan."
+msgstr "К шаблону «%s» не прикреплён файл Word."
+
+#. module: cst_kerama_hr_docs
+#. odoo-python
+#: code:addons/cst_kerama_hr_docs/models/hr_event.py:0
+msgid ""
+"«%s»: o'tkazish uchun yangi bo'lim yoki yangi lavozim ko'rsatilishi kerak."
+msgstr "«%s»: для перевода нужно указать новый отдел или новую должность."

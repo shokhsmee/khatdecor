@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cst_kerama_product_display
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 18:06+0000\n"
+"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cst_kerama_product_display
+#: model:ir.model.fields,field_description:cst_kerama_product_display.field_product_product__display_name
+#: model:ir.model.fields,field_description:cst_kerama_product_display.field_product_template__display_name
+#: model:ir.model.fields,field_description:cst_kerama_product_display.field_product_template_attribute_value__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_product_display
+#: model:ir.model.fields,field_description:cst_kerama_product_display.field_product_product__id
+#: model:ir.model.fields,field_description:cst_kerama_product_display.field_product_template__id
+#: model:ir.model.fields,field_description:cst_kerama_product_display.field_product_template_attribute_value__id
+msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_product_display
+#: model:ir.model,name:cst_kerama_product_display.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: cst_kerama_product_display
+#: model:ir.model,name:cst_kerama_product_display.model_product_template_attribute_value
+msgid "Product Template Attribute Value"
+msgstr ""
+
+#. module: cst_kerama_product_display
+#: model:ir.model,name:cst_kerama_product_display.model_product_product
+msgid "Product Variant"
+msgstr ""
