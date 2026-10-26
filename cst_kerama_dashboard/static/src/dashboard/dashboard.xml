@@ -641,7 +641,6 @@
                                             <tr t-foreach="state.data.rows" t-as="row" t-key="row.id">
                                                 <td class="o_col_product">
                                                     <span class="fw-semibold d-block text-truncate"><t t-esc="row.product"/></span>
-                                                    <small t-if="row.code" class="text-muted font-monospace"><t t-esc="row.code"/></small>
                                                 </td>
                                                 <td class="text-muted text-truncate o_col_categ"><t t-esc="row.category"/></td>
                                                 <td class="text-end fw-semibold o_col_num"><t t-esc="formatMoney(row.on_hand)"/></td>

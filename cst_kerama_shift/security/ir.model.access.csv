@@ -29,3 +29,13 @@ access_department_hr,department hr read,model_cst_production_department,hr.group
 access_shift_template_hr,shift template hr read,model_cst_production_shift_template,hr.group_hr_user,1,0,0,0
 access_shift_worker_mrp_user,shift worker mrp user read,model_cst_production_shift_worker,mrp.group_mrp_user,1,0,0,0
 access_kpi_rate_mrp_user,kpi rate mrp user read,model_cst_shift_kpi_rate,mrp.group_mrp_user,1,0,0,0
+access_shift_entry_material_manager,shift entry material manager,model_cst_production_shift_entry_material,group_shift_manager,1,1,1,1
+access_shift_entry_material_admin,shift entry material admin,model_cst_production_shift_entry_material,group_shift_admin,1,1,1,1
+access_kpi_mass_wizard_hr,kpi mass hr,model_cst_shift_kpi_mass_wizard,hr.group_hr_user,1,1,1,1
+access_kpi_mass_line_hr,kpi mass line hr,model_cst_shift_kpi_mass_line,hr.group_hr_user,1,1,1,1
+access_kpi_mass_wizard_sys,kpi mass sys,model_cst_shift_kpi_mass_wizard,base.group_system,1,1,1,1
+access_kpi_mass_line_sys,kpi mass line sys,model_cst_shift_kpi_mass_line,base.group_system,1,1,1,1
+access_kpi_rate_mass_hr,kpi rate mass hr,model_cst_kpi_rate_mass_wizard,hr.group_hr_user,1,1,1,1
+access_kpi_rate_mass_admin,kpi rate mass admin,model_cst_kpi_rate_mass_wizard,group_shift_admin,1,1,1,1
+access_department_norm_wizard_mgr,department norm manager,model_cst_department_norm_wizard,group_shift_manager,1,1,1,1
+access_department_norm_wizard_mrp,department norm mrp,model_cst_department_norm_wizard,mrp.group_mrp_user,1,1,1,1

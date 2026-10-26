@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:05+0000\n"
-"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"POT-Creation-Date: 2026-10-21 20:00+0000\n"
+"PO-Revision-Date: 2026-10-21 20:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,13 @@ msgstr ""
 msgid ""
 ",\n"
 "                                                    chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__rate
+msgid ""
+"1 kompaniya valyutasi (dollar) necha shu valyuta: so'mda olinsa — kunning "
+"dollar kursi."
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -144,6 +151,13 @@ msgid "Akt sverka: %s"
 msgstr ""
 
 #. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_account_asset__cst_employee_id
+msgid ""
+"Aktiv kimga biriktirilgan (kim javob beradi). Xodim kartasida «Asosiy "
+"vositalar» tugmasida chiqadi."
+msgstr ""
+
+#. module: cst_kerama_reports
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_assets_native
 msgid "Amortizatsiya jadvali (Odoo)"
 msgstr ""
@@ -164,8 +178,10 @@ msgstr ""
 #: model:ir.actions.report,name:cst_kerama_reports.action_report_assets
 #: model:ir.model,name:cst_kerama_reports.model_cst_asset_report
 #: model:ir.model,name:cst_kerama_reports.model_cst_asset_report_wizard
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_hr_employee__cst_asset_count
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_assets_group
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_assets_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_form_cst_assets
 msgid "Asosiy vositalar"
 msgstr ""
 
@@ -296,6 +312,11 @@ msgstr ""
 #. module: cst_kerama_reports
 #: model:product.template,name:cst_kerama_reports.product_petrol
 msgid "Benzin"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__cst_employee_date
+msgid "Biriktirilgan sana"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -765,6 +786,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_hr_employee__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_res_partner__display_name
 msgid "Display Name"
@@ -794,6 +816,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
 msgid "Ekranda ko'rish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_hr_employee
+msgid "Employee"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -898,6 +925,16 @@ msgid "Hamma omborlar (bo'sh = hammasi)"
 msgstr ""
 
 #. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_movement_wizard__display_currency_id
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_statement_wizard__display_currency_id
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_utility_statement_wizard__display_currency_id
+msgid ""
+"Hamma summa shu valyutada: so'mdagi to'lov dollar qarzidan ayriladi (kassa "
+"kursi bo'yicha, asl summa va kurs qatorda yoziladi). Bo'sh qoldirilsa har "
+"valyuta alohida."
+msgstr ""
+
+#. module: cst_kerama_reports
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_movement
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
@@ -973,6 +1010,12 @@ msgstr ""
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__driver_id
 msgid "Haydovchi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__bill_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_form
+msgid "Hisob-faktura"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -1095,6 +1138,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_hr_employee__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_res_partner__id
 msgid "ID"
@@ -1511,6 +1555,11 @@ msgid "Kompaniya"
 msgstr ""
 
 #. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__company_currency_id
+msgid "Kompaniya valyutasi"
+msgstr ""
+
+#. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_asset_report_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bank_fee_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_bonus_penalty_wizard__company_ids
@@ -1611,6 +1660,17 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
 msgid "Kunlik kirim va chiqim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__rate
+msgid "Kurs"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Kurs noldan katta bo'lishi kerak."
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -1748,6 +1808,17 @@ msgstr ""
 #. module: cst_kerama_reports
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_sales_by_product
 msgid "Mahsulotlar bo'yicha"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_account_asset__cst_employee_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_account_asset_search_cst
+msgid "Mas'ul xodim"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+msgid "Mas'ul:"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -1960,8 +2031,20 @@ msgid "Muddati o'tgan buyurtmalar"
 msgstr ""
 
 #. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/fuel.py:0
+msgid "Narx manfiy bo'lishi mumkin emas."
+msgstr ""
+
+#. module: cst_kerama_reports
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_form
 msgid "Narxi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__price_unit
+msgid "Narxi (1 birlik)"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -2632,8 +2715,14 @@ msgstr ""
 #. module: cst_kerama_reports
 #. odoo-javascript
 #: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__amount_total
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
 msgid "Summa"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__amount_company
+msgid "Summa (kompaniya valyutasida)"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -2662,6 +2751,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:cst_kerama_reports.action_partner_statement_supplier
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_supplier_statement
 msgid "Ta'minotchi akt sverkasi"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__create_bill
+msgid "Ta'minotchiga qarz yozilsin"
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -2719,6 +2813,14 @@ msgstr ""
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__include_direct_cost
 msgid "Tannarxni ham qo'shish"
+msgstr ""
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__create_bill
+msgid ""
+"Tasdiqlanganda ta'minotchiga shu summada hisob-faktura (qarz) yoziladi — akt"
+" sverkada chiqadi, kassadan to'langanda yopiladi. O'chirilsa faqat ombor "
+"kirimi bo'ladi."
 msgstr ""
 
 #. module: cst_kerama_reports
@@ -2786,8 +2888,12 @@ msgstr ""
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__display_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__currency_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__display_currency_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__display_currency_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__display_currency_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
 msgid "Valyuta"
@@ -3079,6 +3185,13 @@ msgid "hammasi"
 msgstr ""
 
 #. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
+msgid "har valyuta alohida"
+msgstr ""
+
+#. module: cst_kerama_reports
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
 msgid "holatiga"
@@ -3124,6 +3237,12 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
 msgid "kun ·"
+msgstr ""
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "kurs %s"
 msgstr ""
 
 #. module: cst_kerama_reports

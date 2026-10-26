@@ -45,7 +45,14 @@
                             .cst_rep td.gm_in, .cst_rep th.gm_in { background: #eaf3fc; font-weight: bold; }
                             .cst_rep td.gm_out, .cst_rep th.gm_out { background: #fcebea; font-weight: bold; }
                             .cst_rep td.gm_close, .cst_rep th.gm_close { background: #eef7ee; font-weight: bold; }
+                            .cst_rep td.cst_card_link { cursor: pointer; color: #1d4f91; }
+                            .cst_rep td.cst_card_link:hover { text-decoration: underline; background: #f3f7fd; }
                         </style>
+                        <div t-if="report_type == 'html'" id="cst_card_params" style="display:none;"
+                             t-att-data-from="values['date_from']" t-att-data-to="values['date_to']"
+                             t-att-data-warehouses="','.join(str(i) for i in doc.warehouse_ids.ids)"
+                             t-att-data-companies="','.join(str(i) for i in doc.company_ids.ids)"
+                             t-att-data-together="'1' if doc.together else ''"/>
                         <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
                         <div class="cst_head">
                             <h2 t-out="values['title']"/>
@@ -98,7 +105,11 @@
                                             <t t-foreach="c['products']" t-as="row">
                                                 <tr>
                                                     <td class="mid" t-out="row_index + 1"/>
-                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-if="report_type == 'html'" class="cst_card_link" title="Sanama-sana harakat va hozirgi qoldiq"
+                                                        t-att-data-cst-card="row['product'].id"
+                                                        t-att-data-cst-wh="block['warehouse'].id if block['warehouse'] else ''"
+                                                        t-out="engine.product_label(row['product'])"/>
+                                                    <td t-else="" t-out="engine.product_label(row['product'])"/>
                                                     <td t-out="row['characteristic']"/>
                                                     <td class="mid" t-out="row['uom']"/>
                                                     <t t-set="t" t-value="row"/>

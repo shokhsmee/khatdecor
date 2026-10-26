@@ -57,6 +57,13 @@ class CstProductionDepartment(models.Model):
         "cst.production.shift", string="Ochiq smena", compute="_compute_open_shift")
     shift_count = fields.Integer(compute="_compute_counts")
     note = fields.Text(string="Izoh")
+    # norms the department is held to (ТЗ hisobot 43)
+    cst_norm_per_shift = fields.Float(string="Smena normasi (dona)", digits="Product Unit of Measure",
+                                      help="Bitta smenada chiqarilishi kerak bo'lgan 1-sort mahsulot.")
+    cst_scrap_norm_pct = fields.Float(string="Brak normasi, %", digits=(5, 2),
+                                      help="Chiqqan mahsulotning necha foizi brak bo'lishi mumkin.")
+    cst_second_norm_pct = fields.Float(string="2-sort normasi, %", digits=(5, 2),
+                                       help="Chiqqan mahsulotning necha foizi 2-sort bo'lishi mumkin.")
     # the dashboard card: what waits, what runs, what came out today
     queue_count = fields.Integer(string="Navbatda", compute="_compute_dashboard")
     running_count = fields.Integer(string="Liniyada", compute="_compute_dashboard")
@@ -151,11 +158,21 @@ class CstProductionDepartment(models.Model):
     def _pending_workorders(self):
         """The department's queue: work orders on its lines that are not done."""
         self.ensure_one()
-        return self.env["mrp.workorder"].search([
+        workorders = self.env["mrp.workorder"].search([
             ("workcenter_id", "in", self.workcenter_ids.ids),
             ("state", "not in", ("done", "cancel")),
             ("production_id.state", "in", ("confirmed", "progress", "to_close")),
         ], order="production_id, sequence, id")
+        # one card per order: a bill with two operations on this department's
+        # lines (BoM 43 «12» + «`1121») showed the same order twice, the second
+        # one «kutadi: 12» -- the next operation comes up once the first is done
+        seen = set()
+        first = []
+        for wo in workorders:
+            if wo.production_id.id not in seen:
+                seen.add(wo.production_id.id)
+                first.append(wo.id)
+        return workorders.browse(first)
 
     def action_view_shifts(self):
         self.ensure_one()

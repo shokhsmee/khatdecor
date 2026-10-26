@@ -69,16 +69,16 @@
         <field name="name">Kommunal xizmatlar akt sverkasi</field>
         <field name="model">cst.utility.statement.wizard</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">cst_kerama_reports.report_partner_statement</field>
-        <field name="report_file">cst_kerama_reports.report_partner_statement</field>
+        <field name="report_name">cst_kerama_reports.report_utility_statement</field>
+        <field name="report_file">cst_kerama_reports.report_utility_statement</field>
         <field name="paperformat_id" ref="paperformat_a4_landscape"/>
     </record>
     <record id="action_report_utility_statement_html" model="ir.actions.report">
         <field name="name">Kommunal xizmatlar akt sverkasi (ekranda)</field>
         <field name="model">cst.utility.statement.wizard</field>
         <field name="report_type">qweb-html</field>
-        <field name="report_name">cst_kerama_reports.report_partner_statement</field>
-        <field name="report_file">cst_kerama_reports.report_partner_statement</field>
+        <field name="report_name">cst_kerama_reports.report_utility_statement</field>
+        <field name="report_file">cst_kerama_reports.report_utility_statement</field>
     </record>
 
     <record id="action_report_card_payments" model="ir.actions.report">

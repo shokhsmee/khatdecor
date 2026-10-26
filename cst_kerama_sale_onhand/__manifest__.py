@@ -8,7 +8,7 @@ Buyurtma miqdoridan kam bo'lsa qizil.
     """,
     "author": "Khatdecor",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "depends": ["sale_stock"],
     "data": ["views/sale_order_views.xml"],
     "license": "LGPL-3",

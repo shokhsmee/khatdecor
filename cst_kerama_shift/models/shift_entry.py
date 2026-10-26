@@ -32,6 +32,9 @@ class CstProductionShiftEntry(models.Model):
         help="Masalan preslashda buzilgan обой: texkarta xomashyosidan qaysi biri brakka chiqdi.")
     qty_material = fields.Float(string="Material braki", digits="Product Unit of Measure")
     note = fields.Char(string="Eslatma")
+    consume_ids = fields.One2many(
+        "cst.production.shift.entry.material", "entry_id", string="Xomashyo sarfi",
+        help="Haqiqatda sarflangan xomashyo (masalan 2 emas 1 обой). Bo'sh bo'lsa texkarta normasi bo'yicha.")
     posted = fields.Boolean(string="Omborga o'tgan", readonly=True, copy=False)
     corrected = fields.Boolean(string="Tuzatilgan", readonly=True, copy=False)
     correction_log = fields.Text(string="Tuzatishlar", readonly=True, copy=False)
@@ -89,3 +92,23 @@ class CstProductionShiftEntry(models.Model):
             "res_model": "cst.production.shift.correction", "view_mode": "form", "target": "new",
             "context": {"default_entry_id": self.id},
         }
+
+
+class CstProductionShiftEntryMaterial(models.Model):
+    """Raw material actually used for one result, when it differs from the
+    bill of materials (one обой printed instead of two)."""
+
+    _name = "cst.production.shift.entry.material"
+    _description = "Smena natijasi: xomashyo sarfi"
+
+    entry_id = fields.Many2one("cst.production.shift.entry", required=True, ondelete="cascade", index=True)
+    production_id = fields.Many2one(related="entry_id.production_id", store=True)
+    product_id = fields.Many2one("product.product", string="Xomashyo", required=True)
+    uom_id = fields.Many2one(related="product_id.uom_id", string="Birlik")
+    qty_norm = fields.Float(string="Texkarta bo'yicha", digits="Product Unit of Measure", readonly=True)
+    qty = fields.Float(string="Sarflandi", digits="Product Unit of Measure")
+
+    @api.constrains("qty")
+    def _check_qty(self):
+        if any(line.qty < 0 for line in self):
+            raise ValidationError(_("Sarf manfiy bo'lishi mumkin emas."))

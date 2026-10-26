@@ -713,6 +713,10 @@ class CstDispatch(models.Model):
         return {"type": "ir.actions.act_url", "target": "new",
                 "url": "/kerama/dispatch/waybill/%d?size=a4" % self.id}
 
+    def action_print_waybill_loader(self):
+        return {"type": "ir.actions.act_url", "target": "new",
+                "url": "/kerama/dispatch/waybill/%d?size=loader" % self.id}
+
     def action_open_app(self):
         return {"type": "ir.actions.client", "tag": "cst_dispatch_app",
                 "params": {"dispatch_id": self.id}}

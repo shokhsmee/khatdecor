@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="cst_kerama_roles.RoleBuilder">
+    <div class="o_cst_rb h-100 overflow-auto" t-ref="root">
+        <div t-if="!state.loaded" class="p-5 text-center text-muted">
+            <i class="fa fa-spinner fa-spin me-2"/>Loading…
+        </div>
+        <t t-elif="state.screen === 'list'" t-call="cst_kerama_roles.RoleBuilder.List"/>
+        <t t-else="" t-call="cst_kerama_roles.RoleBuilder.Edit"/>
+    </div>
+</t>
+
+<!-- ============================================================ roles -->
+<t t-name="cst_kerama_roles.RoleBuilder.List">
+    <div class="o_cst_rb_page">
+        <div class="o_cst_rb_head d-flex flex-wrap align-items-center gap-2 mb-3">
+            <div class="me-auto">
+                <h2 class="mb-0">Roles</h2>
+                <div class="text-muted">A role is a job. Give a person a role and they see that role's apps with that role's permissions.</div>
+            </div>
+            <div class="btn-group">
+                <button class="btn" t-att-class="state.view === 'cards' ? 'btn-secondary active' : 'btn-light'"
+                        t-on-click="() => state.view = 'cards'">
+                    <i class="fa fa-th-large me-1"/>Cards
+                </button>
+                <button class="btn" t-att-class="state.view === 'matrix' ? 'btn-secondary active' : 'btn-light'"
+                        t-on-click="() => state.view = 'matrix'">
+                    <i class="fa fa-table me-1"/>Table
+                </button>
+            </div>
+            <button class="btn btn-light" t-on-click="() => state.showHelp = !state.showHelp">
+                <i class="fa fa-question-circle me-1"/>How it works
+            </button>
+            <button class="btn btn-primary" t-on-click="newRole">
+                <i class="fa fa-plus me-1"/>New role
+            </button>
+        </div>
+
+        <div t-if="state.showHelp" class="o_cst_rb_help mb-3">
+            <div class="o_cst_rb_help_step">
+                <span class="o_cst_rb_num">1</span>
+                <div><b>Main</b><div>The name of the job and the people who do it.</div></div>
+            </div>
+            <div class="o_cst_rb_help_step">
+                <span class="o_cst_rb_num">2</span>
+                <div><b>Apps</b><div>Which apps appear on their home screen. Everything else stays hidden.</div></div>
+            </div>
+            <div class="o_cst_rb_help_step">
+                <span class="o_cst_rb_num">3</span>
+                <div><b>Permissions</b><div>What they may do inside: only look, work with their own documents, or manage everything.</div></div>
+            </div>
+            <div class="o_cst_rb_help_step">
+                <span class="o_cst_rb_num">4</span>
+                <div><b>Restrictions</b><div>Extra limits, such as a read-only mode for controllers.</div></div>
+            </div>
+            <div class="text-muted small mt-2 w-100">
+                An app shows up only when both are true: it is switched on in part 2 and the permission for it is given in part 3. The preview on the right of a role tells you when one of them is missing.
+            </div>
+        </div>
+
+        <!-- cards -->
+        <div t-if="state.view === 'cards'" class="o_cst_rb_cards">
+            <div t-foreach="state.roles" t-as="role" t-key="role.id" class="o_cst_rb_card"
+                 t-on-click="() => this.openRole(role.id)">
+                <div class="d-flex align-items-start gap-2">
+                    <div class="me-auto">
+                        <div class="o_cst_rb_card_title" t-esc="role.name"/>
+                        <div class="text-muted small" t-esc="role.description"/>
+                    </div>
+                    <span t-if="role.id === myRoleId" class="badge text-bg-info">Your role</span>
+                    <span t-if="role.is_readonly" class="badge text-bg-warning">Read only</span>
+                </div>
+                <div class="o_cst_rb_card_apps">
+                    <t t-set="apps" t-value="appsOfRole(role)"/>
+                    <img t-foreach="apps.slice(0, 9)" t-as="app" t-key="app.id" t-att-src="app.icon"
+                         t-att-title="app.name" t-att-alt="app.name"/>
+                    <span t-if="apps.length > 9" class="o_cst_rb_more">+<t t-esc="apps.length - 9"/></span>
+                    <span t-if="!apps.length" class="text-muted small">No apps visible</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-auto pt-2 border-top">
+                    <div class="o_cst_rb_avatars">
+                        <img t-foreach="role.users.slice(0, 5)" t-as="user" t-key="user.id"
+                             t-att-src="'/web/image/res.users/' + user.id + '/avatar_128'" t-att-title="user.name"/>
+                    </div>
+                    <span class="small text-muted me-auto">
+                        <t t-esc="role.users.length"/> user(s)
+                    </span>
+                    <button class="btn btn-sm btn-link" title="Make a copy" t-on-click.stop="() => this.copyRole(role)">
+                        <i class="fa fa-copy"/>
+                    </button>
+                    <button class="btn btn-sm btn-link text-danger" title="Delete"
+                            t-on-click.stop="() => this.deleteRole(role)">
+                        <i class="fa fa-trash"/>
+                    </button>
+                </div>
+            </div>
+            <div class="o_cst_rb_card o_cst_rb_card_new" t-on-click="newRole">
+                <i class="fa fa-plus-circle fa-2x mb-2"/>
+                <div>New role</div>
+            </div>
+        </div>
+
+        <!-- matrix -->
+        <div t-else="" class="o_cst_rb_matrix_wrap">
+            <table class="o_cst_rb_matrix">
+                <thead>
+                    <tr>
+                        <th class="o_cst_rb_matrix_role">Role</th>
+                        <th>Apps</th>
+                        <th t-foreach="matrixPrivileges" t-as="privilege" t-key="privilege.id">
+                            <span t-esc="privilege.name"/>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="state.roles" t-as="role" t-key="role.id" t-on-click="() => this.openRole(role.id)">
+                        <th class="o_cst_rb_matrix_role">
+                            <t t-esc="role.name"/>
+                            <div class="small text-muted fw-normal"><t t-esc="role.users.length"/> user(s)</div>
+                        </th>
+                        <td class="o_cst_rb_matrix_apps">
+                            <img t-foreach="appsOfRole(role)" t-as="app" t-key="app.id" t-att-src="app.icon" t-att-title="app.name"/>
+                        </td>
+                        <td t-foreach="matrixPrivileges" t-as="privilege" t-key="privilege.id">
+                            <t t-set="cell" t-value="matrixCell(role, privilege)"/>
+                            <span t-attf-class="o_cst_rb_chip o_cst_rb_tone{{cell.tone}}" t-att-title="cell.title" t-esc="cell.label"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="small text-muted mt-2">
+                <span class="o_cst_rb_chip o_cst_rb_tone1">low</span>
+                <span class="o_cst_rb_chip o_cst_rb_tone2">middle</span>
+                <span class="o_cst_rb_chip o_cst_rb_tone3">full</span>
+                — the darker the cell, the more the role may do. Click a row to edit the role.
+            </div>
+        </div>
+    </div>
+</t>
+
+<!-- ============================================================ one role -->
+<t t-name="cst_kerama_roles.RoleBuilder.Edit">
+    <div class="o_cst_rb_bar">
+        <button class="btn btn-light" t-on-click="back"><i class="fa fa-arrow-left me-1"/>Roles</button>
+        <div class="o_cst_rb_bar_title text-truncate">
+            <t t-if="d.name" t-esc="d.name"/>
+            <span t-else="" class="text-muted">New role</span>
+        </div>
+        <span t-if="state.dirty" class="badge text-bg-warning d-none d-md-inline">Not saved</span>
+        <button class="btn btn-light" t-on-click="discard" t-att-disabled="!state.dirty">Discard</button>
+        <button class="btn btn-primary" t-on-click="save" t-att-disabled="state.busy or !state.dirty">
+            <i class="fa fa-check me-1"/>Save
+        </button>
+    </div>
+    <div class="o_cst_rb_steps">
+        <a href="#" t-on-click.prevent="() => this.goTo('main')"><span class="o_cst_rb_num">1</span>Main</a>
+        <a href="#" t-on-click.prevent="() => this.goTo('apps')"><span class="o_cst_rb_num">2</span>Apps</a>
+        <a href="#" t-on-click.prevent="() => this.goTo('rights')"><span class="o_cst_rb_num">3</span>Permissions</a>
+        <a href="#" t-on-click.prevent="() => this.goTo('limits')"><span class="o_cst_rb_num">4</span>Restrictions</a>
+    </div>
+
+    <div class="o_cst_rb_editor">
+        <div class="o_cst_rb_main">
+            <!-- 1. main -->
+            <section class="o_cst_rb_part" data-part="main">
+                <h3><span class="o_cst_rb_num">1</span>Main</h3>
+                <label class="form-label fw-bold">Role name</label>
+                <input class="form-control form-control-lg mb-3" t-model="d.name" t-on-input="touch"
+                       placeholder="e.g. Cashier"/>
+                <label class="form-label fw-bold">Who is this role for</label>
+                <textarea class="form-control mb-3" rows="2" t-model="d.description" t-on-input="touch"
+                          placeholder="e.g. Takes the money in the shop, opens and closes the cash day"/>
+
+                <label class="form-label fw-bold">People with this role</label>
+                <div class="o_cst_rb_users">
+                    <span t-foreach="d.users" t-as="user" t-key="user.id" class="o_cst_rb_user">
+                        <img t-att-src="'/web/image/res.users/' + user.id + '/avatar_128'"/>
+                        <span>
+                            <t t-esc="user.name"/>
+                            <small t-if="user.from and user.from !== d.name" class="d-block text-warning"
+                                   t-esc="movesFrom(user)"/>
+                        </span>
+                        <i class="fa fa-times ms-1" role="button" title="Remove" t-on-click="() => this.removeUser(user)"/>
+                    </span>
+                    <span t-if="!d.users.length" class="text-muted small">Nobody yet.</span>
+                </div>
+                <div class="position-relative mt-2">
+                    <input class="form-control" placeholder="Add a person: type a name or login…"
+                           t-att-value="state.userTerm" t-on-input="onUserInput" t-on-focus="searchUsers"/>
+                    <div t-if="state.userResults.length" class="o_cst_rb_dropdown">
+                        <div t-foreach="state.userResults" t-as="user" t-key="user.id" class="o_cst_rb_dropdown_item"
+                             t-on-click="() => this.addUser(user)">
+                            <img t-att-src="'/web/image/res.users/' + user.id + '/avatar_128'"/>
+                            <div class="me-auto">
+                                <div t-esc="user.name"/>
+                                <small class="text-muted" t-esc="user.login"/>
+                            </div>
+                            <small t-if="user.role" class="text-muted">now: <t t-esc="user.role"/></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-text">
+                    A person has one role. Their permissions become exactly the permissions of this role when you save; taking them out of the role leaves them with no permissions.
+                </div>
+            </section>
+
+            <!-- 2. apps -->
+            <section class="o_cst_rb_part" data-part="apps">
+                <h3><span class="o_cst_rb_num">2</span>Apps <small class="text-muted fw-normal">— what they see on the home screen</small></h3>
+                <div class="o_cst_rb_modes mb-3">
+                    <label t-att-class="{'active': d.mode === 'only'}">
+                        <input type="radio" name="cst_rb_mode" t-att-checked="d.mode === 'only'" t-on-change="() => this.setMode('only')"/>
+                        <div>
+                            <b>Only the apps I switch on</b> <span class="badge text-bg-success">recommended</span>
+                            <div class="small text-muted">Everything else stays hidden, also apps installed later.</div>
+                        </div>
+                    </label>
+                    <label t-att-class="{'active': d.mode === 'all'}">
+                        <input type="radio" name="cst_rb_mode" t-att-checked="d.mode === 'all'" t-on-change="() => this.setMode('all')"/>
+                        <div>
+                            <b>Every app their permissions allow</b>
+                            <div class="small text-muted">You can still switch single apps off.</div>
+                        </div>
+                    </label>
+                </div>
+                <input class="form-control form-control-sm mb-2 o_cst_rb_appfilter" placeholder="Find an app…"
+                       t-model="state.appFilter"/>
+                <div class="o_cst_rb_apps">
+                    <t t-foreach="filteredApps" t-as="app" t-key="app.id">
+                        <t t-set="appSt" t-value="appState(app)"/>
+                        <div t-attf-class="o_cst_rb_app o_cst_rb_app_{{appSt}} {{appBlocked(app) ? 'o_cst_rb_app_blocked' : ''}} {{state.openApp === app.id ? 'o_cst_rb_app_open' : ''}}">
+                            <div class="o_cst_rb_app_main" t-on-click="() => this.toggleApp(app)">
+                                <img t-if="app.icon" t-att-src="app.icon"/>
+                                <div t-else="" class="o_cst_rb_app_noicon"><i class="fa fa-cube"/></div>
+                                <div class="o_cst_rb_app_name" t-esc="app.name"/>
+                                <span class="o_cst_rb_switch"><span/></span>
+                            </div>
+                            <div class="o_cst_rb_app_foot">
+                                <span t-if="appBlocked(app)" class="text-danger small">
+                                    <i class="fa fa-exclamation-triangle me-1"/>No permission
+                                </span>
+                                <span t-elif="appSt === 'partial'" class="text-primary small">Some sections</span>
+                                <span t-elif="appSt !== 'off' and !appVisibleByRights(app)" class="text-muted small">No permission</span>
+                                <a t-if="app.children.length" href="#" class="small ms-auto text-nowrap"
+                                   t-on-click.prevent="() => this.toggleOpenApp(app)">
+                                    Sections <i t-attf-class="fa fa-angle-{{state.openApp === app.id ? 'up' : 'down'}}"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div t-if="state.openApp === app.id" class="o_cst_rb_sections">
+                            <div class="small text-muted mb-2" t-esc="sectionsHint(app)"/>
+                            <t t-foreach="app.children" t-as="child" t-key="child.id">
+                                <label t-attf-class="o_cst_rb_section {{menuRights(child.id) ? '' : 'o_cst_rb_norights'}}">
+                                    <input type="checkbox" class="form-check-input" t-att-checked="isMenuOn(child.id)"
+                                           t-on-change="() => this.toggleMenu(child.id)"/>
+                                    <b t-esc="child.name"/>
+                                </label>
+                                <div class="o_cst_rb_subsections">
+                                    <label t-foreach="child.children" t-as="sub" t-key="sub.id"
+                                           t-attf-class="o_cst_rb_section {{menuRights(sub.id) ? '' : 'o_cst_rb_norights'}}">
+                                        <input type="checkbox" class="form-check-input" t-att-checked="isMenuOn(sub.id)"
+                                               t-on-change="() => this.toggleMenu(sub.id)"/>
+                                        <span t-esc="sub.name"/>
+                                    </label>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+            </section>
+
+            <!-- 3. permissions -->
+            <section class="o_cst_rb_part" data-part="rights">
+                <h3><span class="o_cst_rb_num">3</span>Permissions <small class="text-muted fw-normal">— what they may do inside the apps</small></h3>
+                <div t-foreach="sections" t-as="section" t-key="section.key" class="mb-4">
+                    <h5 class="o_cst_rb_section_title" t-esc="section.name"/>
+                    <div t-foreach="section.privileges" t-as="privilege" t-key="privilege.id" class="o_cst_rb_priv">
+                        <div class="o_cst_rb_priv_name" t-esc="privilege.name"/>
+                        <div class="o_cst_rb_priv_body">
+                            <t t-if="privilege.multi">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <label t-foreach="privilege.levels" t-as="level" t-key="level.id"
+                                           class="o_cst_rb_check" t-att-class="{'active': implied.has(level.id)}">
+                                        <input type="checkbox" class="form-check-input" t-att-checked="implied.has(level.id)"
+                                               t-att-disabled="isImplied(level.id)" t-on-change="() => this.toggleGroup(level.id)"/>
+                                        <span>
+                                            <t t-esc="level.name"/>
+                                            <small class="d-block text-muted" t-esc="level.help"/>
+                                        </span>
+                                    </label>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <t t-set="auto" t-value="autoInfo(privilege)"/>
+                                <div class="o_cst_rb_levels">
+                                    <button t-attf-class="o_cst_rb_level {{effectiveIndex(privilege, implied) &lt; 0 ? 'active o_cst_rb_level_none' : ''}}"
+                                            t-att-disabled="auto" t-on-click="() => this.setLevel(privilege, -1)">No access</button>
+                                    <t t-foreach="privilege.levels" t-as="level" t-key="level.id">
+                                        <t t-set="ls" t-value="levelState(privilege, level_index)"/>
+                                        <button t-attf-class="o_cst_rb_level {{ls.active ? 'active' : ''}} {{ls.included ? 'included' : ''}}"
+                                                t-att-disabled="ls.locked" t-att-title="level.help"
+                                                t-on-click="() => this.setLevel(privilege, level_index)" t-esc="level.name"/>
+                                    </t>
+                                </div>
+                                <div class="o_cst_rb_level_help">
+                                    <t t-esc="currentHelp(privilege)"/>
+                                    <span t-if="auto" class="text-info d-block">
+                                        <i class="fa fa-link me-1"/><t t-esc="autoText(auto)"/>
+                                    </span>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="o_cst_rb_section_title">Administration</h5>
+                <div t-foreach="catalog.key_extra" t-as="group" t-key="group.id" class="o_cst_rb_priv">
+                    <div class="o_cst_rb_priv_name" t-esc="group.name"/>
+                    <div class="o_cst_rb_priv_body">
+                        <label t-attf-class="o_cst_rb_check {{group.tone === 'danger' ? 'o_cst_rb_danger' : ''}} {{implied.has(group.id) ? 'active' : ''}}">
+                            <input type="checkbox" class="form-check-input" t-att-checked="implied.has(group.id)"
+                                   t-att-disabled="isImplied(group.id)" t-on-change="() => this.toggleGroup(group.id)"/>
+                            <span>
+                                <t t-esc="group.help"/>
+                                <small t-if="group.tone === 'danger'" class="d-block text-danger">Give this only to people who run the system.</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <a href="#" class="small" t-on-click.prevent="() => state.showTechnical = !state.showTechnical">
+                    <i t-attf-class="fa fa-caret-{{state.showTechnical ? 'down' : 'right'}} me-1"/>Technical options (rarely needed)
+                </a>
+                <div t-if="state.showTechnical" class="o_cst_rb_technical mt-2">
+                    <label t-foreach="catalog.technical" t-as="group" t-key="group.id" class="o_cst_rb_check_small" t-att-title="group.help">
+                        <input type="checkbox" class="form-check-input" t-att-checked="implied.has(group.id)"
+                               t-att-disabled="isImplied(group.id)" t-on-change="() => this.toggleGroup(group.id)"/>
+                        <span t-esc="group.name"/>
+                    </label>
+                </div>
+            </section>
+
+            <!-- 4. restrictions -->
+            <section class="o_cst_rb_part" data-part="limits">
+                <h3><span class="o_cst_rb_num">4</span>Restrictions</h3>
+                <label class="o_cst_rb_toggle">
+                    <input type="checkbox" class="form-check-input" t-att-checked="d.is_readonly" t-on-change="() => this.toggleFlag('is_readonly')"/>
+                    <span><b>Read only</b><small class="d-block text-muted">Every list and form opens without the Create and Edit buttons. For people who only check.</small></span>
+                </label>
+                <label class="o_cst_rb_toggle">
+                    <input type="checkbox" class="form-check-input" t-att-checked="d.is_chatter" t-on-change="() => this.toggleFlag('is_chatter')"/>
+                    <span><b>Hide messages and history</b><small class="d-block text-muted">The message and log panel next to documents is not shown.</small></span>
+                </label>
+                <label class="o_cst_rb_toggle">
+                    <input type="checkbox" class="form-check-input" t-att-checked="d.is_debug" t-on-change="() => this.toggleFlag('is_debug')"/>
+                    <span><b>No developer mode</b><small class="d-block text-muted">The person cannot switch on the technical developer mode.</small></span>
+                </label>
+                <div class="small mt-3">
+                    <t t-if="d.rm_id">
+                        <a href="#" t-on-click.prevent="openAdvanced"><i class="fa fa-sliders me-1"/>Advanced: hide single buttons, fields or filters</a>
+                        <span t-if="d.advanced" class="badge text-bg-secondary ms-1">in use</span>
+                    </t>
+                    <span t-else="" class="text-muted">Advanced settings (hiding single buttons, fields or filters) become available after the first save.</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- preview -->
+        <aside class="o_cst_rb_aside">
+            <div class="o_cst_rb_preview">
+                <div class="fw-bold mb-1">Their home screen</div>
+                <div class="small text-muted mb-2">Updates while you change the role.</div>
+                <div class="o_cst_rb_home">
+                    <div t-foreach="previewApps" t-as="app" t-key="app.id" class="o_cst_rb_home_app">
+                        <img t-if="app.icon" t-att-src="app.icon"/>
+                        <div t-else="" class="o_cst_rb_app_noicon"><i class="fa fa-cube"/></div>
+                        <span t-esc="app.name"/>
+                    </div>
+                    <div t-if="!previewApps.length" class="text-muted small p-2">No app would be visible.</div>
+                </div>
+                <div t-if="warnings.length" class="mt-3">
+                    <div class="fw-bold text-danger small mb-1">
+                        <i class="fa fa-exclamation-triangle me-1"/>Switched on, but hidden for lack of permission
+                    </div>
+                    <div t-foreach="warnings" t-as="warning" t-key="warning.id" class="o_cst_rb_warning">
+                        <span class="me-auto" t-esc="warning.label"/>
+                        <small t-if="warning.fix and warning.fix.admin_only" class="text-muted w-100">
+                            Only system administrators can open this — the menu is limited to them.
+                        </small>
+                        <button t-elif="warning.fix" class="btn btn-sm btn-outline-primary"
+                                t-on-click="() => this.fixApp(warning.id)" t-esc="fixLabel(warning.fix)"/>
+                    </div>
+                </div>
+                <div class="small text-muted mt-3 pt-2 border-top">
+                    <i class="fa fa-users me-1"/><t t-esc="d.users.length"/> user(s) ·
+                    <i t-if="d.is_readonly" class="fa fa-eye ms-1 me-1"/><t t-if="d.is_readonly">read only</t>
+                </div>
+            </div>
+        </aside>
+    </div>
+</t>
+
+</templates>

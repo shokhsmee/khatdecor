@@ -37,3 +37,13 @@ access_utility_statement_wizard_invoice,cst.utility.statement.wizard.invoice,mod
 access_card_payments_wizard_payroll,cst.card.payments.wizard.payroll,model_cst_card_payments_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1
 access_bank_fee_wizard_account,cst.bank.fee.wizard.account,model_cst_bank_fee_wizard,account.group_account_readonly,1,1,1,1
 access_goods_movement_wizard_stock,cst.goods.movement.wizard.stock,model_cst_goods_movement_wizard,stock.group_stock_user,1,1,1,1
+access_product_card_wizard_stock,cst.product.card.wizard.stock,model_cst_product_card_wizard,stock.group_stock_user,1,1,1,1
+access_product_card_wizard_sale,cst.product.card.wizard.sale,model_cst_product_card_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_product_card_wizard_mrp,cst.product.card.wizard.mrp,model_cst_product_card_wizard,mrp.group_mrp_user,1,1,1,1
+access_user_activity_system,cst.user.activity.system,model_cst_user_activity,base.group_system,1,0,0,1
+access_user_activity_director,cst.user.activity.director,model_cst_user_activity,cst_kerama_payroll.group_payroll_manager,1,0,0,0
+access_purchased_goods_wizard_purchase,cst.purchased.goods.wizard.purchase,model_cst_purchased_goods_wizard,purchase.group_purchase_user,1,1,1,1
+access_purchased_goods_wizard_stock,cst.purchased.goods.wizard.stock,model_cst_purchased_goods_wizard,stock.group_stock_manager,1,1,1,1
+access_purchased_goods_wizard_account,cst.purchased.goods.wizard.account,model_cst_purchased_goods_wizard,account.group_account_readonly,1,1,1,1
+access_employees_wizard_hr,cst.employees.wizard.hr,model_cst_employees_wizard,hr.group_hr_user,1,1,1,1
+access_employees_wizard_payroll,cst.employees.wizard.payroll,model_cst_employees_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1

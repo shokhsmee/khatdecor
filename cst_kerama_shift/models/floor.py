@@ -513,9 +513,10 @@ class CstProductionFloor(models.AbstractModel):
             "workcenter_id": int(workcenter_id) if workcenter_id else workorder.workcenter_id.id,
             "planned_qty": qty,
         }
-        if employee_ids:
-            values["employee_ids"] = [(6, 0, [int(i) for i in employee_ids])]
+        crew = self._crew(department, employee_ids, shift) if employee_ids else None
         line = self.env["cst.production.shift.line"].create(values)
+        if crew:
+            line.sudo().employee_ids = crew
         if line.workcenter_id and workorder.workcenter_id != line.workcenter_id:
             # not started yet the order still belongs on this line, not on the
             # bill's machine (Преслаш 1) -- or it shows in the old press's queue
@@ -529,15 +530,30 @@ class CstProductionFloor(models.AbstractModel):
         """Shape this order's raw material to what the manager listed."""
         return self.env["cst.mo.builder"]._mo_apply_materials(production, materials)
 
+    @api.model
+    def _crew(self, department, employee_ids, shift=None):
+        """The ticked people, checked against this department's staff (and the
+        shift's crew already on it). The shift manager has no HR rights, so
+        crews are written as superuser — this check is what keeps that safe."""
+        crew = self.env["hr.employee"].browse([int(i) for i in employee_ids or []])
+        allowed = department.employee_ids | (shift.employee_ids if shift else self.env["hr.employee"])
+        stranger = crew - allowed
+        if stranger:
+            raise UserError(_("Bu xodimlar «%(dept)s» bo'limiga tegishli emas: %(names)s",
+                              dept=department.name, names=", ".join(stranger.sudo().mapped("name"))))
+        return crew
+
     # ------------------------------------------------------------------ actions
     @api.model
     def open_shift(self, department_id, template_id, date_str, employee_ids):
         department = self._department(department_id)
+        crew = self._crew(department, employee_ids)
         shift = self.env["cst.production.shift"].create({
             "department_id": department.id, "template_id": int(template_id),
             "date": fields.Date.to_date(date_str) if date_str else self._today(department),
-            "employee_ids": [(6, 0, [int(i) for i in employee_ids or []])],
         })
+        if crew:
+            shift.sudo().employee_ids = crew
         shift.action_open()
         return self.get_department_data(department.id)
 
@@ -546,7 +562,8 @@ class CstProductionFloor(models.AbstractModel):
         shift = self.env["cst.production.shift"].browse(int(shift_id))
         if shift.state != "open":
             raise UserError(_("Smena ochiq emas."))
-        shift.employee_ids = [(6, 0, [int(i) for i in employee_ids])]
+        shift.check_access("write")
+        shift.sudo().employee_ids = self._crew(shift.department_id, employee_ids, shift)
         return self.get_department_data(shift.department_id.id)
 
     @api.model
@@ -558,9 +575,10 @@ class CstProductionFloor(models.AbstractModel):
             "workcenter_id": int(workcenter_id) if workcenter_id else wo.workcenter_id.id,
             "planned_qty": float(planned_qty or 0) or wo.qty_remaining or wo.production_id.product_qty,
         }
-        if employee_ids:
-            values["employee_ids"] = [(6, 0, [int(i) for i in employee_ids])]
+        crew = self._crew(shift.department_id, employee_ids, shift) if employee_ids else None
         line = self.env["cst.production.shift.line"].create(values)
+        if crew:
+            line.sudo().employee_ids = crew
         if start:
             line.action_start()
         return self.get_department_data(shift.department_id.id)
@@ -575,11 +593,32 @@ class CstProductionFloor(models.AbstractModel):
 
     @api.model
     def add_entry(self, line_id, good, second, scrap, note=None, second_product_id=None,
-                  material_product_id=None, material_qty=0, finish=False):
+                  material_product_id=None, material_qty=0, finish=False, employee_ids=None, consumption=None):
         """Book one count; with ``finish`` the order is also done for this
-        shift, in the same transaction, so a failed finish leaves no half entry."""
+        shift, in the same transaction, so a failed finish leaves no half entry.
+
+        ``employee_ids``: the crew as ticked in the dialog (it starts as the one
+        chosen at «Ishni boshlash»). ``consumption``: [{product_id, qty, norm}]
+        raw material actually used, only the rows that differ from the norm."""
         line = self.env["cst.production.shift.line"].browse(int(line_id))
+        if employee_ids is not None and employee_ids is not False:
+            line._cst_set_crew(self._crew(line.department_id, employee_ids, line.shift_id))
+        consume = []
+        for row in consumption or []:
+            if not row.get("product_id"):
+                continue
+            consume.append((0, 0, {"product_id": int(row["product_id"]), "qty": max(float(row.get("qty") or 0), 0.0),
+                                   "qty_norm": float(row.get("norm") or 0)}))
+        if not (float(good or 0) or float(second or 0) or float(scrap or 0) or float(material_qty or 0)):
+            if finish:
+                if consume:
+                    # nothing typed = the rest is 1-sort; the counted material goes with it
+                    line._fill_unrecorded()
+                    line.entry_ids.filtered(lambda e: not e.posted)[:1].consume_ids = consume
+                line.action_finish()
+            return self.get_department_data(line.department_id.id)
         self.env["cst.production.shift.entry"].create({
+            "consume_ids": consume,
             "line_id": line.id, "qty_good": float(good or 0), "qty_second": float(second or 0),
             "qty_scrap": float(scrap or 0), "note": note or False,
             "second_product_id": int(second_product_id) if second_product_id and float(second or 0) else False,
@@ -600,8 +639,20 @@ class CstProductionFloor(models.AbstractModel):
         twin = product.cst_second_grade_id
         seconds = self.env["product.product"].search(
             [("cst_is_second_grade", "=", True), ("id", "!=", twin.id or 0)], order="name")
-        materials = line.production_id.move_raw_ids.filtered(lambda m: m.state != "cancel").product_id
+        raw = line.production_id.move_raw_ids.filtered(lambda m: m.state != "cancel")
+        materials = raw.product_id
+        # per finished piece, in the material's own unit: the dialog scales it
+        # by the pieces typed and lets the manager overwrite it
+        open_raw = raw.filtered(lambda m: m.state != "done")
+        consumption = []
+        for product in open_raw.product_id:
+            moves = open_raw.filtered(lambda m: m.product_id == product)
+            per_unit = sum(m.product_uom._compute_quantity(m.unit_factor, product.uom_id) for m in moves)
+            consumption.append({"id": product.id, "name": product.cst_base_name(),
+                                "characteristic": product.cst_characteristic or "", "uom": product.uom_id.name,
+                                "per_unit": per_unit})
         return {
+            "consumption": consumption if line.is_final_operation else [],
             "twin": (twin.cst_base_name() if twin else _("%s — 2-sort", product.cst_base_name())),
             "seconds": [{"id": p.id, "name": p.cst_base_name(), "characteristic": p.cst_characteristic or ""}
                         for p in seconds],

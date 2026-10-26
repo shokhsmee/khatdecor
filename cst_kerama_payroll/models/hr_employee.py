@@ -21,6 +21,12 @@ class HrEmployee(models.Model):
         help="Жисмоний шахснинг шахсий идентификация раками — 14 та ракам.  "
              "Банк карталарига утказилган пулларни Excel'дан юклашда ходим "
              "айнан шу буйича топилади.")
+    cst_staff_status = fields.Selection(
+        [("staff", "Staff"), ("non_staff", "Non-staff")],
+        string="Staff Status", tracking=True, groups="hr.group_hr_user",
+        help="Штат — officially registered (in the staff list); Не штат — "
+             "works without being registered.  Counted in the «Ishlayotgan "
+             "xodimlar» report.")
     cst_pay_currency_id = fields.Many2one(
         "res.currency", related="company_id.cst_payroll_currency_id", string="Oylik valyutasi")
     cst_payroll_balance = fields.Monetary(

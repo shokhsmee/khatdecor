@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_user_activity_list" model="ir.ui.view">
+        <field name="name">cst.user.activity.list</field>
+        <field name="model">cst.user.activity</field>
+        <field name="arch" type="xml">
+            <list string="Foydalanuvchilar faolligi" create="false" edit="false">
+                <field name="day"/>
+                <field name="user_id"/>
+                <field name="first_seen" widget="datetime"/>
+                <field name="last_seen" widget="datetime"/>
+                <field name="span_hours" widget="float_time"/>
+                <field name="active_hours" widget="float_time"/>
+                <field name="active_minutes" sum="Jami" optional="show"/>
+                <field name="requests" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_user_activity_pivot" model="ir.ui.view">
+        <field name="name">cst.user.activity.pivot</field>
+        <field name="model">cst.user.activity</field>
+        <field name="arch" type="xml">
+            <pivot string="Foydalanuvchilar faolligi">
+                <field name="user_id" type="row"/>
+                <field name="day" interval="day" type="col"/>
+                <field name="active_minutes" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_user_activity_graph" model="ir.ui.view">
+        <field name="name">cst.user.activity.graph</field>
+        <field name="model">cst.user.activity</field>
+        <field name="arch" type="xml">
+            <graph string="Foydalanuvchilar faolligi" type="bar">
+                <field name="user_id"/>
+                <field name="active_minutes" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_user_activity_search" model="ir.ui.view">
+        <field name="name">cst.user.activity.search</field>
+        <field name="model">cst.user.activity</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id"/>
+                <filter name="today" string="Bugun" domain="[('day', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="this_month" string="Shu oy" domain="[('day', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter name="day" string="Kun" date="day"/>
+                <group>
+                    <filter name="group_user" string="Foydalanuvchi" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_day" string="Kun" context="{'group_by': 'day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_user_activity" model="ir.actions.act_window">
+        <field name="name">Foydalanuvchilar: kim qancha ishladi</field>
+        <field name="res_model">cst.user.activity</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="search_view_id" ref="view_user_activity_search"/>
+        <field name="context">{'search_default_this_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Hali ma'lumot yo'q</p>
+            <p>Har foydalanuvchining har kuni: birinchi va oxirgi harakat vaqti, faol vaqt (kamida bitta amal
+               bo'lgan 5 daqiqalik bo'laklar). Ochiq turgan, lekin ishlatilmayotgan oyna hisoblanmaydi.</p>
+        </field>
+    </record>
+    <menuitem id="menu_reports_user_activity" name="Foydalanuvchilar: kim qancha ishladi"
+              parent="menu_reports_root" action="action_user_activity" sequence="95"
+              groups="base.group_system,cst_kerama_payroll.group_payroll_manager"/>
+</odoo>

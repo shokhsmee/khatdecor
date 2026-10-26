@@ -2463,10 +2463,12 @@ msgstr ""
 #: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__transfer_kassa_id
 msgid ""
 "The kassa the money goes to (cash out) or comes from (cash in). Both kassas "
-"need an open cash day on this date."
+"need an open cash day on this date. A kassa of another company "
+"(organization) books the money as a debt between the two companies."
 msgstr ""
 "Касса, куда уходят (расход) или откуда приходят (приход) деньги. В обеих "
-"кассах на эту дату должен быть открыт день."
+"кассах на эту дату должен быть открыт день. Касса другой компании "
+"(организации) — деньги записываются как долг между двумя компаниями."
 
 #. module: cst_kerama_kassa
 #: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__is_foreign
@@ -2804,3 +2806,15 @@ msgstr "⇄ В другую кассу"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
 msgid "− Cash out"
 msgstr "− Расход"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Receivable/payable accounts between %(a)s and %(b)s are not set."
+msgstr "Не настроены счета дебиторской/кредиторской задолженности между %(a)s и %(b)s."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "%(label)s (%(a)s → %(b)s)"
+msgstr "%(label)s (%(a)s → %(b)s)"

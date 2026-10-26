@@ -1,6 +1,3 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-# 	* cst_kerama_shift
 #
 msgid ""
 msgstr ""
@@ -80,6 +77,12 @@ msgid ""
 msgstr ""
 "%(product)s: %(qty)s dona brakka chiqarish uchun %(loc)s joyida yetarli "
 "qoldiq yo'q."
+
+#. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_line.py:0
+msgid "%(product)s: haqiqiy sarf %(qty)s %(uom)s (bo'lim oynasidan)."
+msgstr "%(product)s: haqiqiy sarf %(qty)s %(uom)s (bo'lim oynasidan)."
 
 #. module: cst_kerama_shift
 #. odoo-python
@@ -499,6 +502,11 @@ msgid "Bekor qilish"
 msgstr "Bekor qilish"
 
 #. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__uom_id
+msgid "Birlik"
+msgstr "Birlik"
+
+#. module: cst_kerama_shift
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_department__name
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__department_id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close__department_name
@@ -824,6 +832,7 @@ msgstr "Bugungi natijalar"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__production_id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__line_id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__production_id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__production_id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__production_id
 msgid "Buyurtma"
 msgstr "Buyurtma"
@@ -933,6 +942,7 @@ msgstr "Chiqarilgani omborga o'tadi, qolgani keyingi smenaga"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__create_uid
@@ -948,6 +958,7 @@ msgstr "Kim yaratdi"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__create_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__create_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__create_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__create_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__create_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__create_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__create_date
@@ -955,6 +966,11 @@ msgstr "Kim yaratdi"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_shift_kpi_rate__create_date
 msgid "Created on"
 msgstr "Yaratilgan sana"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry_material__uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr "Barcha ombor amallari uchun asosiy o'lchov birligi."
 
 #. module: cst_kerama_shift
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_mo_builder__display_name
@@ -967,6 +983,7 @@ msgstr "Yaratilgan sana"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__display_name
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__display_name
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__display_name
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__display_name
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__display_name
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__display_name
@@ -994,6 +1011,11 @@ msgstr "Ekranda ko'rish"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__employee_count
 msgid "Employee Count"
 msgstr "Xodimlar soni"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__entry_id
+msgid "Entry"
+msgstr "Natija"
 
 #. module: cst_kerama_shift
 #. odoo-javascript
@@ -1118,6 +1140,21 @@ msgstr ""
 #. module: cst_kerama_shift
 #. odoo-javascript
 #: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Haqiqatda sarflandi"
+msgstr "Haqiqatda sarflandi"
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry__consume_ids
+msgid ""
+"Haqiqatda sarflangan xomashyo (masalan 2 emas 1 обой). Bo'sh bo'lsa texkarta"
+" normasi bo'yicha."
+msgstr ""
+"Haqiqatda sarflangan xomashyo (masalan 2 emas 1 обой). Bo'sh bo'lsa texkarta"
+" normasi bo'yicha."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift__kpi_per_employee
 msgid "Har xodimga"
 msgstr "Har xodimga"
@@ -1216,6 +1253,7 @@ msgstr "Hozir: brak"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__id
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__id
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__id
@@ -1662,6 +1700,7 @@ msgstr "Kutilmoqda"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__write_uid
@@ -1677,6 +1716,7 @@ msgstr "Oxirgi yangilagan"
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_close_line__write_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_correction__write_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__write_date
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__write_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__write_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_report__write_date
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_template__write_date
@@ -1743,6 +1783,16 @@ msgstr "Mahsulot · havola"
 #: model:ir.model,name:cst_kerama_shift.model_mrp_production
 msgid "Manufacturing Order"
 msgstr "Ishlab chiqarish buyurtmasi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid ""
+"Masalan 2 emas 1 обой bosilgan bo'lsa — 1 deb yozing. Yakunlanganda ombordan"
+" shu miqdor yechiladi; o'zgartirilmagan qatorlar texkarta bo'yicha."
+msgstr ""
+"Masalan 2 emas 1 обой bosilgan bo'lsa — 1 deb yozing. Yakunlanganda ombordan"
+" shu miqdor yechiladi; o'zgartirilmagan qatorlar texkarta bo'yicha."
 
 #. module: cst_kerama_shift
 #: model:ir.model.fields,help:cst_kerama_shift.field_cst_production_shift_entry__material_product_id
@@ -2298,6 +2348,17 @@ msgid "Saqlash"
 msgstr "Saqlash"
 
 #. module: cst_kerama_shift
+#. odoo-python
+#: code:addons/cst_kerama_shift/models/shift_entry.py:0
+msgid "Sarf manfiy bo'lishi mumkin emas."
+msgstr "Sarf manfiy bo'lishi mumkin emas."
+
+#. module: cst_kerama_shift
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__qty
+msgid "Sarflandi"
+msgstr "Sarflandi"
+
+#. module: cst_kerama_shift
 #: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_line__scrap_ids
 msgid "Scrap'lar"
 msgstr "Scrap'lar"
@@ -2490,6 +2551,11 @@ msgstr "Smena natijasi"
 #: code:addons/cst_kerama_shift/models/shift_line.py:0
 msgid "Smena natijasi tuzatildi: %(line)s, +%(qty)s dona."
 msgstr "Smena natijasi tuzatildi: %(line)s, +%(qty)s dona."
+
+#. module: cst_kerama_shift
+#: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_entry_material
+msgid "Smena natijasi: xomashyo sarfi"
+msgstr "Smena natijasi: xomashyo sarfi"
 
 #. module: cst_kerama_shift
 #: model:ir.model,name:cst_kerama_shift.model_cst_production_shift_correction
@@ -2864,6 +2930,19 @@ msgstr "Tekshirilmoqda…"
 #. module: cst_kerama_shift
 #. odoo-javascript
 #: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__qty_norm
+msgid "Texkarta bo'yicha"
+msgstr "Texkarta bo'yicha"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Texkarta normasiga qaytarish"
+msgstr "Texkarta normasiga qaytarish"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
 msgid "Texkarta operatsiyalari:"
 msgstr "Texkarta operatsiyalari:"
 
@@ -3175,6 +3254,7 @@ msgstr "Xom ashyo qoldiqlari"
 #. odoo-javascript
 #: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
 #: code:addons/cst_kerama_shift/static/src/mo_builder/mo_dialog.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry_material__product_id
 msgid "Xomashyo"
 msgstr "Xomashyo"
 
@@ -3183,6 +3263,19 @@ msgstr "Xomashyo"
 #: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
 msgid "Xomashyo (kiritilgan miqdor uchun)"
 msgstr "Xomashyo (kiritilgan miqdor uchun)"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_shift.field_cst_production_shift_entry__consume_ids
+msgid "Xomashyo sarfi"
+msgstr "Xomashyo sarfi"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "Xomashyo yo'q"
+msgstr "Xomashyo yo'q"
 
 #. module: cst_kerama_shift
 #: model_terms:ir.ui.view,arch_db:cst_kerama_shift.view_shift_form
@@ -3450,6 +3543,18 @@ msgid ""
 msgstr ""
 "ta material. Buyurtma baribir yaratiladi,\n"
 "                                xomashyo kelgach zaxira qilinadi."
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "ta o'zgartirilgan"
+msgstr "ta o'zgartirilgan"
+
+#. module: cst_kerama_shift
+#. odoo-javascript
+#: code:addons/cst_kerama_shift/static/src/floor/floor.xml:0
+msgid "texkarta bo'yicha — o'zgartirish uchun oching"
+msgstr "texkarta bo'yicha — o'zgartirish uchun oching"
 
 #. module: cst_kerama_shift
 #. odoo-javascript

@@ -254,7 +254,8 @@ class CstProductionShift(models.Model):
                 present = shift.attendance_employee_ids
                 staff = shift.department_id.employee_ids
                 # only this department's staff: Face ID sees the whole factory
-                shift.employee_ids = (present & staff) or staff
+                # (sudo: the shift manager has no read access to hr.employee)
+                shift.sudo().employee_ids = (present & staff) or staff
             shift.write({"state": "open"})
             shift.message_post(body=_("Smena ochildi: %s xodim.", len(shift.employee_ids)))
         return True
@@ -587,5 +588,5 @@ class CstProductionShift(models.Model):
         """Tick whoever Face ID has seen since the shift started."""
         for shift in self.filtered(lambda s: s.state in ("draft", "open")):
             shift.invalidate_recordset(["attendance_employee_ids"])
-            shift.employee_ids |= shift.attendance_employee_ids & shift.department_id.employee_ids
+            shift.sudo().employee_ids |= shift.attendance_employee_ids & shift.department_id.employee_ids
         return True

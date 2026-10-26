@@ -39,6 +39,7 @@
                             invisible="state in ('done', 'cancel')"/>
                     <button name="action_print_waybill_80" type="object" string="Yuk xati 80mm" icon="fa-print"/>
                     <button name="action_print_waybill_a4" type="object" string="Yuk xati A4" icon="fa-print"/>
+                    <button name="action_print_waybill_loader" type="object" string="Yuklovchilar uchun (narxsiz)" icon="fa-print"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,ready,done"/>
                 </header>
                 <sheet>

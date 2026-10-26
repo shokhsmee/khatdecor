@@ -112,6 +112,10 @@
                                                           t-options="{'widget': 'float', 'precision': 2}"/>
                                                 </td>
                                             </tr>
+                                            <tr t-foreach="line.get('items') or []" t-as="item" class="cst_item">
+                                                <td/><td/>
+                                                <td colspan="7" style="padding-left:18px;font-size:90%;color:#444;">• <t t-out="item['text']"/></td>
+                                            </tr>
                                         </t>
                                     </t>
                                 </t>
@@ -121,6 +125,13 @@
                 </t>
             </t>
         </t>
+    </template>
+
+    <!-- The utility card is the same sheet under its own report_name: the
+         /report/html/<name>/<id> route resolves a name to the first action
+         carrying it, and «Akt sverka» would win with its own model. -->
+    <template id="report_utility_statement">
+        <t t-call="cst_kerama_reports.report_partner_statement"/>
     </template>
 
 </odoo>

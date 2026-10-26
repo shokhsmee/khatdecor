@@ -282,3 +282,56 @@
 .cst_sf_detail_char { display: inline-block; font-size: 16px; font-weight: 700; color: var(--sf-primary); background: var(--sf-plan-wash); border-radius: 8px; padding: 3px 10px; margin-bottom: 8px; }
 .cst_sf_detail_info .row-kv { font-size: 14px; padding: 4px 0; }
 .cst_sf_head_tools .cst_sf_btn--danger { padding: 7px 14px; font-weight: 700; }
+
+/* result dialog: wider, with the crew and the raw material folded under it */
+.cst_sf_modal.cst_sf_modal--entry { max-width: 980px; }
+.cst_sf_fold { border: 1px solid var(--sf-border); border-radius: 10px; padding: 0 12px; }
+.cst_sf_fold_head { display: flex; align-items: center; width: 100%; min-width: 0; border: 0; background: transparent; padding: 10px 0; font: inherit; color: var(--sf-ink); text-align: left; cursor: pointer; }
+.cst_sf_fold_count { display: inline-block; margin-left: 6px; padding: 0 7px; border-radius: 999px; background: var(--sf-ghost); font-size: 12px; font-weight: 700; }
+.cst_sf_fold > .cst_sf_checklist, .cst_sf_fold > div { padding-bottom: 10px; }
+.cst_sf_consume tr.cst_sf_touched td { background: var(--sf-ghost); }
+.cst_sf_consume .cst_sf_cell_input { font-size: 15px; font-weight: 700; }
+.cst_sf_btn--xs { padding: 2px 8px; font-size: 12px; }
+.cst_sf_consume td.n { white-space: nowrap; }
+.cst_sf_consume .cst_sf_cell_input { width: 120px; }
+
+/* ---------- 2026-10-25: tablets of the shop managers (≈1000–1280 px) ----------
+   the banner stays one compact row, the board's columns shrink to fit four
+   (queue + two lines + done) on the screen, the cards get finger-sized buttons */
+@media (max-width: 1280px) {
+    .cst_sf_banner { justify-content: space-between; flex-wrap: wrap; gap: 6px 10px; padding: 8px 12px; }
+    .cst_sf_banner_left { position: static; flex-wrap: nowrap; min-width: 0; }
+    .cst_sf_dept_pick { max-width: 240px; min-width: 0; text-overflow: ellipsis; }
+    .cst_sf_banner_title { flex: 1 1 auto; min-width: 0; font-size: 14px; }
+    .cst_sf_banner_date { position: static; white-space: nowrap; }
+    .cst_sf_body { padding: 8px; gap: 8px; }
+    .cst_sf_main { gap: 8px; }
+    .cst_sf_card.cst_sf_head { padding: 8px 12px; }
+    .cst_sf_mark { width: 32px; height: 32px; font-size: 15px; }
+    .cst_sf_title { font-size: 16px; }
+    .cst_sf_board { grid-auto-columns: minmax(185px, 1fr); gap: 8px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+    .cst_sf_col { scroll-snap-align: start; }
+    .cst_sf_col_body { max-height: none; padding: 6px; }
+    .cst_sf_kcard { padding: 8px; }
+    .cst_sf_kcard_btns .cst_sf_btn { min-height: 38px; }
+    .cst_sf_kcard_btns .cst_sf_btn.flex-grow-1 { min-width: 0; overflow: hidden; text-overflow: ellipsis; padding: 5px 8px; }
+    .cst_sf_kcard_btns .cst_sf_btn:not(.flex-grow-1) { flex: 0 0 auto; }
+    .cst_sf_back, .cst_sf_banner_new { white-space: nowrap; }
+    .cst_sf_banner { flex-wrap: nowrap; }
+    .cst_sf_banner_title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (max-width: 1100px) {
+    /* the department name is already in the card below — drop the duplicate */
+    .cst_sf_banner_title { display: none; }
+    .cst_sf_banner_new { white-space: nowrap; }
+}
+@media (max-width: 800px) {
+    .cst_sf_banner { flex-wrap: wrap; }
+    .cst_sf_banner_left { flex-wrap: wrap; }
+    .cst_sf_dept_pick { max-width: 100%; }
+    .cst_sf_board { grid-auto-columns: minmax(78vw, 1fr); }
+}
+/* the board fills the remaining height, columns scroll on their own */
+@media (max-width: 1280px) and (min-height: 500px) {
+    .cst_sf_col_body { max-height: calc(100vh - 290px); }
+}

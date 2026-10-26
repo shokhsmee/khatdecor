@@ -1,4 +1,4 @@
-import { Component, markRaw, onWillStart, useState } from "@odoo/owl";
+import { Component, markRaw, onWillStart, useEffect, useState } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 import { patch } from "@web/core/utils/patch";
 import { View } from "@web/views/view";
@@ -42,8 +42,25 @@ patch(ReportAction.prototype, {
         super.setup(...arguments);
         this.cstFilter = useState({ info: null });
         const ids = this.props.context?.active_ids;
+        const orm = useService("orm");
+        this.cstOrm = orm;
+        if (this.props.report_name?.startsWith("cst_kerama_reports.")) {
+            // «Tovar harakati»: a product cell opens that product's dated card
+            useEffect(
+                (iframe) => {
+                    if (!iframe) {
+                        return;
+                    }
+                    const onLoad = () => {
+                        iframe.contentDocument?.addEventListener("click", (ev) => this.cstOnClick(ev));
+                    };
+                    iframe.addEventListener("load", onLoad);
+                    return () => iframe.removeEventListener("load", onLoad);
+                },
+                () => [this.iframe.el]
+            );
+        }
         if (this.props.report_name?.startsWith("cst_kerama_reports.") && ids?.length === 1) {
-            const orm = useService("orm");
             onWillStart(async () => {
                 try {
                     const info = await orm.call("cst.report.filter.bar", "get_filter_bar", [
@@ -58,6 +75,28 @@ patch(ReportAction.prototype, {
                 }
             });
         }
+    },
+
+    async cstOnClick(ev) {
+        const cell = ev.target.closest?.("[data-cst-card]");
+        if (!cell) {
+            return;
+        }
+        ev.preventDefault();
+        const doc = cell.ownerDocument;
+        const params = doc.getElementById("cst_card_params")?.dataset || {};
+        const list = (text) => (text ? text.split(",").map(Number) : []);
+        const together = Boolean(params.together);
+        const warehouses = !together && cell.dataset.cstWh ? [Number(cell.dataset.cstWh)] : list(params.warehouses);
+        const action = await this.cstOrm.call("cst.product.card.wizard", "action_open_card", [
+            Number(cell.dataset.cstCard),
+            params.from || false,
+            params.to || false,
+            warehouses,
+            list(params.companies),
+            together,
+        ]);
+        await this.action.doAction(action);
     },
 
     cstReloadReport() {

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_product_card" model="ir.actions.report">
+        <field name="name">Mahsulot kartochkasi</field>
+        <field name="model">cst.product.card.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_product_card</field>
+        <field name="report_file">cst_kerama_reports.report_product_card</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_product_card_html" model="ir.actions.report">
+        <field name="name">Mahsulot kartochkasi (ekranda)</field>
+        <field name="model">cst.product.card.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_product_card</field>
+        <field name="report_file">cst_kerama_reports.report_product_card</field>
+    </record>
+
+    <template id="report_product_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="daily" t-value="doc.daily"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <style>
+                            .cst_rep td.pc_in { background: #eaf3fc; }
+                            .cst_rep td.pc_out { background: #fcebea; }
+                            .cst_rep td.pc_bal { background: #eef7ee; font-weight: bold; }
+                            .cst_rep tr.pc_edge td { font-style: italic; background: #fafafa; }
+                            .pc_stock { width: auto; min-width: 50%; margin: 4px 0 10px; }
+                            .pc_stock td, .pc_stock th { padding: 2px 8px; }
+                            .pc_title { font-size: 1.15em; font-weight: bold; margin: 14px 0 2px; }
+                        </style>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head">
+                            <h2 t-out="values['title']"/>
+                            <div>
+                                <span t-out="values['date_from']" t-options="{'widget': 'date'}"/> —
+                                <span t-out="values['date_to']" t-options="{'widget': 'date'}"/>
+                                <t t-if="daily"> · kunlik jamlangan</t>
+                            </div>
+                        </div>
+                        <p t-if="not values['products']" class="mid">Tanlangan davrda bu mahsulot bo'yicha harakat ham, qoldiq ham yo'q.</p>
+                        <t t-foreach="values['products']" t-as="p">
+                            <div class="pc_title">
+                                <t t-out="p['label']"/><t t-if="p['characteristic']"> — <t t-out="p['characteristic']"/></t>
+                                <span style="font-weight:normal;"> (<t t-out="p['uom']"/>)</span>
+                            </div>
+                            <table class="cst_rep pc_stock">
+                                <thead>
+                                    <tr><th>Hozirgi qoldiq (ombor bo'yicha)</th><th style="width:90px;">Omborda</th>
+                                        <th style="width:90px;">Band qilingan</th><th style="width:90px;">Bo'sh</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-if="not p['on_hand']"><td colspan="4" class="mid">Hozir hech bir omborda yo'q.</td></tr>
+                                    <tr t-foreach="p['on_hand']" t-as="s">
+                                        <td t-out="s['label']"/>
+                                        <td class="num" t-out="s['qty']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <td class="num"><span t-if="s['reserved']" t-out="s['reserved']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                        <td class="num" t-out="s['free']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                    </tr>
+                                    <tr class="cst_company" t-if="len(p['on_hand']) &gt; 1">
+                                        <td>Jami</td>
+                                        <td class="num" t-out="p['on_hand_total']['qty']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <td class="num" t-out="p['on_hand_total']['reserved']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <td class="num" t-out="p['on_hand_total']['free']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="cst_rep" t-if="p['blocks']">
+                                <thead>
+                                    <tr>
+                                        <th style="width:26px;">№</th>
+                                        <th style="width:96px;">Sana</th>
+                                        <th style="width:120px;">Hujjat</th>
+                                        <th style="width:110px;">Operatsiya</th>
+                                        <th t-if="not daily">Qayerdan</th>
+                                        <th t-if="not daily">Qayerga</th>
+                                        <th t-if="not daily">Kontragent / asos</th>
+                                        <th style="width:72px;">Kirim</th>
+                                        <th style="width:72px;">Chiqim</th>
+                                        <th style="width:80px;">Qoldiq</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="span" t-value="4 if daily else 7"/>
+                                    <t t-foreach="p['blocks']" t-as="b">
+                                        <tr class="cst_company"><td t-att-colspan="span + 3" t-out="b['label']"/></tr>
+                                        <tr class="pc_edge">
+                                            <td t-att-colspan="span">Boshlang'ich qoldiq (<span t-out="values['date_from']" t-options="{'widget': 'date'}"/>)</td>
+                                            <td/><td/>
+                                            <td class="num pc_bal" t-out="b['opening']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        </tr>
+                                        <tr t-foreach="b['rows']" t-as="r">
+                                            <td class="mid" t-out="r_index + 1"/>
+                                            <td class="mid" t-out="r['date'].strftime('%d.%m.%Y') if daily else r['date'].strftime('%d.%m.%Y %H:%M')"/>
+                                            <td>
+                                                <span t-if="r['model'] and r['res_id']" t-att-res-id="r['res_id']" t-att-res-model="r['model']" view-type="form" t-out="r['document']"/>
+                                                <span t-else="" t-out="r['document']"/>
+                                            </td>
+                                            <td t-out="r['kind']"/>
+                                            <td t-if="not daily" t-out="r['source']"/>
+                                            <td t-if="not daily" t-out="r['dest']"/>
+                                            <td t-if="not daily"><t t-out="r['partner']"/><t t-if="r['partner'] and r['origin']"> · </t><t t-out="r['origin']"/></td>
+                                            <td class="num pc_in"><span t-if="r['in']" t-out="r['in']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                            <td class="num pc_out"><span t-if="r['out']" t-out="r['out']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                            <td class="num pc_bal" t-out="r['balance']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        </tr>
+                                        <tr class="cst_group">
+                                            <td t-att-colspan="span">Davr yakuni (<span t-out="values['date_to']" t-options="{'widget': 'date'}"/>)</td>
+                                            <td class="num" t-out="b['in']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="b['out']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="b['closing']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

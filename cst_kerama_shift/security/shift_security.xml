@@ -76,4 +76,42 @@
             <field name="domain_force">[(1, '=', 1)]</field>
         </record>
     </data>
+
+    <!-- multi-company (ТЗ 1): each company sees its own production -->
+    <record id="rule_department_company" model="ir.rule">
+        <field name="name">Bo'lim: kompaniya</field>
+        <field name="model_id" ref="model_cst_production_department"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_shift_c_company" model="ir.rule">
+        <field name="name">Smena: kompaniya</field>
+        <field name="model_id" ref="model_cst_production_shift"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_shift_line_c_company" model="ir.rule">
+        <field name="name">Smena qatori: kompaniya</field>
+        <field name="model_id" ref="model_cst_production_shift_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_shift_template_c_company" model="ir.rule">
+        <field name="name">Smena vaqti: kompaniya</field>
+        <field name="model_id" ref="model_cst_production_shift_template"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_shift_worker_c_company" model="ir.rule">
+        <field name="name">Smena xodimi: kompaniya</field>
+        <field name="model_id" ref="model_cst_production_shift_worker"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_kpi_rate_c_company" model="ir.rule">
+        <field name="name">KPI stavkasi: kompaniya</field>
+        <field name="model_id" ref="model_cst_shift_kpi_rate"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
 </odoo>

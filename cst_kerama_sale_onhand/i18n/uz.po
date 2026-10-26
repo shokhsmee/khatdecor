@@ -1,6 +1,3 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-# 	* cst_kerama_sale_onhand
 #
 msgid ""
 msgstr ""
@@ -31,6 +28,11 @@ msgstr "Ko‘rsatiladigan nom"
 #: model:ir.model.fields,field_description:cst_kerama_sale_onhand.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
+
+#. module: cst_kerama_sale_onhand
+#: model_terms:ir.ui.view,arch_db:cst_kerama_sale_onhand.view_order_form_cst_onhand
+msgid "Jami"
+msgstr "Jami"
 
 #. module: cst_kerama_sale_onhand
 #: model:ir.model.fields,field_description:cst_kerama_sale_onhand.field_sale_order_line__cst_qty_on_hand

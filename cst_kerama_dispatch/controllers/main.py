@@ -15,8 +15,10 @@ class KeramaDispatchWaybill(http.Controller):
         if not (user.has_group(GROUP_WH) or user.has_group(GROUP_GATE)):
             raise AccessError(_("Bu amal uchun huquqingiz yo'q."))
         dispatch = request.env["cst.dispatch"]._cst_get(dispatch_id)
-        template = "cst_kerama_dispatch.waybill_a4" if size == "a4" \
-            else "cst_kerama_dispatch.waybill_80"
+        template = {
+            "a4": "cst_kerama_dispatch.waybill_a4",
+            "loader": "cst_kerama_dispatch.waybill_loader",
+        }.get(size, "cst_kerama_dispatch.waybill_80")
         return request.render(template, waybill_values(request.env, dispatch))
 
 

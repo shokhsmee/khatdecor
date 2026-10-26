@@ -111,7 +111,7 @@
                                             <td class="mid" t-out="row['inventory_no']"/>
                                             <td class="mid"><span t-if="row['manufacture_date']" t-out="row['manufacture_date']" t-options="{'widget': 'date'}"/></td>
                                             <td class="mid"><span t-if="row['acquisition_date']" t-out="row['acquisition_date']" t-options="{'widget': 'date'}"/></td>
-                                            <td t-out="row['location']"/>
+                                            <td><t t-out="row['location']"/><div t-if="row['employee']" class="text-muted">Mas'ul: <t t-out="row['employee']"/></div></td>
                                             <td class="num" t-out="row['value']" t-options="{'widget': 'float', 'precision': 2}"/>
                                             <td class="num" t-out="row['depreciated']" t-options="{'widget': 'float', 'precision': 2}"/>
                                             <td class="num" t-out="row['book_value']" t-options="{'widget': 'float', 'precision': 2}"/>

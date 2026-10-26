@@ -184,8 +184,7 @@ class CstWarehouseReport(models.AbstractModel):
 
     @api.model
     def product_label(self, product):
-        """«[00011749] Кашмир (115076) ЛДСП» — the product without its
-        characteristic, because the sheets print the characteristic in its own
-        column and would otherwise say it twice."""
-        name = product.product_tmpl_id.name or product.display_name or ""
-        return "[%s] %s" % (product.default_code, name) if product.default_code else name
+        """«Кашмир (115076) ЛДСП» — the product without its characteristic,
+        because the sheets print the characteristic in its own column and would
+        otherwise say it twice; no article code (client, 2026-10-21)."""
+        return product.product_tmpl_id.name or product.display_name or ""

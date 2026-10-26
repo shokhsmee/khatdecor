@@ -73,6 +73,20 @@
                             <field name="shift_template_ids" widget="many2many_tags" options="{'no_create': True}"/>
                             <p class="text-muted">Bo'sh qolsa hamma smena vaqtlari ishlatiladi. Soatlar Sozlamalar ▸ Smena vaqtlari'da o'zgartiriladi.</p>
                         </page>
+                        <page string="Norma va brak" name="norms">
+                            <group>
+                                <group>
+                                    <field name="cst_norm_per_shift"/>
+                                    <field name="cst_scrap_norm_pct"/>
+                                    <field name="cst_second_norm_pct"/>
+                                </group>
+                                <group>
+                                    <p class="text-muted" colspan="2">Foiz = brak (yoki 2-sort) ÷ jami chiqqan (1-sort + 2-sort + brak).
+                                        «Norma va brak» hisobotida haqiqiy foiz shu normaga solishtiriladi; smena normasi × smenalar soni
+                                        — rejadagi chiqim.</p>
+                                </group>
+                            </group>
+                        </page>
                         <page string="Izoh" name="note"><field name="note"/></page>
                     </notebook>
                 </sheet>

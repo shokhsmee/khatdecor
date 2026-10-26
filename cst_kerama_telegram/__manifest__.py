@@ -32,9 +32,10 @@ chosen few, from Odoo, with a delivery count.
     """,
     "author": "Khatdecor",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.1.1",
     "depends": ["base", "contacts", "account", "account_reports", "mail"],
     "data": [
+        "security/company_rules.xml",
         "security/ir.model.access.csv",
         "views/telegram_chat_views.xml",
         "views/telegram_broadcast_views.xml",

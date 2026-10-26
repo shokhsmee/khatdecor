@@ -250,7 +250,11 @@ class GoodsMovementController(http.Controller):
         book = xlsxwriter.Workbook(stream, {"in_memory": True})
         sheet = book.add_worksheet("Tovar harakati")
         base = {"font_size": 9, "border": 1, "valign": "vcenter"}
-        number = "# ##0.###;-# ##0.###;"
+        # «# ##0.###» printed whole numbers as «37.» and left zero closings
+        # blank; whole numbers get their own format without the decimal point
+        number = "#,##0.###;-#,##0.###;0"
+        whole = "#,##0;-#,##0;0"
+        twins = {}
         f_title = book.add_format({"bold": True, "font_size": 12, "align": "center"})
         f_head = book.add_format({**base, "bold": True, "align": "center", "text_wrap": True, "bg_color": "#D9D9D9"})
         f_text = book.add_format(base)
@@ -262,6 +266,8 @@ class GoodsMovementController(http.Controller):
             extra = {"bg_color": colour} if colour else {}
             fmt[level] = (book.add_format({**base, **extra, "bold": bold}),
                           book.add_format({**base, **extra, "bold": bold, "num_format": number}))
+            twins[id(fmt[level][1])] = book.add_format({**base, **extra, "bold": bold, "num_format": whole})
+        twins[id(f_num)] = book.add_format({**base, "num_format": whole})
         engine = values["wizard"].env["cst.warehouse.report"]
         columns = values["columns"]
 
@@ -293,7 +299,8 @@ class GoodsMovementController(http.Controller):
             cells = [t["opening"]] + [t["flows"][k] for k, _l in columns["in"]] + [t["in_total"]] \
                 + [t["flows"][k] for k, _l in columns["out"]] + [t["out_total"], t["closing"]]
             for i, v in enumerate(cells):
-                sheet.write_number(r, first_num + i, v or 0.0, f)
+                v = round(v or 0.0, 3)
+                sheet.write_number(r, first_num + i, v, twins.get(id(f), f) if float(v).is_integer() else f)
 
         def heading(r, label, t, level):
             f_t, f_n = fmt[level]

@@ -16,6 +16,8 @@
                     <group>
                         <field name="partner_ids" widget="many2many_tags"
                                options="{'no_create': True}"/>
+                        <field name="display_currency_id" options="{'no_create': True, 'no_open': True}"
+                               placeholder="har valyuta alohida"/>
                         <field name="company_ids" widget="many2many_tags"
                                groups="base.group_multi_company"
                                options="{'no_create': True}"/>
@@ -68,8 +70,11 @@
                         <field name="partner_id" options="{'no_create': True}"/>
                         <field name="date_from"/>
                         <field name="date_to"/>
+                        <field name="display_currency_id" options="{'no_create': True, 'no_open': True}"
+                               placeholder="har valyuta alohida"/>
                     </group>
                     <group>
+                        <field name="detailed"/>
                         <field name="company_ids" widget="many2many_tags"
                                groups="base.group_multi_company"
                                options="{'no_create': True}"/>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kpi_mass_wizard_form" model="ir.ui.view">
+        <field name="name">cst.shift.kpi.mass.wizard.form</field>
+        <field name="model">cst.shift.kpi.mass.wizard</field>
+        <field name="arch" type="xml">
+            <form string="KPI ommaviy kiritish">
+                <group>
+                    <group string="Qaysi qatorlar">
+                        <field name="worker_ids" widget="many2many_tags" invisible="not worker_ids" readonly="1"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="department_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="template_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="employee_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="only_empty"/>
+                    </group>
+                    <group string="Qanday">
+                        <field name="target" widget="radio" options="{'horizontal': true}"/>
+                        <field name="mode"/>
+                        <field name="value" invisible="mode in ('suggested', 'clear')"/>
+                        <field name="note"/>
+                    </group>
+                </group>
+                <div class="d-flex gap-3 align-items-center mb-2" invisible="not line_ids">
+                    <span><b><field name="line_count" readonly="1" class="d-inline"/></b> ta qator</span>
+                    <span>Hozir jami: <b><field name="total_current" readonly="1" class="d-inline"/></b></span>
+                    <span>Yangi jami: <b><field name="total_new" readonly="1" class="d-inline"/></b></span>
+                </div>
+                <field name="line_ids" invisible="not line_ids">
+                    <list editable="bottom" create="false" delete="true">
+                        <field name="worker_id" column_invisible="1"/>
+                        <field name="shift_date"/>
+                        <field name="department_id" options="{'no_open': True}"/>
+                        <field name="template_id" options="{'no_open': True}"/>
+                        <field name="employee_name"/>
+                        <field name="qty_good" sum="Jami"/>
+                        <field name="minutes" optional="hide"/>
+                        <field name="kpi_suggested" optional="show"/>
+                        <field name="current" sum="Jami"/>
+                        <field name="new_amount" sum="Jami" decoration-bf="1"/>
+                    </list>
+                </field>
+                <p class="text-muted" invisible="line_ids">Faqat yopilgan smenalar qatorlari. «Hisoblash» — har qatorning
+                    hozirgi va yangi summasini ko'rsatadi (qo'lda tuzatish mumkin), «Qo'llash» — yozadi va oylikni yangilaydi.</p>
+                <footer>
+                    <button name="action_compute" type="object" string="Hisoblash" class="btn-primary" invisible="line_ids"/>
+                    <button name="action_compute" type="object" string="Qayta hisoblash" class="btn-secondary" invisible="not line_ids"/>
+                    <button name="action_apply" type="object" string="Qo'llash" class="btn-primary" invisible="not line_ids"
+                            confirm="Tanlangan qatorlarga yangi summalar yoziladi va smenalar oyligi yangilanadi. Davom etasizmi?"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_kpi_mass_wizard" model="ir.actions.act_window">
+        <field name="name">KPI ommaviy kiritish</field>
+        <field name="res_model">cst.shift.kpi.mass.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_cst_production_shift_worker"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <record id="view_kpi_rate_mass_wizard_form" model="ir.ui.view">
+        <field name="name">cst.kpi.rate.mass.wizard.form</field>
+        <field name="model">cst.kpi.rate.mass.wizard</field>
+        <field name="arch" type="xml">
+            <form string="KPI stavkalarini ommaviy o'rnatish">
+                <group>
+                    <field name="kind" widget="radio"/>
+                </group>
+                <group>
+                    <group string="Qayerga">
+                        <field name="department_ids" widget="many2many_tags" options="{'no_create': True}"
+                               invisible="kind == 'sale'" required="kind == 'shift'"/>
+                        <field name="workcenter_ids" widget="many2many_tags" options="{'no_create': True}" invisible="kind == 'sale'"/>
+                        <field name="operation" invisible="kind != 'operation'"/>
+                        <field name="categ_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="product_tmpl_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="per_product" invisible="kind != 'shift'"/>
+                    </group>
+                    <group string="Qiymat">
+                        <field name="mode"/>
+                        <field name="value"/>
+                        <field name="date_from" invisible="kind != 'shift'" required="kind == 'shift'"/>
+                    </group>
+                </group>
+                <p class="text-muted">Smena stavkasi sanali: yangi qator shu sanadan amal qiladi, yopilgan smenalar eski
+                    stavkada qoladi. Sotuv va ishbay stavkasi to'g'ridan-to'g'ri o'zgaradi (hisoblangan oylik qatorlari
+                    o'z stavkasini saqlaydi).</p>
+                <footer>
+                    <button name="action_apply" type="object" string="Qo'llash" class="btn-primary"
+                            confirm="Tanlangan stavkalar o'zgartiriladi. Davom etasizmi?"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_kpi_rate_mass_wizard" model="ir.actions.act_window">
+        <field name="name">KPI stavkalarini ommaviy o'rnatish</field>
+        <field name="res_model">cst.kpi.rate.mass.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_shift_kpi_mass" name="KPI ommaviy kiritish" parent="menu_shift_root"
+              action="action_kpi_mass_wizard" sequence="36" groups="hr.group_hr_user,base.group_system"/>
+    <menuitem id="menu_shift_kpi_rate_mass" name="KPI stavkalarini ommaviy o'rnatish" parent="menu_shift_config"
+              action="action_kpi_rate_mass_wizard" sequence="31"/>
+    <menuitem id="menu_hr_shift_kpi_mass" name="KPI ommaviy kiritish" parent="hr.menu_hr_root"
+              action="action_kpi_mass_wizard" sequence="45" groups="hr.group_hr_user"/>
+    <menuitem id="menu_hr_shift_kpi_rate_mass" name="KPI stavkalarini ommaviy o'rnatish" parent="hr.menu_hr_root"
+              action="action_kpi_rate_mass_wizard" sequence="47" groups="hr.group_hr_user"/>
+</odoo>

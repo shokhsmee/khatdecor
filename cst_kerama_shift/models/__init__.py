@@ -12,3 +12,4 @@ from . import payroll_period
 from . import floor
 from . import report_fact
 from . import stock_landed_cost
+from . import norm_report

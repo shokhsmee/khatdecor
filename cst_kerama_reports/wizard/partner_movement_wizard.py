@@ -29,6 +29,11 @@ class CstPartnerMovementWizard(models.TransientModel):
     company_ids = fields.Many2many(
         "res.company", string="Kompaniyalar",
         default=lambda self: self.env.companies)
+    display_currency_id = fields.Many2one(
+        "res.currency", string="Valyuta",
+        default=lambda self: self.env.company.currency_id,
+        help="Hamma summa shu valyutada: so'mdagi to'lov dollar qarzidan ayriladi (kassa kursi bo'yicha, "
+             "asl summa va kurs qatorda yoziladi). Bo'sh qoldirilsa har valyuta alohida.")
     hide_empty = fields.Boolean(
         string="Bo'sh qatorlarni yashirish", default=True,
         help="Davr boshida ham, oxirida ham qoldig'i bo'lmagan va davr ichida "
@@ -54,6 +59,7 @@ class CstPartnerMovementWizard(models.TransientModel):
                 partner_ids=self.partner_ids.ids or None,
                 company_ids=self.company_ids.ids or None,
                 hide_empty=self.hide_empty,
+                display_currency=self.display_currency_id or None,
             ),
         }
 

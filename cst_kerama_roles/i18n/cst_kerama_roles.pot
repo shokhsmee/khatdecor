@@ -6,14 +6,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:07+0000\n"
-"PO-Revision-Date: 2026-10-19 18:07+0000\n"
+"POT-Creation-Date: 2026-10-20 18:57+0000\n"
+"PO-Revision-Date: 2026-10-20 18:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "%(name)s (copy)"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "A copy of «%s» was made. Rename it and adjust it."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"A person has one role. Their permissions become exactly the permissions of "
+"this role when you save; taking them out of the role leaves them with no "
+"permissions."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"A role is a job. Give a person a role and they see that role's apps with "
+"that role's permissions."
+msgstr ""
+
+#. module: cst_kerama_roles
+#: model:ir.model.fields,help:cst_kerama_roles.field_access_role__cst_description
+msgid ""
+"A sentence or two about the job this role is meant for, shown in the role "
+"builder."
+msgstr ""
 
 #. module: cst_kerama_roles
 #: model:ir.model,name:cst_kerama_roles.model_res_groups
@@ -26,6 +62,125 @@ msgid "Access Role"
 msgstr ""
 
 #. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Add a person: type a name or login…"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Administration"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"Advanced settings (hiding single buttons, fields or filters) become "
+"available after the first save."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Advanced: hide single buttons, fields or filters"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also approves and pays the payroll, sets KPI rates."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also approves purchases and manages the settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also bills of materials (texkarta), work centres and settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also confirms and reopens cash days, manages cash desks."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also corrects shifts and transfers that are already finished."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also departments, contracts and HR settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also expense categories and settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also sets up quality control points."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also the attendance settings and devices."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Also works with bank and cash statements."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"An app shows up only when both are true: it is switched on in part 2 and the"
+" permission for it is given in part 3. The preview on the right of a role "
+"tells you when one of them is missing."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Approves everybody's expenses."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Approves the expenses of their own team."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Apps"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "At least «%(level)s» comes with «%(source)s»."
+msgstr ""
+
+#. module: cst_kerama_roles
 #: model:ir.model.fields,help:cst_kerama_roles.field_role_management__cst_shown_menu_ids
 msgid ""
 "Bo'sh bo'lsa — hech narsa o'zgarmaydi. To'ldirilsa, rol egasi faqat shu "
@@ -35,13 +190,155 @@ msgid ""
 msgstr ""
 
 #. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Bookkeeper: journal entries, reconciliation, all reports."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Cards"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Checks the goods leaving at the gate."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Confirms the bank account numbers of partners."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates and edits customers and suppliers."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates and edits dashboards."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates and edits products and their prices."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates and edits roles (this screen)."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates invoices and bills and registers payments."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates projects and manages their settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates purchase orders and receives the goods."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Creates quotations and orders and sees only their own."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Delete"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Delete role"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Delete the role «%s»? This cannot be undone."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Discard"
+msgstr ""
+
+#. module: cst_kerama_roles
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_access_role__display_name
+#: model:ir.model.fields,field_description:cst_kerama_roles.field_cst_role_builder__display_name
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_filter_registry__display_name
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_ir_ui_menu__display_name
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_res_groups__display_name
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_res_users__display_name
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_role_management__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Every app their permissions allow"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Every department, shift settings and KPI."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"Every list and form opens without the Create and Edit buttons. For people "
+"who only check."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Everything else stays hidden, also apps installed later."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Everything in Sales, including prices, teams and settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Everything in accounting, including settings and closing."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Extra limits, such as a read-only mode for controllers."
 msgstr ""
 
 #. module: cst_kerama_roles
@@ -56,12 +353,57 @@ msgid "Filter Registry"
 msgstr ""
 
 #. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Find an app…"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Full administrator: every setting of the system."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Give the role a name."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Give this only to people who run the system."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Give «%(privilege)s: %(level)s»"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Hide messages and history"
+msgstr ""
+
+#. module: cst_kerama_roles
 #: model:ir.ui.menu,name:cst_kerama_roles.menu_sale_customer_invoices
 msgid "Hisob-fakturalar"
 msgstr ""
 
 #. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "How it works"
+msgstr ""
+
+#. module: cst_kerama_roles
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_access_role__id
+#: model:ir.model.fields,field_description:cst_kerama_roles.field_cst_role_builder__id
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_filter_registry__id
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_ir_ui_menu__id
 #: model:ir.model.fields,field_description:cst_kerama_roles.field_res_groups__id
@@ -71,8 +413,253 @@ msgid "ID"
 msgstr ""
 
 #. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Leave without saving"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Loading…"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Main"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Make a copy"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Manages the cards of all employees."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Manages users and their access rights."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "May export lists to Excel."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "May switch between the companies (branches)."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "May take a cash desk below zero."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "May take a warehouse below zero."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid ""
+"May validate receipts without a photo and transfers on the receiver's "
+"behalf."
+msgstr ""
+
+#. module: cst_kerama_roles
 #: model:ir.model,name:cst_kerama_roles.model_ir_ui_menu
 msgid "Menu"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Money"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Move the users of this role to another role first."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "New role"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "No access"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "No access to this part."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "No app would be visible."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "No apps visible"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "No developer mode"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "No permission"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Nobody yet."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Not saved"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Only internal transfers between warehouses."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Only looks at invoices, payments and reports."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Only the administrator of the roles may change them."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Only the apps I switch on"
+msgstr ""
+
+#. module: cst_kerama_roles
+#: model_terms:ir.ui.view,arch_db:cst_kerama_roles.access_role_view_form_builder
+msgid "Open in role builder"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Opens and closes the cash day, receives and pays money."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Other"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "People with this role"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Permission added: %(privilege)s — %(level)s"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+#: model_terms:ir.ui.view,arch_db:cst_kerama_roles.access_role_view_form_builder
+msgid "Permissions"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Prepares the goods of an order in the warehouse."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Prepares the payroll."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Read only"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Receives, moves and ships goods, sees stock on hand."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Records quality checks."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Remove"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Restrictions"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Role"
 msgstr ""
 
 #. module: cst_kerama_roles
@@ -81,6 +668,396 @@ msgid "Role Management"
 msgstr ""
 
 #. module: cst_kerama_roles
+#: model:ir.actions.client,name:cst_kerama_roles.action_role_builder
+#: model:ir.model,name:cst_kerama_roles.model_cst_role_builder
+#: model:ir.ui.menu,name:cst_kerama_roles.menu_role_builder
+msgid "Role builder"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Role deleted."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Role name"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Roles"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Runs the shifts of their own department."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Sales and customers"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Save"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Saved."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Saved. The access of %s user(s) was updated."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Sections"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Sees and corrects everybody's attendance."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Sees and edits the orders of every salesperson."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Sees the roles."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Some sections"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Staff"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Switched on, but hidden for lack of permission"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Table"
+msgstr ""
+
+#. module: cst_kerama_roles
+#: model:ir.model.fields,field_description:cst_kerama_roles.field_access_role__view_group_hierarchy
+msgid "Technical field for the permission selector"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Technical options (rarely needed)"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "The changes to this role are not saved. Leave without saving?"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "The message and log panel next to documents is not shown."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "The name of the job and the people who do it."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "The person cannot switch on the technical developer mode."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "The whole warehouse: adjustments, warehouses, routes, settings."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Their home screen"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid ""
+"This is your own role. Saving it like this would take away your right to "
+"manage roles - keep «Access Role: Administrator» or «Access Rights» on it."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid ""
+"Tick the sections of «%s» this role should see. Greyed sections need a "
+"permission from part 3."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "Unsaved changes"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Updates while you change the role."
+msgstr ""
+
+#. module: cst_kerama_roles
 #: model:ir.model,name:cst_kerama_roles.model_res_users
 msgid "User"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Warehouse and production"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Warehouse, gate and internal transfers together."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"What they may do inside: only look, work with their own documents, or manage"
+" everything."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Which apps appear on their home screen. Everything else stays hidden."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_roles.field_access_role__cst_description
+msgid "Who is this role for"
+msgstr ""
+
+#. module: cst_kerama_roles
+#: model_terms:ir.ui.view,arch_db:cst_kerama_roles.access_role_view_form_builder
+msgid "Who is this role for? e.g. Sales manager of the Tashkent shop"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Works on projects and tasks."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "Works with manufacturing orders."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "You can still switch single apps off."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "You cannot take yourself out of your own role here."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "Your role"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "danger"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "e.g. Cashier"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "e.g. Takes the money in the shop, opens and closes the cash day"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "full"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "in use"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "low"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "middle"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "money"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.js:0
+msgid "moves here from «%s»"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "now:"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "other"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "people"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "read only"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "recommended"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "sales"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+msgid "stock"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "user(s)"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "user(s) ·"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"— the darker the cell, the more the role may do. Click a row to edit the "
+"role."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "— what they may do inside the apps"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid "— what they see on the home screen"
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-javascript
+#: code:addons/cst_kerama_roles/static/src/role_builder/role_builder.xml:0
+msgid ""
+"Only system administrators can open this — the menu is limited to them."
+msgstr ""
+
+#. module: cst_kerama_roles
+#. odoo-python
+#: code:addons/cst_kerama_roles/models/role_builder.py:0
+#, python-format
+msgid ""
+"This is your own role. Keep the «%(app)s» app switched on in part 2, "
+"otherwise you would no longer reach this screen."
 msgstr ""

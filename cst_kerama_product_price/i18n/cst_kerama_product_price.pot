@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:06+0000\n"
-"PO-Revision-Date: 2026-10-19 18:06+0000\n"
+"POT-Creation-Date: 2026-10-21 20:03+0000\n"
+"PO-Revision-Date: 2026-10-21 20:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 msgid "%(row)s-satr (%(barcode)s): narx manfiy bo'lishi mumkin emas."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"%(row)s-satr (%(barcode)s): valyuta \"%(value)s\" tanilmadi (USD yoki UZS "
+"yozing)."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -48,22 +56,18 @@ msgid "%(row)s-satr: shtrix-kod ko'rsatilmagan."
 msgstr ""
 
 #. module: cst_kerama_product_price
-#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
-msgid "/ 1 USD"
-msgstr ""
-
-#. module: cst_kerama_product_price
-#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__usd_rate
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__rate
 msgid ""
-"1 dollar necha kompaniya valyutasiga teng. Tizim kursidan olinadi, lekin "
-"qo'lda o'zgartirish mumkin."
+"1 kompaniya valyutasi (dollar) necha tanlangan valyutaga teng — so'm uchun "
+"kunning dollar kursi. Tizim kursidan olinadi, qo'lda o'zgartirish mumkin."
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid ""
-"<b>1.</b> Shablonni yuklab olib, <b>Yangi narx</b>\n"
-"                                ustunini to'ldiring.\n"
+"<b>1.</b> Shablonni yuklab oling — mahsulotlar guruh bo'yicha, har\n"
+"                                xarakteristika alohida qator. <b>Yangi narx</b> ustunini (kerak bo'lsa\n"
+"                                <b>Valyuta</b>ni ham: USD yoki UZS) to'ldiring.\n"
 "                                <b>2.</b> To'ldirilgan faylni tanlab,\n"
 "                                <b>Narxlarni yuklash</b> tugmasini bosing.<br/>\n"
 "                                Mahsulotlar <b>shtrix-kod</b> bo'yicha topiladi -\n"
@@ -75,7 +79,7 @@ msgstr ""
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "<br/>Kurs: 1 %(usd)s = %(rate)s"
+msgid "<br/>Valyuta: %(ccy)s, kurs: 1 %(company)s = %(rate)s"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -115,6 +119,11 @@ msgstr ""
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_sign
 msgid "Amal"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.product_template_form_cst_variant_price
+msgid "Amaldagi narx"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -163,37 +172,17 @@ msgid "Created on"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__cst_variant_price_count
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_template__cst_variant_price_count
+msgid "Cst Variant Price Count"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__display_name
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__display_name
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_template__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: cst_kerama_product_price
-#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__price_currency__usd
-msgid "Dollar (USD)"
-msgstr ""
-
-#. module: cst_kerama_product_price
-#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__usd_rate
-msgid "Dollar kursi"
-msgstr ""
-
-#. module: cst_kerama_product_price
-#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__rate_date
-msgid "Dollar kursi shu sanaga ko'ra olinadi."
-msgstr ""
-
-#. module: cst_kerama_product_price
-#. odoo-python
-#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "Dollar kursini kiriting - kurs noldan katta bo'lishi kerak."
-msgstr ""
-
-#. module: cst_kerama_product_price
-#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__price_currency
-msgid ""
-"Dollar tanlansa, shablondagi va ommaviy o'zgartirishdagi summalar dollarda "
-"kiritiladi va kurs bo'yicha kompaniya valyutasiga aylantiriladi."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -284,14 +273,35 @@ msgid "Foiz 100 dan katta bo'lishi mumkin emas."
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__categ_ids
+msgid ""
+"Guruh tanlansa, shu guruh (va ichki guruhlari)dagi barcha sotiladigan "
+"mahsulotlar har bir xarakteristikasi bilan alohida qator bo'lib chiqadi."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.product_template_form_cst_variant_price
+msgid ""
+"Har xarakteristikaning o'z sotish narxi va valyutasi. Narx 0 bo'lsa — umumiy «Sotish narxi»\n"
+"                        ishlaydi. Savdo buyurtmasida shu narx chiqadi."
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__id
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__id
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__id
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_template__id
 msgid "ID"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update_line__barcode
 msgid "International Article Number used for product identification."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__is_company_currency
+msgid "Is Company Currency"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -302,7 +312,13 @@ msgstr ""
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "Kamida bitta mahsulot tanlang."
+msgid "Kamida bitta mahsulot yoki mahsulot guruhini tanlang."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Kategoriyasiz"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -318,14 +334,23 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__company_currency_id
-#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__currency_id
-#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__price_currency__company
 msgid "Kompaniya valyutasi"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__rate
+msgid "Kurs"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__rate_date
 msgid "Kurs sanasi"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Kursni kiriting - kurs noldan katta bo'lishi kerak."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -346,10 +371,15 @@ msgid "Mahsulot"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__categ_ids
+msgid "Mahsulot guruhlari"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid ""
-"Mahsulot tanlanmagan. Ro'yxatdan mahsulotlarni belgilab,\n"
-"                        amalni qaytadan oching."
+"Mahsulot tanlanmagan. <b>Mahsulot guruhlari</b>ni tanlang yoki\n"
+"                        ro'yxatdan mahsulotlarni belgilab, amalni qaytadan oching."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -375,6 +405,26 @@ msgstr ""
 #. module: cst_kerama_product_price
 #: model:ir.model,name:cst_kerama_product_price.model_cst_product_price_update_line
 msgid "Narx o'zgarishini ko'rish"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__cst_sale_currency_id
+msgid "Narx valyutasi"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__currency_id
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update_line__currency_id
+msgid ""
+"Narxlar shu valyutada kiritiladi. Sotish narxi xarakteristikaga shu "
+"valyutada yoziladi; tannarx kurs bo'yicha kompaniya valyutasiga "
+"aylantiriladi."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.actions.act_window,name:cst_kerama_product_price.action_product_price_update_menu
+#: model:ir.ui.menu,name:cst_kerama_product_price.menu_product_price_update
+msgid "Narxlarni yangilash (Excel)"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -425,8 +475,18 @@ msgid "Preview"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model,name:cst_kerama_product_price.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__product_count
 msgid "Product Count"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model,name:cst_kerama_product_price.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -457,7 +517,7 @@ msgstr ""
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "Shablon uchun kamida bitta mahsulot tanlang."
+msgid "Shablon uchun mahsulot yoki mahsulot guruhini tanlang."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -477,8 +537,28 @@ msgid "Shtrix-kod"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_product_product__cst_sale_price
+msgid ""
+"Shu xarakteristikaning o'z sotish narxi. 0 — mahsulotning umumiy narxi "
+"ishlaydi."
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__target__price
 msgid "Sotish narxi"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__cst_sale_price
+msgid "Sotish narxi (xarakteristika)"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid ""
+"Sotish narxi har <b>xarakteristika</b> (variant)ga alohida yoziladi, tanlangan valyutada —\n"
+"                        savdo buyurtmasida shu narx chiqadi. Bitta variantli mahsulot kompaniya valyutasida bo'lsa,\n"
+"                        oddiy «Sotish narxi» o'zgaradi."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -533,13 +613,29 @@ msgid "Upload Filename"
 msgstr ""
 
 #. module: cst_kerama_product_price
-#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__price_currency
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__currency_id
 msgid "Valyuta"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__wizard_id
 msgid "Wizard"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__cst_characteristic
+msgid "Xarakteristika"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_product_product__cst_sale_currency_id
+msgid "Xarakteristika narxi qaysi valyutada. Bo'sh — kompaniya valyutasi."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.product_template_form_cst_variant_price
+msgid "Xarakteristika narxlari"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -550,6 +646,17 @@ msgstr ""
 #. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid "Yopish"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.product_normal_form_cst_variant_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.product_template_form_cst_variant_price
+msgid "kompaniya valyutasi"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "masalan: ЛДСП стандарт"
 msgstr ""
 
 #. module: cst_kerama_product_price

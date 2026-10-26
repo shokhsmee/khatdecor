@@ -26,10 +26,26 @@ class ResGroups(models.Model):
 
     _inherit = "res.groups"
 
+    # The app builds the permission part of the role form out of Odoo 18's
+    # «reified» group fields. In Odoo 19 groups hang off privileges, so the
+    # generated block showed nothing but a technical list in debug mode. The
+    # role form now uses Odoo 19's own per-app selector, the one the user form
+    # has, and this view no longer changes with the installed modules.
+    ROLE_GROUPS_ARCH = (
+        '<field name="groups_ids" position="attributes">'
+        '<attribute name="widget">res_user_group_ids</attribute>'
+        '<attribute name="nolabel">1</attribute>'
+        '</field>'
+    )
+
     def _update_role_groups_view(self):
+        view = self.env.ref("access_roles.access_role_view_form_groups", raise_if_not_found=False)
+        if not view or view.arch == self.ROLE_GROUPS_ARCH:
+            return None
         try:
             with self.env.cr.savepoint():
-                return super()._update_role_groups_view()
+                view.with_context(lang=None).write({"arch": self.ROLE_GROUPS_ARCH})
+                return None
         except OperationalError as error:
             if error.pgcode not in CONCURRENCY:
                 raise

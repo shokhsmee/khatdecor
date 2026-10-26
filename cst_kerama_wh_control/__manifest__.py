@@ -25,9 +25,10 @@ Members of *Warehouse Supervisor* may override them.
     """,
     "author": "Khatdecor",
     "category": "Inventory",
-    "version": "19.0.1.9.0",
+    "version": "19.0.1.9.1",
     "depends": ["stock", "stock_barcode"],
     "data": [
+        "security/company_rules.xml",
         "security/wh_control_groups.xml",
         "security/ir.model.access.csv",
         "views/stock_picking_views.xml",

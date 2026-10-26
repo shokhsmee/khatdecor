@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_department_norm" model="ir.actions.report">
+        <field name="name">Bo'limlar: norma va brak</field>
+        <field name="model">cst.department.norm.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_shift.report_department_norm</field>
+        <field name="report_file">cst_kerama_shift.report_department_norm</field>
+        <field name="paperformat_id" ref="cst_kerama_reports.paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_department_norm_html" model="ir.actions.report">
+        <field name="name">Bo'limlar: norma va brak (ekranda)</field>
+        <field name="model">cst.department.norm.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_shift.report_department_norm</field>
+        <field name="report_file">cst_kerama_shift.report_department_norm</field>
+    </record>
+
+    <template id="department_norm_cells">
+        <td class="mid" t-out="r['shifts']"/>
+        <td class="num" t-out="r['good']" t-options="{'widget': 'float', 'precision': 0}"/>
+        <td class="num" t-out="r['second']" t-options="{'widget': 'float', 'precision': 0}"/>
+        <td class="num" t-out="r['scrap']" t-options="{'widget': 'float', 'precision': 0}"/>
+        <td class="num"><span t-if="r['material']" t-out="r['material']" t-options="{'widget': 'float', 'precision': 0}"/></td>
+        <td class="num" t-out="r['out']" t-options="{'widget': 'float', 'precision': 0}"/>
+        <td t-attf-class="num #{'nr_bad' if r['scrap_over'] else ''}"><t t-out="'%.2f' % r['scrap_pct']"/>%</td>
+        <td class="num"><t t-if="r['scrap_norm']"><t t-out="'%.2f' % r['scrap_norm']"/>%</t></td>
+        <td t-attf-class="num #{'nr_bad' if r['second_over'] else ''}"><t t-out="'%.2f' % r['second_pct']"/>%</td>
+        <td class="num"><t t-if="r['second_norm']"><t t-out="'%.2f' % r['second_norm']"/>%</t></td>
+        <td class="num"><span t-if="r['plan']" t-out="r['plan']" t-options="{'widget': 'float', 'precision': 0}"/></td>
+        <td t-attf-class="num #{'nr_bad' if r['plan'] and r['done_pct'] &lt; 100 else ''}"><t t-if="r['plan']"><t t-out="'%.1f' % r['done_pct']"/>%</t></td>
+    </template>
+
+    <template id="report_department_norm">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <style>.cst_rep td.nr_bad { color: #b42318; font-weight: bold; background: #fdecea; }</style>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head">
+                            <h2 t-out="values['title']"/>
+                            <div><span t-out="values['date_from']" t-options="{'widget': 'date'}"/> —
+                                <span t-out="values['date_to']" t-options="{'widget': 'date'}"/></div>
+                        </div>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Bo'lim / smena</th><th rowspan="2" style="width:50px;">Smenalar</th>
+                                    <th colspan="5">Chiqdi (dona)</th>
+                                    <th colspan="2">Brak</th><th colspan="2">2-sort</th>
+                                    <th colspan="2">Smena normasi</th>
+                                </tr>
+                                <tr>
+                                    <th style="width:70px;">1-sort</th><th style="width:60px;">2-sort</th><th style="width:60px;">Brak</th>
+                                    <th style="width:70px;">Material braki</th><th style="width:70px;">Jami</th>
+                                    <th style="width:60px;">Haqiqiy</th><th style="width:60px;">Norma</th>
+                                    <th style="width:60px;">Haqiqiy</th><th style="width:60px;">Norma</th>
+                                    <th style="width:70px;">Reja (1-sort)</th><th style="width:60px;">Bajarildi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="values['rows']" t-as="r">
+                                    <tr class="cst_group">
+                                        <td t-out="r['label']"/>
+                                        <t t-call="cst_kerama_shift.department_norm_cells"/>
+                                    </tr>
+                                    <tr t-foreach="r['detail']" t-as="r">
+                                        <td style="padding-left:16px;" t-out="r['label']"/>
+                                        <t t-call="cst_kerama_shift.department_norm_cells"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <p style="font-size:9px;color:#666;margin-top:6px;">Foiz = brak (2-sort) ÷ jami chiqqan (1-sort + 2-sort + brak).
+                            Material braki jamiga kirmaydi. Normalar bo'lim kartochkasidagi «Norma va brak» varag'idan olinadi;
+                            qizil — normadan oshgan (yoki reja bajarilmagan).</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="view_department_norm_wizard_form" model="ir.ui.view">
+        <field name="name">cst.department.norm.wizard.form</field>
+        <field name="model">cst.department.norm.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bo'limlar: norma va brak">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="department_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="by_shift"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_department_norm_report" model="ir.actions.act_window">
+        <field name="name">Bo'limlar: norma va brak</field>
+        <field name="res_model">cst.department.norm.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_reports_department_norm" name="Bo'limlar: norma va brak foizi"
+              parent="cst_kerama_reports.menu_reports_mrp" action="action_department_norm_report" sequence="40"/>
+    <menuitem id="menu_shift_department_norm" name="Norma va brak hisoboti" parent="menu_shift_root"
+              action="action_department_norm_report" sequence="60"/>
+</odoo>

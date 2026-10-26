@@ -16,6 +16,7 @@
 
             <xpath expr="//field[@name='job_title']" position="after">
                 <field name="cst_personnel_no"/>
+                <field name="cst_staff_status"/>
                 <field name="cst_pinfl" placeholder="14 ta raqam"/>
             </xpath>
 
@@ -47,6 +48,9 @@
                 <field name="cst_personnel_no" optional="show"/>
                 <field name="cst_pinfl" optional="hide"/>
             </field>
+            <field name="job_id" position="after">
+                <field name="cst_staff_status" optional="show"/>
+            </field>
         </field>
     </record>
 
@@ -67,6 +71,10 @@
                 <filter name="f_no_pinfl" string="JSHSHIR yo'q"
                         domain="[('cst_pinfl', '=', False)]"
                         groups="cst_kerama_payroll.group_payroll_user"/>
+                <separator/>
+                <filter name="f_staff" string="Shtat" domain="[('cst_staff_status', '=', 'staff')]" groups="hr.group_hr_user"/>
+                <filter name="f_non_staff" string="Shtatdan tashqari" domain="[('cst_staff_status', '=', 'non_staff')]" groups="hr.group_hr_user"/>
+                <filter name="f_staff_unset" string="Shtat belgilanmagan" domain="[('cst_staff_status', '=', False)]" groups="hr.group_hr_user"/>
             </filter>
         </field>
     </record>

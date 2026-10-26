@@ -112,7 +112,7 @@ class CstStockLedgerReport(models.AbstractModel):
         if not products:
             return {}
         priced = products.with_company(company).with_context(
-            to_date=fields.Datetime.to_datetime(at_date).replace(hour=23, minute=59, second=59),
+            to_date=self.env["cst.stock.report.base"]._local_bounds(at_date, at_date)[1] - timedelta(seconds=1),
             warehouse_id=warehouse.id)
         costs = {}
         for product in priced:
@@ -136,15 +136,14 @@ class CstStockLedgerReport(models.AbstractModel):
         domain = [("state", "=", "done"),
                   "|", ("location_id", "in", locations.ids),
                        ("location_dest_id", "in", locations.ids),
-                  ("date", "<=", fields.Datetime.to_datetime(date_to).replace(
-                      hour=23, minute=59, second=59))]
+                  ("date", "<", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[1])]
         if product_ids:
             domain.append(("product_id", "in", product_ids))
         if category_ids:
             categories = self.env["product.category"].search([("id", "child_of", category_ids)])
             domain.append(("product_id.categ_id", "in", categories.ids))
         lines = self.env["stock.move.line"].sudo().search(domain)
-        period_start = fields.Datetime.to_datetime(date_from)
+        period_start = self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[0]
 
         # (warehouse, product) -> {"open": qty, flows: {key: [qty, value, unvalued_qty]}}
         cells = defaultdict(lambda: {"open": 0.0,
@@ -253,7 +252,7 @@ class CstStockLedgerReport(models.AbstractModel):
         deltas = defaultdict(float)
         for rec in Value.search([
                 ("company_id", "in", companies.ids), ("move_id", "=", False),
-                ("date", ">=", fields.Datetime.to_datetime(date_from)),
-                ("date", "<=", fields.Datetime.to_datetime(date_to).replace(hour=23, minute=59, second=59))]):
+                ("date", ">=", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[0]),
+                ("date", "<", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[1])]):
             deltas[(rec.company_id.id, rec.product_id.id)] += (rec.value or 0.0) - (rec.current_value or 0.0)
         return deltas

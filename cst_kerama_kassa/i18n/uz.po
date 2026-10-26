@@ -2472,10 +2472,12 @@ msgstr ""
 #: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__transfer_kassa_id
 msgid ""
 "The kassa the money goes to (cash out) or comes from (cash in). Both kassas "
-"need an open cash day on this date."
+"need an open cash day on this date. A kassa of another company "
+"(organization) books the money as a debt between the two companies."
 msgstr ""
 "Pul o'tadigan (chiqim) yoki keladigan (kirim) kassa. Ikkala kassada ham shu "
-"sanada kun ochiq bo'lishi kerak."
+"sanada kun ochiq bo'lishi kerak. Boshqa kompaniya (tashkilot) kassasi "
+"tanlansa, pul ikki kompaniya o'rtasidagi qarz sifatida yoziladi."
 
 #. module: cst_kerama_kassa
 #: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__is_foreign
@@ -2815,3 +2817,15 @@ msgstr "⇄ Kassadan kassaga"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
 msgid "− Cash out"
 msgstr "− Chiqim"
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Receivable/payable accounts between %(a)s and %(b)s are not set."
+msgstr "%(a)s va %(b)s o'rtasidagi debitor/kreditor hisob raqamlari sozlanmagan."
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "%(label)s (%(a)s → %(b)s)"
+msgstr "%(label)s (%(a)s → %(b)s)"

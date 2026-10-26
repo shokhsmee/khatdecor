@@ -49,7 +49,8 @@ class SaleOrder(models.Model):
         if any(move.payment_state not in SETTLED_PAYMENT_STATES for move in invoices):
             return False
 
-        dates = invoices.matched_payment_ids.filtered(
+        # sudo: salesmen open the order without any right on payments
+        dates = invoices.sudo().matched_payment_ids.filtered(
             lambda payment: payment.state in ("paid", "in_process")
         ).mapped("date")
         if not dates:

@@ -26,6 +26,20 @@ class CstFuelMachine(models.Model):
                                 help="Barcha tasdiqlangan chiqimlarda yozilgan soatlar yig'indisi.")
     log_count = fields.Integer(string="Yozuvlar", compute="_compute_odometer")
 
+    @api.depends("name", "plate")
+    def _compute_display_name(self):
+        # the plate is what the yard checks against, so it goes everywhere the name does
+        for machine in self:
+            machine.display_name = "%s · %s" % (machine.name, machine.plate) if machine.plate else machine.name
+
+    @api.model
+    def _search_display_name(self, operator, value):
+        if operator in ("ilike", "not ilike", "=", "!=") and value:
+            positive = operator in ("ilike", "=")
+            domain = ["|", ("name", operator, value), ("plate", operator, value)]
+            return domain if positive else ["!"] + domain
+        return super()._search_display_name(operator, value)
+
     @api.depends("name")
     def _compute_odometer(self):
         Log = self.env["cst.fuel.log"]
@@ -99,6 +113,26 @@ class CstFuelLog(models.Model):
              "yo'q texnika (kara, generator, press) uchun sarf shu soatlarga "
              "nisbatan hisoblanadi.")
     partner_id = fields.Many2one("res.partner", string="Ta'minotchi")
+    # what the fuel cost, in the currency it was bought in (client 2026-10-21)
+    price_unit = fields.Float(string="Narxi (1 birlik)", digits="Product Price", tracking=True)
+    currency_id = fields.Many2one(
+        "res.currency", string="Valyuta", tracking=True,
+        default=lambda self: self.env.company.currency_id,
+        domain="[('active', '=', True)]")
+    company_currency_id = fields.Many2one(related="company_id.currency_id", string="Kompaniya valyutasi")
+    rate = fields.Float(
+        string="Kurs", digits=(16, 4), tracking=True,
+        compute="_compute_rate", store=True, readonly=False, precompute=True,
+        help="1 kompaniya valyutasi (dollar) necha shu valyuta: so'mda olinsa — kunning dollar kursi.")
+    amount_total = fields.Monetary(string="Summa", currency_field="currency_id",
+                                   compute="_compute_amounts", store=True)
+    amount_company = fields.Monetary(string="Summa (kompaniya valyutasida)", currency_field="company_currency_id",
+                                     compute="_compute_amounts", store=True)
+    create_bill = fields.Boolean(
+        string="Ta'minotchiga qarz yozilsin", default=True,
+        help="Tasdiqlanganda ta'minotchiga shu summada hisob-faktura (qarz) yoziladi — akt sverkada chiqadi, "
+             "kassadan to'langanda yopiladi. O'chirilsa faqat ombor kirimi bo'ladi.")
+    bill_id = fields.Many2one("account.move", string="Hisob-faktura", readonly=True, copy=False)
     location_id = fields.Many2one(
         "stock.location", string="Ombor joyi", required=True,
         domain="[('usage', '=', 'internal')]",
@@ -144,13 +178,81 @@ class CstFuelLog(models.Model):
             if log.worked_hours < 0:
                 raise ValidationError(_("Ishlagan vaqt manfiy bo'lishi mumkin emas."))
 
+    @api.depends("currency_id", "date", "company_id")
+    def _compute_rate(self):
+        for log in self:
+            company = log.company_id or self.env.company
+            if not log.currency_id or log.currency_id == company.currency_id:
+                log.rate = 1.0
+                continue
+            # the kassa's dollar rate of the day first, Odoo's rate table otherwise
+            log.rate = log._kassa_rate() or self.env["res.currency"]._get_conversion_rate(
+                company.currency_id, log.currency_id, company, (log.date or fields.Datetime.now()).date())
+
+    def _kassa_rate(self):
+        """«Kunni ochish» rate of that day, when the cash desk has one (so'm only)."""
+        self.ensure_one()
+        if "cst.kassa.day" not in self.env or self.currency_id.name != "UZS" or self.company_id.currency_id.name != "USD":
+            return 0.0
+        day = self.env["cst.kassa.day"].sudo().search(
+            [("date", "<=", (self.date or fields.Datetime.now()).date()), ("usd_rate", ">", 0),
+             ("kassa_id.company_id", "=", self.company_id.id)], order="date desc, id desc", limit=1)
+        return day.usd_rate or 0.0
+
+    @api.depends("quantity", "price_unit", "rate", "currency_id")
+    def _compute_amounts(self):
+        for log in self:
+            log.amount_total = log.quantity * log.price_unit
+            log.amount_company = log.amount_total / log.rate if log.rate else log.amount_total
+
+    @api.constrains("price_unit", "rate")
+    def _check_price(self):
+        for log in self:
+            if log.price_unit < 0:
+                raise ValidationError(_("Narx manfiy bo'lishi mumkin emas."))
+            if log.rate <= 0:
+                raise ValidationError(_("Kurs noldan katta bo'lishi kerak."))
+
     # ------------------------------------------------------------------
     def action_confirm(self):
         for log in self.filtered(lambda l: l.state == "draft"):
             log.stock_move_id = log._create_move()
             log.name = log.stock_move_id.reference or log.name
+            if log.kind == "in" and log.create_bill and log.partner_id and log.price_unit:
+                log.bill_id = log._create_bill()
             log.state = "done"
         return True
+
+    def _create_bill(self):
+        """The supplier's invoice for this fuel, in the currency it was bought
+        in and at the rate on the form, posted at once."""
+        self.ensure_one()
+        bill = self.env["account.move"].with_company(self.company_id).create({
+            "move_type": "in_invoice",
+            "partner_id": self.partner_id.id,
+            "currency_id": self.currency_id.id,
+            "invoice_date": (self.date or fields.Datetime.now()).date(),
+            "ref": self.name if self.name and self.name != "/" else self._move_label(),
+            "invoice_origin": self.name if self.name and self.name != "/" else False,
+            "company_id": self.company_id.id,
+            "invoice_line_ids": [(0, 0, {
+                "product_id": self.product_id.id,
+                "name": self._move_label(),
+                "quantity": self.quantity,
+                "product_uom_id": self.product_id.uom_id.id,
+                "price_unit": self.price_unit,
+                "tax_ids": [(5, 0, 0)],
+            })],
+        })
+        if self.currency_id != self.company_id.currency_id:
+            bill.invoice_currency_rate = self.rate
+        bill.action_post()
+        return bill
+
+    def action_open_bill(self):
+        self.ensure_one()
+        return {"type": "ir.actions.act_window", "res_model": "account.move", "res_id": self.bill_id.id,
+                "view_mode": "form", "target": "current"}
 
     def _counterpart_location(self):
         """Where the fuel comes from, or where it disappears to.
@@ -192,6 +294,9 @@ class CstFuelLog(models.Model):
             "company_id": self.company_id.id,
             "partner_id": self.partner_id.id or False,
         })
+        if self.kind == "in" and self.price_unit:
+            # valued at what was paid, in company money
+            move.price_unit = self.price_unit / (self.rate or 1.0)
         move._action_confirm()
         move._action_assign()
         move.quantity = self.quantity
@@ -235,15 +340,14 @@ class CstFuelReport(models.AbstractModel):
         if machine_ids:
             domain.append(("machine_id", "in", machine_ids))
 
+        start, end = self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)
         opening = 0.0
-        for log in Log.search(domain + [("date", "<", fields.Datetime.to_datetime(date_from))]):
+        for log in Log.search(domain + [("date", "<", start)]):
             opening += log.quantity if log.kind == "in" else -log.quantity
 
         logs = Log.search(domain + [
-            ("date", ">=", fields.Datetime.to_datetime(date_from)),
-            # whole last day, as in the other sheets
-            ("date", "<=", fields.Datetime.to_datetime(date_to).replace(
-                hour=23, minute=59, second=59)),
+            # Tashkent days, as in the other sheets
+            ("date", ">=", start), ("date", "<", end),
         ], order="date, id")
 
         movements = []

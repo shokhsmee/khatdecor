@@ -13,6 +13,17 @@ class MrpWorkorder(models.Model):
     cst_shift_line_ids = fields.One2many(
         "cst.production.shift.line", "workorder_id", string="Smena qatorlari")
 
+    def action_cancel(self):
+        """mrp_workorder_hr_account deletes the work order's analytic lines as
+        the current user; a production manager has no analytic rights, so every
+        cancel (bo'lim oynasi or the order form) died on an AccessError. Whoever
+        may write the work order may cancel it — the analytic cleanup runs as
+        superuser."""
+        if not self.env.su and not self.env["account.analytic.line"].has_access("unlink"):
+            self.check_access("write")
+            return super(MrpWorkorder, self.sudo()).action_cancel()
+        return super().action_cancel()
+
     def do_finish(self):
         """«Mark as Done» on the Shop Floor for a work order that carries
         2-sort / brak typed by the operator: the shift line books the result

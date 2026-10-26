@@ -3044,3 +3044,25 @@ msgstr "“%s” yopilgan. O'zgartirishdan oldin uni ataylab qayta oching."
 msgid "“%s”: dollar kursi kiritilmagan — oylikni dollarga o'tkazib bo'lmaydi."
 msgstr ""
 "“%s”: dollar kursi kiritilmagan — oylikni dollarga o'tkazib bo'lmaydi."
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_staff_status
+msgid "Staff Status"
+msgstr "Shtat holati"
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_employee__cst_staff_status__staff
+msgid "Staff"
+msgstr "Shtat"
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_employee__cst_staff_status__non_staff
+msgid "Non-staff"
+msgstr "Shtatdan tashqari"
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_staff_status
+msgid ""
+"Штат — officially registered (in the staff list); Не штат — works without "
+"being registered.  Counted in the «Ishlayotgan xodimlar» report."
+msgstr "Штат — rasmiy ro'yxatga olingan; Не штат — ro'yxatga olinmagan holda ishlaydi. «Ishlayotgan xodimlar» hisobotida sanaladi."

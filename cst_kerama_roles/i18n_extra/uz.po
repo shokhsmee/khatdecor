@@ -1,0 +1,691 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* access_roles
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 18:32+0000\n"
+"PO-Revision-Date: 2026-10-20 18:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uz_UZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__accesses_count
+msgid "# Access Rights"
+msgstr "Kirish huquqlari soni"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__groups_count
+msgid "# Groups"
+msgstr "Guruhlar soni"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__rules_count
+msgid "# Record Rules"
+msgstr "Yozuv qoidalari soni"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__access_field_id
+msgid "Access Field"
+msgstr "Maydonga kirish"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_res_groups
+msgid "Access Groups"
+msgstr "Kirish guruhlari"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__access_model_id
+msgid "Access Model"
+msgstr "Modelga kirish"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Access Rights"
+msgstr "Kirish huquqlari"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_access_role
+#: model:ir.model.fields,field_description:access_roles.field_res_users__access_role_id
+#: model:res.groups.privilege,name:access_roles.access_roles_privilege_category
+msgid "Access Role"
+msgstr "Rol"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__access_role_menu_ids
+msgid "Access Role Menu"
+msgstr "Rol menyusi"
+
+#. module: access_roles
+#: model:res.groups,name:access_roles.access_role_group_user
+msgid "Access Role User"
+msgstr "Rollarni ko'radi"
+
+#. module: access_roles
+#: model:ir.actions.act_window,name:access_roles.action_access_role
+#: model:ir.ui.menu,name:access_roles.access_role_menu_roles
+msgid "Access Roles"
+msgstr "Rollar ro'yxati"
+
+#. module: access_roles
+#: model:res.groups,comment:access_roles.access_role_group_user
+msgid "Access to access roles"
+msgstr "Rollarni ko'rish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_needaction
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_needaction
+msgid "Action Needed"
+msgstr "Harakat kerak"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__action_name
+msgid "Action/Method Name"
+msgstr "Amal / metod nomi"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__active
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__active
+msgid "Active"
+msgstr "Faol"
+
+#. module: access_roles
+#: model:res.groups,name:access_roles.access_role_group_administrator
+#: model:res.groups,name:mass_price_update.mass_price_update_group_admin
+msgid "Administrator"
+msgstr "Administrator"
+
+#. module: access_roles
+#: model:res.groups,comment:access_roles.access_role_group_administrator
+msgid "Administrator access to access roles"
+msgstr "Rollarni yaratish va o'zgartirish"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_module_category
+msgid "Application"
+msgstr "Ilova"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_attachment_count
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_attachment_count
+msgid "Attachment Count"
+msgstr "Ilovalar soni"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__button_access_id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__button_access_ids
+msgid "Button Access"
+msgstr "Tugmaga kirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__button_invisible
+msgid "Button Invisible"
+msgstr "Tugma yashirin"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__name
+msgid "Button Name"
+msgstr "Tugma nomi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_button_registry
+msgid "Button Registry"
+msgstr "Tugmalar reestri"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__context
+msgid "Context"
+msgstr "Kontekst"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_field_access__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_role_management__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__create_uid
+msgid "Created by"
+msgstr "Yaratgan"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__create_date
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__create_date
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__create_date
+#: model:ir.model.fields,field_description:access_roles.field_field_access__create_date
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__create_date
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__create_date
+#: model:ir.model.fields,field_description:access_roles.field_role_management__create_date
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__create_date
+msgid "Created on"
+msgstr "Yaratilgan sana"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__is_debug
+msgid "Disable Debug Mode"
+msgstr "Dasturchi rejimi taqiqlansin"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__is_chatter
+msgid "Disable chatter"
+msgstr "Xabarlar paneli yashirilsin"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_role_management__is_chatter
+msgid "Disable chatter for the role"
+msgstr "Bu rolda hujjat yonidagi xabarlar va tarix paneli ko'rsatilmaydi"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_role_management__is_debug
+msgid "Disable the option to enable debug mode for the user"
+msgstr "Foydalanuvchi dasturchi (debug) rejimini yoqa olmaydi"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__display_name
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__display_name
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__display_name
+#: model:ir.model.fields,field_description:access_roles.field_field_access__display_name
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__display_name
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__string
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__display_name
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__string
+#: model:ir.model.fields,field_description:access_roles.field_ir_module_category__display_name
+#: model:ir.model.fields,field_description:access_roles.field_ir_rule__display_name
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_menu__display_name
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_view__display_name
+#: model:ir.model.fields,field_description:access_roles.field_res_groups__display_name
+#: model:ir.model.fields,field_description:access_roles.field_res_users__display_name
+#: model:ir.model.fields,field_description:access_roles.field_role_management__display_name
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__display_name
+msgid "Display Name"
+msgstr "Ko'rinadigan nom"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__name
+#: model:ir.model.fields,field_description:access_roles.field_field_access__domain_id
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__domain
+#: model:ir.model.fields,field_description:access_roles.field_role_management__domain_ids
+msgid "Domain"
+msgstr "Shart (domen)"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__domain_access_id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__domain_access_ids
+msgid "Domain Access"
+msgstr "Shart bo'yicha kirish"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.domain_model_view_list
+msgid "Domains"
+msgstr "Shartlar"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Edit Domain Access"
+msgstr "Shart bo'yicha cheklash"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Edit Fields Access"
+msgstr "Maydonlarni cheklash"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Edit Model Access"
+msgstr "Hujjat turlarini cheklash"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__field_access_ids
+msgid "Field Access"
+msgstr "Maydonga kirish"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_field_access__button_invisible
+msgid "Field for setting button visibility"
+msgstr "Tugma ko'rinishini belgilaydigan maydon"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__fields_ids
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Fields"
+msgstr "Maydonlar"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__filter_access_id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__filter_access_ids
+msgid "Filter Access"
+msgstr "Filtrga kirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__name
+msgid "Filter Name"
+msgstr "Filtr nomi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_filter_registry
+msgid "Filter Registry"
+msgstr "Filtrlar reestri"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__filter_ids
+msgid "Filters"
+msgstr "Filtrlar"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_follower_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_follower_ids
+msgid "Followers"
+msgstr "Kuzatuvchilar"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_partner_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Kuzatuvchilar (kontaktlar)"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__group_ids
+msgid "GroupBy"
+msgstr "Guruhlash"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__name
+msgid "GroupBy Name"
+msgstr "Guruhlash nomi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_groupby_registry
+msgid "GroupBy Registry"
+msgstr "Guruhlashlar reestri"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__groups_ids
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Groups"
+msgstr "Guruhlar"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__has_message
+#: model:ir.model.fields,field_description:access_roles.field_role_management__has_message
+msgid "Has Message"
+msgstr "Xabar bor"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__hide_actions_ids
+msgid "Hide Actions"
+msgstr "Amallarni yashirish"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Hide Any Button or Tab"
+msgstr "Tugma yoki varaqni yashirish"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Hide Any Filter or GroupBy"
+msgstr "Filtr yoki guruhlashni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_archive
+msgid "Hide Archive/UnArchive"
+msgstr "Arxivlashni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_create
+msgid "Hide Create"
+msgstr "Yaratishni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_delete
+msgid "Hide Delete"
+msgstr "O'chirishni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_duplicate
+msgid "Hide Duplicate"
+msgstr "Nusxalashni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_export
+msgid "Hide Export"
+msgstr "Eksportni yashirish"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Hide Menu"
+msgstr "Menyularni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__hide_report_ids
+msgid "Hide Report"
+msgstr "Hisobotni yashirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__id
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__id
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__id
+#: model:ir.model.fields,field_description:access_roles.field_field_access__id
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__id
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_module_category__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_rule__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_menu__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_view__id
+#: model:ir.model.fields,field_description:access_roles.field_res_groups__id
+#: model:ir.model.fields,field_description:access_roles.field_res_users__id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__id
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__id
+msgid "ID"
+msgstr "ID"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_needaction
+#: model:ir.model.fields,help:access_roles.field_role_management__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Belgilansa, yangi xabarlar e'tiboringizni talab qiladi."
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_has_error
+#: model:ir.model.fields,help:access_roles.field_access_role__message_has_sms_error
+#: model:ir.model.fields,help:access_roles.field_role_management__message_has_error
+#: model:ir.model.fields,help:access_roles.field_role_management__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Belgilansa, ba'zi xabarlar yetkazilmagan."
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_field_invisible
+msgid "Invisible"
+msgstr "Yashirin"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_is_follower
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_is_follower
+msgid "Is Follower"
+msgstr "Kuzatuvchi"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_field_access__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_role_management__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__write_uid
+msgid "Last Updated by"
+msgstr "Oxirgi o'zgartirgan"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__write_date
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__write_date
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__write_date
+#: model:ir.model.fields,field_description:access_roles.field_field_access__write_date
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__write_date
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__write_date
+#: model:ir.model.fields,field_description:access_roles.field_role_management__write_date
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__write_date
+msgid "Last Updated on"
+msgstr "Oxirgi o'zgartirilgan sana"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__is_readonly
+msgid "Make System ReadOnly"
+msgstr "Faqat ko'rish rejimi"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_role_management__is_readonly
+msgid "Make system readonly"
+msgstr "Hamma ro'yxat va formalar yaratish/tahrirlash tugmalarisiz ochiladi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_ui_menu
+#: model:ir.model.fields,field_description:access_roles.field_role_management__menu_ids
+msgid "Menu"
+msgstr "Menyu"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_has_error
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_has_error
+msgid "Message Delivery error"
+msgstr "Xabar yetkazish xatosi"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_ids
+msgid "Messages"
+msgstr "Xabarlar"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__model_id
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__domain_model_id
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__domain_model_name
+#: model:ir.model.fields,field_description:access_roles.field_field_access__model_id
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__model_id
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__model_id
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__model_id
+msgid "Model"
+msgstr "Hujjat turi (model)"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__model_access_ids
+msgid "Model Access"
+msgstr "Modelga kirish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__button_ids
+msgid "Model Button"
+msgstr "Model tugmasi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_domain_model
+msgid "Model Domain"
+msgstr "Model sharti"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__name
+#: model:ir.model.fields,field_description:access_roles.field_role_management__name
+msgid "Name"
+msgstr "Nomi"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_needaction_counter
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Amallar soni"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_has_error_counter
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_has_error_counter
+msgid "Number of errors"
+msgstr "Xatolar soni"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_needaction_counter
+#: model:ir.model.fields,help:access_roles.field_role_management__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Harakat talab qiladigan xabarlar soni"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_has_error_counter
+#: model:ir.model.fields,help:access_roles.field_role_management__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Yetkazilmagan xabarlar soni"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__rating_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__rating_ids
+msgid "Ratings"
+msgstr "Baholar"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_field_readonly
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_model_readonly
+msgid "Readonly"
+msgstr "Faqat ko'rish"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Record Rules"
+msgstr "Yozuv qoidalari"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_remove_link
+msgid "Remove External link"
+msgstr "Tashqi havolani olib tashlash"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_field_required
+msgid "Required"
+msgstr "Majburiy"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Role"
+msgstr "Rol"
+
+#. module: access_roles
+#: model:ir.actions.act_window,name:access_roles.action_role_management
+#: model:ir.model,name:access_roles.model_role_management
+#: model:ir.model.fields,field_description:access_roles.field_access_role__role_management_id
+#: model:ir.ui.menu,name:access_roles.access_role_menu
+#: model:ir.ui.menu,name:access_roles.access_role_menu_management
+msgid "Role Management"
+msgstr "Rol sozlamalari"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__role_ids
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_list
+#: model:ir.ui.menu,name:access_roles.access_role_menu_root
+msgid "Roles"
+msgstr "Rollar"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_rule
+msgid "Rule"
+msgstr "Qoida"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_has_sms_error
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS yetkazish xatosi"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_res_users__access_role_id
+msgid "Select the role of the user"
+msgstr "Foydalanuvchining rolini tanlang"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__selected_role_ids
+msgid "Selected Role"
+msgstr "Tanlangan rol"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__tab_ids
+msgid "Tab"
+msgstr "Varaq"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__name
+msgid "Tab Name"
+msgstr "Varaq nomi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_tab_registry
+msgid "Tab Registry"
+msgstr "Varaqlar reestri"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_res_users
+#: model:ir.model.fields,field_description:access_roles.field_access_role__user_ids
+msgid "User"
+msgstr "Foydalanuvchi"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_ui_view
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__view_ids
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__view_ids
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__view_ids
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__view_ids
+msgid "View"
+msgstr "Ko'rinish"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__website_message_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__website_message_ids
+msgid "Website Messages"
+msgstr "Sayt xabarlari"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__website_message_ids
+#: model:ir.model.fields,help:access_roles.field_role_management__website_message_ids
+msgid "Website communication history"
+msgstr "Sayt orqali yozishmalar tarixi"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "e.g. Staff"
+msgstr "masalan, Kassir"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_field_access
+msgid "field.access"
+msgstr "Maydonga kirish"
+
+#. module: access_roles
+#: model:ir.ui.menu,name:access_roles.access_role_menu
+msgid "Advanced"
+msgstr "Kengaytirilgan"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_account_readonly
+msgid "Read-only"
+msgstr "Faqat ko'rish"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_account_basic
+msgid "Invoicing & Banks"
+msgstr "Hisob-faktura va bank"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_account_user
+msgid "Bookkeeper"
+msgstr "Buxgalter"
+
+#. module: cst_kerama_roles
+#: model:res.groups.privilege,name:mass_price_update.module_category_mass_price_update
+msgid "Mass Price Update"
+msgstr "Narxlarni ommaviy yangilash"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:api_doc.group_allow_doc
+msgid "Technical Documentation"
+msgstr "Texnik hujjatlar"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:base.group_system
+msgid "Role / Administrator"
+msgstr "Rol / Administrator"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:base.group_user
+msgid "Role / User"
+msgstr "Rol / Foydalanuvchi"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:base.default_user_group
+msgid "Default access for new users"
+msgstr "Yangi foydalanuvchilar uchun standart kirish huquqi"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_partial_purchase_deductibility
+msgid "Partial Purchase Deductibility"
+msgstr "Qisman sotib olish chegirilishi"

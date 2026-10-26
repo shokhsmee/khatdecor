@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- fuel written off names the machine that took it (ТЗ 19) -->
+    <record id="view_stock_scrap_form_fuel" model="ir.ui.view">
+        <field name="name">stock.scrap.form.fuel</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field name="cst_is_fuel" invisible="1"/>
+                <field name="cst_fuel_machine_id" invisible="not cst_is_fuel" required="cst_is_fuel"
+                       readonly="state == 'done'" options="{'no_create': True}"/>
+                <field name="cst_fuel_odometer_km" invisible="not cst_is_fuel" readonly="state == 'done'"/>
+                <field name="cst_fuel_worked_hours" widget="float_time" invisible="not cst_is_fuel" readonly="state == 'done'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_scrap_form2_fuel" model="ir.ui.view">
+        <field name="name">stock.scrap.form2.fuel</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field name="cst_is_fuel" invisible="1"/>
+                <field name="cst_fuel_machine_id" invisible="not cst_is_fuel" required="cst_is_fuel"
+                       options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

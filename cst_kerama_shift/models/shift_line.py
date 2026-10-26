@@ -128,7 +128,8 @@ class CstProductionShiftLine(models.Model):
         lines = super().create(vals_list)
         for line in lines:
             if not line.employee_ids:
-                line.employee_ids = line.shift_id.employee_ids
+                # sudo: the shift manager has no read access to hr.employee
+                line.sudo().employee_ids = line.shift_id.employee_ids
         return lines
 
     # ------------------------------------------------------------------ guards
@@ -182,11 +183,11 @@ class CstProductionShiftLine(models.Model):
             wo.write(values)
             workers = line._workers()
             if workers:
-                wo.employee_assigned_ids |= workers
+                wo.sudo().employee_assigned_ids |= workers
             if wo.state != "progress":
                 wo.with_context(cst_shift_bypass=True).button_start(bypass=True)
             for employee in workers:
-                wo.start_employee(employee.id)
+                wo.sudo().start_employee(employee.id)
             line.write({"state": "progress", "date_start": line.date_start or fields.Datetime.now()})
         return True
 
@@ -352,6 +353,7 @@ class CstProductionShiftLine(models.Model):
                     order=mo.name, total=total, left=remaining))
             mo.qty_producing = total
             mo._set_qty_producing()
+            self._cst_apply_consumption(mo, entries)
             to_backorder = uom.compare(total, remaining) < 0
             # cst_posting_output: this shift line is the one booking the result;
             # the Shop Floor hook on button_mark_done must not book it again
@@ -375,6 +377,60 @@ class CstProductionShiftLine(models.Model):
         else:
             wo.qty_produced += good + second
         entries.write({"posted": True})
+
+    def _cst_apply_consumption(self, mo, entries):
+        """Raw material as the manager counted it in the result dialog.
+
+        ``_set_qty_producing`` has just filled every raw move with the bill's
+        ratio. Where an entry says otherwise (one обой printed instead of two)
+        the move gets the counted quantity; for entries that did not touch a
+        material its norm share is kept.
+        """
+        counted = entries.consume_ids
+        if not counted:
+            return
+        raw = mo.move_raw_ids.filtered(lambda m: m.state not in ("done", "cancel"))
+        for product in counted.product_id:
+            moves = raw.filtered(lambda m: m.product_id == product)
+            if not moves:
+                continue
+            per_unit = sum(m.product_uom._compute_quantity(m.unit_factor, product.uom_id) for m in moves)
+            actual = 0.0
+            for entry in entries:
+                rows = entry.consume_ids.filtered(lambda c: c.product_id == product)
+                if rows:
+                    actual += sum(rows.mapped("qty"))
+                else:
+                    actual += (entry.qty_good + entry.qty_second + entry.qty_scrap) * per_unit
+            first = moves[0]
+            first._set_quantity_done(product.uom_id._compute_quantity(actual, first.product_uom))
+            first.picked = True
+            for other in moves[1:]:
+                other._set_quantity_done(0.0)
+            mo.message_post(body=_("%(product)s: haqiqiy sarf %(qty)s %(uom)s (bo'lim oynasidan).",
+                                   product=product.cst_base_name(), qty=round(actual, 4), uom=product.uom_id.name))
+
+    def _cst_set_crew(self, employees):
+        """Who worked on the order, as ticked in the result dialog; a running
+        work order clocks the newcomers in and the ones taken off out."""
+        self.ensure_one()
+        if employees == self.employee_ids:
+            return
+        wo = self.workorder_id
+        removed = self.employee_ids - employees
+        added = employees - self.employee_ids
+        # sudo: the shift manager has no read access to hr.employee; the
+        # caller (floor.add_entry) checks the crew belongs to the department
+        self.sudo().employee_ids = employees
+        if self.state != "progress" or wo.state != "progress":
+            return
+        if added:
+            wo.sudo().employee_assigned_ids |= added
+            for employee in added:
+                wo.sudo().start_employee(employee.id)
+        working = removed & wo.employee_ids
+        if working:
+            wo.stop_employee(working.ids)
 
     def _scrap(self, mo, wo, qty, reason_tag, label):
         """Scrap ``qty`` of the finished product just produced, with a reason."""

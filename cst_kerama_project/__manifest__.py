@@ -49,7 +49,7 @@ Turns *Project* into the centre of the business:
     """,
     "author": "Khatdecor",
     "category": "Project",
-    "version": "19.0.5.0.0",
+    "version": "19.0.5.0.1",
     "depends": [
         "sale_project",
         "purchase",
@@ -65,6 +65,7 @@ Turns *Project* into the centre of the business:
         "cst_kerama_variants", "cst_kerama_shift",
     ],
     "data": [
+        "security/company_rules.xml",
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
         "views/sale_order_views.xml",

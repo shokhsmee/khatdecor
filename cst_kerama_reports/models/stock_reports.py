@@ -1,6 +1,11 @@
 from collections import defaultdict
+from datetime import datetime, time, timedelta
+
+import pytz
 
 from odoo import api, fields, models
+
+DEFAULT_TZ = "Asia/Tashkent"
 
 
 class CstStockReportBase(models.AbstractModel):
@@ -21,17 +26,35 @@ class CstStockReportBase(models.AbstractModel):
     @api.model
     def _warehouses(self, warehouse_ids=None, company_ids=None):
         companies = self._companies(company_ids)
-        Warehouse = self.env["stock.warehouse"]
+        # archived warehouses too (ТМ, retired 29.09): their history still
+        # belongs to the period it happened in; an empty one prints nothing
+        Warehouse = self.env["stock.warehouse"].with_context(active_test=False)
         warehouses = Warehouse.browse(warehouse_ids) if warehouse_ids \
             else Warehouse.search([("company_id", "in", companies.ids)])
         return warehouses.filtered(lambda w: w.company_id in companies)
 
     @api.model
     def _internal_locations(self, warehouses):
-        return self.env["stock.location"].search([
+        return self.env["stock.location"].with_context(active_test=False).search([
             ("id", "child_of", warehouses.view_location_id.ids),
             ("usage", "=", "internal"),
         ])
+
+    @api.model
+    def _local_bounds(self, date_from, date_to):
+        """The period as UTC datetimes [start, end): from the user's midnight of
+        ``date_from`` to the user's midnight after ``date_to``. Stock moves are
+        stored in UTC; reading the dates as UTC put everything done between
+        00:00 and 05:00 in Tashkent on the day before."""
+        tz = pytz.timezone(self.env.context.get("tz") or self.env.user.tz or DEFAULT_TZ)
+
+        def utc(day):
+            local = tz.localize(datetime.combine(fields.Date.to_date(day), time.min))
+            return local.astimezone(pytz.utc).replace(tzinfo=None)
+
+        start = utc(date_from) if date_from else None
+        end = utc(fields.Date.to_date(date_to) + timedelta(days=1)) if date_to else None
+        return start, end
 
     @api.model
     def _root_and_leaf(self, product):
@@ -43,9 +66,8 @@ class CstStockReportBase(models.AbstractModel):
 
     @api.model
     def _period(self, date_from, date_to):
-        return [("date", ">=", fields.Datetime.to_datetime(date_from)),
-                ("date", "<=", fields.Datetime.to_datetime(date_to).replace(
-                    hour=23, minute=59, second=59))]
+        start, end = self._local_bounds(date_from, date_to)
+        return [("date", ">=", start), ("date", "<", end)]
 
 
 class CstWriteoffReport(models.AbstractModel):
@@ -72,6 +94,11 @@ class CstWriteoffReport(models.AbstractModel):
              ("location_dest_id.usage", "=", "inventory"),
              ("move_id.is_inventory", "=", False)] + self._period(date_from, date_to),
             order="date, id")
+        # a 1-sort piece regraded to its 2-sort twin is not a write-off: the
+        # shift's output just came out as the other product
+        regrades = self.env["cst.goods.movement.report"]._regrade_moves(set(lines.move_id.ids))
+        if regrades:
+            lines = lines.filtered(lambda l: l.move_id.id not in regrades)
 
         result = []
         for company in warehouses.company_id:
@@ -125,6 +152,12 @@ class CstWriteoffReport(models.AbstractModel):
             reason = line.picking_id.origin or line.picking_id.note or line.picking_id.name or ""
         else:
             reason = move.origin or move.description_picking or move.reference or ""
+        fuel = self.env["cst.fuel.log"].sudo().search([("stock_move_id", "=", move.id)], limit=1)
+        if fuel:
+            # the label stored on the move predates the plate number; read it fresh
+            reason = fuel._move_label()
+            if move.scrap_id:
+                reason = "%s · %s" % (move.scrap_id.name, reason)
         return "Hisobdan chiqarildi: %s" % reason if reason else "Hisobdan chiqarildi"
 
 
@@ -148,40 +181,99 @@ class CstInventoryCountReport(models.AbstractModel):
                   ("location_dest_id", "in", locations.ids)] + self._period(date_from, date_to))
         inside = set(locations.ids)
 
+        warehouse_of = {loc.id: loc.warehouse_id for loc in locations}
+        before = self._system_qty(lines, locations, warehouse_of)
+
         result = []
         for company in warehouses.company_id:
             groups = {}
             for line in lines.filtered(lambda l: l.company_id == company):
                 surplus = line.quantity_product_uom if line.location_dest_id.id in inside else 0.0
                 shortage = line.quantity_product_uom if line.location_id.id in inside else 0.0
+                warehouse = warehouse_of.get(line.location_dest_id.id if surplus else line.location_id.id)
+                price = self._unit_value(line)
+                value = (surplus - shortage) * price
                 root, leaf = self._root_and_leaf(line.product_id)
                 group = groups.setdefault(root.id, {
-                    "category": root, "leaves": {}, "surplus": 0.0, "shortage": 0.0})
+                    "category": root, "leaves": {}, "surplus": 0.0, "shortage": 0.0, "value": 0.0})
                 cat = group["leaves"].setdefault(leaf.id, {
-                    "category": leaf, "products": {}, "surplus": 0.0, "shortage": 0.0})
-                prod = cat["products"].setdefault(line.product_id.id, {
+                    "category": leaf, "products": {}, "surplus": 0.0, "shortage": 0.0, "value": 0.0})
+                key = (line.product_id.id, warehouse.id if warehouse else 0)
+                prod = cat["products"].setdefault(key, {
                     "product": line.product_id,
                     "characteristic": self._characteristic(line.product_id),
-                    "surplus": 0.0, "shortage": 0.0})
+                    "warehouse": warehouse.name if warehouse else "",
+                    "before": before.get(key, 0.0),
+                    "surplus": 0.0, "shortage": 0.0, "value": 0.0, "price": price})
                 for bucket in (prod, cat, group):
                     bucket["surplus"] += surplus
                     bucket["shortage"] += shortage
+                    bucket["value"] += value
             if not groups:
                 continue
             for group in groups.values():
                 for cat in group["leaves"].values():
+                    for prod in cat["products"].values():
+                        prod["counted"] = prod["before"] + prod["surplus"] - prod["shortage"]
                     cat["products"] = sorted(cat["products"].values(),
-                                             key=lambda p: p["product"].display_name or "")
+                                             key=lambda p: (p["product"].display_name or "", p["warehouse"]))
                 group["leaves"] = sorted(group["leaves"].values(),
                                          key=lambda c: c["category"].complete_name or "")
             result.append({
                 "company": company,
+                "currency": company.currency_id,
                 "groups": sorted(groups.values(),
                                  key=lambda g: g["category"].complete_name or ""),
                 "surplus": sum(g["surplus"] for g in groups.values()),
                 "shortage": sum(g["shortage"] for g in groups.values()),
+                "value": sum(g["value"] for g in groups.values()),
             })
         return result
+
+    @api.model
+    def _system_qty(self, count_lines, locations, warehouse_of):
+        """What the books held of each (product, warehouse) just before its first
+        count in the period — the «hisobda» figure the count is compared with."""
+        first = {}
+        for line in count_lines:
+            loc = line.location_dest_id if line.location_dest_id.id in warehouse_of else line.location_id
+            key = (line.product_id.id, warehouse_of[loc.id].id)
+            if key not in first or line.date < first[key]:
+                first[key] = line.date
+        if not first:
+            return {}
+        history = self.env["stock.move.line"].sudo().search_read([
+            ("state", "=", "done"), ("product_id", "in", list({k[0] for k in first})),
+            "|", ("location_id", "in", locations.ids), ("location_dest_id", "in", locations.ids),
+            ("date", "<", max(first.values())),
+        ], ["product_id", "location_id", "location_dest_id", "quantity_product_uom", "date"])
+        balance = defaultdict(float)
+        for row in history:
+            src = warehouse_of.get(row["location_id"][0])
+            dst = warehouse_of.get(row["location_dest_id"][0])
+            if src == dst:
+                continue
+            qty = row["quantity_product_uom"] or 0.0
+            product_id = row["product_id"][0]
+            if dst:
+                key = (product_id, dst.id)
+                if key in first and row["date"] < first[key]:
+                    balance[key] += qty
+            if src:
+                key = (product_id, src.id)
+                if key in first and row["date"] < first[key]:
+                    balance[key] -= qty
+        return balance
+
+    @api.model
+    def _unit_value(self, line):
+        """Value of one unit of the counted difference: the inventory move's own
+        valuation where Odoo made one, else the product's cost."""
+        move = line.move_id
+        qty = move.product_uom._compute_quantity(move.quantity, move.product_id.uom_id) if move.quantity else 0.0
+        if qty and move.value:
+            return abs(move.value) / qty
+        return line.product_id.standard_price
 
 
 class CstConsumptionReport(models.AbstractModel):
@@ -197,9 +289,8 @@ class CstConsumptionReport(models.AbstractModel):
     def build(self, date_from, date_to, company_ids=None, product_ids=None, only_deviations=False):
         companies = self._companies(company_ids)
         domain = [("state", "=", "done"), ("company_id", "in", companies.ids),
-                  ("date_finished", ">=", fields.Datetime.to_datetime(date_from)),
-                  ("date_finished", "<=", fields.Datetime.to_datetime(date_to).replace(
-                      hour=23, minute=59, second=59))]
+                  ("date_finished", ">=", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[0]),
+                  ("date_finished", "<", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[1])]
         if product_ids:
             domain.append(("product_id", "in", product_ids))
         orders = self.env["mrp.production"].sudo().search(domain, order="date_finished, id")

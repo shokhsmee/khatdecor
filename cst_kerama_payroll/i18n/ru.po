@@ -3040,3 +3040,25 @@ msgstr ""
 #: code:addons/cst_kerama_payroll/models/payroll_period.py:0
 msgid "“%s”: dollar kursi kiritilmagan — oylikni dollarga o'tkazib bo'lmaydi."
 msgstr "«%s»: не указан курс доллара — зарплату нельзя перевести в доллары."
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,field_description:cst_kerama_payroll.field_hr_employee__cst_staff_status
+msgid "Staff Status"
+msgstr "Штатный статус"
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_employee__cst_staff_status__staff
+msgid "Staff"
+msgstr "Штат"
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields.selection,name:cst_kerama_payroll.selection__hr_employee__cst_staff_status__non_staff
+msgid "Non-staff"
+msgstr "Не штат"
+
+#. module: cst_kerama_payroll
+#: model:ir.model.fields,help:cst_kerama_payroll.field_hr_employee__cst_staff_status
+msgid ""
+"Штат — officially registered (in the staff list); Не штат — works without "
+"being registered.  Counted in the «Ishlayotgan xodimlar» report."
+msgstr "Штат — официально оформлен; Не штат — работает без оформления. Учитывается в отчёте «Работающие сотрудники»."

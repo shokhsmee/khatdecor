@@ -5,3 +5,4 @@ from . import fuel_report_wizard
 from . import report_wizards2
 from . import report_wizards3
 from . import goods_movement_wizard
+from . import tz_wizards

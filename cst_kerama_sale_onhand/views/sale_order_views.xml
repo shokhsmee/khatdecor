@@ -14,6 +14,16 @@
                        decoration-danger="cst_qty_on_hand &lt; product_uom_qty"
                        decoration-info="cst_qty_on_hand &gt;= product_uom_qty"/>
             </xpath>
+            <!-- totals under the lines (client 2026-10-21: «jami sonini chiqarish») -->
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']" position="attributes">
+                <attribute name="sum">Jami</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//list//field[@name='qty_delivered']" position="attributes">
+                <attribute name="sum">Jami</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//list//field[@name='qty_invoiced']" position="attributes">
+                <attribute name="sum">Jami</attribute>
+            </xpath>
         </field>
     </record>
 

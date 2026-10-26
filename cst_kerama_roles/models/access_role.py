@@ -7,6 +7,26 @@ class AccessRole(models.Model):
 
     _inherit = "access.role"
 
+    cst_description = fields.Text(
+        string="Who is this role for",
+        help="A sentence or two about the job this role is meant for, shown in the role builder.")
+    view_group_hierarchy = fields.Json(
+        string="Technical field for the permission selector",
+        compute="_compute_view_group_hierarchy")
+
+    def _compute_view_group_hierarchy(self):
+        """Feeds Odoo's own per-app permission selector on the role form."""
+        hierarchy = self.env["res.groups"].sudo()._get_view_group_hierarchy()
+        for role in self:
+            role.view_group_hierarchy = hierarchy
+
+    def action_open_role_builder(self):
+        return {
+            "type": "ir.actions.client",
+            "tag": "cst_role_builder",
+            "params": {"role_id": self.id},
+        }
+
     def _update_users_groups(self):
         """Push the role's groups onto its users.
 

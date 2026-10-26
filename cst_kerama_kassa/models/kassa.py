@@ -63,6 +63,28 @@ class Kassa(models.Model):
             kassa.balance = kassa._cst_balance()
 
     # ------------------------------------------------------------------
+    # «Boshqa kassa» picker: every kassa of the user's companies
+    # ------------------------------------------------------------------
+    def _cst_any_company(self):
+        """With ``cst_kassa_any_company`` in the context (the other kassa of a
+        transfer) the picker lists the kassas of every company the user may
+        work in, not only of the companies ticked in the switcher — money goes
+        to another organization's kassa without switching companies first."""
+        if self.env.context.get("cst_kassa_any_company") and not self.env.su:
+            return self.with_context(allowed_company_ids=self.env.user.company_ids.ids)
+        return self
+
+    @api.model
+    def web_search_read(self, domain, specification, offset=0, limit=None, order=None, count_limit=None):
+        return super(Kassa, self._cst_any_company()).web_search_read(
+            domain, specification, offset=offset, limit=limit, order=order, count_limit=count_limit)
+
+    @api.model
+    def web_name_search(self, name, specification, domain=None, operator="ilike", limit=100):
+        return super(Kassa, self._cst_any_company()).web_name_search(
+            name, specification, domain=domain, operator=operator, limit=limit)
+
+    # ------------------------------------------------------------------
     # Accounting helpers
     # ------------------------------------------------------------------
     def _cst_uses_foreign_currency(self):

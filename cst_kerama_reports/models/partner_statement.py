@@ -106,8 +106,13 @@ class CstPartnerStatement(models.AbstractModel):
     # ------------------------------------------------------------------
     @api.model
     def movement_rows(self, kind, date_from, date_to, partner_ids=None,
-                      company_ids=None, hide_empty=True):
-        """One row per counterparty per currency, grouped by company."""
+                      company_ids=None, hide_empty=True, display_currency=None):
+        """One row per counterparty per currency, grouped by company.
+
+        ``display_currency``: everything is shown in that one currency (a
+        so'm payment against a dollar debt then nets off); empty = every
+        currency in its own row, as on the company's old sheets."""
+        display = display_currency or None
         partners = self._resolve_partners(kind, partner_ids)
         companies = self._companies(company_ids)
         if not partners or not companies:
@@ -116,14 +121,15 @@ class CstPartnerStatement(models.AbstractModel):
         Line = self.env["account.move.line"].sudo()
         base = self._base_domain(partners, companies.ids)
 
-        opening = self._sum_by(Line, base + [("date", "<", date_from)])
+        opening = self._sum_by(Line, base + [("date", "<", date_from)], display=display)
         period = self._sum_by(
             Line, base + [("date", ">=", date_from), ("date", "<=", date_to)],
-            split_direction=True)
+            split_direction=True, display=display)
         # sales and purchase orders, invoiced or not
         pending_total = {}
         pending_due = {}
         for row in self._doc_rows(partners, companies.ids, date_to):
+            self._convert_doc_row(row, display)
             key = (row["company_id"], row["partner_id"], row["currency_id"])
             if row["date"] < date_from:
                 bucket = opening.setdefault(key, {"amount": 0.0, "debit": 0.0, "credit": 0.0})
@@ -174,7 +180,7 @@ class CstPartnerStatement(models.AbstractModel):
         return result
 
     @api.model
-    def _sum_by(self, Line, domain, split_direction=False):
+    def _sum_by(self, Line, domain, split_direction=False, display=None):
         """``{(company, partner, currency): {...}}`` from one read.
 
         Aggregating in Python rather than asking the database once per
@@ -183,18 +189,142 @@ class CstPartnerStatement(models.AbstractModel):
         many counterparties the report covers.
         """
         out = {}
-        for row in Line.search_read(
-                domain, ["company_id", "partner_id", "currency_id", "amount_currency"]):
-            key = (row["company_id"][0], row["partner_id"][0], row["currency_id"][0])
-            entry = out.setdefault(key, {"amount": 0.0, "debit": 0.0, "credit": 0.0})
+        Company = self.env["res.company"]
+        Currency = self.env["res.currency"]
+        rows = Line.search_read(
+            domain, ["company_id", "partner_id", "currency_id", "amount_currency", "balance", "date"])
+        cross = {} if display else self._cross_currency_parts([row["id"] for row in rows])
+        for row in rows:
             amount = row["amount_currency"] or 0.0
-            entry["amount"] += amount
-            if split_direction:
-                if amount >= 0:
-                    entry["debit"] += amount
-                else:
-                    entry["credit"] += -amount
+            currency_id = row["currency_id"][0]
+            if display:
+                amount = self._shown(amount, Currency.browse(currency_id), Company.browse(row["company_id"][0]),
+                                     row["date"], display, balance=row["balance"] or 0.0)
+                currency_id = display.id
+            pieces = [(currency_id, amount)]
+            if row["id"] in cross:
+                pieces = [(cur, shown) for cur, shown, _used in cross[row["id"]]["parts"]]
+                rest = cross[row["id"]]["rest"]
+                if rest:
+                    pieces.append((currency_id, rest))
+            for piece_currency, piece in pieces:
+                key = (row["company_id"][0], row["partner_id"][0], piece_currency)
+                entry = out.setdefault(key, {"amount": 0.0, "debit": 0.0, "credit": 0.0})
+                entry["amount"] += piece
+                if split_direction:
+                    if piece >= 0:
+                        entry["debit"] += piece
+                    else:
+                        entry["credit"] += -piece
         return out
+
+    @api.model
+    def _cross_currency_parts(self, line_ids):
+        """Money received in one currency that settled a debt in another.
+
+        The kassa matches a so'm payment against dollar orders (moslash); with
+        every currency in its own block the payment would sit in the so'm block
+        while the dollar debt stayed untouched. The matched part of such a
+        payment is moved into the currency of the debt it paid — at the amounts
+        of the reconciliation itself, i.e. at the kassa's rate — and only the
+        unmatched rest stays in the payment's own currency.
+
+        Only the *money* side is split (payments, cash and bank journal
+        items); the debt side keeps its currency, so nothing is moved twice.
+        Returns ``{line id: {"parts": [(currency id, amount, used own amount)],
+        "rest": amount left in the line's own currency}}``.
+        """
+        if not line_ids:
+            return {}
+        self.env.cr.execute("""
+            SELECT p.debit_move_id, p.credit_move_id,
+                   p.debit_amount_currency, p.credit_amount_currency,
+                   d.currency_id, c.currency_id
+              FROM account_partial_reconcile p
+              JOIN account_move_line d ON d.id = p.debit_move_id
+              JOIN account_move_line c ON c.id = p.credit_move_id
+             WHERE (p.debit_move_id = ANY(%(ids)s) OR p.credit_move_id = ANY(%(ids)s))
+               AND d.currency_id != c.currency_id
+        """, {"ids": list(line_ids)})
+        matches = self.env.cr.fetchall()
+        if not matches:
+            return {}
+        candidates = {m[0] for m in matches} | {m[1] for m in matches}
+        self.env.cr.execute("""
+            SELECT l.id, l.amount_currency, l.currency_id
+              FROM account_move_line l
+              JOIN account_move m ON m.id = l.move_id
+              JOIN account_journal j ON j.id = l.journal_id
+             WHERE l.id = ANY(%s)
+               AND (m.origin_payment_id IS NOT NULL OR j.type IN ('cash', 'bank'))
+        """, [list(candidates & set(line_ids))])
+        money = {row[0]: (row[1] or 0.0, row[2]) for row in self.env.cr.fetchall()}
+        result = {}
+        for debit_id, credit_id, debit_amount, credit_amount, debit_cur, credit_cur in matches:
+            if credit_id in money:   # money in, a debit (debt) of another currency settled
+                entry = result.setdefault(credit_id, {"parts": [], "used": 0.0})
+                entry["parts"].append((debit_cur, -(debit_amount or 0.0), -(credit_amount or 0.0)))
+                entry["used"] += -(credit_amount or 0.0)
+            elif debit_id in money:  # money out (refund), against a credit of another currency
+                entry = result.setdefault(debit_id, {"parts": [], "used": 0.0})
+                entry["parts"].append((credit_cur, credit_amount or 0.0, debit_amount or 0.0))
+                entry["used"] += debit_amount or 0.0
+        Currency = self.env["res.currency"]
+        for line_id, entry in result.items():
+            amount, currency_id = money[line_id]
+            rest = amount - entry.pop("used")
+            entry["rest"] = 0.0 if Currency.browse(currency_id).is_zero(rest) else rest
+        return result
+
+    @api.model
+    def _shown(self, amount, currency, company, day, display, balance=None):
+        """``amount`` (in ``currency``) as ``display`` money.
+
+        A journal item carries its value in the company currency (``balance``)
+        at the rate it was booked with -- the kassa's dollar rate of the day --
+        so that is used whenever it can be; an order without an accounting
+        entry is converted at the rate of its date."""
+        if not display or currency == display:
+            return amount
+        company_currency = company.currency_id
+        if balance is not None:
+            if display == company_currency:
+                return balance
+            return company_currency._convert(balance, display, company, day or fields.Date.today())
+        return currency._convert(amount, display, company, day or fields.Date.today())
+
+    @api.model
+    def _convert_doc_row(self, row, display):
+        """An order row (``_doc_rows``) re-expressed in ``display``, in place."""
+        if not display or row["currency_id"] == display.id:
+            return row
+        currency = self.env["res.currency"].browse(row["currency_id"])
+        company = self.env["res.company"].browse(row["company_id"])
+        original = row["amount"]
+        row["amount"] = self._shown(original, currency, company, row["date"], display)
+        if row.get("uninvoiced"):
+            row["uninvoiced"] = self._shown(row["uninvoiced"], currency, company, row["date"], display)
+        if row.get("label") is not None:
+            row["label"] = "%s %s" % (row["label"], self._original_note(original, currency, row["amount"], display))
+        row["currency_id"] = display.id
+        return row
+
+    @api.model
+    def _original_note(self, amount, currency, shown, display):
+        """«(1 350 000 so'm, kurs 11 850)» after a converted line."""
+        text = "%s %s" % (self._fmt(abs(amount)), currency.currency_unit_label or currency.name)
+        if shown and amount:
+            rate = abs(amount / shown)
+            if rate >= 1:
+                text += ", " + _("kurs %s", self._fmt(rate))
+            else:
+                text += ", " + _("kurs %s", self._fmt(abs(shown / amount)))
+        return "(%s)" % text
+
+    @api.model
+    def _fmt(self, value):
+        text = "{:,.2f}".format(value).replace(",", " ")
+        return text[:-3] if text.endswith(".00") else text.replace(".", ",")
 
     @api.model
     def _currencies_of(self, keys, company, partner):
@@ -205,8 +335,13 @@ class CstPartnerStatement(models.AbstractModel):
     # «Akt sverka» — the counterparty card
     # ------------------------------------------------------------------
     @api.model
-    def statement_rows(self, partner, date_from, date_to, company_ids=None):
-        """Document by document, with the balance before and after each."""
+    def statement_rows(self, partner, date_from, date_to, company_ids=None, display_currency=None,
+                       detailed=False):
+        """Document by document, with the balance before and after each.
+
+        ``display_currency``: one block in that currency, other currencies
+        converted (the original amount stays in the line's text)."""
+        display = display_currency or None
         companies = self._companies(company_ids)
         if not companies:
             return []
@@ -219,12 +354,33 @@ class CstPartnerStatement(models.AbstractModel):
             lines = Line.search(
                 base + in_company + [("date", ">=", date_from), ("date", "<=", date_to)],
                 order="currency_id, date, id")
-            opening = self._sum_by(Line, base + in_company + [("date", "<", date_from)])
-            entries = [{"date": line.date, "currency_id": line.currency_id.id,
-                        "amount": line.amount_currency or 0.0, "label": self._line_label(line),
-                        "move_id": line.move_id.id, "pending": False, "order": (0, line.id)}
-                       for line in lines]
+            opening = self._sum_by(Line, base + in_company + [("date", "<", date_from)], display=display)
+            entries = []
+            cross = {} if display else self._cross_currency_parts(lines.ids)
+            Currency = self.env["res.currency"]
+            for line in lines:
+                amount = line.amount_currency or 0.0
+                label = self._line_label(line)
+                currency = line.currency_id
+                if display and currency != display:
+                    shown = self._shown(amount, currency, company, line.date, display, balance=line.balance)
+                    label = "%s %s" % (label, self._original_note(amount, currency, shown, display))
+                    amount, currency = shown, display
+                pieces = [(currency, amount, label)]
+                if line.id in cross:
+                    # paid in one currency, settled a debt in another (kassa moslash)
+                    pieces = [(Currency.browse(cur), shown, "%s %s" % (label, self._original_note(used, currency, shown, None)))
+                              for cur, shown, used in cross[line.id]["parts"]]
+                    rest = cross[line.id]["rest"]
+                    if rest:
+                        pieces.append((currency, rest, "%s %s" % (label, _("(qoldig'i — avans)"))))
+                items = self._move_items(line.move_id) if detailed else []
+                for piece_currency, piece, piece_label in pieces:
+                    entries.append({"date": line.date, "currency_id": piece_currency.id,
+                                    "amount": piece, "label": piece_label, "items": items,
+                                    "move_id": line.move_id.id, "pending": False, "order": (0, line.id)})
             for row in self._doc_rows(partner, [company.id], date_to):
+                self._convert_doc_row(row, display)
                 if row["date"] < date_from:
                     key = (company.id, partner.id, row["currency_id"])
                     bucket = opening.setdefault(key, {"amount": 0.0, "debit": 0.0, "credit": 0.0})
@@ -252,6 +408,7 @@ class CstPartnerStatement(models.AbstractModel):
                     block_lines.append({
                         "date": line["date"],
                         "label": line["label"],
+                        "items": line.get("items") or [] if detailed else [],
                         "move_id": line["move_id"],
                         "pending": line["pending"],
                         "before_we_owe": -before if before < 0 else 0.0,
@@ -308,11 +465,13 @@ class CstPartnerStatement(models.AbstractModel):
                 # a credit note without an invoice makes qty_invoiced negative
                 uninvoiced += min(max(line.product_uom_qty - line.qty_invoiced, 0.0),
                                   line.product_uom_qty) * unit
-            rows.append(self._doc_row(
+            row = self._doc_row(
                 order, day, order.amount_total,
                 _("№ %(name)s : Mahsulot sotildi (buyurtma)%(ref)s",
                   name=order.name, ref=(": %s" % order.client_order_ref) if order.client_order_ref else ""),
-                uninvoiced=order.currency_id.round(uninvoiced)))
+                uninvoiced=order.currency_id.round(uninvoiced))
+            row["items"] = self._order_items(order, "product_uom_qty")
+            rows.append(row)
             rows += self._return_rows(order, order.order_line, "out_invoice", "out_refund", 1, limit)
         Purchase = self.env["purchase.order"].sudo()
         for order in Purchase.search([
@@ -327,13 +486,42 @@ class CstPartnerStatement(models.AbstractModel):
                 unit = line.price_total / line.product_qty
                 unbilled += min(max(line.product_qty - line.qty_invoiced, 0.0),
                                 line.product_qty) * unit
-            rows.append(self._doc_row(
+            row = self._doc_row(
                 order, day, -order.amount_total,
                 _("№ %(name)s : Mahsulot olindi (xarid buyurtmasi)%(ref)s",
                   name=order.name, ref=(": %s" % order.partner_ref) if order.partner_ref else ""),
-                uninvoiced=order.currency_id.round(unbilled)))
+                uninvoiced=order.currency_id.round(unbilled))
+            row["items"] = self._order_items(order, "product_qty")
+            rows.append(row)
             rows += self._return_rows(order, order.order_line, "in_invoice", "in_refund", -1, limit)
         return rows
+
+    @api.model
+    def _order_items(self, order, qty_field):
+        """The goods behind an order row, for the detailed akt sverka."""
+        return [self._item(line.product_id, line[qty_field], line.product_uom_id,
+                           line.price_total / line[qty_field] if line[qty_field] else 0.0,
+                           line.price_total, order.currency_id)
+                for line in order.order_line if not line.display_type and line[qty_field]]
+
+    @api.model
+    def _move_items(self, move):
+        if move.move_type == "entry":
+            return []
+        return [self._item(line.product_id, line.quantity, line.product_uom_id,
+                           line.price_total / line.quantity if line.quantity else 0.0,
+                           line.price_total, move.currency_id)
+                for line in move.invoice_line_ids if line.display_type == "product"]
+
+    @api.model
+    def _item(self, product, qty, uom, price, total, currency):
+        characteristic = getattr(product, "cst_characteristic", "") or ""
+        name = product.display_name or ""
+        if characteristic and characteristic not in name:
+            name = "%s — %s" % (name, characteristic)
+        unit = currency.currency_unit_label or currency.name
+        return {"text": "%s: %s %s × %s = %s %s" % (
+            name, ("%g" % qty), uom.name or "", self._fmt(price), self._fmt(total), unit)}
 
     @api.model
     def _doc_row(self, order, day, amount, label, uninvoiced=0.0, key=None):

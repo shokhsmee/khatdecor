@@ -28,9 +28,10 @@ perpetual valuation - with standard costing there is no cost to correct.
     """,
     "author": "Khatdecor",
     "category": "Inventory",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "depends": ["stock_landed_costs", "purchase_stock", "account"],
     "data": [
+        "security/company_rules.xml",
         "security/ir.model.access.csv",
         "data/landed_cost_products.xml",
         "views/cst_picking_expense_views.xml",

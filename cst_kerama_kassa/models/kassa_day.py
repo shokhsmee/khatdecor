@@ -140,10 +140,12 @@ class KassaDay(models.Model):
             "res_model": "cst.kassa.operation",
             "view_mode": "form",
             "target": "current",
+            # no default for operation_type: it is computed from the direction and
+            # the type, and a default here pins it - «To another kassa» opened
+            # with the type still «Expense», so the other-kassa field stayed hidden
             "context": {
                 "default_day_id": self.id,
                 "default_direction": direction,
-                "default_operation_type": "customer_in" if direction == "in" else "expense",
             },
         }
 

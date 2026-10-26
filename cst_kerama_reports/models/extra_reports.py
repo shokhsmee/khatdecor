@@ -15,6 +15,38 @@ class AccountAsset(models.Model):
     cst_manufacture_date = fields.Date(string="Ishlab chiqarilgan sanasi")
     cst_location = fields.Char(string="Qayerda joylashgan",
                                help="Sex, ombor, xona — hisobotda ko'rinadigan joy.")
+    cst_employee_id = fields.Many2one(
+        "hr.employee", string="Mas'ul xodim", tracking=True, index=True,
+        help="Aktiv kimga biriktirilgan (kim javob beradi). Xodim kartasida «Asosiy vositalar» tugmasida chiqadi.")
+    cst_employee_date = fields.Date(string="Biriktirilgan sana", tracking=True)
+
+    @api.onchange("cst_employee_id")
+    def _onchange_cst_employee_id(self):
+        if self.cst_employee_id and not self.cst_employee_date:
+            self.cst_employee_date = fields.Date.context_today(self)
+
+
+class HrEmployee(models.Model):
+    _inherit = "hr.employee"
+
+    cst_asset_count = fields.Integer(string="Asosiy vositalar", compute="_compute_cst_asset_count",
+                                     groups="account.group_account_readonly")
+
+    def _compute_cst_asset_count(self):
+        counts = dict(self.env["account.asset"].sudo()._read_group(
+            [("cst_employee_id", "in", self.ids), ("state", "!=", "cancelled")],
+            ["cst_employee_id"], ["__count"]))
+        for employee in self:
+            employee.cst_asset_count = counts.get(employee, 0)
+
+    def action_cst_open_assets(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window", "name": "Asosiy vositalar — %s" % self.name,
+            "res_model": "account.asset", "view_mode": "list,form",
+            "domain": [("cst_employee_id", "=", self.id)],
+            "context": {"default_cst_employee_id": self.id},
+        }
 
 
 class CstProductionFactReport(models.AbstractModel):
@@ -29,9 +61,8 @@ class CstProductionFactReport(models.AbstractModel):
     def build(self, date_from, date_to, company_ids=None, product_ids=None):
         companies = self._companies(company_ids)
         domain = [("state", "=", "done"), ("company_id", "in", companies.ids),
-                  ("date_finished", ">=", fields.Datetime.to_datetime(date_from)),
-                  ("date_finished", "<=", fields.Datetime.to_datetime(date_to).replace(
-                      hour=23, minute=59, second=59))]
+                  ("date_finished", ">=", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[0]),
+                  ("date_finished", "<", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[1])]
         if product_ids:
             domain.append(("product_id", "in", product_ids))
         if self.env.context.get("cst_fact_skip_mo_ids"):
@@ -121,6 +152,7 @@ class CstAssetReport(models.AbstractModel):
                     "manufacture_date": asset.cst_manufacture_date,
                     "acquisition_date": asset.acquisition_date,
                     "location": asset.cst_location or "",
+                    "employee": asset.cst_employee_id.name or "",
                     "value": asset.original_value or 0.0,
                     "depreciated": depreciated,
                     "book_value": asset.book_value or 0.0,

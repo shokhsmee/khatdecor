@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- the product card: one price per characteristic -->
+    <record id="product_template_form_cst_variant_price" model="ir.ui.view">
+        <field name="name">product.template.form.cst.variant.price</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Xarakteristika narxlari" name="cst_variant_prices"
+                      invisible="product_variant_count &lt;= 1">
+                    <div class="text-muted mb-2">
+                        Har xarakteristikaning o'z sotish narxi va valyutasi. Narx 0 bo'lsa — umumiy «Sotish narxi»
+                        ishlaydi. Savdo buyurtmasida shu narx chiqadi.
+                    </div>
+                    <field name="product_variant_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="cst_characteristic" readonly="1"/>
+                            <field name="barcode" readonly="1" optional="show"/>
+                            <field name="cst_sale_price"/>
+                            <field name="cst_sale_currency_id" options="{'no_create': True, 'no_open': True}"
+                                   placeholder="kompaniya valyutasi"/>
+                            <field name="lst_price" readonly="1" string="Amaldagi narx"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="currency_id" column_invisible="1"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- the variant card -->
+    <record id="product_normal_form_cst_variant_price" model="ir.ui.view">
+        <field name="name">product.product.form.cst.variant.price</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="lst_price" position="after">
+                <label for="cst_sale_price"/>
+                <div class="o_row">
+                    <field name="cst_sale_price"/>
+                    <field name="cst_sale_currency_id" options="{'no_create': True, 'no_open': True}"
+                           placeholder="kompaniya valyutasi"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+    <!-- the variant list -->
+    <record id="product_product_tree_cst_variant_price" model="ir.ui.view">
+        <field name="name">product.product.list.cst.variant.price</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="lst_price" position="after">
+                <field name="cst_sale_price" optional="show"/>
+                <field name="cst_sale_currency_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

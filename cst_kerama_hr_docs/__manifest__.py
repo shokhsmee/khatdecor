@@ -26,10 +26,11 @@ ko'rinishida avtomatik beriladi, kerak bo'lsa qo'lda o'zgartiriladi.
     """,
     "author": "Khatdecor",
     "category": "Human Resources",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "depends": ["hr", "cst_kerama_payroll"],
     "external_dependencies": {"python": ["docx"]},
     "data": [
+        "security/company_rules.xml",
         "security/ir.model.access.csv",
         "data/hr_docs_sequence.xml",
         "data/hr_doc_template_data.xml",

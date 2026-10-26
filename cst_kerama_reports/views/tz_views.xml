@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchased_goods_wizard_form" model="ir.ui.view">
+        <field name="name">cst.purchased.goods.wizard.form</field>
+        <field name="model">cst.purchased.goods.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sotib olingan mahsulotlar">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="layout" widget="radio"/>
+                        <field name="by_supplier" invisible="layout != 'summary'"/>
+                    </group>
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_purchased_goods_report" model="ir.actions.act_window">
+        <field name="name">Sotib olingan mahsulotlar (soni va tannarxi)</field>
+        <field name="res_model">cst.purchased.goods.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_reports_purchased_goods" name="Sotib olingan mahsulotlar (soni va tannarxi)"
+              parent="menu_reports_suppliers" action="action_purchased_goods_report" sequence="40"
+              groups="purchase.group_purchase_user,stock.group_stock_manager,account.group_account_readonly"/>
+
+    <record id="view_employees_wizard_form" model="ir.ui.view">
+        <field name="name">cst.employees.wizard.form</field>
+        <field name="model">cst.employees.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Ishlayotgan xodimlar">
+                <group>
+                    <group>
+                        <field name="day"/>
+                        <field name="presence"/>
+                    </group>
+                    <group>
+                        <field name="department_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
+                    <button name="action_print" type="object" string="PDF" class="btn-secondary"/>
+                    <button string="Bekor qilish" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_employees_report" model="ir.actions.act_window">
+        <field name="name">Ishlayotgan xodimlar</field>
+        <field name="res_model">cst.employees.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_reports_employees" name="Ishlayotgan xodimlar" parent="menu_reports_payroll"
+              action="action_employees_report" sequence="5"/>
+    <menuitem id="menu_hr_employees_report" name="Ishlayotgan xodimlar (hisobot)" parent="hr.menu_hr_root"
+              action="action_employees_report" sequence="48" groups="hr.group_hr_user"/>
+</odoo>

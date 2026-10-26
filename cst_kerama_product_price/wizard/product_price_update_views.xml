@@ -12,8 +12,8 @@
                 <div invisible="state == 'done'">
                     <div class="alert alert-warning" role="alert"
                          invisible="product_count != 0">
-                        Mahsulot tanlanmagan. Ro'yxatdan mahsulotlarni belgilab,
-                        amalni qaytadan oching.
+                        Mahsulot tanlanmagan. <b>Mahsulot guruhlari</b>ni tanlang yoki
+                        ro'yxatdan mahsulotlarni belgilab, amalni qaytadan oching.
                     </div>
                     <group>
                         <group>
@@ -21,34 +21,39 @@
                             <field name="company_id"
                                    groups="base.group_multi_company"
                                    options="{'no_create': True, 'no_open': True}"/>
+                            <field name="categ_ids" widget="many2many_tags"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   placeholder="masalan: ЛДСП стандарт"/>
                             <field name="product_ids" widget="many2many_tags"
                                    options="{'no_create': True, 'no_open': True}"/>
                         </group>
                         <group>
-                            <field name="price_currency" widget="radio"/>
-                            <field name="rate_date"
-                                   invisible="price_currency != 'usd'"/>
-                            <label for="usd_rate"
-                                   invisible="price_currency != 'usd'"/>
-                            <div class="o_row"
-                                 invisible="price_currency != 'usd'">
-                                <field name="usd_rate"
-                                       required="price_currency == 'usd'"/>
-                                <span class="text-muted">
-                                    <field name="company_currency_id"
-                                           readonly="1" nolabel="1"
-                                           options="{'no_open': True}"/>
-                                    / 1 USD
+                            <field name="currency_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="is_company_currency" invisible="1"/>
+                            <field name="rate_date" invisible="is_company_currency"/>
+                            <label for="rate" invisible="is_company_currency"/>
+                            <div class="o_row" invisible="is_company_currency">
+                                <span class="text-muted">1
+                                    <field name="company_currency_id" readonly="1" nolabel="1"
+                                           options="{'no_open': True}"/> =
                                 </span>
+                                <field name="rate" required="not is_company_currency"/>
+                                <field name="currency_id" readonly="1" nolabel="1" options="{'no_open': True}"/>
                             </div>
                         </group>
                     </group>
+                    <div class="text-muted small mb-2" invisible="target != 'price'">
+                        Sotish narxi har <b>xarakteristika</b> (variant)ga alohida yoziladi, tanlangan valyutada —
+                        savdo buyurtmasida shu narx chiqadi. Bitta variantli mahsulot kompaniya valyutasida bo'lsa,
+                        oddiy «Sotish narxi» o'zgaradi.
+                    </div>
 
                     <notebook>
                         <page string="Excel" name="excel">
                             <div class="alert alert-info" role="status">
-                                <b>1.</b> Shablonni yuklab olib, <b>Yangi narx</b>
-                                ustunini to'ldiring.
+                                <b>1.</b> Shablonni yuklab oling — mahsulotlar guruh bo'yicha, har
+                                xarakteristika alohida qator. <b>Yangi narx</b> ustunini (kerak bo'lsa
+                                <b>Valyuta</b>ni ham: USD yoki UZS) to'ldiring.
                                 <b>2.</b> To'ldirilgan faylni tanlab,
                                 <b>Narxlarni yuklash</b> tugmasini bosing.<br/>
                                 Mahsulotlar <b>shtrix-kod</b> bo'yicha topiladi -
@@ -126,6 +131,7 @@
                                 <list string="Narx o'zgarishi" create="false"
                                       delete="false" edit="false">
                                     <field name="product_id"/>
+                                    <field name="cst_characteristic" optional="show"/>
                                     <field name="barcode" optional="show"/>
                                     <field name="current_price"/>
                                     <field name="new_price"/>
@@ -155,6 +161,17 @@
             </form>
         </field>
     </record>
+
+    <!-- Sales ▸ Products: open without a selection, pick product groups -->
+    <record id="action_product_price_update_menu" model="ir.actions.act_window">
+        <field name="name">Narxlarni yangilash (Excel)</field>
+        <field name="res_model">cst.product.price.update</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_product_price_update" name="Narxlarni yangilash (Excel)"
+              parent="sale.product_menu_catalog" action="action_product_price_update_menu"
+              groups="product.group_product_manager" sequence="40"/>
 
     <!-- Actions menu of the product list -->
     <record id="action_product_price_update_template" model="ir.actions.act_window">

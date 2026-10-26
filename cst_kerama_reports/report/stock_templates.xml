@@ -83,45 +83,61 @@
                                     <th style="width:26px;">№</th>
                                     <th>Tovar</th>
                                     <th style="width:90px;">Xarakteristika</th>
-                                    <th style="width:80px;">Ko'p chiqdi</th>
-                                    <th style="width:80px;">Kam chiqdi</th>
-                                    <th style="width:80px;">Farqi</th>
+                                    <th style="width:90px;">Ombor</th>
+                                    <th style="width:72px;">Hisobda edi</th>
+                                    <th style="width:72px;">Sanaldi</th>
+                                    <th style="width:72px;">Ko'p chiqdi</th>
+                                    <th style="width:72px;">Kam chiqdi</th>
+                                    <th style="width:72px;">Farqi</th>
+                                    <th style="width:72px;">Narxi</th>
+                                    <th style="width:90px;">Farq summasi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-if="not values['companies']">
-                                    <tr><td colspan="6" class="mid">Davr ichida reviziya yo'q.</td></tr>
+                                    <tr><td colspan="11" class="mid">Davr ichida reviziya yo'q.</td></tr>
                                 </t>
                                 <t t-foreach="values['companies']" t-as="block">
                                     <tr class="cst_company">
-                                        <td colspan="3" t-out="block['company'].display_name"/>
+                                        <td colspan="6"><t t-out="block['company'].display_name"/> (<t t-out="block['currency'].name"/>)</td>
                                         <td class="num" t-out="block['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
                                         <td class="num" t-out="block['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
                                         <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['surplus'] - block['shortage']"/></t>
+                                        <td/>
+                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['value']"/></t>
                                     </tr>
                                     <t t-foreach="block['groups']" t-as="g">
                                         <tr class="cst_group">
-                                            <td colspan="3" t-out="engine.category_label(g['category'])"/>
+                                            <td colspan="6" t-out="engine.category_label(g['category'])"/>
                                             <td class="num" t-out="g['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
                                             <td class="num" t-out="g['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
                                             <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['surplus'] - g['shortage']"/></t>
+                                            <td/>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['value']"/></t>
                                         </tr>
                                         <t t-foreach="g['leaves']" t-as="c">
                                             <tr class="cst_sub" t-if="c['category'] != g['category']">
                                                 <td class="mid" t-out="c_index + 1"/>
-                                                <td colspan="2" t-out="c['category'].name"/>
+                                                <td colspan="5" t-out="c['category'].name"/>
                                                 <td class="num" t-out="c['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
                                                 <td class="num" t-out="c['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
                                                 <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['surplus'] - c['shortage']"/></t>
+                                                <td/>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['value']"/></t>
                                             </tr>
                                             <t t-foreach="c['products']" t-as="row">
                                                 <tr>
                                                     <td class="mid" t-out="row_index + 1"/>
                                                     <td t-out="engine.product_label(row['product'])"/>
                                                     <td t-out="row['characteristic']"/>
+                                                    <td t-out="row['warehouse']"/>
+                                                    <td class="num" t-out="row['before']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <td class="num" t-out="row['counted']" t-options="{'widget': 'float', 'precision': 3}"/>
                                                     <td class="num"><span t-if="row['surplus']" t-out="row['surplus']" t-options="{'widget': 'float', 'precision': 3}"/></td>
                                                     <td class="num"><span t-if="row['shortage']" t-out="row['shortage']" t-options="{'widget': 'float', 'precision': 3}"/></td>
                                                     <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['surplus'] - row['shortage']"/></t>
+                                                    <td class="num" t-out="row['price']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['value']"/></t>
                                                 </tr>
                                             </t>
                                         </t>
@@ -129,6 +145,8 @@
                                 </t>
                             </tbody>
                         </table>
+                        <p style="font-size:9px;color:#666;margin-top:6px;">«Hisobda edi» — davrdagi birinchi sanoqdan oldin dasturdagi qoldiq;
+                            «Sanaldi» = hisobda + ko'p − kam. Narx — reviziya harakatining o'z tannarxi (bo'lmasa mahsulot tannarxi), kompaniya valyutasida.</p>
                     </div>
                 </t>
             </t>

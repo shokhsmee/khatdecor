@@ -93,7 +93,7 @@
         <field name="model">cst.utility.statement.wizard</field>
         <field name="arch" type="xml">
             <form string="Kommunal xizmatlar akt sverkasi">
-                <group><group><field name="partner_id" options="{'no_create': True}"/><field name="date_from"/><field name="date_to"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <group><group><field name="partner_id" options="{'no_create': True}"/><field name="date_from"/><field name="date_to"/><field name="display_currency_id" options="{'no_create': True, 'no_open': True}" placeholder="har valyuta alohida"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
                 <p class="text-muted">Kommunal xizmatlar Odoo'da oddiy ta'minotchi hisob-fakturasi (Xarid / Buxgalteriya ▸ Ta'minotchi hisob-fakturalari) va «To'lovni qayd etish» orqali yuritiladi. Ta'minotchi kontaktiga «Kommunal xizmatlar» tegi qo'yilsa, shu ro'yxatda chiqadi.</p>
                 <footer>
                     <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
@@ -164,6 +164,47 @@
                 <field name="cst_inventory_no"/>
                 <field name="cst_manufacture_date"/>
                 <field name="cst_location"/>
+                <field name="cst_employee_id" options="{'no_create': True}"/>
+                <field name="cst_employee_date" invisible="not cst_employee_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_asset_list_cst" model="ir.ui.view">
+        <field name="name">account.asset.list.cst</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_employee_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_asset_search_cst" model="ir.ui.view">
+        <field name="name">account.asset.search.cst</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="cst_employee_id"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <filter name="groupby_cst_employee" string="Mas'ul xodim" context="{'group_by': 'cst_employee_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_form_cst_assets" model="ir.ui.view">
+        <field name="name">hr.employee.form.cst.assets</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_cst_open_assets" type="object" class="oe_stat_button" icon="fa-building-o"
+                        groups="account.group_account_readonly" invisible="not cst_asset_count">
+                    <field name="cst_asset_count" widget="statinfo" string="Asosiy vositalar"/>
+                </button>
             </xpath>
         </field>
     </record>

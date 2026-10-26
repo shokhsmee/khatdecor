@@ -27,6 +27,9 @@
             <button class="btn btn-light" t-on-click="() => this.printWaybill('a4')" title="Yuk xati — A4 (oddiy printer)">
                 <i class="fa fa-print"/> A4
             </button>
+            <button class="btn btn-light" t-on-click="() => this.printWaybill('loader')" title="Yuklovchilar uchun — narxsiz (A4)">
+                <i class="fa fa-print"/> Yuklovchi
+            </button>
         </t>
         <button t-if="state.screen === 'dispatch' and cameraSupported and (canEditQty or canCheck)"
                 class="btn btn-primary" t-on-click="openCamera" title="Kamera bilan skanerlash">

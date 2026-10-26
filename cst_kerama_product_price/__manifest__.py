@@ -1,8 +1,8 @@
 {
     "name": "Khatdecor Product Price Update",
-    "summary": "Mass price update from the product list: Excel template download "
-               "and upload matched on barcode, prices entered in USD, and "
-               "bulk +/- adjustment by percent or amount.",
+    "summary": "Sale price per characteristic (variant) in its own currency, Excel price "
+               "sheets by product group (import/export matched on barcode), bulk +/- "
+               "adjustment, any currency at an editable rate.",
     "description": """
 Khatdecor Product Price Update
 ==============================
@@ -40,11 +40,12 @@ action.
     """,
     "author": "Khatdecor",
     "category": "Inventory",
-    "version": "19.0.1.0.0",
-    "depends": ["product"],
+    "version": "19.0.2.0.0",
+    "depends": ["product", "sale", "cst_kerama_variants"],
     "data": [
         "security/ir.model.access.csv",
         "wizard/product_price_update_views.xml",
+        "views/product_views.xml",
     ],
     "assets": {
         "web.assets_backend": [

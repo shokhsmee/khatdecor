@@ -287,7 +287,7 @@
 
         <!-- ============ dialogs ============ -->
         <div t-if="state.dialog" class="cst_sf_modal_bg" t-on-click.self="closeDialog">
-            <div t-att-class="'cst_sf_modal' + (state.dialog === 'new' ? ' cst_sf_modal--wide' : '')" role="dialog">
+            <div t-att-class="'cst_sf_modal' + (state.dialog === 'new' ? ' cst_sf_modal--wide' : '') + (state.dialog === 'entry' ? ' cst_sf_modal--entry' : '')" role="dialog">
 
                 <t t-if="state.dialog === 'open'">
                     <h3>Smenani ochish</h3>
@@ -455,6 +455,42 @@
                         </div>
                     </div>
                     <label class="mt-2">Eslatma<input type="text" t-model="state.form.note" placeholder="masalan: press nuqsoni"/></label>
+
+                    <!-- the crew and the raw material from «Ishni boshlash» come along; both fold away -->
+                    <div class="cst_sf_fold mt-3">
+                        <button type="button" class="cst_sf_fold_head" t-on-click="() => state.form.showCrew = !state.form.showCrew">
+                            <i t-att-class="'fa me-2 ' + (state.form.showCrew ? 'fa-chevron-down' : 'fa-chevron-right')"/>
+                            <b>Xodimlar</b> <span class="cst_sf_fold_count" t-esc="(state.form.employee_ids || []).length"/>
+                            <span class="muted small ms-2 text-truncate" t-if="!state.form.showCrew" t-esc="crewNames.join(', ')"/>
+                        </button>
+                        <div t-if="state.form.showCrew" class="cst_sf_checklist">
+                            <label t-foreach="shiftEmployees" t-as="emp" t-key="emp.id"><input type="checkbox" t-att-checked="(state.form.employee_ids || []).includes(emp.id)" t-on-change="() => this.toggleFormEmployee(emp.id)"/><span t-esc="emp.name"/></label>
+                        </div>
+                    </div>
+                    <div class="cst_sf_fold mt-2" t-if="state.form.line.final">
+                        <button type="button" class="cst_sf_fold_head" t-on-click="() => state.form.showConsume = !state.form.showConsume">
+                            <i t-att-class="'fa me-2 ' + (state.form.showConsume ? 'fa-chevron-down' : 'fa-chevron-right')"/>
+                            <b>Xomashyo sarfi</b> <span class="cst_sf_fold_count" t-esc="(state.form.consume || []).length"/>
+                            <span t-if="consumeChanged" class="cst_sf_chip cst_sf_chip--warn ms-2"><t t-esc="consumeChanged"/> ta o'zgartirilgan</span>
+                            <span class="muted small ms-2" t-if="!state.form.showConsume and !consumeChanged">texkarta bo'yicha — o'zgartirish uchun oching</span>
+                        </button>
+                        <div t-if="state.form.showConsume">
+                            <div t-if="!state.form.opts" class="muted small">Yuklanmoqda…</div>
+                            <table t-else="" class="cst_sf_table compact cst_sf_consume">
+                                <thead><tr><th>Xomashyo</th><th class="n">Texkarta bo'yicha</th><th class="n">Haqiqatda sarflandi</th><th/></tr></thead>
+                                <tbody>
+                                    <tr t-foreach="state.form.consume" t-as="c" t-key="c.id" t-att-class="{ cst_sf_touched: c.touched }">
+                                        <td><t t-esc="c.name"/> <small class="muted" t-esc="c.characteristic"/></td>
+                                        <td class="n"><t t-esc="num(c.norm, 3)"/> <t t-esc="c.uom"/></td>
+                                        <td class="n"><input type="number" min="0" step="any" class="cst_sf_cell_input" t-att-value="c.qty" t-on-input="(ev) => this.onConsumeInput(c, ev)"/> <t t-esc="c.uom"/></td>
+                                        <td><button t-if="c.touched" type="button" class="cst_sf_btn cst_sf_btn--ghost cst_sf_btn--xs" title="Texkarta normasiga qaytarish" t-on-click="() => this.resetConsume(c)"><i class="fa fa-undo"/></button></td>
+                                    </tr>
+                                    <tr t-if="!state.form.consume.length"><td colspan="4" class="muted">Xomashyo yo'q</td></tr>
+                                </tbody>
+                            </table>
+                            <small class="muted">Masalan 2 emas 1 обой bosilgan bo'lsa — 1 deb yozing. Yakunlanganda ombordan shu miqdor yechiladi; o'zgartirilmagan qatorlar texkarta bo'yicha.</small>
+                        </div>
+                    </div>
                     <div class="muted small mt-2" t-if="state.form.line.final">Oxirgi operatsiya: «Yakunlash» (yoki «Tugatish») bosilganda 1-sort omborga, brak scrap'ga, 2-sort o'z mahsulotiga o'tadi.</div>
                     <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--good" t-on-click="() => this.confirmEntry(true)" title="Natijani saqlab, buyurtmani shu smenada yakunlaydi"><i class="fa fa-check me-1"/>Yakunlash</button><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="() => this.confirmEntry()">Saqlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>
                 </t>

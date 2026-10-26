@@ -1,0 +1,692 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* access_roles
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 18:32+0000\n"
+"PO-Revision-Date: 2026-10-20 18:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__accesses_count
+msgid "# Access Rights"
+msgstr "Кол-во прав доступа"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__groups_count
+msgid "# Groups"
+msgstr "Кол-во групп"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__rules_count
+msgid "# Record Rules"
+msgstr "Кол-во правил записей"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__access_field_id
+msgid "Access Field"
+msgstr "Доступ к полю"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_res_groups
+msgid "Access Groups"
+msgstr "Группы доступа"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__access_model_id
+msgid "Access Model"
+msgstr "Доступ к модели"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Access Rights"
+msgstr "Права доступа"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_access_role
+#: model:ir.model.fields,field_description:access_roles.field_res_users__access_role_id
+#: model:res.groups.privilege,name:access_roles.access_roles_privilege_category
+msgid "Access Role"
+msgstr "Роль"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__access_role_menu_ids
+msgid "Access Role Menu"
+msgstr "Меню роли"
+
+#. module: access_roles
+#: model:res.groups,name:access_roles.access_role_group_user
+msgid "Access Role User"
+msgstr "Просмотр ролей"
+
+#. module: access_roles
+#: model:ir.actions.act_window,name:access_roles.action_access_role
+#: model:ir.ui.menu,name:access_roles.access_role_menu_roles
+msgid "Access Roles"
+msgstr "Список ролей"
+
+#. module: access_roles
+#: model:res.groups,comment:access_roles.access_role_group_user
+msgid "Access to access roles"
+msgstr "Просмотр ролей"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_needaction
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_needaction
+msgid "Action Needed"
+msgstr "Требуется действие"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__action_name
+msgid "Action/Method Name"
+msgstr "Действие / метод"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__active
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: access_roles
+#: model:res.groups,name:access_roles.access_role_group_administrator
+#: model:res.groups,name:mass_price_update.mass_price_update_group_admin
+msgid "Administrator"
+msgstr "Администратор"
+
+#. module: access_roles
+#: model:res.groups,comment:access_roles.access_role_group_administrator
+msgid "Administrator access to access roles"
+msgstr "Создание и изменение ролей"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_module_category
+msgid "Application"
+msgstr "Приложение"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_attachment_count
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_attachment_count
+msgid "Attachment Count"
+msgstr "Кол-во вложений"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__button_access_id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__button_access_ids
+msgid "Button Access"
+msgstr "Доступ к кнопке"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__button_invisible
+msgid "Button Invisible"
+msgstr "Кнопка скрыта"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__name
+msgid "Button Name"
+msgstr "Название кнопки"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_button_registry
+msgid "Button Registry"
+msgstr "Реестр кнопок"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__context
+msgid "Context"
+msgstr "Контекст"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_field_access__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_role_management__create_uid
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__create_date
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__create_date
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__create_date
+#: model:ir.model.fields,field_description:access_roles.field_field_access__create_date
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__create_date
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__create_date
+#: model:ir.model.fields,field_description:access_roles.field_role_management__create_date
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__create_date
+msgid "Created on"
+msgstr "Дата создания"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__is_debug
+msgid "Disable Debug Mode"
+msgstr "Запретить режим разработчика"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__is_chatter
+msgid "Disable chatter"
+msgstr "Скрыть панель сообщений"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_role_management__is_chatter
+msgid "Disable chatter for the role"
+msgstr ""
+"Для этой роли панель сообщений и истории рядом с документами не показывается"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_role_management__is_debug
+msgid "Disable the option to enable debug mode for the user"
+msgstr "Пользователь не может включить режим разработчика (debug)"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__display_name
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__display_name
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__display_name
+#: model:ir.model.fields,field_description:access_roles.field_field_access__display_name
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__display_name
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__string
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__display_name
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__string
+#: model:ir.model.fields,field_description:access_roles.field_ir_module_category__display_name
+#: model:ir.model.fields,field_description:access_roles.field_ir_rule__display_name
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_menu__display_name
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_view__display_name
+#: model:ir.model.fields,field_description:access_roles.field_res_groups__display_name
+#: model:ir.model.fields,field_description:access_roles.field_res_users__display_name
+#: model:ir.model.fields,field_description:access_roles.field_role_management__display_name
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__name
+#: model:ir.model.fields,field_description:access_roles.field_field_access__domain_id
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__domain
+#: model:ir.model.fields,field_description:access_roles.field_role_management__domain_ids
+msgid "Domain"
+msgstr "Условие (домен)"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__domain_access_id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__domain_access_ids
+msgid "Domain Access"
+msgstr "Доступ по условию"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.domain_model_view_list
+msgid "Domains"
+msgstr "Условия"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Edit Domain Access"
+msgstr "Ограничение по условию"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Edit Fields Access"
+msgstr "Ограничение полей"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Edit Model Access"
+msgstr "Ограничение моделей"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__field_access_ids
+msgid "Field Access"
+msgstr "Доступ к полям"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_field_access__button_invisible
+msgid "Field for setting button visibility"
+msgstr "Поле, задающее видимость кнопки"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__fields_ids
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Fields"
+msgstr "Поля"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__filter_access_id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__filter_access_ids
+msgid "Filter Access"
+msgstr "Доступ к фильтрам"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__name
+msgid "Filter Name"
+msgstr "Название фильтра"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_filter_registry
+msgid "Filter Registry"
+msgstr "Реестр фильтров"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__filter_ids
+msgid "Filters"
+msgstr "Фильтры"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_follower_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_follower_ids
+msgid "Followers"
+msgstr "Подписчики"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_partner_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Подписчики (контакты)"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__group_ids
+msgid "GroupBy"
+msgstr "Группировка"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__name
+msgid "GroupBy Name"
+msgstr "Название группировки"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_groupby_registry
+msgid "GroupBy Registry"
+msgstr "Реестр группировок"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__groups_ids
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Groups"
+msgstr "Группы"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__has_message
+#: model:ir.model.fields,field_description:access_roles.field_role_management__has_message
+msgid "Has Message"
+msgstr "Есть сообщение"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__hide_actions_ids
+msgid "Hide Actions"
+msgstr "Скрыть действия"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Hide Any Button or Tab"
+msgstr "Скрыть кнопку или вкладку"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Hide Any Filter or GroupBy"
+msgstr "Скрыть фильтр или группировку"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_archive
+msgid "Hide Archive/UnArchive"
+msgstr "Скрыть архивирование"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_create
+msgid "Hide Create"
+msgstr "Скрыть создание"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_delete
+msgid "Hide Delete"
+msgstr "Скрыть удаление"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_duplicate
+msgid "Hide Duplicate"
+msgstr "Скрыть дублирование"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_hide_export
+msgid "Hide Export"
+msgstr "Скрыть экспорт"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.role_management_view_form
+msgid "Hide Menu"
+msgstr "Скрыть меню"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__hide_report_ids
+msgid "Hide Report"
+msgstr "Скрыть отчёт"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__id
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__id
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__id
+#: model:ir.model.fields,field_description:access_roles.field_field_access__id
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__id
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_module_category__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_rule__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_menu__id
+#: model:ir.model.fields,field_description:access_roles.field_ir_ui_view__id
+#: model:ir.model.fields,field_description:access_roles.field_res_groups__id
+#: model:ir.model.fields,field_description:access_roles.field_res_users__id
+#: model:ir.model.fields,field_description:access_roles.field_role_management__id
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__id
+msgid "ID"
+msgstr "ID"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_needaction
+#: model:ir.model.fields,help:access_roles.field_role_management__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Если отмечено, новые сообщения требуют вашего внимания."
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_has_error
+#: model:ir.model.fields,help:access_roles.field_access_role__message_has_sms_error
+#: model:ir.model.fields,help:access_roles.field_role_management__message_has_error
+#: model:ir.model.fields,help:access_roles.field_role_management__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Если отмечено, некоторые сообщения не доставлены."
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_field_invisible
+msgid "Invisible"
+msgstr "Скрыто"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_is_follower
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_is_follower
+msgid "Is Follower"
+msgstr "Подписчик"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_field_access__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_role_management__write_uid
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__write_uid
+msgid "Last Updated by"
+msgstr "Последнее изменение"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__write_date
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__write_date
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__write_date
+#: model:ir.model.fields,field_description:access_roles.field_field_access__write_date
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__write_date
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__write_date
+#: model:ir.model.fields,field_description:access_roles.field_role_management__write_date
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__write_date
+msgid "Last Updated on"
+msgstr "Дата изменения"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__is_readonly
+msgid "Make System ReadOnly"
+msgstr "Только просмотр"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_role_management__is_readonly
+msgid "Make system readonly"
+msgstr "Все списки и формы открываются без кнопок создания и изменения"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_ui_menu
+#: model:ir.model.fields,field_description:access_roles.field_role_management__menu_ids
+msgid "Menu"
+msgstr "Меню"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_has_error
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_has_error
+msgid "Message Delivery error"
+msgstr "Ошибка доставки сообщения"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_ids
+msgid "Messages"
+msgstr "Сообщения"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__model_id
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__domain_model_id
+#: model:ir.model.fields,field_description:access_roles.field_domain_model__domain_model_name
+#: model:ir.model.fields,field_description:access_roles.field_field_access__model_id
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__model_id
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__model_id
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__model_id
+msgid "Model"
+msgstr "Модель"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__model_access_ids
+msgid "Model Access"
+msgstr "Доступ к модели"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__button_ids
+msgid "Model Button"
+msgstr "Кнопка модели"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_domain_model
+msgid "Model Domain"
+msgstr "Условие модели"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__name
+#: model:ir.model.fields,field_description:access_roles.field_role_management__name
+msgid "Name"
+msgstr "Название"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_needaction_counter
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Кол-во действий"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_has_error_counter
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_has_error_counter
+msgid "Number of errors"
+msgstr "Кол-во ошибок"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_needaction_counter
+#: model:ir.model.fields,help:access_roles.field_role_management__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Кол-во сообщений, требующих действия"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__message_has_error_counter
+#: model:ir.model.fields,help:access_roles.field_role_management__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Кол-во недоставленных сообщений"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__rating_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__rating_ids
+msgid "Ratings"
+msgstr "Оценки"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_field_readonly
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_model_readonly
+msgid "Readonly"
+msgstr "Только чтение"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Record Rules"
+msgstr "Правила записей"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_remove_link
+msgid "Remove External link"
+msgstr "Убрать внешнюю ссылку"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__is_field_required
+msgid "Required"
+msgstr "Обязательно"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "Role"
+msgstr "Роль"
+
+#. module: access_roles
+#: model:ir.actions.act_window,name:access_roles.action_role_management
+#: model:ir.model,name:access_roles.model_role_management
+#: model:ir.model.fields,field_description:access_roles.field_access_role__role_management_id
+#: model:ir.ui.menu,name:access_roles.access_role_menu
+#: model:ir.ui.menu,name:access_roles.access_role_menu_management
+msgid "Role Management"
+msgstr "Настройки ролей"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__role_ids
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_list
+#: model:ir.ui.menu,name:access_roles.access_role_menu_root
+msgid "Roles"
+msgstr "Роли"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_rule
+msgid "Rule"
+msgstr "Правило"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__message_has_sms_error
+#: model:ir.model.fields,field_description:access_roles.field_role_management__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Ошибка доставки SMS"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_res_users__access_role_id
+msgid "Select the role of the user"
+msgstr "Выберите роль пользователя"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_role_management__selected_role_ids
+msgid "Selected Role"
+msgstr "Выбранная роль"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_field_access__tab_ids
+msgid "Tab"
+msgstr "Вкладка"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__name
+msgid "Tab Name"
+msgstr "Название вкладки"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_tab_registry
+msgid "Tab Registry"
+msgstr "Реестр вкладок"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_res_users
+#: model:ir.model.fields,field_description:access_roles.field_access_role__user_ids
+msgid "User"
+msgstr "Пользователь"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_ir_ui_view
+#: model:ir.model.fields,field_description:access_roles.field_button_registry__view_ids
+#: model:ir.model.fields,field_description:access_roles.field_filter_registry__view_ids
+#: model:ir.model.fields,field_description:access_roles.field_groupby_registry__view_ids
+#: model:ir.model.fields,field_description:access_roles.field_tab_registry__view_ids
+msgid "View"
+msgstr "Представление"
+
+#. module: access_roles
+#: model:ir.model.fields,field_description:access_roles.field_access_role__website_message_ids
+#: model:ir.model.fields,field_description:access_roles.field_role_management__website_message_ids
+msgid "Website Messages"
+msgstr "Сообщения сайта"
+
+#. module: access_roles
+#: model:ir.model.fields,help:access_roles.field_access_role__website_message_ids
+#: model:ir.model.fields,help:access_roles.field_role_management__website_message_ids
+msgid "Website communication history"
+msgstr "История переписки через сайт"
+
+#. module: access_roles
+#: model_terms:ir.ui.view,arch_db:access_roles.access_role_view_form
+msgid "e.g. Staff"
+msgstr "например, Кассир"
+
+#. module: access_roles
+#: model:ir.model,name:access_roles.model_field_access
+msgid "field.access"
+msgstr "Доступ к полю"
+
+#. module: access_roles
+#: model:ir.ui.menu,name:access_roles.access_role_menu
+msgid "Advanced"
+msgstr "Расширенные"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_account_readonly
+msgid "Read-only"
+msgstr "Только просмотр"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_account_basic
+msgid "Invoicing & Banks"
+msgstr "Счета и банк"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_account_user
+msgid "Bookkeeper"
+msgstr "Бухгалтер"
+
+#. module: cst_kerama_roles
+#: model:res.groups.privilege,name:mass_price_update.module_category_mass_price_update
+msgid "Mass Price Update"
+msgstr "Массовое обновление цен"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:api_doc.group_allow_doc
+msgid "Technical Documentation"
+msgstr "Техническая документация"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:base.group_system
+msgid "Role / Administrator"
+msgstr "Роль / Администратор"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:base.group_user
+msgid "Role / User"
+msgstr "Роль / Пользователь"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:base.default_user_group
+msgid "Default access for new users"
+msgstr "Доступ по умолчанию для новых пользователей"
+
+#. module: cst_kerama_roles
+#: model:res.groups,name:account.group_partial_purchase_deductibility
+msgid "Partial Purchase Deductibility"
+msgstr "Частичный вычет по закупкам"

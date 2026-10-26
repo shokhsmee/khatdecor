@@ -46,6 +46,17 @@ to ``access.role``, which meant any user could add *Settings / Administrator*
 to their own role. Reading stays open (the menu filter needs it), writing is
 now limited to the Access Role administrator group.
 
+**Role builder** (Roles ▸ Role builder) is where roles are made and changed
+without knowing what a group is: each role is one screen in four numbered
+parts — main (name, who it is for, its people), apps (tiles switched on or
+off, optionally down to single sections), permissions (each app's levels with
+one sentence each) and restrictions — next to a live preview of the home
+screen the role gives, with a one-click fix when an app is switched on but
+lacks the permission behind it. The roles also show as a roles × permissions
+table. The classic role form uses Odoo 19's own per-app selector instead of
+the app's generated group list, which in Odoo 19 showed nothing outside debug
+mode. The Access Roles app itself is translated through ``i18n_extra``.
+
 **Not covered on purpose** — which companies a user may enter stays a per-user
 setting (``Allowed Companies``). Warehouses here belong to one company each,
 so *Omborchi* is pinned to a single warehouse by giving that user a single
@@ -53,7 +64,7 @@ company, while *Bosh omborchi* and *Rahbar* get all of them.
     """,
     "author": "Khatdecor",
     "category": "Security",
-    "version": "19.0.1.5.0",
+    "version": "19.0.2.0.0",
     "depends": [
         "access_roles",
         "cst_kerama_kassa",
@@ -92,7 +103,13 @@ company, while *Bosh omborchi* and *Rahbar* get all of them.
         "data/role_management_data.xml",
         "views/sale_invoice_menu.xml",
         "views/role_management_views.xml",
+        "views/role_builder_views.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "cst_kerama_roles/static/src/role_builder/**/*",
+        ],
+    },
     "license": "LGPL-3",
     "installable": True,
     "application": False,

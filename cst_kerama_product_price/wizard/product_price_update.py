@@ -18,6 +18,10 @@ _BARCODE_ALIASES = ("shtrixkod", "shtrix", "barcode", "kod", "shtrixkodi",
                     "shtrihkod", "штрихкод", "штрих", "код")
 _NEW_PRICE_ALIASES = ("yanginarx", "yangi", "yanginarxi", "newprice", "new",
                       "новаяцена", "нов", "цена")
+_CURRENCY_ALIASES = ("valyuta", "валюта", "currency")
+# What people write in the currency column.
+_CURRENCY_WORDS = {"som": "UZS", "сум": "UZS", "сўм": "UZS", "so'm": "UZS", "sum": "UZS", "uzs": "UZS",
+                   "dollar": "USD", "доллар": "USD", "$": "USD", "usd": "USD"}
 # Rows scanned while looking for the header line.
 _HEADER_SCAN_ROWS = 10
 # How many offending products / rows an error or report message names.
@@ -121,26 +125,27 @@ class ProductPriceUpdate(models.TransientModel):
         default="price",
         required=True,
     )
-    price_currency = fields.Selection(
-        [("company", "Kompaniya valyutasi"), ("usd", "Dollar (USD)")],
-        string="Valyuta",
-        default="company",
-        required=True,
-        help="Dollar tanlansa, shablondagi va ommaviy o'zgartirishdagi "
-             "summalar dollarda kiritiladi va kurs bo'yicha kompaniya "
-             "valyutasiga aylantiriladi.",
-    )
+    categ_ids = fields.Many2many(
+        "product.category", string="Mahsulot guruhlari",
+        help="Guruh tanlansa, shu guruh (va ichki guruhlari)dagi barcha sotiladigan mahsulotlar har bir "
+             "xarakteristikasi bilan alohida qator bo'lib chiqadi.")
+    currency_id = fields.Many2one(
+        "res.currency", string="Valyuta", required=True,
+        default=lambda self: self.env.company.currency_id,
+        domain="[('active', '=', True)]",
+        help="Narxlar shu valyutada kiritiladi. Sotish narxi xarakteristikaga shu valyutada yoziladi; "
+             "tannarx kurs bo'yicha kompaniya valyutasiga aylantiriladi.")
     rate_date = fields.Date(
         string="Kurs sanasi",
         default=fields.Date.context_today,
-        help="Dollar kursi shu sanaga ko'ra olinadi.",
     )
-    usd_rate = fields.Float(
-        string="Dollar kursi",
-        digits=(16, 2),
-        help="1 dollar necha kompaniya valyutasiga teng. Tizim kursidan "
-             "olinadi, lekin qo'lda o'zgartirish mumkin.",
+    rate = fields.Float(
+        string="Kurs",
+        digits=(16, 6),
+        help="1 kompaniya valyutasi (dollar) necha tanlangan valyutaga teng — so'm uchun kunning dollar kursi. "
+             "Tizim kursidan olinadi, qo'lda o'zgartirish mumkin.",
     )
+    is_company_currency = fields.Boolean(compute="_compute_is_company_currency")
 
     # --- Excel ---------------------------------------------------------
     template_file = fields.Binary(string="Shablon", readonly=True, attachment=False)
@@ -179,9 +184,10 @@ class ProductPriceUpdate(models.TransientModel):
             products = self._products_from_context()
             if products:
                 res["product_ids"] = [Command.set(products.ids)]
-        if "usd_rate" in fields_list and not res.get("usd_rate"):
+        if "rate" in fields_list and not res.get("rate"):
             company = self.env["res.company"].browse(res.get("company_id")) or self.env.company
-            res["usd_rate"] = self._get_usd_rate(company, res.get("rate_date"))
+            currency = self.env["res.currency"].browse(res.get("currency_id")) or company.currency_id
+            res["rate"] = self._get_rate(company, currency, res.get("rate_date"))
         return res
 
     @api.model
@@ -201,23 +207,35 @@ class ProductPriceUpdate(models.TransientModel):
         return self.env["product.product"]
 
     @api.model
-    def _get_usd_rate(self, company, date=None):
-        """Return how much company currency one US dollar is worth."""
+    def _get_rate(self, company, currency, date=None):
+        """How much ``currency`` one unit of the company currency is worth."""
         company = company or self.env.company
-        usd = self.env.ref("base.USD", raise_if_not_found=False)
-        if not usd or not company.currency_id or usd == company.currency_id:
+        if not currency or currency == company.currency_id:
             return 1.0
-        return usd._convert(
-            1.0, company.currency_id, company, date or fields.Date.context_today(self),
-            round=False,
-        )
+        return self.env["res.currency"]._get_conversion_rate(
+            company.currency_id, currency, company, date or fields.Date.context_today(self))
 
-    @api.depends("product_ids")
+    @api.depends("currency_id", "company_currency_id")
+    def _compute_is_company_currency(self):
+        for wizard in self:
+            wizard.is_company_currency = wizard.currency_id == wizard.company_currency_id
+
+    def _products(self):
+        """What the sheet and the bulk change cover: the picked products plus
+        every saleable variant of the picked groups."""
+        self.ensure_one()
+        products = self.product_ids
+        if self.categ_ids:
+            products |= self.env["product.product"].search([
+                ("categ_id", "child_of", self.categ_ids.ids), ("sale_ok", "=", True)])
+        return products
+
+    @api.depends("product_ids", "categ_ids")
     def _compute_product_count(self):
         for wizard in self:
-            wizard.product_count = len(wizard.product_ids)
+            wizard.product_count = len(wizard._products())
 
-    @api.depends("adjust_type", "price_currency", "company_currency_id")
+    @api.depends("adjust_type", "currency_id", "company_currency_id")
     def _compute_adjust_unit(self):
         """The unit shown next to the bulk change value."""
         for wizard in self:
@@ -227,13 +245,13 @@ class ProductPriceUpdate(models.TransientModel):
                 currency = wizard._entry_currency()
                 wizard.adjust_unit = currency.name if currency else ""
 
-    @api.onchange("rate_date", "company_id")
+    @api.onchange("rate_date", "company_id", "currency_id")
     def _onchange_rate_date(self):
         for wizard in self:
-            wizard.usd_rate = wizard._get_usd_rate(wizard.company_id, wizard.rate_date)
+            wizard.rate = wizard._get_rate(wizard.company_id, wizard.currency_id, wizard.rate_date)
 
-    @api.onchange("target", "price_currency", "adjust_type", "adjust_sign",
-                  "adjust_value", "usd_rate", "product_ids")
+    @api.onchange("target", "currency_id", "adjust_type", "adjust_sign",
+                  "adjust_value", "rate", "product_ids", "categ_ids")
     def _onchange_reset_preview(self):
         """A changed setting invalidates the preview that was computed for it."""
         for wizard in self:
@@ -248,58 +266,75 @@ class ProductPriceUpdate(models.TransientModel):
     def _price_digits(self):
         return self.env["decimal.precision"].precision_get("Product Price")
 
-    def _in_usd(self):
-        self.ensure_one()
-        return self.price_currency == "usd"
-
     def _check_rate(self):
         """Refuse to convert with a rate that would zero every price out."""
         self.ensure_one()
-        if self._in_usd() and float_compare(self.usd_rate, 0.0, precision_digits=6) <= 0:
-            raise UserError(
-                _("Dollar kursini kiriting - kurs noldan katta bo'lishi kerak.")
-            )
+        if float_compare(self.rate, 0.0, precision_digits=6) <= 0:
+            raise UserError(_("Kursni kiriting - kurs noldan katta bo'lishi kerak."))
 
-    def _to_company_currency(self, amount):
-        """Convert *amount*, as typed by the user, into company currency."""
+    def _to_company_currency(self, amount, currency=None):
+        """Convert *amount*, typed in *currency* (default: the wizard's), into company currency."""
         self.ensure_one()
         if amount is None:
             return None
-        if self._in_usd():
-            amount *= self.usd_rate
+        currency = currency or self.currency_id
+        if currency != self.company_currency_id:
+            if currency == self.currency_id:
+                amount /= self.rate
+            else:
+                amount = currency._convert(amount, self.company_currency_id, self.company_id,
+                                           self.rate_date or fields.Date.context_today(self), round=False)
         return float_round(amount, precision_digits=self._price_digits())
 
     def _from_company_currency(self, amount):
-        """Convert a stored company-currency *amount* into the typed currency."""
+        """Convert a company-currency *amount* into the wizard's currency."""
         self.ensure_one()
-        if self._in_usd():
-            amount /= self.usd_rate
+        if self.currency_id != self.company_currency_id:
+            amount *= self.rate
         return float_round(amount, precision_digits=self._price_digits())
 
     def _entry_currency(self):
         """The currency the user types figures in."""
         self.ensure_one()
-        if self._in_usd():
-            return self.env.ref("base.USD", raise_if_not_found=False) or self.company_currency_id
-        return self.company_currency_id
+        return self.currency_id or self.company_currency_id
 
-    def _current_price(self, product):
-        """Read the targeted price of *product* in company currency."""
+    def _current_price(self, product, currency=None):
+        """The targeted price of *product*, in *currency* (default: the wizard's)."""
         self.ensure_one()
+        currency = currency or self.currency_id
         if self.target == "price":
-            return product.lst_price
-        return product.with_company(self.company_id).standard_price
-
-    def _write_price(self, product, value):
-        """Write *value* (company currency) into the targeted price field."""
-        self.ensure_one()
-        if self.target == "price":
-            # The inverse of lst_price takes the variant's price_extra out
-            # before storing list_price on the template.
-            product.lst_price = value
+            own = product.cst_sale_currency_id or product.currency_id
+            if product.cst_sale_price and own == currency:
+                return product.cst_sale_price
+            value = product.lst_price
         else:
-            # standard_price is company dependent.
-            product.with_company(self.company_id).standard_price = value
+            value = product.with_company(self.company_id).standard_price
+        if currency == self.company_currency_id:
+            return value
+        if currency == self.currency_id:
+            return self._from_company_currency(value)
+        return self.company_currency_id._convert(value, currency, self.company_id,
+                                                 self.rate_date or fields.Date.context_today(self))
+
+    def _write_price(self, product, value, currency=None):
+        """Write *value* (in *currency*, default the wizard's) into the targeted price.
+
+        Sales price: a product of a single variant priced in the company
+        currency keeps Odoo's own sales price; otherwise the price goes on the
+        variant -- its characteristic -- in the currency it was given in.
+        """
+        self.ensure_one()
+        currency = currency or self.currency_id
+        if self.target == "price":
+            single = product.product_tmpl_id.product_variant_count <= 1
+            if single and currency == self.company_currency_id:
+                product.write({"cst_sale_price": 0.0, "cst_sale_currency_id": False})
+                product.lst_price = value
+            else:
+                product.write({"cst_sale_price": value, "cst_sale_currency_id": currency.id})
+        else:
+            # standard_price is company dependent and kept in company currency.
+            product.with_company(self.company_id).standard_price = self._to_company_currency(value, currency)
 
     def _target_label(self):
         self.ensure_one()
@@ -323,10 +358,12 @@ class ProductPriceUpdate(models.TransientModel):
     # Excel template
     # ------------------------------------------------------------------
     def action_download_template(self):
-        """Export the selected products to an xlsx price sheet."""
+        """Export the products to an xlsx price sheet, one row per
+        characteristic, grouped under their product group."""
         self.ensure_one()
-        if not self.product_ids:
-            raise UserError(_("Shablon uchun kamida bitta mahsulot tanlang."))
+        products = self._products()
+        if not products:
+            raise UserError(_("Shablon uchun mahsulot yoki mahsulot guruhini tanlang."))
         self._check_rate()
         try:
             import xlsxwriter  # noqa: PLC0415
@@ -345,6 +382,7 @@ class ProductPriceUpdate(models.TransientModel):
             "bold": True, "bg_color": "#714B67", "font_color": "#FFFFFF",
             "border": 1, "align": "center", "valign": "vcenter", "text_wrap": True,
         })
+        group_fmt = workbook.add_format({"bold": True, "bg_color": "#FFE699", "border": 1})
         text_fmt = workbook.add_format({"border": 1})
         locked_fmt = workbook.add_format({"border": 1, "bg_color": "#F5F5F5"})
         money_fmt = workbook.add_format({
@@ -353,29 +391,49 @@ class ProductPriceUpdate(models.TransientModel):
         input_fmt = workbook.add_format({
             "border": 1, "bg_color": "#FFF9E6", "num_format": "#,##0.00",
         })
+        input_text_fmt = workbook.add_format({"border": 1, "bg_color": "#FFF9E6", "align": "center"})
 
         headers = [
-            ("Shtrix-kod", 20),
+            ("Shtrix-kod", 18),
             ("Mahsulot", 45),
-            ("Ichki kod", 16),
-            ("Birlik", 12),
-            (f"Joriy narx ({ccy_name})", 18),
-            (f"Yangi narx ({ccy_name})", 18),
+            ("Xarakteristika", 26),
+            ("Birlik", 10),
+            ("Valyuta", 10),
+            ("Joriy narx", 16),
+            ("Yangi narx", 16),
         ]
         for col, (label, width) in enumerate(headers):
             sheet.set_column(col, col, width)
             sheet.write(0, col, label, header_fmt)
         sheet.freeze_panes(1, 0)
 
-        for row, product in enumerate(self.product_ids, start=1):
-            price = self._from_company_currency(self._current_price(product))
+        def sort_key(product):
+            return (product.categ_id.complete_name or "", product.product_tmpl_id.name or "",
+                    product.cst_characteristic or "", product.id)
+
+        row = 1
+        group = None
+        for product in products.sorted(sort_key):
+            if product.categ_id != group:
+                group = product.categ_id
+                # a group line: no barcode, no price -- the upload skips it
+                sheet.write_blank(row, 0, None, group_fmt)
+                sheet.merge_range(row, 1, row, len(headers) - 1,
+                                  group.complete_name or _("Kategoriyasiz"), group_fmt)
+                row += 1
+            own = product.cst_sale_currency_id if (self.target == "price" and product.cst_sale_price) else False
+            row_currency = own or currency
+            price = self._current_price(product, row_currency)
             # Barcode as text so long numbers keep every digit.
             sheet.write_string(row, 0, product.barcode or "", text_fmt)
-            sheet.write_string(row, 1, product.display_name or "", locked_fmt)
-            sheet.write_string(row, 2, product.default_code or "", locked_fmt)
+            sheet.write_string(row, 1, product.product_tmpl_id.name or "", locked_fmt)
+            sheet.write_string(row, 2, product.cst_characteristic or "", locked_fmt)
             sheet.write_string(row, 3, product.uom_id.name or "", locked_fmt)
-            sheet.write_number(row, 4, price, money_fmt)
-            sheet.write_number(row, 5, price, input_fmt)
+            sheet.write_string(row, 4, row_currency.name or ccy_name, input_text_fmt)
+            sheet.write_number(row, 5, price, money_fmt)
+            sheet.write_number(row, 6, price, input_fmt)
+            row += 1
+        sheet.autofilter(0, 0, row - 1, len(headers) - 1)
 
         workbook.close()
         content = output.getvalue()
@@ -407,10 +465,10 @@ class ProductPriceUpdate(models.TransientModel):
         self._check_rate()
 
         rows = self._read_uploaded_rows()
-        barcode_col, price_col = self._locate_columns(rows)
+        barcode_col, price_col, currency_col = self._locate_columns(rows)
         digits = self._price_digits()
 
-        updates = {}          # barcode -> (row number, new price in company ccy)
+        updates = {}          # barcode -> (row number, new price, currency)
         skipped = []          # human readable reasons
         seen = {}
 
@@ -444,8 +502,16 @@ class ProductPriceUpdate(models.TransientModel):
                     row=row_number, barcode=barcode,
                 ))
                 continue
+            row_currency = self.currency_id
+            if currency_col is not None and currency_col < len(row) and row[currency_col] not in (None, ""):
+                row_currency = self._parse_currency(row[currency_col])
+                if not row_currency:
+                    skipped.append(_(
+                        "%(row)s-satr (%(barcode)s): valyuta \"%(value)s\" tanilmadi (USD yoki UZS yozing).",
+                        row=row_number, barcode=barcode, value=row[currency_col]))
+                    continue
             seen[barcode] = row_number
-            updates[barcode] = (row_number, self._to_company_currency(price))
+            updates[barcode] = (row_number, float_round(price, precision_digits=digits), row_currency)
 
         if not updates:
             raise UserError(
@@ -460,7 +526,7 @@ class ProductPriceUpdate(models.TransientModel):
 
         updated = self.env["product.product"]
         unchanged = 0
-        for barcode, (row_number, new_price) in updates.items():
+        for barcode, (row_number, new_price, row_currency) in updates.items():
             product = by_barcode.get(barcode)
             if not product:
                 skipped.append(_(
@@ -468,11 +534,13 @@ class ProductPriceUpdate(models.TransientModel):
                     "topilmadi.", row=row_number, barcode=barcode,
                 ))
                 continue
-            if float_compare(self._current_price(product), new_price,
-                             precision_digits=digits) == 0:
+            if float_compare(self._current_price(product, row_currency), new_price,
+                             precision_digits=digits) == 0 and (
+                    self.target != "price" or not product.cst_sale_price
+                    or product.cst_sale_currency_id == row_currency):
                 unchanged += 1
                 continue
-            self._write_price(product, new_price)
+            self._write_price(product, new_price, row_currency)
             updated |= product
 
         self._store_result(
@@ -534,24 +602,29 @@ class ProductPriceUpdate(models.TransientModel):
         return [(number, row) for number, row in enumerate(reader, start=1)]
 
     def _locate_columns(self, rows):
-        """Find the barcode and new-price columns from the header row.
+        """Find the barcode, new-price and (optional) currency columns from the
+        header row.
 
         Falls back to the template layout (first column / last column) when no
         recognisable header is present, so a stripped-down file still imports.
         """
         for index, (_number, row) in enumerate(rows[:_HEADER_SCAN_ROWS]):
-            barcode_col = price_col = None
+            barcode_col = price_col = currency_col = None
             for col, cell in enumerate(row):
                 header = _normalise_header(cell)
                 if not header:
                     continue
                 if barcode_col is None and header.startswith(_BARCODE_ALIASES):
                     barcode_col = col
-                elif price_col is None and header.startswith(_NEW_PRICE_ALIASES):
-                    price_col = col
+                elif currency_col is None and header.startswith(_CURRENCY_ALIASES):
+                    currency_col = col
+                elif header.startswith(_NEW_PRICE_ALIASES):
+                    # «Joriy narx» / «Цена» come first; «Yangi narx» wins over a bare «narx»
+                    if price_col is None or header.startswith(("yangi", "нов", "new")):
+                        price_col = col
             if barcode_col is not None and price_col is not None:
                 del rows[: index + 1]
-                return barcode_col, price_col
+                return barcode_col, price_col, currency_col
 
         width = max((len(row) for _number, row in rows), default=0)
         if width < 2:
@@ -564,7 +637,14 @@ class ProductPriceUpdate(models.TransientModel):
             _normalise_number(cell) is not None for cell in rows[0][1][1:]
         ):
             del rows[0]
-        return 0, width - 1
+        return 0, width - 1, None
+
+    def _parse_currency(self, value):
+        """«USD», «so'm», «$», «UZS» → a currency, or an empty recordset."""
+        text = str(value).strip()
+        key = _CURRENCY_WORDS.get(text.lower(), text.upper())
+        # exact name: a plain search on res.currency matched «EURX» to EUR here
+        return self.env["res.currency"].search([("name", "=", key)]).filtered(lambda c: c.name == key)[:1]
 
     # ------------------------------------------------------------------
     # Bulk adjustment
@@ -576,15 +656,14 @@ class ProductPriceUpdate(models.TransientModel):
         if self.adjust_type == "percent":
             new_price = current * (1.0 + sign * self.adjust_value / 100.0)
         else:
-            new_price = current + sign * (self.usd_rate if self._in_usd() else 1.0) \
-                * self.adjust_value
+            new_price = current + sign * self.adjust_value
         return float_round(new_price, precision_digits=self._price_digits())
 
     def _prepare_adjustment(self):
         """Validate the settings and return ``[(product, new price), ...]``."""
         self.ensure_one()
-        if not self.product_ids:
-            raise UserError(_("Kamida bitta mahsulot tanlang."))
+        if not self._products():
+            raise UserError(_("Kamida bitta mahsulot yoki mahsulot guruhini tanlang."))
         if float_compare(self.adjust_value, 0.0, precision_digits=6) <= 0:
             raise UserError(_("O'zgartirish qiymatini kiriting (noldan katta)."))
         if self.adjust_type == "percent" and self.adjust_sign == "subtract" \
@@ -595,7 +674,7 @@ class ProductPriceUpdate(models.TransientModel):
         digits = self._price_digits()
         changes = []
         negative = []
-        for product in self.product_ids:
+        for product in self._products():
             current = self._current_price(product)
             new_price = self._adjusted_price(current)
             if float_compare(new_price, 0.0, precision_digits=digits) < 0:
@@ -664,11 +743,11 @@ class ProductPriceUpdate(models.TransientModel):
         parts = [
             "<p><b>%s</b> - %s" % (self._target_label(), source),
         ]
-        if self._in_usd():
+        if currency != self.company_currency_id:
             parts.append(_(
-                "<br/>Kurs: 1 %(usd)s = %(rate)s",
-                usd=currency.name,
-                rate=format_amount(self.env, self.usd_rate, self.company_currency_id),
+                "<br/>Valyuta: %(ccy)s, kurs: 1 %(company)s = %(rate)s",
+                ccy=currency.name, company=self.company_currency_id.name,
+                rate=format_amount(self.env, self.rate, currency),
             ))
         parts.append("</p>")
         parts.append("<ul>")
@@ -714,7 +793,8 @@ class ProductPriceUpdateLine(models.TransientModel):
     )
     product_id = fields.Many2one("product.product", string="Mahsulot", required=True)
     barcode = fields.Char(related="product_id.barcode", string="Shtrix-kod")
-    currency_id = fields.Many2one(related="wizard_id.company_currency_id")
+    currency_id = fields.Many2one(related="wizard_id.currency_id")
+    cst_characteristic = fields.Char(related="product_id.cst_characteristic", string="Xarakteristika")
     current_price = fields.Monetary(string="Joriy narx", currency_field="currency_id")
     new_price = fields.Monetary(string="Yangi narx", currency_field="currency_id")
     difference = fields.Monetary(

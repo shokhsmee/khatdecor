@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_telegram_chat_company" model="ir.rule">
+        <field name="name">Telegram chat: kompaniya</field>
+        <field name="model_id" ref="model_cst_telegram_chat"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

@@ -9,14 +9,19 @@ IN_COLUMNS = [
     ("purchase", "Xarid"),
     ("production_in", "Ishlab chiqarishdan"),
     ("transfer_in", "Ko'chirish (kirim)"),
-    ("other_in", "Qaytish, reviziya va boshqa"),
+    ("inventory_in", "Reviziya (ortiqcha)"),
+    ("other_in", "Qaytish va boshqa"),
 ]
 OUT_COLUMNS = [
     ("sale", "Sotuv"),
     ("production_out", "Ishlab chiqarishga"),
     ("transfer_out", "Ko'chirish (chiqim)"),
-    ("other_out", "Spisaniya, reviziya va boshqa"),
+    ("inventory_out", "Reviziya (kamomad)"),
+    ("other_out", "Spisaniya va boshqa"),
 ]
+# a 1-sort piece regraded to its 2-sort twin: not a write-off, the shift's
+# output simply came out as another product
+REGRADE_OUT = "production_in_back"
 IN_KEYS = [key for key, _label in IN_COLUMNS]
 OUT_KEYS = [key for key, _label in OUT_COLUMNS]
 
@@ -38,7 +43,7 @@ class CstGoodsMovementReport(models.AbstractModel):
     _inherit = "cst.stock.report.base"
 
     @api.model
-    def _sides(self, src, dst, inside, warehouse_of, usage, is_inventory):
+    def _sides(self, src, dst, inside, warehouse_of, usage, is_inventory, regrade=False):
         """[(warehouse key, column)] a move line counts for — none, one or two."""
         src_in, dst_in = src in inside, dst in inside
         if src_in and dst_in and warehouse_of[src] == warehouse_of[dst]:
@@ -46,7 +51,11 @@ class CstGoodsMovementReport(models.AbstractModel):
         sides = []
         if dst_in:
             origin = usage.get(src)
-            if origin == "supplier":
+            if regrade:
+                key = "production_in"
+            elif is_inventory:
+                key = "inventory_in"
+            elif origin == "supplier":
                 key = "purchase"
             elif origin == "production":
                 key = "production_in"
@@ -57,7 +66,11 @@ class CstGoodsMovementReport(models.AbstractModel):
             sides.append((warehouse_of[dst], key))
         if src_in:
             target = usage.get(dst)
-            if target == "customer":
+            if regrade:
+                key = REGRADE_OUT
+            elif is_inventory:
+                key = "inventory_out"
+            elif target == "customer":
                 key = "sale"
             elif target == "production":
                 key = "production_out"
@@ -80,11 +93,11 @@ class CstGoodsMovementReport(models.AbstractModel):
         inside = set(locations.ids)
         warehouse_of = {loc.id: (0 if together else loc.warehouse_id.id) for loc in locations}
 
+        period_start, period_end = self._local_bounds(date_from, date_to)
         domain = [("state", "=", "done"),
                   "|", ("location_id", "in", locations.ids),
                        ("location_dest_id", "in", locations.ids),
-                  ("date", "<=", fields.Datetime.to_datetime(date_to).replace(
-                      hour=23, minute=59, second=59))]
+                  ("date", "<", period_end)]
         if product_ids:
             domain.append(("product_id", "in", product_ids))
         if category_ids:
@@ -98,8 +111,7 @@ class CstGoodsMovementReport(models.AbstractModel):
         move_ids = {r["move_id"][0] for r in rows if r["move_id"]}
         is_inventory = set(self.env["stock.move"].sudo().search(
             [("id", "in", list(move_ids)), ("is_inventory", "=", True)]).ids)
-        # the period starts at the user's midnight, like the date filter reads
-        period_start = fields.Datetime.to_datetime(date_from)
+        regrades = self._regrade_moves(move_ids)
 
         # (warehouse key, product) -> {"opening": qty, column: qty}
         cells = defaultdict(lambda: defaultdict(float))
@@ -107,12 +119,15 @@ class CstGoodsMovementReport(models.AbstractModel):
             qty = row["quantity_product_uom"] or 0.0
             if not qty:
                 continue
+            move_id = row["move_id"] and row["move_id"][0]
             sides = self._sides(row["location_id"][0], row["location_dest_id"][0], inside, warehouse_of,
-                                usage, row["move_id"] and row["move_id"][0] in is_inventory)
+                                usage, move_id in is_inventory, regrade=move_id in regrades)
             for wh_key, column in sides:
                 cell = cells[(wh_key, row["product_id"][0])]
                 if row["date"] < period_start:
                     cell["opening"] += qty if column in IN_KEYS else -qty
+                elif column == REGRADE_OUT:
+                    cell["production_in"] -= qty
                 else:
                     cell[column] += qty
 
@@ -132,7 +147,11 @@ class CstGoodsMovementReport(models.AbstractModel):
                 if not cell:
                     continue
                 line = self._row(product, cell)
-                if hide_zero and not any((line["opening"], line["in_total"], line["out_total"], line["closing"])):
+                # «harakatsiz» = nothing came in or went out in the period; a
+                # product that only sat on the shelf belongs to the stock sheet
+                if hide_zero and not (line["in_total"] or line["out_total"] or any(line["flows"].values())):
+                    continue
+                if not any((line["opening"], line["in_total"], line["out_total"], line["closing"])):
                     continue
                 root, leaf = self._root_and_leaf(product)
                 group = groups.setdefault(root.id, {"category": root, "leaves": {}, "rows": []})
@@ -157,6 +176,24 @@ class CstGoodsMovementReport(models.AbstractModel):
             })
         return {"blocks": blocks,
                 "totals": self._sum([r for b in blocks for g in b["groups"] for r in g["rows"]])}
+
+    @api.model
+    def _regrade_moves(self, move_ids):
+        """Both legs of a shift's 2-sort regrade: the 1-sort piece scrapped with
+        the «2-sort» reason, and the twin brought in for it."""
+        if not move_ids:
+            return set()
+        Move = self.env["stock.move"].sudo()
+        reason = self.env.ref("cst_kerama_shift.scrap_reason_second_grade", raise_if_not_found=False)
+        found = set()
+        if reason:
+            found |= set(Move.search([("id", "in", list(move_ids)),
+                                      ("scrap_id.scrap_reason_tag_ids", "in", reason.ids)]).ids)
+        if "cst.production.shift.line" in self.env:
+            self.env.cr.execute(
+                "SELECT move_id FROM cst_shift_line_second_move_rel WHERE move_id = ANY(%s)", [list(move_ids)])
+            found |= {r[0] for r in self.env.cr.fetchall()}
+        return found
 
     @api.model
     def _row(self, product, cell):

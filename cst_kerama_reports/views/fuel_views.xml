@@ -77,6 +77,11 @@
                 <field name="odometer_km" optional="show"/>
                 <field name="worked_hours" widget="float_time" sum="Jami soat" optional="show"/>
                 <field name="partner_id" optional="hide"/>
+                <field name="price_unit" optional="show"/>
+                <field name="amount_total" optional="show"/>
+                <field name="currency_id" optional="show" options="{'no_create': True}"/>
+                <field name="amount_company" sum="Jami" optional="hide"/>
+                <field name="company_currency_id" column_invisible="1"/>
                 <field name="location_id" optional="hide"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'done'"/>
@@ -98,6 +103,10 @@
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_bill" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                                invisible="not bill_id" string="Hisob-faktura"/>
+                    </div>
                     <group>
                         <group>
                             <field name="kind" widget="radio" options="{'horizontal': True}"/>
@@ -119,6 +128,25 @@
                             <field name="partner_id" invisible="kind != 'in'"/>
                             <field name="location_id"/>
                             <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group invisible="kind != 'in'" string="Narxi">
+                        <group>
+                            <label for="price_unit"/>
+                            <div class="o_row">
+                                <field name="price_unit" readonly="state == 'done'"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       readonly="state == 'done'" required="kind == 'in'"/>
+                            </div>
+                            <field name="rate" readonly="state == 'done'"
+                                   invisible="currency_id == company_currency_id"/>
+                            <field name="company_currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="amount_total"/>
+                            <field name="amount_company" invisible="currency_id == company_currency_id"/>
+                            <field name="create_bill" readonly="state == 'done'" invisible="not partner_id"/>
+                            <field name="bill_id" invisible="not bill_id"/>
                         </group>
                     </group>
                     <group>

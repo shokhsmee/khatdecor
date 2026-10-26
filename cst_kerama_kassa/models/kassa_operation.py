@@ -110,10 +110,11 @@ class KassaOperation(models.Model):
              "here you choose which sales orders it pays.",
     )
     transfer_kassa_id = fields.Many2one(
-        "cst.kassa", string="Other kassa", check_company=True, index="btree_not_null",
-        domain="[('company_id', '=', company_id), ('id', '!=', kassa_id)]",
+        "cst.kassa", string="Other kassa", index="btree_not_null",
+        domain="[('id', '!=', kassa_id)]",
         help="The kassa the money goes to (cash out) or comes from (cash in). "
-             "Both kassas need an open cash day on this date.")
+             "Both kassas need an open cash day on this date. A kassa of another company "
+             "(organization) books the money as a debt between the two companies.")
     transfer_currency_id = fields.Many2one(related="transfer_kassa_id.currency_id", string="Other kassa currency")
     transfer_amount = fields.Monetary(
         string="Amount in the other kassa", currency_field="transfer_currency_id",
@@ -232,7 +233,7 @@ class KassaOperation(models.Model):
             if op.state != "draft":
                 op.transfer_amount = op.transfer_amount
                 continue
-            other = op.transfer_kassa_id
+            other = op.transfer_kassa_id.sudo()
             if op.operation_type not in TRANSFER_TYPES or not other or not op.amount:
                 op.transfer_amount = 0.0
                 continue
@@ -258,7 +259,7 @@ class KassaOperation(models.Model):
         will be opened for it at posting."""
         self.ensure_one()
         Day = self.env["cst.kassa.day"].sudo()
-        other = self.transfer_kassa_id
+        other = self.transfer_kassa_id.sudo()
         if not other or not self.date:
             return Day, False, False
         day = Day.search([("kassa_id", "=", other.id), ("date", "=", self.date)], limit=1)
@@ -483,18 +484,19 @@ class KassaOperation(models.Model):
         other kassa's open day, each with its own entry through the company's
         liquidity transfer account; a so'm↔dollar gap goes to exchange gain/loss."""
         self.ensure_one()
-        other_kassa = self.transfer_kassa_id
+        # sudo: the other kassa may belong to a company not ticked in the switcher
+        # (the cashier check below still runs for the real user)
+        other_kassa = self.transfer_kassa_id.sudo()
         if not other_kassa:
             raise UserError(_("Choose the other kassa."))
         if other_kassa == self.kassa_id:
             raise UserError(_("Choose a different kassa: money cannot move to the same kassa."))
-        if other_kassa.company_id != self.company_id:
-            raise UserError(_("Both kassas must belong to the same company."))
+        cross = other_kassa.company_id != self.company_id
         if self.transfer_amount <= 0:
             raise UserError(_("Enter the amount the other kassa receives."))
         company = self.company_id.sudo()
         transfer_account = company.transfer_account_id
-        if not transfer_account:
+        if not transfer_account and not cross:
             raise UserError(_("%(company)s has no internal transfer account (Accounting settings).",
                               company=company.name))
         other_day = self._cst_transfer_day(create=True)
@@ -530,6 +532,17 @@ class KassaOperation(models.Model):
                            "amount_currency": amount_currency,
                            "debit": max(balance, 0.0), "credit": max(-balance, 0.0)})
 
+        if cross:
+            out_move, in_move = self._cst_intercompany_moves(out_op, in_op, out_value, in_value, label, line)
+            (out_move | in_move).with_context(cst_kassa_skip_guard=True).action_post()
+            now = fields.Datetime.now()
+            internal = dict(cst_kassa_internal=True)
+            out_op.with_context(**internal).write({"state": "done", "posted_at": now, "move_id": out_move.id})
+            in_op.with_context(**internal).write({"state": "done", "posted_at": now, "move_id": in_move.id})
+            self.with_context(**internal).transfer_op_id = pair.id
+            (self.day_id.sudo() | other_day.sudo())._cst_refresh()
+            return
+
         Move = self.env["account.move"].sudo().with_company(company)
         out_move = Move.create({
             "move_type": "entry", "journal_id": out_op.journal_id.id, "date": out_op.date,
@@ -564,7 +577,49 @@ class KassaOperation(models.Model):
         out_op.with_context(**internal).write({"state": "done", "posted_at": now, "move_id": out_move.id})
         in_op.with_context(**internal).write({"state": "done", "posted_at": now, "move_id": in_move.id})
         self.with_context(**internal).transfer_op_id = pair.id
-        (self.day_id | other_day)._cst_refresh()
+        (self.day_id.sudo() | other_day.sudo())._cst_refresh()
+
+    def _cst_intercompany_moves(self, out_op, in_op, out_value, in_value, label, line):
+        """Money from a kassa of one company (organization) to a kassa of another.
+
+        No shared transfer account exists between two companies' books, so each
+        side books against the other company's contact: the sender's
+        receivable (the other company now owes it) and the receiver's payable
+        (it owes the sender). Each company keeps its own value of the money, and
+        the akt sverka of either company with the other shows the debt."""
+        giver, taker = out_op.company_id.sudo(), in_op.company_id.sudo()
+        giver_partner = giver.partner_id.commercial_partner_id
+        taker_partner = taker.partner_id.commercial_partner_id
+        receivable = taker_partner.with_company(giver).property_account_receivable_id
+        payable = giver_partner.with_company(taker).property_account_payable_id
+        if not receivable or not payable:
+            raise UserError(_("Receivable/payable accounts between %(a)s and %(b)s are not set.",
+                              a=giver.name, b=taker.name))
+        label = _("%(label)s (%(a)s → %(b)s)", label=label, a=giver.name, b=taker.name)
+
+        def with_partner(command, partner):
+            command[2]["partner_id"] = partner.id
+            return command
+
+        out_move = self.env["account.move"].sudo().with_company(giver).create({
+            "move_type": "entry", "journal_id": out_op.journal_id.id, "date": out_op.date,
+            "ref": f"{out_op.name} — {label}",
+            "line_ids": [
+                line(out_op.kassa_id._cst_money_account("out"), out_op.currency_id,
+                     -out_op.amount, -out_value, label),
+                with_partner(line(receivable, out_op.currency_id, out_op.amount, out_value, label), taker_partner),
+            ],
+        })
+        in_move = self.env["account.move"].sudo().with_company(taker).create({
+            "move_type": "entry", "journal_id": in_op.journal_id.id, "date": in_op.date,
+            "ref": f"{in_op.name} — {label}",
+            "line_ids": [
+                line(in_op.kassa_id._cst_money_account("in"), in_op.currency_id,
+                     in_op.amount, in_value, label),
+                with_partner(line(payable, in_op.currency_id, -in_op.amount, -in_value, label), giver_partner),
+            ],
+        })
+        return out_move, in_move
 
     def _cst_label(self):
         label = self.name

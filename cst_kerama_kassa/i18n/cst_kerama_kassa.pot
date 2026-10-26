@@ -2377,7 +2377,8 @@ msgstr ""
 #: model:ir.model.fields,help:cst_kerama_kassa.field_cst_kassa_operation__transfer_kassa_id
 msgid ""
 "The kassa the money goes to (cash out) or comes from (cash in). Both kassas "
-"need an open cash day on this date."
+"need an open cash day on this date. A kassa of another company "
+"(organization) books the money as a debt between the two companies."
 msgstr ""
 
 #. module: cst_kerama_kassa
@@ -2696,4 +2697,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_day_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_kassa.view_kassa_kanban
 msgid "− Cash out"
+msgstr ""
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "Receivable/payable accounts between %(a)s and %(b)s are not set."
+msgstr ""
+
+#. module: cst_kerama_kassa
+#. odoo-python
+#: code:addons/cst_kerama_kassa/models/kassa_operation.py:0
+msgid "%(label)s (%(a)s → %(b)s)"
 msgstr ""

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The role builder: one screen per role, in four numbered parts
+         (main, apps, permissions, restrictions), with a live preview of the
+         home screen the role's users get. It becomes the first entry of the
+         roles app, so opening the app lands on it. -->
+    <record id="action_role_builder" model="ir.actions.client">
+        <field name="name">Role builder</field>
+        <field name="tag">cst_role_builder</field>
+    </record>
+
+    <record id="access_roles.access_role_menu_root" model="ir.ui.menu">
+        <field name="name">Roles</field>
+        <field name="web_icon">cst_kerama_roles,static/description/icon.png</field>
+    </record>
+    <!-- the app's own screens stay, one level down, for the rare cases the
+         builder does not cover (hiding single buttons, fields, filters) -->
+    <record id="access_roles.access_role_menu" model="ir.ui.menu">
+        <field name="name">Advanced</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <menuitem id="menu_role_builder" name="Role builder"
+              parent="access_roles.access_role_menu_root"
+              action="action_role_builder" sequence="1"/>
+
+    <!-- Odoo's own per-app permission selector replaces the generated group
+         list (see res_groups.py); the role gets a description and a way into
+         the builder. -->
+    <record id="access_role_view_form_builder" model="ir.ui.view">
+        <field name="name">access.role.form.cst.builder</field>
+        <field name="model">access.role</field>
+        <field name="inherit_id" ref="access_roles.access_role_view_form"/>
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <button name="action_open_role_builder" type="object" class="btn-primary"
+                            string="Open in role builder" invisible="not id"/>
+                </header>
+            </sheet>
+            <xpath expr="//sheet/group[1]" position="after">
+                <field name="cst_description" nolabel="1" class="mb-3"
+                       placeholder="Who is this role for? e.g. Sales manager of the Tashkent shop"/>
+            </xpath>
+            <page name="access_rights" position="attributes">
+                <attribute name="string">Permissions</attribute>
+            </page>
+        </field>
+    </record>
+
+    <record id="access_role_view_list_builder" model="ir.ui.view">
+        <field name="name">access.role.list.cst.builder</field>
+        <field name="model">access.role</field>
+        <field name="inherit_id" ref="access_roles.access_role_view_list"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="cst_description" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

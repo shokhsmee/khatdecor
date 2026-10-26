@@ -12,3 +12,7 @@ from . import stock_ledger
 from . import extra_reports
 from . import report_filter_bar
 from . import goods_movement
+from . import stock_scrap
+from . import product_card
+from . import user_activity
+from . import tz_reports

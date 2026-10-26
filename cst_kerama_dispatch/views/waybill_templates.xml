@@ -156,4 +156,92 @@
             </body>
         </html>
     </template>
+
+    <!-- A4 for the loaders: no prices, no barcodes, small logo, blank tick columns -->
+    <template id="waybill_loader" name="Jo'natish: yuk xati yuklovchilar uchun">
+        <html lang="uz">
+            <head>
+                <meta charset="utf-8"/>
+                <title t-esc="receipt_title"/>
+                <style>
+                    @page { size: A4 portrait; margin: 10mm; }
+                    * { box-sizing: border-box; }
+                    body { font-family: Arial, "Liberation Sans", sans-serif; font-size: 13px; color: #000; margin: 0; background: #f0f0f0; }
+                    .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 10mm; background: #fff; }
+                    .head { display: flex; justify-content: space-between; align-items: center; gap: 6mm; border-bottom: 2px solid #000; padding-bottom: 2mm; }
+                    .head img { max-height: 9mm; max-width: 32mm; }
+                    .title { font-size: 18px; font-weight: bold; letter-spacing: 1px; }
+                    .no { text-align: right; }
+                    .info { width: 100%; border-collapse: collapse; margin: 3mm 0 4mm; }
+                    .info td { padding: 2px 4px; vertical-align: top; }
+                    .info td.k { width: 26mm; font-weight: bold; }
+                    .blank { display: inline-block; min-width: 45mm; height: 1.15em; vertical-align: bottom; border-bottom: 1px solid #000; }
+                    table.lines { width: 100%; border-collapse: collapse; }
+                    table.lines th, table.lines td { border: 1px solid #000; padding: 5px 5px; }
+                    table.lines th { background: #eee; }
+                    .r { text-align: right; white-space: nowrap; }
+                    .c { text-align: center; }
+                    .qty { font-size: 15px; font-weight: bold; }
+                    .tick { width: 16mm; }
+                    .note { width: 38mm; }
+                    .muted { color: #444; font-size: 11px; }
+                    tfoot td { font-weight: bold; }
+                    .draft { text-align: center; color: #b00; font-weight: bold; margin-top: 2mm; }
+                    @media print { body { background: #fff; } .page { width: auto; min-height: 0; margin: 0; padding: 0; } }
+                </style>
+            </head>
+            <body onload="window.print()">
+                <div class="page">
+                    <div class="head">
+                        <div t-if="logo"><img t-att-src="logo" alt="logo"/></div>
+                        <div class="title">YUK XATI (yuklovchilar uchun)</div>
+                        <div class="no">№ <b t-esc="dispatch.name"/><br/><t t-esc="date"/></div>
+                    </div>
+                    <div class="draft" t-if="draft">Holat: <t t-esc="state_label"/></div>
+                    <table class="info">
+                        <tr>
+                            <td class="k">Xaridor</td><td t-esc="partner.name"/>
+                            <td class="k">Buyurtma</td><td t-esc="order.name"/>
+                        </tr>
+                        <tr>
+                            <td class="k">Ombor</td><td><t t-esc="dispatch.warehouse_id.name or ''"/> · Reys <b t-esc="dispatch.trip_no"/><t t-if="dispatch.trip_mode == 'partial'"> (qisman)</t><t t-else=""> (oxirgi)</t></td>
+                            <td class="k">Mashina</td><td><t t-if="dispatch.car_model or dispatch.car_number"><t t-esc="dispatch.car_model or ''"/> <b style="white-space:nowrap" t-esc="dispatch.car_number or ''"/></t><span t-else="" class="blank"/></td>
+                        </tr>
+                        <tr>
+                            <td class="k">Yuklovchilar</td><td><span class="blank"/></td>
+                            <td class="k">Haydovchi</td><td><t t-if="dispatch.driver" t-esc="dispatch.driver"/><span t-else="" class="blank"/></td>
+                        </tr>
+                    </table>
+                    <table class="lines">
+                        <thead>
+                            <tr>
+                                <th class="c">№</th><th>Mahsulot</th><th>Xarakteristika</th>
+                                <th class="r">Soni</th><th>O'lch.</th><th class="c tick">Yuklandi</th><th class="note">Izoh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="row">
+                                <td class="c" t-esc="row['no']"/>
+                                <td><t t-esc="row['name']"/><t t-if="row['extra']"> <i>(qo'shimcha)</i></t></td>
+                                <td t-esc="row['char']"/>
+                                <td class="r qty" t-esc="row['qty']"/>
+                                <td t-esc="row['uom']"/>
+                                <td class="tick"/>
+                                <td class="note"/>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Jami: <t t-esc="len(rows)"/> ta mahsulot</td>
+                                <td class="r" t-esc="total_qty"/>
+                                <td/><td/><td/>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="muted" t-if="dispatch.note" style="margin-top:4mm">Izoh: <t t-esc="dispatch.note"/></div>
+                    <div class="muted" style="margin-top:6mm">Chop etildi: <t t-esc="printed_at"/></div>
+                </div>
+            </body>
+        </html>
+    </template>
 </odoo>

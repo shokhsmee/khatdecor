@@ -20,12 +20,12 @@ class ProductProduct(models.Model):
             product.cst_characteristic = ", ".join(values.mapped("name"))
 
     def cst_base_name(self):
-        """«[00011749] Кашмир (115076) ЛДСП» — the product without its
-        characteristic, for sheets that print the characteristic in its own
-        column."""
+        """«Кашмир (115076) ЛДСП» — the product without its characteristic,
+        for sheets that print the characteristic in its own column. No
+        «[00011749]» article in front: the client asked (2026-10-21) for the
+        code to go from every screen; it stays searchable and on the card."""
         self.ensure_one()
-        name = self.product_tmpl_id.name or ""
-        return "[%s] %s" % (self.default_code, name) if self.default_code else name
+        return self.product_tmpl_id.name or ""
 
 
 class StockQuant(models.Model):

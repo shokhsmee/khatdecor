@@ -75,7 +75,8 @@ class SaleOrder(models.Model):
 
             # Pending ("In Process") payments, kept in their own currency so that
             # several pending payments in different currencies are listed apart.
-            pending = invoices.matched_payment_ids.filtered(
+            # sudo: a salesman may read the order without any right on payments
+            pending = invoices.sudo().matched_payment_ids.filtered(
                 lambda p: p.state == "in_process"
             )
             waiting_by_ccy = {}

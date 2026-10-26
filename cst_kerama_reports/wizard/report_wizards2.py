@@ -85,9 +85,9 @@ class CstKpiReportWizard(models.TransientModel):
     _report_xmlid = "action_report_kpi"
 
     computation = fields.Selection(
-        [("kpi_sales", "Sotuv KPI"), ("kpi_production", "Ishbay KPI"),
+        [("shift", "Smena KPI (bo'limlar)"), ("kpi_sales", "Sotuv KPI"), ("kpi_production", "Ishbay KPI"),
          ("kpi_unloading", "Yuk tushirish KPI")],
-        string="KPI turi", required=True, default="kpi_sales")
+        string="KPI turi", required=True, default="shift")
     employee_ids = fields.Many2many("hr.employee", string="Xodimlar")
     include_draft = fields.Boolean(string="Qoralama yozuvlar bilan")
 

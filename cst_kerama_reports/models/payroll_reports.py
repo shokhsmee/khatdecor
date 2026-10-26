@@ -192,6 +192,8 @@ class CstKpiReport(models.AbstractModel):
     @api.model
     def build(self, date_from, date_to, computation="kpi_sales", employee_ids=None,
               company_ids=None, include_draft=False):
+        if computation == "shift":
+            return self._build_shift(date_from, date_to, employee_ids, company_ids)
         Line = self.env["cst.payroll.line"].sudo()
         companies = self._companies(company_ids)
         domain = [
@@ -241,4 +243,46 @@ class CstKpiReport(models.AbstractModel):
                 "employees": rows,
                 "amount": sum(e["amount"] for e in rows),
             })
+        return {"companies": result, "currency": companies[:1]._cst_payroll_currency()}
+
+    @api.model
+    def _build_shift(self, date_from, date_to, employee_ids=None, company_ids=None):
+        """Smena KPI as HR entered it per worker: employee ▸ department ▸ shift,
+        1-sort share as the quantity, KPI as the amount, the penalty as its own
+        negative row — same shape as the other KPI sheets."""
+        companies = self._companies(company_ids)
+        result = []
+        if "cst.production.shift.worker" not in self.env:
+            return {"companies": result, "currency": companies[:1]._cst_payroll_currency()}
+        domain = [("company_id", "in", companies.ids), ("shift_state", "=", "closed"),
+                  ("shift_date", ">=", date_from), ("shift_date", "<=", date_to),
+                  "|", ("kpi_amount", "!=", 0), ("penalty_amount", "!=", 0)]
+        if employee_ids:
+            domain.append(("employee_id", "in", employee_ids))
+        workers = self.env["cst.production.shift.worker"].sudo().search(domain)
+        for company in companies:
+            employees = {}
+            for worker in workers.filtered(lambda w: w.company_id == company):
+                emp = employees.setdefault(worker.employee_id.id, {
+                    "employee": worker.employee_id, "categories": {}, "amount": 0.0})
+                dept = worker.department_id
+                cat = emp["categories"].setdefault(dept.id, {
+                    "category": dept, "products": [], "quantity": 0.0, "amount": 0.0})
+                name = "%s · %s" % (worker.shift_date.strftime("%d.%m.%Y"), worker.template_id.name or "")
+                cat["products"].append({"product": False, "name": name, "characteristic": worker.worked or "",
+                                        "quantity": worker.qty_good, "rate": 0.0, "amount": worker.kpi_amount})
+                if worker.penalty_amount:
+                    cat["products"].append({"product": False, "name": "%s — jarima" % name, "characteristic": "",
+                                            "quantity": 0.0, "rate": 0.0, "amount": -worker.penalty_amount})
+                net = worker.kpi_amount - worker.penalty_amount
+                cat["quantity"] += worker.qty_good
+                cat["amount"] += net
+                emp["amount"] += net
+            if not employees:
+                continue
+            rows = []
+            for emp in sorted(employees.values(), key=lambda e: (e["employee"].name or "").lower()):
+                emp["categories"] = sorted(emp["categories"].values(), key=lambda c: c["category"].name or "")
+                rows.append(emp)
+            result.append({"company": company, "employees": rows, "amount": sum(e["amount"] for e in rows)})
         return {"companies": result, "currency": companies[:1]._cst_payroll_currency()}

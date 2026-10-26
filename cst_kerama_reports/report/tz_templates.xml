@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_purchased_goods" model="ir.actions.report">
+        <field name="name">Sotib olingan mahsulotlar</field>
+        <field name="model">cst.purchased.goods.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_purchased_goods</field>
+        <field name="report_file">cst_kerama_reports.report_purchased_goods</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_purchased_goods_html" model="ir.actions.report">
+        <field name="name">Sotib olingan mahsulotlar (ekranda)</field>
+        <field name="model">cst.purchased.goods.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_purchased_goods</field>
+        <field name="report_file">cst_kerama_reports.report_purchased_goods</field>
+    </record>
+    <record id="action_report_employees" model="ir.actions.report">
+        <field name="name">Ishlayotgan xodimlar</field>
+        <field name="model">cst.employees.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cst_kerama_reports.report_employees</field>
+        <field name="report_file">cst_kerama_reports.report_employees</field>
+        <field name="paperformat_id" ref="paperformat_a4_landscape"/>
+    </record>
+    <record id="action_report_employees_html" model="ir.actions.report">
+        <field name="name">Ishlayotgan xodimlar (ekranda)</field>
+        <field name="model">cst.employees.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">cst_kerama_reports.report_employees</field>
+        <field name="report_file">cst_kerama_reports.report_employees</field>
+    </record>
+
+    <template id="report_purchased_goods">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head">
+                            <h2 t-out="values['title']"/>
+                            <div><span t-out="values['date_from']" t-options="{'widget': 'date'}"/> —
+                                <span t-out="values['date_to']" t-options="{'widget': 'date'}"/></div>
+                        </div>
+                        <table class="cst_rep" t-if="values['layout'] == 'dated'">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th><th style="width:62px;">Sana</th><th>Mahsulot</th>
+                                    <th style="width:90px;">Xarakteristika</th><th style="width:44px;">O'lchov</th>
+                                    <th style="width:70px;">Soni</th><th style="width:70px;">Narxi</th><th style="width:90px;">Summasi</th>
+                                    <th style="width:85px;">Xarajat summasi</th><th style="width:90px;">Jami tannarx</th>
+                                    <th style="width:75px;">Mahsulot tannarxi</th><th style="width:75px;">Tannarx (asosiy val.)</th>
+                                    <th style="width:80px;">Hujjat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-if="not values['companies']"><td colspan="13" class="mid">Tanlangan davrda xarid kirimi yo'q.</td></tr>
+                                <t t-foreach="values['companies']" t-as="c">
+                                    <tr class="cst_company">
+                                        <td colspan="9"><t t-out="c['company'].name"/></td>
+                                        <td class="num"><t t-out="c['total_company']" t-options="{'widget': 'float', 'precision': 2}"/> <t t-out="c['currency'].name"/></td>
+                                        <td colspan="3"/>
+                                    </tr>
+                                    <t t-foreach="c['suppliers']" t-as="sup">
+                                        <tr class="cst_group">
+                                            <td class="mid" t-out="sup_index + 1"/>
+                                            <td colspan="8" t-out="sup['label']"/>
+                                            <td class="num"><t t-out="sup['total_company']" t-options="{'widget': 'float', 'precision': 2}"/> <t t-out="c['currency'].name"/></td>
+                                            <td colspan="3"/>
+                                        </tr>
+                                        <t t-foreach="sup['currencies']" t-as="blk">
+                                            <tr class="cst_sub">
+                                                <td colspan="5" class="mid" t-out="blk['currency'].name"/>
+                                                <td class="num" t-out="blk['totals']['qty']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td/>
+                                                <td class="num" t-out="blk['totals']['amount']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num" t-out="blk['totals']['landed']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num" t-out="blk['totals']['total']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td colspan="3"/>
+                                            </tr>
+                                            <tr t-foreach="blk['rows']" t-as="r">
+                                                <td class="mid" t-out="r_index + 1"/>
+                                                <td class="mid" t-out="r['date']" t-options="{'widget': 'date'}"/>
+                                                <td t-out="r['label']"/>
+                                                <td t-out="r['characteristic']"/>
+                                                <td class="mid" t-out="r['uom']"/>
+                                                <td class="num" t-out="r['qty']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="r['price']" t-options="{'widget': 'float', 'precision': 4}"/>
+                                                <td class="num" t-out="r['amount']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num"><span t-if="r['landed']" t-out="r['landed']" t-options="{'widget': 'float', 'precision': 2}"/></td>
+                                                <td class="num" t-out="r['total']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <td class="num" t-out="r['unit_cost']" t-options="{'widget': 'float', 'precision': 4}"/>
+                                                <td class="num" t-out="r['unit_cost_company']" t-options="{'widget': 'float', 'precision': 4}"/>
+                                                <td class="mid" t-out="r['doc']"/>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                        <table class="cst_rep" t-else="">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th><th>Mahsulot</th><th style="width:90px;">Xarakteristika</th>
+                                    <th style="width:44px;">O'lchov</th><th style="width:70px;">Soni</th>
+                                    <th style="width:80px;">O'rtacha narx</th><th style="width:95px;">Xarid summasi</th>
+                                    <th style="width:90px;">Qo'shimcha xarajat</th><th style="width:95px;">Jami tannarx</th>
+                                    <th style="width:80px;">1 birlik tannarxi</th><th style="width:44px;">Hujjat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-if="not values['companies']"><td colspan="11" class="mid">Tanlangan davrda xarid kirimi yo'q.</td></tr>
+                                <t t-foreach="values['companies']" t-as="c">
+                                    <t t-set="cur" t-value="c['currency']"/>
+                                    <tr class="cst_company">
+                                        <td colspan="4"><t t-out="c['company'].name"/> (<t t-out="cur.name"/>)</td>
+                                        <td/><td/>
+                                        <td class="num" t-out="c['totals']['amount']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="c['totals']['landed']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td class="num" t-out="c['totals']['total']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        <td/><td/>
+                                    </tr>
+                                    <t t-foreach="c['groups']" t-as="g">
+                                        <tr class="cst_group">
+                                            <td colspan="4" t-out="g['label']"/>
+                                            <td class="num" t-out="g['totals']['qty']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td/>
+                                            <td class="num" t-out="g['totals']['amount']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="g['totals']['landed']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="g['totals']['total']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td/><td/>
+                                        </tr>
+                                        <tr t-foreach="g['rows']" t-as="r">
+                                            <td class="mid" t-out="r_index + 1"/>
+                                            <td t-out="r['label']"/>
+                                            <td t-out="r['characteristic']"/>
+                                            <td class="mid" t-out="r['uom']"/>
+                                            <td class="num" t-out="r['qty']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="r['price']" t-options="{'widget': 'float', 'precision': 4}"/>
+                                            <td class="num" t-out="r['amount']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num"><span t-if="r['landed']" t-out="r['landed']" t-options="{'widget': 'float', 'precision': 2}"/></td>
+                                            <td class="num" t-out="r['total']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <td class="num" t-out="r['unit_cost']" t-options="{'widget': 'float', 'precision': 4}"/>
+                                            <td class="mid" t-out="r['docs']"/>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                        <p t-if="values['layout'] == 'dated'" style="font-size:9px;color:#666;margin-top:6px;">Narx — xarid buyurtmasi narxi (QQSsiz, chegirmadan keyin) xarid qilingan valyutada.
+                            «Xarajat summasi» — tasdiqlangan kirim xarajatlari (transport, bojxona …) shu qatorga taqsimlangan qismi, kirim kunidagi kurs bo'yicha shu valyutada;
+                            «Tannarx (asosiy val.)» — 1 birlik tannarxi kompaniya valyutasida. Ta'minotchi jami — kompaniya valyutasida. Ta'minotchiga qaytarilgani ayrilgan.</p>
+                        <p t-else="" style="font-size:9px;color:#666;margin-top:6px;">Xarid buyurtmasi narxi (QQSsiz, chegirmadan keyin), kirim kunidagi kurs bo'yicha
+                            kompaniya valyutasida. «Qo'shimcha xarajat» — tasdiqlangan kirim xarajatlari (transport, bojxona …) shu mahsulotga taqsimlangan qismi.
+                            Ta'minotchiga qaytarilgani ayrilgan.</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_employees">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="values" t-value="doc._report_values()"/>
+                <t t-set="pay" t-value="values['show_pay']"/>
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-call="cst_kerama_reports.report_style"/>
+                        <style>.cst_rep td.emp_no { color: #b42318; } .cst_rep td.emp_yes { color: #067647; }</style>
+                        <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
+                        <div class="cst_head">
+                            <h2 t-out="values['title']"/>
+                            <div>Kelib-ketish: <span t-out="values['day']" t-options="{'widget': 'date'}"/> (Face ID)</div>
+                        </div>
+                        <table class="cst_rep">
+                            <thead>
+                                <tr>
+                                    <th style="width:26px;">№</th><th>F.I.Sh.</th><th style="width:130px;">Lavozimi</th>
+                                    <th style="width:60px;">Tabel №</th><th style="width:78px;">Shtat</th><th style="width:72px;">Ishga kirgan</th>
+                                    <th style="width:95px;">Telefon</th>
+                                    <th t-if="pay" style="width:80px;">Oylik turi</th><th t-if="pay" style="width:80px;">Maosh</th>
+                                    <th style="width:56px;">Keldi</th><th style="width:56px;">Ketdi</th><th style="width:50px;">Soat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="width" t-value="12 if pay else 10"/>
+                                <tr t-if="not values['companies']"><td t-att-colspan="width" class="mid">Xodim topilmadi.</td></tr>
+                                <t t-foreach="values['companies']" t-as="c">
+                                    <tr class="cst_company"><td t-att-colspan="width">
+                                        <t t-out="c['company'].name"/> — <t t-out="c['count']"/> xodim, kelgan: <t t-out="c['present']"/></td></tr>
+                                    <t t-foreach="c['groups']" t-as="g">
+                                        <tr class="cst_group"><td t-att-colspan="width">
+                                            <t t-out="g['label']"/> — <t t-out="len(g['rows'])"/> (kelgan <t t-out="g['present']"/>)</td></tr>
+                                        <tr t-foreach="g['rows']" t-as="r">
+                                            <td class="mid" t-out="r_index + 1"/>
+                                            <td t-out="r['name']"/>
+                                            <td t-out="r['job']"/>
+                                            <td class="mid" t-out="r['number']"/>
+                                            <td class="mid" t-out="r['staff_label']"/>
+                                            <td class="mid"><span t-if="r['hired']" t-out="r['hired']" t-options="{'widget': 'date'}"/></td>
+                                            <td t-out="r['phone']"/>
+                                            <td t-if="pay" t-out="r['scheme']"/>
+                                            <td t-if="pay" class="num"><span t-if="r['wage']" t-out="r['wage']" t-options="{'widget': 'float', 'precision': 2}"/></td>
+                                            <td t-if="r['came']" class="mid emp_yes" t-out="r['check_in']"/>
+                                            <td t-else="" class="mid emp_no">kelmadi</td>
+                                            <td class="mid" t-out="r['check_out']"/>
+                                            <td class="num"><span t-if="r['hours']" t-out="r['hours']" t-options="{'widget': 'float_time'}"/></td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                        <t t-set="tot" t-value="values['totals']"/>
+                        <table class="cst_rep" style="width:auto;margin-top:12px;" t-if="values['companies']">
+                            <tr><td style="min-width:260px;">Jami ishlaydigan xodimlar soni</td><td class="num" style="min-width:70px;"><b t-out="tot['count']"/></td></tr>
+                            <tr><td>Ro'yxatga olingan xodimlar (shtat)</td><td class="num" t-out="tot['staff']"/></tr>
+                            <tr><td>Ro'yxatga olinmagan xodimlar (shtatdan tashqari)</td><td class="num" t-out="tot['non_staff']"/></tr>
+                            <tr t-if="tot['unset']"><td>Shtat holati belgilanmagan</td><td class="num emp_no" t-out="tot['unset']"/></tr>
+                            <tr><td>Bugun kelgan (Face ID)</td><td class="num" t-out="tot['present']"/></tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

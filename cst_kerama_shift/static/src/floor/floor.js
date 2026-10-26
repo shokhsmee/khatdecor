@@ -239,10 +239,40 @@ export class ShiftFloor extends Component {
         this.state.selectedLineId = line.id;
         // what is left of the order fills 1-sort; 2-sort and brak come out of it
         const total = Math.max(0, line.final ? Math.min(line.remaining, line.order_left) : line.remaining);
+        // the crew chosen at «Ishni boshlash» comes along; it can be changed here
+        const crew = (line.employee_ids && line.employee_ids.length) ? line.employee_ids : (this.shift.employee_ids || []);
         this.openDialog("entry", { line, total, good: total || "", second: "", scrap: "", note: "", opts: null,
-            second_product_id: "", material_product_id: "", material_qty: "" });
+            second_product_id: "", material_product_id: "", material_qty: "",
+            employee_ids: crew.slice(), consume: [], showConsume: false, showCrew: false });
         const form = this.state.form;
-        this.orm.call("cst.production.floor", "entry_options", [line.id]).then((opts) => { form.opts = opts; });
+        this.orm.call("cst.production.floor", "entry_options", [line.id]).then((opts) => {
+            form.opts = opts;
+            form.consume = (opts.consumption || []).map((c) => ({ ...c, norm: 0, qty: 0, touched: false }));
+            this.refreshConsume();
+        });
+    }
+    /** Raw material for the pieces typed: the bill's norm, unless the manager
+     *  counted it himself (one обой printed instead of two). */
+    refreshConsume() {
+        const f = this.state.form;
+        const total = Number(f.total || 0);
+        for (const c of f.consume || []) {
+            c.norm = Math.round(c.per_unit * total * 10000) / 10000;
+            if (!c.touched) c.qty = c.norm;
+        }
+    }
+    onConsumeInput(row, ev) {
+        row.qty = ev.target.value;
+        row.touched = String(row.qty) !== "" && Number(row.qty) !== row.norm;
+    }
+    resetConsume(row) {
+        row.touched = false;
+        row.qty = row.norm;
+    }
+    get consumeChanged() { return (this.state.form.consume || []).filter((c) => c.touched).length; }
+    get crewNames() {
+        const ids = new Set(this.state.form.employee_ids || []);
+        return this.shiftEmployees.filter((e) => ids.has(e.id)).map((e) => e.name);
     }
     /** 2-sort or brak typed: 1-sort is what is left of the total. 1-sort typed
      *  by hand: that becomes the new total. */
@@ -257,6 +287,7 @@ export class ShiftFloor extends Component {
             f.good = Math.max(0, Number(f.total || 0) - second - scrap);
             f.total = Number(f.good) + second + scrap;
         }
+        this.refreshConsume();
     }
     async confirmEntry(finish = false) {
         const f = this.state.form;
@@ -264,12 +295,15 @@ export class ShiftFloor extends Component {
             this.notification.add("Material braki miqdorini kiriting.", { type: "warning" });
             return;
         }
-        if (finish === true && !Number(f.good || 0) && !Number(f.second || 0) && !Number(f.scrap || 0) && !f.material_product_id) {
-            await this.call("line_action", [f.line.id, "finish"]);
+        if ((f.consume || []).some((c) => c.touched && (String(c.qty) === "" || Number(c.qty) < 0))) {
+            this.notification.add("Xomashyo sarfini to'g'ri kiriting.", { type: "warning" });
             return;
         }
+        const consumption = (f.consume || []).filter((c) => c.touched)
+            .map((c) => ({ product_id: c.id, qty: Number(c.qty || 0), norm: c.norm }));
         await this.call("add_entry", [f.line.id, Number(f.good || 0), Number(f.second || 0), Number(f.scrap || 0), f.note || "",
-            Number(f.second_product_id) || false, Number(f.material_product_id) || false, Number(f.material_qty || 0), finish === true]);
+            Number(f.second_product_id) || false, Number(f.material_product_id) || false, Number(f.material_qty || 0), finish === true,
+            f.employee_ids || [], consumption]);
     }
 
     async lineAction(line, action) {
