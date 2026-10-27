@@ -22,3 +22,8 @@ class SaleOrder(models.Model):
                 "default_order_id": self.id,
             },
         }
+
+    def _action_cancel(self):
+        return super(
+            SaleOrder, self.with_context(cst_cancel_sudo_documents=True)
+        )._action_cancel()
