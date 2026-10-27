@@ -8,11 +8,14 @@ class IrUiMenu(models.Model):
     def _visible_menu_ids(self, debug=False):
         """A role with a «shown menus» list sees only those menus, what lies
         under them and the parents leading to them -- every other app is
-        hidden, while the role's groups stay as they are."""
+        hidden, while the role's groups stay as they are. Someone put on a
+        cash desk always gets the Kassa app, whatever the role lists."""
         visible = super()._visible_menu_ids(debug=debug)
         shown = self.env.user.access_role_id.role_management_id.cst_shown_menu_ids
         if not shown:
             return visible
+        if self.env["cst.kassa"].sudo().search_count([("user_ids", "in", self.env.uid)], limit=1):
+            shown |= self.env.ref("cst_kerama_kassa.menu_kassa_root")
         keep = set()
         for menu in shown.sudo():
             keep.update(int(i) for i in menu.parent_path.strip("/").split("/"))

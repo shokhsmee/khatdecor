@@ -166,7 +166,8 @@ class KassaPartnerBalance(models.Model):
         """New client payment on an open cash day of this company."""
         self.ensure_one()
         days = self.env["cst.kassa.day"].search([("state", "=", "open"), ("company_id", "=", self.company_id.id)])
-        days = days.filtered(lambda d: not d.kassa_id.user_ids or self.env.user in d.kassa_id.user_ids)
+        manager = self.env.user.has_group("cst_kerama_kassa.group_kassa_manager")
+        days = days.filtered(lambda d: manager or self.env.user in d.kassa_id.user_ids)
         if not days:
             raise UserError(_("No cash day is open in %(company)s. Open the day from the Kassa screen first.",
                               company=self.company_id.name))

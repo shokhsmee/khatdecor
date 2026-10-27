@@ -27,7 +27,7 @@ class Kassa(models.Model):
     account_id = fields.Many2one(related="journal_id.default_account_id", string="Cash Account")
     user_ids = fields.Many2many(
         "res.users", string="Cashiers",
-        help="Users who work with this cash desk. Leave empty to allow every cashier.",
+        help="Users who work with this cash desk. Only they (and Kassa managers) see it.",
     )
     day_ids = fields.One2many("cst.kassa.day", "kassa_id", string="Cash Days")
     current_day_id = fields.Many2one("cst.kassa.day", compute="_compute_current_day")
@@ -41,6 +41,25 @@ class Kassa(models.Model):
     today_rate = fields.Float(compute="_compute_current_day", digits=(16, 2), string="Today's dollar rate")
 
     _journal_uniq = models.Constraint("unique(journal_id)", "This journal already has a cash desk.")
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        kassas = super().create(vals_list)
+        kassas._cst_grant_cashier_group()
+        return kassas
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "user_ids" in vals:
+            self._cst_grant_cashier_group()
+        return res
+
+    def _cst_grant_cashier_group(self):
+        """Whoever is put on a cash desk can work it, whatever his role."""
+        group = self.env.ref("cst_kerama_kassa.group_kassa_user")
+        missing = self.user_ids.filtered(lambda u: group not in u.all_group_ids)
+        if missing:
+            missing.sudo().write({"group_ids": [(4, group.id)]})
 
     @api.depends("journal_id.currency_id", "journal_id.company_id.currency_id")
     def _compute_currency_id(self):
@@ -161,7 +180,7 @@ class Kassa(models.Model):
     def _cst_check_cashier(self):
         self.ensure_one()
         user = self.env.user
-        if self.user_ids and user not in self.user_ids \
+        if user not in self.user_ids \
                 and not user.has_group("cst_kerama_kassa.group_kassa_manager"):
             raise UserError(_("You are not a cashier of %(kassa)s.", kassa=self.display_name))
 
