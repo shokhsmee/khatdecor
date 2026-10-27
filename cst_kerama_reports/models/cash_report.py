@@ -10,8 +10,9 @@ DIRECT_COST_TYPES = ("expense_direct_cost",)
 class CstCashReport(models.AbstractModel):
     """«Pullar harakati» — every cash box and bank account over a period.
 
-    A journal's money lives on its default account; the report reads that
-    account's posted journal items. Amounts are in the journal's own currency
+    A journal's money lives on its default account — and, for a bank, on the
+    outstanding receipt/payment accounts its payments land on until the
+    statement clears them; the report reads those posted journal items. Amounts are in the journal's own currency
     (a USD cash box is read in dollars, the so'm box in so'm) — the company
     currency figure sits next to it so the boxes can still be added up.
     """
@@ -28,6 +29,25 @@ class CstCashReport(models.AbstractModel):
         if journal_ids:
             domain.append(("id", "in", journal_ids))
         return self.env["account.journal"].search(domain, order="company_id, type desc, sequence, id")
+
+    @api.model
+    def _money_domain(self, journals):
+        """Journal items holding these journals' money, as the kassa counts it.
+
+        The outstanding accounts are shared by every bank, so only the items of
+        the journal itself are taken from them."""
+        parts = []
+        for journal in journals:
+            methods = journal.inbound_payment_method_line_ids | journal.outbound_payment_method_line_ids
+            outstanding = methods.payment_account_id - journal.default_account_id
+            part = [("account_id", "=", journal.default_account_id.id)]
+            if outstanding:
+                part = ["|"] + part + ["&", ("account_id", "in", outstanding.ids),
+                                       ("journal_id", "=", journal.id)]
+            parts.append(part)
+        if not parts:
+            return [("id", "=", False)]
+        return ["|"] * (len(parts) - 1) + [leaf for part in parts for leaf in part]
 
     @api.model
     def _amount(self, journal, line):
@@ -50,7 +70,7 @@ class CstCashReport(models.AbstractModel):
     @api.model
     def journal_block(self, journal, date_from, date_to, detail=True):
         Line = self.env["account.move.line"].sudo()
-        base = [("account_id", "=", journal.default_account_id.id),
+        base = self._money_domain(journal) + [
                 ("parent_state", "=", "posted"),
                 ("company_id", "=", journal.company_id.id)]
         opening = opening_cc = 0.0
@@ -243,8 +263,7 @@ class CstDirectorDashboard(models.AbstractModel):
         Cash = self.env["cst.cash.report"]
         journals = Cash._journals(company_ids=companies.ids)
         Line = self.env["account.move.line"].sudo()
-        accounts = journals.default_account_id
-        base = [("account_id", "in", accounts.ids), ("parent_state", "=", "posted")]
+        base = Cash._money_domain(journals) + [("parent_state", "=", "posted")]
 
         def flows(date_from, date_to):
             inflow = outflow = 0.0
@@ -287,14 +306,12 @@ class CstDirectorDashboard(models.AbstractModel):
     def _cash_series(self, journals, since, today):
         """Daily closing cash, all boxes together, in company currency."""
         Line = self.env["account.move.line"].sudo()
-        accounts = journals.default_account_id
+        base = self.env["cst.cash.report"]._money_domain(journals) + [("parent_state", "=", "posted")]
         opening = Line._read_group(
-            [("account_id", "in", accounts.ids), ("parent_state", "=", "posted"),
-             ("date", "<", since)], aggregates=["balance:sum"])[0][0] or 0.0
+            base + [("date", "<", since)], aggregates=["balance:sum"])[0][0] or 0.0
         per_day = defaultdict(lambda: [0.0, 0.0])
         for row in Line.search_read(
-                [("account_id", "in", accounts.ids), ("parent_state", "=", "posted"),
-                 ("date", ">=", since), ("date", "<=", today)], ["date", "balance"]):
+                base + [("date", ">=", since), ("date", "<=", today)], ["date", "balance"]):
             bucket = per_day[row["date"]]
             if row["balance"] > 0:
                 bucket[0] += row["balance"]

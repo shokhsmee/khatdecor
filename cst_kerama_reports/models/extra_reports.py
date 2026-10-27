@@ -383,8 +383,8 @@ class CstBankFeeReport(models.AbstractModel):
                     ("parent_state", "=", "posted"), ("journal_id", "=", journal.id),
                     ("account_id.account_type", "in", ("expense", "expense_depreciation", "expense_direct_cost")),
                     ("date", ">=", date_from), ("date", "<=", date_to)], order="date, id")
-                turnover = Line.search_read([
-                    ("parent_state", "=", "posted"), ("account_id", "=", journal.default_account_id.id),
+                turnover = Line.search_read(self.env["cst.cash.report"]._money_domain(journal) + [
+                    ("parent_state", "=", "posted"),
                     ("date", ">=", date_from), ("date", "<=", date_to)], ["date", "balance"])
                 months = {}
                 for row in turnover:
