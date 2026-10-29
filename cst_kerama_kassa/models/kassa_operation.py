@@ -386,6 +386,17 @@ class KassaOperation(models.Model):
             if op.amount <= 0:
                 raise ValidationError(_("The amount must be greater than zero."))
 
+    @api.model
+    def default_get(self, fields_list):
+        # date/time fields the client adds with Studio (an operation time)
+        # open on the current moment instead of an empty picker
+        res = super().default_get(fields_list)
+        for fname in fields_list:
+            field = self._fields.get(fname)
+            if field and field.type == "datetime" and field.manual and not res.get(fname):
+                res[fname] = fields.Datetime.now()
+        return res
+
     @api.model_create_multi
     def create(self, vals_list):
         ops = super().create(vals_list)

@@ -37,15 +37,26 @@ class CstPartnerStatement(models.AbstractModel):
         The ranks are maintained by Odoo itself as documents are confirmed, so
         no one has to tag a counterparty by hand. A *3-shaxs* is what is left:
         someone the company owes or is owed by without ever having sold to or
-        bought from them — founders, staff advances, loans.
+        bought from them — founders, staff advances, loans — plus every contact
+        carrying the «3-shaxslar» tag, whatever its ranks.
         """
+        tagged = self._third_party_tag().ids
         if kind == "supplier":
-            return [("supplier_rank", ">", 0)]
+            return [("supplier_rank", ">", 0), ("category_id", "not in", tagged)]
         if kind == "third_party":
-            return [("supplier_rank", "=", 0), ("customer_rank", "=", 0)]
+            # the «3-shaxslar» tag wins over the ranks: a founder we once
+            # bought something from is still a third party
+            return ["|", ("category_id", "in", tagged),
+                    "&", ("supplier_rank", "=", 0), ("customer_rank", "=", 0)]
         if kind == "customer":
-            return [("customer_rank", ">", 0)]
+            return [("customer_rank", ">", 0), ("category_id", "not in", tagged)]
         return []
+
+    @api.model
+    def _third_party_tag(self):
+        """The contact tag that makes a counterparty a *3-shaxs*."""
+        return self.env.ref("cst_kerama_reports.partner_category_third_party",
+                            raise_if_not_found=False) or self.env["res.partner.category"]
 
     @api.model
     def kind_label(self, kind):

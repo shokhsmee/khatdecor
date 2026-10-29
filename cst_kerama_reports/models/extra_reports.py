@@ -395,7 +395,9 @@ class CstBankFeeReport(models.AbstractModel):
                         m["inflow"] += row["balance"]
                     else:
                         m["outflow"] += -row["balance"]
+                ops = self.env["cst.cash.report"]._operations(fees.move_id)
                 for line in fees:
+                    op = ops.get(line.move_id.id)
                     key = line.date.strftime("%Y-%m")
                     m = months.setdefault(key, {"key": key, "label": line.date.strftime("%m.%Y"),
                                                 "fees": 0.0, "inflow": 0.0, "outflow": 0.0, "rows": []})
@@ -404,8 +406,11 @@ class CstBankFeeReport(models.AbstractModel):
                         "line": line, "date": line.date,
                         "label": " · ".join(p for p in (
                             line.move_id.name if line.move_id.name != "/" else "",
-                            line.partner_id.display_name or "", line.name or line.move_id.ref or "") if p),
-                        "account": "%s %s" % (line.account_id.with_company(company).code or "", line.account_id.name),
+                            line.partner_id.display_name or "",
+                            (op.memo or "") if op else (line.name or line.move_id.ref or "")) if p),
+                        # a kassa expense: its modda says more than the account
+                        "account": (op.category_id.name if op and op.category_id else
+                                    "%s %s" % (line.account_id.with_company(company).code or "", line.account_id.name)),
                         "amount": line.balance or 0.0,
                     })
                 months = [m for m in sorted(months.values(), key=lambda m: m["key"]) if m["fees"] or m["rows"]]

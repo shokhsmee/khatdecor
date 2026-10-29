@@ -129,7 +129,10 @@ class CstProductionFloor(models.AbstractModel):
                 "state_label": {"open": "Faol", "closed": "Yopilgan", "draft": "Qoralama"}.get(
                     shift.state if shift else "", "Kutilmoqda"),
             })
-        lines_today = shifts_today.line_ids
+        # the bottom of the screen (history, plan tiles) is about the shift that
+        # is running: a 2-smena does not see the 1-smena's results as its own
+        shown = open_shift if open_shift else shifts_today
+        lines_today = shown.line_ids
         planned = sum(lines_today.mapped("planned_qty"))
         good = sum(lines_today.mapped("qty_good"))
         second = sum(lines_today.mapped("qty_second"))
@@ -140,6 +143,8 @@ class CstProductionFloor(models.AbstractModel):
                 "id": department.id, "name": department.name, "code": department.code,
                 "output_kind": dict(department._fields["output_kind"].selection)[department.output_kind],
                 "today": fields.Date.to_string(today), "today_label": today.strftime("%d.%m.%Y"),
+                "period_label": ("%s · %s" % (open_shift.template_id.name, today.strftime("%d.%m.%Y"))
+                                 if open_shift and open_shift.template_id else today.strftime("%d.%m.%Y")),
                 "is_today": today == self._today(department),
                 "lines": [{"id": w.id, "name": w.name} for w in department.workcenter_ids],
             },
@@ -157,7 +162,7 @@ class CstProductionFloor(models.AbstractModel):
             },
             "queue": self._queue(department, open_shift),
             "materials": self._materials(department, open_shift),
-            "history": self._history(department, shifts_today),
+            "history": self._history(department, shown),
         }
 
     def _employees_data(self, department, shift):
@@ -593,14 +598,19 @@ class CstProductionFloor(models.AbstractModel):
 
     @api.model
     def add_entry(self, line_id, good, second, scrap, note=None, second_product_id=None,
-                  material_product_id=None, material_qty=0, finish=False, employee_ids=None, consumption=None):
+                  material_product_id=None, material_qty=0, finish=False, employee_ids=None, consumption=None,
+                  increase_order=False):
         """Book one count; with ``finish`` the order is also done for this
         shift, in the same transaction, so a failed finish leaves no half entry.
 
         ``employee_ids``: the crew as ticked in the dialog (it starts as the one
         chosen at «Ishni boshlash»). ``consumption``: [{product_id, qty, norm}]
-        raw material actually used, only the rows that differ from the norm."""
+        raw material actually used, only the rows that differ from the norm.
+        ``increase_order``: the manager confirmed that more was made than the
+        order has left — the order quantity grows first."""
         line = self.env["cst.production.shift.line"].browse(int(line_id))
+        if increase_order:
+            line._cst_increase_order(float(good or 0) + float(second or 0) + float(scrap or 0))
         if employee_ids is not None and employee_ids is not False:
             line._cst_set_crew(self._crew(line.department_id, employee_ids, line.shift_id))
         consume = []

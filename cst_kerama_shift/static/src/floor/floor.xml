@@ -196,7 +196,7 @@
 
                 <!-- history -->
                 <section class="cst_sf_card">
-                    <h3 class="cst_sf_h3">Ishlab chiqarish tarixi <small class="muted"><t t-esc="d.department.today_label"/></small></h3>
+                    <h3 class="cst_sf_h3">Ishlab chiqarish tarixi <small class="muted"><t t-esc="d.department.period_label"/></small></h3>
                     <table class="cst_sf_table">
                         <thead><tr><th>Vaqt</th><th>Smena</th><th>Kim</th><th>Buyurtma</th><th>Mahsulot</th><th>Liniya</th><th class="n">1-sort</th><th class="n">2-sort</th><th class="n">Brak</th><th>Eslatma</th></tr></thead>
                         <tbody>
@@ -204,12 +204,12 @@
                                 <td t-esc="h.time"/><td class="muted" t-esc="h.shift"/><td t-esc="h.user"/><td t-esc="h.mo"/><td t-esc="h.product"/><td t-esc="h.workcenter"/>
                                 <td class="n" t-esc="num(h.good)"/><td class="n second" t-esc="num(h.second)"/><td class="n scrap" t-esc="num(h.scrap)"/><td class="muted"><t t-esc="h.note"/><div t-if="h.second_product" class="small">2-sort → <t t-esc="h.second_product"/></div><div t-if="h.material" class="small scrap">Material braki: <t t-esc="h.material"/></div></td>
                             </tr>
-                            <tr t-if="!d.history.length"><td colspan="10" class="cst_sf_empty"><t t-esc="d.department.today_label"/> uchun hali natija kiritilmagan.</td></tr>
+                            <tr t-if="!d.history.length"><td colspan="10" class="cst_sf_empty"><t t-esc="d.department.period_label"/> uchun hali natija kiritilmagan.</td></tr>
                         </tbody>
                     </table>
                 </section>
                 <section class="cst_sf_tiles">
-                    <div class="cst_sf_tile t-plan"><div class="k">Reja (dona) · <t t-esc="d.department.today_label"/></div><div class="v" t-esc="num(d.kpis.planned)"/><div class="s"><t t-esc="d.kpis.orders"/> ta buyurtma</div></div>
+                    <div class="cst_sf_tile t-plan"><div class="k">Reja (dona) · <t t-esc="d.department.period_label"/></div><div class="v" t-esc="num(d.kpis.planned)"/><div class="s"><t t-esc="d.kpis.orders"/> ta buyurtma</div></div>
                     <div class="cst_sf_tile t-good"><div class="k">Ishlab chiqarilgan (1-sort)</div><div class="v" t-esc="num(d.kpis.good)"/><div class="s"><t t-esc="pct(d.kpis.plan_pct)"/> bajarildi</div></div>
                     <div class="cst_sf_tile t-second"><div class="k">2-sort (brak toifasi)</div><div class="v" t-esc="num(d.kpis.second)"/><div class="s" t-esc="pct(d.kpis.second_pct)"/></div>
                     <div class="cst_sf_tile t-scrap"><div class="k">Brak (noto'liq)</div><div class="v" t-esc="num(d.kpis.scrap)"/><div class="s" t-esc="pct(d.kpis.scrap_pct)"/></div>
@@ -251,7 +251,7 @@
                     <button t-if="shift and canAct" type="button" class="cst_sf_btn cst_sf_btn--ghost w-100 mt-2" t-on-click="startEmployees"><i class="fa fa-users me-1"/>Xodimlarni boshqarish</button>
                 </section>
                 <section class="cst_sf_card">
-                    <div class="cst_sf_h4"><i class="fa fa-bullseye me-1"/>Reja · <t t-esc="d.department.today_label"/></div>
+                    <div class="cst_sf_h4"><i class="fa fa-bullseye me-1"/>Reja · <t t-esc="d.department.period_label"/></div>
                     <div class="row-kv"><span>Jami reja</span><b><t t-esc="num(d.kpis.planned)"/> dona</b></div>
                     <div class="row-kv"><span>Jami buyurtma</span><b><t t-esc="d.kpis.orders"/> ta</b></div>
                     <div class="row-kv"><span>Bajarilishi kerak</span><b><t t-esc="num(d.kpis.remaining)"/> dona</b></div>

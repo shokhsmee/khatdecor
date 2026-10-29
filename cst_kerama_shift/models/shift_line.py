@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -154,6 +156,31 @@ class CstProductionShiftLine(models.Model):
                     "Ortiqcha chiqarilgan bo'lsa avval buyurtma miqdorini oshiring.",
                     order=line.production_id.name,
                     qty=line.production_id.product_qty - line.production_id.qty_produced, over=-left))
+
+    def _cst_increase_order(self, total):
+        """More pieces came off the line than the order has left (the manager
+        added an extra batch to a sales request): the order grows to take them,
+        its raw material with it, before the count is booked."""
+        self.ensure_one()
+        if not self.is_final_operation:
+            return
+        mo = self.production_id
+        extra = total - self._order_remaining()
+        if mo.product_uom_id.compare(extra, 0.0) <= 0:
+            return
+        if mo.state not in ("confirmed", "progress", "to_close"):
+            raise UserError(_("%s: buyurtma holati miqdorni o'zgartirishga imkon bermaydi.", mo.name))
+        self.check_access("write")
+        old = mo.product_qty
+        # sudo: the shift manager may run the line without rights on the order's wizard
+        self.env["change.production.qty"].sudo().create({
+            "mo_id": mo.id, "product_qty": old + extra,
+        }).change_prod_qty()
+        if self.product_uom_id.compare(self.planned_qty, self.qty_good + total) < 0:
+            self.sudo().planned_qty = self.qty_good + total
+        mo.sudo().message_post(body=_(
+            "Buyurtma miqdori smena natijasi bo'yicha oshirildi: %(old)s → %(new)s (%(shift)s).",
+            old=old, new=mo.product_qty, shift=self.shift_id.display_name))
 
     def _check_open(self):
         for line in self:
@@ -321,11 +348,100 @@ class CstProductionShiftLine(models.Model):
             ("scrap_id", "in", self.scrap_ids.ids), ("id", "in", self.second_grade_move_ids.ids),
         ])
         if moves:
+            safe = self._cst_backdate_moment(moves, moment)
+            if safe != moment:
+                # the material reached the line only after the shift (moved in
+                # the next morning): dated at the shift end the stock would read
+                # below zero in between — the results go to when it arrived
+                mo.sudo().message_post(body=_(
+                    "Natija smena oxiriga (%(moment)s) sanalmadi: xomashyo omborga smenadan keyin kelgan, "
+                    "aks holda o'sha paytdagi qoldiq minus bo'lib ko'rinardi. Harakatlar %(safe)s bilan sanaldi.",
+                    moment=fields.Datetime.context_timestamp(self, moment).strftime("%d.%m.%Y %H:%M"),
+                    safe=fields.Datetime.context_timestamp(self, safe).strftime("%d.%m.%Y %H:%M")))
+                moment = safe
+            if moment >= since:
+                return
+        if moves:
             moves.write({"date": moment})
             moves.move_line_ids.write({"date": moment})
         if mo.state == "done" and mo.date_finished and mo.date_finished >= since:
             mo.sudo().write({"date_finished": moment})
         self.scrap_ids.filtered(lambda s: s.date_done and s.date_done >= since).sudo().write({"date_done": moment})
+
+    @api.model
+    def _cst_backdate_moment(self, moves, moment, until=None):
+        """The earliest time from ``moment`` on at which these moves can be
+        dated without a negative balance: ``moment`` itself, or just after a
+        later arrival of what they take, or — failing that — their real time."""
+        if self._cst_backdate_ok(moves, moment, until=until):
+            return moment
+        real = until or max(moves.move_line_ids.mapped("date") or [moment])
+        out = moves.move_line_ids.filtered(
+            lambda l: l.location_id.usage == "internal" and l.location_id != l.location_dest_id)
+        if not out:
+            return real
+        self.env.cr.execute("""
+            SELECT DISTINCT date FROM stock_move_line
+             WHERE state = 'done' AND product_id = ANY(%s) AND location_dest_id = ANY(%s)
+               AND location_id != location_dest_id AND id != ALL(%s)
+               AND date > %s AND date < %s
+          ORDER BY date
+        """, [out.product_id.ids, out.location_id.ids, moves.move_line_ids.ids, moment, real])
+        for (arrival,) in self.env.cr.fetchall():
+            candidate = arrival + timedelta(seconds=1)
+            if self._cst_backdate_ok(moves, candidate, until=until):
+                return candidate
+        return real
+
+    @api.model
+    def _cst_backdate_ok(self, moves, moment, until=None):
+        """Can these done moves be dated ``moment`` without any internal
+        location showing a negative balance from then until their own date?
+
+        Only what they take out matters (what they bring in only raises the
+        earlier balances). For each product and location: the balance of the
+        other done moves at ``moment``, then its lowest point up to the moves'
+        current date (or ``until``, their real time when they already carry
+        the earlier date), must still cover what the moves take."""
+        taken = {}
+        ends = {}
+        for line in moves.move_line_ids:
+            if line.location_id.usage != "internal" or line.location_id == line.location_dest_id:
+                continue
+            key = (line.product_id.id, line.location_id.id)
+            taken[key] = taken.get(key, 0.0) + line.quantity_product_uom
+            real = until or line.date
+            ends[key] = max(ends.get(key, real), real)
+        own = tuple(moves.move_line_ids.ids) or (0,)
+        Product = self.env["product.product"]
+        for (product_id, location_id), qty in taken.items():
+            if ends[(product_id, location_id)] <= moment:
+                continue
+            self.env.cr.execute("""
+                SELECT date, SUM(CASE WHEN location_dest_id = %(loc)s THEN quantity_product_uom
+                                      ELSE -quantity_product_uom END)
+                  FROM stock_move_line
+                 WHERE state = 'done' AND product_id = %(product)s
+                   AND (location_id = %(loc)s OR location_dest_id = %(loc)s)
+                   AND location_id != location_dest_id
+                   AND id NOT IN %(own)s AND date < %(until)s
+              GROUP BY date ORDER BY date
+            """, {"loc": location_id, "product": product_id, "own": own,
+                  "until": ends[(product_id, location_id)]})
+            balance = 0.0
+            lowest = None
+            for day, delta in self.env.cr.fetchall():
+                if day > moment and lowest is None:
+                    lowest = balance  # the balance at the moment itself
+                balance += delta or 0.0
+                if lowest is not None:
+                    lowest = min(lowest, balance)
+            if lowest is None:
+                lowest = balance  # nothing moved after the moment
+            rounding = Product.browse(product_id).uom_id.rounding or 0.001
+            if lowest - qty < -rounding:
+                return False
+        return True
 
     def _post_output_now(self):
         self.ensure_one()

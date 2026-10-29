@@ -18,11 +18,6 @@ class CstPartnerStatementWizard(models.TransientModel):
     company_ids = fields.Many2many(
         "res.company", string="Kompaniyalar",
         default=lambda self: self.env.companies)
-    display_currency_id = fields.Many2one(
-        "res.currency", string="Valyuta",
-        default=lambda self: self.env.company.currency_id,
-        help="Hamma summa shu valyutada: so'mdagi to'lov dollar qarzidan ayriladi (kassa kursi bo'yicha, "
-             "asl summa va kurs qatorda yoziladi). Bo'sh qoldirilsa har valyuta alohida.")
 
     detailed = fields.Boolean(
         string="Batafsil (mahsulot va narxlari bilan)",
@@ -47,7 +42,6 @@ class CstPartnerStatementWizard(models.TransientModel):
             "companies": engine.statement_rows(
                 self.partner_id, self.date_from, self.date_to,
                 company_ids=self.company_ids.ids or None,
-                display_currency=self.display_currency_id or None,
                 detailed=self.detailed),
             "detailed": self.detailed,
         }

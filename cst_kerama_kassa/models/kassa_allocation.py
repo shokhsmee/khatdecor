@@ -142,8 +142,7 @@ class KassaAllocation(models.Model):
             drafts.action_post()
         open_inv = invoices.filtered(lambda m: m.state == "posted" and m.payment_state not in SETTLED)
         if not open_inv and order.invoice_status == "to invoice":
-            new = order._create_invoices()
-            new.action_post()
+            new = order._cst_kassa_invoice()
             open_inv = new.filtered(lambda m: m.move_type == "out_invoice")
         return open_inv
 

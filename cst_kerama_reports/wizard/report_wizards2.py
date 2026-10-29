@@ -116,6 +116,10 @@ class CstCashReportWizard(models.TransientModel):
         domain="[('type', 'in', ('cash', 'bank'))]",
         help="Bo'sh qoldirilsa, barcha kassa va bank jurnallari chiqadi.")
     detail = fields.Boolean(string="Har bir harakat bilan", default=True)
+    show_numbers = fields.Boolean(
+        string="Hujjat raqamlari bilan",
+        help="Belgilansa har qatorda hujjat raqamlari ham chiqadi (AKUZS/…, KAS/…). "
+             "Belgilanmasa — faqat kimdan olingani / qayerga chiqqani, modda va izoh.")
 
     def _report_values(self):
         self.ensure_one()
@@ -124,7 +128,8 @@ class CstCashReportWizard(models.TransientModel):
             "date_from": self.date_from, "date_to": self.date_to, "detail": self.detail,
             "companies": self.env["cst.cash.report"].build(
                 self.date_from, self.date_to, journal_ids=self.journal_ids.ids or None,
-                company_ids=self.company_ids.ids or None, detail=self.detail),
+                company_ids=self.company_ids.ids or None, detail=self.detail,
+                numbers=self.show_numbers),
         }
 
 
@@ -135,22 +140,20 @@ class CstExpenseReportWizard(models.TransientModel):
     _report_xmlid = "action_report_expense"
 
     scope = fields.Selection(
-        [("cash", "Faqat kassa orqali"), ("cash_bank", "Kassa va bank orqali"),
-         ("all", "Barcha xarajatlar")],
+        [("cash", "Faqat kassa orqali"), ("bank", "Faqat bank orqali"),
+         ("cash_bank", "Kassa va bank orqali"), ("all", "Barcha xarajatlar")],
         string="Qamrov", required=True, default="all")
     display_currency_id = fields.Many2one(
         "res.currency", string="Valyuta",
         default=lambda self: self.env.company.currency_id,
         help="Har bir yozuv o'z sanasidagi kurs bo'yicha o'giriladi.")
-    include_direct_cost = fields.Boolean(
-        string="Tannarxni ham qo'shish",
-        help="Sotilgan mahsulot tannarxi (direct cost) hisoblarini ham ko'rsatish.")
     detail = fields.Boolean(string="Har bir yozuv bilan")
 
     def _report_values(self):
         self.ensure_one()
-        types = {"cash": ("cash",), "cash_bank": ("cash", "bank"), "all": None}[self.scope]
+        types = {"cash": ("cash",), "bank": ("bank",), "cash_bank": ("cash", "bank"), "all": None}[self.scope]
         title = {"cash": "Kassa orqali xarajatlar hisoboti",
+                 "bank": "Bank orqali xarajatlar hisoboti",
                  "cash_bank": "Kassa va bank orqali xarajatlar",
                  "all": "Xarajat harakati hisoboti"}[self.scope]
         return {
@@ -159,7 +162,7 @@ class CstExpenseReportWizard(models.TransientModel):
             "companies": self.env["cst.expense.report"].build(
                 self.date_from, self.date_to, company_ids=self.company_ids.ids or None,
                 journal_types=types, display_currency=self.display_currency_id,
-                include_direct_cost=self.include_direct_cost, detail=self.detail),
+                detail=self.detail),
         }
 
 

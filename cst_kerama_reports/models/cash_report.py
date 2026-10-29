@@ -4,7 +4,6 @@ from datetime import timedelta
 from odoo import api, fields, models
 
 EXPENSE_TYPES = ("expense", "expense_depreciation")
-DIRECT_COST_TYPES = ("expense_direct_cost",)
 
 
 class CstCashReport(models.AbstractModel):
@@ -57,18 +56,63 @@ class CstCashReport(models.AbstractModel):
         return line.balance or 0.0, line.balance or 0.0
 
     @api.model
-    def _label(self, line):
+    def _label(self, line, op=None, numbers=False):
+        """Who the money came from or went to, and the note.
+
+        A kassa operation knows it better than the journal item: the client,
+        the employee, the expense article (modda), the other kassa. Document
+        numbers (the entry, the KAS operation) only when asked for."""
         move = line.move_id
-        bits = [move.name if move.name and move.name != "/" else ""]
-        if line.partner_id:
-            bits.append(line.partner_id.display_name)
-        detail = line.name or move.ref or ""
-        if detail:
-            bits.append(detail)
-        return " · ".join(b for b in bits if b)
+        bits = []
+        if numbers:
+            bits.append(move.name if move.name and move.name != "/" else "")
+        if op:
+            if numbers:
+                bits.append(op.name if op.name and op.name != "/" else "")
+            if op.operation_type in ("transfer_in", "transfer_out") and op.transfer_kassa_id:
+                arrow = "\u2190 " if op.operation_type == "transfer_in" else "\u2192 "
+                bits.append(arrow + op.transfer_kassa_id.name)
+            elif op.employee_id:
+                bits.append(op.employee_id.name)
+            elif op.partner_id:
+                bits.append(op.partner_id.display_name)
+            if op.category_id:
+                bits.append(op.category_id.name)
+            bits.append(self._op_types().get(op.operation_type) or "")
+            bits.append(op.memo or "")
+        else:
+            if line.partner_id:
+                bits.append(line.partner_id.display_name)
+            bits.append(line.name or move.ref or "")
+        seen = []
+        for bit in bits:
+            if bit and bit not in seen:
+                seen.append(bit)
+        return " · ".join(seen)
 
     @api.model
-    def journal_block(self, journal, date_from, date_to, detail=True):
+    def _op_types(self):
+        Operation = self.env.get("cst.kassa.operation")
+        if Operation is None:
+            return {}
+        return dict(Operation._fields["operation_type"]._description_selection(self.env))
+
+    @api.model
+    def _operations(self, moves):
+        """{move id: kassa operation} for the entries a kassa operation made."""
+        Operation = self.env.get("cst.kassa.operation")
+        if Operation is None or not moves:
+            return {}
+        ops = Operation.sudo().search([
+            "|", ("move_id", "in", moves.ids), ("payment_id.move_id", "in", moves.ids)])
+        result = {}
+        for op in ops:
+            for move in op.move_id | op.payment_id.move_id:
+                result[move.id] = op
+        return result
+
+    @api.model
+    def journal_block(self, journal, date_from, date_to, detail=True, numbers=False):
         Line = self.env["account.move.line"].sudo()
         base = self._money_domain(journal) + [
                 ("parent_state", "=", "posted"),
@@ -82,8 +126,10 @@ class CstCashReport(models.AbstractModel):
                             order="date, id")
         rows, balance = [], opening
         inflow = outflow = inflow_cc = outflow_cc = 0.0
+        ops = self._operations(lines.move_id) if detail else {}
         for line in lines:
             amount, amount_cc = self._amount(journal, line)
+            before = balance
             balance += amount
             if amount >= 0:
                 inflow += amount
@@ -93,7 +139,9 @@ class CstCashReport(models.AbstractModel):
                 outflow_cc += -amount_cc
             if detail:
                 rows.append({
-                    "line": line, "date": line.date, "label": self._label(line),
+                    "line": line, "date": line.date,
+                    "label": self._label(line, ops.get(line.move_id.id), numbers=numbers),
+                    "opening": before,
                     "inflow": amount if amount > 0 else 0.0,
                     "outflow": -amount if amount < 0 else 0.0,
                     "balance": balance,
@@ -108,10 +156,10 @@ class CstCashReport(models.AbstractModel):
         }
 
     @api.model
-    def build(self, date_from, date_to, journal_ids=None, company_ids=None, detail=True):
+    def build(self, date_from, date_to, journal_ids=None, company_ids=None, detail=True, numbers=False):
         result = []
         for journal in self._journals(journal_ids, company_ids):
-            block = self.journal_block(journal, date_from, date_to, detail=detail)
+            block = self.journal_block(journal, date_from, date_to, detail=detail, numbers=numbers)
             if not any((block["opening"], block["inflow"], block["outflow"])):
                 continue
             company = journal.company_id
@@ -128,68 +176,119 @@ class CstCashReport(models.AbstractModel):
 
 
 class CstExpenseReport(models.AbstractModel):
-    """«Xarajatlar hisoboti» — expense accounts by group, optionally only the
-    ones paid straight from the cash desk, optionally in dollars."""
+    """«Xarajat harakati» — what the money was spent on, article by article.
+
+    The kassa knows the expense article (*modda*: «Озик - Овқат», «Машиналар
+    ремонти»…) while the ledger puts most of them on one account (600000), so
+    an operation of the kassa is grouped by its modda, not by its account. Only
+    the expense itself is shown: no cost of goods sold, no currency or cash
+    count differences. With the «Barcha xarajatlar» scope the expenses booked
+    outside the kassa (bills, depreciation, payroll…) follow, by account.
+    """
 
     _name = "cst.expense.report"
     _description = "Xarajatlar hisoboti"
 
     @api.model
     def build(self, date_from, date_to, company_ids=None, journal_types=None,
-              display_currency=None, include_direct_cost=False, detail=False):
+              display_currency=None, detail=False):
         companies = self.env.companies
         if company_ids:
             companies = companies.filtered(lambda c: c.id in company_ids) or companies
-        types = EXPENSE_TYPES + (DIRECT_COST_TYPES if include_direct_cost else ())
-        domain = [
-            ("parent_state", "=", "posted"),
+        Operation = self.env.get("cst.kassa.operation")
+        Operation = Operation.sudo() if Operation is not None else None
+        ops = Operation.search([
+            ("state", "=", "done"), ("operation_type", "=", "expense"),
             ("company_id", "in", companies.ids),
-            ("account_id.account_type", "in", types),
             ("date", ">=", date_from), ("date", "<=", date_to),
-        ]
-        if journal_types:
-            domain.append(("journal_id.type", "in", list(journal_types)))
-        lines = self.env["account.move.line"].sudo().search(domain, order="date, id")
+            ("journal_id.type", "in", list(journal_types or ("cash", "bank"))),
+        ], order="date, id") if Operation is not None else []
+        others = self.env["account.move.line"]
+        if not journal_types:
+            # everything else on an expense account, outside the kassa
+            kassa_moves = Operation.search([
+                ("state", "=", "done"), ("company_id", "in", companies.ids),
+                ("move_id", "!=", False),
+            ]).move_id if Operation is not None else self.env["account.move"]
+            others = self.env["account.move.line"].sudo().search([
+                ("parent_state", "=", "posted"),
+                ("company_id", "in", companies.ids),
+                ("account_id.account_type", "in", EXPENSE_TYPES),
+                ("date", ">=", date_from), ("date", "<=", date_to),
+                ("move_id", "not in", kassa_moves.ids),
+            ], order="date, id")
+            others = others.filtered(lambda l: not self._is_difference(l) and not self._is_landed_cost(l))
 
         result = []
         for company in companies:
             target = display_currency or company.currency_id
+            company_ccy = company.currency_id
             groups = {}
             total = 0.0
-            for line in lines.filtered(lambda l: l.company_id == company):
-                amount = company.currency_id._convert(
-                    line.balance or 0.0, target, company, line.date or date_to)
-                account = line.account_id
-                group = account.group_id
-                gkey = group.id if group else 0
-                g = groups.setdefault(gkey, {
-                    "group": group, "name": group.name if group else "Guruhsiz",
-                    "accounts": {}, "amount": 0.0})
-                a = g["accounts"].setdefault(account.id, {
-                    "account": account, "amount": 0.0, "rows": []})
+
+            def add(gkey, gname, akey, aname, amount, row):
+                g = groups.setdefault(gkey, {"name": gname, "accounts": {}, "amount": 0.0})
+                a = g["accounts"].setdefault(akey, {"name": aname, "amount": 0.0, "rows": []})
                 a["amount"] += amount
                 g["amount"] += amount
-                total += amount
                 if detail:
-                    a["rows"].append({
-                        "line": line, "date": line.date,
-                        "partner": line.partner_id.display_name or "",
-                        "label": line.name or line.move_id.ref or line.move_id.name or "",
-                        "journal": line.journal_id.name,
-                        "amount": amount,
-                    })
+                    a["rows"].append(dict(row, amount=amount))
+                return amount
+
+            for op in (o for o in ops if o.company_id == company):
+                amount = company_ccy._convert(op.amount_company, target, company, op.date or date_to)
+                note = op.memo or ""
+                if op.currency_id and op.currency_id != target:
+                    original = "%s %s" % (self.env["cst.partner.statement"]._fmt(op.amount),
+                                          op.currency_id.currency_unit_label or op.currency_id.name)
+                    note = " · ".join(b for b in (note, original) if b)
+                total += add(0, "Kassa va bank orqali (moddalar)",
+                             "c%s" % (op.category_id.id or 0), op.category_id.name or "Moddasiz",
+                             amount, {"date": op.date, "partner": op.partner_id.display_name or "",
+                                      "label": note, "journal": op.kassa_id.name or op.journal_id.name})
+            for line in others.filtered(lambda l: l.company_id == company):
+                amount = company_ccy._convert(line.balance or 0.0, target, company, line.date or date_to)
+                account = line.account_id
+                total += add(1, "Boshqa xarajatlar (kassadan tashqari)",
+                             "a%s" % account.id,
+                             "%s %s" % (account.with_company(company).code or "", account.name),
+                             amount, {"date": line.date, "partner": line.partner_id.display_name or "",
+                                      "label": line.name or line.move_id.ref or line.move_id.name or "",
+                                      "journal": line.journal_id.name})
             if not groups:
                 continue
             for g in groups.values():
-                g["accounts"] = sorted(g["accounts"].values(),
-                                       key=lambda a: a["account"].code or "")
+                g["accounts"] = sorted(g["accounts"].values(), key=lambda a: -a["amount"])
             result.append({
                 "company": company,
                 "currency": target,
-                "groups": sorted(groups.values(), key=lambda g: g["name"] or ""),
+                "groups": [groups[k] for k in sorted(groups)],
                 "amount": total,
             })
         return result
+
+    @api.model
+    def _is_landed_cost(self, line):
+        """Customs, freight… billed to an expense account and moved into the
+        stock value by a landed cost: part of the goods' cost, not an expense
+        (the bill line and its landed-cost entry cancel out)."""
+        if "is_landed_costs_line" in line._fields and line.is_landed_costs_line:
+            return True
+        if "stock.landed.cost" not in self.env:
+            return False
+        return bool(self.env["stock.landed.cost"].sudo().search_count(
+            [("account_move_id", "=", line.move_id.id)], limit=1))
+
+    @api.model
+    def _is_difference(self, line):
+        """Exchange differences and cash count differences are not expenses."""
+        company = line.company_id
+        if line.journal_id == company.currency_exchange_journal_id:
+            return True
+        if line.account_id == company.expense_currency_exchange_account_id:
+            return True
+        journal = line.journal_id
+        return journal.type == "cash" and line.account_id in (journal.loss_account_id | journal.profit_account_id)
 
 
 class CstDirectorDashboard(models.AbstractModel):

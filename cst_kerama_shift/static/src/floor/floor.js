@@ -301,9 +301,23 @@ export class ShiftFloor extends Component {
         }
         const consumption = (f.consume || []).filter((c) => c.touched)
             .map((c) => ({ product_id: c.id, qty: Number(c.qty || 0), norm: c.norm }));
+        // more than the order has left: an extra batch, the order grows (after a yes)
+        const typed = Number(f.good || 0) + Number(f.second || 0) + Number(f.scrap || 0);
+        const left = Number(f.line.order_left || 0);
+        let increase = false;
+        if (f.line.final && typed > left + 0.0001) {
+            const over = Math.round((typed - left) * 1000) / 1000;
+            increase = await new Promise((resolve) => this.dialogService.add(ConfirmationDialog, {
+                title: "Buyurtmadan ko'p",
+                body: `${f.line.mo}: buyurtmada ${left} dona qoldi, ${typed} dona kiritildi. Buyurtma miqdori ${over} dona oshirilsinmi? (xomashyo ham shunga ko'ra oshadi, ortiqcha mahsulot omborga kiradi)`,
+                confirmLabel: `Ha, +${over} dona oshirish`, cancelLabel: "Yo'q, tuzataman",
+                confirm: () => resolve(true), cancel: () => resolve(false),
+            }, { onClose: () => resolve(false) }));
+            if (!increase) return;
+        }
         await this.call("add_entry", [f.line.id, Number(f.good || 0), Number(f.second || 0), Number(f.scrap || 0), f.note || "",
             Number(f.second_product_id) || false, Number(f.material_product_id) || false, Number(f.material_qty || 0), finish === true,
-            f.employee_ids || [], consumption]);
+            f.employee_ids || [], consumption, increase]);
     }
 
     async lineAction(line, action) {

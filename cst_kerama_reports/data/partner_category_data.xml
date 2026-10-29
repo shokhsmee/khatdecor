@@ -7,5 +7,11 @@
             <field name="name">Kommunal xizmatlar</field>
             <field name="color">4</field>
         </record>
+        <!-- «3-shaxslar» harakati / akt sverkasi: a tagged contact is a third
+             party whatever its customer / supplier ranks. -->
+        <record id="partner_category_third_party" model="res.partner.category">
+            <field name="name">3-shaxslar</field>
+            <field name="color">9</field>
+        </record>
     </data>
 </odoo>

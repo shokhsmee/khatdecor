@@ -112,6 +112,7 @@
                     </group>
                     <group>
                         <field name="journal_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="show_numbers" invisible="not detail"/>
                         <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
                     </group>
                 </group>
@@ -144,7 +145,6 @@
                     </group>
                     <group>
                         <field name="display_currency_id" options="{'no_create': True}"/>
-                        <field name="include_direct_cost"/>
                         <field name="detail"/>
                         <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
                     </group>
@@ -169,7 +169,7 @@
         <field name="res_model">cst.expense.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="context">{'default_scope': 'all', 'default_detail': True}</field>
+        <field name="context">{'default_scope': 'cash_bank', 'default_detail': True}</field>
     </record>
 
     <!-- ===== Hisobdan chiqarilganlar ===== -->

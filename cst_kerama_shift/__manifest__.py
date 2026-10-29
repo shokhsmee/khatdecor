@@ -23,7 +23,7 @@ xodimlarga teng bo'linadi va oylik qatorlari bo'lib yoziladi; brak jarimasi ham.
     """,
     "author": "Khatdecor",
     "category": "Manufacturing",
-    "version": "19.0.1.12.0",
+    "version": "19.0.1.13.0",
     "depends": ["mrp", "mrp_workorder", "mrp_workorder_hr_account", "stock", "hr", "hr_attendance", "mrp_landed_costs",
                 "cst_kerama_variants", "cst_kerama_payroll", "cst_kerama_reports"],
     "data": [
