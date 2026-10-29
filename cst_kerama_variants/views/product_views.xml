@@ -92,6 +92,19 @@
         </field>
     </record>
 
+    <!-- Ombor ▸ Zaxira (and «Inventory at Date»): one row per variant, so the
+         characteristic tells the look-alike rows apart -->
+    <record id="view_product_stock_list_cst" model="ir.ui.view">
+        <field name="name">product.product.stock.list.cst_characteristic</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']" position="after">
+                <field name="cst_characteristic" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_stock_move_line_list_cst" model="ir.ui.view">
         <field name="name">stock.move.line.list.cst_characteristic</field>
         <field name="model">stock.move.line</field>

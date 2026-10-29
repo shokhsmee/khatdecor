@@ -42,7 +42,7 @@ walks the existing product through before opening the other values.
     """,
     "author": "Khatdecor",
     "category": "Inventory",
-    "version": "19.0.3.2.0",
+    "version": "19.0.3.3.0",
     "depends": ["product", "stock", "mrp", "sale_management", "purchase", "account"],
     "data": [
         "security/ir.model.access.csv",

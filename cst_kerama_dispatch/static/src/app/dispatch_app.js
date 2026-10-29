@@ -25,6 +25,7 @@ export class DispatchApp extends Component {
             home: {},
             list: [],
             search: "",
+            orderFilter: "all",
             dispatch: null,
             flashId: false,
             productSearch: "",
@@ -169,6 +170,24 @@ export class DispatchApp extends Component {
             this.state.screen
         ];
         this.state.list = await this.call(method, [], { search: this.state.search || null });
+    }
+    get orderCounts() {
+        const list = this.state.list;
+        return {
+            all: list.length,
+            new: list.filter((o) => !o.dispatch_state).length,
+            draft: list.filter((o) => o.dispatch_state === "draft").length,
+        };
+    }
+    get visibleOrders() {
+        const f = this.state.orderFilter;
+        if (f === "new") {
+            return this.state.list.filter((o) => !o.dispatch_state);
+        }
+        if (f === "draft") {
+            return this.state.list.filter((o) => o.dispatch_state === "draft");
+        }
+        return this.state.list;
     }
     onSearchInput(ev) {
         this.state.search = ev.target.value;
@@ -362,6 +381,15 @@ export class DispatchApp extends Component {
         });
     }
     approveGate() {
+        // an untouched line reads 0 and would drop the product from the order
+        const missed = this.d.line_list.filter((l) => l.qty > 0 && !l.checked);
+        if (missed.length) {
+            this.notification.add(
+                `${missed.length} ta mahsulot tekshirilmagan: ${missed.map((l) => l.product).join(", ")}. ` +
+                "Skanerlang yoki ✓ bosing («Hammasi ✓»). Yuklanmagan bo'lsa — «Omborga qaytarish».",
+                { type: "danger", sticky: true });
+            return;
+        }
         const diffs = this.differences;
         let body = `${this.d.order} — ${this.d.partner}\n`;
         if (!this.allChecked) {

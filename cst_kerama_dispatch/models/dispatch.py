@@ -1,6 +1,7 @@
 import logging
 
 from markupsafe import Markup
+from pytz import UTC
 
 from odoo import _, api, fields, models
 from odoo.exceptions import AccessError, UserError
@@ -146,15 +147,28 @@ class CstDispatch(models.Model):
             raise AccessError(_("Bu ilova uchun huquqingiz yo'q."))
         Dispatch = self.sudo()
         cids = self._cst_companies()
-        today = fields.Datetime.to_string(fields.Datetime.now().replace(hour=0, minute=0, second=0))
+        # midnight in the user's timezone, not UTC
+        now_local = fields.Datetime.context_timestamp(self, fields.Datetime.now())
+        today = fields.Datetime.to_string(
+            now_local.replace(hour=0, minute=0, second=0, microsecond=0).astimezone(UTC).replace(tzinfo=None))
+        # cancelled orders keep their old dispatches - never count those
+        live = [("company_id", "in", cids), ("sale_order_id.state", "=", "sale")]
+        new_orders = drafts = 0
+        if can_wh:
+            # same orders the «Ombor» list shows, so the tile never disagrees with it
+            orders = self._cst_orders_to_prepare()
+            active = Dispatch.search([("sale_order_id", "in", orders.ids),
+                                      ("state", "in", ("draft", "ready"))])
+            new_orders = len(orders - active.sale_order_id)
+            drafts = len(active.filtered(lambda d: d.state == "draft"))
         return {
             "can_wh": can_wh,
             "can_gate": can_gate,
             "can_transfer": can_transfer,
             "transfers_to_me": self.env["cst.transfer.ui"].ui_count_to_me() if can_transfer else 0,
-            "orders": len(self._cst_orders_to_prepare()) if can_wh else 0,
-            "drafts": Dispatch.search_count([("state", "=", "draft"), ("company_id", "in", cids)]),
-            "ready": Dispatch.search_count([("state", "=", "ready"), ("company_id", "in", cids)]),
+            "orders": new_orders,
+            "drafts": drafts,
+            "ready": Dispatch.search_count(live + [("state", "=", "ready")]),
             "done_today": Dispatch.search_count([
                 ("state", "=", "done"), ("company_id", "in", cids), ("checked_at", ">=", today)]),
             "user": user.name,
@@ -184,6 +198,8 @@ class CstDispatch(models.Model):
         res = []
         for o in orders:
             d = by_order.get(o.id)
+            if d and d.state == "ready":
+                continue  # already at the gate - not the warehouse's job any more
             res.append({
                 "id": o.id,
                 "name": o.name,
@@ -225,7 +241,8 @@ class CstDispatch(models.Model):
     @api.model
     def ui_ready(self, search=None):
         self._cst_require(GROUP_GATE)
-        domain = [("state", "=", "ready"), ("company_id", "in", self._cst_companies())]
+        domain = [("state", "=", "ready"), ("company_id", "in", self._cst_companies()),
+                  ("sale_order_id.state", "=", "sale")]
         if search:
             domain += ["|", "|", ("name", "ilike", search),
                        ("sale_order_id.name", "ilike", search), ("partner_id.name", "ilike", search)]
@@ -493,6 +510,7 @@ class CstDispatch(models.Model):
         d._cst_need_state("draft")
         if not any(l.qty > 0 for l in d.line_ids):
             raise UserError(_("Jo'natiladigan miqdor yo'q. Kamida bitta mahsulot kiriting."))
+        d._cst_check_stock()
         d.line_ids.write({"checked_qty": 0.0})
         d.write({
             "state": "ready",
@@ -501,6 +519,52 @@ class CstDispatch(models.Model):
             "note": note if note is not None else d.note,
         })
         return True
+
+    def _cst_check_counted(self):
+        """Every line the warehouse loaded must be counted at the gate. An
+        untouched line reads 0 and would take the product off the order — the
+        guard pressed «Tasdiqlash» without checking (S00477, 29.10)."""
+        self.ensure_one()
+        missed = self.line_ids.filtered(lambda l: l.qty > 0 and float_is_zero(
+            l.checked_qty, precision_digits=self.env["decimal.precision"].precision_get("Product Unit")))
+        if missed:
+            raise UserError(_(
+                "%(n)s ta mahsulot eshikda tekshirilmagan (0 sanalgan):\n\n%(rows)s\n\n"
+                "Har birini skanerlang yoki ✓ bosing («Hammasi ✓» — hammasini birdan). "
+                "Mahsulot umuman yuklanmagan bo'lsa «Omborga qaytarish» bosing — omborchi uni 0 qilsin.",
+                n=len(missed), rows="\n".join("  • %s — %s %s" % (
+                    l.product_id.display_name, self._cst_fmt(l.qty), l.uom_id.name or "") for l in missed)))
+
+    def _cst_check_stock(self):
+        """The warehouse cannot hand the gate more than the warehouse holds.
+
+        The gate validates the delivery, and the negative-stock guard refuses
+        it there — after the truck is loaded. Checked when the warehouse
+        presses «Jo'natishga tayyor» instead, product by product (two lines of
+        one product add up), against the warehouse's stock."""
+        self.ensure_one()
+        bypass = self.env.ref("cst_kerama_no_negative.group_allow_negative_stock", raise_if_not_found=False)
+        if bypass and self.env.user in bypass.sudo().all_user_ids:
+            return
+        wanted = {}
+        for line in self.line_ids.filtered(lambda l: l.qty > 0 and l.product_id.is_storable):
+            product = line.product_id
+            qty = line.uom_id._compute_quantity(line.qty, product.uom_id, round=False) \
+                if line.uom_id and line.uom_id != product.uom_id else line.qty
+            wanted[product] = wanted.get(product, 0.0) + qty
+        short = []
+        for product, qty in wanted.items():
+            onhand = self._cst_onhand(product, product.uom_id)
+            if product.uom_id.compare(qty, onhand) > 0:
+                short.append(_("  • %(product)s: jo'natiladi %(qty)s, omborda %(onhand)s %(uom)s",
+                               product=product.display_name, qty=self._cst_fmt(qty),
+                               onhand=self._cst_fmt(onhand), uom=product.uom_id.name))
+        if short:
+            raise UserError(_(
+                "%(wh)s omborida yetarli emas — eshikka yuborilmadi:\n\n%(rows)s\n\n"
+                "Miqdorni ombordagi qoldiqqa tushiring (qizil qatorlar) yoki avval tovarni "
+                "omborga kiriting / ko'chiring.",
+                wh=self.warehouse_id.name or "", rows="\n".join(short)))
 
     @api.model
     def ui_back_to_draft(self, dispatch_id, reason=None):
@@ -529,6 +593,7 @@ class CstDispatch(models.Model):
         self._cst_require(GROUP_GATE)
         d = self._cst_get(dispatch_id)
         d._cst_need_state("ready")
+        d._cst_check_counted()
         vals = {}
         if car_number is not None:
             vals["car_number"] = car_number
@@ -645,13 +710,12 @@ class CstDispatch(models.Model):
 
         # 3. the money side: an already invoiced order gets the difference invoiced
         invoices = self.env["account.move"]
-        if posted_invoices and any(
-                not float_is_zero(sl.qty_to_invoice, precision_digits=prec)
-                for sl in lines.sale_line_id):
+        diff_lines = self._cst_difference_lines(lines.sale_line_id) if posted_invoices else lines.sale_line_id[:0]
+        if diff_lines:
             try:
                 with self.env.cr.savepoint():
                     invoices = order.with_context(
-                        cst_dispatch_sale_line_ids=lines.sale_line_id.ids,
+                        cst_dispatch_sale_line_ids=diff_lines.ids,
                     )._create_invoices(final=True)
                     invoices.action_post()
             except Exception as exc:  # noqa: BLE001 — never block the gate on accounting
@@ -705,6 +769,12 @@ class CstDispatch(models.Model):
             "invoice_ids": [fields.Command.set(invoices.ids)],
         })
 
+    def _cst_difference_lines(self, sale_lines):
+        """Order lines whose quantity change the gate invoices (or credits)
+        because the order had been invoiced already."""
+        prec = self.env["decimal.precision"].precision_get("Product Unit")
+        return sale_lines.filtered(lambda sl: not float_is_zero(sl.qty_to_invoice, precision_digits=prec))
+
     def action_print_waybill_80(self):
         return {"type": "ir.actions.act_url", "target": "new",
                 "url": "/kerama/dispatch/waybill/%d?size=80" % self.id}
@@ -724,6 +794,13 @@ class CstDispatch(models.Model):
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    def _action_cancel(self):
+        res = super()._action_cancel()
+        self.env["cst.dispatch"].sudo().search([
+            ("sale_order_id", "in", self.ids), ("state", "in", ("draft", "ready")),
+        ]).write({"state": "cancel"})
+        return res
 
     def _get_invoiceable_lines(self, final=False):
         lines = super()._get_invoiceable_lines(final=final)

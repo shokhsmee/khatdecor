@@ -79,12 +79,24 @@
         <div class="p-3">
             <input class="form-control form-control-lg mb-3" placeholder="Qidirish: buyurtma, mijoz… (yoki skanerlang)"
                    t-att-value="state.search" t-on-input="onSearchInput"/>
-            <div t-if="!state.list.length and !state.busy" class="o_cst_dp_empty text-center text-muted py-5">
+            <div t-if="state.screen === 'orders'" class="o_cst_dp_chips d-flex flex-wrap gap-2 mb-3">
+                <t t-set="cnt" t-value="orderCounts"/>
+                <button class="o_cst_dp_chip" t-att-class="{'o_active': state.orderFilter === 'all'}" t-on-click="() => state.orderFilter = 'all'">
+                    Hammasi <span class="o_cst_dp_chip_n" t-esc="cnt.all"/>
+                </button>
+                <button class="o_cst_dp_chip" t-att-class="{'o_active': state.orderFilter === 'new'}" t-on-click="() => state.orderFilter = 'new'">
+                    Yangi <span class="o_cst_dp_chip_n" t-esc="cnt.new"/>
+                </button>
+                <button class="o_cst_dp_chip" t-att-class="{'o_active': state.orderFilter === 'draft'}" t-on-click="() => state.orderFilter = 'draft'">
+                    Tayyorlanmoqda <span class="o_cst_dp_chip_n" t-esc="cnt.draft"/>
+                </button>
+            </div>
+            <div t-if="!(state.screen === 'orders' ? visibleOrders : state.list).length and !state.busy" class="o_cst_dp_empty text-center text-muted py-5">
                 <i class="fa fa-inbox fa-3x mb-2 d-block"/>
                 Hech narsa yo'q
             </div>
             <t t-if="state.screen === 'orders'">
-                <t t-foreach="state.list" t-as="o" t-key="o.id">
+                <t t-foreach="visibleOrders" t-as="o" t-key="o.id">
                     <div class="o_cst_dp_card" t-on-click="() => this.openOrder(o)">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
@@ -92,7 +104,7 @@
                                 <div t-esc="o.partner"/>
                             </div>
                             <span t-if="o.dispatch_state === 'draft'" class="badge text-bg-warning">Tayyorlanmoqda</span>
-                            <span t-elif="o.dispatch_state === 'ready'" class="badge text-bg-success">Eshikda</span>
+                            <span t-else="" class="badge text-bg-info">Yangi</span>
                         </div>
                         <div class="o_cst_dp_card_meta">
                             <span><i class="fa fa-calendar"/> <t t-esc="o.date"/></span>

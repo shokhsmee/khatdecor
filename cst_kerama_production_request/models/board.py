@@ -111,7 +111,22 @@ class CstProductionRequestBoard(models.AbstractModel):
             ("display_type", "=", False), ("product_id.is_storable", "=", True),
         ])
         lines = lines.filtered(lambda l: l.product_uom_id.compare(l.product_uom_qty, l.qty_delivered) > 0)
+        lines -= self._dropped_lines(lines)
         return lines.sorted(lambda l: (l.order_id.date_order or fields.Datetime.now(), l.order_id.id, l.id))
+
+    @api.model
+    def _dropped_lines(self, lines):
+        """Order lines the warehouse took out of the shipment being prepared
+        (quantity 0 in Jo'natish: the client takes another product instead) —
+        nothing is to be made for them, even before the gate closes the order."""
+        DispatchLine = self.env.get("cst.dispatch.line")
+        if DispatchLine is None or not lines:
+            return lines.browse()
+        zero = DispatchLine.sudo().search([
+            ("sale_line_id", "in", lines.ids), ("dispatch_id.state", "in", ("draft", "ready")),
+            ("qty", "<=", 0),
+        ])
+        return zero.sale_line_id
 
     @api.model
     def _line_reserved(self, line):
@@ -397,6 +412,10 @@ class CstProductionRequestBoard(models.AbstractModel):
         line = self.env["sale.order.line"].sudo().browse(int(spec.get("sale_line_id") or 0)).exists()
         if not line or line.order_id.state != "sale":
             raise UserError(_("Sotuv qatori topilmadi yoki buyurtma tasdiqlanmagan."))
+        if self._dropped_lines(line):
+            raise UserError(_(
+                "%(order)s · %(product)s: omborchi bu mahsulotni jo'natmadan olib tashlagan (0 dona) — "
+                "zayafka berilmaydi.", order=line.order_id.name, product=line.product_id.display_name))
         product = line.product_id
         qty = float(spec.get("qty") or 0)
         if qty <= 0:
