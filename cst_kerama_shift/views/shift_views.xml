@@ -134,9 +134,11 @@
                                     <field name="plan_pct" widget="progressbar"/>
                                 </group>
                                 <group string="KPI">
+                                    <field name="kpi_plan" readonly="1"/>
+                                    <field name="kpi_ratio" widget="percentage"/>
                                     <field name="kpi_total" readonly="1"/>
+                                    <field name="kpi_state" readonly="1"/>
                                     <field name="employee_count"/>
-                                    <field name="kpi_per_employee"/>
                                     <field name="penalty_total" readonly="1"/>
                                     <field name="kpi_capitalized" invisible="kpi_capitalized == 0 and kpi_total == 0"/>
                                     <field name="kpi_cost_pending" invisible="not kpi_cost_pending" readonly="1"/>
@@ -146,19 +148,23 @@
                             <field name="can_edit_kpi" invisible="1"/>
                             <div class="d-flex gap-2 mb-2" invisible="state != 'closed' or not can_edit_kpi">
                                 <button name="action_create_workers" type="object" string="KPI qatorlarini yaratish" class="btn-secondary" invisible="worker_ids"/>
-                                <button name="action_fill_kpi_from_rates" type="object" string="Stavkadan to'ldirish" class="btn-secondary" invisible="not worker_ids"
-                                        confirm="Har xodimning KPI'si stavka bo'yicha hisoblangan qiymat bilan almashtiriladi. Davom etilsinmi?"/>
+                                <button name="action_open_kpi_sheet" type="object" string="Smena KPI" class="btn-primary" invisible="not worker_ids"/>
                                 <button name="action_post_kpi_cost" type="object" string="KPI'ni hozir tannarxga o'tkazish" class="btn-secondary" invisible="not kpi_cost_pending"/>
                             </div>
-                            <div class="text-muted small mb-1" invisible="can_edit_kpi">KPI'ni HR bo'limi kiritadi; bu yerda faqat ko'rinadi.</div>
-                            <field name="worker_ids" readonly="state != 'closed' or not can_edit_kpi">
-                                <list editable="bottom" create="false" delete="false">
+                            <div class="text-muted small mb-1">KPI smena rejasidan hisoblanadi; HR uni «Smena KPI» varag'ida tekshiradi va tasdiqlaydi.</div>
+                            <field name="worker_ids" readonly="1">
+                                <list create="false" delete="false" decoration-muted="not present">
                                     <field name="currency_id" column_invisible="1"/>
-                                    <field name="employee_id" readonly="1" options="{'no_open': True}"/>
+                                    <field name="present" column_invisible="1"/>
+                                    <field name="employee_name" string="Xodim"/>
+                                    <field name="presence" widget="badge" decoration-success="presence == 'face'"
+                                           decoration-warning="presence == 'absent'"/>
                                     <field name="worked"/>
-                                    <field name="qty_good" sum="Jami"/>
+                                    <field name="qty_good" sum="Jami" optional="hide"/>
                                     <field name="minutes" widget="float_time" optional="hide"/>
-                                    <field name="kpi_suggested" sum="Jami" optional="show"/>
+                                    <field name="kpi_done" sum="Jami"/>
+                                    <field name="kpi_plan" sum="Jami"/>
+                                    <field name="kpi_ratio" widget="percentage"/>
                                     <field name="kpi_amount" sum="Jami"/>
                                     <field name="penalty_amount" sum="Jami"/>
                                     <field name="note" optional="show"/>

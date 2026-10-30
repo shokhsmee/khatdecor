@@ -674,10 +674,10 @@ class CstProductionFloor(models.AbstractModel):
     @api.model
     def close_preview(self, shift_id, kpi_total, penalty_total):
         shift = self.env["cst.production.shift"].browse(int(shift_id))
-        can_edit_kpi = self.env["cst.production.shift.worker"]._can_edit_kpi()
-        if not can_edit_kpi:
-            kpi_total = shift.kpi_total  # KPI is HR's to enter
-        rows = self.env["cst.production.shift.close"]._employee_lines(shift, float(kpi_total or 0), float(penalty_total or 0))
+        # the KPI is counted from the shift's plan after closing (Smena KPI)
+        can_edit_kpi = False
+        kpi_total = 0.0
+        rows = self.env["cst.production.shift.close"]._employee_lines(shift, 0.0, float(penalty_total or 0))
         for row in rows:
             row["name"] = self.env["hr.employee"].browse(row["employee_id"]).name
         lines = shift.line_ids
@@ -691,14 +691,11 @@ class CstProductionFloor(models.AbstractModel):
         shift = self.env["cst.production.shift"].browse(int(shift_id))
         shift._check_manager()
         currency = shift.currency_id
-        if not self.env["cst.production.shift.worker"]._can_edit_kpi():
-            kpi_total = sum(float(row.get("kpi_amount") or 0) for row in shares)
+        kpi_total = 0.0  # counted from the plan once the shift is closed
         pairs = []
         for row in shares:
             employee = self.env["hr.employee"].browse(int(row["employee_id"]))
-            pairs.append((employee, float(row.get("kpi_amount") or 0), float(row.get("penalty_amount") or 0)))
-        if currency.compare_amounts(sum(p[1] for p in pairs), float(kpi_total or 0)) != 0:
-            raise UserError(_("Xodimlar ulushlari yig'indisi umumiy KPI summasiga teng emas."))
+            pairs.append((employee, 0.0, float(row.get("penalty_amount") or 0)))
         if currency.compare_amounts(sum(p[2] for p in pairs), float(penalty_total or 0)) != 0:
             raise UserError(_("Jarima ulushlari yig'indisi umumiy jarimaga teng emas."))
         shift._do_close(float(kpi_total or 0), float(penalty_total or 0), pairs, note=note)

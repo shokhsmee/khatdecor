@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+<t t-name="cst_kerama_shift.KpiPrices">
+    <div class="o_cst_kpi_prices o_action">
+        <div t-if="state.loading" class="o_cst_kp_wrap text-muted">Yuklanmoqda…</div>
+        <div t-else="" class="o_cst_kp_wrap">
+            <div class="o_cst_kp_head">
+                <div>
+                    <div class="o_cst_kp_crumb">Sozlamalar / KPI narxlari</div>
+                    <h1>KPI narxlari · <t t-esc="state.board.company"/></h1>
+                </div>
+                <div class="o_cst_kp_actions" t-if="canEdit">
+                    <button class="btn btn-light" t-att-disabled="!dirtyRows.length" t-on-click="discard">Bekor qilish</button>
+                    <button class="btn btn-primary" t-att-disabled="!dirtyRows.length or state.busy" t-on-click="save">
+                        Saqlash<t t-if="dirtyRows.length"> (<t t-esc="dirtyRows.length"/>)</t>
+                    </button>
+                </div>
+            </div>
+            <div class="o_cst_kp_tabs">
+                <button t-foreach="state.board.departments" t-as="dep" t-key="dep.id" class="o_cst_kp_tab"
+                        t-att-class="{ active: dep.id === state.deptId }" t-on-click="() => this.pickDepartment(dep.id)"
+                        t-esc="dep.name"/>
+            </div>
+            <div t-if="!department" class="o_cst_kp_card text-muted">Bu kompaniyada ishlab chiqarish bo'limi yo'q.</div>
+            <div t-else="" class="o_cst_kp_card">
+                <table class="o_cst_kp_table">
+                    <thead>
+                        <tr>
+                            <th class="o_cst_kp_n">№</th>
+                            <th>Xodim</th>
+                            <th class="text-end">KPI narxi (reja 100% bajarilganda)</th>
+                            <th>Amal qilish boshi</th>
+                            <th/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.rows" t-as="row" t-key="row.employee_id">
+                            <tr t-att-class="{ dirty: row.dirty }">
+                                <td class="o_cst_kp_n" t-esc="row_index + 1"/>
+                                <td>
+                                    <t t-esc="row.name"/>
+                                    <span t-if="!row.staff" class="o_cst_kp_tag">bo'lim xodimi emas</span>
+                                </td>
+                                <td class="text-end o_cst_kp_price">
+                                    <input t-if="canEdit" type="text" inputmode="decimal" class="o_cst_kp_input"
+                                           t-att-class="{ invalid: row.invalid }" t-att-value="row.input"
+                                           placeholder="0,00" t-on-input="(ev) => this.onInput(row, ev)"/>
+                                    <span t-else="" t-esc="fmt(row.amount)"/>
+                                    <span class="o_cst_kp_ccy" t-esc="state.board.currency"/>
+                                </td>
+                                <td>
+                                    <input t-if="row.dirty" type="date" class="o_cst_kp_date" t-att-value="row.newDate"
+                                           t-on-change="(ev) => this.onDate(row, ev)"/>
+                                    <span t-else="" t-esc="fmtDate(row.date_from)"/>
+                                </td>
+                                <td class="text-end">
+                                    <button t-if="row.history" class="btn btn-light btn-sm" t-on-click="() => this.toggleHistory(row)">Tarix</button>
+                                </td>
+                            </tr>
+                            <tr t-if="state.history[row.employee_id]" class="o_cst_kp_history">
+                                <td/>
+                                <td colspan="4">
+                                    <div t-foreach="state.history[row.employee_id]" t-as="item" t-key="item.id" class="o_cst_kp_hrow">
+                                        <span class="o_cst_kp_hdate" t-esc="fmtDate(item.date_from)"/>
+                                        <b t-esc="fmt(item.amount)"/> <t t-esc="state.board.currency"/>
+                                        <span class="text-muted ms-2" t-esc="item.user"/>
+                                        <a t-if="canEdit" href="#" class="ms-3 text-danger" t-on-click.prevent="() => this.deleteHistory(row, item)">o'chirish</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr t-if="!state.rows.length"><td colspan="5" class="text-muted">Bo'limda xodim yo'q — «Xodim qo'shish» bilan qo'shing.</td></tr>
+                    </tbody>
+                </table>
+                <div class="o_cst_kp_add" t-if="canEdit">
+                    <button t-if="!state.adding" class="btn btn-light" t-on-click="startAdd">+ Xodim qo'shish</button>
+                    <div t-else="" class="o_cst_kp_picker">
+                        <input type="text" class="form-control" placeholder="Xodim ismi…" t-att-value="state.query"
+                               t-on-input="(ev) => this.searchPeople(ev.target.value)"/>
+                        <div class="o_cst_kp_options">
+                            <button t-foreach="state.options" t-as="person" t-key="person.id" class="o_cst_kp_option"
+                                    t-on-click="() => this.addPerson(person)" t-esc="person.name"/>
+                            <div t-if="!state.options.length" class="text-muted small p-2">Topilmadi</div>
+                        </div>
+                        <button class="btn btn-link" t-on-click="() => this.state.adding = false">Yopish</button>
+                    </div>
+                </div>
+            </div>
+            <div class="o_cst_kp_foot">
+                Narx o'zgartirilsa, yangi sana bilan alohida yozuv ochiladi. Eski smenalar o'zgarmaydi.
+                <a href="#" class="ms-2" t-on-click.prevent="openFullHistory">Hamma narxlar tarixi</a>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

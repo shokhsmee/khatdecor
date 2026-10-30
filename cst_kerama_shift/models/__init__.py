@@ -6,6 +6,7 @@ from . import shift
 from . import shift_line
 from . import shift_entry
 from . import shift_worker
+from . import kpi_price
 from . import mrp_workcenter
 from . import mrp_workorder
 from . import payroll_period

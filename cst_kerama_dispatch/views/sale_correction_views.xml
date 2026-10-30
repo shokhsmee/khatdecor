@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cst_sale_correction_form" model="ir.ui.view">
+        <field name="name">cst.sale.correction.form</field>
+        <field name="model">cst.sale.correction</field>
+        <field name="arch" type="xml">
+            <form string="Sotuvni tuzatish">
+                <field name="currency_id" invisible="1"/>
+                <div class="alert alert-info" role="status">
+                    Yuk chiqib ketgan sotuvdagi xatoni to'g'rilash. Hech narsa o'chirilmaydi: kamaytirilgan miqdor
+                    <b>omborga qaytadi</b> (qaytarish hujjati), ko'paytirilgani <b>chiqim</b> qilinadi, narx o'zgarsa eski
+                    narxdagi hisob-faktura <b>kreditlanib</b> yangi narxda qayta yoziladi. Mijoz qarzi o'zi to'g'rilanadi.
+                    Sotuvni butunlay bekor qilish uchun hamma miqdorni 0 qiling, keyin «Bekor qilish».
+                </div>
+                <div class="alert alert-warning" role="status" invisible="order_state not in ('draft', 'sent')">
+                    Bu buyurtma yuk chiqib ketgandan keyin taklifga qaytarilgan. Tuzatishda u qayta tasdiqlanadi.
+                </div>
+                <group>
+                    <group>
+                        <field name="order_id" options="{'no_open': True}"/>
+                        <field name="partner_id" options="{'no_open': True}"/>
+                        <field name="order_state" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="amount_before"/>
+                        <field name="amount_after"/>
+                    </group>
+                </group>
+                <field name="line_ids" nolabel="1">
+                    <list editable="bottom" create="true" delete="false">
+                        <field name="currency_id" column_invisible="1"/>
+                        <field name="sale_line_id" column_invisible="1"/>
+                        <field name="product_id" readonly="sale_line_id" required="not sale_line_id"
+                               options="{'no_create': True}" width="240px"/>
+                        <field name="uom_id" readonly="1" optional="hide"/>
+                        <field name="delivered_qty"/>
+                        <field name="invoiced_qty" optional="show"/>
+                        <field name="old_qty" optional="hide"/>
+                        <field name="new_qty"/>
+                        <field name="old_price" optional="hide"/>
+                        <field name="new_price"/>
+                        <field name="old_discount" optional="hide"/>
+                        <field name="new_discount" optional="show"/>
+                        <field name="subtotal_new" sum="Jami"/>
+                        <field name="effect" class="text-muted"/>
+                    </list>
+                </field>
+                <group>
+                    <field name="ship_now"/>
+                    <field name="reason" placeholder="Nima xato bo'lgan edi? (majburiy)"/>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object" string="Tuzatish" class="btn-primary"
+                            confirm="Qaytarish / chiqim hujjatlari va hisob-fakturalar shu zahoti yaratiladi. Davom etilsinmi?"/>
+                    <button special="cancel" string="Bekor" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_order_form_cst_sale_correction" model="ir.ui.view">
+        <field name="name">sale.order.form.cst.sale.correction</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="cst_can_correct_sale" invisible="1"/>
+                <button name="action_cst_open_sale_correction" type="object" string="Tuzatish"
+                        invisible="not cst_can_correct_sale" groups="cst_kerama_shift.group_doc_correction"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

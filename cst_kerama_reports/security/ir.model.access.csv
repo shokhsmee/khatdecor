@@ -47,3 +47,6 @@ access_purchased_goods_wizard_stock,cst.purchased.goods.wizard.stock,model_cst_p
 access_purchased_goods_wizard_account,cst.purchased.goods.wizard.account,model_cst_purchased_goods_wizard,account.group_account_readonly,1,1,1,1
 access_employees_wizard_hr,cst.employees.wizard.hr,model_cst_employees_wizard,hr.group_hr_user,1,1,1,1
 access_employees_wizard_payroll,cst.employees.wizard.payroll,model_cst_employees_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1
+access_partner_last_operation_salesman,cst.partner.last.operation.salesman,model_cst_partner_last_operation,sales_team.group_sale_salesman,1,0,0,0
+access_partner_statement_wizard_salesman,cst.partner.statement.wizard.salesman,model_cst_partner_statement_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_partner_movement_wizard_salesman,cst.partner.movement.wizard.salesman,model_cst_partner_movement_wizard,sales_team.group_sale_salesman,1,1,1,1

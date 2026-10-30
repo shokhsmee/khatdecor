@@ -105,7 +105,7 @@
     </record>
 
     <menuitem id="menu_shift_kpi_mass" name="KPI ommaviy kiritish" parent="menu_shift_root"
-              action="action_kpi_mass_wizard" sequence="36" groups="hr.group_hr_user,base.group_system"/>
+              action="action_kpi_mass_wizard" sequence="24" groups="hr.group_hr_user,base.group_system"/>
     <menuitem id="menu_shift_kpi_rate_mass" name="KPI stavkalarini ommaviy o'rnatish" parent="menu_shift_config"
               action="action_kpi_rate_mass_wizard" sequence="31"/>
     <menuitem id="menu_hr_shift_kpi_mass" name="KPI ommaviy kiritish" parent="hr.menu_hr_root"

@@ -57,7 +57,7 @@ actual consumption sheet per manufacturing order.
     """,
     "author": "Khatdecor",
     "category": "Reporting",
-    "version": "19.0.2.16.0",
+    "version": "19.0.2.17.0",
     "depends": [
         "base",
         "account",

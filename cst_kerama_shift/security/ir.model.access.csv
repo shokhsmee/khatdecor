@@ -39,3 +39,7 @@ access_kpi_rate_mass_hr,kpi rate mass hr,model_cst_kpi_rate_mass_wizard,hr.group
 access_kpi_rate_mass_admin,kpi rate mass admin,model_cst_kpi_rate_mass_wizard,group_shift_admin,1,1,1,1
 access_department_norm_wizard_mgr,department norm manager,model_cst_department_norm_wizard,group_shift_manager,1,1,1,1
 access_department_norm_wizard_mrp,department norm mrp,model_cst_department_norm_wizard,mrp.group_mrp_user,1,1,1,1
+access_kpi_price_hr,kpi price hr,model_cst_shift_kpi_price,hr.group_hr_user,1,1,1,1
+access_kpi_price_system,kpi price system,model_cst_shift_kpi_price,base.group_system,1,1,1,1
+access_kpi_price_admin,kpi price shift admin read,model_cst_shift_kpi_price,group_shift_admin,1,0,0,0
+access_kpi_price_manager,kpi price shift manager read,model_cst_shift_kpi_price,group_shift_manager,1,0,0,0

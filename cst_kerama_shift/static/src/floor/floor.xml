@@ -513,25 +513,21 @@
                         <tfoot><tr class="cst_sf_total"><td>Jami</td><td/><td class="n" t-esc="num(closeTotals.planned)"/><td class="n" t-esc="num(closeTotals.good)"/><td class="n second" t-esc="num(closeTotals.second)"/><td class="n scrap" t-esc="num(closeTotals.scrap)"/></tr></tfoot>
                     </table>
                     <div class="cst_sf_form_row mt-2">
-                        <label t-if="state.form.can_edit_kpi">Umumiy KPI summasi<input type="number" min="0" step="1000" t-model="state.form.kpi_total" t-on-change="recomputeShares"/></label>
-                        <div t-else="" class="muted small">KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham).</div>
+                        <div class="muted small">KPI smena rejasi bo'yicha o'zi hisoblanadi: har xodimning KPI narxi × rejani bajarish foizi (Smena boshqaruvi ▸ Smena KPI). HR tekshirib tasdiqlaydi.</div>
                         <label>Brak jarimasi (jami)<input type="number" min="0" step="1000" t-model="state.form.penalty_total" t-on-change="recomputeShares"/></label>
                     </div>
                     <div class="cst_sf_kpi_tiles">
-                        <div><div class="k">KPI fondi</div><div class="v" t-esc="money(state.form.kpi_total)"/></div>
-                        <div><div class="k">Har xodimga</div><div class="v" t-esc="money(state.form.shares.length ? state.form.kpi_total / state.form.shares.length : 0)"/></div>
                         <div class="bad"><div class="k">Brak jarimasi</div><div class="v">−<t t-esc="money(state.form.penalty_total)"/></div></div>
                     </div>
                     <table class="cst_sf_table compact">
-                        <thead><tr><th>Xodim</th><th>Qilgan ishi</th><th class="n">Ish vaqti</th><th class="n">KPI ulushi</th><th class="n">Jarima</th></tr></thead>
+                        <thead><tr><th>Xodim</th><th>Qilgan ishi</th><th class="n">Ish vaqti</th><th class="n">Jarima</th></tr></thead>
                         <tbody>
                             <tr t-foreach="state.form.shares" t-as="s" t-key="s.employee_id">
                                 <td t-esc="s.name"/><td class="muted small" t-esc="s.worked"/><td class="n" t-esc="num(s.minutes) + ' daq'"/>
-                                <td class="n"><input t-if="state.form.can_edit_kpi" type="number" class="cst_sf_cell_input" t-model="s.kpi_amount"/><t t-else="" t-esc="money(s.kpi_amount)"/></td>
                                 <td class="n"><input type="number" class="cst_sf_cell_input" t-model="s.penalty_amount"/></td>
                             </tr>
                         </tbody>
-                        <tfoot><tr><td colspan="3" class="muted">Jami</td><td class="n" t-att-class="{ bad: !sharesOk.kpi }" t-esc="money(shareSums.kpi)"/><td class="n" t-att-class="{ bad: !sharesOk.penalty }" t-esc="money(shareSums.penalty)"/></tr></tfoot>
+                        <tfoot><tr><td colspan="3" class="muted">Jami</td><td class="n" t-att-class="{ bad: !sharesOk.penalty }" t-esc="money(shareSums.penalty)"/></tr></tfoot>
                     </table>
                     <label class="mt-2">Izoh<input type="text" t-model="state.form.note"/></label>
                     <div class="cst_sf_modal_btns"><button type="button" class="cst_sf_btn cst_sf_btn--primary" t-on-click="confirmClose">Smenani yakunlash</button><button type="button" class="cst_sf_btn cst_sf_btn--ghost" t-on-click="closeDialog">Bekor</button></div>

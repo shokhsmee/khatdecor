@@ -6,14 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:05+0000\n"
-"PO-Revision-Date: 2026-10-19 18:05+0000\n"
+"POT-Creation-Date: 2026-10-30 18:39+0000\n"
+"PO-Revision-Date: 2026-10-30 18:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid "  • %(product)s: jo'natiladi %(qty)s, omborda %(onhand)s %(uom)s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid ""
+"%(n)s ta mahsulot eshikda tekshirilmagan (0 sanalgan):\n"
+"\n"
+"%(rows)s\n"
+"\n"
+"Har birini skanerlang yoki ✓ bosing («Hammasi ✓» — hammasini birdan). Mahsulot umuman yuklanmagan bo'lsa «Omborga qaytarish» bosing — omborchi uni 0 qilsin."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid ""
+"%(order)s bo'yicha ochiq jo'natma bor (%(d)s). Avval uni eshikda yakunlang "
+"yoki bekor qiling."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid ""
+"%(order)s: yuk chiqib ketgan (%(products)s). Bekor qilib bo'lmaydi — "
+"«Tuzatish» tugmasi bilan miqdorni 0 qiling: tovar omborga qaytadi, hisob-"
+"faktura kreditlanadi, keyin bekor qilish mumkin."
+msgstr ""
 
 #. module: cst_kerama_dispatch
 #. odoo-python
@@ -51,6 +85,29 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #. odoo-python
 #: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+msgid ""
+"%(wh)s omborida yetarli emas — eshikka yuborilmadi:\n"
+"\n"
+"%(rows)s\n"
+"\n"
+"Miqdorni ombordagi qoldiqqa tushiring (qizil qatorlar) yoki avval tovarni omborga kiriting / ko'chiring."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "%g omborga qaytadi"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "%g qo'shimcha chiqim"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/dispatch.py:0
 msgid "%s bu jo'natmada yo'q! Ombor menejeriga qaytaring."
 msgstr ""
 
@@ -58,6 +115,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/cst_kerama_dispatch/models/dispatch.py:0
 msgid "%s buyurtmasi tasdiqlangan holatda emas."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "%s hujjatini tasdiqlab bo'lmadi."
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -118,6 +181,30 @@ msgid "%s yetkazib berishini tasdiqlab bo'lmadi."
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "%s: chegirma 0–100%% bo'ladi."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "%s: miqdor va narx manfiy bo'lmaydi."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "%s: yangi qatorning miqdori 0."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "(%(user)s). Sabab: %(reason)s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 msgid "(buyurtma"
@@ -131,6 +218,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "(oxirgi)"
 msgstr ""
 
@@ -143,6 +231,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "(qisman)"
 msgstr ""
 
@@ -171,6 +260,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "<i>(qo'shimcha)</i>"
 msgstr ""
 
@@ -213,6 +303,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
 msgid "Bekor"
 msgstr ""
 
@@ -224,15 +315,30 @@ msgid "Bekor qilindi"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Bekor qilingan buyurtma tuzatilmaydi."
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 msgid "Bekor qilish"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#: model:ir.model.fields,help:cst_kerama_dispatch.field_cst_sale_correction__ship_now
+msgid ""
+"Belgilansa, ko'paytirilgan miqdor darhol ombordan chiqim qilinadi (yuk ketib"
+" bo'lgan). Belgilanmasa, u ochiq yetkazib berishda qoladi va Jo'natish "
+"orqali chiqadi."
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__uom_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__uom_id
 msgid "Birlik"
 msgstr ""
 
@@ -250,6 +356,13 @@ msgstr ""
 #: code:addons/cst_kerama_dispatch/models/dispatch.py:0
 #: code:addons/cst_kerama_dispatch/models/transfer.py:0
 msgid "Bu amal uchun huquqingiz yo'q."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+msgid ""
+"Bu buyurtma yuk chiqib ketgandan keyin taklifga qaytarilgan. Tuzatishda u "
+"qayta tasdiqlanadi."
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -303,13 +416,16 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__ordered_qty
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__order_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Buyurtma"
 msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__sale_line_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__sale_line_id
 msgid "Buyurtma qatori"
 msgstr ""
 
@@ -343,6 +459,11 @@ msgid "Checks ready orders at the gate and approves them."
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__new_discount
+msgid "Chegirma %"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 #: model:ir.model.fields.selection,name:cst_kerama_dispatch.selection__cst_dispatch__state__done
@@ -362,7 +483,13 @@ msgid "Chiqdi:"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__delivered_qty
+msgid "Chiqib ketgan"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Chop etildi:"
 msgstr ""
 
@@ -371,6 +498,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__create_uid
 msgid "Created by"
 msgstr ""
 
@@ -379,12 +508,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__create_date
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__create_date
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__create_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__create_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_stock_picking__cst_can_correct
 msgid "Cst Can Correct"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_sale_order__cst_can_correct_sale
+msgid "Cst Can Correct Sale"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__currency_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__currency_id
+msgid "Currency"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -403,6 +545,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__display_name
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__display_name
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__display_name
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__display_name
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_transfer_ui__display_name
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_ir_ui_menu__display_name
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_sale_order__display_name
@@ -423,14 +567,28 @@ msgid "Eshik: tekshirish"
 msgstr ""
 
 #. module: cst_kerama_dispatch
-#. odoo-javascript
-#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
-msgid "Eshikda"
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__checked_qty
+msgid "Eshikda sanaldi"
 msgstr ""
 
 #. module: cst_kerama_dispatch
-#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__checked_qty
-msgid "Eshikda sanaldi"
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__old_discount
+msgid "Eski chegirma %"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__old_qty
+msgid "Eski miqdor"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__old_price
+msgid "Eski narx"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__subtotal_old
+msgid "Eski summa"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -506,6 +664,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 msgid "Hammasi"
 msgstr ""
@@ -533,6 +692,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__driver
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Haydovchi"
 msgstr ""
 
@@ -556,6 +716,12 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Hech narsa o'zgarmadi."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
 #: code:addons/cst_kerama_dispatch/models/transfer.py:0
 msgid "Hech narsa qabul qilinmadi. Kamida bitta miqdor kiriting."
 msgstr ""
@@ -565,6 +731,11 @@ msgstr ""
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 msgid "Hech narsa yo'q"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__invoiced_qty
+msgid "Hisob-faktura"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -586,7 +757,18 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Holat:"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__order_state
+msgid "Holati"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__amount_before
+msgid "Hozirgi summa"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -600,10 +782,18 @@ msgid "Hujjatda"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Hujjatlar:"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_transfer_ui__id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_ir_ui_menu__id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_sale_order__id
@@ -680,12 +870,19 @@ msgstr ""
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__note
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Izoh"
 msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Izoh:"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+msgid "Jami"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -700,6 +897,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Jami:"
 msgstr ""
 
@@ -902,6 +1100,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -910,6 +1110,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__write_date
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__write_date
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__write_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__write_date
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -918,7 +1120,9 @@ msgstr ""
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__product_id
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__product_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__product_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Mahsulot"
 msgstr ""
 
@@ -950,6 +1154,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__line_ids
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__line_ids
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 msgid "Mahsulotlar"
 msgstr ""
@@ -965,6 +1170,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Mashina"
 msgstr ""
 
@@ -1019,6 +1225,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__partner_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__partner_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_search
 msgid "Mijoz"
 msgstr ""
@@ -1026,6 +1233,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__new_qty
 msgid "Miqdor"
 msgstr ""
 
@@ -1047,6 +1255,7 @@ msgid "Move"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__new_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
 msgid "Narx"
 msgstr ""
@@ -1057,8 +1266,24 @@ msgid "Narx (QQS bilan)"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Narx tuzatish: %s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
 msgid "Nega tuzatilmoqda? (majburiy)"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__effect
+msgid "Nima bo'ladi"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+msgid "Nima xato bo'lgan edi? (majburiy)"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1101,6 +1326,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "O'lch."
 msgstr ""
 
@@ -1120,6 +1346,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__warehouse_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Ombor"
 msgstr ""
 
@@ -1261,6 +1488,19 @@ msgid "Qayerga"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Qaytariladigan miqdor yetkazib berilganidan ko'p: %s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+msgid ""
+"Qaytarish / chiqim hujjatlari va hisob-fakturalar shu zahoti yaratiladi. "
+"Davom etilsinmi?"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 msgid "Qidirish: buyurtma, mijoz… (yoki skanerlang)"
@@ -1288,6 +1528,11 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch_line__is_extra
 msgid "Qo'shimcha mahsulot"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__ship_now
+msgid "Qo'shimcha tovar allaqachon chiqib ketgan"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1350,6 +1595,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction__reason
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__reason
 msgid "Sabab"
 msgstr ""
 
@@ -1405,12 +1651,42 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Soni"
 msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_dispatch__sale_order_id
 msgid "Sotuv buyurtmasi"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Sotuv tuzatildi"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_sale_correction
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+msgid "Sotuvni tuzatish"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Sotuvni tuzatish (%(order)s): %(reason)s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model,name:cst_kerama_dispatch.model_cst_sale_correction_line
+msgid "Sotuvni tuzatish qatori"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Sotuvni tuzatish: %s"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1437,6 +1713,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #. odoo-python
 #: code:addons/cst_kerama_dispatch/models/dispatch.py:0
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
 msgid "Summa: %(a)s → %(b)s"
 msgstr ""
 
@@ -1555,6 +1832,8 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_picking_correction_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_order_form_cst_sale_correction
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_picking_form_cst_correction
 msgid "Tuzatish"
 msgstr ""
@@ -1562,6 +1841,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #. odoo-python
 #: code:addons/cst_kerama_dispatch/models/picking_correction.py:0
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
 msgid "Tuzatish sababini yozing."
 msgstr ""
 
@@ -1607,11 +1887,13 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_picking_correction_line__wizard_id
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__wizard_id
 msgid "Wizard"
 msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Xarakteristika"
 msgstr ""
 
@@ -1623,6 +1905,7 @@ msgstr ""
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "Xaridor"
 msgstr ""
 
@@ -1630,6 +1913,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_80
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
 msgid "YUK XATI"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
+msgid "YUK XATI (yuklovchilar uchun)"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1645,6 +1933,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 msgid "Yangi"
 msgstr ""
@@ -1653,6 +1942,18 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 msgid "Yangi ichki o'tkazma"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Yangi qatorda mahsulot tanlanmagan."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction__amount_after
+#: model:ir.model.fields,field_description:cst_kerama_dispatch.field_cst_sale_correction_line__subtotal_new
+msgid "Yangi summa"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1676,6 +1977,21 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/transfer.xml:0
 msgid "Yuborish ("
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_cst_sale_correction_form
+msgid ""
+"Yuk chiqib ketgan sotuvdagi xatoni to'g'rilash. Hech narsa o'chirilmaydi: kamaytirilgan miqdor\n"
+"                    <b>omborga qaytadi</b> (qaytarish hujjati), ko'paytirilgani <b>chiqim</b> qilinadi, narx o'zgarsa eski\n"
+"                    narxdagi hisob-faktura <b>kreditlanib</b> yangi narxda qayta yoziladi. Mijoz qarzi o'zi to'g'rilanadi.\n"
+"                    Sotuvni butunlay bekor qilish uchun hamma miqdorni 0 qiling, keyin «Bekor qilish»."
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "Yuk chiqib ketgan sotuvni faqat administrator yoki rahbar tuzatadi."
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1712,6 +2028,33 @@ msgid "Yuk xati — A4 (oddiy printer)"
 msgstr ""
 
 #. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
+msgid "Yuklandi"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Yuklovchi"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
+msgid "Yuklovchilar"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.view_dispatch_form
+msgid "Yuklovchilar uchun (narxsiz)"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-javascript
+#: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
+msgid "Yuklovchilar uchun — narxsiz (A4)"
+msgstr ""
+
+#. module: cst_kerama_dispatch
 #. odoo-python
 #: code:addons/cst_kerama_dispatch/models/transfer.py:0
 msgid "bugun %s"
@@ -1721,6 +2064,18 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 msgid "buyurtma"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "buyurtma qayta tasdiqlandi (yuk chiqib ketgan edi)"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "chegirma %(a)s%% → %(b)s%%"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1737,6 +2092,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "logo"
 msgstr ""
 
@@ -1750,6 +2106,24 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 msgid "menga kelgan:"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "miqdor %(a)s → %(b)s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "narx %(a)s → %(b)s"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "narx qayta hisoblanadi"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1784,6 +2158,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "ta mahsulot"
 msgstr ""
 
@@ -1797,6 +2172,12 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/cst_kerama_dispatch/static/src/app/dispatch_app.xml:0
 msgid "tayyorlanmoqda"
+msgstr ""
+
+#. module: cst_kerama_dispatch
+#. odoo-python
+#: code:addons/cst_kerama_dispatch/models/sale_correction.py:0
+msgid "yangi qator %(q)s × %(p)s"
 msgstr ""
 
 #. module: cst_kerama_dispatch
@@ -1843,6 +2224,7 @@ msgstr ""
 
 #. module: cst_kerama_dispatch
 #: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_a4
+#: model_terms:ir.ui.view,arch_db:cst_kerama_dispatch.waybill_loader
 msgid "· Reys"
 msgstr ""
 

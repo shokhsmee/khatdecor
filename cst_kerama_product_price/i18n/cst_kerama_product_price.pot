@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 20:03+0000\n"
-"PO-Revision-Date: 2026-10-21 20:03+0000\n"
+"POT-Creation-Date: 2026-10-30 18:39+0000\n"
+"PO-Revision-Date: 2026-10-30 18:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,41 +18,55 @@ msgstr ""
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "%(row)s-satr (%(barcode)s): narx manfiy bo'lishi mumkin emas."
+msgid "%(row)s-satr (%(key)s): narx manfiy bo'lishi mumkin emas."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "%(row)s-satr (%(key)s): narx son emas."
 msgstr ""
 
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 msgid ""
-"%(row)s-satr (%(barcode)s): valyuta \"%(value)s\" tanilmadi (USD yoki UZS "
+"%(row)s-satr (%(key)s): valyuta \"%(value)s\" tanilmadi (USD yoki UZS "
 "yozing)."
 msgstr ""
 
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "%(row)s-satr (%(barcode)s): yangi narx bo'sh yoki son emas."
+msgid "%(row)s-satr: mahsulot ko'rsatilmagan."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "%(row)s-satr: «%(key)s» bo'yicha mahsulot topilmadi."
 msgstr ""
 
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 msgid ""
-"%(row)s-satr: shtrix-kod \"%(barcode)s\" %(first)s-satrda allaqachon bor, "
-"e'tiborga olinmadi."
+"%(row)s-satr: «%(key)s» — %(n)s ta xarakteristika bor, qaysi biri ekani "
+"noaniq («Xarakteristika» yoki «Shtrix-kod» ustunini tanlang)."
 msgstr ""
 
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "%(row)s-satr: shtrix-kod \"%(barcode)s\" bo'yicha mahsulot topilmadi."
+msgid ""
+"%(row)s-satr: «%(product)s» %(first)s-satrda allaqachon bor, e'tiborga "
+"olinmadi."
 msgstr ""
 
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
-msgid "%(row)s-satr: shtrix-kod ko'rsatilmagan."
+msgid "%s-ustun"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -65,15 +79,11 @@ msgstr ""
 #. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid ""
-"<b>1.</b> Shablonni yuklab oling — mahsulotlar guruh bo'yicha, har\n"
-"                                xarakteristika alohida qator. <b>Yangi narx</b> ustunini (kerak bo'lsa\n"
-"                                <b>Valyuta</b>ni ham: USD yoki UZS) to'ldiring.\n"
-"                                <b>2.</b> To'ldirilgan faylni tanlab,\n"
-"                                <b>Narxlarni yuklash</b> tugmasini bosing.<br/>\n"
-"                                Mahsulotlar <b>shtrix-kod</b> bo'yicha topiladi -\n"
-"                                qolgan ustunlarni o'zgartirsa ham bo'ladi.\n"
-"                                Noto'g'ri satrlar o'tkazib yuboriladi va\n"
-"                                oxirida ro'yxat qilib ko'rsatiladi."
+"<b>1.</b> Shablonni yuklab oling (yoki o'zingizning istalgan Excel faylingizni oling) va\n"
+"                                <b>yangi narx</b> ustunini to'ldiring. <b>2.</b> Faylni tanlab <b>Ustunlarni o'qish</b>ni\n"
+"                                bosing. <b>3.</b> Har ustun nima ekanini tanlang: mahsulot <b>shtrix-kod</b>, <b>ichki kod</b>\n"
+"                                yoki <b>nomi</b> (+ <b>xarakteristika</b>) bo'yicha topiladi, narx tanlangan ustundan olinadi.\n"
+"                                Noto'g'ri satrlar o'tkazib yuboriladi va oxirida ro'yxat qilib ko'rsatiladi."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -112,6 +122,11 @@ msgid "<span class=\"text-muted\" invisible=\"adjust_type != 'percent'\">%</span
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "<span>Sarlavha qatori:</span>"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_unit
 msgid "Adjust Unit"
 msgstr ""
@@ -143,6 +158,11 @@ msgid "Bekor qilish"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Boshqa fayl"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 msgid ""
@@ -161,12 +181,14 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__create_date
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__create_date
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__create_date
 msgid "Created on"
 msgstr ""
@@ -179,6 +201,7 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__display_name
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__display_name
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__display_name
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__display_name
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_template__display_name
@@ -232,11 +255,22 @@ msgid ""
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Fayl (.xlsx / .csv)"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 msgid ""
 "Faylda \"Shtrix-kod\" va \"Yangi narx\" ustunlari topilmadi. Shablonni "
 "yuklab olib, undan foydalaning."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Faylda ma'lumot topilmadi."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -250,7 +284,27 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid ""
+"Fayldagi har ustun nima ekanini <b>Nima</b> ustunida tanlang. Kerak emaslari —\n"
+"                                    «Yuklanmasin». Mahsulot <b>shtrix-kod</b> → <b>ichki kod</b> → <b>nomi</b> tartibida\n"
+"                                    qidiriladi; bir nomda bir nechta xarakteristika bo'lsa, <b>Xarakteristika</b> ustuni ham kerak."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid "Fayldagi narxlar mahsulotlarga yoziladi. Davom etamizmi?"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__header
+msgid "Fayldagi nomi"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,help:cst_kerama_product_price.field_cst_product_price_update__header_row
+msgid ""
+"Fayldagi ustun nomlari turgan qator raqami (0 — sarlavha yo'q, ma'lumot "
+"1-qatordan). O'zgartirsangiz, «Qayta o'qish»ni bosing."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -288,10 +342,16 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__id
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__id
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__id
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_product__id
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_product_template__id
 msgid "ID"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__code
+msgid "Ichki kod (artikul)"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -355,12 +415,14 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__write_date
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__write_date
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__write_date
 msgid "Last Updated on"
 msgstr ""
@@ -376,10 +438,8 @@ msgid "Mahsulot guruhlari"
 msgstr ""
 
 #. module: cst_kerama_product_price
-#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
-msgid ""
-"Mahsulot tanlanmagan. <b>Mahsulot guruhlari</b>ni tanlang yoki\n"
-"                        ro'yxatdan mahsulotlarni belgilab, amalni qaytadan oching."
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__name
+msgid "Mahsulot nomi"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -390,11 +450,29 @@ msgstr ""
 #. module: cst_kerama_product_price
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid ""
+"Mahsulotni topish uchun ustun tanlang: shtrix-kod, ichki kod yoki mahsulot "
+"nomi."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 #: model:ir.actions.act_window,name:cst_kerama_product_price.action_product_price_update_template
 #: model:ir.actions.act_window,name:cst_kerama_product_price.action_product_price_update_variant
 #: model:ir.model,name:cst_kerama_product_price.model_cst_product_price_update
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid "Maxsulot narxlarini yangilash"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__sample
+msgid "Namuna qiymatlar"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model,name:cst_kerama_product_price.model_cst_product_price_update_column
+msgid "Narx fayli ustuni"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -435,6 +513,11 @@ msgstr ""
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__result_html
 msgid "Natija"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__role
+msgid "Nima"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -495,6 +578,17 @@ msgid "Qaysi narx"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "Qaysi ustunda yangi narx turganini tanlang («Yangi narx»)."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Qayta o'qish"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__adjust_value
 msgid "Qiymat"
 msgstr ""
@@ -510,6 +604,11 @@ msgid "Qo'shish (+)"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__header_row
+msgid "Sarlavha qatori"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__template_file
 msgid "Shablon"
 msgstr ""
@@ -518,6 +617,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
 msgid "Shablon uchun mahsulot yoki mahsulot guruhini tanlang."
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid ""
+"Shablon va ommaviy o'zgartirish uchun <b>Mahsulot guruhlari</b>ni tanlang yoki ro'yxatdan\n"
+"                        mahsulotlarni belgilab, amalni qaytadan oching. Tayyor faylni yuklash uchun tanlash shart emas."
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -533,6 +639,7 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__barcode
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__barcode
 msgid "Shtrix-kod"
 msgstr ""
 
@@ -603,28 +710,42 @@ msgid "Template Filename"
 msgstr ""
 
 #. module: cst_kerama_product_price
-#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
-msgid "To'ldirilgan fayl"
-msgstr ""
-
-#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__upload_filename
 msgid "Upload Filename"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__letter
+msgid "Ustun"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__column_ids
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update__state__map
+msgid "Ustunlar"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
+msgid "Ustunlarni o'qish"
+msgstr ""
+
+#. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update__currency_id
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__currency_id
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__currency
 msgid "Valyuta"
 msgstr ""
 
 #. module: cst_kerama_product_price
+#: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_column__wizard_id
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__wizard_id
 msgid "Wizard"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__cst_characteristic
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__characteristic
 msgid "Xarakteristika"
 msgstr ""
 
@@ -640,12 +761,18 @@ msgstr ""
 
 #. module: cst_kerama_product_price
 #: model:ir.model.fields,field_description:cst_kerama_product_price.field_cst_product_price_update_line__new_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__price
 msgid "Yangi narx"
 msgstr ""
 
 #. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid "Yopish"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#: model:ir.model.fields.selection,name:cst_kerama_product_price.selection__cst_product_price_update_column__role__skip
+msgid "Yuklanmasin"
 msgstr ""
 
 #. module: cst_kerama_product_price
@@ -662,4 +789,10 @@ msgstr ""
 #. module: cst_kerama_product_price
 #: model_terms:ir.ui.view,arch_db:cst_kerama_product_price.cst_product_price_update_view_form
 msgid "ta mahsulot"
+msgstr ""
+
+#. module: cst_kerama_product_price
+#. odoo-python
+#: code:addons/cst_kerama_product_price/wizard/product_price_update.py:0
+msgid "«%s» ikki ustunga tanlangan. Har biri bitta ustunga."
 msgstr ""

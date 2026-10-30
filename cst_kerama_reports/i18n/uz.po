@@ -91,6 +91,7 @@ msgstr "3-shaxs akt sverkasi"
 #: code:addons/cst_kerama_reports/models/partner_statement.py:0
 #: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_partner_movement_wizard__kind__third_party
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_third_parties
+#: model:res.partner.category,name:cst_kerama_reports.partner_category_third_party
 msgid "3-shaxslar"
 msgstr "3-shaxslar"
 
@@ -296,6 +297,7 @@ msgstr "Barcha xarajatlar"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employees_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
@@ -304,7 +306,9 @@ msgstr "Barcha xarajatlar"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_purchased_goods_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
@@ -362,6 +366,7 @@ msgstr "Bo'sh qoldirilsa, barcha yoqilg'i turlari birga hisoblanadi."
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,help:cst_kerama_reports.field_cst_goods_movement_wizard__warehouse_ids
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_product_card_wizard__warehouse_ids
 #: model:ir.model.fields,help:cst_kerama_reports.field_cst_warehouse_report_wizard__warehouse_ids
 msgid "Bo'sh qoldirilsa, ruxsat etilgan barcha omborlar chiqadi."
 msgstr "Bo'sh qoldirilsa, ruxsat etilgan barcha omborlar chiqadi."
@@ -417,6 +422,7 @@ msgstr "Brak"
 #. module: cst_kerama_reports
 #: model:ir.model.fields,help:cst_kerama_reports.field_product_product__cst_is_fuel
 #: model:ir.model.fields,help:cst_kerama_reports.field_product_template__cst_is_fuel
+#: model:ir.model.fields,help:cst_kerama_reports.field_stock_scrap__cst_is_fuel
 msgid ""
 "Bu mahsulot yoqilg'i hisobotida tanlanadigan yoqilg'i turi sifatida "
 "ko'rsatiladi."
@@ -465,6 +471,7 @@ msgstr "Buyurtma kerak"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
@@ -521,6 +528,7 @@ msgstr "Kontragent bilan hisob-kitob"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__create_uid
@@ -531,10 +539,13 @@ msgstr "Kontragent bilan hisob-kitob"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__create_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__create_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__create_uid
@@ -549,6 +560,7 @@ msgstr "Yaratgan"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__create_date
@@ -559,10 +571,13 @@ msgstr "Yaratgan"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__create_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__create_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__create_date
@@ -597,7 +612,9 @@ msgstr "Davr"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__date_from
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__date_from
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__date_from
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__date_from
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__date_from
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__date_from
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__date_from
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__date_from
@@ -728,7 +745,9 @@ msgstr "Davr oralig'ida yurgan km"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__date_to
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__date_to
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__date_to
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__date_to
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__date_to
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__date_to
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__date_to
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__date_to
@@ -771,6 +790,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_director_dashboard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__display_name
@@ -792,24 +813,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_component__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_report_base__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_report__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_report_filter_bar__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_reports_setup__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_report_base__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_ir_http__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__display_name
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_res_partner__display_name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_stock_scrap__display_name
 msgid "Display Name"
 msgstr "Ko‘rsatiladigan nom"
 
@@ -821,6 +850,7 @@ msgstr "Ko‘rsatiladigan nom"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employees_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
@@ -829,7 +859,9 @@ msgstr "Ko‘rsatiladigan nom"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_purchased_goods_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
@@ -874,6 +906,7 @@ msgstr "Eskirish summasi"
 #. module: cst_kerama_reports
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
 msgid "Excel"
 msgstr "Excel"
@@ -939,6 +972,7 @@ msgstr "Hali hisob-kitob harakati yo'q"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_inventory_count_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_stock_ledger_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_warehouse_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_writeoff_report_wizard_form
@@ -946,8 +980,6 @@ msgid "Hamma omborlar (bo'sh = hammasi)"
 msgstr "Hamma omborlar (bo'sh = hammasi)"
 
 #. module: cst_kerama_reports
-#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_movement_wizard__display_currency_id
-#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_statement_wizard__display_currency_id
 #: model:ir.model.fields,help:cst_kerama_reports.field_cst_utility_statement_wizard__display_currency_id
 msgid ""
 "Hamma summa shu valyutada: so'mdagi to'lov dollar qarzidan ayriladi (kassa "
@@ -1087,6 +1119,7 @@ msgstr "Hisobot ekranidagi filtrlar"
 
 #. module: cst_kerama_reports
 #. odoo-python
+#: code:addons/cst_kerama_reports/controllers/product_card.py:0
 #: code:addons/cst_kerama_reports/controllers/stock_ledger.py:0
 msgid "Hisobot parametrlari topilmadi — qaytadan oching."
 msgstr "Hisobot parametrlari topilmadi — qaytadan oching."
@@ -1128,6 +1161,8 @@ msgstr "Hujjatlar soni"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_director_dashboard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__id
@@ -1149,24 +1184,32 @@ msgstr "Hujjatlar soni"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_component__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_payroll_report_base__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_report__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_report_filter_bar__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_reports_setup__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_report_base__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_hr_employee__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_ir_http__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_res_partner__id
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_stock_scrap__id
 msgid "ID"
 msgstr "ID"
 
@@ -1253,6 +1296,7 @@ msgstr "Ishlab chiqarishga berilgan"
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__worked_hours
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_stock_scrap__cst_fuel_worked_hours
 msgid "Ishlagan vaqt"
 msgstr "Ishlagan vaqt"
 
@@ -1300,11 +1344,13 @@ msgstr "JAMI"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_movement
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_list
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_list
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_list
 msgid "Jami"
 msgstr "Jami"
 
@@ -1487,6 +1533,7 @@ msgstr "Kassa yoki bank jurnali topilmadi."
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__category_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__category_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__category_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__category_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__category_ids
 msgid "Kategoriyalar"
@@ -1504,6 +1551,7 @@ msgstr "Kimlar bo'yicha"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
@@ -1597,6 +1645,7 @@ msgstr "Kompaniya valyutasi"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_report_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__company_ids
@@ -1606,7 +1655,9 @@ msgstr "Kompaniya valyutasi"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_period_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__company_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__company_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__company_ids
@@ -1682,7 +1733,9 @@ msgid "Kontragentlar harakati hisoboti"
 msgstr "Kontragentlar harakati hisoboti"
 
 #. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__day
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_last_operation_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_search
 msgid "Kun"
 msgstr "Kun"
 
@@ -1716,6 +1769,7 @@ msgstr "Kutilayotgan"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__write_uid
@@ -1726,10 +1780,13 @@ msgstr "Kutilayotgan"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__write_uid
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__write_uid
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__write_uid
@@ -1744,6 +1801,7 @@ msgstr "Oxirgi yangilagan"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_consumption_report_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employee_card_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__write_date
@@ -1754,10 +1812,13 @@ msgstr "Oxirgi yangilagan"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_movement_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_tax_statement_wizard__write_date
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__write_date
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__write_date
@@ -1769,6 +1830,7 @@ msgstr "Oxirgi yangilangan sana"
 #: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__product_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
 msgid "Mahsulot"
 msgstr "Mahsulot"
@@ -1829,6 +1891,7 @@ msgstr "Mahsulot sotildi"
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__product_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__product_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_production_fact_wizard__product_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__product_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__product_ids
@@ -1854,6 +1917,7 @@ msgstr "Mas'ul:"
 #. module: cst_kerama_reports
 #: model:ir.model,name:cst_kerama_reports.model_cst_fuel_machine
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_machine__name
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_stock_scrap__cst_fuel_machine_id
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
 msgid "Mashina"
@@ -2077,6 +2141,8 @@ msgstr "Narx manfiy bo'lishi mumkin emas."
 
 #. module: cst_kerama_reports
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_form
 msgid "Narxi"
 msgstr "Narxi"
@@ -2160,12 +2226,14 @@ msgstr "O'lch."
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
 msgid "O'lchov"
 msgstr "O'lchov"
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__avg_price
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 msgid "O'rtacha narx"
 msgstr "O'rtacha narx"
 
@@ -2176,6 +2244,7 @@ msgstr "Oldindan to'laganlar"
 
 #. module: cst_kerama_reports
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_stock
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
 msgid "Ombor"
 msgstr "Ombor"
 
@@ -2218,6 +2287,7 @@ msgstr "Ombor samaradorligi"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__warehouse_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_inventory_count_wizard__warehouse_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_minmax_report_wizard__warehouse_ids
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__warehouse_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_stock_ledger_wizard__warehouse_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_warehouse_report_wizard__warehouse_ids
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_writeoff_report_wizard__warehouse_ids
@@ -2245,6 +2315,7 @@ msgstr "Omborlar hisoboti (rasmli)"
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_goods_movement_wizard__together
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__together
 msgid "Omborlarni birlashtirish"
 msgstr "Omborlarni birlashtirish"
 
@@ -2302,6 +2373,7 @@ msgstr "Oylik"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_cash_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_consumption_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employee_card_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employees_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_expense_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_goods_movement_wizard_form
@@ -2310,7 +2382,9 @@ msgstr "Oylik"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_minmax_report_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_production_fact_wizard_form
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_purchased_goods_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_movement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_tax_statement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
@@ -2476,6 +2550,7 @@ msgstr "Qoidasi yo'q mahsulotlarni ham"
 #: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
 msgid "Qoldiq"
 msgstr "Qoldiq"
 
@@ -2575,6 +2650,7 @@ msgstr "Salyarka (dizel yoqilg'isi)"
 #. module: cst_kerama_reports
 #. odoo-javascript
 #: code:addons/cst_kerama_reports/static/src/director_dashboard/director_dashboard.xml:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__day
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__date
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
@@ -2584,6 +2660,8 @@ msgstr "Salyarka (dizel yoqilg'isi)"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_fuel
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_partner_statement
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_tax_statement
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_log_search
@@ -2698,6 +2776,7 @@ msgstr "Soliqlar harakati (ekranda)"
 
 #. module: cst_kerama_reports
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
 msgid "Soni"
 msgstr "Soni"
@@ -2712,11 +2791,6 @@ msgstr "Sotib olindi"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_assets
 msgid "Sotib olingan sanasi"
 msgstr "Sotib olingan sanasi"
-
-#. module: cst_kerama_reports
-#: model:ir.model.fields,help:cst_kerama_reports.field_cst_expense_report_wizard__include_direct_cost
-msgid "Sotilgan mahsulot tannarxi (direct cost) hisoblarini ham ko'rsatish."
-msgstr "Sotilgan mahsulot tannarxi (direct cost) hisoblarini ham ko'rsatish."
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_kpi_report_wizard__computation__kpi_sales
@@ -2743,6 +2817,7 @@ msgstr "Sotuvchilar bo'yicha"
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__odometer_km
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_stock_scrap__cst_fuel_odometer_km
 msgid "Spidometr (km)"
 msgstr "Spidometr (km)"
 
@@ -2772,6 +2847,7 @@ msgstr "Summa (kompaniya valyutasida)"
 #. module: cst_kerama_reports
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__amount
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bonus_penalty
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
 msgid "Summasi"
 msgstr "Summasi"
@@ -2805,6 +2881,7 @@ msgstr "Ta'minotchiga qarz yozilsin"
 #. module: cst_kerama_reports
 #. odoo-python
 #: code:addons/cst_kerama_reports/models/partner_statement.py:0
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__partner_ids
 #: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_partner_movement_wizard__kind__supplier
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_suppliers
 msgid "Ta'minotchilar"
@@ -2844,6 +2921,7 @@ msgstr "Tanlangan davrda harakat topilmadi."
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,help:cst_kerama_reports.field_cst_goods_movement_wizard__together
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_product_card_wizard__together
 msgid ""
 "Tanlangan omborlar bitta ombor deb ko'riladi: ular orasidagi ko'chirishlar "
 "ko'rsatilmaydi."
@@ -2855,11 +2933,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_stock_ledger
 msgid "Tannarxi"
 msgstr "Tannarxi"
-
-#. module: cst_kerama_reports
-#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__include_direct_cost
-msgid "Tannarxni ham qo'shish"
-msgstr "Tannarxni ham qo'shish"
 
 #. module: cst_kerama_reports
 #: model:ir.model.fields,help:cst_kerama_reports.field_cst_fuel_log__create_bill
@@ -2939,11 +3012,8 @@ msgstr "Uskuna samaradorligi (OEE)"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_expense_report_wizard__display_currency_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__currency_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_last_operation__currency_id
-#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_movement_wizard__display_currency_id
-#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__display_currency_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_price_range__currency_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_utility_statement_wizard__display_currency_id
-#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_cash
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
 msgid "Valyuta"
 msgstr "Valyuta"
@@ -2968,11 +3038,6 @@ msgstr "Xarajat harakati"
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_bank_fees
 msgid "Xarajat hisobi"
 msgstr "Xarajat hisobi"
-
-#. module: cst_kerama_reports
-#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
-msgid "Xarajat turi"
-msgstr "Xarajat turi"
 
 #. module: cst_kerama_reports
 #. odoo-javascript
@@ -3009,6 +3074,7 @@ msgstr "Xarakt."
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_kpi
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_minmax
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_production_fact
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_warehouse
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_writeoff
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_price_range_search
@@ -3075,6 +3141,7 @@ msgstr "Yangilash"
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_fuel_log__product_id
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_product_product__cst_is_fuel
 #: model:ir.model.fields,field_description:cst_kerama_reports.field_product_template__cst_is_fuel
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_stock_scrap__cst_is_fuel
 #: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_fuel
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_fuel_machine_form
 msgid "Yoqilg'i"
@@ -3240,8 +3307,6 @@ msgid "hammasi"
 msgstr "hammasi"
 
 #. module: cst_kerama_reports
-#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_movement_wizard_form
-#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_partner_statement_wizard_form
 #: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_utility_statement_wizard_form
 msgid "har valyuta alohida"
 msgstr "har valyuta alohida"
@@ -3439,3 +3504,610 @@ msgstr ""
 #: code:addons/cst_kerama_reports/models/partner_statement.py:0
 msgid "№ %(refund)s : %(what)s: %(order)s, %(product)s %(qty)s %(uom)s"
 msgstr "№ %(refund)s : %(what)s: %(order)s, %(product)s %(qty)s %(uom)s"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/stock_scrap.py:0
+msgid "%s yoqilg'i: qaysi mashinaga berilganini (davlat raqami) tanlang."
+msgstr "%s yoqilg'i: qaysi mashinaga berilganini (davlat raqami) tanlang."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "(Face ID)"
+msgstr "(Face ID)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "(kelgan"
+msgstr "(kelgan"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/partner_statement.py:0
+msgid "(qoldig'i — avans)"
+msgstr "(qoldig'i — avans)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "1 birlik tannarxi"
+msgstr "1 birlik tannarxi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Band qilingan"
+msgstr "Band qilingan"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_partner_statement_wizard__detailed
+msgid "Batafsil (mahsulot va narxlari bilan)"
+msgstr "Batafsil (mahsulot va narxlari bilan)"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_cash_report_wizard__show_numbers
+msgid ""
+"Belgilansa har qatorda hujjat raqamlari ham chiqadi (AKUZS/…, KAS/…). "
+"Belgilanmasa — faqat kimdan olingani / qayerga chiqqani, modda va izoh."
+msgstr ""
+"Belgilansa har qatorda hujjat raqamlari ham chiqadi (AKUZS/…, KAS/…). "
+"Belgilanmasa — faqat kimdan olingani / qayerga chiqqani, modda va izoh."
+
+#. module: cst_kerama_reports
+#: model:ir.model.constraint,message:cst_kerama_reports.constraint_cst_user_activity_user_day_uniq
+msgid "Bir foydalanuvchi uchun kuniga bitta qator."
+msgstr "Bir foydalanuvchi uchun kuniga bitta qator."
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__first_seen
+msgid "Birinchi harakat"
+msgstr "Birinchi harakat"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__span_hours
+msgid "Birinchi → oxirgi"
+msgstr "Birinchi → oxirgi"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__department_ids
+msgid "Bo'limlar"
+msgstr "Bo'limlar"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/tz_reports.py:0
+msgid "Bo'limsiz"
+msgstr "Bo'limsiz"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Bo'sh"
+msgstr "Bo'sh"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Boshlang'ich qoldiq ("
+msgstr "Boshlang'ich qoldiq ("
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_search
+msgid "Bugun"
+msgstr "Bugun"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Bugun kelgan (Face ID)"
+msgstr "Bugun kelgan (Face ID)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Davr yakuni ("
+msgstr "Davr yakuni ("
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_goods_movement_wizard__hide_zero
+msgid ""
+"Davrda kirim ham, chiqim ham bo'lmagan mahsulotlar ko'rsatilmaydi (faqat "
+"qoldig'i turganlar). Ekranda mahsulot nomini bossangiz — uning sanama-sana "
+"harakati va hozirgi qoldig'i ochiladi."
+msgstr ""
+"Davrda kirim ham, chiqim ham bo'lmagan mahsulotlar ko'rsatilmaydi (faqat "
+"qoldig'i turganlar). Ekranda mahsulot nomini bossangiz — uning sanama-sana "
+"harakati va hozirgi qoldig'i ochiladi."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "F.I.Sh."
+msgstr "F.I.Sh."
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__active_hours
+msgid "Faol vaqt"
+msgstr "Faol vaqt"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__active_minutes
+msgid "Faol vaqt (daq.)"
+msgstr "Faol vaqt (daq.)"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_expense_report_wizard__scope__bank
+msgid "Faqat bank orqali"
+msgstr "Faqat bank orqali"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_employees_wizard__presence__present
+msgid "Faqat kelganlar"
+msgstr "Faqat kelganlar"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_employees_wizard__presence__absent
+msgid "Faqat kelmaganlar"
+msgstr "Faqat kelmaganlar"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Farq summasi"
+msgstr "Farq summasi"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__user_id
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_search
+msgid "Foydalanuvchi"
+msgstr "Foydalanuvchi"
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_user_activity
+msgid "Foydalanuvchi faolligi"
+msgstr "Foydalanuvchi faolligi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_graph
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_list
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_pivot
+msgid "Foydalanuvchilar faolligi"
+msgstr "Foydalanuvchilar faolligi"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_user_activity
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_user_activity
+msgid "Foydalanuvchilar: kim qancha ishladi"
+msgstr "Foydalanuvchilar: kim qancha ishladi"
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_ir_http
+msgid "HTTP Routing"
+msgstr "HTTP Routing"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.actions.act_window,help:cst_kerama_reports.action_user_activity
+msgid "Hali ma'lumot yo'q"
+msgstr "Hali ma'lumot yo'q"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_employees_wizard__presence__all
+msgid "Hammasi"
+msgstr "Hammasi"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_partner_statement_wizard__detailed
+msgid ""
+"Har buyurtma va hisob-faktura ostida mahsulotlari: soni × narxi = summasi. "
+"O'chiq bo'lsa — qisqa akt, faqat summalar."
+msgstr ""
+"Har buyurtma va hisob-faktura ostida mahsulotlari: soni × narxi = summasi. "
+"O'chiq bo'lsa — qisqa akt, faqat summalar."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.actions.act_window,help:cst_kerama_reports.action_user_activity
+msgid ""
+"Har foydalanuvchining har kuni: birinchi va oxirgi harakat vaqti, faol vaqt (kamida bitta amal\n"
+"               bo'lgan 5 daqiqalik bo'laklar). Ochiq turgan, lekin ishlatilmayotgan oyna hisoblanmaydi."
+msgstr ""
+"Har foydalanuvchining har kuni: birinchi va oxirgi harakat vaqti, faol vaqt (kamida bitta amal\n"
+"               bo'lgan 5 daqiqalik bo'laklar). Ochiq turgan, lekin ishlatilmayotgan oyna hisoblanmaydi."
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_product_card_wizard__daily
+msgid "Har kun bitta qator: kirim, chiqim, kun oxiridagi qoldiq."
+msgstr "Har kun bitta qator: kirim, chiqim, kun oxiridagi qoldiq."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Hisobda edi"
+msgstr "Hisobda edi"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/stock_scrap.py:0
+msgid "Hisobdan chiqarish %s"
+msgstr "Hisobdan chiqarish %s"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Hozir hech bir omborda yo'q."
+msgstr "Hozir hech bir omborda yo'q."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Hozirgi qoldiq (ombor bo'yicha)"
+msgstr "Hozirgi qoldiq (ombor bo'yicha)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Hujjat"
+msgstr "Hujjat"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_cash_report_wizard__show_numbers
+msgid "Hujjat raqamlari bilan"
+msgstr "Hujjat raqamlari bilan"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Ishga kirgan"
+msgstr "Ishga kirgan"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_employees_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_employees
+#: model:ir.model,name:cst_kerama_reports.model_cst_employees_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_employees_wizard
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_employees
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_employees_wizard_form
+msgid "Ishlayotgan xodimlar"
+msgstr "Ishlayotgan xodimlar"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_employees_html
+msgid "Ishlayotgan xodimlar (ekranda)"
+msgstr "Ishlayotgan xodimlar (ekranda)"
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_hr_employees_report
+msgid "Ishlayotgan xodimlar (hisobot)"
+msgstr "Ishlayotgan xodimlar (hisobot)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Jami ishlaydigan xodimlar soni"
+msgstr "Jami ishlaydigan xodimlar soni"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Jami tannarx"
+msgstr "Jami tannarx"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_cst_user_activity__active_hours
+msgid "Kamida bitta amal bo'lgan 5 daqiqalik bo'laklar yig'indisi."
+msgstr "Kamida bitta amal bo'lgan 5 daqiqalik bo'laklar yig'indisi."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Keldi"
+msgstr "Keldi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Kelib-ketish:"
+msgstr "Kelib-ketish:"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Ketdi"
+msgstr "Ketdi"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__layout
+msgid "Ko'rinish"
+msgstr "Ko'rinish"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_employees_wizard__presence
+msgid "Ko'rsatish"
+msgstr "Ko'rsatish"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Kontragent / asos"
+msgstr "Kontragent / asos"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_product_card_wizard__daily
+msgid "Kunlik jamlash"
+msgstr "Kunlik jamlash"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Lavozimi"
+msgstr "Lavozimi"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_purchased_goods_wizard__layout__summary
+msgid "Mahsulot bo'yicha jamlama"
+msgstr "Mahsulot bo'yicha jamlama"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/wizard/goods_movement_wizard.py:0
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_product_card_report
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_product_card
+#: model:ir.model,name:cst_kerama_reports.model_cst_product_card_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_product_card_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
+msgid "Mahsulot kartochkasi"
+msgstr "Mahsulot kartochkasi"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_product_card_html
+msgid "Mahsulot kartochkasi (ekranda)"
+msgstr "Mahsulot kartochkasi (ekranda)"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.server,name:cst_kerama_reports.action_server_product_card_move_line
+#: model:ir.actions.server,name:cst_kerama_reports.action_server_product_card_template
+#: model:ir.actions.server,name:cst_kerama_reports.action_server_product_card_variant
+msgid "Mahsulot kartochkasi (qoldiq bilan)"
+msgstr "Mahsulot kartochkasi (qoldiq bilan)"
+
+#. module: cst_kerama_reports
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_product_card
+msgid "Mahsulot kartochkasi (sanama-sana)"
+msgstr "Mahsulot kartochkasi (sanama-sana)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Mahsulot tannarxi"
+msgstr "Mahsulot tannarxi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_product_card_wizard_form
+msgid ""
+"Mahsulotning har bir harakati sanama-sana: hujjat, qayerdan → qayerga, kirim, chiqim\n"
+"                    va harakatdan keyingi qoldiq. Tepada — hozirgi qoldiq har ombor bo'yicha."
+msgstr ""
+"Mahsulotning har bir harakati sanama-sana: hujjat, qayerdan → qayerga, kirim, chiqim\n"
+"                    va harakatdan keyingi qoldiq. Tepada — hozirgi qoldiq har ombor bo'yicha."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Maosh"
+msgstr "Maosh"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_expense
+msgid "Modda (xarajat turi)"
+msgstr "Modda (xarajat turi)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid ""
+"Narx — xarid buyurtmasi narxi (QQSsiz, chegirmadan keyin) xarid qilingan valyutada.\n"
+"                            «Xarajat summasi» — tasdiqlangan kirim xarajatlari (transport, bojxona …) shu qatorga taqsimlangan qismi, kirim kunidagi kurs bo'yicha shu valyutada;\n"
+"                            «Tannarx (asosiy val.)» — 1 birlik tannarxi kompaniya valyutasida. Ta'minotchi jami — kompaniya valyutasida. Ta'minotchiga qaytarilgani ayrilgan."
+msgstr ""
+"Narx — xarid buyurtmasi narxi (QQSsiz, chegirmadan keyin) xarid qilingan valyutada.\n"
+"                            «Xarajat summasi» — tasdiqlangan kirim xarajatlari (transport, bojxona …) shu qatorga taqsimlangan qismi, kirim kunidagi kurs bo'yicha shu valyutada;\n"
+"                            «Tannarx (asosiy val.)» — 1 birlik tannarxi kompaniya valyutasida. Ta'minotchi jami — kompaniya valyutasida. Ta'minotchiga qaytarilgani ayrilgan."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Omborda"
+msgstr "Omborda"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Operatsiya"
+msgstr "Operatsiya"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__last_seen
+msgid "Oxirgi harakat"
+msgstr "Oxirgi harakat"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Oylik turi"
+msgstr "Oylik turi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Qayerdan"
+msgstr "Qayerdan"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Qayerga"
+msgstr "Qayerga"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Qo'shimcha xarajat"
+msgstr "Qo'shimcha xarajat"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/product_card.py:0
+msgid "Reviziya"
+msgstr "Reviziya"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Ro'yxatga olingan xodimlar (shtat)"
+msgstr "Ro'yxatga olingan xodimlar (shtat)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Ro'yxatga olinmagan xodimlar (shtatdan tashqari)"
+msgstr "Ro'yxatga olinmagan xodimlar (shtatdan tashqari)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid "Sanaldi"
+msgstr "Sanaldi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_goods_movement
+msgid "Sanama-sana harakat va hozirgi qoldiq"
+msgstr "Sanama-sana harakat va hozirgi qoldiq"
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_stock_scrap
+msgid "Scrap"
+msgstr "Scrap"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Shtat"
+msgstr "Shtat"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Shtat holati belgilanmagan"
+msgstr "Shtat holati belgilanmagan"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_user_activity_search
+msgid "Shu oy"
+msgstr "Shu oy"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_kpi_report_wizard__computation__shift
+msgid "Smena KPI (bo'limlar)"
+msgstr "Smena KPI (bo'limlar)"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_user_activity__requests
+msgid "So'rovlar"
+msgstr "So'rovlar"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Soat"
+msgstr "Soat"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_purchased_goods
+#: model:ir.model,name:cst_kerama_reports.model_cst_purchased_goods_report
+#: model:ir.model,name:cst_kerama_reports.model_cst_purchased_goods_wizard
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.view_purchased_goods_wizard_form
+msgid "Sotib olingan mahsulotlar"
+msgstr "Sotib olingan mahsulotlar"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.report,name:cst_kerama_reports.action_report_purchased_goods_html
+msgid "Sotib olingan mahsulotlar (ekranda)"
+msgstr "Sotib olingan mahsulotlar (ekranda)"
+
+#. module: cst_kerama_reports
+#: model:ir.actions.act_window,name:cst_kerama_reports.action_purchased_goods_report
+#: model:ir.ui.menu,name:cst_kerama_reports.menu_reports_purchased_goods
+msgid "Sotib olingan mahsulotlar (soni va tannarxi)"
+msgstr "Sotib olingan mahsulotlar (soni va tannarxi)"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,field_description:cst_kerama_reports.field_cst_purchased_goods_wizard__by_supplier
+msgid "Ta'minotchi bo'yicha guruhlash"
+msgstr "Ta'minotchi bo'yicha guruhlash"
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields.selection,name:cst_kerama_reports.selection__cst_purchased_goods_wizard__layout__dated
+msgid "Ta'minotchi → valyuta → sana bo'yicha"
+msgstr "Ta'minotchi → valyuta → sana bo'yicha"
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/tz_reports.py:0
+msgid "Ta'minotchisiz"
+msgstr "Ta'minotchisiz"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Tabel №"
+msgstr "Tabel №"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "Tanlangan davrda bu mahsulot bo'yicha harakat ham, qoldiq ham yo'q."
+msgstr "Tanlangan davrda bu mahsulot bo'yicha harakat ham, qoldiq ham yo'q."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Tanlangan davrda xarid kirimi yo'q."
+msgstr "Tanlangan davrda xarid kirimi yo'q."
+
+#. module: cst_kerama_reports
+#. odoo-python
+#: code:addons/cst_kerama_reports/models/product_card.py:0
+msgid "Tanlangan omborlar birgalikda"
+msgstr "Tanlangan omborlar birgalikda"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Tannarx (asosiy val.)"
+msgstr "Tannarx (asosiy val.)"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Telefon"
+msgstr "Telefon"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Xarajat summasi"
+msgstr "Xarajat summasi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid ""
+"Xarid buyurtmasi narxi (QQSsiz, chegirmadan keyin), kirim kunidagi kurs bo'yicha\n"
+"                            kompaniya valyutasida. «Qo'shimcha xarajat» — tasdiqlangan kirim xarajatlari (transport, bojxona …) shu mahsulotga taqsimlangan qismi.\n"
+"                            Ta'minotchiga qaytarilgani ayrilgan."
+msgstr ""
+"Xarid buyurtmasi narxi (QQSsiz, chegirmadan keyin), kirim kunidagi kurs bo'yicha\n"
+"                            kompaniya valyutasida. «Qo'shimcha xarajat» — tasdiqlangan kirim xarajatlari (transport, bojxona …) shu mahsulotga taqsimlangan qismi.\n"
+"                            Ta'minotchiga qaytarilgani ayrilgan."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_purchased_goods
+msgid "Xarid summasi"
+msgstr "Xarid summasi"
+
+#. module: cst_kerama_reports
+#: model:ir.model,name:cst_kerama_reports.model_cst_reports_setup
+msgid "Xisobotlar sozlamasi"
+msgstr "Xisobotlar sozlamasi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "Xodim topilmadi."
+msgstr "Xodim topilmadi."
+
+#. module: cst_kerama_reports
+#: model:ir.model.fields,help:cst_kerama_reports.field_stock_scrap__cst_fuel_machine_id
+msgid "Yoqilg'i qaysi mashina/texnikaga berildi (davlat raqami bilan)."
+msgstr "Yoqilg'i qaysi mashina/texnikaga berildi (davlat raqami bilan)."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "kelmadi"
+msgstr "kelmadi"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_employees
+msgid "xodim, kelgan:"
+msgstr "xodim, kelgan:"
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_inventory_count
+msgid ""
+"«Hisobda edi» — davrdagi birinchi sanoqdan oldin dasturdagi qoldiq;\n"
+"                            «Sanaldi» = hisobda + ko'p − kam. Narx — reviziya harakatining o'z tannarxi (bo'lmasa mahsulot tannarxi), kompaniya valyutasida."
+msgstr ""
+"«Hisobda edi» — davrdagi birinchi sanoqdan oldin dasturdagi qoldiq;\n"
+"                            «Sanaldi» = hisobda + ko'p − kam. Narx — reviziya harakatining o'z tannarxi (bo'lmasa mahsulot tannarxi), kompaniya valyutasida."
+
+#. module: cst_kerama_reports
+#: model_terms:ir.ui.view,arch_db:cst_kerama_reports.report_product_card
+msgid "· kunlik jamlangan"
+msgstr "· kunlik jamlangan"

@@ -27,22 +27,19 @@
                     </group>
                 </group>
                 <field name="summary_html" nolabel="1" readonly="1"/>
-                <group string="KPI va jarima">
-                    <group>
-                        <field name="kpi_total" widget="monetary" readonly="not can_edit_kpi"/>
-                    </group>
+                <group string="Brak jarimasi">
                     <group>
                         <field name="penalty_total" widget="monetary"/>
                     </group>
                 </group>
-                <div class="text-muted small mb-1" invisible="can_edit_kpi">KPI'ni HR bo'limi xodim bo'yicha kiritadi (smena yopilgandan keyin ham). Jarimani shu yerda yozing.</div>
+                <div class="text-muted small mb-1">KPI smena rejasi bo'yicha o'zi hisoblanadi: har xodimning KPI narxi × rejani bajarish foizi (Smena KPI). HR tekshirib tasdiqlaydi. Jarimani shu yerda yozing.</div>
                 <field name="line_ids" nolabel="1">
                     <list editable="bottom" create="false" delete="false">
                         <field name="currency_id" column_invisible="1"/>
                         <field name="employee_id" readonly="1"/>
                         <field name="worked" readonly="1"/>
                         <field name="minutes" widget="float_time" readonly="1"/>
-                        <field name="kpi_amount" widget="monetary" sum="Jami" readonly="not parent.can_edit_kpi"/>
+                        <field name="kpi_amount" column_invisible="1"/>
                         <field name="penalty_amount" widget="monetary" sum="Jami"/>
                     </list>
                 </field>

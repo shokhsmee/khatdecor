@@ -8,3 +8,5 @@ access_dispatch_hr_department,dispatch hr department read (menu loading),hr.mode
 access_dispatch_hr_department_gate,dispatch hr department read gate (menu loading),hr.model_hr_department,group_dispatch_gate,1,0,0,0
 access_cst_picking_correction,picking correction wizard,model_cst_picking_correction,cst_kerama_shift.group_doc_correction,1,1,1,1
 access_cst_picking_correction_line,picking correction wizard line,model_cst_picking_correction_line,cst_kerama_shift.group_doc_correction,1,1,1,1
+access_cst_sale_correction,sale correction wizard,model_cst_sale_correction,cst_kerama_shift.group_doc_correction,1,1,1,1
+access_cst_sale_correction_line,sale correction wizard line,model_cst_sale_correction_line,cst_kerama_shift.group_doc_correction,1,1,1,1

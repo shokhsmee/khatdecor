@@ -6,7 +6,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 MODES = [
-    ("suggested", "Stavka bo'yicha taklif (1-sort ulushi × stavka)"),
+    ("suggested", "Reja bo'yicha (KPI narxi × bajarilish foizi)"),
     ("per_piece", "1 dona 1-sort uchun summa × xodim ulushi"),
     ("per_hour", "1 soat ish uchun summa × ishlagan soati"),
     ("fixed", "Har xodimga bir xil summa"),
@@ -143,6 +143,9 @@ class CstShiftKpiMassWizard(models.TransientModel):
             values = {}
             if worker.currency_id.compare_amounts(line.new_amount, worker[field]) != 0:
                 values[field] = line.new_amount
+                if field == "kpi_amount":
+                    # an amount typed here is a hand correction: the plan recount keeps it
+                    values["kpi_manual"] = self.mode != "suggested"
             if self.note:
                 values["note"] = self.note
             if values:

@@ -1,21 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- KPI per worker: HR's list, also reachable from the shift form -->
+    <!-- «Smena KPI»: one sheet per closed shift, the KPI counted from its plan -->
+    <record id="view_shift_kpi_list" model="ir.ui.view">
+        <field name="name">cst.production.shift.kpi.list</field>
+        <field name="model">cst.production.shift</field>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <list string="Smena KPI" create="false" delete="false">
+                <field name="currency_id" column_invisible="1"/>
+                <field name="kpi_state" column_invisible="1"/>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="department_id" options="{'no_open': True}"/>
+                <field name="template_id" options="{'no_open': True}"/>
+                <field name="kpi_present_count"/>
+                <field name="kpi_done_total"/>
+                <field name="kpi_plan"/>
+                <field name="kpi_ratio" widget="percentage"/>
+                <field name="kpi_total" sum="Jami" widget="monetary"/>
+                <field name="penalty_total" sum="Jami" widget="monetary" optional="show"/>
+                <field name="kpi_status" widget="badge" decoration-success="kpi_status == 'confirmed'"
+                       decoration-info="kpi_status == 'done'" decoration-warning="kpi_status == 'draft'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_shift_kpi_search" model="ir.ui.view">
+        <field name="name">cst.production.shift.kpi.search</field>
+        <field name="model">cst.production.shift</field>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <search string="Smena KPI">
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="employee_ids"/>
+                <filter name="kpi_draft" string="Tasdiqlanmagan" domain="[('kpi_state', '=', 'draft')]"/>
+                <filter name="kpi_confirmed" string="Tasdiqlangan" domain="[('kpi_state', '=', 'confirmed')]"/>
+                <separator/>
+                <filter name="this_month" string="Shu oy" domain="[('date', '>=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter name="date" string="Sana" date="date"/>
+                <group>
+                    <filter name="group_department" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_date" string="Sana" context="{'group_by': 'date:day'}"/>
+                    <filter name="group_kpi_state" string="KPI holati" context="{'group_by': 'kpi_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_shift_kpi_form" model="ir.ui.view">
+        <field name="name">cst.production.shift.kpi.form</field>
+        <field name="model">cst.production.shift</field>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <form string="Smena KPI" create="false" delete="false" class="o_cst_kpi_sheet">
+                <header>
+                    <field name="can_edit_kpi" invisible="1"/>
+                    <field name="kpi_state" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <button name="action_kpi_refresh_faceid" type="object" string="Face ID dan yangilash"
+                            invisible="state != 'closed' or kpi_state != 'draft' or not can_edit_kpi"/>
+                    <button name="action_kpi_recompute" type="object" string="Qayta hisoblash"
+                            invisible="state != 'closed' or kpi_state != 'draft' or not can_edit_kpi"
+                            confirm="Hamma qatorlar rejadan qayta hisoblanadi, qo'lda kiritilgan sonlar ham. Davom etilsinmi?"/>
+                    <button name="action_kpi_confirm" type="object" string="Tasdiqlash" class="btn-primary"
+                            invisible="state != 'closed' or kpi_state != 'draft' or not can_edit_kpi"/>
+                    <button name="action_kpi_draft" type="object" string="Qoralamaga qaytarish"
+                            invisible="kpi_state != 'confirmed' or not can_edit_kpi"/>
+                    <field name="kpi_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="o_cst_kpi_crumb text-muted">Smena KPI</div>
+                    <h1 class="o_cst_kpi_title"><field name="display_name" readonly="1"/></h1>
+                    <div class="o_cst_kpi_info">
+                        <div><span class="o_cst_k">Bo'lim</span><field name="department_id" readonly="1" options="{'no_open': True}"/></div>
+                        <div><span class="o_cst_k">Sana va smena</span><field name="kpi_slot_label"/></div>
+                        <div><span class="o_cst_k">Menejer</span><field name="manager_id" readonly="1" options="{'no_open': True}"/></div>
+                        <div><span class="o_cst_k">Kompaniya</span><field name="company_id" readonly="1" options="{'no_open': True}"/></div>
+                    </div>
+                    <div class="o_cst_kpi_tiles">
+                        <div class="o_cst_kpi_tile"><span class="o_cst_k">Jami ishlab chiqarilgan (1-sort + 2-sort)</span>
+                            <field name="kpi_done_total" class="o_cst_v"/></div>
+                        <div class="o_cst_kpi_tile"><span class="o_cst_k">Jami belgilangan reja (smena uchun)</span>
+                            <field name="kpi_plan" class="o_cst_v" readonly="state != 'closed' or kpi_state != 'draft' or not can_edit_kpi"/></div>
+                        <div class="o_cst_kpi_tile"><span class="o_cst_k">Bajarilish foizi</span>
+                            <field name="kpi_ratio" widget="percentage" class="o_cst_v o_cst_pct"/></div>
+                        <div class="o_cst_kpi_tile"><span class="o_cst_k">Jami KPI summasi</span>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="kpi_total" widget="monetary" class="o_cst_v" readonly="1"/></div>
+                    </div>
+                    <div class="alert alert-warning o_cst_kpi_note" role="status" invisible="not kpi_note">
+                        <field name="kpi_note" nolabel="1" readonly="1"/>
+                    </div>
+                    <div class="alert alert-info" role="status" invisible="state == 'closed'">
+                        Smena hali yopilmagan: KPI smena yopilganda hisoblanadi.
+                    </div>
+                    <field name="worker_ids" nolabel="1" class="o_cst_kpi_rows"
+                           readonly="state != 'closed' or kpi_state != 'draft' or not can_edit_kpi">
+                        <list editable="bottom" create="false" delete="false" decoration-warning="not present"
+                              default_order="present desc, employee_name">
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="present" column_invisible="1"/>
+                            <field name="employee_name" string="Xodim" readonly="1" width="230px"/>
+                            <field name="presence" string="Face ID" widget="badge" readonly="1" width="150px"
+                                   decoration-success="presence == 'face'" decoration-info="presence == 'manual'"
+                                   decoration-warning="presence == 'absent'" decoration-muted="presence == 'excluded'"/>
+                            <button name="action_toggle_present" type="object" icon="fa-user-times" title="Kelmadi deb belgilash"
+                                    class="btn-link text-muted"
+                                    invisible="not present or parent.kpi_state != 'draft' or not parent.can_edit_kpi"/>
+                            <button name="action_toggle_present" type="object" icon="fa-user-plus" title="Keldi deb belgilash"
+                                    class="btn-link"
+                                    invisible="present or parent.kpi_state != 'draft' or not parent.can_edit_kpi"/>
+                            <field name="kpi_done" sum="Jami" readonly="not present" class="o_cst_editable"/>
+                            <field name="kpi_plan" sum="Jami" readonly="not present" class="o_cst_editable"/>
+                            <field name="kpi_ratio" widget="percentage" readonly="1"/>
+                            <field name="kpi_price" readonly="1"/>
+                            <field name="penalty_amount" string="Brak jarimasi" sum="Jami" class="o_cst_editable"/>
+                            <field name="kpi_amount" string="KPI summasi" sum="Jami" readonly="1"/>
+                            <field name="kpi_manual" string="Qo'lda" readonly="1" optional="hide"/>
+                            <field name="note" optional="hide"/>
+                        </list>
+                    </field>
+                    <div class="text-muted small mt-2">
+                        Sariq maydonlar qo'lda tahrirlanadi. O'zgartirishdan keyin foiz va KPI summasi darhol yangilanadi,
+                        o'zgarish tarixda saqlanadi. «Keldi»/«Kelmadi» bosilsa ish kelganlar o'rtasida qayta taqsimlanadi.
+                        Tasdiqlangan KPI va jarima oylikka va mahsulot tannarxiga o'tadi.
+                    </div>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shift_kpi" model="ir.actions.act_window">
+        <field name="name">Smena KPI</field>
+        <field name="res_model">cst.production.shift</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_shift_kpi_search"/>
+        <field name="domain">[('state', '=', 'closed')]</field>
+        <field name="context">{'search_default_this_month': 1, 'create': False}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_shift_kpi_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_shift_kpi_form')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Yopilgan smena yo'q</p>
+            <p>Smena yopilganda KPI uning rejasidan hisoblanadi: Face ID dan o'tganlar ishni va rejani teng
+               bo'lishadi, har biri o'z KPI narxi × bajarilish foizini oladi. HR tekshirib «Tasdiqlash»ni bosadi.</p>
+        </field>
+    </record>
+
+    <!-- «Smena registri»: every worker row, for HR and the reports -->
     <record id="view_shift_worker_list" model="ir.ui.view">
         <field name="name">cst.production.shift.worker.list</field>
         <field name="model">cst.production.shift.worker</field>
         <field name="arch" type="xml">
-            <list string="Smena KPI" editable="bottom" create="false" delete="false">
+            <list string="Smena registri" editable="bottom" create="false" delete="false"
+                  decoration-muted="not present">
                 <field name="currency_id" column_invisible="1"/>
                 <field name="can_edit" column_invisible="1"/>
+                <field name="present" column_invisible="1"/>
+                <field name="kpi_state" column_invisible="1"/>
                 <field name="shift_date" readonly="1"/>
                 <field name="department_id" readonly="1" options="{'no_open': True}"/>
                 <field name="template_id" readonly="1" options="{'no_open': True}"/>
                 <field name="shift_id" readonly="1" optional="hide" options="{'no_open': True}"/>
                 <field name="employee_name" readonly="1"/>
+                <field name="presence" readonly="1" optional="show" widget="badge"
+                       decoration-success="presence == 'face'" decoration-info="presence == 'manual'"
+                       decoration-warning="presence == 'absent'"/>
                 <field name="worked" readonly="1"/>
-                <field name="qty_good" readonly="1" sum="Jami"/>
-                <field name="kpi_suggested" readonly="1" sum="Jami" optional="show"/>
+                <field name="qty_good" readonly="1" sum="Jami" optional="show"/>
+                <field name="kpi_done" readonly="not can_edit" sum="Jami"/>
+                <field name="kpi_plan" readonly="not can_edit" sum="Jami"/>
+                <field name="kpi_ratio" widget="percentage" readonly="1"/>
+                <field name="kpi_price" readonly="1" optional="show"/>
+                <field name="kpi_suggested" readonly="1" sum="Jami"/>
                 <field name="kpi_amount" sum="Jami" readonly="not can_edit"/>
                 <field name="penalty_amount" sum="Jami" readonly="not can_edit"/>
                 <field name="note" optional="show" readonly="not can_edit"/>
@@ -26,11 +185,14 @@
         <field name="name">cst.production.shift.worker.search</field>
         <field name="model">cst.production.shift.worker</field>
         <field name="arch" type="xml">
-            <search string="Smena KPI">
+            <search string="Smena registri">
                 <field name="employee_name"/>
                 <field name="department_id"/>
                 <field name="shift_id"/>
                 <filter name="no_kpi" string="KPI kiritilmagan" domain="[('kpi_amount', '=', 0)]"/>
+                <filter name="present" string="Kelganlar" domain="[('present', '=', True)]"/>
+                <filter name="manual" string="Qo'lda o'zgartirilgan" domain="[('kpi_manual', '=', True)]"/>
+                <separator/>
                 <filter name="this_month" string="Shu oy" domain="[('shift_date', '>=', context_today().strftime('%Y-%m-01'))]"/>
                 <filter name="shift_date" string="Smena sanasi" date="shift_date"/>
                 <group>
@@ -42,7 +204,7 @@
         </field>
     </record>
     <record id="action_shift_workers" model="ir.actions.act_window">
-        <field name="name">Smena KPI</field>
+        <field name="name">Smena registri</field>
         <field name="res_model">cst.production.shift.worker</field>
         <field name="view_mode">list</field>
         <field name="search_view_id" ref="view_shift_worker_search"/>
@@ -50,12 +212,52 @@
         <field name="context">{'search_default_this_month': 1, 'search_default_group_shift': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Yopilgan smena yo'q</p>
-            <p>Smena yopilganda uning xodimlari shu yerda chiqadi: har biriga qilgan ishiga qarab KPI yozing.
-               KPI oylikka va ishlab chiqarilgan mahsulot tannarxiga o'tadi.</p>
+            <p>Har yopilgan smenaning har xodimi: qilgan ishi, rejadagi ulushi, KPI va jarimasi.</p>
         </field>
     </record>
 
-    <!-- KPI rates: what one 1-sort piece earns -->
+    <!-- «KPI narxlari»: what a worker earns for 100 % of the plan -->
+    <record id="view_kpi_price_list" model="ir.ui.view">
+        <field name="name">cst.shift.kpi.price.list</field>
+        <field name="model">cst.shift.kpi.price</field>
+        <field name="arch" type="xml">
+            <list string="KPI narxlari tarixi" editable="bottom">
+                <field name="currency_id" column_invisible="1"/>
+                <field name="department_id" options="{'no_create': True}"/>
+                <field name="employee_id" options="{'no_create': True}"/>
+                <field name="amount"/>
+                <field name="date_from"/>
+                <field name="note" optional="show"/>
+                <field name="write_uid" string="Kim" readonly="1" optional="show"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_kpi_price_search" model="ir.ui.view">
+        <field name="name">cst.shift.kpi.price.search</field>
+        <field name="model">cst.shift.kpi.price</field>
+        <field name="arch" type="xml">
+            <search string="KPI narxlari">
+                <field name="employee_name"/>
+                <field name="department_id"/>
+                <group>
+                    <filter name="group_department" string="Bo'lim" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_employee" string="Xodim" context="{'group_by': 'employee_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_kpi_price_history" model="ir.actions.act_window">
+        <field name="name">KPI narxlari tarixi</field>
+        <field name="res_model">cst.shift.kpi.price</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_kpi_price_search"/>
+    </record>
+    <record id="action_kpi_prices" model="ir.actions.client">
+        <field name="name">KPI narxlari</field>
+        <field name="tag">cst_kpi_prices</field>
+    </record>
+
+    <!-- the old per-piece rates: kept for history, the plan replaces them -->
     <record id="view_kpi_rate_list" model="ir.ui.view">
         <field name="name">cst.shift.kpi.rate.list</field>
         <field name="model">cst.shift.kpi.rate</field>
@@ -77,20 +279,21 @@
         <field name="name">KPI stavkalari</field>
         <field name="res_model">cst.shift.kpi.rate</field>
         <field name="view_mode">list</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">Stavka hali yo'q</p>
-            <p>1 dona 1-sort uchun KPI: bo'lim, liniya, mahsulot yoki kategoriya bo'yicha. Eng aniq stavka
-               ishlatiladi (mahsulot+liniya → mahsulot → kategoriya+liniya → kategoriya → liniya → bo'lim).
-               Bu faqat HR uchun taklif: «Stavkadan to'ldirish» tugmasi xodim ulushi × stavkani yozadi.</p>
-        </field>
     </record>
 
-    <menuitem id="menu_shift_kpi_rates" name="KPI stavkalari" parent="menu_shift_config" action="action_kpi_rates" sequence="30"/>
-    <menuitem id="menu_shift_workers" name="Smena KPI" parent="menu_shift_root" action="action_shift_workers" sequence="35"/>
-    <menuitem id="menu_hr_shift_kpi" name="Smena KPI" parent="hr.menu_hr_root" action="action_shift_workers" sequence="44"
+    <menuitem id="menu_shift_kpi" name="Smena KPI" parent="menu_shift_root" action="action_shift_kpi" sequence="22"/>
+    <menuitem id="menu_shift_workers" name="Smena registri" parent="menu_shift_root" action="action_shift_workers" sequence="26"/>
+    <menuitem id="menu_shift_kpi_prices" name="KPI narxlari" parent="menu_shift_config" action="action_kpi_prices" sequence="25"/>
+    <menuitem id="menu_shift_kpi_rates" name="KPI stavkalari" parent="menu_shift_config" action="action_kpi_rates" sequence="30"
+              active="False"/>
+    <menuitem id="menu_hr_shift_kpi" name="Smena KPI" parent="hr.menu_hr_root" action="action_shift_kpi" sequence="44"
               groups="hr.group_hr_user"/>
-    <menuitem id="menu_hr_shift_kpi_rates" name="Smena KPI stavkalari" parent="hr.menu_hr_root" action="action_kpi_rates" sequence="46"
+    <menuitem id="menu_hr_shift_registry" name="Smena registri" parent="hr.menu_hr_root" action="action_shift_workers" sequence="45"
               groups="hr.group_hr_user"/>
+    <menuitem id="menu_hr_shift_kpi_prices" name="KPI narxlari" parent="hr.menu_hr_root" action="action_kpi_prices" sequence="46"
+              groups="hr.group_hr_user"/>
+    <menuitem id="menu_hr_shift_kpi_rates" name="Smena KPI stavkalari" parent="hr.menu_hr_root" action="action_kpi_rates" sequence="47"
+              groups="hr.group_hr_user" active="False"/>
 
     <record id="ir_cron_kpi_cost" model="ir.cron">
         <field name="name">Smena: KPI'ni mahsulot tannarxiga o'tkazish</field>

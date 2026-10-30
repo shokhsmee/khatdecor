@@ -27,7 +27,8 @@ class CstProductionShiftClose(models.TransientModel):
 
     @api.depends_context("uid")
     def _compute_can_edit_kpi(self):
-        value = self.env["cst.production.shift.worker"]._can_edit_kpi()
+        # the KPI is counted from the plan after closing, not typed here
+        value = False
         for wizard in self:
             wizard.can_edit_kpi = value
 

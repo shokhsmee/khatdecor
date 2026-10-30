@@ -1,4 +1,7 @@
+from collections import defaultdict
 from datetime import timedelta
+
+from markupsafe import Markup
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
@@ -7,9 +10,11 @@ from odoo.exceptions import UserError, ValidationError
 class CstProductionShift(models.Model):
     """One shift of one department: who came, what was run, what came out.
 
-    Opened by the department's manager, closed by the same screen with the KPI
-    fund the manager enters; the fund is split equally between the people who
-    worked and written to payroll, brak as a penalty next to it.
+    Opened by the department's manager, closed by the same screen. The KPI
+    follows the shift's plan: what came out is shared by the people Face ID
+    saw come, each earns their «KPI narxi» × the share of the plan they did;
+    HR checks the sheet and confirms it into payroll, brak as a penalty next
+    to it.
     """
 
     _name = "cst.production.shift"
@@ -79,6 +84,29 @@ class CstProductionShift(models.Model):
     kpi_cost_note = fields.Char(string="Tannarx izohi", readonly=True, copy=False)
     can_edit_kpi = fields.Boolean(compute="_compute_can_edit_kpi")
     can_correct = fields.Boolean(compute="_compute_can_edit_kpi")
+    # KPI by plan (Smena KPI)
+    kpi_plan = fields.Float(
+        string="Smena rejasi", digits="Product Unit of Measure", tracking=True, copy=False,
+        help="Smenada chiqarilishi kerak bo'lgan mahsulot (1-sort + 2-sort). Bo'lim normasidan olinadi, "
+             "o'zgartirish mumkin.")
+    kpi_state = fields.Selection([
+        ("draft", "Qoralama"),
+        ("confirmed", "Tasdiqlangan"),
+    ], string="KPI holati", default="draft", required=True, copy=False, index=True, tracking=True,
+        help="Tasdiqlangan KPI va jarima oylikka va mahsulot tannarxiga o'tadi.")
+    kpi_status = fields.Selection([
+        ("draft", "Qoralama"),
+        ("confirmed", "Tasdiqlangan"),
+        ("done", "Yopilgan"),
+    ], string="KPI", compute="_compute_kpi_status", compute_sudo=True,
+        help="Yopilgan: oylik qatorlari tasdiqlangan, KPI endi o'zgarmaydi.")
+    kpi_done_total = fields.Float(
+        string="Jami ishlab chiqarilgan", compute="_compute_kpi_totals", digits="Product Unit of Measure",
+        help="Smenaning 1-sort + 2-sort mahsuloti.")
+    kpi_ratio = fields.Float(string="Bajarilish foizi", compute="_compute_kpi_totals")
+    kpi_present_count = fields.Integer(string="Kelganlar", compute="_compute_kpi_totals")
+    kpi_note = fields.Html(string="KPI izohi", compute="_compute_kpi_totals", sanitize=False)
+    kpi_slot_label = fields.Char(string="Sana va smena", compute="_compute_kpi_totals")
     closed_at = fields.Datetime(string="Yopilgan vaqt", readonly=True, copy=False)
     closed_by = fields.Many2one("res.users", string="Kim yopdi", readonly=True, copy=False)
     note = fields.Text(string="Izoh")
@@ -138,6 +166,53 @@ class CstProductionShift(models.Model):
             shift.qty_scrap = sum(lines.mapped("qty_scrap"))
             shift.plan_pct = (shift.qty_good / shift.qty_planned * 100.0) if shift.qty_planned else 0.0
             shift.kpi_per_employee = (shift.kpi_total / shift.employee_count) if shift.employee_count else 0.0
+
+    @api.depends("line_ids.qty_good", "line_ids.qty_second", "kpi_plan", "worker_ids.present",
+                 "worker_ids.kpi_price", "worker_ids.employee_name")
+    def _compute_kpi_totals(self):
+        for shift in self:
+            workers = shift.worker_ids
+            present = workers.filtered("present")
+            done = sum(shift.line_ids.mapped("qty_good")) + sum(shift.line_ids.mapped("qty_second"))
+            shift.kpi_done_total = done
+            shift.kpi_ratio = done / shift.kpi_plan if shift.kpi_plan else 0.0
+            shift.kpi_present_count = len(present)
+            shift.kpi_slot_label = " · ".join(filter(None, [
+                shift.date.strftime("%d.%m.%Y") if shift.date else "", shift.template_id.name or ""]))
+            notes = []
+            if shift.state == "closed" and workers:
+                if not shift.kpi_plan:
+                    notes.append(Markup("<b>%s</b> %s") % (
+                        _("Smena rejasi kiritilmagan:"),
+                        _("foiz va KPI hisoblanmaydi. Rejani kiriting (bo'lim normasi ham bo'sh).")))
+                absent = workers - present
+                if absent and present:
+                    notes.append(Markup("<b>%s</b> %s") % (
+                        _("%s xodim hisobga olinmadi:", len(absent)),
+                        _("%(names)s Face ID dan o'tmagan. Ish %(n)s xodim o'rtasida teng taqsimlandi. "
+                          "Kerak bo'lsa «Keldi» belgisini qo'lda o'zgartiring.",
+                          names=", ".join(absent.mapped("employee_name")[:8])
+                          + (" …" if len(absent) > 8 else ""), n=len(present))))
+                elif not present:
+                    notes.append(Markup("<b>%s</b> %s") % (
+                        _("Hech kim Face ID dan o'tmagan."),
+                        _("Smenada ishlaganlarni «Keldi» tugmasi bilan belgilang.")))
+                no_price = present.filtered(lambda w: not w.kpi_price)
+                if no_price:
+                    notes.append(Markup("<b>%s</b> %s") % (
+                        _("KPI narxi yo'q:"),
+                        _("%s — Sozlamalar ▸ KPI narxlari.", ", ".join(no_price.mapped("employee_name")[:8])
+                          + (" …" if len(no_price) > 8 else ""))))
+            shift.kpi_note = Markup("<br/>").join(notes) if notes else False
+
+    @api.depends("kpi_state", "payroll_line_ids.state")
+    def _compute_kpi_status(self):
+        for shift in self:
+            lines = shift.payroll_line_ids
+            if shift.kpi_state == "confirmed" and lines and all(l.state in ("confirmed", "posted") for l in lines):
+                shift.kpi_status = "done"
+            else:
+                shift.kpi_status = shift.kpi_state
 
     @api.depends("kpi_cost_ids.state", "kpi_cost_ids.amount_total", "kpi_cost_ids.cst_kpi_pay_amount")
     def _compute_kpi_capitalized(self):
@@ -230,7 +305,12 @@ class CstProductionShift(models.Model):
         # «Smena ochildi: 8 xodim» must still add up after the crew is edited:
         # every change of an opened shift's crew goes to the chatter
         before = {s.id: s.employee_ids for s in self if s.state != "draft"} if "employee_ids" in vals else {}
+        replan = self.filtered(lambda s: s.state == "closed") if "kpi_plan" in vals else self.browse()
+        if replan and not self.env["cst.production.shift.worker"]._can_edit_kpi():
+            raise UserError(_("Yopilgan smena rejasini faqat HR o'zgartiradi."))
         result = super().write(vals)
+        # a new plan of a closed shift: the sheet is counted again
+        replan._cst_kpi_recompute()
         for shift in self.filtered(lambda s: s.id in before):
             old, new = before[shift.id], shift.employee_ids
             if old == new:
@@ -289,7 +369,7 @@ class CstProductionShift(models.Model):
             "state": "closed", "closed_at": fields.Datetime.now(), "closed_by": self.env.user.id,
             "note": note or self.note,
         })
-        self._cst_sync_payroll()
+        self._cst_kpi_recompute(refresh_presence=True)
         self.invalidate_recordset(["payroll_line_ids", "payroll_line_count"])
         self.message_post(body=_(
             "Smena yopildi. 1-sort %(good)s, 2-sort %(second)s, brak %(scrap)s. KPI fondi %(kpi)s, jarima %(penalty)s.",
@@ -309,25 +389,22 @@ class CstProductionShift(models.Model):
     def _cst_set_workers(self, shares):
         """The KPI rows of the closing shift: one per worker of the crew.
 
-        The KPI amount is HR's to enter; a manager closing the shift only
-        brings the crew and the brak penalty. Rows HR already filled (a shift
-        reopened and closed again) keep their KPI.
+        A manager closing the shift brings the crew and the brak penalty; the
+        KPI is counted from the plan (``_cst_kpi_recompute``). Rows HR already
+        corrected (a shift reopened and closed again) keep their numbers.
         """
         self.ensure_one()
-        hr = self.env["cst.production.shift.worker"]._can_edit_kpi()  # the real user, before sudo
         Worker = self.env["cst.production.shift.worker"].sudo()
         existing = {w.employee_id.id: w for w in self.worker_ids.sudo()}
         keep = Worker
-        for employee, kpi_amount, penalty_amount in shares:
+        for employee, _kpi_amount, penalty_amount in shares:
             values = {"penalty_amount": penalty_amount}
-            if hr:
-                values["kpi_amount"] = kpi_amount
             worker = existing.get(employee.id)
             if worker:
                 worker.with_context(cst_no_sync=True).write(values)
             else:
-                values.setdefault("kpi_amount", 0.0)
-                worker = Worker.with_context(cst_no_sync=True).create(dict(values, shift_id=self.id, employee_id=employee.id))
+                worker = Worker.with_context(cst_no_sync=True).create(
+                    dict(values, kpi_amount=0.0, shift_id=self.id, employee_id=employee.id))
             keep |= worker
         (self.worker_ids.sudo() - keep).with_context(cst_no_sync=True).unlink()
         self._cst_workers_changed()
@@ -343,18 +420,27 @@ class CstProductionShift(models.Model):
                 values["kpi_total"] = kpi
             if shift.currency_id.compare_amounts(penalty, shift.penalty_total) != 0:
                 values["penalty_total"] = penalty
-            if shift.currency_id.compare_amounts(kpi, shift.kpi_capitalized) != 0:
+            if shift.currency_id.compare_amounts(shift._cst_kpi_payable(kpi), shift.kpi_capitalized) != 0:
                 values["kpi_cost_pending"] = True
             if values:
                 super(CstProductionShift, shift.sudo()).write(values)
 
+    def _cst_kpi_payable(self, amount=None):
+        """The KPI that goes to payroll and cost: all of it once HR confirmed
+        the sheet, nothing while it is a draft."""
+        self.ensure_one()
+        amount = self.kpi_total if amount is None else amount
+        return amount if self.kpi_state == "confirmed" else 0.0
+
     def _cst_sync_payroll(self):
-        """Draft payroll lines of the shift = the KPI rows, always. Run as
-        superuser: neither the shift manager nor HR needs payroll rights for it."""
+        """Draft payroll lines of the shift = the KPI rows of a confirmed sheet
+        (none while it is a draft). Run as superuser: neither the shift manager
+        nor HR needs payroll rights for it."""
         for shift in self.sudo().filtered(lambda s: s.state == "closed"):
             lines = self.env["cst.payroll.line"].sudo().search([
                 ("source_model", "=", shift._name), ("source_id", "=", shift.id), ("state", "!=", "cancel")])
-            wanted = [(w.employee_id, w.kpi_amount, w.penalty_amount) for w in shift.worker_ids.sudo()]
+            wanted = [(w.employee_id, w.kpi_amount, w.penalty_amount) for w in shift.worker_ids.sudo()] \
+                if shift.kpi_state == "confirmed" else []
             current = sorted((l.employee_id.id, l.component_id.id, round(l.amount, 2)) for l in lines)
             if current == shift._cst_payroll_key(wanted):
                 continue
@@ -379,14 +465,128 @@ class CstProductionShift(models.Model):
         return sorted(key)
 
     def action_fill_kpi_from_rates(self):
-        """HR: put the suggested KPI (rate × 1-sort share) into every row."""
-        Worker = self.env["cst.production.shift.worker"]
-        if not Worker._can_edit_kpi():
-            raise UserError(_("KPI'ni faqat HR kiritadi."))
-        for shift in self:
-            for worker in shift.worker_ids:
-                worker.kpi_amount = worker.kpi_suggested
+        """HR: count every row again from the plan, hand corrections included."""
+        return self.action_kpi_recompute()
+
+    # ------------------------------------------------------------------ KPI by plan
+    def _cst_kpi_shares(self, present):
+        """{employee id: pieces}: each line's 1-sort + 2-sort split between the
+        people of its crew who came (everyone who came when none of its crew did)."""
+        self.ensure_one()
+        shares = defaultdict(float)
+        if not present:
+            return shares
+        for line in self.line_ids:
+            qty = line.qty_good + line.qty_second
+            if not qty:
+                continue
+            crew = ((line.employee_ids or self.employee_ids) & present) or present
+            for employee in crew:
+                shares[employee.id] += qty / len(crew)
+        return shares
+
+    def _cst_kpi_recompute(self, reset=False, refresh_presence=False, keep_amounts=False):
+        """Count the KPI sheet from the plan.
+
+        Face ID decides who came (``refresh_presence``: read it again; a new
+        sheet always does). Those who came share the output and the plan
+        equally; KPI = KPI narxi × done ÷ plan. Rows HR corrected by hand keep
+        their numbers unless ``reset``; the price of the day is refreshed on
+        all of them. ``keep_amounts``: fill the numbers of every row but leave
+        its KPI amount alone (sheets already paid before the plan existed).
+        Payroll and cost follow once the sheet is confirmed."""
+        Price = self.env["cst.shift.kpi.price"]
+        for shift in self.sudo().filtered(lambda s: s.state == "closed"):
+            if not shift.kpi_plan and shift.department_id.cst_norm_per_shift:
+                super(CstProductionShift, shift).write({"kpi_plan": shift.department_id.cst_norm_per_shift})
+            workers = shift.worker_ids.with_context(cst_kpi_auto=True)
+            if refresh_presence:
+                shift.invalidate_recordset(["attendance_employee_ids"])
+                seen = shift.attendance_employee_ids
+                # department staff Face ID saw but nobody put in the crew
+                missing = (seen & shift.department_id.employee_ids) - workers.employee_id
+                if missing:
+                    workers |= self.env["cst.production.shift.worker"].sudo().with_context(
+                        cst_no_sync=True, cst_kpi_auto=True).create([
+                            {"shift_id": shift.id, "employee_id": e.id, "kpi_amount": 0.0} for e in missing])
+                for worker in workers:
+                    # a row HR corrected by hand keeps its numbers either way
+                    if worker.present != (worker.employee_id in seen):
+                        worker.write({"present": worker.employee_id in seen})
+            present = workers.filtered("present")
+            shares = shift._cst_kpi_shares(present.employee_id)
+            plan_each = shift.kpi_plan / len(present) if present else 0.0
+            prices = Price._prices_for(workers.employee_id, shift.department_id, shift.date)
+            for worker in workers:
+                values = {"kpi_price": prices.get(worker.employee_id.id, 0.0)}
+                if keep_amounts:
+                    values.update({
+                        "kpi_done": shares.get(worker.employee_id.id, 0.0) if worker.present else 0.0,
+                        "kpi_plan": plan_each if worker.present else 0.0,
+                    })
+                    worker.write(values)
+                    continue
+                if reset or not worker.kpi_manual:
+                    values.update({
+                        "kpi_done": shares.get(worker.employee_id.id, 0.0) if worker.present else 0.0,
+                        "kpi_plan": plan_each if worker.present else 0.0,
+                        "kpi_manual": False,
+                    })
+                worker.write(values)
+                if reset or not worker.kpi_manual:
+                    worker.write({"kpi_amount": worker._cst_kpi_formula()})
+            shift._cst_workers_changed()
+            shift._cst_sync_payroll()
         return True
+
+    def _cst_check_kpi_editor(self):
+        if not self.env["cst.production.shift.worker"]._can_edit_kpi():
+            raise UserError(_("Smena KPI'sini faqat HR o'zgartiradi va tasdiqlaydi."))
+        if any(s.state != "closed" for s in self):
+            raise UserError(_("KPI yopilgan smenada hisoblanadi."))
+
+    def action_kpi_recompute(self):
+        """«Qayta hisoblash»: every row from the plan again, hand corrections dropped."""
+        self._cst_check_kpi_editor()
+        self._cst_kpi_recompute(reset=True)
+        for shift in self:
+            shift.message_post(body=_("Smena KPI qayta hisoblandi (%s).", self.env.user.name))
+        return True
+
+    def action_kpi_refresh_faceid(self):
+        """«Face ID dan yangilash»: who came is read from Face ID again."""
+        self._cst_check_kpi_editor()
+        self._cst_kpi_recompute(refresh_presence=True)
+        return True
+
+    def action_kpi_confirm(self):
+        """«Tasdiqlash»: the sheet goes to payroll and to the cost price."""
+        self._cst_check_kpi_editor()
+        for shift in self.filtered(lambda s: s.kpi_state != "confirmed"):
+            shift.write({"kpi_state": "confirmed"})
+            shift._cst_workers_changed()
+            shift._cst_sync_payroll()
+            shift.message_post(body=_("Smena KPI tasdiqlandi: KPI %(kpi)s, jarima %(penalty)s (%(user)s).",
+                                      kpi=shift.kpi_total, penalty=shift.penalty_total, user=self.env.user.name))
+        return True
+
+    def action_kpi_draft(self):
+        """Back to a draft sheet: its draft payroll lines are taken back."""
+        self._cst_check_kpi_editor()
+        for shift in self.filtered(lambda s: s.kpi_state == "confirmed"):
+            shift.write({"kpi_state": "draft"})
+            shift._cst_sync_payroll()  # refuses when payroll already confirmed the lines
+            shift._cst_workers_changed()
+            shift.message_post(body=_("Smena KPI qoralamaga qaytarildi (%s).", self.env.user.name))
+        return True
+
+    def action_open_kpi_sheet(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window", "name": _("Smena KPI"), "res_model": self._name,
+            "res_id": self.id, "view_mode": "form",
+            "views": [(self.env.ref("cst_kerama_shift.view_shift_kpi_form").id, "form")],
+        }
 
     def action_create_workers(self):
         """HR on a shift closed before the KPI rows existed: rows from the crew."""
@@ -399,6 +599,13 @@ class CstProductionShift(models.Model):
                 shares.append((employee, sum(mine.filtered(lambda l: l.component_id == kpi_component).mapped("amount")),
                                sum((mine - mine.filtered(lambda l: l.component_id == kpi_component)).mapped("amount"))))
             shift.with_context(cst_keep_kpi=True)._cst_set_workers(shares)
+            # what payroll already holds stays, as a hand correction
+            for worker in shift.worker_ids.sudo():
+                kpi = sum(payroll.filtered(lambda l, w=worker: l.employee_id == w.employee_id
+                                           and l.component_id == kpi_component).mapped("amount"))
+                if kpi:
+                    worker.with_context(cst_no_sync=True).write({"kpi_amount": kpi, "kpi_manual": True})
+            shift._cst_kpi_recompute(refresh_presence=True)
         return True
 
     # ------------------------------------------------------------------ KPI → cost price
@@ -439,7 +646,7 @@ class CstProductionShift(models.Model):
         expense the payroll line hits, so the KPI ends up in the cost price."""
         Cost = self.env["stock.landed.cost"].sudo()
         for shift in self.sudo():
-            delta = shift.currency_id.round(shift.kpi_total - shift.kpi_capitalized)
+            delta = shift.currency_id.round(shift._cst_kpi_payable() - shift.kpi_capitalized)
             if shift.currency_id.is_zero(delta):
                 shift.write({"kpi_cost_pending": False, "kpi_cost_note": False})
                 continue
@@ -564,7 +771,8 @@ class CstProductionShift(models.Model):
                     "Bu smenaning oylik qatorlari tasdiqlangan (%s ta); avval oylikda ularni qoralamaga qaytaring.",
                     len(posted)))
             lines.sudo().unlink()
-            shift.write({"state": "open", "closed_at": False, "closed_by": False})
+            # the results may change: HR confirms the KPI sheet again
+            shift.write({"state": "open", "closed_at": False, "closed_by": False, "kpi_state": "draft"})
             shift.invalidate_recordset(["payroll_line_ids", "payroll_line_count"])
             shift.message_post(body=_("Smena qayta ochildi."))
         return True

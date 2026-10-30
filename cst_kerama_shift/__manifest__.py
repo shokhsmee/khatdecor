@@ -10,8 +10,9 @@ Ishlab chiqarish uch bo'limdan iborat zanjir: Bosma → Kesish → Preslash. Har
 bo'limning o'z stanoklari, menejerlari va xodimlari bor. Menejer smenani ochadi,
 Face ID bo'yicha kelgan xodimlarni belgilaydi, bo'lim navbatidagi buyurtmani
 liniyaga qo'yadi, natijani kun davomida kiritadi (1-sort, 2-sort, brak) va
-smenani yopadi. Yopilganda menejer umumiy KPI summasini kiritadi, u kelgan
-xodimlarga teng bo'linadi va oylik qatorlari bo'lib yoziladi; brak jarimasi ham.
+smenani yopadi. KPI smena rejasidan hisoblanadi: Face ID dan o'tganlar chiqarilgan
+mahsulotni va rejani teng bo'lishadi, har biri o'z KPI narxi × bajarilish foizini
+oladi; HR «Smena KPI» varag'ini tekshirib tasdiqlaydi va u oylikka o'tadi.
 
 * **Bo'lim** — stanoklar guruhi, menejerlari, doimiy xodimlari, chiqaradigan mahsulot turi.
 * **Smena vaqtlari** — sozlanadigan: 1-smena 06–14, 2-smena 14–22, 3-smena 22–06.
@@ -23,7 +24,7 @@ xodimlarga teng bo'linadi va oylik qatorlari bo'lib yoziladi; brak jarimasi ham.
     """,
     "author": "Khatdecor",
     "category": "Manufacturing",
-    "version": "19.0.1.13.0",
+    "version": "19.0.1.14.0",
     "depends": ["mrp", "mrp_workorder", "mrp_workorder_hr_account", "stock", "hr", "hr_attendance", "mrp_landed_costs",
                 "cst_kerama_variants", "cst_kerama_payroll", "cst_kerama_reports"],
     "data": [
@@ -47,6 +48,7 @@ xodimlarga teng bo'linadi va oylik qatorlari bo'lib yoziladi; brak jarimasi ham.
             "cst_kerama_shift/static/src/floor/**/*",
             "cst_kerama_shift/static/src/department/**/*",
             "cst_kerama_shift/static/src/mo_builder/**/*",
+            "cst_kerama_shift/static/src/kpi/**/*",
         ],
     },
     "post_init_hook": "post_init_hook",
