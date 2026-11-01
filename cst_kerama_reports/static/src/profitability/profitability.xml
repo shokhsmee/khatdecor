@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_reports.Profitability">
+        <div class="o_action o_cst_pf">
+            <div class="o_cst_pf_top">
+                <div class="o_cst_pf_head">
+                    <h2>Mahsulot foyda/zarari</h2>
+                    <div class="btn-group o_cst_pf_tabs" role="tablist">
+                        <t t-foreach="tabs" t-as="tab" t-key="tab.id">
+                            <button type="button" class="btn btn-sm"
+                                    t-att-class="state.groupBy === tab.id ? 'btn-primary' : 'btn-outline-secondary'"
+                                    t-on-click="() => this.setTab(tab.id)" t-esc="tab.label"/>
+                        </t>
+                    </div>
+                    <div class="ms-auto d-flex gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" t-on-click="() => this.load()" title="Yangilash">
+                            <i class="fa fa-refresh" t-att-class="{'fa-spin': state.loading}"/>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary" t-on-click="exportXlsx">
+                            <i class="fa fa-file-excel-o me-1"/>Excel
+                        </button>
+                    </div>
+                </div>
+                <div class="o_cst_pf_filters">
+                    <div class="o_cst_pf_period">
+                        <label>Davr</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="date" class="form-control form-control-sm" t-att-value="state.dateFrom"
+                                   t-on-change="(ev) => this.onDate('dateFrom', ev)"/>
+                            <span>—</span>
+                            <input type="date" class="form-control form-control-sm" t-att-value="state.dateTo"
+                                   t-on-change="(ev) => this.onDate('dateTo', ev)"/>
+                        </div>
+                        <div class="o_cst_pf_quick">
+                            <a href="#" t-on-click.prevent="() => this.setPeriod('today')">bugun</a>
+                            <a href="#" t-on-click.prevent="() => this.setPeriod('week')">hafta</a>
+                            <a href="#" t-on-click.prevent="() => this.setPeriod('month')">oy</a>
+                            <a href="#" t-on-click.prevent="() => this.setPeriod('prev_month')">o'tgan oy</a>
+                            <a href="#" t-on-click.prevent="() => this.setPeriod('year')">yil</a>
+                        </div>
+                    </div>
+                    <div class="o_cst_pf_f">
+                        <label>Mahsulot qidirish</label>
+                        <input type="search" class="form-control form-control-sm" placeholder="Nomi, xarakteristika, kod…"
+                               t-model="state.search"/>
+                    </div>
+                    <div class="o_cst_pf_f">
+                        <label>Kategoriya</label>
+                        <MultiRecordSelector resModel="'product.category'" resIds="state.categIds"
+                                             update="(ids) => this.onSelect('categIds', ids)" placeholder="'hammasi'"/>
+                    </div>
+                    <div class="o_cst_pf_f">
+                        <label>Ombor</label>
+                        <MultiRecordSelector resModel="'stock.warehouse'" resIds="state.warehouseIds"
+                                             update="(ids) => this.onSelect('warehouseIds', ids)" placeholder="'hammasi'"/>
+                    </div>
+                    <div class="o_cst_pf_f">
+                        <label>Mijoz</label>
+                        <MultiRecordSelector resModel="'res.partner'" resIds="state.partnerIds"
+                                             update="(ids) => this.onSelect('partnerIds', ids)" placeholder="'hammasi'"/>
+                    </div>
+                    <div class="o_cst_pf_f">
+                        <label>Sotuvchi</label>
+                        <MultiRecordSelector resModel="'res.users'" resIds="state.userIds"
+                                             update="(ids) => this.onSelect('userIds', ids)" placeholder="'hammasi'"/>
+                    </div>
+                    <div class="o_cst_pf_f">
+                        <label>Kompaniya</label>
+                        <MultiRecordSelector resModel="'res.company'" resIds="state.companyIds"
+                                             update="(ids) => this.onSelect('companyIds', ids)" placeholder="'tanlangan'"/>
+                    </div>
+                    <div class="o_cst_pf_f o_cst_pf_check">
+                        <label class="d-flex align-items-center gap-1 mb-0">
+                            <input type="checkbox" class="form-check-input" t-att-checked="state.services"
+                                   t-on-change="toggleServices"/>
+                            Xizmatlar ham
+                        </label>
+                        <a href="#" t-if="filterCount or state.search" t-on-click.prevent="clearFilters">tozalash</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o_cst_pf_body">
+                <t t-if="state.data">
+                    <table class="o_cst_pf_table" t-att-class="{'o_cst_pf_dim': state.loading}">
+                        <thead>
+                            <tr class="o_cst_pf_band">
+                                <th t-att-colspan="isProduct ? 3 : 1"/>
+                                <th colspan="6" class="o_cst_pf_sale">Sotuv</th>
+                                <th colspan="5" class="o_cst_pf_ret">Qaytarish (vozvrat)</th>
+                                <th colspan="3" class="o_cst_pf_prof">Foydalilik</th>
+                            </tr>
+                            <tr>
+                                <th class="o_cst_pf_name" t-on-click="() => this.sortBy('name')">
+                                    <t t-esc="nameTitle"/>
+                                    <i t-if="state.sortKey === 'name'" t-att-class="state.sortAsc ? 'fa fa-caret-up' : 'fa fa-caret-down'"/>
+                                </th>
+                                <t t-if="isProduct">
+                                    <th class="o_cst_pf_txt" t-on-click="() => this.sortBy('char')">Xarakteristika
+                                        <i t-if="state.sortKey === 'char'" t-att-class="state.sortAsc ? 'fa fa-caret-up' : 'fa fa-caret-down'"/>
+                                    </th>
+                                    <th class="o_cst_pf_txt">Birlik</th>
+                                </t>
+                                <t t-foreach="figures" t-as="f" t-key="f[0]">
+                                    <th t-att-class="'o_cst_pf_num o_cst_pf_' + f[3]" t-on-click="() => this.sortBy(f[0])">
+                                        <i t-if="state.sortKey === f[0]" t-att-class="state.sortAsc ? 'fa fa-caret-up' : 'fa fa-caret-down'"/>
+                                        <t t-esc="f[1]"/>
+                                    </th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="row" t-key="row.key" t-on-click="() => this.openRow(row)"
+                                title="Buyurtmalarni ochish">
+                                <td class="o_cst_pf_name">
+                                    <span t-esc="row.name"/>
+                                    <span t-if="row.code" class="o_cst_pf_code" t-esc="row.code"/>
+                                </td>
+                                <t t-if="isProduct">
+                                    <td class="o_cst_pf_txt" t-esc="row.char"/>
+                                    <td class="o_cst_pf_txt" t-esc="row.uom"/>
+                                </t>
+                                <t t-foreach="figures" t-as="f" t-key="f[0]">
+                                    <td t-att-class="'o_cst_pf_num ' + cellClass(f[0], row)" t-esc="fmt(row[f[0]], f[2])"/>
+                                </t>
+                            </tr>
+                            <tr t-if="!rows.length">
+                                <td t-att-colspan="figures.length + (isProduct ? 3 : 1)" class="text-center text-muted py-5">
+                                    Bu davrda sotuv yoki qaytarish yo'q.
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="o_cst_pf_name">
+                                    Jami <span class="text-muted fw-normal">(<t t-esc="rows.length"/> qator<t t-if="state.search">, qidiruvsiz</t>)</span>
+                                </td>
+                                <t t-if="isProduct"><td/><td/></t>
+                                <t t-foreach="figures" t-as="f" t-key="f[0]">
+                                    <td t-att-class="'o_cst_pf_num o_cst_pf_' + f[3]" t-esc="totalCell(f[0], f[2])"/>
+                                </t>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="o_cst_pf_note">
+                        Summalar <b t-esc="state.data.currency"/>da, soliqsiz. Sotuv — davrda mijozga chiqib ketgan yuk
+                        (buyurtma narxida), tannarx — o'sha chiqimning ombor tannarxi. Qaytarish — mijozdan omborga
+                        qaytgan yuk. Foyda = (summa − tannarx) − (qaytarish summasi − qaytarish tannarxi).
+                        Ustama % = foyda ÷ tannarx, marja % = foyda ÷ sotuv summasi. Qatorni bossangiz — buyurtmalar ochiladi.
+                    </div>
+                </t>
+                <div t-else="" class="text-center text-muted py-5"><i class="fa fa-spinner fa-spin"/> Yuklanmoqda…</div>
+            </div>
+        </div>
+    </t>
+</templates>

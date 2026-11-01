@@ -61,7 +61,7 @@
                             <field name="transfer_kassa_id" readonly="state != 'draft'"
                                    invisible="operation_type not in ('transfer_in', 'transfer_out')"
                                    required="operation_type in ('transfer_in', 'transfer_out')"
-                                   context="{'cst_kassa_any_company': True}"
+                                   context="{'cst_kassa_any_company': True, 'cst_kassa_transfer_type': operation_type}"
                                    options="{'no_create': True, 'no_open': True}"/>
                             <label for="transfer_amount"
                                    invisible="operation_type not in ('transfer_in', 'transfer_out') or not transfer_kassa_id or transfer_currency_id == currency_id"/>

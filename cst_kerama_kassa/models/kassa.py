@@ -1,5 +1,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 
 class Kassa(models.Model):
@@ -84,23 +85,55 @@ class Kassa(models.Model):
     # ------------------------------------------------------------------
     # «Boshqa kassa» picker: every kassa of the user's companies
     # ------------------------------------------------------------------
-    def _cst_any_company(self):
+    def _cst_any_company(self, domain=None):
         """With ``cst_kassa_any_company`` in the context (the other kassa of a
         transfer) the picker lists the kassas of every company the user may
         work in, not only of the companies ticked in the switcher — money goes
-        to another organization's kassa without switching companies first."""
-        if self.env.context.get("cst_kassa_any_company") and not self.env.su:
-            return self.with_context(allowed_company_ids=self.env.user.company_ids.ids)
-        return self
+        to another organization's kassa without switching companies first.
+        Handing money over (``cst_kassa_transfer_type`` = transfer_out) lists every
+        kassa, not only the cashier's own desks."""
+        ctx = self.env.context
+        if not ctx.get("cst_kassa_any_company") or self.env.su:
+            return self, domain, False
+        company_ids = self.env.user.company_ids.ids
+        if ctx.get("cst_kassa_transfer_type") == "transfer_out":
+            domain = Domain.AND([domain or [], [("company_id", "in", company_ids)]])
+            return self.sudo().with_context(allowed_company_ids=company_ids), domain, True
+        return self.with_context(allowed_company_ids=company_ids), domain, False
 
     @api.model
     def web_search_read(self, domain, specification, offset=0, limit=None, order=None, count_limit=None):
-        return super(Kassa, self._cst_any_company()).web_search_read(
+        model, domain, hide = self._cst_any_company(domain)
+        result = super(Kassa, model).web_search_read(
             domain, specification, offset=offset, limit=limit, order=order, count_limit=count_limit)
+        if hide:
+            self._cst_hide_figures(result["records"], set(self.search([]).ids))
+        return result
+
+    def web_read(self, specification):
+        # the picker's «Batafsil qidirish» dialog reads the chosen kassa back
+        model, _domain, hide = self._cst_any_company()
+        if not hide:
+            return super().web_read(specification)
+        allowed = model.search([("id", "in", self.ids), ("company_id", "in", self.env.user.company_ids.ids)])
+        result = super(Kassa, allowed).web_read(specification)
+        own = set(self.with_env(self.env).search([("id", "in", self.ids)]).ids)
+        self._cst_hide_figures(result, own)
+        return result
+
+    @staticmethod
+    def _cst_hide_figures(rows, own_ids):
+        """The cashier may hand money to any desk but not peek into its balance."""
+        for row in rows:
+            if row["id"] not in own_ids:
+                for key in ("balance", "today_in", "today_out"):
+                    if key in row:
+                        row[key] = False
 
     @api.model
     def web_name_search(self, name, specification, domain=None, operator="ilike", limit=100):
-        return super(Kassa, self._cst_any_company()).web_name_search(
+        model, domain, _hide = self._cst_any_company(domain)
+        return super(Kassa, model).web_name_search(
             name, specification, domain=domain, operator=operator, limit=limit)
 
     # ------------------------------------------------------------------

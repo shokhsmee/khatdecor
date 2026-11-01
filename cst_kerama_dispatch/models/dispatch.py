@@ -795,6 +795,34 @@ class CstDispatch(models.Model):
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    cst_dispatch_ids = fields.One2many("cst.dispatch", "sale_order_id", string="Jo'natmalar")
+    cst_dispatch_status = fields.Selection([
+        ("new", "Yangi"),
+        ("draft", "Tayyorlanmoqda"),
+        ("ready", "Eshikda"),
+        ("partial", "Qisman chiqarildi"),
+        ("done", "Chiqarildi"),
+    ], string="Jo'natish holati", compute="_compute_cst_dispatch_status", store=True, index=True,
+        help="Yangi — ombor hali boshlamagan; Tayyorlanmoqda — ombor yig'yapti; Eshikda — eshikda "
+             "tekshiruvni kutyapti; Chiqarildi — yuk chiqib ketgan.")
+
+    @api.depends("state", "delivery_status", "cst_dispatch_ids.state")
+    def _compute_cst_dispatch_status(self):
+        for order in self:
+            active = order.cst_dispatch_ids.filtered(lambda d: d.state in ("draft", "ready"))
+            if order.state != "sale" or not order.delivery_status:
+                # quotations, cancelled orders and orders with nothing to ship
+                status = False
+            elif order.delivery_status == "full":
+                status = "done"
+            elif active:
+                status = "ready" if "ready" in active.mapped("state") else "draft"
+            elif order.delivery_status == "partial":
+                status = "partial"
+            else:
+                status = "new"
+            order.cst_dispatch_status = status
+
     def _action_cancel(self):
         res = super()._action_cancel()
         self.env["cst.dispatch"].sudo().search([

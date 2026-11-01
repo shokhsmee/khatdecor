@@ -29,17 +29,19 @@
                 <field name="line_ids" nolabel="1">
                     <list editable="bottom" create="true" delete="false">
                         <field name="currency_id" column_invisible="1"/>
-                        <field name="sale_line_id" column_invisible="1"/>
-                        <field name="product_id" readonly="sale_line_id" required="not sale_line_id"
+                        <!-- force_save: the dialog saves before the button runs and drops readonly values -->
+                        <field name="sale_line_id" column_invisible="1" force_save="1"/>
+                        <field name="product_id" readonly="sale_line_id" required="not sale_line_id" force_save="1"
                                options="{'no_create': True}" width="240px"/>
-                        <field name="uom_id" readonly="1" optional="hide"/>
-                        <field name="delivered_qty"/>
-                        <field name="invoiced_qty" optional="show"/>
-                        <field name="old_qty" optional="hide"/>
+                        <field name="cst_characteristic" optional="show"/>
+                        <field name="uom_id" readonly="1" force_save="1" optional="hide"/>
+                        <field name="delivered_qty" force_save="1"/>
+                        <field name="invoiced_qty" force_save="1" optional="show"/>
+                        <field name="old_qty" force_save="1" optional="hide"/>
                         <field name="new_qty"/>
-                        <field name="old_price" optional="hide"/>
+                        <field name="old_price" force_save="1" optional="hide"/>
                         <field name="new_price"/>
-                        <field name="old_discount" optional="hide"/>
+                        <field name="old_discount" force_save="1" optional="hide"/>
                         <field name="new_discount" optional="show"/>
                         <field name="subtotal_new" sum="Jami"/>
                         <field name="effect" class="text-muted"/>
@@ -67,6 +69,53 @@
                 <field name="cst_can_correct_sale" invisible="1"/>
                 <button name="action_cst_open_sale_correction" type="object" string="Tuzatish"
                         invisible="not cst_can_correct_sale" groups="cst_kerama_shift.group_doc_correction"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- «Jo'natish holati»: where the goods of a confirmed order are (sales lists + form) -->
+    <record id="view_sale_order_tree_cst_dispatch_status" model="ir.ui.view">
+        <field name="name">sale.order.list.cst.dispatch.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="cst_dispatch_status" widget="badge" optional="show"
+                       decoration-muted="cst_dispatch_status == 'new'"
+                       decoration-warning="cst_dispatch_status == 'draft'"
+                       decoration-info="cst_dispatch_status in ('ready', 'partial')"
+                       decoration-success="cst_dispatch_status == 'done'"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form_cst_dispatch_status" model="ir.ui.view">
+        <field name="name">sale.order.form.cst.dispatch.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="cst_dispatch_status" widget="badge" invisible="not cst_dispatch_status"
+                       decoration-muted="cst_dispatch_status == 'new'"
+                       decoration-warning="cst_dispatch_status == 'draft'"
+                       decoration-info="cst_dispatch_status in ('ready', 'partial')"
+                       decoration-success="cst_dispatch_status == 'done'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_search_cst_dispatch_status" model="ir.ui.view">
+        <field name="name">sale.order.search.cst.dispatch.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter name="cst_dispatch_new" string="Jo'natish: Yangi" domain="[('cst_dispatch_status', '=', 'new')]"/>
+                <filter name="cst_dispatch_draft" string="Jo'natish: Tayyorlanmoqda" domain="[('cst_dispatch_status', '=', 'draft')]"/>
+                <filter name="cst_dispatch_ready" string="Jo'natish: Eshikda" domain="[('cst_dispatch_status', '=', 'ready')]"/>
+                <filter name="cst_dispatch_done" string="Jo'natish: Chiqarildi" domain="[('cst_dispatch_status', '=', 'done')]"/>
+                <filter name="groupby_cst_dispatch_status" string="Jo'natish holati" context="{'group_by': 'cst_dispatch_status'}"/>
             </xpath>
         </field>
     </record>

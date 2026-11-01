@@ -580,8 +580,10 @@ class KassaOperation(models.Model):
             "line_ids": in_lines,
         })
         (out_move | in_move).with_context(cst_kassa_skip_guard=True).action_post()
-        transfer_lines = (out_move | in_move).line_ids.filtered(lambda l: l.account_id == transfer_account)
-        if transfer_account.reconcile:
+        # a few so'm worth $0.00 leave zero lines that count as reconciled already
+        transfer_lines = (out_move | in_move).line_ids.filtered(
+            lambda l: l.account_id == transfer_account and not l.reconciled)
+        if transfer_account.reconcile and len(transfer_lines) > 1:
             transfer_lines.reconcile()
         now = fields.Datetime.now()
         internal = dict(cst_kassa_internal=True)

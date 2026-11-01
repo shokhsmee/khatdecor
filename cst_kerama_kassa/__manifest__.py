@@ -22,7 +22,7 @@ Khatdecor Kassa
     """,
     "author": "Khatdecor",
     "category": "Accounting",
-    "version": "19.0.1.10.0",
+    "version": "19.0.1.11.0",
     "depends": ["mail", "account", "sale", "hr", "base_setup", "cst_kerama_payment_summary", "cst_kerama_sale_receipt",
                 "cst_kerama_payroll"],
     "data": [

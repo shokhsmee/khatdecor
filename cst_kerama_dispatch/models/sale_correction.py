@@ -373,6 +373,7 @@ class CstSaleCorrectionLine(models.TransientModel):
     currency_id = fields.Many2one(related="wizard_id.currency_id")
     sale_line_id = fields.Many2one("sale.order.line", string="Buyurtma qatori", readonly=True)
     product_id = fields.Many2one("product.product", string="Mahsulot", domain=[("sale_ok", "=", True)])
+    cst_characteristic = fields.Char(related="product_id.cst_characteristic", string="Xarakteristika")
     uom_id = fields.Many2one("uom.uom", string="Birlik")
     delivered_qty = fields.Float(string="Chiqib ketgan", digits="Product Unit", readonly=True)
     invoiced_qty = fields.Float(string="Hisob-faktura", digits="Product Unit", readonly=True)

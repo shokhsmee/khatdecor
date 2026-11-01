@@ -1,0 +1,164 @@
+.o_cst_pf {
+    background: $o-view-background-color;
+
+    .o_cst_pf_top {
+        flex: 0 0 auto;
+        padding: 12px 18px 10px;
+        border-bottom: 1px solid $border-color;
+    }
+    .o_cst_pf_head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        h2 {
+            margin: 0;
+            font-size: 1.35rem;
+        }
+    }
+    .o_cst_pf_filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        align-items: flex-start;
+        label {
+            display: block;
+            font-size: 0.75rem;
+            color: $text-muted;
+            margin-bottom: 2px;
+        }
+        .o_cst_pf_f {
+            width: 190px;
+        }
+        .o_cst_pf_check {
+            width: auto;
+            padding-top: 20px;
+            display: flex;
+            gap: 12px;
+            label {
+                color: inherit;
+                font-size: 0.85rem;
+            }
+        }
+        input[type="date"] {
+            width: 140px;
+        }
+    }
+    .o_cst_pf_quick {
+        font-size: 0.78rem;
+        margin-top: 2px;
+        a {
+            margin-right: 8px;
+        }
+    }
+
+    .o_cst_pf_body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: auto;
+        // no bottom padding: the sticky «Jami» row would float above it
+        padding: 0 18px;
+    }
+    .o_cst_pf_table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: max-content;
+        min-width: 100%;
+        font-size: 0.85rem;
+        transition: opacity 0.15s;
+        &.o_cst_pf_dim {
+            opacity: 0.5;
+        }
+        th,
+        td {
+            padding: 5px 8px;
+            border-bottom: 1px solid $border-color;
+            white-space: nowrap;
+        }
+        thead th {
+            position: sticky;
+            background: $o-view-background-color;
+            z-index: 2;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+        thead tr:first-child th {
+            top: 0;
+            text-align: center;
+            cursor: default;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid $border-color;
+        }
+        thead tr:nth-child(2) th {
+            top: 29px;
+            border-bottom: 2px solid $border-color;
+        }
+        tbody tr {
+            cursor: pointer;
+            &:hover td {
+                background: rgba($primary, 0.06);
+            }
+        }
+        tfoot td {
+            position: sticky;
+            bottom: 0;
+            background: $o-view-background-color;
+            font-weight: 700;
+            border-top: 2px solid $border-color;
+            z-index: 2;
+        }
+        .o_cst_pf_name {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background: $o-view-background-color;
+            min-width: 260px;
+            max-width: 420px;
+            white-space: normal;
+            text-align: left;
+        }
+        thead .o_cst_pf_name,
+        tfoot .o_cst_pf_name {
+            z-index: 3;
+        }
+        .o_cst_pf_code {
+            margin-left: 6px;
+            font-size: 0.72rem;
+            color: $text-muted;
+        }
+        .o_cst_pf_txt {
+            text-align: left;
+            color: $text-muted;
+        }
+        .o_cst_pf_num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        // a hairline before each band so the three blocks read apart
+        th.o_cst_pf_sale:first-of-type,
+        .o_cst_pf_band .o_cst_pf_ret,
+        .o_cst_pf_band .o_cst_pf_prof {
+            border-left: 1px solid $border-color;
+        }
+        .o_cst_pf_ret {
+            background-clip: padding-box;
+        }
+        tbody td.o_cst_pf_ret {
+            color: $text-muted;
+        }
+        tbody td.o_cst_pf_prof,
+        tfoot td.o_cst_pf_prof {
+            background: rgba($success, 0.05);
+        }
+    }
+    .o_cst_pf_note {
+        margin: 12px 0 24px;
+        font-size: 0.78rem;
+        color: $text-muted;
+        max-width: 980px;
+    }
+}

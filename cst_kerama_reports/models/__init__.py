@@ -16,3 +16,4 @@ from . import stock_scrap
 from . import product_card
 from . import user_activity
 from . import tz_reports
+from . import profitability

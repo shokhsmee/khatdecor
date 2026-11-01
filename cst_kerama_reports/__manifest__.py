@@ -57,7 +57,7 @@ actual consumption sheet per manufacturing order.
     """,
     "author": "Khatdecor",
     "category": "Reporting",
-    "version": "19.0.2.17.0",
+    "version": "19.0.2.18.0",
     "depends": [
         "base",
         "account",
@@ -125,6 +125,7 @@ actual consumption sheet per manufacturing order.
             "cst_kerama_reports/static/src/director_dashboard/*",
             "cst_kerama_reports/static/src/report_filter_bar/*",
             "cst_kerama_reports/static/src/reports_home/*",
+            "cst_kerama_reports/static/src/profitability/*",
         ],
     },
     "license": "LGPL-3",
