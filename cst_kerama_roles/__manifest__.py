@@ -64,7 +64,7 @@ company, while *Bosh omborchi* and *Rahbar* get all of them.
     """,
     "author": "Khatdecor",
     "category": "Security",
-    "version": "19.0.2.0.0",
+    "version": "19.0.2.0.1",
     "depends": [
         "access_roles",
         "cst_kerama_kassa",

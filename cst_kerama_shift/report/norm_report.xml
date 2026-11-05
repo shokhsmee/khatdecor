@@ -116,4 +116,15 @@
               parent="cst_kerama_reports.menu_reports_mrp" action="action_department_norm_report" sequence="40"/>
     <menuitem id="menu_shift_department_norm" name="Norma va brak hisoboti" parent="menu_shift_root"
               action="action_department_norm_report" sequence="60"/>
+    <!-- «Ishlab chiqarish fakti»: bo'lim filtri -->
+    <record id="view_production_fact_wizard_form_department" model="ir.ui.view">
+        <field name="name">cst.production.fact.wizard.form.department</field>
+        <field name="model">cst.production.fact.wizard</field>
+        <field name="inherit_id" ref="cst_kerama_reports.view_production_fact_wizard_form"/>
+        <field name="arch" type="xml">
+            <field name="warehouse_ids" position="after">
+                <field name="department_ids" widget="many2many_tags" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
 </odoo>

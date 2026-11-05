@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo noupdate="1">
+    <!-- Created once. After that the roles belong to the client (Rol konstruktori):
+         an upgrade must never put them back to these defaults. A deliberate
+         change to an existing role ships as a migration script instead. -->
     <!-- Ombor menejeri + eshik qorovuli: only the Jo'natish app -->
     <record id="role_dispatch" model="access.role">
         <field name="name">Jo'natish (ombor va eshik)</field>

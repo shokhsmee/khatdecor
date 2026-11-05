@@ -148,6 +148,10 @@
                         <field name="detail"/>
                         <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/>
                     </group>
+                    <group>
+                        <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="kassa_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
                 </group>
                 <footer>
                     <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>

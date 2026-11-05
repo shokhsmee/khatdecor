@@ -13,5 +13,10 @@
             <field name="name">3-shaxslar</field>
             <field name="color">9</field>
         </record>
+        <!-- «Balans»: a founder's money in or out is its own row (Ta'sischilar). -->
+        <record id="partner_category_founders" model="res.partner.category">
+            <field name="name">Ta'sischilar</field>
+            <field name="color">3</field>
+        </record>
     </data>
 </odoo>

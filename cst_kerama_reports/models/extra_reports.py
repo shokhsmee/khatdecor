@@ -51,58 +51,84 @@ class HrEmployee(models.Model):
 
 class CstProductionFactReport(models.AbstractModel):
     """«Ishlab chiqarish fakti» — what came off the line in the period, by
-    category, with the characteristic and the quantity."""
+    warehouse ▸ category, with the characteristic and the quantity."""
 
     _name = "cst.production.fact.report"
     _description = "Ishlab chiqarish fakti"
     _inherit = "cst.stock.report.base"
 
     @api.model
-    def build(self, date_from, date_to, company_ids=None, product_ids=None):
+    def build(self, date_from, date_to, company_ids=None, product_ids=None, warehouse_ids=None,
+              department_ids=None):
         companies = self._companies(company_ids)
+        start, end = self._local_bounds(date_from, date_to)
         domain = [("state", "=", "done"), ("company_id", "in", companies.ids),
-                  ("date_finished", ">=", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[0]),
-                  ("date_finished", "<", self.env["cst.stock.report.base"]._local_bounds(date_from, date_to)[1])]
+                  ("date_finished", ">=", start), ("date_finished", "<", end)]
         if product_ids:
             domain.append(("product_id", "in", product_ids))
+        if warehouse_ids:
+            domain.append(("picking_type_id.warehouse_id", "in", warehouse_ids))
+        domain += self._fact_mo_domain(department_ids)
         if self.env.context.get("cst_fact_skip_mo_ids"):
             # counted elsewhere (cst_kerama_shift: shift results, by shift date)
             domain.append(("id", "not in", self.env.context["cst_fact_skip_mo_ids"]))
         orders = self.env["mrp.production"].sudo().search(domain)
+        items = [(mo.company_id, mo.picking_type_id.warehouse_id, mo.product_id, self._mo_output(mo), mo.id)
+                 for mo in orders]
+        items += self._fact_extra_items(date_from, date_to, companies, product_ids, warehouse_ids, department_ids)
+        return self._fact_assemble(companies, items)
+
+    @api.model
+    def _fact_mo_domain(self, department_ids):
+        """Extra order filter for the department choice (cst_kerama_shift)."""
+        return []
+
+    @api.model
+    def _fact_extra_items(self, date_from, date_to, companies, product_ids, warehouse_ids, department_ids):
+        """Output booked outside the orders' finish date (cst_kerama_shift):
+        [(company, warehouse, product, {quantity, second, scrap}, order id)]."""
+        return []
+
+    @api.model
+    def _fact_assemble(self, companies, items):
+        """company ▸ ombor ▸ kategoriya ▸ mahsulot."""
+        keys = ("quantity", "second", "scrap")
         result = []
         for company in companies:
-            categories = {}
-            totals = {"quantity": 0.0, "second": 0.0, "scrap": 0.0}
-            for mo in orders.filtered(lambda m: m.company_id == company):
-                out = self._mo_output(mo)
-                cat = categories.setdefault(mo.product_id.categ_id.id, {
-                    "category": mo.product_id.categ_id, "products": {},
-                    "quantity": 0.0, "second": 0.0, "scrap": 0.0})
-                prod = cat["products"].setdefault(mo.product_id.id, {
-                    "product": mo.product_id, "characteristic": self._characteristic(mo.product_id),
-                    "uom": mo.product_id.uom_id.name, "quantity": 0.0, "second": 0.0,
-                    "scrap": 0.0, "orders": 0})
-                prod["orders"] += 1
-                for key, qty in out.items():
-                    prod[key] += qty
-                    cat[key] += qty
-                    totals[key] += qty
-            if not categories:
+            mine = [i for i in items if i[0] == company]
+            if not mine:
                 continue
-            for cat in categories.values():
-                cat["products"] = sorted(cat["products"].values(),
-                                         key=lambda p: p["product"].display_name or "")
-            result.append({
-                "company": company,
-                "categories": sorted(categories.values(),
-                                     key=lambda c: c["category"].complete_name or ""),
-                "quantity": totals["quantity"],
-                "second": totals["second"],
-                "scrap": totals["scrap"],
-                "orders": len(orders.filtered(lambda m: m.company_id == company)),
-            })
+            stores = {}
+            block = {"company": company, "warehouses": [], "orders": len({i[4] for i in mine}),
+                     **dict.fromkeys(keys, 0.0)}
+            for _company, warehouse, product, out, order_id in mine:
+                store = stores.setdefault(warehouse.id, {
+                    "warehouse": warehouse, "name": warehouse.name or "Omborsiz", "categories": {},
+                    "orders": set(), **dict.fromkeys(keys, 0.0)})
+                store["orders"].add(order_id)
+                cat = store["categories"].setdefault(product.categ_id.id, {
+                    "category": product.categ_id, "products": {}, **dict.fromkeys(keys, 0.0)})
+                prod = cat["products"].setdefault(product.id, {
+                    "product": product, "characteristic": self._characteristic(product),
+                    "uom": product.uom_id.name, "orders": set(), **dict.fromkeys(keys, 0.0)})
+                prod["orders"].add(order_id)
+                for key in keys:
+                    qty = out.get(key, 0.0)
+                    for bucket in (prod, cat, store, block):
+                        bucket[key] += qty
+            for store in stores.values():
+                store["orders"] = len(store["orders"])
+                for cat in store["categories"].values():
+                    for prod in cat["products"].values():
+                        prod["orders"] = len(prod["orders"])
+                    cat["products"] = sorted(cat["products"].values(),
+                                             key=lambda p: p["product"].display_name or "")
+                store["categories"] = sorted(store["categories"].values(),
+                                             key=lambda c: c["category"].complete_name or "")
+            block["warehouses"] = sorted(stores.values(), key=lambda w: (
+                w["warehouse"].sequence if w["warehouse"] else 0, w["name"]))
+            result.append(block)
         return result
-
 
     @api.model
     def _mo_output(self, mo):

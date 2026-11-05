@@ -163,7 +163,7 @@ class CstWriteoffReport(models.AbstractModel):
 
 class CstInventoryCountReport(models.AbstractModel):
     """«Reviziya hisoboti» — what the count found more of, what it found less
-    of, per product, grouped mahsulot/xom ashyo ▸ kategoriya."""
+    of, per product, grouped ombor ▸ mahsulot/xom ashyo ▸ kategoriya."""
 
     _name = "cst.inventory.count.report"
     _description = "Reviziya hisoboti"
@@ -186,7 +186,7 @@ class CstInventoryCountReport(models.AbstractModel):
 
         result = []
         for company in warehouses.company_id:
-            groups = {}
+            stores = {}
             for line in lines.filtered(lambda l: l.company_id == company):
                 surplus = line.quantity_product_uom if line.location_dest_id.id in inside else 0.0
                 shortage = line.quantity_product_uom if line.location_id.id in inside else 0.0
@@ -194,6 +194,10 @@ class CstInventoryCountReport(models.AbstractModel):
                 price = self._unit_value(line)
                 value = (surplus - shortage) * price
                 root, leaf = self._root_and_leaf(line.product_id)
+                store = stores.setdefault(warehouse.id if warehouse else 0, {
+                    "warehouse": warehouse, "name": warehouse.name if warehouse else "",
+                    "groups": {}, "surplus": 0.0, "shortage": 0.0, "value": 0.0})
+                groups = store["groups"]
                 group = groups.setdefault(root.id, {
                     "category": root, "leaves": {}, "surplus": 0.0, "shortage": 0.0, "value": 0.0})
                 cat = group["leaves"].setdefault(leaf.id, {
@@ -205,28 +209,32 @@ class CstInventoryCountReport(models.AbstractModel):
                     "warehouse": warehouse.name if warehouse else "",
                     "before": before.get(key, 0.0),
                     "surplus": 0.0, "shortage": 0.0, "value": 0.0, "price": price})
-                for bucket in (prod, cat, group):
+                for bucket in (prod, cat, group, store):
                     bucket["surplus"] += surplus
                     bucket["shortage"] += shortage
                     bucket["value"] += value
-            if not groups:
+            if not stores:
                 continue
-            for group in groups.values():
-                for cat in group["leaves"].values():
-                    for prod in cat["products"].values():
-                        prod["counted"] = prod["before"] + prod["surplus"] - prod["shortage"]
-                    cat["products"] = sorted(cat["products"].values(),
-                                             key=lambda p: (p["product"].display_name or "", p["warehouse"]))
-                group["leaves"] = sorted(group["leaves"].values(),
-                                         key=lambda c: c["category"].complete_name or "")
+            for store in stores.values():
+                for group in store["groups"].values():
+                    for cat in group["leaves"].values():
+                        for prod in cat["products"].values():
+                            prod["counted"] = prod["before"] + prod["surplus"] - prod["shortage"]
+                        cat["products"] = sorted(cat["products"].values(),
+                                                 key=lambda p: p["product"].display_name or "")
+                    group["leaves"] = sorted(group["leaves"].values(),
+                                             key=lambda c: c["category"].complete_name or "")
+                store["groups"] = sorted(store["groups"].values(),
+                                         key=lambda g: g["category"].complete_name or "")
             result.append({
                 "company": company,
                 "currency": company.currency_id,
-                "groups": sorted(groups.values(),
-                                 key=lambda g: g["category"].complete_name or ""),
-                "surplus": sum(g["surplus"] for g in groups.values()),
-                "shortage": sum(g["shortage"] for g in groups.values()),
-                "value": sum(g["value"] for g in groups.values()),
+                # ombor ▸ mahsulot/xom ashyo ▸ kategoriya ▸ tovar
+                "warehouses": sorted(stores.values(), key=lambda w: (
+                    w["warehouse"].sequence if w["warehouse"] else 0, w["name"])),
+                "surplus": sum(w["surplus"] for w in stores.values()),
+                "shortage": sum(w["shortage"] for w in stores.values()),
+                "value": sum(w["value"] for w in stores.values()),
             })
         return result
 

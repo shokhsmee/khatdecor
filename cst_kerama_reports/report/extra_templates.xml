@@ -32,25 +32,33 @@
                                 </thead>
                                 <tbody>
                                     <t t-set="n" t-value="0"/>
-                                    <t t-foreach="block['categories']" t-as="cat">
-                                        <tr class="cst_group">
-                                            <td/>
-                                            <td colspan="3" t-out="cat['category'].name or 'Kategoriyasiz'"/>
-                                            <td class="num" t-out="cat['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                            <td class="num" t-out="cat['second']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                            <td class="num" t-out="cat['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                    <t t-foreach="block['warehouses']" t-as="wh">
+                                        <tr class="cst_wh">
+                                            <td colspan="4">Ombor: <t t-out="wh['name']"/> (<t t-out="wh['orders']"/> ta buyurtma)</td>
+                                            <td class="num" t-out="wh['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="wh['second']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="wh['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
                                         </tr>
-                                        <t t-foreach="cat['products']" t-as="row">
-                                            <t t-set="n" t-value="n + 1"/>
-                                            <tr>
-                                                <td class="mid" t-out="n"/>
-                                                <td t-out="engine.product_label(row['product'])"/>
-                                                <td t-out="row['characteristic']"/>
-                                                <td class="mid" t-out="row['uom']"/>
-                                                <td class="num" t-out="row['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                                <td class="num" t-out="row['second']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                                <td class="num" t-out="row['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                        <t t-foreach="wh['categories']" t-as="cat">
+                                            <tr class="cst_group">
+                                                <td/>
+                                                <td colspan="3" t-out="cat['category'].name or 'Kategoriyasiz'"/>
+                                                <td class="num" t-out="cat['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="cat['second']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="cat['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
                                             </tr>
+                                            <t t-foreach="cat['products']" t-as="row">
+                                                <t t-set="n" t-value="n + 1"/>
+                                                <tr>
+                                                    <td class="mid" t-out="n"/>
+                                                    <td t-out="engine.product_label(row['product'])"/>
+                                                    <td t-out="row['characteristic']"/>
+                                                    <td class="mid" t-out="row['uom']"/>
+                                                    <td class="num" t-out="row['quantity']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <td class="num" t-out="row['second']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <td class="num" t-out="row['scrap']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                </tr>
+                                            </t>
                                         </t>
                                     </t>
                                     <tr class="cst_total">

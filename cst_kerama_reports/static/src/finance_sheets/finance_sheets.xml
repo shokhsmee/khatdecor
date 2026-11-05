@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cst_kerama_reports.FinanceSheetBar">
+        <div class="o_cst_fs_bar">
+            <div class="o_cst_fs_period">
+                <input type="date" class="form-control form-control-sm" t-att-value="state.dateFrom"
+                       t-on-change="(ev) => this.onDate('dateFrom', ev)"/>
+                <span>—</span>
+                <input type="date" class="form-control form-control-sm" t-att-value="state.dateTo"
+                       t-on-change="(ev) => this.onDate('dateTo', ev)"/>
+                <div class="o_cst_fs_quick">
+                    <a href="#" t-on-click.prevent="() => this.setPeriod('month')">shu oy</a>
+                    <a href="#" t-on-click.prevent="() => this.setPeriod('prev_month')">o'tgan oy</a>
+                    <a href="#" t-on-click.prevent="() => this.setPeriod('quarter')">chorak</a>
+                    <a href="#" t-on-click.prevent="() => this.setPeriod('year')">yil</a>
+                </div>
+            </div>
+            <div t-if="state.companies.length > 1" class="btn-group btn-group-sm o_cst_fs_companies">
+                <t t-foreach="state.companies" t-as="c" t-key="c.id">
+                    <button type="button" class="btn"
+                            t-att-class="state.companyIds.includes(c.id) ? 'btn-primary' : 'btn-outline-secondary'"
+                            t-on-click="() => this.toggleCompany(c.id)" t-esc="c.name"/>
+                </t>
+            </div>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" t-on-click="() => this.expandAll(allKeys)">
+                    <i class="fa fa-list me-1"/>Hammasini ochish / yopish
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" t-on-click="() => this.load()" title="Yangilash">
+                    <i class="fa fa-refresh" t-att-class="{'fa-spin': state.loading}"/>
+                </button>
+                <label class="o_cst_fs_check">
+                    <input type="checkbox" class="form-check-input" t-model="state.detailXlsx"/> hujjatlar bilan
+                </label>
+                <button type="button" class="btn btn-sm btn-secondary" t-on-click="exportXlsx">
+                    <i class="fa fa-file-excel-o me-1"/>Excelga chiqarish
+                </button>
+            </div>
+        </div>
+    </t>
+
+    <!-- ============================ Foyda va zarar ============================ -->
+    <t t-name="cst_kerama_reports.PlSheet">
+        <div class="o_action o_cst_fs">
+            <div class="o_cst_fs_top">
+                <div class="o_cst_fs_crumb">Xisobotlar / Moliya</div>
+                <h2>Foyda va zarar</h2>
+                <t t-call="cst_kerama_reports.FinanceSheetBar"/>
+            </div>
+            <div class="o_cst_fs_body">
+                <t t-set="data" t-value="state.data"/>
+                <div t-if="data" class="o_cst_fs_card">
+                    <table class="o_cst_fs_table" t-att-class="{'o_cst_fs_dim': state.loading}">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" class="o_cst_fs_no">№</th>
+                                <th rowspan="2" class="o_cst_fs_date">Sana</th>
+                                <th rowspan="2" class="o_cst_fs_label">Mazmuni</th>
+                                <th rowspan="2" class="o_cst_fs_ccy">Valyuta</th>
+                                <th colspan="2" class="o_cst_fs_group">Daromad</th>
+                                <th colspan="2" class="o_cst_fs_group">Xarajat</th>
+                                <th rowspan="2" class="o_cst_fs_num">Qoldiq foyda</th>
+                            </tr>
+                            <tr>
+                                <th class="o_cst_fs_num o_cst_fs_sub">Summa</th>
+                                <th class="o_cst_fs_num o_cst_fs_sub">Dollarda</th>
+                                <th class="o_cst_fs_num o_cst_fs_sub">Summa</th>
+                                <th class="o_cst_fs_num o_cst_fs_sub">Dollarda</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data.companies" t-as="block" t-key="block.id">
+                                <tr class="o_cst_fs_band">
+                                    <td colspan="4" t-esc="block.name"/>
+                                    <td/>
+                                    <td class="o_cst_fs_num" t-esc="fmt(block.income)"/>
+                                    <td/>
+                                    <td class="o_cst_fs_num o_cst_fs_neg" t-esc="fmt(block.expense)"/>
+                                    <td class="o_cst_fs_num" t-att-class="{'o_cst_fs_neg': block.profit &lt; 0}" t-esc="fmt(block.profit)"/>
+                                </tr>
+                                <t t-foreach="block.rows" t-as="row" t-key="row.key">
+                                    <t t-set="key" t-value="rowKey(block, row)"/>
+                                    <tr class="o_cst_fs_row" t-att-class="{'o_cst_fs_clickable': row.details.length, 'o_cst_fs_open': state.open[key]}"
+                                        t-on-click="() => row.details.length and this.toggle(key)">
+                                        <td class="o_cst_fs_no" t-esc="row.no"/>
+                                        <td/>
+                                        <td class="o_cst_fs_label">
+                                            <i t-if="row.details.length" class="fa o_cst_fs_caret"
+                                               t-att-class="state.open[key] ? 'fa-caret-down' : 'fa-caret-right'"/>
+                                            <t t-esc="row.name"/>
+                                            <span t-if="row.details.length" class="o_cst_fs_count" t-esc="row.details.length"/>
+                                        </td>
+                                        <td/>
+                                        <td/>
+                                        <td class="o_cst_fs_num" t-esc="fmt(row.income)"/>
+                                        <td/>
+                                        <td class="o_cst_fs_num o_cst_fs_neg" t-esc="fmt(row.expense)"/>
+                                        <td/>
+                                    </tr>
+                                    <t t-if="state.open[key]">
+                                        <tr t-foreach="row.details" t-as="d" t-key="d_index" class="o_cst_fs_detail"
+                                            t-att-class="{'o_cst_fs_link': d.model}" t-on-click="() => this.openDoc(d.model, d.res_id)">
+                                            <td/>
+                                            <td class="o_cst_fs_date" t-esc="ddmmyyyy(d.date)"/>
+                                            <td class="o_cst_fs_label">
+                                                <t t-esc="d.label"/>
+                                                <span t-if="d.partner" class="o_cst_fs_partner" t-esc="d.partner"/>
+                                            </td>
+                                            <td class="o_cst_fs_ccy" t-esc="d.currency"/>
+                                            <td class="o_cst_fs_num" t-esc="d.income ? fmt(d.amount) : ''"/>
+                                            <td class="o_cst_fs_num" t-esc="fmt(d.income)"/>
+                                            <td class="o_cst_fs_num" t-esc="d.income ? '' : fmt(d.amount)"/>
+                                            <td class="o_cst_fs_num" t-esc="fmt(d.expense)"/>
+                                            <td/>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                        <tfoot t-if="data.companies.length > 1">
+                            <tr>
+                                <td colspan="4">Jami</td>
+                                <td/>
+                                <td class="o_cst_fs_num" t-esc="fmt(data.income)"/>
+                                <td/>
+                                <td class="o_cst_fs_num o_cst_fs_neg" t-esc="fmt(data.expense)"/>
+                                <td class="o_cst_fs_num" t-esc="fmt(data.profit)"/>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div t-if="data" class="o_cst_fs_note">
+                    Summalar <b t-esc="data.currency"/>da. Har qator o'z hujjatidan olinadi, bitta hujjat faqat bitta
+                    qatorga tushadi: sotuv va tannarx — mijozga chiqqan yuk (buyurtma narxi / ombor tannarxi),
+                    kassa xarajatlari — moddasi bo'yicha (modda qaysi qatorga tushishi Kassa ▸ Xarajat moddalari ▸
+                    «Foyda/zarar qatori»da), ish haqi va soliq — oylik qatorlaridan, inventarizatsiya — sanoq natijasi
+                    (Exceldan yuklangan qoldiqlar bu yerda emas, Balansda sarmoya tuzatishi). Qatorni bossangiz
+                    hujjatlar ochiladi, hujjatni bossangiz — o'zi.
+                </div>
+                <div t-if="!data" class="text-center text-muted py-5"><i class="fa fa-spinner fa-spin"/> Yuklanmoqda…</div>
+            </div>
+        </div>
+    </t>
+
+    <!-- ================================ Balans ================================ -->
+    <t t-name="cst_kerama_reports.BalanceSheet">
+        <div class="o_action o_cst_fs">
+            <div class="o_cst_fs_top">
+                <div class="o_cst_fs_crumb">Xisobotlar / Balans</div>
+                <h2>
+                    <t t-if="state.data">
+                        <t t-esc="ddmmyyyy(state.data.date_from)"/> – <t t-esc="ddmmyyyy(state.data.date_to)"/>
+                        davr oralig'i balans hisoboti · <t t-esc="state.data.company.name"/>
+                    </t>
+                    <t t-else="">Balans</t>
+                </h2>
+                <t t-call="cst_kerama_reports.FinanceSheetBar"/>
+            </div>
+            <div class="o_cst_fs_body">
+                <t t-set="data" t-value="state.data"/>
+                <t t-if="data">
+                    <div class="o_cst_fs_cards">
+                        <div class="o_cst_fs_kpi">
+                            <span>Kun boshiga sarmoya (<t t-esc="ddmmyyyy(data.date_from)"/>)</span>
+                            <b t-esc="fmt(data.cards.open_capital) or '0'"/>
+                        </div>
+                        <div class="o_cst_fs_kpi">
+                            <span>Davr foydasi</span>
+                            <b t-att-class="{'o_cst_fs_neg': data.cards.profit &lt; 0}" t-esc="fmt(data.cards.profit) or '0'"/>
+                        </div>
+                        <div class="o_cst_fs_kpi">
+                            <span>Kredit qoldig'i (<t t-esc="ddmmyyyy(data.date_to)"/>)</span>
+                            <b t-esc="fmt(data.cards.loan) or '0'"/>
+                        </div>
+                        <div class="o_cst_fs_kpi o_cst_fs_kpi_main">
+                            <span>Kun oxiriga sarmoya (<t t-esc="ddmmyyyy(data.date_to)"/>)</span>
+                            <b t-esc="fmt(data.cards.close_capital) or '0'"/>
+                        </div>
+                    </div>
+                    <div class="o_cst_fs_card">
+                        <table class="o_cst_fs_table o_cst_fs_bs" t-att-class="{'o_cst_fs_dim': state.loading}">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="o_cst_fs_no">№</th>
+                                    <th rowspan="2" class="o_cst_fs_label">Ko'rsatkich nomi</th>
+                                    <th colspan="2" class="o_cst_fs_group"><t t-esc="ddmmyyyy(data.date_from)"/> kun boshiga qoldiq</th>
+                                    <th colspan="2" class="o_cst_fs_group o_cst_fs_turn">Aylanma</th>
+                                    <th colspan="2" class="o_cst_fs_group"><t t-esc="ddmmyyyy(data.date_to)"/> kun oxiriga qoldiq</th>
+                                </tr>
+                                <tr>
+                                    <th class="o_cst_fs_num o_cst_fs_sub">Haqqimiz</th>
+                                    <th class="o_cst_fs_num o_cst_fs_sub">Qarzimiz</th>
+                                    <th class="o_cst_fs_num o_cst_fs_sub o_cst_fs_turn">Kirim</th>
+                                    <th class="o_cst_fs_num o_cst_fs_sub o_cst_fs_turn">Chiqim</th>
+                                    <th class="o_cst_fs_num o_cst_fs_sub">Haqqimiz</th>
+                                    <th class="o_cst_fs_num o_cst_fs_sub">Qarzimiz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data.rows" t-as="row" t-key="row.key">
+                                    <tr class="o_cst_fs_row" t-att-class="{'o_cst_fs_clickable': row.details.length, 'o_cst_fs_open': state.open[row.key]}"
+                                        t-on-click="() => row.details.length and this.toggle(row.key)">
+                                        <td class="o_cst_fs_no" t-esc="row.no"/>
+                                        <td class="o_cst_fs_label">
+                                            <i t-if="row.details.length" class="fa o_cst_fs_caret"
+                                               t-att-class="state.open[row.key] ? 'fa-caret-down' : 'fa-caret-right'"/>
+                                            <t t-esc="row.name"/>
+                                            <span t-if="row.details.length" class="o_cst_fs_count" t-esc="row.details.length"/>
+                                        </td>
+                                        <td class="o_cst_fs_num" t-esc="fmt(row.open_dr)"/>
+                                        <td class="o_cst_fs_num" t-esc="fmt(row.open_cr)"/>
+                                        <td class="o_cst_fs_num o_cst_fs_turn" t-esc="fmt(row.debit)"/>
+                                        <td class="o_cst_fs_num o_cst_fs_turn" t-esc="fmt(row.credit)"/>
+                                        <td class="o_cst_fs_num" t-esc="fmt(row.close_dr)"/>
+                                        <td class="o_cst_fs_num" t-esc="fmt(row.close_cr)"/>
+                                    </tr>
+                                    <t t-if="state.open[row.key]">
+                                        <tr t-foreach="row.details" t-as="d" t-key="d_index" class="o_cst_fs_detail"
+                                            t-att-class="{'o_cst_fs_link': d.model and d.model !== 'correction'}"
+                                            t-on-click="() => this.openDoc(d.model, d.res_id)">
+                                            <td/>
+                                            <td class="o_cst_fs_label" t-esc="d.label"/>
+                                            <td class="o_cst_fs_num" t-esc="side(d.open, true)"/>
+                                            <td class="o_cst_fs_num" t-esc="side(d.open, false)"/>
+                                            <td class="o_cst_fs_num o_cst_fs_turn" t-esc="fmt(d.debit)"/>
+                                            <td class="o_cst_fs_num o_cst_fs_turn" t-esc="fmt(d.credit)"/>
+                                            <td class="o_cst_fs_num" t-esc="side(d.close, true)"/>
+                                            <td class="o_cst_fs_num" t-esc="side(d.close, false)"/>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td/>
+                                    <td>JAMI</td>
+                                    <td class="o_cst_fs_num" t-esc="fmt(data.totals.open_dr)"/>
+                                    <td class="o_cst_fs_num" t-esc="fmt(data.totals.open_cr)"/>
+                                    <td class="o_cst_fs_num o_cst_fs_turn" t-esc="fmt(data.totals.debit)"/>
+                                    <td class="o_cst_fs_num o_cst_fs_turn" t-esc="fmt(data.totals.credit)"/>
+                                    <td class="o_cst_fs_num" t-esc="fmt(data.totals.close_dr)"/>
+                                    <td class="o_cst_fs_num" t-esc="fmt(data.totals.close_cr)"/>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="o_cst_fs_note">
+                        Summalar <b t-esc="data.currency"/>da. Kirim = haqqimizni oshiradi / qarzimizni kamaytiradi,
+                        Chiqim — aksincha. Kun boshiga sarmoya = haqqimiz − qarzimiz (1–13-qatorlar); kun oxiriga
+                        sarmoya = u + davr foydasi + boshlang'ich qoldiq yozuvlari (Exceldan yuklangan ombor va mijoz
+                        qoldiqlari) + 15-qator. 15-qator — hujjatlar bilan tushuntirib bo'lmaydigan farq (so'mdagi
+                        qoldiqlarning kurs o'zgarishi, ishlab chiqarishdagi tannarx farqi), shu sabab jamlar doim teng.
+                        3-qator: tasdiqlangan, lekin hali yuki chiqmagan sotuv (qarzimiz) va kelmagan xarid (haqqimiz).
+                        <a href="#" t-on-click.prevent="openOdooBalance">Odoo'ning o'z balansi</a>
+                    </div>
+                </t>
+                <div t-else="" class="text-center text-muted py-5"><i class="fa fa-spinner fa-spin"/> Yuklanmoqda…</div>
+            </div>
+        </div>
+    </t>
+</templates>

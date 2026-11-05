@@ -24,7 +24,7 @@ oladi; HR «Smena KPI» varag'ini tekshirib tasdiqlaydi va u oylikka o'tadi.
     """,
     "author": "Khatdecor",
     "category": "Manufacturing",
-    "version": "19.0.1.14.0",
+    "version": "19.0.1.15.0",
     "depends": ["mrp", "mrp_workorder", "mrp_workorder_hr_account", "stock", "hr", "hr_attendance", "mrp_landed_costs",
                 "cst_kerama_variants", "cst_kerama_payroll", "cst_kerama_reports"],
     "data": [

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- which row of «Foyda va zarar» / «Balans» a kassa modda feeds -->
+    <record id="view_kassa_category_list_pl_line" model="ir.ui.view">
+        <field name="name">cst.kassa.category.list.pl.line</field>
+        <field name="model">cst.kassa.category</field>
+        <field name="inherit_id" ref="cst_kerama_kassa.view_kassa_category_list"/>
+        <field name="arch" type="xml">
+            <field name="account_id" position="after">
+                <field name="cst_pl_line" placeholder="avtomatik"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_cst_pl_sheet" model="ir.actions.client">
+        <field name="name">Foyda va zarar (Excel shakli)</field>
+        <field name="tag">cst_pl_sheet</field>
+    </record>
+    <record id="action_cst_balance_sheet" model="ir.actions.client">
+        <field name="name">Balans (Excel shakli)</field>
+        <field name="tag">cst_balance_sheet</field>
+    </record>
+
+    <menuitem id="menu_reports_pl_sheet"
+              name="Foyda va zarar (Excel shakli)"
+              parent="menu_reports_finance"
+              action="action_cst_pl_sheet"
+              groups="account.group_account_readonly"
+              sequence="5"/>
+    <menuitem id="menu_reports_balance_sheet"
+              name="Balans (Excel shakli)"
+              parent="menu_reports_finance"
+              action="action_cst_balance_sheet"
+              groups="account.group_account_readonly"
+              sequence="6"/>
+</odoo>

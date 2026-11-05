@@ -8,6 +8,11 @@ class CstProductionFactWizard(models.TransientModel):
     _report_xmlid = "action_report_production_fact"
 
     product_ids = fields.Many2many("product.product", string="Mahsulotlar")
+    warehouse_ids = fields.Many2many("stock.warehouse", string="Omborlar")
+
+    def _fact_filters(self):
+        """Extra build() filters; cst_kerama_shift adds the departments."""
+        return {}
 
     def _report_values(self):
         self.ensure_one()
@@ -16,7 +21,8 @@ class CstProductionFactWizard(models.TransientModel):
             "date_from": self.date_from, "date_to": self.date_to,
             "companies": self.env["cst.production.fact.report"].build(
                 self.date_from, self.date_to, company_ids=self.company_ids.ids or None,
-                product_ids=self.product_ids.ids or None),
+                product_ids=self.product_ids.ids or None, warehouse_ids=self.warehouse_ids.ids or None,
+                **self._fact_filters()),
         }
 
 

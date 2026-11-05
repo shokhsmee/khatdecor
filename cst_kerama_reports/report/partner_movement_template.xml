@@ -16,6 +16,7 @@
             .cst_rep .mid { text-align: center; }
             .cst_rep tr.cst_company td { background: #d7f0d7; font-weight: bold; }
             .cst_rep tr.cst_group td { background: #fff2cc; font-weight: bold; }
+            .cst_rep tr.cst_wh td { background: #dbe8f6; font-weight: bold; }
             .cst_rep tr.cst_sub td { background: #fdf6e3; font-weight: bold; }
             .cst_rep tr.cst_total td { background: #e8e8e8; font-weight: bold; }
             .cst_rep tr.cst_pending td { color: #8a5a00; font-style: italic; }

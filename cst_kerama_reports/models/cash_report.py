@@ -191,7 +191,7 @@ class CstExpenseReport(models.AbstractModel):
 
     @api.model
     def build(self, date_from, date_to, company_ids=None, journal_types=None,
-              display_currency=None, detail=False):
+              display_currency=None, detail=False, category_ids=None, kassa_ids=None):
         companies = self.env.companies
         if company_ids:
             companies = companies.filtered(lambda c: c.id in company_ids) or companies
@@ -202,9 +202,12 @@ class CstExpenseReport(models.AbstractModel):
             ("company_id", "in", companies.ids),
             ("date", ">=", date_from), ("date", "<=", date_to),
             ("journal_id.type", "in", list(journal_types or ("cash", "bank"))),
-        ], order="date, id") if Operation is not None else []
+        ] + ([("category_id", "in", category_ids)] if category_ids else [])
+          + ([("kassa_id", "in", kassa_ids)] if kassa_ids else []),
+            order="date, id") if Operation is not None else []
         others = self.env["account.move.line"]
-        if not journal_types:
+        # a modda or kassa filter narrows the sheet to the kassa: the rest has neither
+        if not journal_types and not category_ids and not kassa_ids:
             # everything else on an expense account, outside the kassa
             kassa_moves = Operation.search([
                 ("state", "=", "done"), ("company_id", "in", companies.ids),

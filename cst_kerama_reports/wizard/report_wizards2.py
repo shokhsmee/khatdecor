@@ -148,6 +148,11 @@ class CstExpenseReportWizard(models.TransientModel):
         default=lambda self: self.env.company.currency_id,
         help="Har bir yozuv o'z sanasidagi kurs bo'yicha o'giriladi.")
     detail = fields.Boolean(string="Har bir yozuv bilan")
+    category_ids = fields.Many2many(
+        "cst.kassa.category", string="Moddalar", domain="[('direction', '=', 'out')]",
+        help="Faqat shu xarajat moddalari. Bo'sh qolsa hammasi.")
+    kassa_ids = fields.Many2many(
+        "cst.kassa", string="Kassalar", help="Faqat shu kassa/bank hisoblari. Bo'sh qolsa hammasi.")
 
     def _report_values(self):
         self.ensure_one()
@@ -162,7 +167,8 @@ class CstExpenseReportWizard(models.TransientModel):
             "companies": self.env["cst.expense.report"].build(
                 self.date_from, self.date_to, company_ids=self.company_ids.ids or None,
                 journal_types=types, display_currency=self.display_currency_id,
-                detail=self.detail),
+                detail=self.detail, category_ids=self.category_ids.ids or None,
+                kassa_ids=self.kassa_ids.ids or None),
         }
 
 

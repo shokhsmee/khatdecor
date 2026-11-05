@@ -144,6 +144,7 @@ class CstProfitabilityReport(models.AbstractModel):
                 "product": product, "order": order, "partner": partner, "user": order.user_id,
                 "doc": ("order", order.id) if order and not is_return else ("picking", move.picking_id.id),
                 "qty": qty, "amount": amount, "cost": cost,
+                "date": fields.Datetime.context_timestamp(self, move.date).date(),
             })
         if opts["services"]:
             out += self._service_entries(opts, start, end, convert)
@@ -179,7 +180,7 @@ class CstProfitabilityReport(models.AbstractModel):
             out.append({
                 "kind": "sale",
                 "product": product, "order": order, "partner": order.partner_id.commercial_partner_id,
-                "user": order.user_id, "doc": ("order", order.id),
+                "user": order.user_id, "doc": ("order", order.id), "date": day,
                 "qty": qty,
                 "amount": convert(line.price_subtotal, order.currency_id, order.company_id, day),
                 "cost": convert(cost, order.company_id.currency_id, order.company_id, day),

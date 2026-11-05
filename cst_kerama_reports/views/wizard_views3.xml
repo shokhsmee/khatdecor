@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Ishlab chiqarish fakti">
                 <group><group><field name="date_from"/><field name="date_to"/></group>
-                    <group><field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                    <group><field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
                 <footer>
                     <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>
                     <button name="action_print" type="object" string="PDF" class="btn-secondary"/>

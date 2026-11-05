@@ -57,7 +57,7 @@ actual consumption sheet per manufacturing order.
     """,
     "author": "Khatdecor",
     "category": "Reporting",
-    "version": "19.0.2.18.0",
+    "version": "19.0.2.20.0",
     "depends": [
         "base",
         "account",
@@ -80,6 +80,7 @@ actual consumption sheet per manufacturing order.
         "cst_kerama_dashboard",
         "cst_kerama_variants",
         "account_asset",
+        "cst_kerama_kassa",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -118,6 +119,7 @@ actual consumption sheet per manufacturing order.
         "views/product_card_views.xml",
         "views/user_activity_views.xml",
         "views/tz_views.xml",
+        "views/finance_sheet_views.xml",
     ],
     "assets": {
         "web.assets_backend": [
@@ -126,6 +128,7 @@ actual consumption sheet per manufacturing order.
             "cst_kerama_reports/static/src/report_filter_bar/*",
             "cst_kerama_reports/static/src/reports_home/*",
             "cst_kerama_reports/static/src/profitability/*",
+            "cst_kerama_reports/static/src/finance_sheets/*",
         ],
     },
     "license": "LGPL-3",

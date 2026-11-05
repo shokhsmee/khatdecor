@@ -106,39 +106,49 @@
                                         <td/>
                                         <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="block['value']"/></t>
                                     </tr>
-                                    <t t-foreach="block['groups']" t-as="g">
-                                        <tr class="cst_group">
-                                            <td colspan="6" t-out="engine.category_label(g['category'])"/>
-                                            <td class="num" t-out="g['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                            <td class="num" t-out="g['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['surplus'] - g['shortage']"/></t>
+                                    <t t-foreach="block['warehouses']" t-as="wh">
+                                        <tr class="cst_wh">
+                                            <td colspan="6">Ombor: <t t-out="wh['name'] or '—'"/></td>
+                                            <td class="num" t-out="wh['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <td class="num" t-out="wh['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="wh['surplus'] - wh['shortage']"/></t>
                                             <td/>
-                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['value']"/></t>
+                                            <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="wh['value']"/></t>
                                         </tr>
-                                        <t t-foreach="g['leaves']" t-as="c">
-                                            <tr class="cst_sub" t-if="c['category'] != g['category']">
-                                                <td class="mid" t-out="c_index + 1"/>
-                                                <td colspan="5" t-out="c['category'].name"/>
-                                                <td class="num" t-out="c['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                                <td class="num" t-out="c['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['surplus'] - c['shortage']"/></t>
+                                        <t t-foreach="wh['groups']" t-as="g">
+                                            <tr class="cst_group">
+                                                <td colspan="6" t-out="engine.category_label(g['category'])"/>
+                                                <td class="num" t-out="g['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <td class="num" t-out="g['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['surplus'] - g['shortage']"/></t>
                                                 <td/>
-                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['value']"/></t>
+                                                <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="g['value']"/></t>
                                             </tr>
-                                            <t t-foreach="c['products']" t-as="row">
-                                                <tr>
-                                                    <td class="mid" t-out="row_index + 1"/>
-                                                    <td t-out="engine.product_label(row['product'])"/>
-                                                    <td t-out="row['characteristic']"/>
-                                                    <td t-out="row['warehouse']"/>
-                                                    <td class="num" t-out="row['before']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                                    <td class="num" t-out="row['counted']" t-options="{'widget': 'float', 'precision': 3}"/>
-                                                    <td class="num"><span t-if="row['surplus']" t-out="row['surplus']" t-options="{'widget': 'float', 'precision': 3}"/></td>
-                                                    <td class="num"><span t-if="row['shortage']" t-out="row['shortage']" t-options="{'widget': 'float', 'precision': 3}"/></td>
-                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['surplus'] - row['shortage']"/></t>
-                                                    <td class="num" t-out="row['price']" t-options="{'widget': 'float', 'precision': 2}"/>
-                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['value']"/></t>
+                                            <t t-foreach="g['leaves']" t-as="c">
+                                                <tr class="cst_sub" t-if="c['category'] != g['category']">
+                                                    <td class="mid" t-out="c_index + 1"/>
+                                                    <td colspan="5" t-out="c['category'].name"/>
+                                                    <td class="num" t-out="c['surplus']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <td class="num" t-out="c['shortage']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['surplus'] - c['shortage']"/></t>
+                                                    <td/>
+                                                    <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="c['value']"/></t>
                                                 </tr>
+                                                <t t-foreach="c['products']" t-as="row">
+                                                    <tr>
+                                                        <td class="mid" t-out="row_index + 1"/>
+                                                        <td t-out="engine.product_label(row['product'])"/>
+                                                        <td t-out="row['characteristic']"/>
+                                                        <td t-out="row['warehouse']"/>
+                                                        <td class="num" t-out="row['before']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                        <td class="num" t-out="row['counted']" t-options="{'widget': 'float', 'precision': 3}"/>
+                                                        <td class="num"><span t-if="row['surplus']" t-out="row['surplus']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                                        <td class="num"><span t-if="row['shortage']" t-out="row['shortage']" t-options="{'widget': 'float', 'precision': 3}"/></td>
+                                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['surplus'] - row['shortage']"/></t>
+                                                        <td class="num" t-out="row['price']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                                        <t t-call="cst_kerama_reports.cell_amount"><t t-set="value" t-value="row['value']"/></t>
+                                                    </tr>
+                                                </t>
                                             </t>
                                         </t>
                                     </t>
