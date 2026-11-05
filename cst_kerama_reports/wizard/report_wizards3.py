@@ -108,11 +108,9 @@ class CstUtilityStatementWizard(models.TransientModel):
         domain=lambda self: self._partner_domain())
     date_from = fields.Date(
         default=lambda self: fields.Date.start_of(fields.Date.context_today(self), "year"))
-    display_currency_id = fields.Many2one(
-        "res.currency", string="Valyuta",
-        default=lambda self: self.env.company.currency_id,
-        help="Hamma summa shu valyutada: so'mdagi to'lov dollar qarzidan ayriladi (kassa kursi bo'yicha, "
-             "asl summa va kurs qatorda yoziladi). Bo'sh qoldirilsa har valyuta alohida.")
+    # 05.11: kommunal is billed and paid in so'm — no conversion to dollars here,
+    # every currency in its own block (the field stays for old wizard records)
+    display_currency_id = fields.Many2one("res.currency", string="Valyuta")
 
     @api.model
     def _partner_domain(self):
@@ -130,7 +128,7 @@ class CstUtilityStatementWizard(models.TransientModel):
             "companies": self.env["cst.partner.statement"].statement_rows(
                 self.partner_id, self.date_from, self.date_to,
                 company_ids=self.company_ids.ids or None,
-                display_currency=self.display_currency_id or None),
+                display_currency=None),
         }
 
 

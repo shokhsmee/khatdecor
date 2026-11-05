@@ -52,10 +52,45 @@ class CstPayrollPeriod(models.Model):
         "account.move", string="Journal Entry", readonly=True, copy=False,
         index="btree_not_null")
 
+    # «Xodimlar» tab and the cards above it (see cst.payroll.period.employee)
+    employee_summary_ids = fields.One2many(
+        "cst.payroll.period.employee", "period_id", string="Xodimlar", readonly=True)
+    sum_accrued = fields.Monetary(compute="_compute_summary", currency_field="currency_id",
+                                  string="Jami hisoblandi")
+    sum_advance = fields.Monetary(compute="_compute_summary", currency_field="currency_id",
+                                  string="Avans berilgan")
+    sum_withheld = fields.Monetary(compute="_compute_summary", currency_field="currency_id",
+                                   string="Ushlanma")
+    sum_to_pay = fields.Monetary(compute="_compute_summary", currency_field="currency_id",
+                                 string="To'lanadi (avanssiz)")
+    sum_paid = fields.Monetary(compute="_compute_summary", currency_field="currency_id",
+                               string="To'langan")
+    sum_balance = fields.Monetary(compute="_compute_summary", currency_field="currency_id",
+                                  string="Qoldiq (qarz)")
+    advance_line_ids = fields.Many2many("cst.payroll.line", compute="_compute_summary",
+                                        string="Avanslar")
+    payment_line_ids = fields.Many2many("cst.payroll.line", compute="_compute_summary",
+                                        string="To'lovlar")
+    advance_count = fields.Integer(compute="_compute_summary")
+    payment_count = fields.Integer(compute="_compute_summary")
+    date_warning = fields.Char(compute="_compute_date_warning")
+
     _dates_ordered = models.Constraint(
         "CHECK(date_from <= date_to)",
         "A payroll period must end on or after it starts.",
     )
+
+    @api.constrains("date_from", "date_to", "company_id")
+    def _check_no_overlap(self):
+        for period in self:
+            other = self.search([
+                ("id", "!=", period.id), ("company_id", "=", period.company_id.id),
+                ("date_from", "<=", period.date_to), ("date_to", ">=", period.date_from),
+            ], limit=1)
+            if other:
+                raise UserError(_(
+                    "“%(new)s” overlaps “%(old)s” (%(start)s – %(end)s): the same days would be paid twice.",
+                    new=period.name, old=other.name, start=other.date_from, end=other.date_to))
 
     @api.depends("line_ids.signed_amount", "line_ids.amount", "line_ids.kind")
     def _compute_totals(self):
@@ -69,6 +104,49 @@ class CstPayrollPeriod(models.Model):
                 lines.filtered(lambda l: l.kind == "deduction").mapped("amount"))
             period.total_employer = sum(
                 lines.filtered(lambda l: l.kind == "employer").mapped("amount"))
+
+    @api.depends("line_ids.amount", "line_ids.state", "line_ids.date", "line_ids.component_id", "date_to")
+    def _compute_summary(self):
+        from .payroll_period_employee import PAYOUT_CODES
+        Summary = self.env["cst.payroll.period.employee"]
+        self.env["cst.payroll.line"].flush_model()  # the summary is an SQL view over the lines
+        for period in self:
+            rows = Summary.search([("period_id", "=", period.id)]) if isinstance(period.id, int) else Summary
+            period.sum_accrued = sum(rows.mapped("accrued"))
+            period.sum_advance = sum(rows.mapped("advance"))
+            period.sum_withheld = sum(rows.mapped("withheld"))
+            period.sum_to_pay = sum(rows.mapped("to_pay"))
+            period.sum_paid = sum(rows.mapped("paid"))
+            period.sum_balance = sum(rows.mapped("balance"))
+            money = period.line_ids.filtered(
+                lambda l: l.state != "cancel" and l.component_id.code in PAYOUT_CODES)
+            advances = money.filtered(lambda l: period.date_to and l.date <= period.date_to)
+            period.advance_line_ids = advances
+            period.payment_line_ids = money - advances
+            period.advance_count = len(advances)
+            period.payment_count = len(money - advances)
+
+    @api.depends("date_from", "date_to")
+    def _compute_date_warning(self):
+        for period in self:
+            warning = False
+            if period.date_from and period.date_to:
+                month_start = fields.Date.start_of(period.date_from, "month")
+                month_end = fields.Date.end_of(period.date_to, "month")
+                if period.date_from != month_start or period.date_to != month_end:
+                    warning = _(
+                        "Davr to'liq oy emas (%(start)s – %(end)s): oylik kalendar kunlariga "
+                        "bo'lib hisoblanadi. To'liq oy uchun %(ms)s – %(me)s qo'ying.",
+                        start=period.date_from.strftime("%d.%m.%Y"), end=period.date_to.strftime("%d.%m.%Y"),
+                        ms=month_start.strftime("%d.%m.%Y"), me=month_end.strftime("%d.%m.%Y"))
+            period.date_warning = warning
+
+    @api.onchange("date_from")
+    def _onchange_date_from(self):
+        """A new period is a calendar month: picking the start fills the end."""
+        if self.date_from and self.state == "draft":
+            self.date_to = fields.Date.end_of(self.date_from, "month")
+            self.date_posted = self.date_to
 
     @api.depends("currency_id", "company_currency_id")
     def _compute_is_foreign_pay(self):
@@ -119,16 +197,19 @@ class CstPayrollPeriod(models.Model):
         generated.unlink()
 
     def _adopt_external_lines(self):
-        """Pull in the lines other documents booked in this period (kassa
-        advances) that were written before the period existed."""
+        """Pull in the lines written before the period existed or without one
+        (kassa advances, bonus/jarima wizard, card import, Smena KPI): a line
+        left without a period would never be confirmed nor paid."""
         self.ensure_one()
-        self.env["cst.payroll.line"].search([
+        lines = self.env["cst.payroll.line"].search([
             ("company_id", "=", self.company_id.id),
-            ("is_external", "=", True),
             ("period_id", "=", False),
+            ("state", "!=", "cancel"),
             ("date", ">=", self.date_from),
             ("date", "<=", self.date_to),
-        ]).write({"period_id": self.id})
+        ])
+        lines.with_context(cst_payroll_external_ok=True).write({"period_id": self.id})
+        return lines
 
     def _employees(self):
         """Employees to pay this period: hired on or before it ends, and not
@@ -182,6 +263,8 @@ class CstPayrollPeriod(models.Model):
             version = employee._get_version(self.date_to)
             if not version or version.cst_salary_scheme == "kpi":
                 continue
+            if version.date_version and version.date_version > self.date_to:
+                continue  # Odoo falls back to the first version: not hired yet
             wage = version.wage or 0.0
             if currency.is_zero(wage):
                 continue
@@ -207,7 +290,7 @@ class CstPayrollPeriod(models.Model):
         self.ensure_one()
         start, end = self.date_from, self.date_to
         version = employee._get_version(self.date_to)
-        hired = version.contract_date_start
+        hired = version.contract_date_start or self._hire_event_date(employee)
         left = version.contract_date_end or employee.departure_date
         if hired and hired > start:
             start = hired
@@ -216,6 +299,16 @@ class CstPayrollPeriod(models.Model):
         if start > end:
             return 0
         return (end - start).days + 1
+
+    def _hire_event_date(self, employee):
+        """Latest «Ishga qabul» order on or before the period end (Kadr
+        hujjatlari), for employees whose version has no start date."""
+        if "cst.hr.event" not in self.env:
+            return False
+        event = self.env["cst.hr.event"].sudo().search([
+            ("employee_id", "=", employee.id), ("kind", "=", "kirish"), ("date", "<=", self.date_to),
+        ], order="date desc", limit=1)
+        return event.date
 
     def _collect_kpi_lines(self):
         """The KPI engines.  Sales is wired up; manufacturing and unloading
@@ -610,10 +703,12 @@ class CstPayrollPeriod(models.Model):
         for period in self:
             if period.state not in ("draft", "computed"):
                 raise UserError(_("“%s” is already confirmed.", period.name))
+            period._adopt_external_lines()
             if not period.line_ids:
                 raise UserError(_(
                     "“%s” has no lines.  Compute it, or add lines by hand.", period.name))
-            period.line_ids.filtered(lambda line: line.state == "draft").state = "confirmed"
+            period.line_ids.filtered(lambda line: line.state == "draft").with_context(
+                cst_payroll_state_ok=True).state = "confirmed"
             period.state = "confirmed"
         return True
 
@@ -644,7 +739,7 @@ class CstPayrollPeriod(models.Model):
                     rate=period.cst_rate if period.is_foreign_pay else None),
             })
             move.action_post()
-            lines.write({"state": "posted", "move_id": move.id})
+            lines.with_context(cst_payroll_state_ok=True).write({"state": "posted", "move_id": move.id})
             period.move_id = move
             period.state = "posted"
         return True
@@ -672,8 +767,8 @@ class CstPayrollPeriod(models.Model):
                     period.move_id.unlink()
                 period.move_id = False
             # Lines booked by another document keep their own entry and state.
-            period.line_ids.filtered(lambda line: not line.is_external).write(
-                {"state": "draft", "move_id": False})
+            period.line_ids.filtered(lambda line: not line.is_external).with_context(
+                cst_payroll_state_ok=True).write({"state": "draft", "move_id": False})
             period.state = "draft"
         return True
 
@@ -682,6 +777,36 @@ class CstPayrollPeriod(models.Model):
             if period.state == "closed":
                 period.state = "posted"
         return True
+
+    def _action_money_lines(self, lines, name):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": f"{name} — {self.name}",
+            "res_model": "cst.payroll.line",
+            "view_mode": "list,form",
+            "domain": [("id", "in", lines.ids)],
+            "context": {"create": False},
+        }
+
+    def action_view_advances(self):
+        return self._action_money_lines(self.advance_line_ids, _("Avanslar"))
+
+    def action_view_payments(self):
+        return self._action_money_lines(self.payment_line_ids, _("To'lovlar"))
+
+    def action_view_employees(self):
+        """«Xodimlar» as its own list, with the Qoldig'i bor / To'langan /
+        Avanssiz / Rasmiy filters and grouping by bo'lim."""
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Xodimlar — %s", self.name),
+            "res_model": "cst.payroll.period.employee",
+            "view_mode": "list,form",
+            "domain": [("period_id", "=", self.id)],
+            "context": {"create": False},
+        }
 
     def action_view_lines(self):
         self.ensure_one()

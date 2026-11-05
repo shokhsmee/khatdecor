@@ -1,6 +1,7 @@
 from . import payroll_component
 from . import payroll_period
 from . import payroll_line
+from . import payroll_period_employee
 from . import payroll_report
 from . import product_template
 from . import sale_order

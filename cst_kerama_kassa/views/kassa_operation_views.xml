@@ -39,6 +39,9 @@
                                    required="operation_type == 'employee_advance'"
                                    domain="[('company_id', '=', company_id), ('work_contact_id.category_id', 'in', employee_tag_ids)] if employee_tag_ids else [('company_id', '=', company_id)]"
                                    options="{'no_create': True}"/>
+                            <field name="payroll_period_id" readonly="state != 'draft'"
+                                   invisible="operation_type != 'employee_advance'"
+                                   options="{'no_create': True, 'no_open': True}"/>
                             <field name="partner_id" readonly="state != 'draft'"
                                    domain="[('category_id', 'in', partner_tag_ids)] if partner_tag_ids else []"
                                    invisible="operation_type in ('employee_advance', 'transfer_in', 'transfer_out') or (operation_type in ('other_in', 'expense') and not partner_id)"
@@ -109,19 +112,42 @@
                         <field name="partner_debt_detail" class="fw-bold"/>
                     </div>
 
-                    <group invisible="operation_type != 'employee_advance' or not employee_id" string="Payroll">
-                        <group>
-                            <field name="employee_pay_currency_id" invisible="1"/>
-                            <field name="employee_balance" groups="cst_kerama_payroll.group_payroll_user"/>
-                            <field name="payroll_period_id" invisible="not payroll_line_id"/>
-                            <field name="payroll_line_id" invisible="not payroll_line_id"
-                                   groups="cst_kerama_payroll.group_payroll_user"/>
-                        </group>
-                        <div class="text-muted" invisible="state != 'draft'">
-                            The advance is deducted from the employee's salary («Накд аванс») in the payroll
-                            period of this date.
+                    <div invisible="operation_type != 'employee_advance' or not employee_id"
+                         groups="cst_kerama_payroll.group_payroll_user" class="mt-2">
+                        <field name="employee_pay_currency_id" invisible="1"/>
+                        <h6 class="text-uppercase fw-bold">
+                            Oylik
+                        </h6>
+                        <div class="o_cst_payroll_cards">
+                            <div class="o_cst_card">
+                                <span class="o_cst_card_label">Hisoblangan oylik</span>
+                                <field name="payroll_accrued" nolabel="1"/>
+                            </div>
+                            <div class="o_cst_card">
+                                <span class="o_cst_card_label">Oldin berilgan avans</span>
+                                <field name="payroll_prior" nolabel="1"/>
+                            </div>
+                            <div class="o_cst_card o_cst_card_info">
+                                <span class="o_cst_card_label">Shu avans</span>
+                                <field name="payroll_this" nolabel="1"/>
+                            </div>
+                            <div class="o_cst_card o_cst_card_warn">
+                                <span class="o_cst_card_label">Oylik qoldig'i</span>
+                                <field name="payroll_rest" nolabel="1"/>
+                            </div>
                         </div>
-                    </group>
+                        <div class="text-warning" invisible="not payroll_note">
+                            <field name="payroll_note" nolabel="1"/>
+                        </div>
+                        <div class="text-muted small" invisible="state != 'draft'">
+                            Avans tanlangan oylik davrida xodimning oyligidan («Накд аванс») ushlab qolinadi.
+                            Avans oylikdan oshsa, farq keyingi davrga qarz bo'lib o'tadi.
+                        </div>
+                        <div class="text-muted small" invisible="not payroll_line_id">
+                            Umumiy oylik qoldig'i (barcha davrlar, tasdiqlanganlar): <field name="employee_balance" nolabel="1" class="oe_inline"/>
+                            · <field name="payroll_line_id" nolabel="1" class="oe_inline"/>
+                        </div>
+                    </div>
                     <group invisible="operation_type != 'customer_in'" string="Where does the money go?">
                         <field name="debt_currency_ids" invisible="1"/>
                         <field name="debt_currency_count" invisible="1"/>

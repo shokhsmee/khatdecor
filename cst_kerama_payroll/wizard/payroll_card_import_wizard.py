@@ -5,19 +5,67 @@ import re
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-# Whatever the bank calls the columns, these are the three things needed.
+# Whatever the bank calls the columns: a header *containing* one of these
+# words (after dropping spaces and punctuation) is that column.
 HEADERS = {
-    "pinfl": ("pinfl", "jshshir", "jshshir (pinfl)", "пинфл", "жшшир", "жшшир (пинфл)",
-              "инн физ лица", "shaxsiy raqam", "identifikatsiya raqami"),
-    "amount": ("summa", "сумма", "amount", "miqdor", "to'lov", "tolov",
-               "сумма перечисления", "перечислено", "сумма к выплате", "karta summa"),
-    "name": ("fio", "f.i.o.", "fio (ism)", "ism", "xodim", "ходим", "сотрудник",
-             "ф.и.о.", "фио", "name", "ism familiya"),
+    "pinfl": ("pinfl", "пинфл", "jshshir", "жшшир", "жшшр", "инфизлица", "shaxsiyraqam",
+              "identifikatsiyaraqam", "персональныйидентификац"),
+    "amount": ("summa", "сумма", "amount", "miqdor", "tolov", "тўлов", "толов", "перечислен",
+               "квыплате", "зачислен"),
+    "name": ("fio", "фио", "фиш", "fish", "familiya", "фамилия", "xodim", "ходим", "сотрудник",
+             "работник", "ism", "name", "получател", "oluvchi"),
 }
+
+# Uzbek Cyrillic -> one Latin skeleton, so «SAMINJONOV ALISHER» from the bank
+# finds «Саминжонов Алишер» in Odoo (and «Abdullayev» finds «Абдуллаев»)
+CYR = dict(zip("абвгдезийклмнопрстуфхцчшъыьэюяўқғҳё",
+               ["a", "b", "v", "g", "d", "e", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t",
+                "u", "f", "x", "s", "ch", "sh", "", "i", "", "e", "yu", "ya", "o", "q", "g", "h", "yo"]))
+CYR["ж"] = "j"
+
+
+def name_key(value):
+    text = "".join(CYR.get(ch, ch) for ch in str(value or "").lower())
+    text = re.sub(r"[ʻʼ'`’‘]", "", text)
+    for old, new in (("ye", "e"), ("yo", "o"), ("ya", "a"), ("yu", "u"), ("x", "h"), ("q", "k"),
+                     ("w", "v"), ("ts", "s"), ("dj", "j"), ("iy", "i"), ("y", "i")):
+        text = text.replace(old, new)
+    text = re.sub(r"(.)\1+", r"\1", text)          # «Абдуллаев» = «Abdulayev»
+    words = re.findall(r"[a-z]+", text)
+    # surname + first name; the patronymic and «ugli/qizi» vary between files
+    return " ".join(sorted(words[:2])) if len(words) >= 2 else ""
+
+
+def header_key(cell):
+    return re.sub(r"[\W_]+", "", str(cell or "").lower())
 
 
 def digits(value):
+    if isinstance(value, float) and value.is_integer():
+        value = int(value)
     return re.sub(r"\D", "", str(value or ""))
+
+
+def parse_amount(value):
+    """A bank amount as a number: «1 500 000», «1\u00a0500\u00a0000», «1,500,000»,
+    «1.500.000,50», «1500000.5».  Unreadable -> 0 (the row shows as unmatched)."""
+    if isinstance(value, (int, float)):
+        return float(value)
+    text = re.sub(r"[\s\u00a0\u202f']", "", str(value or ""))
+    if not text:
+        return 0.0
+    if "," in text and "." in text:
+        decimal = "," if text.rfind(",") > text.rfind(".") else "."
+        text = text.replace("." if decimal == "," else ",", "").replace(",", ".")
+    elif "," in text:
+        # «1,500,000» groups thousands; «1500,5» is a decimal comma
+        text = text.replace(",", "") if re.fullmatch(r"-?\d{1,3}(,\d{3})+", text) else text.replace(",", ".")
+    elif re.fullmatch(r"-?\d{1,3}(\.\d{3}){2,}", text):
+        text = text.replace(".", "")
+    try:
+        return float(text)
+    except ValueError:
+        return 0.0
 
 
 class CstPayrollCardImportWizard(models.TransientModel):
@@ -90,21 +138,25 @@ class CstPayrollCardImportWizard(models.TransientModel):
             raise UserError(_("Файл буш."))
 
         columns, header_row = {}, None
-        for index, row in enumerate(rows[:10]):
+        for index, row in enumerate(rows[:15]):
             found = {}
             for position, cell in enumerate(row):
-                label = str(cell or "").strip().lower()
+                label = header_key(cell)
+                if not label or len(label) > 60:
+                    continue
                 for key, aliases in HEADERS.items():
-                    if label in aliases and key not in found:
+                    if key not in found.values() and any(alias in label for alias in aliases):
                         found[position] = key
-            if "pinfl" in found.values() and "amount" in found.values():
+                        break
+            keys = set(found.values())
+            if "amount" in keys and keys & {"pinfl", "name"}:
                 columns, header_row = found, index
                 break
         if header_row is None:
             raise UserError(_(
-                "Файлда ЖШШИР ва сумма устунлари топилмади.\n\n"
-                "Сарлавха каторида «PINFL» (ёки ЖШШИР) ва «Summa» (ёки Сумма) "
-                "деб ёзилган устунлар булиши керак."))
+                "Файлда сумма ва ЖШШИР (ёки Ф.И.О.) устунлари топилмади.\n\n"
+                "Сарлавха каторида «Сумма» ва «ПИНФЛ» ёки «ФИО» сузлари булган "
+                "устунлар булиши керак.  Намуна: «Shablon» тугмаси."))
         return columns, rows[header_row + 1:]
 
     def action_parse(self):
@@ -114,10 +166,13 @@ class CstPayrollCardImportWizard(models.TransientModel):
         columns, rows = self._rows()
 
         Employee = self.env["hr.employee"].sudo()
-        by_pinfl = {
-            employee.cst_pinfl: employee
-            for employee in Employee.search([("cst_pinfl", "!=", False)])
-        }
+        employees = Employee.search([("company_id", "=", self.company_id.id)])
+        by_pinfl = {employee.cst_pinfl: employee for employee in employees if employee.cst_pinfl}
+        by_name = {}
+        for employee in employees:
+            by_name.setdefault(name_key(employee.name), Employee)
+            by_name[name_key(employee.name)] |= employee
+        by_name.pop("", None)
         values = []
         for row in rows:
             cells = {key: (row[position] if position < len(row) else None)
@@ -126,18 +181,26 @@ class CstPayrollCardImportWizard(models.TransientModel):
             raw_amount = cells.get("amount")
             if not pinfl and not raw_amount:
                 continue                                   # a blank filler row
-            try:
-                amount = float(str(raw_amount).replace(" ", "").replace(",", ".") or 0)
-            except ValueError:
-                amount = 0.0
+            amount = parse_amount(raw_amount)
+            file_name = str(cells.get("name") or "").strip()
+            if not amount and not file_name and not pinfl:
+                continue
+            if not pinfl and re.match(r"(итого|всего|jami|жами|total)\b", file_name.lower()):
+                continue                                   # the bank's total row
             employee = by_pinfl.get(pinfl)
+            by_name_match = False
+            if not employee and file_name:
+                found = by_name.get(name_key(file_name), Employee)
+                if len(found) == 1 and not (pinfl and found.cst_pinfl and found.cst_pinfl != pinfl):
+                    employee, by_name_match = found, True
             values.append((0, 0, {
                 "pinfl": pinfl or False,
-                "file_name_text": str(cells.get("name") or "") or False,
+                "file_name_text": file_name or False,
                 "amount": amount,
                 "employee_id": employee.id if employee else False,
-                "state": "matched" if (employee and amount) else "unmatched",
-                "reason": self._reason(pinfl, amount, employee),
+                "by_name": by_name_match,
+                "reason": _("Ism bo'yicha topildi — tekshiring") if by_name_match
+                else self._reason(pinfl, amount, employee),
             }))
         if not values:
             raise UserError(_("Файлда бирорта катор топилмади."))
@@ -146,15 +209,38 @@ class CstPayrollCardImportWizard(models.TransientModel):
         return self._reopen()
 
     def _reason(self, pinfl, amount, employee):
-        if not pinfl:
-            return _("ЖШШИР ёзилмаган")
-        if len(pinfl) != 14:
-            return _("ЖШШИР 14 та ракам эмас")
-        if not employee:
-            return _("Бу ЖШШИР билан ходим топилмади")
         if not amount:
             return _("Сумма нол")
-        return False
+        if employee:
+            return False
+        if not pinfl:
+            return _("ЖШШИР ёзилмаган, исм буйича хам топилмади — ходимни танланг")
+        if len(pinfl) != 14:
+            return _("ЖШШИР 14 та ракам эмас — ходимни танланг")
+        return _("Бу ЖШШИР ва исм билан ходим топилмади — ходимни танланг")
+
+    def action_download_template(self):
+        """A ready file in the shape the import reads."""
+        import openpyxl
+        book = openpyxl.Workbook()
+        sheet = book.active
+        sheet.title = "Kartaga"
+        sheet.append(["ПИНФЛ", "ФИО", "Сумма"])
+        for employee in self.env["hr.employee"].sudo().search(
+                [("company_id", "=", self.company_id.id)], order="name"):
+            sheet.append([employee.cst_pinfl or "", employee.name, None])
+        sheet.column_dimensions["A"].width = 18
+        sheet.column_dimensions["B"].width = 40
+        sheet.column_dimensions["C"].width = 16
+        stream = io.BytesIO()
+        book.save(stream)
+        attachment = self.env["ir.attachment"].create({
+            "name": "kartaga_otkazma_shablon.xlsx",
+            "datas": base64.b64encode(stream.getvalue()),
+            "res_model": self._name, "res_id": self.id,
+        })
+        return {"type": "ir.actions.act_url", "url": "/web/content/%s?download=true" % attachment.id,
+                "target": "self"}
 
     def action_back(self):
         self.write({"state": "upload"})
@@ -172,7 +258,7 @@ class CstPayrollCardImportWizard(models.TransientModel):
     # ------------------------------------------------------------------
     def action_confirm(self):
         self.ensure_one()
-        lines = self.line_ids.filtered(lambda line: line.state == "matched")
+        lines = self.line_ids.filtered(lambda line: line.state == "matched" and not line.is_duplicate)
         if not lines:
             raise UserError(_(
                 "Бирорта катор ходимга бог'ланмади.  Ходимлар картасида "
@@ -182,6 +268,13 @@ class CstPayrollCardImportWizard(models.TransientModel):
                 "«%s» даври тасдикланган — унга янги катор кушиб булмайди.",
                 self.period_id.name))
 
+        # a PINFL learnt from the file: next month the row matches by itself
+        taken = set(self.env["hr.employee"].sudo().search([("cst_pinfl", "in", lines.mapped("pinfl"))]).mapped("cst_pinfl"))
+        for line in lines:
+            if line.pinfl and len(line.pinfl) == 14 and not line.employee_id.sudo().cst_pinfl \
+                    and line.pinfl not in taken:
+                line.employee_id.sudo().cst_pinfl = line.pinfl
+                taken.add(line.pinfl)
         payroll_lines = self.env["cst.payroll.line"].create([{
             "employee_id": line.employee_id.id,
             "component_id": self.component_id.id,
@@ -215,17 +308,24 @@ class CstPayrollCardImportLine(models.TransientModel):
     file_name_text = fields.Char(string="Fayldagi ism")
     employee_id = fields.Many2one("hr.employee", string="Xodim")
     amount = fields.Monetary(currency_field="currency_id")
+    # follows the row: an employee picked by hand makes it importable
     state = fields.Selection(
-        [("matched", "Topildi"), ("unmatched", "Topilmadi")], default="unmatched")
+        [("matched", "Topildi"), ("unmatched", "Topilmadi")],
+        compute="_compute_state", store=True)
     reason = fields.Char(string="Sabab")
-    is_duplicate = fields.Boolean(string="Takror?")
+    by_name = fields.Boolean(string="Ism bo'yicha", readonly=True)
+    is_duplicate = fields.Boolean(
+        string="Takror?", help="Takror qatorlar yuklanmaydi. Ataylab bo'lsa — belgini olib tashlang.")
+
+    @api.depends("employee_id", "amount")
+    def _compute_state(self):
+        for line in self:
+            line.state = "matched" if (line.employee_id and line.amount) else "unmatched"
 
     @api.onchange("employee_id")
     def _onchange_employee_id(self):
-        # A row fixed by hand becomes importable.
         for line in self:
-            if line.employee_id and line.amount:
-                line.state = "matched"
+            if line.employee_id and line.amount and not line.is_duplicate:
                 line.reason = False
 
     def _flag_duplicates(self, component, date):
@@ -240,7 +340,13 @@ class CstPayrollCardImportLine(models.TransientModel):
             ("employee_id", "in", self.employee_id.ids),
         ])
         seen = {(line.employee_id.id, round(line.amount, 2)) for line in existing}
+        in_file = set()
         for line in self:
-            if line.employee_id and (line.employee_id.id, round(line.amount, 2)) in seen:
+            key = (line.employee_id.id, round(line.amount, 2))
+            if line.employee_id and key in seen:
                 line.is_duplicate = True
                 line.reason = _("Шу кунги айнан шундай катор аллакачон бор")
+            elif line.employee_id and key in in_file:
+                line.is_duplicate = True
+                line.reason = _("Файлда шу катор икки марта")
+            in_file.add(key)

@@ -91,6 +91,9 @@ BS_ROWS = [
     ("residual", "Kurs farqidan zarar yoki foyda"),
 ]
 
+# rows of counterparties: their Kirim/Chiqim follow the akt sverka (see get_data)
+COUNTERPARTY_ROWS = ("customers", "suppliers", "utility", "third_party", "organization", "founder")
+
 # payroll deductions that are a payment of the salary, a tax withheld from it,
 # or (anything else) a penalty that lowers the salary cost
 PAYMENT_CODES = re.compile(r"AVANS|PLASTIK|KARTA|CARD", re.I)
@@ -555,6 +558,24 @@ class CstPlSheet(models.AbstractModel):
                 ("account_id.account_type", "in", ("expense", "expense_direct_cost")),
                 ("move_id", "not in", kassa_moves.ids)], order="date, id"):
             add("bank", expense=line.balance, detail=dict(detail(line), value=line.balance))
+        # 6 taxes assessed by hand (05.11): a journal entry in «Soliq deklaratsiyalari» or any
+        # general journal that charges a tax account and books the cost to an expense account
+        # (Dt soliq xarajati / Kt Ер солиғи…).  What reaches the profit is the expense line.
+        # Payroll and kassa entries are left out: _pl_payroll and _pl_kassa count them already;
+        # so are exchange and cash-count differences (their own rows above).
+        tax_accounts = self.env["cst.tax.report"].sudo().default_accounts(company)
+        payroll_moves = (self.env["cst.payroll.line"].sudo().search(
+            [("company_id", "=", company.id), ("move_id", "!=", False)]).move_id
+            | self.env["cst.payroll.period"].sudo().search(
+                [("company_id", "=", company.id), ("move_id", "!=", False)]).move_id)
+        if tax_accounts:
+            for line in Line.search(period + [
+                    ("journal_id.type", "=", "general"),
+                    ("account_id.account_type", "in", ("expense", "expense_direct_cost")),
+                    ("account_id", "not in", fx_accounts.ids),
+                    ("move_id.line_ids.account_id", "in", tax_accounts.ids),
+                    ("move_id", "not in", (kassa_moves | payroll_moves | diff_moves).ids)], order="date, id"):
+                add("tax", expense=line.balance, detail=dict(detail(line), value=line.balance))
 
 
 class CstBalanceSheet(models.AbstractModel):
@@ -617,7 +638,9 @@ class CstBalanceSheet(models.AbstractModel):
                 if abs(production) > 0.005 else []
             parts += self._receipts_without_order(ctx)
             explained = sum(p[1] for p in parts)
-            parts.append((_("Valyuta kursi farqi va boshqa farqlar"), closing - explained, False, 0))
+            # clickable (05.11): opens the period's exchange-difference journal items
+            parts.append((_("Valyuta kursi farqi va boshqa farqlar"), closing - explained,
+                          "fx:%s:%s" % (date_from, date_to), company.id))
             for label, amount, model, res_id in parts:
                 add("residual", label, debit=max(-amount, 0.0), credit=max(amount, 0.0),
                     model=model, res_id=res_id)
@@ -633,6 +656,13 @@ class CstBalanceSheet(models.AbstractModel):
             if key == "residual":
                 row["close"] = 0.0
             row["details"].sort(key=lambda d: -abs(d["close"]) - abs(d["debit"]) - abs(d["credit"]))
+            if key in COUNTERPARTY_ROWS:
+                # 05.11: a counterparty reads like its akt sverka / harakat report —
+                # Kirim = what came from them (payment, goods), Chiqim = what went to
+                # them.  Balances are unchanged; only the two turnover columns swap.
+                row["debit"], row["credit"] = row["credit"], row["debit"]
+                for detail in row["details"]:
+                    detail["debit"], detail["credit"] = detail["credit"], detail["debit"]
             result.append(row)
 
         def side(value, positive):
@@ -782,8 +812,13 @@ class CstBalanceSheet(models.AbstractModel):
                 opening = sign * before[kind].get(oid, [name, 0.0])[1]
                 closing = sign * after[kind].get(oid, [name, 0.0])[1]
                 change = closing - opening
-                label = _("%s — mijozga berilmagan tovar", name) if kind == "sale" else \
-                    _("%s — ta'minotchidan kelmagan tovar", name)
+                if abs(closing) <= 0.005 and abs(opening) > 0.005:
+                    # 05.11: delivered / received inside the period — the row only shows the movement
+                    label = _("%s — davr ichida mijozga berildi", name) if kind == "sale" else \
+                        _("%s — davr ichida ta'minotchidan keldi", name)
+                else:
+                    label = _("%s — mijozga berilmagan tovar", name) if kind == "sale" else \
+                        _("%s — ta'minotchidan kelmagan tovar", name)
                 add("reserved", label, opening=opening, debit=max(change, 0.0), credit=max(-change, 0.0),
                     model=model, res_id=oid)
 
@@ -893,9 +928,71 @@ class CstBalanceSheet(models.AbstractModel):
 
     @api.model
     def _bs_cash(self, ctx, add):
-        for account, opening, debit, credit in self._ledger_sums(ctx, self._cash_accounts(ctx["company"])):
+        """5 «Pul mablag'lari» — only our own kassa and bank accounts (05.11).
+
+        Money that Odoo still keeps on a journal's outstanding receipts /
+        payments account is that journal's money, so it is added to the
+        journal's own account instead of showing «To'lanmagan tushumlar» as a
+        separate account.  The liquidity transfer account shows only while it
+        holds a balance (money in transit between our kassas)."""
+        company = ctx["company"]
+        journals = self.env["account.journal"].sudo().search(
+            [("company_id", "=", company.id), ("type", "in", ("cash", "bank"))])
+        own = self.env["account.account"].sudo().search(
+            [("company_ids", "in", company.ids), ("account_type", "=", "asset_cash")]) | journals.default_account_id
+        outstanding = self.env["account.account"].sudo()
+        for journal in journals:
+            outstanding |= journal._get_journal_inbound_outstanding_payment_accounts()
+            outstanding |= journal._get_journal_outbound_outstanding_payment_accounts()
+        outstanding -= own
+        transfer = company.transfer_account_id - own - outstanding
+
+        sums = {account.id: [account, opening, debit, credit]
+                for account, opening, debit, credit in self._ledger_sums(ctx, own)}
+        loose = defaultdict(lambda: [0.0, 0.0, 0.0])
+        for journal, account, opening, debit, credit in self._ledger_sums_by_journal(ctx, outstanding):
+            target = journal.default_account_id if journal and journal.default_account_id in own else False
+            if target:
+                entry = sums.setdefault(target.id, [target, 0.0, 0.0, 0.0])
+                entry[1] += opening
+                entry[2] += debit
+                entry[3] += credit
+            else:
+                entry = loose[account]
+                entry[0] += opening
+                entry[1] += debit
+                entry[2] += credit
+        for account, opening, debit, credit in sums.values():
             add("cash", "%s %s" % (account.code or "", account.name), opening=opening, debit=debit,
                 credit=credit, model="account.account", res_id=account.id)
+        # outstanding money no journal claims (should not happen): keep it visible
+        for account, (opening, debit, credit) in loose.items():
+            add("cash", "%s %s" % (account.code or "", account.name), opening=opening, debit=debit,
+                credit=credit, model="account.account", res_id=account.id)
+        for account, opening, debit, credit in self._ledger_sums(ctx, transfer):
+            if abs(opening) > 0.005 or abs(opening + debit - credit) > 0.005:
+                add("cash", "%s %s" % (account.code or "", account.name), opening=opening, debit=debit,
+                    credit=credit, model="account.account", res_id=account.id)
+
+    @api.model
+    def _ledger_sums_by_journal(self, ctx, accounts):
+        if not accounts:
+            return []
+        self.env.flush_all()
+        self.env.cr.execute("""
+            SELECT l.journal_id, l.account_id,
+                   SUM(CASE WHEN l.date < %(df)s THEN l.balance ELSE 0 END),
+                   SUM(CASE WHEN l.date >= %(df)s THEN l.debit ELSE 0 END),
+                   SUM(CASE WHEN l.date >= %(df)s THEN l.credit ELSE 0 END)
+              FROM account_move_line l
+             WHERE l.company_id = %(c)s AND l.parent_state = 'posted' AND l.date <= %(dt)s
+               AND l.account_id = ANY(%(acc)s)
+          GROUP BY 1, 2
+        """, {"df": ctx["date_from"], "dt": ctx["date_to"], "c": ctx["company"].id, "acc": list(accounts.ids)})
+        Journal = self.env["account.journal"].sudo()
+        Account = self.env["account.account"].sudo().with_company(ctx["company"])
+        return [(Journal.browse(jid) if jid else Journal, Account.browse(aid), o or 0.0, d or 0.0, c or 0.0)
+                for jid, aid, o, d, c in self.env.cr.fetchall()]
 
     @api.model
     def _payroll_moves(self, company):
@@ -960,10 +1057,16 @@ class CstBalanceSheet(models.AbstractModel):
     def _bs_kassa(self, ctx, add):
         target = {"salary": "salary", "tax_payment": "tax", "loan": "loan",
                   "organization": "organization", "founder": "founder"}
+        company = ctx["company"]
+        # rows 8 and 11 read these accounts from the ledger already: a modda
+        # booked straight onto one of them would be counted twice
+        from_ledger = self.env["cst.tax.report"].sudo().default_accounts(company) \
+            | self.env["account.account"].sudo().search(
+                [("company_ids", "in", company.ids), ("account_type", "=", "liability_non_current")])
         sums = defaultdict(lambda: [0.0, 0.0, 0.0])
-        for op in self._kassa_ops(ctx["company"], False, ctx["date_to"]):
+        for op in self._kassa_ops(company, False, ctx["date_to"]):
             key = target.get(self._kassa_line(op))
-            if not key:
+            if not key or op.category_id.account_id in from_ledger:
                 continue
             value = op.amount_company or 0.0
             signed = value if op.direction == "out" else -value
@@ -986,7 +1089,13 @@ class CstBalanceSheet(models.AbstractModel):
         company = ctx["company"]
         equity = self.env["account.account"].sudo().search(
             [("company_ids", "in", company.ids), ("account_type", "in", ("equity", "equity_unaffected"))])
-        for account, _opening, debit, credit in self._ledger_sums(ctx, equity):
+        # fixed assets loaded against equity: row 1 already carries them from the
+        # asset's own acquisition date, so the load is not a capital change
+        asset_loads = self.env["account.move.line"].sudo().search([
+            ("company_id", "=", company.id), ("parent_state", "=", "posted"),
+            ("account_id.account_type", "=", "asset_fixed"), ("move_id.asset_id", "=", False),
+        ]).move_id
+        for account, _opening, debit, credit in self._ledger_sums(ctx, equity, asset_loads.ids):
             if debit or credit:
                 add("capital", _("Boshlang'ich qoldiq yozuvlari: %s %s", account.code or "", account.name),
                     debit=debit, credit=credit, model="correction")
@@ -1047,6 +1156,8 @@ class CstBalanceSheet(models.AbstractModel):
     def action_open(self, model, res_id):
         """Row detail drill-down."""
         self._check_rights()
+        if isinstance(model, str) and model.startswith("fx:") and res_id:
+            return self._action_exchange_difference(model, res_id)
         if model not in ("res.partner", "account.account", "account.asset", "sale.order", "purchase.order",
                          "stock.move", "stock.picking", "account.move", "cst.kassa.operation",
                          "cst.payroll.line") or not res_id:
@@ -1059,3 +1170,26 @@ class CstBalanceSheet(models.AbstractModel):
             }
         return {"type": "ir.actions.act_window", "res_model": model, "res_id": res_id,
                 "views": [(False, "form")], "target": "current"}
+
+    @api.model
+    def _action_exchange_difference(self, key, company_id):
+        """«Kurs farqini qayerdan otserka qilsam bo'ladi» — the journal items of
+        the period on the company's exchange gain/loss accounts and journal,
+        grouped by partner, so each so'm debt's rate difference can be checked."""
+        _fx, date_from, date_to = key.split(":")
+        company = self.env["res.company"].browse(int(company_id))
+        accounts = (company.income_currency_exchange_account_id | company.expense_currency_exchange_account_id).ids
+        domain = [("company_id", "=", company.id), ("parent_state", "=", "posted"),
+                  ("date", ">=", date_from), ("date", "<=", date_to)]
+        journal = company.currency_exchange_journal_id
+        where = [("account_id", "in", accounts)]
+        if journal:
+            where = ["|", ("journal_id", "=", journal.id)] + where
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Kurs farqi yozuvlari %(start)s – %(end)s", start=date_from, end=date_to),
+            "res_model": "account.move.line",
+            "views": [(False, "list"), (False, "form")],
+            "domain": domain + where,
+            "context": {"group_by": ["partner_id"], "search_default_posted": 1},
+        }

@@ -151,6 +151,18 @@
                                             </tr>
                                         </t>
                                     </t>
+                                    <t t-foreach="block.get('totals') or []" t-as="tot">
+                                        <tr class="cst_total">
+                                            <td/>
+                                            <td>Jami (<t t-out="tot['currency_name']"/>)</td>
+                                            <t t-foreach="['open_we_owe', 'open_they_owe', 'inflow', 'outflow', 'close_we_owe', 'close_they_owe']" t-as="key">
+                                                <td class="num">
+                                                    <span t-if="tot[key]" t-out="tot[key]"
+                                                          t-options="{'widget': 'float', 'precision': 2}"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
                                 </t>
                             </tbody>
                         </table>

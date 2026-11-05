@@ -2,7 +2,7 @@ from collections import defaultdict
 
 from odoo import api, fields, models
 
-TAX_CODE_PREFIXES = ("64", "65")
+TAX_CODE_PREFIXES = ("64", "65", "252")  # 252xxx: one account per tax (05.11)
 
 
 class AccountAsset(models.Model):

@@ -93,7 +93,8 @@
         <field name="model">cst.utility.statement.wizard</field>
         <field name="arch" type="xml">
             <form string="Kommunal xizmatlar akt sverkasi">
-                <group><group><field name="partner_id" options="{'no_create': True}"/><field name="date_from"/><field name="date_to"/><field name="display_currency_id" options="{'no_create': True, 'no_open': True}" placeholder="har valyuta alohida"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <group><group><field name="partner_id" options="{'no_create': True}"/><field name="date_from"/><field name="date_to"/></group><group><field name="company_ids" widget="many2many_tags" groups="base.group_multi_company" options="{'no_create': True}"/></group></group>
+                <p class="text-muted">Summalar hujjat valyutasida (so'm — so'mda, dollar — dollarda), boshqa valyutaga o'girilmaydi.</p>
                 <p class="text-muted">Kommunal xizmatlar Odoo'da oddiy ta'minotchi hisob-fakturasi (Xarid / Buxgalteriya ▸ Ta'minotchi hisob-fakturalari) va «To'lovni qayd etish» orqali yuritiladi. Ta'minotchi kontaktiga «Kommunal xizmatlar» tegi qo'yilsa, shu ro'yxatda chiqadi.</p>
                 <footer>
                     <button name="action_view" type="object" string="Ekranda ko'rish" class="btn-primary"/>

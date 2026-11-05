@@ -30,7 +30,7 @@ top of the same lines in the following phases.
     """,
     "author": "Khatdecor",
     "category": "Human Resources",
-    "version": "19.0.1.4.0",
+    "version": "19.0.1.7.0",
     "depends": ["hr", "account", "sale", "mrp", "mrp_workorder", "stock"],
     "data": [
         "security/payroll_groups.xml",
@@ -52,6 +52,7 @@ top of the same lines in the following phases.
     "assets": {
         "web.assets_backend": [
             "cst_kerama_payroll/static/src/payroll_report/**/*",
+            "cst_kerama_payroll/static/src/payroll_period/**/*",
         ],
     },
     "license": "LGPL-3",

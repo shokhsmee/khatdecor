@@ -331,7 +331,8 @@ class CstDirectorDashboard(models.AbstractModel):
         since = today - timedelta(days=days - 1)
         month_start = fields.Date.start_of(today, "month")
         prev_start = fields.Date.start_of(month_start - timedelta(days=1), "month")
-        prev_end = month_start - timedelta(days=1)
+        # the same days of last month: 1–4.11 against 1–4.10, not the whole of October
+        prev_end = min(prev_start + (today - month_start), month_start - timedelta(days=1))
 
         cash = self._cash(companies, since, today, month_start, prev_start, prev_end)
         return {

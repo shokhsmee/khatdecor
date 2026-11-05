@@ -60,7 +60,28 @@ class KassaOperation(models.Model):
     employee_tag_ids = fields.Many2many(
         "res.partner.category", compute="_compute_partner_tag_ids", string="Allowed employee tags")
     partner_tag_warning = fields.Char(compute="_compute_partner_tag_ids", string="Tag warning")
-    payroll_period_id = fields.Many2one(related="payroll_line_id.period_id", string="Payroll period")
+    payroll_period_id = fields.Many2one(
+        "cst.payroll.period", string="Oylik davri", compute="_compute_payroll_period_id",
+        store=True, readonly=False, precompute=True, index="btree_not_null", check_company=True,
+        domain="[('company_id', '=', company_id), ('state', 'in', ('draft', 'computed'))]",
+        help="Avans qaysi oy oyligidan ushlanadi. Sana bo'yicha tanlanadi; oldingi oy oyligidan "
+             "berilsa (oy yopilgandan keyingi to'lov), davrni almashtiring. Faqat ochiq davrlar.")
+    payroll_accrued = fields.Monetary(
+        compute="_compute_payroll_cards", currency_field="employee_pay_currency_id",
+        string="Hisoblangan oylik", groups="cst_kerama_payroll.group_payroll_user")
+    payroll_prior = fields.Monetary(
+        compute="_compute_payroll_cards", currency_field="employee_pay_currency_id",
+        string="Oldin berilgan avans", groups="cst_kerama_payroll.group_payroll_user",
+        help="Shu davrda xodimga oldin berilgan avanslar va ushlanmalar (jarima…), shu avanssiz.")
+    payroll_this = fields.Monetary(
+        compute="_compute_payroll_cards", currency_field="employee_pay_currency_id",
+        string="Shu avans", groups="cst_kerama_payroll.group_payroll_user")
+    payroll_rest = fields.Monetary(
+        compute="_compute_payroll_cards", currency_field="employee_pay_currency_id",
+        string="Oylik qoldig'i", groups="cst_kerama_payroll.group_payroll_user",
+        help="Hisoblangan oylik − oldin berilgan − shu avans. Manfiy: avans oylikdan oshdi, "
+             "farq keyingi davrga qarz bo'lib o'tadi.")
+    payroll_note = fields.Char(compute="_compute_payroll_cards", groups="cst_kerama_payroll.group_payroll_user")
     employee_pay_currency_id = fields.Many2one(
         related="company_id.cst_payroll_currency_id", string="Payroll currency")
     employee_balance = fields.Monetary(
@@ -322,6 +343,49 @@ class KassaOperation(models.Model):
     def _compute_employee_balance(self):
         for op in self:
             op.employee_balance = op.employee_id.sudo().cst_payroll_balance if op.employee_id else 0.0
+
+    @api.depends("operation_type", "date", "company_id", "payroll_line_id.period_id")
+    def _compute_payroll_period_id(self):
+        Period = self.env["cst.payroll.period"].sudo()
+        for op in self:
+            if op.payroll_line_id:
+                op.payroll_period_id = op.payroll_line_id.period_id
+            elif op.operation_type != "employee_advance" or not op.date or not op.company_id:
+                op.payroll_period_id = False
+            elif op.payroll_period_id and op.payroll_period_id.state in ("draft", "computed"):
+                continue  # chosen by the cashier
+            else:
+                op.payroll_period_id = Period.search([
+                    ("company_id", "=", op.company_id.id),
+                    ("date_from", "<=", op.date), ("date_to", ">=", op.date),
+                    ("state", "in", ("draft", "computed")),
+                ], order="date_from desc", limit=1)
+
+    @api.depends("employee_id", "payroll_period_id", "amount", "amount_company", "rate", "state")
+    def _compute_payroll_cards(self):
+        Line = self.env["cst.payroll.line"].sudo()
+        for op in self:
+            op.payroll_accrued = op.payroll_prior = op.payroll_this = op.payroll_rest = 0.0
+            op.payroll_note = False
+            if op.operation_type != "employee_advance" or not op.employee_id:
+                continue
+            op.payroll_this = op._cst_payroll_amount() if op.amount else 0.0
+            if not op.payroll_period_id:
+                op.payroll_note = _("Bu sana uchun ochiq oylik davri yo'q: avans davr ochilganda "
+                                    "o'sha oyga qo'shiladi.")
+                op.payroll_rest = -op.payroll_this
+                continue
+            domain = [("period_id", "=", op.payroll_period_id.id),
+                      ("employee_id", "=", op.employee_id.id), ("state", "!=", "cancel")]
+            if op.payroll_line_id:
+                domain.append(("id", "!=", op.payroll_line_id.id))
+            lines = Line.search(domain)
+            op.payroll_accrued = sum(lines.filtered(lambda l: l.kind == "accrual").mapped("amount"))
+            op.payroll_prior = sum(lines.filtered(lambda l: l.kind == "deduction").mapped("amount"))
+            op.payroll_rest = op.payroll_accrued - op.payroll_prior - op.payroll_this
+            if op.payroll_period_id.state == "draft" and not op.payroll_accrued:
+                op.payroll_note = _("«%s» hali hisoblanmagan: hisoblangan oylik 0 ko'rinadi.",
+                                    op.payroll_period_id.name)
 
     @api.depends("allocation_ids.amount", "allocation_ids.state", "payment_id", "state")
     def _compute_allocated(self):
@@ -676,6 +740,19 @@ class KassaOperation(models.Model):
                               employee=employee.name))
         return payable, employee.work_contact_id
 
+    def _cst_payroll_amount(self):
+        """This operation's amount on the salary account (kept in so'm): the
+        so'm handed out as is; a dollar advance at the rate it was handed out."""
+        self.ensure_one()
+        company = self.company_id
+        pay_currency = company._cst_payroll_currency()
+        if self.currency_id == pay_currency:
+            return self.amount
+        if pay_currency == company.currency_id:
+            return self.amount_company
+        rate = self.rate or self.day_id.usd_rate or company._cst_payroll_rate(self.date)
+        return pay_currency.round(self.amount_company * rate)
+
     def _cst_create_payroll_line(self):
         """«Накд аванс» deduction on the employee's salary account.
 
@@ -685,22 +762,19 @@ class KassaOperation(models.Model):
         """
         self.ensure_one()
         component = self.env.ref("cst_kerama_payroll.component_avans_naqd")
-        company = self.company_id
-        pay_currency = company._cst_payroll_currency()
-        # the salary account is kept in so'm: the so'm handed out, as is; a
-        # dollar advance at the day's rate
-        if self.currency_id == pay_currency:
-            amount = self.amount
-        elif pay_currency == company.currency_id:
-            amount = self.amount_company
-        else:
-            amount = pay_currency.round(self.amount_company * company._cst_payroll_rate(self.date))
-        period = self.env["cst.payroll.period"].sudo().search([
-            ("company_id", "=", self.company_id.id),
-            ("date_from", "<=", self.date),
-            ("date_to", ">=", self.date),
-            ("state", "!=", "closed"),
-        ], order="date_from desc", limit=1)
+        pay_currency = self.company_id._cst_payroll_currency()
+        amount = self._cst_payroll_amount()
+        period = self.payroll_period_id
+        if period and period.state not in ("draft", "computed"):
+            raise UserError(_(
+                "«%s» oylik davri allaqachon tasdiqlangan: avansni ochiq davrga yozing.", period.name))
+        if not period:
+            period = self.env["cst.payroll.period"].sudo().search([
+                ("company_id", "=", self.company_id.id),
+                ("date_from", "<=", self.date),
+                ("date_to", ">=", self.date),
+                ("state", "!=", "closed"),
+            ], order="date_from desc", limit=1)
         return self.env["cst.payroll.line"].sudo().create({
             "employee_id": self.employee_id.id,
             "component_id": component.id,

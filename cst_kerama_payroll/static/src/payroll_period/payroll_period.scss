@@ -1,0 +1,34 @@
+// «Oylik davri» summary cards (period form and the employee summary form)
+.o_cst_payroll_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin: 8px 0 16px;
+
+    .o_cst_card {
+        border: 1px solid $border-color;
+        border-radius: 6px;
+        padding: 10px 14px;
+        background-color: $o-view-background-color;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .o_cst_card_label {
+            color: $text-muted;
+            font-size: 0.85rem;
+        }
+        .o_field_widget, .o_field_monetary {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        &.o_cst_card_info {
+            border-color: rgba($info, 0.45);
+            background-color: rgba($info, 0.08);
+        }
+        &.o_cst_card_warn {
+            border-color: rgba($warning, 0.6);
+            background-color: rgba($warning, 0.1);
+        }
+    }
+}

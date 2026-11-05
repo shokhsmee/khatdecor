@@ -246,10 +246,14 @@
                     </div>
                     <div class="o_cst_fs_note">
                         Summalar <b t-esc="data.currency"/>da. Kirim = haqqimizni oshiradi / qarzimizni kamaytiradi,
-                        Chiqim — aksincha. Kun boshiga sarmoya = haqqimiz − qarzimiz (1–13-qatorlar); kun oxiriga
+                        Chiqim — aksincha. Kontragent qatorlarida (4, 7, 9, 10, 12, 13) esa akt sverka kabi:
+                        Kirim = kontragentdan kelgan (to'lov yoki tovar), Chiqim = kontragentga ketgan — shu sabab
+                        aylanma jamlari teng bo'lmasligi mumkin, qoldiq jamlari doim teng.
+                        Kun boshiga sarmoya = haqqimiz − qarzimiz (1–13-qatorlar); kun oxiriga
                         sarmoya = u + davr foydasi + boshlang'ich qoldiq yozuvlari (Exceldan yuklangan ombor va mijoz
                         qoldiqlari) + 15-qator. 15-qator — hujjatlar bilan tushuntirib bo'lmaydigan farq (so'mdagi
-                        qoldiqlarning kurs o'zgarishi, ishlab chiqarishdagi tannarx farqi), shu sabab jamlar doim teng.
+                        qoldiqlarning kurs o'zgarishi, ishlab chiqarishdagi tannarx farqi); «Valyuta kursi farqi»
+                        qatorini bossangiz, davrdagi kurs farqi yozuvlari ochiladi.
                         3-qator: tasdiqlangan, lekin hali yuki chiqmagan sotuv (qarzimiz) va kelmagan xarid (haqqimiz).
                         <a href="#" t-on-click.prevent="openOdooBalance">Odoo'ning o'z balansi</a>
                     </div>

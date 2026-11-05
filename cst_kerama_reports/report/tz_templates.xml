@@ -170,12 +170,23 @@
                     <div class="page">
                         <t t-call="cst_kerama_reports.report_style"/>
                         <style>.cst_rep td.emp_no { color: #b42318; } .cst_rep td.emp_yes { color: #067647; }</style>
+                        <!-- 05.11 «ui yaxshi emas, moslashishi»: on screen the paper widths squeezed every
+                             column but F.I.Sh. — let the columns take their content's width, keep
+                             numbers/dates/times on one line, and let only name and job wrap. -->
+                        <style t-if="report_type == 'html'">
+                            .cst_rep.cst_emp { table-layout: auto; }
+                            .cst_rep.cst_emp th { width: auto !important; white-space: nowrap; }
+                            .cst_rep.cst_emp td { white-space: nowrap; }
+                            .cst_rep.cst_emp td.emp_name { white-space: normal; min-width: 240px; }
+                            .cst_rep.cst_emp td.emp_job { white-space: normal; min-width: 140px; max-width: 260px; }
+                            .cst_rep.cst_emp tr.cst_company td, .cst_rep.cst_emp tr.cst_group td { white-space: normal; }
+                        </style>
                         <div class="cst_stamp"><span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/></div>
                         <div class="cst_head">
                             <h2 t-out="values['title']"/>
                             <div>Kelib-ketish: <span t-out="values['day']" t-options="{'widget': 'date'}"/> (Face ID)</div>
                         </div>
-                        <table class="cst_rep">
+                        <table class="cst_rep cst_emp">
                             <thead>
                                 <tr>
                                     <th style="width:26px;">№</th><th>F.I.Sh.</th><th style="width:130px;">Lavozimi</th>
@@ -196,8 +207,8 @@
                                             <t t-out="g['label']"/> — <t t-out="len(g['rows'])"/> (kelgan <t t-out="g['present']"/>)</td></tr>
                                         <tr t-foreach="g['rows']" t-as="r">
                                             <td class="mid" t-out="r_index + 1"/>
-                                            <td t-out="r['name']"/>
-                                            <td t-out="r['job']"/>
+                                            <td class="emp_name" t-out="r['name']"/>
+                                            <td class="emp_job" t-out="r['job']"/>
                                             <td class="mid" t-out="r['number']"/>
                                             <td class="mid" t-out="r['staff_label']"/>
                                             <td class="mid"><span t-if="r['hired']" t-out="r['hired']" t-options="{'widget': 'date'}"/></td>

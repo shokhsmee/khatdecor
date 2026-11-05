@@ -91,7 +91,7 @@ class CstPayrollLine(models.Model):
         ],
         default="draft", required=True, index=True, readonly=True, copy=False)
     is_manual = fields.Boolean(
-        string="Qo'lda kiritilgan", default=False, copy=False,
+        string="Qo'lda kiritilgan", default=True, copy=False,
         help="Одам узи ёзган катор.  Давр кайта хисобланганда учирилмайди — "
              "акс холда кулда ёзилган «Юк тушириш» ёки «Ишбай» бонуси "
              "жимгина йуколарди.")
@@ -162,7 +162,18 @@ class CstPayrollLine(models.Model):
             "view_mode": "form",
         }
 
+    _FROZEN = {"employee_id", "date", "component_id", "company_id", "amount", "is_official", "period_id"}
+
     def write(self, vals):
+        if not self.env.context.get("cst_payroll_state_ok"):
+            if "state" in vals and not self.env.context.get("cst_payroll_external_ok"):
+                raise UserError(_("A line's state follows its period: confirm or reset the period instead."))
+            frozen = self._FROZEN.intersection(vals)
+            if frozen == {"period_id"} and not any(self.mapped("period_id")):
+                frozen = set()  # a loose line joining its period
+            if frozen and self.filtered(lambda line: line.state != "draft" and not line.is_external):
+                raise UserError(_(
+                    "Confirmed or posted lines cannot be changed.  Reset the period to draft first."))
         if not self.env.context.get("cst_payroll_external_ok") \
                 and self._EXTERNAL_LOCKED.intersection(vals) and any(self.mapped("is_external")):
             raise UserError(_(

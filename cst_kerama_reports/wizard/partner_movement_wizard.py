@@ -40,21 +40,33 @@ class CstPartnerMovementWizard(models.TransientModel):
             if wizard.date_to < wizard.date_from:
                 raise UserError(_("Davr oxiri boshidan oldin bo'lishi mumkin emas."))
 
+    _TOTAL_KEYS = ("open_we_owe", "open_they_owe", "inflow", "outflow", "close_we_owe", "close_they_owe")
+
     def _report_values(self):
         self.ensure_one()
         engine = self.env["cst.partner.statement"]
+        companies = engine.movement_rows(
+            self.kind, self.date_from, self.date_to,
+            partner_ids=self.partner_ids.ids or None,
+            company_ids=self.company_ids.ids or None,
+            hide_empty=self.hide_empty,
+        )
+        # «Jami qarzimiz / haqqimiz»: one total line per currency under each company
+        for block in companies:
+            totals = {}
+            for row in block["partners"]:
+                for cur in row["currencies"]:
+                    total = totals.setdefault(cur["currency_name"], dict.fromkeys(self._TOTAL_KEYS, 0.0))
+                    for key in self._TOTAL_KEYS:
+                        total[key] += cur.get(key) or 0.0
+            block["totals"] = [dict(values, currency_name=name) for name, values in totals.items()]
         return {
             "wizard": self,
             "kind_label": engine.kind_label(self.kind),
             "title": "%s harakati" % engine.kind_label(self.kind),
             "date_from": self.date_from,
             "date_to": self.date_to,
-            "companies": engine.movement_rows(
-                self.kind, self.date_from, self.date_to,
-                partner_ids=self.partner_ids.ids or None,
-                company_ids=self.company_ids.ids or None,
-                hide_empty=self.hide_empty,
-            ),
+            "companies": companies,
         }
 
     def action_print(self):

@@ -12,3 +12,4 @@ access_cst_payroll_entry_wizard_user,cst.payroll.entry.wizard user,model_cst_pay
 access_cst_payroll_entry_wizard_line_user,cst.payroll.entry.wizard.line user,model_cst_payroll_entry_wizard_line,cst_kerama_payroll.group_payroll_user,1,1,1,1
 access_cst_payroll_card_import_wizard_user,cst.payroll.card.import.wizard user,model_cst_payroll_card_import_wizard,cst_kerama_payroll.group_payroll_user,1,1,1,1
 access_cst_payroll_card_import_line_user,cst.payroll.card.import.line user,model_cst_payroll_card_import_line,cst_kerama_payroll.group_payroll_user,1,1,1,1
+access_cst_payroll_period_employee_user,cst.payroll.period.employee user,model_cst_payroll_period_employee,cst_kerama_payroll.group_payroll_user,1,0,0,0

@@ -716,15 +716,14 @@ class CstProductionShift(models.Model):
             assigned += amount
 
     def _payroll_period(self):
-        """An open payroll period covering the shift date, if the payroll has one."""
+        """An open (not yet confirmed) payroll period covering the shift date.
+        None open: the line waits without one and the period adopts it when it
+        is computed or confirmed -- a confirmed or posted period never would."""
         self.ensure_one()
-        Period = self.env["cst.payroll.period"]
-        periods = Period.search([
-            ("company_id", "=", self.company_id.id),
+        return self.env["cst.payroll.period"].search([
+            ("company_id", "=", self.company_id.id), ("state", "in", ("draft", "computed")),
             ("date_from", "<=", self.date), ("date_to", ">=", self.date),
-        ], order="id desc")
-        open_periods = periods.filtered(lambda p: p.state == "draft") if "state" in Period._fields else periods
-        return (open_periods or periods)[:1]
+        ], order="id desc", limit=1)
 
     def _post_payroll(self, shares):
         """One accrual line per worker for the fund, one deduction for the brak."""

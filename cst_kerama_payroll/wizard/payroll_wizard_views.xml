@@ -89,11 +89,14 @@
                         </group>
                     </group>
                     <div class="alert alert-info" role="alert">
-                        Excel файлда камида икки устун булиши керак:
-                        <b>PINFL</b> (ёки ЖШШИР) ва <b>Summa</b> (ёки Сумма).
-                        Хохласангиз <b>FIO</b> устуни хам булсин — у факат
-                        текшириш учун курсатилади.
-                        Ходим айнан <b>ЖШШИР</b> буйича топилади, исм буйича эмас.
+                        Банк файли тугри келади: сарлавхада <b>Сумма</b> ва <b>ПИНФЛ</b>
+                        ёки <b>ФИО</b> сузлари булган устунлар булса етарли.
+                        Ходим аввал ЖШШИР буйича, топилмаса исм-фамилия буйича
+                        (лотин ёки кирилл) топилади — исм буйича топилганлар сарик
+                        рангда, текшириб чикинг.  Тасдиклаганда файлдаги ЖШШИР ходим
+                        картасига ёзилади.
+                        <button name="action_download_template" type="object" string="Shablon"
+                                icon="fa-download" class="btn-link p-0"/>
                     </div>
                 </div>
 
@@ -122,14 +125,15 @@
                     <field name="line_ids">
                         <list editable="bottom" create="0"
                               decoration-danger="state == 'unmatched'"
-                              decoration-warning="is_duplicate">
+                              decoration-warning="is_duplicate or by_name">
                             <field name="company_id" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="pinfl" readonly="1"/>
                             <field name="file_name_text" readonly="1"/>
                             <field name="employee_id" options="{'no_create': True}"/>
                             <field name="amount" sum="Jami"/>
-                            <field name="is_duplicate" readonly="1" optional="show"/>
+                            <field name="by_name" column_invisible="1"/>
+                            <field name="is_duplicate" optional="show"/>
                             <field name="reason" readonly="1"/>
                             <field name="state" readonly="1" widget="badge"
                                    decoration-success="state == 'matched'"
